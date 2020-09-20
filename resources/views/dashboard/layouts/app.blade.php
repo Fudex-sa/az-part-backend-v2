@@ -12,7 +12,11 @@
 
 <!-- Bootstrap -->
 <link href="{{ dashboard('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ dashboard('vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css') }}" rel="stylesheet">
+
+{{-- @if(cur_dir() == 'rtl') --}}
+    <link href="{{ dashboard('vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css') }}" rel="stylesheet">
+{{-- @endif --}}
+
 <!-- Font Awesome -->
 <link href="{{ dashboard('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 <!-- NProgress -->
@@ -61,41 +65,25 @@
                 <li><a><i class="fa fa-users"></i> {{ __('site.users_management') }}
                         <span class="fa fa-chevron-down"></span></a>
 
-                    <ul class="nav child_menu">
-                        <li> <a href="{{route('admin.users.vip_requests')}}">
-                                {{ __('site.requests_vip') }}  
-                                ({{ Cache::get('vip_requests_count') ? Cache::get('vip_requests_count') : '0' }})
-                            </a>
-                        </li>
-        
-                        <li><a  href="{{route('admin.users.sellers')}}">                                           
-                                {{ __('site.sellers_mediators') }}  
-                                ({{ Cache::get('count_sellers') ? Cache::get('count_sellers') : '0' }}) 
-                            </a>
-                        </li>
-        
-                        <li> <a href="{{route('admin.users')}}">                                         
-                                {{ __('site.site_users') }}
-                                ({{ Cache::get('count_users') ? Cache::get('count_users') : '0' }}) 
-                            </a>
-                        </li>
-        
-                        <li> <a href="{{route('admin.users.supervisors')}}">                                           
-                                {{ __('site.supervisors') }} 
-                                ({{ Cache::get('count_supervisor') ? Cache::get('count_supervisor') : '0' }})
-                            </a>
-                        </li>
+                    <ul class="nav child_menu">                       
 
-                        <li> <a href="{{route('admin.users.saudi')}}">                                           
-                                {{ __('site.saudi_section') }} 
-                                ({{ Cache::get('saudi_counts') ? Cache::get('saudi_counts') : '0' }})
-                            </a>
-                        </li>
+                        <li> <a href="{{route('admin.users')}}"> {{ __('site.users') }} </a> </li>
+
+                        <li> <a href="{{route('admin.companies')}}"> {{ __('site.companies') }} </a> </li>
         
-                        <li> <a href="{{route('rules.index')}}">                                           
-                                {{ __('site.rules') }}
-                            </a>
-                        </li>
+                        <li><a  href="{{route('admin.sellers')}}"> {{ __('site.sellers') }} </a> </li>
+        
+                        <li><a  href="{{route('admin.brokers')}}"> {{ __('site.brokers') }} </a> </li>
+
+                        <li> <a href="{{route('admin.reps')}}"> {{ __('site.reps') }} </a> </li>
+
+                        <li> <a href="{{route('admin.supervisors')}}"> {{ __('site.supervisors') }} </a> </li>                    
+
+                        <li> <a href="{{route('admin.saudi')}}"> {{ __('site.saudi_section') }} </a> </li>
+
+                        <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>                        
+        
+                        <li> <a href="{{route('admin.rules')}}"> {{ __('site.rules') }} </a> </li>
                     </ul>
                 </li>                             
             </ul>
@@ -194,6 +182,11 @@
 
             
             <ul class="nav side-menu">
+                
+                <li><a href="{{ route('admin.packages') }}"><i class="fa fa-tag"></i> 
+                    {{ __('site.packages_management') }} </a></li>
+
+
                 {{-- @if(adminHasPermissions('brands')) --}}
                     <li><a href="{{ route('admin.brands') }}"><i class="fa fa-globe"></i> 
                         {{ __('site.brands_management') }}   <span
@@ -360,7 +353,9 @@
 <!-- page content -->
 <div class="right_col" role="main">
 
-@if(cur_root() != 'admin.dashboard' && cur_root() != 'admin.piece.edit' && cur_root() != 'admin.engine')
+@if(cur_root() != 'admin.dashboard' && cur_root() != 'admin.piece.edit' && cur_root() != 'admin.engine'
+        
+        && cur_root() != 'admin.packages')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

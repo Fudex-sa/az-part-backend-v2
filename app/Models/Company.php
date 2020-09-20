@@ -12,7 +12,7 @@ class Company extends Model
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'image' , 'rating' , 'user_type' , 'api_token' , 'password',
-        'total_requests'      
+        'total_requests' , 'available_requests'      
     ];
     
 }

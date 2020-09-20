@@ -63,7 +63,7 @@
 
             <li role="presentation" class=""><a href="#tab_content2" id="home-tab"
                                                       role="tab" data-toggle="tab"
-                                                      aria-expanded="true">  @lang('site.user_requests') </a>
+                                                      aria-expanded="true">  @lang('site.company_requests') </a>
             </li>
              
            
@@ -72,7 +72,7 @@
 
 <div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="profile-tab">
         
-<form action="{{ route('admin.user.store',$item->id) }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
+<form action="{{ route('admin.company.store',$item->id) }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
 
     @csrf
     

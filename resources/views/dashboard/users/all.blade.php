@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title') @lang('site.requests_vip') @endsection
+@section('title') @lang('site.users') @endsection
 
 @section('styles')
     
@@ -8,20 +8,34 @@
 
 
 @section('content')
-   
+  
+    <div class="btn-group">
+        
+        <a href="{{route('admin.user.add')}}" class="btn btn-warning"> 
+            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+
+        <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
+            <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+
+        <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
+            <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
+         
+    </div>
+
+<br/> <br/>
+
 <table class="table table-striped jambo_table bulk_action" id="myTbl">
     <thead>
     <tr class="headings">
         <th>#  </th>
         <th> @lang('site.user_id')</th>
-        <th> @lang('site.name')   </th>
-        <th> @lang('site.user_role')  </th>
-        <th> @lang('site.requests_count')  </th>
-        <th> @lang('site.rule') </th>        
+        <th> @lang('site.name')   </th>        
+        <th> @lang('site.requests_count')  </th>        
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
-        <th> @lang('site.registered_date') </th>
-        <th></th>
+        <th> @lang('site.saudi') </th>
+        <th> @lang('site.available_requests') </th>
+        <th style="width:120px;"></th>
     </tr>
     </thead>
 
@@ -36,14 +50,9 @@
             <td>user#{{$item->id}}</td>
             
             <td>{{$item->name}}</td>
-            
-            <td><span class="label label-{{$item->user_role}}"> {{ __('site.'.$item->user_role) }}</span></td>
-            
+             
             <td> {{ $item->total_requests }} @lang('site.request') </td>
-
-            <td>{{ $item->rule ? $item->rule->name : '-' }}</td>
  
-
             <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
                          <i class="fa fa-check"></i> @lang('site.yes') </button>
@@ -61,16 +70,25 @@
                     <i class="fa fa-close"></i> @lang('site.no') </button>
                 @endif     
             </td>
+
+
+            <td>
+                @if($item->saudi ==1) <button class="btn btn-success btn-xs">
+                    <i class="fa fa-check"></i> @lang('site.yes') </button>
+                @else
+                    <button class="btn btn-warning btn-xs">
+                    <i class="fa fa-close"></i> @lang('site.no') </button>
+                @endif     
+            </td>
           
-            <td> {{ $item->created_at }} </td>
+            <td> {{ $item->available_requests }} </td>
     
             <td>
                 <a class="whatsapp btn btn-success btn-xs" target="_blank" href="https://wa.me/966{{$item->mobile}}?text=
-                {{ \App\Models\Setting::getvalue('whatsapp_msg') }}">
-                <i class="fa fa-whatsapp"></i>
+                    {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
                 </a>
 
-                <a href="{{ route('admin.user.edit',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                <a href="{{ url('admin/user',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
 
                 <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
             </td>
@@ -89,9 +107,8 @@
 
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'user']) 
-
-   
+ 
 @endsection

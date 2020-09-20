@@ -63,7 +63,7 @@
 
             <li role="presentation" class=""><a href="#tab_content2" id="home-tab"
                                                       role="tab" data-toggle="tab"
-                                                      aria-expanded="true">  @lang('site.user_requests') </a>
+                                                      aria-expanded="true">  @lang('site.broker_requests') </a>
             </li>
              
            
@@ -72,7 +72,7 @@
 
 <div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="profile-tab">
         
-<form action="{{ route('admin.user.store',$item->id) }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
+<form action="{{ route('admin.broker.store',$item->id) }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
 
     @csrf
     
@@ -109,19 +109,31 @@
                             <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
                                 required>  
 
-                        @elseif($col == 'logo')
+                        @elseif($col == 'image')
                             <input type="file" name="{{ $col }}" >  
     
                         @elseif($col == 'saudi' || $col == 'active' || $col == 'vip')
                             <label>
-                            <input type="radio" class="flat" name="{{ $col }}" value="1"  
-                                {{ $item->$col == 1 ? 'checked' : '' }} required/> @lang('site.yes')
+                                <input type="radio" class="flat" name="{{ $col }}" value="1"  
+                                    {{ $item->$col == 1 ? 'checked' : '' }} required/> @lang('site.yes')
                             </label>
     
-                            <input type="radio" class="flat" name="{{ $col }}" value="0"  
-                                {{ $item->$col == 0 ? 'checked' : '' }} required/> @lang('site.no')
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="0"  
+                                    {{ $item->$col == 0 ? 'checked' : '' }} required/> @lang('site.no')
                             </label>
-    
+                            
+                        @elseif($col == 'user_type')
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="tashalih"  
+                                    {{ $item->$col  == 'tashalih' ? 'checked' : '' }} required/> @lang('site.tashalih')
+                            </label>
+
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="manufacturing"  
+                                    {{ $item->$col == 'manufacturing' ? 'checked' : '' }} required/> @lang('site.manufacturing')
+                            </label>
+                         
                         @else
                         <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
     
@@ -138,7 +150,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                 <button type="submit" class="btn btn-success"> @lang('site.save') </button>
     
-                <button type="button" onclick="window.location.href='{{ route('admin.users') }}'" 
+                <button type="button" onclick="window.location.href='{{ route('admin.sellers') }}'" 
                 class="btn btn-primary"> @lang('site.cancel') </button>
             </div>
         </div>

@@ -188,7 +188,7 @@
                             <button type="button" onclick="window.location.href='{{ route('admin.users') }}'" 
                             class="btn btn-primary"> @lang('site.cancel') </button>
 
-                            <button type="submit" class="btn btn-success"> @lang('site.send') </button>
+                            <button type="submit" class="btn btn-success"> @lang('site.save') </button>
                         </div>
                     </div>
 

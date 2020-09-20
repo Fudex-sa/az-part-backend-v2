@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title') @lang('site.users') @endsection
+@section('title') @lang('site.companies') @endsection
 
 @section('styles')
     
@@ -11,7 +11,7 @@
   
     <div class="btn-group">
         
-        <a href="{{route('admin.user.add')}}" class="btn btn-warning"> 
+        <a href="{{route('admin.company.add')}}" class="btn btn-warning"> 
             <i class="fa fa-plus"></i>  @lang('site.add') </a> 
 
         <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
@@ -24,19 +24,18 @@
 
 <br/> <br/>
 
-<table class="table table-striped jambo_table bulk_action" id="myTbl">
+<table class="table table-striped jambo_table bulk_action">
     <thead>
     <tr class="headings">
         <th>#  </th>
         <th> @lang('site.user_id')</th>
-        <th> @lang('site.name')   </th>
-        <th> @lang('site.user_role')  </th>
-        <th> @lang('site.requests_count')  </th>
-        <th> @lang('site.rule') </th>        
+        <th> <i class="fa fa-camera"> </i> </th>
+        <th> @lang('site.name')   </th>        
+        <th> @lang('site.total_requests')  </th>                
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
         <th> @lang('site.saudi') </th>
-        <th> @lang('site.registered_date') </th>
+        <th> @lang('site.available_requests') </th>
         <th style="width:120px;"></th>
     </tr>
     </thead>
@@ -51,15 +50,14 @@
 
             <td>user#{{$item->id}}</td>
             
+            <td> @if($item->image) <img src="{{ img_path($item->image) }}" class="img-tbl" /> 
+                    @else  <img src="{{ dashboard('build/images/user.png') }}" class="img-tbl" />  @endif
+            </td>
+
             <td>{{$item->name}}</td>
-            
-            <td><span class="label label-{{$item->user_role}}"> {{ __('site.'.$item->user_role) }}</span></td>
-            
+             
             <td> {{ $item->total_requests }} @lang('site.request') </td>
-
-            <td>{{ $item->rule ? $item->rule->name : '-' }}</td>
  
-
             <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
                          <i class="fa fa-check"></i> @lang('site.yes') </button>
@@ -88,15 +86,14 @@
                 @endif     
             </td>
           
-            <td> {{ $item->created_at }} </td>
+            <td> {{ $item->available_requests }} </td>
     
             <td>
                 <a class="whatsapp btn btn-success btn-xs" target="_blank" href="https://wa.me/966{{$item->mobile}}?text=
-                {{ \App\Models\Setting::getvalue('whatsapp_msg') }}">
-                <i class="fa fa-whatsapp"></i>
+                    {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
                 </a>
 
-                <a href="{{ route('admin.user.edit',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                <a href="{{ url('admin/company',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
 
                 <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
             </td>
@@ -115,24 +112,8 @@
 
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
-    @include('dashboard.ajax.delete',['target'=>'user']) 
-
-    {{-- @include('dashboard.ajax.export_excel',['fileName'=>'users'])  --}}
-     
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
-    <script>
-        var doc = new jsPDF('p', 'pt');
-        var elem = document.getElementById("myTbl");
-        var res = doc.autoTableHtmlToJson(elem);
-
-        doc.autoTable(res.columns, res.data, {styles: {font: "Amiri"}});
-
-        // doc.autoTable(res.columns, res.data);
-        doc.save("table.pdf");
-    </script> --}}
-
-   
+    @include('dashboard.ajax.delete',['target'=>'company']) 
+ 
 @endsection

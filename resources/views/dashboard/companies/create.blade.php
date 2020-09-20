@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title') @lang('site.add_user') @endsection
+@section('title') @lang('site.add_company') @endsection
 
 @section('styles')
     
@@ -13,7 +13,7 @@
      
 
 
-<form action="{{ route('admin.user.store') }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
+<form action="{{ route('admin.company.store') }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
 
 @csrf
 
@@ -34,23 +34,21 @@
                 @if($col == 'available_requests')
                     <div class="col-md-2 col-sm-6 col-xs-12">
                 @else <div class="col-md-6 col-sm-6 col-xs-12"> @endif
-                    
+
                     @if($col == 'email')
-                        <input type="email" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
-                        required>  
+                        <input type="email" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required>  
 
                     @elseif($col == 'mobile')
-                        <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
-                        required>  
+                        <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required>  
 
                     @elseif($col == 'available_requests')
-                        <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
-                            required>  
+                    <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
+                        required>  
 
                     @elseif($col == 'password')
                         <input type="password" name="{{ $col }}" class="form-control" required>  
 
-                    @elseif($col == 'logo')
+                    @elseif($col == 'image')
                         <input type="file" name="{{ $col }}" >  
 
                     @elseif($col == 'saudi' || $col == 'active' || $col == 'vip')
@@ -79,7 +77,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
             <button type="submit" class="btn btn-success"> @lang('site.save') </button>
 
-            <button type="button" onclick="window.location.href='{{ route('admin.users') }}'" 
+            <button type="button" onclick="window.location.href='{{ route('admin.companies') }}'" 
             class="btn btn-primary"> @lang('site.cancel') </button>
         </div>
     </div>
