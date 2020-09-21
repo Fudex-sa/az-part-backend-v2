@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin;
+use App\Models\Supervisor;
 use Auth;
 
 class LoginController extends Controller
@@ -21,7 +21,7 @@ class LoginController extends Controller
         
         $credentials = $request->except(['_token']);
 
-        $user = Admin::where('mobile',$request->mobile)->first();
+        $user = Supervisor::where('mobile',$request->mobile)->first();
 
         if(Auth::guard('admin')->attempt($credentials))            
 

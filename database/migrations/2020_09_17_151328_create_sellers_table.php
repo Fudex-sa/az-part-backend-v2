@@ -26,7 +26,7 @@ class CreateSellersTable extends Migration
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();
             $table->integer('total_requests')->default(0);
-            $table->string('logo')->nullable();
+            $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
             $table->enum('user_type',['tashalih','manufacturing']);
 

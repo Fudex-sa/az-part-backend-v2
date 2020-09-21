@@ -22,6 +22,71 @@ Route::group([
             Route::get('profile',[App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');            
             Route::post('profile/update',[App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');            
 
+            /*************** Packages  **********************/
+            Route::get('packages',[App\Http\Controllers\Admin\PackageController::class, 'index'])->name('admin.packages');            
+            Route::post('package/{id?}',[App\Http\Controllers\Admin\PackageController::class, 'store'])->name('admin.package.store');
+            Route::get('package/{item}',[App\Http\Controllers\Admin\PackageController::class, 'edit'])->name('admin.package');            
+            Route::delete('package/delete',[App\Http\Controllers\Admin\PackageController::class, 'delete'])->name('admin.package.delete');            
+
+            /******************* Users ********************/                
+            Route::get('users',[App\Http\Controllers\Admin\UserController::class, 'all'])->name('admin.users');            
+            Route::get('user/add',[App\Http\Controllers\Admin\UserController::class, 'add'])->name('admin.user.add');            
+            Route::get('user/{item}',[App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.user');
+            Route::post('user/store/{id?}',[App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.user.store');            
+            Route::delete('user/delete',[App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin.user.delete');
+                        
+            /******************* Companies ********************/    
+            Route::get('companies',[App\Http\Controllers\Admin\CompanyController::class, 'all'])->name('admin.companies');
+            Route::get('company/add',[App\Http\Controllers\Admin\CompanyController::class, 'add'])->name('admin.company.add');
+            Route::get('company/{item}',[App\Http\Controllers\Admin\CompanyController::class, 'show'])->name('admin.company');
+            Route::post('company/store/{item?}',[App\Http\Controllers\Admin\CompanyController::class, 'store'])->name('admin.company.store');
+            Route::delete('company/delete',[App\Http\Controllers\Admin\CompanyController::class, 'delete'])->name('admin.company.delete');
+
+            /******************* Sellers ********************/    
+            Route::get('sellers',[App\Http\Controllers\Admin\SellerController::class, 'all'])->name('admin.sellers');            
+            Route::get('seller/add',[App\Http\Controllers\Admin\SellerController::class, 'add'])->name('admin.seller.add');
+            Route::get('seller/{item}',[App\Http\Controllers\Admin\SellerController::class, 'show'])->name('admin.seller');
+            Route::post('seller/store/{item?}',[App\Http\Controllers\Admin\SellerController::class, 'store'])->name('admin.seller.store');
+            Route::delete('seller/delete',[App\Http\Controllers\Admin\SellerController::class, 'delete'])->name('admin.seller.delete');
+
+            /******************* Brokers ********************/    
+            Route::get('brokers',[App\Http\Controllers\Admin\BrokerController::class, 'all'])->name('admin.brokers');            
+            Route::get('broker/add',[App\Http\Controllers\Admin\BrokerController::class, 'add'])->name('admin.broker.add');
+            Route::get('broker/{item}',[App\Http\Controllers\Admin\BrokerController::class, 'show'])->name('admin.broker');
+            Route::post('broker/store/{item?}',[App\Http\Controllers\Admin\BrokerController::class, 'store'])->name('admin.broker.store');
+            Route::delete('broker/delete',[App\Http\Controllers\Admin\BrokerController::class, 'delete'])->name('admin.broker.delete');
+
+            /******************* Reps ********************/                
+            Route::get('reps',[App\Http\Controllers\Admin\RepController::class, 'all'])->name('admin.reps');            
+            Route::get('rep/add',[App\Http\Controllers\Admin\RepController::class, 'add'])->name('admin.rep.add');
+            Route::get('rep/{item}',[App\Http\Controllers\Admin\RepController::class, 'show'])->name('admin.rep');
+            Route::post('rep/store/{item?}',[App\Http\Controllers\Admin\RepController::class, 'store'])->name('admin.rep.store');
+            Route::delete('rep/delete',[App\Http\Controllers\Admin\RepController::class, 'delete'])->name('admin.rep.delete');
+
+            /******************* Supervisors ********************/                
+            Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');  
+            Route::get('supervisor/add',[App\Http\Controllers\Admin\SupervisorController::class, 'add'])->name('admin.supervisor.add');
+            Route::get('supervisor/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'show'])->name('admin.supervisor');
+            Route::post('supervisor/store/{item?}',[App\Http\Controllers\Admin\SupervisorController::class, 'store'])->name('admin.supervisor.store');
+            Route::delete('supervisor/delete',[App\Http\Controllers\Admin\SupervisorController::class, 'delete'])->name('admin.supervisor.delete');
+
+            /******************* Saudi ********************/                
+            Route::get('saudis',[App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudis');                        
+            Route::get('saudi/{item}',[App\Http\Controllers\Admin\SaudiController::class, 'show'])->name('admin.saudi');
+            Route::post('saudi/store/{item?}',[App\Http\Controllers\Admin\SaudiController::class, 'store'])->name('admin.saudi.store');
+            
+            /*******************  Roles ********************/                
+            Route::get('roles',[App\Http\Controllers\Admin\RoleController::class, 'all'])->name('admin.roles');                        
+            Route::get('role/add',[App\Http\Controllers\Admin\RoleController::class, 'add'])->name('admin.role.add');
+            Route::get('role/{item}',[App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('admin.role');
+            Route::post('role/store/{item?}',[App\Http\Controllers\Admin\RoleController::class, 'store'])->name('admin.role.store');
+            Route::delete('role/delete',[App\Http\Controllers\Admin\RoleController::class, 'delete'])->name('admin.role.delete');
+            
+
+            
+            Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            
+             
+
             /************ Social  **********/
             Route::get('social/all','SocialController@index')->name('admin.socials');                        
             Route::post('social/store/{item?}','SocialController@store')->name('admin.social.store');        
@@ -55,23 +120,7 @@ Route::group([
             /******************** Offers  **********/
             Route::get('offer/send/{item}','OffersController@send_offer')->name('admin.offer.send');
 
-            /********* Users *******/    
-            Route::get('user/add','UsersController@add')->name('admin.user.add');
-            Route::get('users','UsersController@index')->name('admin.users');
-            Route::get('users/sellers','UsersController@sellers')->name('admin.users.sellers');    
-            Route::get('users/supervisors','UsersController@supervisors')->name('admin.users.supervisors');    
-            Route::get('users/saudi','UsersController@saudi')->name('admin.users.saudi');    
-
-            Route::get('users/vip_requests','UsersController@vip_requests')->name('admin.users.vip_requests');
-            Route::get('user/{item}', 'UsersController@show')->name('admin.user.show');    
-            Route::get('user/edit/{item}', 'UsersController@edit')->name('admin.user.edit');    
-            Route::post('user/store/{id?}', 'UsersController@store')->name('admin.user.store');   
-            Route::delete('user/delete','UsersController@delete')->name('admin.user.delete');             
-
-            Route::resource('rules', 'RulesController')->except(['show','delete']);            
-            Route::delete('/rule/delete','RulesController@delete')->name('admin.rule.delete'); 
-            Route::get('rule/edit/{item}', 'RulesController@edit')->name('admin.rule.edit');    
-            Route::post('rule/store/{item?}','RulesController@store')->name('admin.rule.store');
+            
 
             /********* Search ********/
             Route::get('search','SearchController@index')->name('admin.search');
@@ -204,6 +253,8 @@ Route::group([
             Route::get('message/edit/{item}','MessagesController@edit')->name('admin.message.edit');
             Route::post('message/store/{item?}','MessagesController@store')->name('admin.message.store');
             Route::post('message/delete','MessagesController@delete')->name('admin.message.delete');
+
+            
 
         });
 

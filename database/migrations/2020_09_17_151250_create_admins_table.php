@@ -13,7 +13,7 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('supervisors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -26,7 +26,7 @@ class CreateAdminsTable extends Migration
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();
             
-            $table->string('image')->nullable();
+            $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
             $table->enum('user_type',['supervisor','admin'])->default('supervisor');
 
@@ -45,6 +45,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('supervisors');
     }
 }

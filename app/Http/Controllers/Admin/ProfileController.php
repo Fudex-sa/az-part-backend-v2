@@ -42,7 +42,7 @@ class ProfileController extends Controller
 
          $response = Admin::where('id',$user->id)->update($data);
         
-         if($response)
+        if($response)
              return back()->with('success' , __('site.success-save') );
 
         return back()->with('failed' , __('site.error-happen') );

@@ -15,11 +15,11 @@
     background-color: #d9534f;
 }
 
-.label-waiting_payment,.label-seller_tashalih {
+.label-waiting_payment,.label-tashalih {
     background-color: #f0ad4e;
 }
 
-.label-assign_to_admin,.label-seller_manufacturing,.label-replied{
+.label-assign_to_admin,.label-manufacturing,.label-replied{
     background-color: #5bc0de;
 }
 
@@ -101,4 +101,16 @@
 
 .navbar-nav .open .dropdown-menu.msg_list{
     width: 200px;
+}
+
+.top_search .form-control{
+    border-radius: 25px 25px 25px 25px !important;
+}
+
+.page-title .title_left{
+    width: 55%;
+}
+
+.page-title .title_right{
+    width: 45%;
 }

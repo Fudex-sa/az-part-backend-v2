@@ -11,8 +11,13 @@ class Seller extends Model
 
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
-        'vip' , 'lang' , 'last_login' , 'image' , 'rating' , 'user_type' , 'api_token' , 'password'  ,
+        'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'  ,
         'total_requests'      
     ];
+
+    public function scopeSaudi($query)
+    {
+        return $query->whereSaudi(1);
+    }
     
 }
