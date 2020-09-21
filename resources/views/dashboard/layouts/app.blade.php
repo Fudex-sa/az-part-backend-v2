@@ -79,11 +79,11 @@
 
                         <li> <a href="{{route('admin.supervisors')}}"> {{ __('site.supervisors') }} </a> </li>                    
 
-                        <li> <a href="{{route('admin.saudi')}}"> {{ __('site.saudi_section') }} </a> </li>
+                        <li> <a href="{{route('admin.saudis')}}"> {{ __('site.saudi_section') }} </a> </li>
 
                         <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>                        
         
-                        <li> <a href="{{route('admin.rules')}}"> {{ __('site.rules') }} </a> </li>
+                        <li> <a href="{{route('admin.roles')}}"> {{ __('site.roles') }} </a> </li>
                     </ul>
                 </li>                             
             </ul>
@@ -355,7 +355,7 @@
 
 @if(cur_root() != 'admin.dashboard' && cur_root() != 'admin.piece.edit' && cur_root() != 'admin.engine'
         
-        && cur_root() != 'admin.packages')
+        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

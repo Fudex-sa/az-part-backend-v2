@@ -23,7 +23,6 @@ class PackageController extends Controller
 
     public function edit(Package $item)
     {
-    
         return view($this->view.'edit',compact('item'));
     }
 

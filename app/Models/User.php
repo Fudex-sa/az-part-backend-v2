@@ -18,7 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
-        'vip' , 'lang' , 'last_login' , 'image' , 'rating' , 'user_type' , 'api_token' , 'password',
+        'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password',
         'total_requests' , 'available_requests'        
     ];
 
@@ -39,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeSaudi($query)
+    {
+        return $query->whereSaudi(1);
+    }
 }

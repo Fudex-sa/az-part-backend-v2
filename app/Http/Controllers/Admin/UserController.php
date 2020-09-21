@@ -35,6 +35,13 @@ class UserController extends Controller
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = User::where('id',$id)->first()->password;
 
+        if($request->photo){
+            $fileName = time().'.'.$request->photo->extension();  
+            $request->photo->move(public_path('uploads'), $fileName);
+        
+            $data['photo'] = $fileName;
+        }  
+
         if($id) 
             $response = User::where('id',$id)->update($data);
         

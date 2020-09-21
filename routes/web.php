@@ -56,20 +56,36 @@ Route::group([
             Route::post('broker/store/{item?}',[App\Http\Controllers\Admin\BrokerController::class, 'store'])->name('admin.broker.store');
             Route::delete('broker/delete',[App\Http\Controllers\Admin\BrokerController::class, 'delete'])->name('admin.broker.delete');
 
+            /******************* Reps ********************/                
+            Route::get('reps',[App\Http\Controllers\Admin\RepController::class, 'all'])->name('admin.reps');            
+            Route::get('rep/add',[App\Http\Controllers\Admin\RepController::class, 'add'])->name('admin.rep.add');
+            Route::get('rep/{item}',[App\Http\Controllers\Admin\RepController::class, 'show'])->name('admin.rep');
+            Route::post('rep/store/{item?}',[App\Http\Controllers\Admin\RepController::class, 'store'])->name('admin.rep.store');
+            Route::delete('rep/delete',[App\Http\Controllers\Admin\RepController::class, 'delete'])->name('admin.rep.delete');
+
+            /******************* Supervisors ********************/                
+            Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');  
+            Route::get('supervisor/add',[App\Http\Controllers\Admin\SupervisorController::class, 'add'])->name('admin.supervisor.add');
+            Route::get('supervisor/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'show'])->name('admin.supervisor');
+            Route::post('supervisor/store/{item?}',[App\Http\Controllers\Admin\SupervisorController::class, 'store'])->name('admin.supervisor.store');
+            Route::delete('supervisor/delete',[App\Http\Controllers\Admin\SupervisorController::class, 'delete'])->name('admin.supervisor.delete');
+
+            /******************* Saudi ********************/                
+            Route::get('saudis',[App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudis');                        
+            Route::get('saudi/{item}',[App\Http\Controllers\Admin\SaudiController::class, 'show'])->name('admin.saudi');
+            Route::post('saudi/store/{item?}',[App\Http\Controllers\Admin\SaudiController::class, 'store'])->name('admin.saudi.store');
+            
+            /*******************  Roles ********************/                
+            Route::get('roles',[App\Http\Controllers\Admin\RoleController::class, 'all'])->name('admin.roles');                        
+            Route::get('role/add',[App\Http\Controllers\Admin\RoleController::class, 'add'])->name('admin.role.add');
+            Route::get('role/{item}',[App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('admin.role');
+            Route::post('role/store/{item?}',[App\Http\Controllers\Admin\RoleController::class, 'store'])->name('admin.role.store');
+            Route::delete('role/delete',[App\Http\Controllers\Admin\RoleController::class, 'delete'])->name('admin.role.delete');
+            
 
             
-            Route::get('reps',[App\Http\Controllers\Admin\RepController::class, 'all'])->name('admin.reps');            
-            Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');            
-            Route::get('saudi',[App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudi');            
             Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            
-            Route::get('rules',[App\Http\Controllers\Admin\RuleController::class, 'all'])->name('admin.rules');            
- 
-
-            // Route::resource('rules', 'RulesController')->except(['show','delete']);            
-            Route::delete('/rule/delete','RulesController@delete')->name('admin.rule.delete'); 
-            Route::get('rule/edit/{item}', 'RulesController@edit')->name('admin.rule.edit');    
-            Route::post('rule/store/{item?}','RulesController@store')->name('admin.rule.store');
-
+             
 
             /************ Social  **********/
             Route::get('social/all','SocialController@index')->name('admin.socials');                        

@@ -238,8 +238,8 @@ return [
 'piece_name' => 'Spare Part Name',
 'pending' => 'Pending',
 'closed' => 'Closed',
-'rules' => 'Roles',
-'create_new_rule'=>'Create New Rule',
+'roles' => 'Roles',
+'create_new_role'=>'Create New Role',
 'enter_data'=>'Enter Data',
 'value'=>'Value',
 'addSetting'=>'Add Setting',
@@ -652,6 +652,15 @@ return [
     'seller_requests' => 'Seller Requests',
     'add_broker' => 'Add Broker',
     'broker_requests' => 'Broker Requests',
+    'rating' => 'Rating',
+    'add_rep' => 'Add Representative',
+    'national_id' => 'National ID',
+    'photo' => 'Photo',
+    'add_supervisor' => 'Add Supervisor',
+    'name_ar' => 'Name In Arabic',
+    'name_en' => 'Name In English',
+    'name_hi' => 'Name In Hindi',
+    'saudis' => 'Saudis',
 ];
 
 ?>

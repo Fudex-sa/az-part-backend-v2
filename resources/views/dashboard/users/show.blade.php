@@ -109,7 +109,7 @@
                             <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
                                 required>  
 
-                        @elseif($col == 'logo')
+                        @elseif($col == 'photo')
                             <input type="file" name="{{ $col }}" >  
     
                         @elseif($col == 'saudi' || $col == 'active' || $col == 'vip')

@@ -29,7 +29,7 @@ class CreateCompaniesTable extends Migration
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();
             
-            $table->string('image')->nullable();
+            $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
 
             $table->string('api_token',80)->unique()->nullable()->default(null);

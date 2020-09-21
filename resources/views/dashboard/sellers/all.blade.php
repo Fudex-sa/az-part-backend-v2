@@ -52,7 +52,7 @@
 
             <td>user#{{$item->id}}</td>
             
-            <td> @if($item->image) <img src="{{ img_path($item->image) }}" class="img-tbl" /> 
+            <td> @if($item->photo) <img src="{{ img_path($item->photo) }}" class="img-tbl" /> 
                     @else  <img src="{{ dashboard('build/images/user.png') }}" class="img-tbl" />  @endif
             </td>
 

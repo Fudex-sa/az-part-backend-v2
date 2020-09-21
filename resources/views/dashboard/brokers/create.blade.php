@@ -48,7 +48,7 @@
                     @elseif($col == 'password')
                         <input type="password" name="{{ $col }}" class="form-control" required>  
 
-                    @elseif($col == 'image')
+                    @elseif($col == 'photo')
                         <input type="file" name="{{ $col }}" >  
 
                     @elseif($col == 'saudi' || $col == 'active' || $col == 'vip')

@@ -50,17 +50,18 @@
                     @elseif($col == 'password')
                         <input type="password" name="{{ $col }}" class="form-control" required>  
 
-                    @elseif($col == 'logo')
+                    @elseif($col == 'photo')
                         <input type="file" name="{{ $col }}" >  
 
                     @elseif($col == 'saudi' || $col == 'active' || $col == 'vip')
                         <label>
-                        <input type="radio" class="flat" name="{{ $col }}" value="1"  
-                            {{ old($col) == 1 ? 'checked' : '' }} required/> @lang('site.yes')
+                            <input type="radio" class="flat" name="{{ $col }}" value="1"  
+                                {{ old($col) == 1 ? 'checked' : '' }} required/> @lang('site.yes')
                         </label>
 
-                        <input type="radio" class="flat" name="{{ $col }}" value="0"  
-                            {{ old($col) == 0 ? 'checked' : '' }} required/> @lang('site.no')
+                        <label>
+                            <input type="radio" class="flat" name="{{ $col }}" value="0"  
+                                {{ old($col) == 0 ? 'checked' : '' }} required/> @lang('site.no')
                         </label>
 
                     @else
