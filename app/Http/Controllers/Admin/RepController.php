@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rep;
+use App\Models\UserRole;
+use App\Models\Role;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -15,7 +17,7 @@ class RepController extends Controller
 
     public function all()
     {
-        $items = Rep::orderby('id','desc')->paginate(pagger());
+        $items = Rep::with('rep_roles')->orderby('id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('items'));
     }
@@ -23,14 +25,15 @@ class RepController extends Controller
     public function add()
     {
         $cols = Schema::getColumnListing('reps');
+        $roles = Role::orderby('id','desc')->get();
 
-        return view($this->view.'create',compact('cols'));
+        return view($this->view.'create',compact('cols','roles'));
     }
 
     public function store(UserRequest $request,$id = null)
     {
          
-        $data = $request->except('_token','api_token');
+        $data = $request->except('_token','api_token','role_id');
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Rep::where('id',$id)->first()->password;
@@ -41,13 +44,33 @@ class RepController extends Controller
      
             $data['photo'] = $fileName;
         }  
+ 
+        if($id){ 
+            $item = Rep::where('id',$id)->update($data);
 
-        if($id) 
-            $response = Rep::where('id',$id)->update($data);
-        
-        else $response = Rep::create($data);
+            UserRole::roles($id,'rep')->delete();
 
-        if($response)
+            if($request->role_id){
+                foreach($request->role_id as $role){
+                    UserRole::create([
+                            'role_id' => $role , 'user_id' => $id , 'type' => 'rep'
+                    ]);
+            }}
+        }
+        else{
+            $item = Rep::create($data);
+            
+            UserRole::roles($item->id,'rep')->delete();
+
+            if($request->role_id){
+                foreach($request->role_id as $role){
+                    UserRole::create([
+                            'role_id' => $role , 'user_id' => $item->id , 'type' => 'rep'
+                    ]);
+            }}
+        } 
+
+        if($item)
             return redirect()->route('admin.reps')->with('success' , __('site.success-save') );
 
         return back()->with('failed' , __('site.error-happen'))->withInput();
@@ -56,9 +79,16 @@ class RepController extends Controller
 
     public function show(Rep $item)
     {
+        
         $cols = Schema::getColumnListing('reps');
+        $level2['name'] = 'reps';
+        $level2['link'] = 'admin.reps';
 
-        return view($this->view.'show',compact('item','cols'));
+        $roles = Role::orderby('id','desc')->get();
+
+        $rep_rols = UserRole::user_roles($item->id,'rep')->toArray();
+
+        return view($this->view.'show',compact('item','cols','roles','level2','rep_rols'));
 
     }
 

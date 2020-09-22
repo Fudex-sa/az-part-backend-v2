@@ -30,7 +30,8 @@
         <th>#  </th>
         <th> @lang('site.user_id')</th>
         <th> <i class="fa fa-camera"> </i> </th>
-        <th> @lang('site.name')   </th>                          
+        <th> @lang('site.name')   </th>     
+        <th> @lang('site.user_role') </th>                     
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
         
@@ -54,6 +55,12 @@
 
             <td>{{$item->name}}</td>
              
+            <td>
+                @foreach ($item->supervisor_roles as $rep_role)
+                    <label class="btn btn-default"> {{ __($rep_role->role['name_'.my_lang()]) }} </label>
+                @endforeach
+            </td>
+
             <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
                          <i class="fa fa-check"></i> @lang('site.yes') </button>

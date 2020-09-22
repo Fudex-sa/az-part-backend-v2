@@ -661,6 +661,12 @@ return [
     'name_en' => 'Name In English',
     'name_hi' => 'Name In Hindi',
     'saudis' => 'Saudis',
+    'countries' => 'Countries',
+    'value_ar' => 'Value In Arabic',
+    'value_en' => 'Value In English',
+    'value_hi' => 'Value In Hindi',
+    'user_role' => 'User Role',
+    'choose_role' => 'Choose Role',
 ];
 
 ?>

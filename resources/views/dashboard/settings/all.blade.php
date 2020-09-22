@@ -22,9 +22,11 @@
     <thead class=" text-primary">
         <tr>
           <th>#  </th>
-          <th>{{ __('site.name') }}  </th>
-          <th>{{ __('site.setting') }}  </th>
-          <th>{{ __('site.value') }}</th>
+
+          <th> @lang('site.keyword') </th>
+
+          <th> @lang('site.value_'.my_lang()) </th>
+          
           <th style="width: 100px;"></th>
       </tr>
       </thead>
@@ -33,14 +35,12 @@
           <tr>
             <td>{{$item->id}}</td>
             
-            <td>{{$item->name}}</td>
-            
             <td>{{$item->keyword}}</td>
             
-            <td>{{$item->value}}</td>
+            <td>{{$item['value_'.my_lang()]}}</td>             
 
             <td>
-                <a href="{{ route('admin.setting.edit',$item->id) }}" class="btn btn-info btn-xs">
+                <a href="{{ route('admin.setting',$item->id) }}" class="btn btn-info btn-xs">
                     <i class="fa fa-edit"></i> </a>
 
                 <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
@@ -65,7 +65,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'setting']) 
   

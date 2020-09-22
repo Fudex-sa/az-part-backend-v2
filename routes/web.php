@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('admin',[App\Http\Controllers\Admin\LoginController::class, 'index'])->name('admin');
-Route::post('admin/login',[App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
-Route::post('admin/logout',[App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -13,7 +10,12 @@ Route::group([
 ],
     function(){
 
+        /*************** Admin Auth  **********************/
+        Route::get('admin',[App\Http\Controllers\Admin\LoginController::class, 'index'])->name('admin');
+        Route::post('admin/login',[App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
+        Route::post('admin/logout',[App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 
+        
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
 
             Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
@@ -82,24 +84,30 @@ Route::group([
             Route::post('role/store/{item?}',[App\Http\Controllers\Admin\RoleController::class, 'store'])->name('admin.role.store');
             Route::delete('role/delete',[App\Http\Controllers\Admin\RoleController::class, 'delete'])->name('admin.role.delete');
             
-
-            
-            Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            
-             
-
             /************ Social  **********/
-            Route::get('social/all','SocialController@index')->name('admin.socials');                        
-            Route::post('social/store/{item?}','SocialController@store')->name('admin.social.store');        
-            Route::delete('social/delete','SocialController@delete')->name('admin.social.delete');
-            Route::get('social/edit/{item}','SocialController@edit')->name('admin.social.edit');            
+            Route::get('socials',[App\Http\Controllers\Admin\SocialController::class, 'all'])->name('admin.socials');                        
+            Route::get('social/{item}',[App\Http\Controllers\Admin\SocialController::class, 'edit'])->name('admin.social');
+            Route::post('social/store/{item?}',[App\Http\Controllers\Admin\SocialController::class, 'store'])->name('admin.social.store');
+            Route::delete('social/delete',[App\Http\Controllers\Admin\SocialController::class, 'delete'])->name('admin.social.delete');
+
 
             /************ Settings  **********/
+            Route::get('settings',[App\Http\Controllers\Admin\SettingController::class, 'all'])->name('admin.settings');                        
+            Route::get('setting/{item}',[App\Http\Controllers\Admin\SettingController::class, 'edit'])->name('admin.setting');
+            Route::post('setting/store/{item?}',[App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.store');
+            Route::delete('setting/delete',[App\Http\Controllers\Admin\SettingController::class, 'delete'])->name('admin.setting.delete');
 
-            Route::post('setting/store/{id?}','SettingsController@store')->name('admin.setting.store');        
+            /************ Countries  **********/
+            Route::get('countries/all','CountryController@index')->name('admin.countries');                        
+            Route::post('country/store/{item?}','CountryController@store')->name('admin.country.store');        
+            Route::delete('country/delete','CountryController@delete')->name('admin.country.delete');
+            Route::get('country/edit/{item}','CountryController@edit')->name('admin.country.edit');
+            
 
-            Route::get('settings/all','SettingsController@index')->name('admin.settings');                                    
-            Route::delete('setting/delete','SettingsController@delete')->name('admin.setting.delete');
-            Route::get('setting/edit/{item}','SettingsController@edit')->name('admin.setting.edit'); 
+
+            Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            
+             
+ 
             
             
             /************ Requests  **********/

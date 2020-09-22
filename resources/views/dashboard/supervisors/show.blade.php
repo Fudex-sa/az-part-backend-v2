@@ -145,7 +145,28 @@
             @endif
         @endforeach
         
-    
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.user_role') </label>
+
+            <div class="col-md-9 col-sm-6 col-xs-12">
+                 
+                    @foreach ($roles as $role)
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label>
+                            @if(in_array($role->id,$supervisor_rols))
+                                <input type="checkbox" class="flat" name="role_id[]" value="{{ $role->id }}" 
+                                checked /> {{ $role['name_'.my_lang()] }}
+                            @else
+                                <input type="checkbox" class="flat" name="role_id[]" value="{{ $role->id }}" />
+                                {{ $role['name_'.my_lang()] }}
+                            @endif
+                        </label>                       
+                    </div>                
+                    @endforeach
+                 
+            </div>
+        </div>
+
         <div class="ln_solid"></div>
         <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

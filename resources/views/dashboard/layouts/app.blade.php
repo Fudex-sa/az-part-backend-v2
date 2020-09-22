@@ -60,63 +60,80 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
         <div class="menu_section">     
             
-            {{-- @if(adminHasPermissions('users')) --}}
+            @if( has_permission('users') || has_permission('companies') || has_permission('sellers')
+            ||  has_permission('brokers') ||  has_permission('reps') || has_permission('supervisors')
+            || has_permission('saudis') || has_permission('vip_requests') || has_permission('roles')
+            )
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-users"></i> {{ __('site.users_management') }}
                         <span class="fa fa-chevron-down"></span></a>
 
                     <ul class="nav child_menu">                       
+                        @if(has_permission('users'))
+                            <li> <a href="{{route('admin.users')}}"> {{ __('site.users') }} </a> </li>
+                        @endif
 
-                        <li> <a href="{{route('admin.users')}}"> {{ __('site.users') }} </a> </li>
+                        @if(has_permission('companies'))
+                            <li> <a href="{{route('admin.companies')}}"> {{ __('site.companies') }} </a> </li>
+                        @endif
 
-                        <li> <a href="{{route('admin.companies')}}"> {{ __('site.companies') }} </a> </li>
-        
-                        <li><a  href="{{route('admin.sellers')}}"> {{ __('site.sellers') }} </a> </li>
-        
-                        <li><a  href="{{route('admin.brokers')}}"> {{ __('site.brokers') }} </a> </li>
+                        @if(has_permission('sellers'))
+                            <li><a  href="{{route('admin.sellers')}}"> {{ __('site.sellers') }} </a> </li>
+                        @endif
 
-                        <li> <a href="{{route('admin.reps')}}"> {{ __('site.reps') }} </a> </li>
+                        @if(has_permission('brokers'))
+                            <li><a  href="{{route('admin.brokers')}}"> {{ __('site.brokers') }} </a> </li>
+                        @endif
 
-                        <li> <a href="{{route('admin.supervisors')}}"> {{ __('site.supervisors') }} </a> </li>                    
+                        @if(has_permission('reps'))
+                            <li> <a href="{{route('admin.reps')}}"> {{ __('site.reps') }} </a> </li>
+                        @endif
 
-                        <li> <a href="{{route('admin.saudis')}}"> {{ __('site.saudi_section') }} </a> </li>
+                        @if(has_permission('supervisors'))
+                            <li> <a href="{{route('admin.supervisors')}}"> {{ __('site.supervisors') }} </a> </li>                    
+                        @endif
 
-                        <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>                        
-        
-                        <li> <a href="{{route('admin.roles')}}"> {{ __('site.roles') }} </a> </li>
+                        @if(has_permission('saudis'))
+                            <li> <a href="{{route('admin.saudis')}}"> {{ __('site.saudi_section') }} </a> </li>
+                        @endif
+
+                        @if(has_permission('vip_requests'))
+                            <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>                        
+                        @endif
+
+                        @if(has_permission('roles'))
+                            <li> <a href="{{route('admin.roles')}}"> {{ __('site.roles') }} </a> </li>
+                        @endif
                     </ul>
                 </li>                             
             </ul>
-            {{-- @endif --}}
+            @endif
 
-
-            {{-- @if(adminHasPermissions('settings')) --}}
+            
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-cog"></i> {{ __('site.general_settings') }}
                         <span class="fa fa-chevron-down"></span></a>
 
                     <ul class="nav child_menu">
-                        <li> <a  href="{{ route('admin.socials') }}">                                            
-                                {{ __('site.social_links') }}
-                            </a>
-                        </li>
+
+                        @if(has_permission('socials'))
+                            <li> <a  href="{{ route('admin.socials') }}">  {{ __('site.social_links') }} </a> </li>
+                        @endif
+
+                        @if(has_permission('settings'))
+                            <li> <a href="{{ route('admin.settings') }}"> {{ __('site.site_settings') }} </a> </li>
+                        @endif
         
-                        <li> <a href="{{ route('admin.settings') }}">                                         
-                                {{ __('site.site_settings') }}
-                            </a>
-                        </li>
-        
-                        <li> <a href="{{url('admin/cities')}}">                                           
-                                {{ __('site.cities') }}
-                            </a>
-                        </li>
+                        @if(has_permission('countries'))
+                            <li> <a href="{{route('admin.countries')}}"> {{ __('site.countries') }} </a> </li>
+                        @endif
                                             
                     </ul>
                 </li>                             
             </ul>
-            {{-- @endif --}}
+             
 
-            {{-- @if(adminHasPermissions('cars')) --}}
+            
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-car"></i> {{ __('site.cars_management') }}
                         <span class="fa fa-chevron-down"></span></a>
@@ -140,7 +157,7 @@
                     </ul>
                 </li>                             
             </ul>
-            {{-- @endif --}}
+             
 
 
             {{-- @if(adminHasPermissions('requests')) --}}
@@ -183,9 +200,10 @@
             
             <ul class="nav side-menu">
                 
-                <li><a href="{{ route('admin.packages') }}"><i class="fa fa-tag"></i> 
-                    {{ __('site.packages_management') }} </a></li>
-
+                @if(has_permission('packages'))
+                    <li><a href="{{ route('admin.packages') }}"><i class="fa fa-tag"></i> 
+                        {{ __('site.packages_management') }} </a></li>
+                @endif
 
                 {{-- @if(adminHasPermissions('brands')) --}}
                     <li><a href="{{ route('admin.brands') }}"><i class="fa fa-globe"></i> 

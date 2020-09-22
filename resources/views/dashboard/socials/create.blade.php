@@ -10,18 +10,16 @@
             </div>
             <div class="modal-body">
                
-                <form class="form-horizontal form-label-left" action="{{ route('admin.social.store') }}" method="post" novalidate>
+                <form class="form-horizontal form-label-left" action="{{ route('admin.social.store') }}" method="post">
                     @csrf
-                
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                    
+                 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="site"> @lang('site.site') <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> @lang('site.name') <span
                                 class="required">*</span>
                         </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="site" class="form-control col-md-7 col-xs-12" required />
+                            <input type="text" name="name" class="form-control col-md-7 col-xs-12" required />
                         </div>
                     </div>
 
@@ -32,6 +30,25 @@
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="url" name="value" class="form-control col-md-7 col-xs-12" required />
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="active"> @lang('site.active') <span
+                                class="required">*</span>
+                        </label>
+            
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                <input type="radio" class="flat" name="active" value="1"  
+                                    {{ old('active') == 1 ? 'checked' : '' }} required/> @lang('site.yes')
+                            </label>
+
+                            <label>
+                                <input type="radio" class="flat" name="active" value="0"  
+                                    {{ old('active') == 0 ? 'checked' : '' }} required/> @lang('site.no')
+                            </label>
+
                         </div>
                     </div>
             
