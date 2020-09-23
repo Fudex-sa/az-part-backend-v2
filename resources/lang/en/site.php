@@ -616,6 +616,7 @@ return [
     'requests_count' => 'Requests Count',
     'contact' => 'Contact Us Messages',
     'permissions' => 'Permissions',
+    'permission' => 'Permission',
     'rule_created_successfully' => 'Rule Created Successfully',
     'the_search' => 'Search',
     'management_login' => 'Management Login',
@@ -667,6 +668,14 @@ return [
     'value_hi' => 'Value In Hindi',
     'user_role' => 'User Role',
     'choose_role' => 'Choose Role',
+    'ticker_setting' => 'Ticker Setting',
+    'vip_requests' => 'VIP Requests',
+    'socials' => 'Social Media',
+    'express_requests' => 'Express Requests',
+    'badwords' => 'Bad Words',
+    'sliders' => 'Slider',
+    'show' => 'Show',
+    'addtion' => 'Add',
 ];
 
 ?>

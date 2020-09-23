@@ -11,15 +11,20 @@
   
     <div class="btn-group">
         
-        <a href="{{route('admin.user.add')}}" class="btn btn-warning"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @if(has_permission('users_add'))
+            <a href="{{route('admin.user.add')}}" class="btn btn-warning"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @endif
 
-        <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
-            <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @if(has_permission('users_show'))
+            <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
+                <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @endif
 
-        <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
-            <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
-         
+        @if(has_permission('users_show'))
+            <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
+                <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
+        @endif 
     </div>
 
 <br/> <br/>
@@ -88,9 +93,13 @@
                     {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
                 </a>
 
-                <a href="{{ url('admin/user',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                @if(has_permission('users_edit'))
+                    <a href="{{ url('admin/user',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                @endif
 
-                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                @if(has_permission('users_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                @endif
             </td>
         </tr>
            

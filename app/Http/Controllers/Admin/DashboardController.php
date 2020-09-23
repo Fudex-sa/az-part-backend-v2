@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class DashboardController extends Controller
 {
     
@@ -19,7 +18,7 @@ class DashboardController extends Controller
         $users = array();
         $requests = array();
         $cars = array();
-
+            
         return view($this->view.'index',compact('users','requests','cars'));
     }
 

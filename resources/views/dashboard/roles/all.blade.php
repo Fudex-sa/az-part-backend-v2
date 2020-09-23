@@ -10,10 +10,12 @@
 @section('content')
   
 <div class="btn-group">
-     
-    <a class="btn btn-warning" href="{{ route('admin.role.add') }}"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
+
+    @if(has_permission('roles_add'))
+        <a class="btn btn-warning" href="{{ route('admin.role.add') }}"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+    @endif
+
 </div>
 
 <br/> <br/>
@@ -25,7 +27,7 @@
             <th scope="col"> @lang('site.name') </th>
             <th scope="col"> @lang('site.permissions') </th>
             <th scope="col"> @lang('site.active') </th>
-            <th scope="col"></th>
+            <th scope="col" style="width: 80px;"></th>
         </tr>
         </thead>
         <tbody>
@@ -51,11 +53,15 @@
                 </td>
 
                 <td>
-                    <a href="{{ route('admin.role',$item->id) }}" class="btn btn-info btn-xs">
-                        <i class="fa fa-edit"></i> </a>
+                    @if(has_permission('roles_edit'))
+                        <a href="{{ route('admin.role',$item->id) }}" class="btn btn-info btn-xs">
+                            <i class="fa fa-edit"></i> </a>
+                    @endif
 
-                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                        <i class="fa fa-trash"></i> </a>
+                    @if(has_permission('roles_delete'))
+                        <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i> </a>
+                    @endif
                     
                 </td>
             </tr>

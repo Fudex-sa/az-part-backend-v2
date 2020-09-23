@@ -114,3 +114,9 @@
 .page-title .title_right{
     width: 45%;
 }
+
+.role{
+    border: 1px solid #DCDCDC;
+    padding: 10px;
+    margin: 3px 20px;
+}

@@ -11,9 +11,11 @@
   
 <div class="btn-group">
      
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
+    @if(has_permission('socials_add'))
+        <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+    @endif
+
 </div>
 
 <br/> <br/>
@@ -47,11 +49,15 @@
             </td>
               
               <td>
-                  <a href="{{ route('admin.social',$item->id) }}" class="btn btn-info btn-xs">
-                     <i class="fa fa-edit"></i> </a>
+                @if(has_permission('socials_edit'))
+                    <a href="{{ route('admin.social',$item->id) }}" class="btn btn-info btn-xs">
+                        <i class="fa fa-edit"></i> </a>
+                @endif
 
+                @if(has_permission('socials_delete'))
                     <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
                         <i class="fa fa-trash"></i> </a>
+                @endif
               </td>
           </tr>
       @endforeach

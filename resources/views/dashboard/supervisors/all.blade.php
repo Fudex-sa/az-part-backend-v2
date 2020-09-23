@@ -11,15 +11,20 @@
   
     <div class="btn-group">
         
-        <a href="{{route('admin.supervisor.add')}}" class="btn btn-warning"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @if(has_permission('supervisors_add'))
+            <a href="{{route('admin.supervisor.add')}}" class="btn btn-warning"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @endif
 
-        <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
-            <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @if(has_permission('supervisors_show'))
+            <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
+                <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @endif
 
-        <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
-            <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
-         
+        @if(has_permission('supervisors_show'))
+            <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
+                <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
+        @endif
     </div>
 
 <br/> <br/>
@@ -56,8 +61,9 @@
             <td>{{$item->name}}</td>
              
             <td>
-                @foreach ($item->supervisor_roles as $rep_role)
-                    <label class="btn btn-default"> {{ __($rep_role->role['name_'.my_lang()]) }} </label>
+                @foreach ($item->supervisor_roles as $sup_role)
+                    <label class="btn btn-default">
+                        <a href="{{ route('admin.role',$sup_role->role['id']) }}"> {{ __($sup_role->role['name_'.my_lang()]) }} </a> </label>
                 @endforeach
             </td>
 
@@ -85,9 +91,13 @@
                         {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
                     </a>
 
-                    <a href="{{ url('admin/supervisor',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                    @if(has_permission('supervisors_edit'))
+                        <a href="{{ url('admin/supervisor',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                    @endif
 
-                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                    @if(has_permission('supervisors_delete'))
+                        <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                    @endif
                 @endif
             </td>
         </tr>

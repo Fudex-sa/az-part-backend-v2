@@ -39,15 +39,18 @@ function setting($keyword)
 }
 
 function has_permission($permission)
-{
-     
+{     
+    if(auth()->guard('admin')->user()->user_type == 'admin')
+        return true;
+
     $user_roles = UserRole::roles(auth()->guard('admin')->user()->id,'supervisor')->get();
 
     foreach($user_roles as $user_role){         
-        return RolePermission::role_permissions($user_role->role_id)->contains($permission);        
+        if(  RolePermission::role_permissions($user_role->role_id)->contains($permission) )
+           
+            return true;         
     }
 
-    return false;
-               
+    return false;               
 }
 
