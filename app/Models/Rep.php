@@ -13,4 +13,10 @@ class Rep extends Model
             'name' , 'mobile' , 'email' , 'saudi' , 'active' , 'verification_code' , 'verified' ,
             'lang' , 'last_login' , 'photo' , 'national_id' , 'rating' , 'api_token' , 'password'
     ];
+ 
+
+    public function rep_roles(){
+        return $this->hasMany(UserRole::class,'user_id')->where('type','rep');
+    }
+
 }

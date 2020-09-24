@@ -11,9 +11,11 @@
   
 <div class="btn-group">
      
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
+    @if(has_permission('settings_add'))
+        <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+    @endif
+
 </div>
 
 <br/> <br/>
@@ -22,9 +24,11 @@
     <thead class=" text-primary">
         <tr>
           <th>#  </th>
-          <th>{{ __('site.name') }}  </th>
-          <th>{{ __('site.setting') }}  </th>
-          <th>{{ __('site.value') }}</th>
+
+          <th> @lang('site.keyword') </th>
+
+          <th> @lang('site.value_'.my_lang()) </th>
+          
           <th style="width: 100px;"></th>
       </tr>
       </thead>
@@ -33,18 +37,20 @@
           <tr>
             <td>{{$item->id}}</td>
             
-            <td>{{$item->name}}</td>
-            
             <td>{{$item->keyword}}</td>
             
-            <td>{{$item->value}}</td>
+            <td>{{$item['value_'.my_lang()]}}</td>             
 
             <td>
-                <a href="{{ route('admin.setting.edit',$item->id) }}" class="btn btn-info btn-xs">
-                    <i class="fa fa-edit"></i> </a>
+                @if(has_permission('settings_edit'))
+                    <a href="{{ route('admin.setting',$item->id) }}" class="btn btn-info btn-xs">
+                        <i class="fa fa-edit"></i> </a>
+                @endif
 
-                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> </a>
+                @if(has_permission('settings_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> </a>
+                @endif
             </td>
           </tr>
       @endforeach
@@ -65,7 +71,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'setting']) 
   

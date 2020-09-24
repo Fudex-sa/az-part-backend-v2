@@ -11,15 +11,20 @@
   
     <div class="btn-group">
         
-        <a href="{{route('admin.seller.add')}}" class="btn btn-warning"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @if(has_permission('sellers_add'))
+            <a href="{{route('admin.seller.add')}}" class="btn btn-warning"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @endif
 
-        <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
-            <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @if(has_permission('sellers_show'))
+            <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
+                <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @endif
 
-        <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
-            <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
-         
+        @if(has_permission('sellers_show'))
+            <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
+                <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
+        @endif
     </div>
 
 <br/> <br/>
@@ -72,12 +77,12 @@
             </td>
 
             <td>
-                @if($item->active ==1) <button class="btn btn-success btn-xs">
-                    <i class="fa fa-check"></i> @lang('site.yes') </button>
+                @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-check"></i> @lang('site.de_activate') </button>
                 @else
-                    <button class="btn btn-warning btn-xs">
-                    <i class="fa fa-close"></i> @lang('site.no') </button>
-                @endif     
+                    <button class="btn btn-warning btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-close"></i> @lang('site.activate') </button>
+                @endif      
             </td>
 
 
@@ -97,9 +102,13 @@
                     {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
                 </a>
 
-                <a href="{{ url('admin/seller',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                @if(has_permission('sellers_edit'))
+                    <a href="{{ url('admin/seller',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                @endif
 
-                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                @if(has_permission('sellers_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                @endif
             </td>
         </tr>
            
@@ -118,6 +127,8 @@
 @section('scripts')
     @include('dashboard.layouts.message_growl') 
 
-    @include('dashboard.ajax.delete',['target'=>'seller']) 
+    @include('dashboard.ajax.delete',['target'=>'seller'])
+
+    @include('dashboard.ajax.activate',['target'=>'seller']) 
  
 @endsection

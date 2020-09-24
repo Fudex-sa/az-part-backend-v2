@@ -31,9 +31,10 @@
         </div>
 
        
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-      
+        @if(has_permission('packages_add'))
+            <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+                    <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @endif
  
             
 
@@ -88,11 +89,15 @@
                               <td> {{ $man->discount }} </td>  
 
                               <td>
+                                @if(has_permission('packages_edit'))
                                   <a href="{{ route('admin.package',$man->id) }}" class="btn btn-info btn-xs">
                                      <i class="fa fa-edit"></i> </a>
-                
+                                @endif
+
+                                @if(has_permission('packages_delete'))
                                     <a onclick="deleteItem({{ $man->id }})" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash"></i> </a>
+                                @endif
                               </td>
                           </tr>
                       @endforeach
@@ -144,11 +149,15 @@
                               <td> {{ $elect->discount }} </td>  
 
                               <td>
+                                @if(has_permission('packages_edit'))
                                   <a href="{{ route('admin.package',$elect->id) }}" class="btn btn-info btn-xs">
                                      <i class="fa fa-edit"></i> </a>
-                
+                                @endif
+
+                                @if(has_permission('packages_delete'))
                                     <a onclick="deleteItem({{ $elect->id }})" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash"></i> </a>
+                                @endif
                               </td>
                           </tr>
                       @endforeach

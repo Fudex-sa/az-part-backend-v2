@@ -17,6 +17,7 @@ class RoleController extends Controller
 
     public function all()
     {
+         
         $items = Role::with('role_permissions')->orderby('id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('items'));
@@ -27,7 +28,7 @@ class RoleController extends Controller
         $level2['name'] = 'roles';
         $level2['link'] = 'admin.roles';
 
-        $permissions = Permission::all();
+        $permissions = Permission::select('section')->groupBy('section')->get();
 
         return view($this->view.'create',compact('permissions','level2'));
     }
@@ -77,11 +78,11 @@ class RoleController extends Controller
     {
         $level2['name'] = 'roles';
         $level2['link'] = 'admin.roles';
-
-        $permissions = Permission::all();
-
+ 
         $role_permissions = RolePermission::role_permissions($item->id)->toArray();
          
+        $permissions = Permission::select('section')->groupBy('section')->get();
+
         return view($this->view.'edit',compact('item','permissions','role_permissions','level2'));
 
     }

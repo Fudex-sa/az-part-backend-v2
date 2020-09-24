@@ -15,4 +15,8 @@ class Supervisor extends Authenticatable
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'        
     ];
+
+    public function supervisor_roles(){
+        return $this->hasMany(UserRole::class,'user_id')->where('type','supervisor');
+    }
 }

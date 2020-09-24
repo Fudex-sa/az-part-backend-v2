@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $users = array();
         $requests = array();
         $cars = array();
-
+            
         return view($this->view.'index',compact('users','requests','cars'));
     }
 

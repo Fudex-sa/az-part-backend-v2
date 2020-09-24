@@ -11,15 +11,20 @@
   
     <div class="btn-group">
         
-        <a href="{{route('admin.supervisor.add')}}" class="btn btn-warning"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @if(has_permission('supervisors_add'))
+            <a href="{{route('admin.supervisor.add')}}" class="btn btn-warning"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+        @endif
 
-        <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
-            <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @if(has_permission('supervisors_show'))
+            <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
+                <i class="fa fa-download"></i>  @lang('site.excel') </a> 
+        @endif
 
-        <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
-            <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
-         
+        @if(has_permission('supervisors_show'))
+            <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
+                <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
+        @endif
     </div>
 
 <br/> <br/>
@@ -30,7 +35,8 @@
         <th>#  </th>
         <th> @lang('site.user_id')</th>
         <th> <i class="fa fa-camera"> </i> </th>
-        <th> @lang('site.name')   </th>                          
+        <th> @lang('site.name')   </th>     
+        <th> @lang('site.user_role') </th>                     
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
         
@@ -55,6 +61,13 @@
             <td>{{$item->name}}</td>
              
             <td>
+                @foreach ($item->supervisor_roles as $sup_role)
+                    <label class="btn btn-default">
+                        <a href="{{ route('admin.role',$sup_role->role['id']) }}"> {{ __($sup_role->role['name_'.my_lang()]) }} </a> </label>
+                @endforeach
+            </td>
+
+            <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
                          <i class="fa fa-check"></i> @lang('site.yes') </button>
                 @else
@@ -64,12 +77,14 @@
             </td>
 
             <td>
-                @if($item->active ==1) <button class="btn btn-success btn-xs">
-                    <i class="fa fa-check"></i> @lang('site.yes') </button>
-                @else
-                    <button class="btn btn-warning btn-xs">
-                    <i class="fa fa-close"></i> @lang('site.no') </button>
-                @endif     
+                @if($item->id != 1)
+                    @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
+                        <i class="fa fa-check"></i> @lang('site.de_activate') </button>
+                    @else
+                        <button class="btn btn-warning btn-xs" onclick="activate({{ $item->id }})">
+                        <i class="fa fa-close"></i> @lang('site.activate') </button>
+                    @endif     
+                @endif
             </td>
     
             <td>
@@ -78,9 +93,13 @@
                         {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
                     </a>
 
-                    <a href="{{ url('admin/supervisor',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                    @if(has_permission('supervisors_edit'))
+                        <a href="{{ url('admin/supervisor',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                    @endif
 
-                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                    @if(has_permission('supervisors_delete'))
+                        <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                    @endif
                 @endif
             </td>
         </tr>
@@ -101,5 +120,7 @@
     @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'supervisor']) 
+    
+    @include('dashboard.ajax.activate',['target'=>'supervisor']) 
  
 @endsection

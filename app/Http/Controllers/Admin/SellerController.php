@@ -71,4 +71,17 @@ class SellerController extends Controller
         return 0;
     }
 
+    public function activate(Request $request)
+    {
+        $item = $request->input('id');
+
+        $user = Seller::find($item);
+        $user->active == 1 ? $active = 0 : $active = 1;
+
+        if( Seller::where('id',$item)->update(['active' => $active]) )
+            return 1;
+
+        return 0;        
+    }
+
 }
