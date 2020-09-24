@@ -101,4 +101,17 @@ class RepController extends Controller
         return 0;
     }
 
+    public function activate(Request $request)
+    {
+        $item = $request->input('id');
+
+        $user = Rep::find($item);
+        $user->active == 1 ? $active = 0 : $active = 1;
+
+        if( Rep::where('id',$item)->update(['active' => $active]) )
+            return 1;
+
+        return 0;        
+    }
+
 }

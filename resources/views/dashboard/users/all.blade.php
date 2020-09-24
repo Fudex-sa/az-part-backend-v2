@@ -67,13 +67,13 @@
                 @endif 
             </td>
 
-            <td>
-                @if($item->active ==1) <button class="btn btn-success btn-xs">
-                    <i class="fa fa-check"></i> @lang('site.yes') </button>
+            <td>                
+                @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-check"></i> @lang('site.de_activate') </button>
                 @else
-                    <button class="btn btn-warning btn-xs">
-                    <i class="fa fa-close"></i> @lang('site.no') </button>
-                @endif     
+                    <button class="btn btn-warning btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-close"></i> @lang('site.activate') </button>
+                @endif                     
             </td>
 
 
@@ -87,7 +87,7 @@
             </td>
           
             <td> {{ $item->available_requests }} </td>
-    
+     
             <td>
                 <a class="whatsapp btn btn-success btn-xs" target="_blank" href="https://wa.me/966{{$item->mobile}}?text=
                     {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>
@@ -119,5 +119,6 @@
     @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'user']) 
+    @include('dashboard.ajax.activate',['target'=>'user']) 
  
 @endsection

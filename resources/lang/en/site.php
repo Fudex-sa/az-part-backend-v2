@@ -676,6 +676,15 @@ return [
     'sliders' => 'Slider',
     'show' => 'Show',
     'addtion' => 'Add',
+    'supervisor_requests' => 'Supervisor Requests',
+    'de_activate' => 'De Activate',
+    'activate' => 'Activate',
+    'confirm_change_status' => 'Confirm Status Change?',
+    'status_changed' => 'Status Changed Successfully.',
+    'cities_in_charges' => 'Ciities In Charge',
+    'add_country' => 'Add Country',
+    'regions' => 'Regions',
+    'add_region' => 'Add Region',
 ];
 
 ?>

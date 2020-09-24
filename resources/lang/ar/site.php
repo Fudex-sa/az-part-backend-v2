@@ -815,4 +815,13 @@ return [
     'ads_add' => 'اضف اعلان',
     'engine_add' => 'اضف محرك طلب',
     'messages_add' => 'اضف رسالة',
+    'supervisor_requests' => 'طلبات المشرف',
+    'de_activate' => 'تعطيل',
+    'activate' => 'تفعيل',
+    'confirm_change_status' => 'تأكيد تغير الحالة؟',
+    'status_changed' => 'تم تغيير الحالة بنجاح',
+    'cities_in_charges' => 'المدن المسؤول عنها',
+    'add_country' => 'اضف دولة',
+    'regions' => 'المناطق',
+    'add_region' => 'اضف منطقة',
 ];

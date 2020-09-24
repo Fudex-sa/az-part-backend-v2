@@ -36,13 +36,15 @@ Route::group([
             Route::get('user/{item}',[App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.user');
             Route::post('user/store/{id?}',[App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.user.store');            
             Route::delete('user/delete',[App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin.user.delete');
-                        
+            Route::post('user/activate',[App\Http\Controllers\Admin\UserController::class, 'activate'])->name('admin.user.activate');
+
             /******************* Companies ********************/    
             Route::get('companies',[App\Http\Controllers\Admin\CompanyController::class, 'all'])->name('admin.companies');
             Route::get('company/add',[App\Http\Controllers\Admin\CompanyController::class, 'add'])->name('admin.company.add');
             Route::get('company/{item}',[App\Http\Controllers\Admin\CompanyController::class, 'show'])->name('admin.company');
             Route::post('company/store/{item?}',[App\Http\Controllers\Admin\CompanyController::class, 'store'])->name('admin.company.store');
             Route::delete('company/delete',[App\Http\Controllers\Admin\CompanyController::class, 'delete'])->name('admin.company.delete');
+            Route::post('company/activate',[App\Http\Controllers\Admin\CompanyController::class, 'activate'])->name('admin.company.activate');
 
             /******************* Sellers ********************/    
             Route::get('sellers',[App\Http\Controllers\Admin\SellerController::class, 'all'])->name('admin.sellers');            
@@ -50,6 +52,7 @@ Route::group([
             Route::get('seller/{item}',[App\Http\Controllers\Admin\SellerController::class, 'show'])->name('admin.seller');
             Route::post('seller/store/{item?}',[App\Http\Controllers\Admin\SellerController::class, 'store'])->name('admin.seller.store');
             Route::delete('seller/delete',[App\Http\Controllers\Admin\SellerController::class, 'delete'])->name('admin.seller.delete');
+            Route::post('seller/activate',[App\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.seller.activate');
 
             /******************* Brokers ********************/    
             Route::get('brokers',[App\Http\Controllers\Admin\BrokerController::class, 'all'])->name('admin.brokers');            
@@ -57,6 +60,7 @@ Route::group([
             Route::get('broker/{item}',[App\Http\Controllers\Admin\BrokerController::class, 'show'])->name('admin.broker');
             Route::post('broker/store/{item?}',[App\Http\Controllers\Admin\BrokerController::class, 'store'])->name('admin.broker.store');
             Route::delete('broker/delete',[App\Http\Controllers\Admin\BrokerController::class, 'delete'])->name('admin.broker.delete');
+            Route::post('broker/activate',[App\Http\Controllers\Admin\BrokerController::class, 'activate'])->name('admin.broker.activate');
 
             /******************* Reps ********************/                
             Route::get('reps',[App\Http\Controllers\Admin\RepController::class, 'all'])->name('admin.reps');            
@@ -64,6 +68,7 @@ Route::group([
             Route::get('rep/{item}',[App\Http\Controllers\Admin\RepController::class, 'show'])->name('admin.rep');
             Route::post('rep/store/{item?}',[App\Http\Controllers\Admin\RepController::class, 'store'])->name('admin.rep.store');
             Route::delete('rep/delete',[App\Http\Controllers\Admin\RepController::class, 'delete'])->name('admin.rep.delete');
+            Route::post('rep/activate',[App\Http\Controllers\Admin\RepController::class, 'activate'])->name('admin.rep.activate');
 
             /******************* Supervisors ********************/                
             Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');  
@@ -71,6 +76,8 @@ Route::group([
             Route::get('supervisor/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'show'])->name('admin.supervisor');
             Route::post('supervisor/store/{item?}',[App\Http\Controllers\Admin\SupervisorController::class, 'store'])->name('admin.supervisor.store');
             Route::delete('supervisor/delete',[App\Http\Controllers\Admin\SupervisorController::class, 'delete'])->name('admin.supervisor.delete');
+            Route::post('supervisor/permissions/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'permissions'])->name('admin.supervisor.permissions');
+            Route::post('supervisor/activate',[App\Http\Controllers\Admin\SupervisorController::class, 'activate'])->name('admin.supervisor.activate');
 
             /******************* Saudi ********************/                
             Route::get('saudis',[App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudis');                        
@@ -98,11 +105,26 @@ Route::group([
             Route::delete('setting/delete',[App\Http\Controllers\Admin\SettingController::class, 'delete'])->name('admin.setting.delete');
 
             /************ Countries  **********/
-            Route::get('countries/all','CountryController@index')->name('admin.countries');                        
-            Route::post('country/store/{item?}','CountryController@store')->name('admin.country.store');        
-            Route::delete('country/delete','CountryController@delete')->name('admin.country.delete');
-            Route::get('country/edit/{item}','CountryController@edit')->name('admin.country.edit');
-            
+            Route::get('countries',[App\Http\Controllers\Admin\CountryController::class, 'all'])->name('admin.countries');                
+            Route::get('country/{item}',[App\Http\Controllers\Admin\CountryController::class, 'edit'])->name('admin.country');
+            Route::post('country/store/{item?}',[App\Http\Controllers\Admin\CountryController::class, 'store'])->name('admin.country.store');
+            Route::delete('country/delete',[App\Http\Controllers\Admin\CountryController::class, 'delete'])->name('admin.country.delete');
+            Route::post('country/activate',[App\Http\Controllers\Admin\CountryController::class, 'activate'])->name('admin.country.activate');
+
+            /************ Regions  **********/
+            Route::get('regions/{item}',[App\Http\Controllers\Admin\RegionController::class, 'all'])->name('admin.regions');      
+            Route::get('region/{item}',[App\Http\Controllers\Admin\RegionController::class, 'edit'])->name('admin.region');
+            Route::post('region/store/{item?}',[App\Http\Controllers\Admin\RegionController::class, 'store'])->name('admin.region.store');
+            Route::delete('region/delete',[App\Http\Controllers\Admin\RegionController::class, 'delete'])->name('admin.region.delete');
+            Route::post('region/activate',[App\Http\Controllers\Admin\RegionController::class, 'activate'])->name('admin.region.activate');
+
+            /************ Cities  **********/
+            Route::get('cities/{item}',[App\Http\Controllers\Admin\CityController::class, 'all'])->name('admin.cities');      
+            Route::get('city/{item}',[App\Http\Controllers\Admin\CityController::class, 'edit'])->name('admin.city');
+            Route::post('city/store/{item?}',[App\Http\Controllers\Admin\CityController::class, 'store'])->name('admin.city.store');
+            Route::delete('city/delete',[App\Http\Controllers\Admin\CityController::class, 'delete'])->name('admin.city.delete');
+            Route::post('city/activate',[App\Http\Controllers\Admin\CityController::class, 'activate'])->name('admin.city.activate');
+
 
 
             Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            

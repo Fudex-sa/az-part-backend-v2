@@ -90,7 +90,7 @@
                                 <th> <input type="checkbox" class="show_all" name="permissions[]" value="{{ $item->section }}_show"
                                     @if(in_array($item->section.'_show',$role_permissions)) checked @endif  /> </th>
 
-                                <th> <input type="checkbox" class="edit_all" name="permissions[]" value="{{ $item->section }}_add" 
+                                <th> <input type="checkbox" class="add_all" name="permissions[]" value="{{ $item->section }}_add" 
                                     @if(in_array($item->section.'_add',$role_permissions)) checked @endif /> </th>
 
                                 <th> <input type="checkbox" class="edit_all" name="permissions[]" value="{{ $item->section }}_edit" 

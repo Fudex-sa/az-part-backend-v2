@@ -72,13 +72,13 @@
                 @endif 
             </td>
 
-            <td>
-                @if($item->active ==1) <button class="btn btn-success btn-xs">
-                    <i class="fa fa-check"></i> @lang('site.yes') </button>
+            <td>                
+                @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-check"></i> @lang('site.de_activate') </button>
                 @else
-                    <button class="btn btn-warning btn-xs">
-                    <i class="fa fa-close"></i> @lang('site.no') </button>
-                @endif     
+                    <button class="btn btn-warning btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-close"></i> @lang('site.activate') </button>
+                @endif                     
             </td>
 
 
@@ -124,5 +124,6 @@
     @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'company']) 
+    @include('dashboard.ajax.activate',['target'=>'company']) 
  
 @endsection

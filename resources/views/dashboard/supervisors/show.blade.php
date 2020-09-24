@@ -5,7 +5,7 @@
 @section('styles')
     
     <link href="{{ dashboard('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
-
+ 
 @endsection
 
 
@@ -56,17 +56,21 @@
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 
-            <li role="presentation" class="active"><a href="#tab_content1" role="tab"
-                id="profile-tab2" data-toggle="tab"
-                aria-expanded="false"> @lang('site.personal_info') </a>
+            <li role="presentation" class="active">
+                <a href="#tab_content1" role="tab" id="profile-tab2" data-toggle="tab" 
+                    aria-expanded="false"> @lang('site.personal_info') </a>
             </li>
 
-            <li role="presentation" class=""><a href="#tab_content2" id="home-tab"
-                                                      role="tab" data-toggle="tab"
-                                                      aria-expanded="true">  @lang('site.broker_requests') </a>
+            <li role="presentation" class="">
+                <a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" 
+                     aria-expanded="true">  @lang('site.supervisor_requests') </a>
             </li>
              
-           
+            <li role="presentation" class="">
+                <a href="#tab_content3" id="permissions-tab" role="tab" data-toggle="tab" 
+                     aria-expanded="true">  @lang('site.permissions') </a>
+            </li>
+
         </ul>
 <div id="myTabContent" class="tab-content">
 
@@ -167,6 +171,23 @@
             </div>
         </div>
 
+
+         
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.cities_in_charges') </label>
+
+            <div class="col-md-9 col-sm-6 col-xs-12">
+                 
+                <select class="selectpicker form-control" multiple>
+                    <option>Mekka</option>
+                    
+                  </select>
+                 
+            </div>
+        </div>
+
+       
+
         <div class="ln_solid"></div>
         <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -207,6 +228,67 @@
 
 </div>
 
+
+<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="permissions-tab">
+
+    <form method="post" action="{{ route('admin.supervisor.permissions',$item->id) }}">
+        @csrf
+        <table class="table table-striped">
+            <thead>                        
+                <tr>
+                    <th> @lang('site.permission') </th>
+                    <th> @lang('site.show') </th>
+                    <th> @lang('site.addtion') </th>
+                    <th> @lang('site.edit') </th>
+                    <th> @lang('site.delete') </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach ($permissions as $item)
+                    <tr>
+                        <th> {{ __('site.'.$item->section) }} </th>
+                        
+                        <th> <input type="checkbox" class="show_all" name="permissions[]" value="{{ $item->section }}_show"
+                            @if(in_array($item->section.'_show',$user_permissions)) checked @endif /> </th>
+
+                        <th> <input type="checkbox" class="add_all" name="permissions[]" value="{{ $item->section }}_add" 
+                            @if(in_array($item->section.'_add',$user_permissions)) checked @endif /> </th>
+
+                        <th> <input type="checkbox" class="edit_all" name="permissions[]" value="{{ $item->section }}_edit" 
+                            @if(in_array($item->section.'_edit',$user_permissions)) checked @endif /> </th>
+
+                        <th> <input type="checkbox" class="delete_all" name="permissions[]" value="{{ $item->section }}_delete" 
+                            @if(in_array($item->section.'_delete',$user_permissions)) checked @endif /> </th>
+                    </tr>
+                @endforeach
+                    
+                <tr>
+                    <th> </th>
+                    <th> <input type="checkbox" id="show_all"/> @lang('site.all') </th>
+                    <th> <input type="checkbox" id="add_all"/> @lang('site.all') </th>
+                    <th> <input type="checkbox" id="edit_all"/> @lang('site.all') </th>
+                    <th> <input type="checkbox" id="delete_all"/> @lang('site.all') </th>
+                </tr>
+            
+            </tbody>
+        </table>
+
+        <div class="ln_solid"></div>
+        <div class="form-group">
+            <div class="col-md-6 col-md-offset-3">
+            <button type="button" onclick="location.href='{{ route('admin.supervisors') }}'" class="btn btn-primary"> 
+                @lang('site.cancel') </button>
+
+                <button type="submit" class="btn btn-success"> @lang('site.save') </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
 </div>
     </div>
 </div>
@@ -222,4 +304,23 @@
      
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
 
+    <script>
+        $("#show_all").click(function(){
+            $(':checkbox.show_all').prop('checked', this.checked);    
+        });
+
+        $("#add_all").click(function(){
+            $(':checkbox.add_all').prop('checked', this.checked);    
+        });
+
+        $("#edit_all").click(function(){
+            $(':checkbox.edit_all').prop('checked', this.checked);    
+        });
+
+        $("#delete_all").click(function(){
+            $(':checkbox.delete_all').prop('checked', this.checked);    
+        });
+ 
+
+    </script>
 @endsection

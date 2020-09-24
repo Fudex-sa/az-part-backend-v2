@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Supervisor;
 use App\Models\UserRole;
 use App\Models\Role;
+use App\Models\Permission;
+use App\Models\UserPermission;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -24,10 +26,13 @@ class SupervisorController extends Controller
 
     public function add()
     {
+        $level2['name'] = 'supervisors';
+        $level2['link'] = 'admin.supervisors';
+
         $cols = Schema::getColumnListing('supervisors');
         $roles = Role::orderby('id','desc')->get();
 
-        return view($this->view.'create',compact('cols','roles'));
+        return view($this->view.'create',compact('cols','roles','level2'));
     }
 
     public function store(UserRequest $request,$id = null)
@@ -79,13 +84,37 @@ class SupervisorController extends Controller
 
     public function show(Supervisor $item)
     {
+        $level2['name'] = 'supervisors';
+        $level2['link'] = 'admin.supervisors';
+
         $cols = Schema::getColumnListing('supervisors');
         $roles = Role::orderby('id','desc')->get();
 
         $supervisor_rols = UserRole::user_roles($item->id,'supervisor')->toArray();
 
-        return view($this->view.'show',compact('item','cols','roles','supervisor_rols'));
+        $permissions = Permission::select('section')->groupBy('section')->get();
 
+        $user_permissions = UserPermission::user_permissions($item->id,'supervisor')->toArray();
+
+        return view($this->view.'show',compact('item','cols','roles',
+                'supervisor_rols','permissions','user_permissions','level2'));
+
+    }
+
+    public function permissions(Request $request, Supervisor $item)
+    {
+ 
+        UserPermission::permissions($item->id,'supervisor')->delete();
+
+            if($request->permissions){
+                foreach($request->permissions as $permission){
+
+                    UserPermission::create([
+                            'user_id' => $item->id , 'permission' => $permission , 'type' => 'supervisor'
+                        ]);
+            }}
+
+        return back()->with('success' , __('site.success-save') );
     }
 
     public function delete(Request $request){
@@ -97,5 +126,17 @@ class SupervisorController extends Controller
         return 0;
     }
 
+    public function activate(Request $request)
+    {
+        $item = $request->input('id');
+
+        $user = Supervisor::find($item);
+        $user->active == 1 ? $active = 0 : $active = 1;
+
+        if( Supervisor::where('id',$item)->update(['active' => $active]) )
+            return 1;
+
+        return 0;        
+    }
 
 }
