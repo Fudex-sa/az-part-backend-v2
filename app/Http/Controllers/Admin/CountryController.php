@@ -14,8 +14,8 @@ class CountryController extends Controller
 
     public function all()
     {
-        $items = Country::orderby('id','desc')->paginate(pagger());
-
+        $items = Country::with('regions')->orderby('id','desc')->paginate(pagger());
+      
         return view($this->view.'all',compact('items'));
     }     
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Models\City;
 use App\Models\Region;
 use App\Http\Requests\Admin\RegionRequest;
 
@@ -14,7 +15,7 @@ class RegionController extends Controller
 
     public function all(Country $item)
     {
-        $items = Region::where('country_id',$item->id)->orderby('id','desc')->paginate(pagger());
+        $items = Region::with('cities')->where('country_id',$item->id)->orderby('id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('items','item'));
     }     
@@ -38,7 +39,7 @@ class RegionController extends Controller
 
     public function edit(Region $item)
     {
-       
+        
         return view($this->view.'edit',compact('item'));
 
     }
@@ -46,6 +47,8 @@ class RegionController extends Controller
     public function delete(Request $request){
         $item = $request->input('id');
 
+        City::regions($item)->delete();
+ 
         if(Region::find($item)->delete()) 
             return 1;
 

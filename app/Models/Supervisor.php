@@ -13,10 +13,22 @@ class Supervisor extends Authenticatable
 
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
-        'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'        
+        'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'   
+        , 'created_by'         
     ];
 
     public function supervisor_roles(){
         return $this->hasMany(UserRole::class,'user_id')->where('type','supervisor');
+    }
+
+    public function cities()
+    {
+        return $this->hasMany(SupervisorCity::class,'user_id');
+    }
+
+
+    public function my_sellers()
+    {
+        return $this->hasMany(Seller::class,'created_by');
     }
 }

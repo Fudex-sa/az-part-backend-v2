@@ -13,7 +13,8 @@
      
 
 
-<form action="{{ route('admin.seller.store') }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
+<form action="{{ route('admin.seller.store') }}" method="post" 
+data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 @csrf
 
@@ -22,7 +23,9 @@
             
             & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'
             
-            & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token')
+            & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
+            
+            & $col != 'created_by' )
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)

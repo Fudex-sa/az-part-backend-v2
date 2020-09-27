@@ -38,6 +38,7 @@
         <th> @lang('site.name')   </th>     
         <th> @lang('site.user_role') </th>                     
         <th> @lang('site.vip') </th>
+        <th> @lang('site.stores_added') </th>
         <th> @lang('site.active') </th>
         
         <th style="width:120px;"></th>
@@ -75,6 +76,8 @@
                     <i class="fa fa-close"></i> @lang('site.no') </button>
                 @endif 
             </td>
+
+            <td> {{ count($item->my_sellers) }} </td>
 
             <td>
                 @if($item->id != 1)

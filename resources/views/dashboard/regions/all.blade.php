@@ -41,7 +41,8 @@
             
             <td>{{$row['name_'.my_lang()]}}</td>
             
-            <td> <a href="{{ route('admin.cities',$row->id) }}"> @lang('site.view') </a> </td>
+            <td> <a href="{{ route('admin.cities',$row->id) }}">
+                     @lang('site.view') ({{ count($row->cities) }}) </a> </td>
 
             <td>
                 @if($row->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $row->id }})">

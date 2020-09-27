@@ -15,6 +15,10 @@ Route::group([
         Route::post('admin/login',[App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
         Route::post('admin/logout',[App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 
+        /*************** AJAX  **********************/
+        Route::post('regions/load',[App\Http\Controllers\RegionController::class, 'all'])->name('regions.load');            
+        Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
+
         
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
 
@@ -78,7 +82,8 @@ Route::group([
             Route::delete('supervisor/delete',[App\Http\Controllers\Admin\SupervisorController::class, 'delete'])->name('admin.supervisor.delete');
             Route::post('supervisor/permissions/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'permissions'])->name('admin.supervisor.permissions');
             Route::post('supervisor/activate',[App\Http\Controllers\Admin\SupervisorController::class, 'activate'])->name('admin.supervisor.activate');
-
+            Route::post('supervisor/cities/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'cities'])->name('admin.supervisor.cities');
+             
             /******************* Saudi ********************/                
             Route::get('saudis',[App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudis');                        
             Route::get('saudi/{item}',[App\Http\Controllers\Admin\SaudiController::class, 'show'])->name('admin.saudi');

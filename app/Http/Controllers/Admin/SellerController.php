@@ -15,7 +15,11 @@ class SellerController extends Controller
 
     public function all()
     {
-        $items = Seller::orderby('id','desc')->paginate(pagger());
+        if(auth('admin')->user()->id == 1)
+            $items = Seller::orderby('id','desc')->paginate(pagger());
+        else 
+            $items = Seller::where('created_by',auth('admin')->user()->id)
+                    ->orderby('id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('items'));
     }
@@ -34,6 +38,8 @@ class SellerController extends Controller
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Seller::where('id',$id)->first()->password;
+
+        $data['created_by'] = auth('admin')->user()->id;
 
         if($request->photo){
             $fileName = time().'.'.$request->photo->extension();  

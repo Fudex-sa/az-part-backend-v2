@@ -12,4 +12,9 @@ class Country extends Model
     protected $fillable = [
         'name_ar' , 'name_en' , 'name_hi' , 'active'
     ];
+ 
+    public function regions()
+    {
+        return $this->hasMany(Region::class);
+    }
 }

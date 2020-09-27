@@ -30,6 +30,8 @@ class CreateSellersTable extends Migration
             $table->integer('rating')->default(0);
             $table->enum('user_type',['tashalih','manufacturing']);
 
+            $table->integer('created_by')->nullable();
+            
             $table->string('api_token',80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

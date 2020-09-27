@@ -9,8 +9,11 @@ use App\Models\UserRole;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\UserPermission;
+use App\Models\Country;
+use App\Models\SupervisorCity;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+
 
 class SupervisorController extends Controller
 {
@@ -19,7 +22,9 @@ class SupervisorController extends Controller
 
     public function all()
     {
-        $items = Supervisor::with('supervisor_roles')->orderby('id','desc')->paginate(pagger());
+        $items = Supervisor::with('supervisor_roles')->with('my_sellers')
+                
+                ->orderby('id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('items'));
     }
@@ -96,8 +101,12 @@ class SupervisorController extends Controller
 
         $user_permissions = UserPermission::user_permissions($item->id,'supervisor')->toArray();
 
+        $countries = Country::orderby('name_ar','desc')->get();
+
+        $supervisor = Supervisor::with('cities')->whereId($item->id)->first();
+          
         return view($this->view.'show',compact('item','cols','roles',
-                'supervisor_rols','permissions','user_permissions','level2'));
+                'supervisor_rols','permissions','user_permissions','level2','countries','supervisor'));
 
     }
 
@@ -139,4 +148,21 @@ class SupervisorController extends Controller
         return 0;        
     }
 
+    public function cities(Request $request,Supervisor $item)
+    {
+
+        SupervisorCity::user_cities($item->id)->delete();
+
+        if($request->cities){
+            foreach($request->cities as $city){
+
+                SupervisorCity::create([
+                    'user_id' => $item->id , 'region_id' => $request->region_id , 'city_id' => $city
+                ]);
+
+        }}
+
+        return back()->with('success' , __('site.success-save') );
+        
+    }
 }

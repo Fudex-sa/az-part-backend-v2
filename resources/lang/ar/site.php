@@ -824,4 +824,10 @@ return [
     'add_country' => 'اضف دولة',
     'regions' => 'المناطق',
     'add_region' => 'اضف منطقة',
+    'country' => 'الدولة',
+    'choose_country' => 'اختر دولة',
+    'region' => 'المنطقة',
+    'choose_region' => 'اختر منطقة',
+    'created_by' => 'انشئ بواسطة',
+    'stores_added' => 'عدد المحلات التى ضافها',
 ];

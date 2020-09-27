@@ -71,6 +71,11 @@
                      aria-expanded="true">  @lang('site.permissions') </a>
             </li>
 
+            <li role="presentation" class="">
+                <a href="#tab_content4" id="cities-tab" role="tab" data-toggle="tab" 
+                     aria-expanded="true">  @lang('site.cities_in_charges') </a>
+            </li>
+ 
         </ul>
 <div id="myTabContent" class="tab-content">
 
@@ -86,7 +91,10 @@
                 
                 & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'
                 
-                & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token')
+                & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
+                
+                & $col != 'created_by')
+
     
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -138,9 +146,10 @@
                                 <input type="radio" class="flat" name="{{ $col }}" value="admin"  
                                     {{ $item->$col == 'admin' ? 'checked' : '' }} required/> @lang('site.admin')
                             </label>
-                         
+                                                          
+                            
                         @else
-                        <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
+                            <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
     
                         @endif
                     </div>
@@ -170,23 +179,7 @@
                  
             </div>
         </div>
-
-
-         
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.cities_in_charges') </label>
-
-            <div class="col-md-9 col-sm-6 col-xs-12">
-                 
-                <select class="selectpicker form-control" multiple>
-                    <option>Mekka</option>
-                    
-                  </select>
-                 
-            </div>
-        </div>
-
-       
+ 
 
         <div class="ln_solid"></div>
         <div class="form-group">
@@ -245,21 +238,21 @@
             </thead>
             <tbody>
 
-                @foreach ($permissions as $item)
+                @foreach ($permissions as $row)
                     <tr>
-                        <th> {{ __('site.'.$item->section) }} </th>
+                        <th> {{ __('site.'.$row->section) }} </th>
                         
-                        <th> <input type="checkbox" class="show_all" name="permissions[]" value="{{ $item->section }}_show"
-                            @if(in_array($item->section.'_show',$user_permissions)) checked @endif /> </th>
+                        <th> <input type="checkbox" class="show_all" name="permissions[]" value="{{ $row->section }}_show"
+                            @if(in_array($row->section.'_show',$user_permissions)) checked @endif /> </th>
 
-                        <th> <input type="checkbox" class="add_all" name="permissions[]" value="{{ $item->section }}_add" 
-                            @if(in_array($item->section.'_add',$user_permissions)) checked @endif /> </th>
+                        <th> <input type="checkbox" class="add_all" name="permissions[]" value="{{ $row->section }}_add" 
+                            @if(in_array($row->section.'_add',$user_permissions)) checked @endif /> </th>
 
-                        <th> <input type="checkbox" class="edit_all" name="permissions[]" value="{{ $item->section }}_edit" 
-                            @if(in_array($item->section.'_edit',$user_permissions)) checked @endif /> </th>
+                        <th> <input type="checkbox" class="edit_all" name="permissions[]" value="{{ $row->section }}_edit" 
+                            @if(in_array($row->section.'_edit',$user_permissions)) checked @endif /> </th>
 
-                        <th> <input type="checkbox" class="delete_all" name="permissions[]" value="{{ $item->section }}_delete" 
-                            @if(in_array($item->section.'_delete',$user_permissions)) checked @endif /> </th>
+                        <th> <input type="checkbox" class="delete_all" name="permissions[]" value="{{ $row->section }}_delete" 
+                            @if(in_array($row->section.'_delete',$user_permissions)) checked @endif /> </th>
                     </tr>
                 @endforeach
                     
@@ -287,6 +280,80 @@
     </form>
 
 </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">       
+ 
+            
+            <form method="post" class="form-horizontal form-label-left" action="{{ route('admin.supervisor.cities',$item->id) }}" >
+
+                    @csrf
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.country')                
+                        <span class="required">*</span>                
+                    </label>
+        
+                    <div class="col-md-6 col-sm-6 col-xs-12"> 
+                        <select name="country_id" id="country_id" class="form-control">
+                            <option value=""> @lang('site.choose_country') </option>
+                            
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+            
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.region')                
+                        <span class="required">*</span>                
+                    </label>
+        
+                    <div class="col-md-6 col-sm-6 col-xs-12"> 
+                        <select name="region_id" id="region_id" class="form-control">
+                            <option value=""> @lang('site.choose_region') </option>
+                             
+                        </select>
+                    </div>
+            
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.cities')                
+                        <span class="required">*</span>                
+                    </label>
+        
+                    <div class="col-md-6 col-sm-6 col-xs-12"> 
+                         
+                        <select id="cities" name="cities[]" class="selectpicker form-control" multiple>
+                             @if($supervisor->cities)
+                                @foreach ($supervisor->cities as $myCity)
+                                    <option value="{{ $myCity->city_id }}"> {{ $myCity->city['name_'.my_lang()] }} </option>
+                                    
+                                @endforeach
+                             @endif
+                        </select>
+                         
+                    </div>
+            
+                </div>
+
+
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                    <button type="button" onclick="location.href='{{ route('admin.supervisors') }}'" class="btn btn-primary"> 
+                        @lang('site.cancel') </button>
+
+                        <button type="submit" class="btn btn-success"> @lang('site.save') </button>
+                    </div>
+                </div>
+   
+        </form>
+    
+    
+    </div>
 
 
 </div>
@@ -320,7 +387,9 @@
         $("#delete_all").click(function(){
             $(':checkbox.delete_all').prop('checked', this.checked);    
         });
- 
-
     </script>
+
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities') 
+
 @endsection
