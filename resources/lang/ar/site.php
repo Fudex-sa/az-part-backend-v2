@@ -830,4 +830,7 @@ return [
     'choose_region' => 'اختر منطقة',
     'created_by' => 'انشئ بواسطة',
     'stores_added' => 'عدد المحلات التى ضافها',
+    'supervisor_name' => 'اسم المسؤول',
+    'de_active' => 'معطل',
+    'role' => 'الدور',
 ];

@@ -14,7 +14,7 @@ class Supervisor extends Authenticatable
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'   
-        , 'created_by'         
+        , 'created_by' , 'city_id'        
     ];
 
     public function supervisor_roles(){
@@ -31,4 +31,10 @@ class Supervisor extends Authenticatable
     {
         return $this->hasMany(Seller::class,'created_by');
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id');
+    }
+ 
 }

@@ -691,6 +691,9 @@ return [
     'choose_region' => 'Choose Region',
     'created_by' => 'Created By',
     'stores_added' => 'Stores Added',
+    'supervisor_name' => 'Supervisor Name',
+    'de_active' => 'Not Active',
+    'role' => 'Role',
 ];
 
 ?>

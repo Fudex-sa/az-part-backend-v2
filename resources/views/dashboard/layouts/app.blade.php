@@ -362,7 +362,9 @@
 
 @if(cur_root() != 'admin.dashboard' && cur_root() != 'admin.piece.edit' && cur_root() != 'admin.engine'
         
-        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis')
+        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis' && cur_root() != 'admin.supervisors'
+        
+        && cur_root() != 'admin.supervisor.search' )
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

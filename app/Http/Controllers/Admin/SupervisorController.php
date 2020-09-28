@@ -10,10 +10,11 @@ use App\Models\Role;
 use App\Models\Permission;
 use App\Models\UserPermission;
 use App\Models\Country;
+use App\Models\Region;
+use App\Models\City;
 use App\Models\SupervisorCity;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
-
 
 class SupervisorController extends Controller
 {
@@ -26,7 +27,11 @@ class SupervisorController extends Controller
                 
                 ->orderby('id','desc')->paginate(pagger());
 
-        return view($this->view.'all',compact('items'));
+        $countries = Country::orderby('name_ar','desc')->get();
+
+        $roles = Role::orderby('id','desc')->get();
+
+        return view($this->view.'all',compact('items','countries','roles'));
     }
 
     public function add()
@@ -43,7 +48,7 @@ class SupervisorController extends Controller
     public function store(UserRequest $request,$id = null)
     {
          
-        $data = $request->except('_token','api_token','role_id');
+        $data = $request->except('_token','api_token','role_id','country_id','region_id');
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Supervisor::where('id',$id)->first()->password;
@@ -105,8 +110,12 @@ class SupervisorController extends Controller
 
         $supervisor = Supervisor::with('cities')->whereId($item->id)->first();
           
+        if($item->city)
+            $region_cities = City::regions($item->city['region_id'])->get();
+        else $region_cities = null;
+
         return view($this->view.'show',compact('item','cols','roles',
-                'supervisor_rols','permissions','user_permissions','level2','countries','supervisor'));
+                'supervisor_rols','permissions','user_permissions','level2','countries','supervisor','region_cities'));
 
     }
 
@@ -164,5 +173,47 @@ class SupervisorController extends Controller
 
         return back()->with('success' , __('site.success-save') );
         
+    }
+
+    public function search(Request $request)
+    {
+        $role = $request->role;
+
+        if($request->role && $request->city)
+            $items = Supervisor::with('supervisor_roles')
+                                ->whereHas('supervisor_roles',function($q) use ($role){
+                                    $q->where('role_id',$role);
+                                })
+                                ->where('city_id',$request->city)
+                                ->where('name','like','%'.$request->name.'%')
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+
+        elseif($request->role)
+            $items = Supervisor::with('supervisor_roles')
+                                ->whereHas('supervisor_roles',function($q) use ($role){
+                                    $q->where('role_id',$role);
+                                })
+                                ->where('name','like','%'.$request->name.'%')
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+        elseif($request->city)
+            $items = Supervisor::where('city_id',$request->city) 
+                                ->where('name','like','%'.$request->name.'%')
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+        else 
+            $items = Supervisor::where('name','like','%'.$request->name.'%')
+                            ->where('active',$request->status)
+                            ->paginate(pagger());
+        
+        $countries = Country::orderby('name_ar','desc')->get();
+
+        $roles = Role::orderby('id','desc')->get();
+
+        return view($this->view.'all',compact('items','countries','roles'));
     }
 }

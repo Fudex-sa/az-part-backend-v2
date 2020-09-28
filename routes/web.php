@@ -75,6 +75,7 @@ Route::group([
             Route::post('rep/activate',[App\Http\Controllers\Admin\RepController::class, 'activate'])->name('admin.rep.activate');
 
             /******************* Supervisors ********************/                
+            Route::get('supervisor/search',[App\Http\Controllers\Admin\SupervisorController::class, 'search'])->name('admin.supervisor.search');
             Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');  
             Route::get('supervisor/add',[App\Http\Controllers\Admin\SupervisorController::class, 'add'])->name('admin.supervisor.add');
             Route::get('supervisor/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'show'])->name('admin.supervisor');
@@ -83,7 +84,7 @@ Route::group([
             Route::post('supervisor/permissions/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'permissions'])->name('admin.supervisor.permissions');
             Route::post('supervisor/activate',[App\Http\Controllers\Admin\SupervisorController::class, 'activate'])->name('admin.supervisor.activate');
             Route::post('supervisor/cities/{item}',[App\Http\Controllers\Admin\SupervisorController::class, 'cities'])->name('admin.supervisor.cities');
-             
+            
             /******************* Saudi ********************/                
             Route::get('saudis',[App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudis');                        
             Route::get('saudi/{item}',[App\Http\Controllers\Admin\SaudiController::class, 'show'])->name('admin.saudi');
