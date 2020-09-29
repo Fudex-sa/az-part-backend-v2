@@ -9,6 +9,38 @@
 
 @section('content')
   
+<div class="col-md-12 col-sm-12 col-xs-12">
+  
+    
+    <div class="x_panel">
+         
+        <div class="x_content">
+    
+            <div class="table-responsive">
+                @include('dashboard.companies.filter')
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @yield('title') </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                  
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+
+        <div class="table-responsive">
+
+            <div class="col-md-12">
+                @include('dashboard.layouts.message')
+            </div>
+
     <div class="btn-group">
         
         @if(has_permission('companies_add'))
@@ -36,7 +68,8 @@
         <th> @lang('site.user_id')</th>
         <th> <i class="fa fa-camera"> </i> </th>
         <th> @lang('site.name')   </th>        
-        <th> @lang('site.total_requests')  </th>                
+        <th> @lang('site.total_requests')  </th>
+        <th> @lang('site.city')   </th>                       
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
         <th> @lang('site.saudi') </th>
@@ -63,6 +96,8 @@
              
             <td> {{ $item->total_requests }} @lang('site.request') </td>
  
+            <td> {{ $item->city ? $item->city['name_'.my_lang()] : '-' }} </td>
+
             <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
                          <i class="fa fa-check"></i> @lang('site.yes') </button>
@@ -114,7 +149,12 @@
 </table>
 
 <div class="text-center"> {{ $items->links() }} </div>
- 
+
+        </div>
+    </div>
+</div>
+</div>
+
 
 @endsection
 
@@ -126,4 +166,6 @@
     @include('dashboard.ajax.delete',['target'=>'company']) 
     @include('dashboard.ajax.activate',['target'=>'company']) 
  
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
 @endsection

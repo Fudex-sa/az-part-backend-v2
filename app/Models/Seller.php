@@ -12,7 +12,7 @@ class Seller extends Model
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'  ,
-        'total_requests'      
+        'total_requests' , 'created_by' , 'city_id'   
     ];
 
     public function scopeSaudi($query)
@@ -20,4 +20,9 @@ class Seller extends Model
         return $query->whereSaudi(1);
     }
     
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id');
+    }
+ 
 }

@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title')  {{ $item->name }} @endsection
+@section('title')  {{ $item['name_'.my_lang()] }} @endsection
 
 @section('styles')
     
@@ -14,18 +14,8 @@
         <h3> @yield('title')  </h3>
     </div>
 
-    <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-                <form method="get" action="{{ route('admin.pieces.search') }}">
-                    <input type="text" name="search_txt" class="form-control" placeholder="@lang('site.search_piece')">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-search" type="submit"> @lang('site.search') </button>
-                    </span>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('dashboard.pieces.filter')
+    
 </div>
 <div class="clearfix"></div>
 
@@ -34,7 +24,7 @@
 
         <div class="x_panel">
             <div class="x_title">
-                <h2> @lang('site.edit') | {{ $item->name }} </h2>
+                <h2> @lang('site.edit') | {{ $item['name_'.my_lang()] }} </h2>
 
                 <ul class="nav navbar-right panel_toolbox">
                     <li> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>              
@@ -46,12 +36,20 @@
                 
                 <form action="{{ route('admin.piece.store',$item->id) }}" method="post" data-parsley-validate>
                     @csrf
-
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-
-                    <label for="name"> @lang('site.piece_name')   <span class="required">*</span> :</label>
+ 
+                    <label for="name_ar"> @lang('site.name_ar')   <span class="required">*</span> :</label>
                     
-                    <input type="text" id="name" name="name" class="form-control" value="{{ $item->name }}"  required/>
+                    <input type="text" name="name_ar" class="form-control" value="{{ $item->name_ar }}"  required/>
+                    <br/>
+
+                    <label for="name_en"> @lang('site.name_en') :</label>
+
+                    <input type="text" name="name_en" class="form-control" value="{{ $item->name_en }}" />
+                    <br/>
+
+                    <label for="name_en"> @lang('site.name_hi') :</label>
+
+                    <input type="text" name="name_hi" class="form-control" value="{{ $item->name_hi }}" />
         
                     <br/>
                     <button type="submit" class="btn btn-primary"> @lang('site.update') </button>
@@ -70,7 +68,7 @@
 
         <div class="x_panel">
             <div class="x_title">
-                <h2> @lang('site.edit') | {{ $item->name }} </h2>
+                <h2> @lang('site.alternatives_of') | {{ $item['name_'.my_lang()] }} </h2>
 
                 <ul class="nav navbar-right panel_toolbox">
                     <li> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>              
@@ -80,17 +78,20 @@
             <div class="x_content">
 
                 
-                <form action="{{ route('admin.piece.alts.store') }}" method="post" data-parsley-validate>
+                <form action="{{ route('admin.alt.store',$item->id) }}" method="post" data-parsley-validate>
                     @csrf
 
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
                     <input type="hidden" name="piece_id" value="{{$item->id}}" >
 
                     <label for="name"> @lang('site.alternative_name')   <span class="required">*</span> :</label>
                     
                     <a href="javascript:void(0);" id="add-row"><i class="fa fa-plus-circle"></i></a>
 
-                    <input type="text" name="names[]" class="form-control" required>
+                    <input type="text" name="names_ar[]" placeholder="@lang('site.name_ar')" class="form-control" required>
+                    <br/>
+                    <input type="text" name="names_en[]" placeholder="@lang('site.name_en')" class="form-control">
+                    <br/>
+                    <input type="text" name="names_hi[]" placeholder="@lang('site.name_hi')" class="form-control">
 
 
                     <div class="append-rows">
@@ -114,11 +115,11 @@
                     </thead>
                 
                     <tbody>
-                        @foreach($alts as $alt)
+                        @foreach($item->alts as $alt)
                         <tr>
                             <td>{{$alt->id}}</td>
 
-                            <td>{{$alt->name}}</td>            
+                            <td>{{$alt['name_'.my_lang()]}}</td>            
                             
                             <td>
                                 <a href="javascript:void(0);" class="btn btn-info btn-xs"
@@ -149,7 +150,7 @@
 
 @section('popup')
     
-    @foreach($alts as $alt)
+    @foreach($item->alts as $alt)
         @include('dashboard.pieces.edit_alt',['alt'=>$alt])
     @endforeach
 
@@ -158,13 +159,15 @@
 
 @section('scripts')
     
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'alt']) 
 
 <script>
     $("#add-row").click(function () {
-        $(".append-rows").append('<br/> <input type="text" name="names[]" class="form-control" required>');
+        $(".append-rows").append('<hr/> <br/> <input type="text" name="names_ar[]" class="form-control" placeholder="{{ __("site.name_ar") }}" required>'+
+        ' <br/> <input type="text" name="names_en[]" class="form-control" placeholder="{{ __("site.name_en") }}">' + 
+        ' <br/> <input type="text" name="names_hi[]" class="form-control" placeholder="{{ __("site.name_hi") }}">');
     });
 </script>
   

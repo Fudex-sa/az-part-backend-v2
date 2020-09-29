@@ -8,7 +8,39 @@
 
 
 @section('content')
+ 
+<div class="col-md-12 col-sm-12 col-xs-12">
   
+    
+    <div class="x_panel">
+         
+        <div class="x_content">
+    
+            <div class="table-responsive">
+                @include('dashboard.brokers.filter')
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @yield('title') </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                  
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+
+        <div class="table-responsive">
+
+            <div class="col-md-12">
+                @include('dashboard.layouts.message')
+            </div>
+
     <div class="btn-group">
         
         @if(has_permission('brokers_add'))
@@ -37,6 +69,7 @@
         <th> <i class="fa fa-camera"> </i> </th>
         <th> @lang('site.name')   </th>        
         <th> @lang('site.total_requests')  </th>                
+        <th> @lang('site.city')  </th>                
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
         <th> @lang('site.saudi') </th>
@@ -63,6 +96,8 @@
              
             <td> {{ $item->total_requests }} @lang('site.request') </td>
  
+            <td> {{ $item->city ? $item->city['name_'.my_lang()] : '-' }} </td>
+
             <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
                          <i class="fa fa-check"></i> @lang('site.yes') </button>
@@ -116,6 +151,12 @@
 <div class="text-center"> {{ $items->links() }} </div>
  
 
+        </div>
+    </div>
+</div>
+</div>
+
+
 @endsection
 
 
@@ -127,5 +168,7 @@
 
     @include('dashboard.ajax.activate',['target'=>'broker']) 
 
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
  
 @endsection

@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->integer('available_requests')->default(0);
             $table->integer('total_requests')->default(0);
             
+            $table->integer('city_id');
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();            
             $table->string('photo')->nullable();
@@ -33,6 +34,8 @@ class CreateUsersTable extends Migration
 
             $table->string('api_token',80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
+
+            $table->integer('created_by')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

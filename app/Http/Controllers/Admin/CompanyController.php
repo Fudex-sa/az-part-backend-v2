@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\City;
+use App\Models\Region;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -30,7 +32,7 @@ class CompanyController extends Controller
     public function store(UserRequest $request,$id = null)
     {
          
-        $data = $request->except('_token','api_token');
+        $data = $request->except('_token','api_token','country_id','region_id');
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Company::where('id',$id)->first()->password;
@@ -58,7 +60,16 @@ class CompanyController extends Controller
     {
         $cols = Schema::getColumnListing('companies');
 
-        return view($this->view.'show',compact('item','cols'));
+        if($item->city){
+            $region_cities = City::regions($item->city['region_id'])->get();
+            $regions = Region::where('country_id',$item->city->region['country_id'])->orderby('name_ar','desc')->get();
+        }            
+        else {
+            $region_cities = null;
+            $regions = null;
+        }
+
+        return view($this->view.'show',compact('item','cols','region_cities','regions'));
 
     }
 
@@ -82,6 +93,41 @@ class CompanyController extends Controller
             return 1;
 
         return 0;        
+    }
+
+    public function search(Request $request)
+    {
+        
+       
+        if($request->mobile)
+            $items = Company::where('mobile',$request->mobile)
+                            ->where('active',$request->status)                                
+                            ->paginate(pagger());
+
+        elseif($request->city)
+            $items = Company::where('city_id',$request->city)                     
+                            ->where('active',$request->status)                                
+                            ->paginate(pagger());
+
+        elseif($request->name && $request->mobile)
+            $items = Company::where('name','like','%'.$request->name.'%')
+                                ->where('mobile',$request->mobile)
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+        elseif($request->city && $request->name && $request->mobile)
+            $items = Company::where('city_id',$request->city) 
+                                ->where('mobile',$request->mobile)  
+                                ->where('name','like','%'.$request->name.'%')
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+        else 
+            $items = Company::where('name','like','%'.$request->name.'%')
+                            ->where('active',$request->status)
+                            ->paginate(pagger());
+         
+        return view($this->view.'all',compact('items'));
     }
 
 }

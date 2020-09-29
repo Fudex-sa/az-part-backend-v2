@@ -9,6 +9,31 @@
 
 @section('content')
   
+<div class="page-title">
+    <div class="title_left">
+        <h3> @yield('title')  </h3>
+    </div>
+
+    @include('dashboard.brands.filter')
+   
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> @lang('site.brands')  </h2>
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>              
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+
 <div class="btn-group">
      
     <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
@@ -33,17 +58,17 @@
             <tr>
                 <td>{{$item->id}}</td>
 
-                <td>@if($item->logo != '') <img src="{{asset('uploads/'.$item->logo)}}" class="img-tbl"/>
+                <td>@if($item->logo != '') <img src="{{asset('uploads/brands/'.$item->logo)}}" class="img-tbl"/>
                     @else <img src="{{asset('templates/images/logo.png')}}"/> @endif
                 </td>
 
-                <td>{{$item->name}}</td>                             
+                <td>{{$item['name_'.my_lang()]}}</td>                             
                 
-                <td><a href="{{ route('admin.brand.models',$item->id) }}">
+                <td><a href="{{ route('admin.models',$item->id) }}">
                     {{__('site.view')}}  ({{count($item->models)}})  </a></td>                            
                 
                 <td>
-                    <a href="{{ route('admin.brand.edit',$item->id) }}" class="btn btn-info btn-xs">
+                    <a href="{{ route('admin.brand',$item->id) }}" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> </a>
     
                         <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
@@ -58,6 +83,11 @@
   
 <div class="text-center"> {{ $items->links() }} </div>
  
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection
 
@@ -68,7 +98,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'brand']) 
   

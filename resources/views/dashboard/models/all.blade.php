@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title') @lang('site.models') |  {{ $brand->name }} @endsection
+@section('title') @lang('site.models') |  {{ $brand['name_'.my_lang()] }} @endsection
 
 @section('styles')
     
@@ -31,10 +31,10 @@
         <tr>
             <td>{{$item->id}}</td>  
 
-            <td>{{$item->name}}</td>                            
+            <td>{{$item['name_'.my_lang()]}}</td>                            
             
             <td>
-                <a href="{{ route('admin.model.edit',$item->id) }}" class="btn btn-info btn-xs">
+                <a href="{{ route('admin.model',$item->id) }}" class="btn btn-info btn-xs">
                     <i class="fa fa-edit"></i> </a>
 
                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
@@ -59,7 +59,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'model']) 
   

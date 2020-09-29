@@ -1,0 +1,85 @@
+
+
+ <form action="{{ route('admin.supervisor.search') }}" method="get" class="form-horizontal form-label-left">
+
+    @csrf
+        <div class="form-group col-md-5">
+            <label class="col-md-4 col-sm-3 col-xs-12"> @lang('site.supervisor_name') </label>
+
+            <div class="col-md-8 col-sm-6 col-xs-12">
+            <input type="text" name="name" class="form-control" value="{{ request()->name }}" required/>
+            </div>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label class="col-md-3 col-sm-3 col-xs-12"> @lang('site.role') </label>
+
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <select name="role" class="form-control">
+                    <option value=""> @lang('site.choose_role') </option>
+
+                    @foreach ($roles as $rol)
+                        <option value="{{ $rol->id }}" {{ request()->role == $rol->id ? 'selected' : '' }}> 
+                            {{ $rol['name_'.my_lang()] }} </option>
+                    @endforeach
+                </select>
+            </div>
+           
+        </div>
+
+        <div class="form-group col-md-5">
+            <label class="col-md-4 col-sm-3 col-xs-12"> @lang('site.status') </label>
+
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <label> <input type="radio" class="flat" name="status" value="1" checked required/> @lang('site.active') </label>
+                <label> <input type="radio" class="flat" name="status" value="0" required/> @lang('site.de_active') </label>
+            </div>                               
+        </div>
+
+        <div class="form-group col-md-5">
+            <label class="col-md-3 col-sm-3 col-xs-12"> @lang('site.country') </label>
+
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <select name="country" id="country_id" class="form-control">
+                    <option value=""> @lang('site.choose_country') </option>
+                    
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}" {{ request()->country == $country->id ? 'selected' : '' }}>
+                             {{ $country['name_'.my_lang()] }} </option>
+                    @endforeach
+                </select>
+            </div>                               
+        </div>
+
+
+        <div class="form-group col-md-5">
+            <label class="col-md-4 col-sm-3 col-xs-12"> @lang('site.region') </label>
+
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <select name="region" id="region_id" class="form-control">
+                    <option value=""> @lang('site.choose_region') </option>
+                    {{-- @foreach ($regions as $reg)
+                        <option value="{{ $reg->id }}"> {{ $reg['name_'.my_lang()] }} </option>
+                    @endforeach --}}
+                </select>
+            </div>                               
+        </div>
+
+        <div class="form-group col-md-5">
+            <label class="col-md-3 col-sm-3 col-xs-12"> @lang('site.city') </label>
+
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <select id="cities" name="city" class="form-control">
+                    <option value=""> @lang('site.choose_city') </option>
+                </select>
+            </div>                               
+        </div>
+
+        <div class="form-group col-md-2">
+            <button type="submit" class="btn btn-success"> @lang('site.search') </button>
+
+            <button type="button" onclick="window.location.href='{{ route('admin.supervisors') }}'" 
+            class="btn btn-primary"> @lang('site.all') </button>
+        </div>
+
+</form>

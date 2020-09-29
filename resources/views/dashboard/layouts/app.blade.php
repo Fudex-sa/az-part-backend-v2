@@ -362,7 +362,13 @@
 
 @if(cur_root() != 'admin.dashboard' && cur_root() != 'admin.piece.edit' && cur_root() != 'admin.engine'
         
-        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis')
+        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis' && cur_root() != 'admin.supervisors'        
+        && cur_root() != 'admin.supervisor.search'  && cur_root() != 'admin.users'  && cur_root() != 'admin.user.search'        
+        && cur_root() != 'admin.companies' && cur_root() != 'admin.company.search'  && cur_root() != 'admin.sellers'
+        && cur_root() != 'admin.seller.search'  && cur_root() != 'admin.brokers'  && cur_root() != 'admin.broker.search'
+        && cur_root() != 'admin.reps' && cur_root() != 'admin.rep.search' && cur_root() != 'admin.pieces'
+        && cur_root() != 'admin.piece' && cur_root() != 'admin.piece.search' && cur_root() != 'admin.brands'
+        && cur_root() != 'admin.brand.search')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

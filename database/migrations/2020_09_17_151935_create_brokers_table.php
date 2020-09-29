@@ -28,6 +28,9 @@ class CreateBrokersTable extends Migration
             $table->integer('total_requests')->default(0);
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
+            $table->integer('city_id');
+            
+            $table->integer('created_by')->nullable();
             
             $table->string('api_token',80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();

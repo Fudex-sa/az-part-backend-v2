@@ -685,6 +685,19 @@ return [
     'add_country' => 'Add Country',
     'regions' => 'Regions',
     'add_region' => 'Add Region',
+    'country' => 'Country',
+    'choose_country' => 'Choose Country',
+    'region' => 'Region',
+    'choose_region' => 'Choose Region',
+    'created_by' => 'Created By',
+    'stores_added' => 'Stores Added',
+    'supervisor_name' => 'Supervisor Name',
+    'de_active' => 'Not Active',
+    'role' => 'Role',
+    'store_name' => 'Store Name',
+    'broker_name' => 'Broker Name',
+    'rep_name' => 'Rep Name',
+    'search_brand' => 'Search Brand..',
 ];
 
 ?>

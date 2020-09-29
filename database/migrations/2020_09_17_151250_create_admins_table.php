@@ -25,6 +25,7 @@ class CreateAdminsTable extends Migration
             $table->boolean('vip')->nullable()->default(0);
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();
+            $table->integer('city_id');
             
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
@@ -33,6 +34,8 @@ class CreateAdminsTable extends Migration
             $table->string('api_token',80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->integer('created_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

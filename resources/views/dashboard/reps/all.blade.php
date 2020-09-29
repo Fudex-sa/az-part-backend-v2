@@ -9,6 +9,38 @@
 
 @section('content')
   
+<div class="col-md-12 col-sm-12 col-xs-12">
+  
+    
+    <div class="x_panel">
+         
+        <div class="x_content">
+    
+            <div class="table-responsive">
+                @include('dashboard.reps.filter')
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @yield('title') </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                  
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+
+        <div class="table-responsive">
+
+            <div class="col-md-12">
+                @include('dashboard.layouts.message')
+            </div>
+
     <div class="btn-group">
         
         @if(has_permission('reps_add'))
@@ -43,7 +75,9 @@
         <th> @lang('site.vip') </th>
         
         <th> @lang('site.user_role') </th>
-        
+
+        <th> @lang('site.city') </th>
+
         <th> @lang('site.active') </th>
         
         <th> @lang('site.saudi') </th>
@@ -84,6 +118,8 @@
                     <label class="btn btn-default"> {{ __($rep_role->role['name_'.my_lang()]) }} </label>
                 @endforeach
             </td>
+
+            <td> {{ $item->city ? $item->city['name_'.my_lang()] : '-' }} </td>
             
             <td>
                 @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
@@ -129,6 +165,11 @@
 <div class="text-center"> {{ $items->links() }} </div>
  
 
+        </div>
+    </div>
+</div>
+</div>
+
 @endsection
 
 
@@ -139,5 +180,8 @@
     @include('dashboard.ajax.delete',['target'=>'rep']) 
 
     @include('dashboard.ajax.activate',['target'=>'rep']) 
+
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
  
 @endsection

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Country;
+use App\Models\Region;
+use App\Models\City;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -15,7 +18,7 @@ class UserController extends Controller
 
     public function all()
     {
-        $items = User::orderby('id','desc')->paginate(pagger());
+        $items = User::with('city')->orderby('id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('items'));
     }
@@ -23,14 +26,14 @@ class UserController extends Controller
     public function add()
     {
         $cols = Schema::getColumnListing('users');
-
+ 
         return view($this->view.'create',compact('cols'));
     }
 
     public function store(UserRequest $request,$id = null)
     {
          
-        $data = $request->except('_token','api_token');
+        $data = $request->except('_token','api_token','country_id','region_id');
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = User::where('id',$id)->first()->password;
@@ -57,8 +60,17 @@ class UserController extends Controller
     public function show(User $item)
     {
         $cols = Schema::getColumnListing('users');
-
-        return view($this->view.'show',compact('item','cols'));
+        
+        if($item->city){
+            $region_cities = City::regions($item->city['region_id'])->get();
+            $regions = Region::where('country_id',$item->city->region['country_id'])->orderby('name_ar','desc')->get();
+        }            
+        else {
+            $region_cities = null;
+            $regions = null;
+        }
+        
+        return view($this->view.'show',compact('item','cols','region_cities','regions'));
 
     }
 
@@ -82,6 +94,40 @@ class UserController extends Controller
             return 1;
 
         return 0;        
+    }
+
+    public function search(Request $request)
+    {
+         
+        if($request->mobile)
+            $items = User::where('name',$request->mobile)
+                            ->where('active',$request->status)                                
+                            ->paginate(pagger());
+
+        elseif($request->city)
+            $items = User::where('city_id',$request->city)                     
+                            ->where('active',$request->status)                                
+                            ->paginate(pagger());
+
+        elseif($request->name && $request->mobile)
+            $items = User::where('name','like','%'.$request->name.'%')
+                                ->where('name',$request->mobile)
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+        elseif($request->city && $request->name && $request->mobile)
+            $items = User::where('city_id',$request->city) 
+                                ->where('name',$request->mobile)
+                                ->where('name','like','%'.$request->name.'%')
+                                ->where('active',$request->status)                                
+                                ->paginate(pagger());
+
+        else 
+            $items = User::where('name','like','%'.$request->name.'%')
+                            ->where('active',$request->status)
+                            ->paginate(pagger());
+         
+        return view($this->view.'all',compact('items'));
     }
 
 }
