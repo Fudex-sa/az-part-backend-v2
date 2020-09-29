@@ -694,6 +694,10 @@ return [
     'supervisor_name' => 'Supervisor Name',
     'de_active' => 'Not Active',
     'role' => 'Role',
+    'store_name' => 'Store Name',
+    'broker_name' => 'Broker Name',
+    'rep_name' => 'Rep Name',
+    'search_brand' => 'Search Brand..',
 ];
 
 ?>

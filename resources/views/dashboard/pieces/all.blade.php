@@ -9,6 +9,30 @@
 
 @section('content')
   
+<div class="page-title">
+    <div class="title_left">
+        <h3> @yield('title')  </h3>
+    </div>
+
+    @include('dashboard.pieces.filter')
+   
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> @lang('site.pieces')  </h2>
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>              
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
 <div class="btn-group">
      
     <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
@@ -32,12 +56,12 @@
         <tr>
             <td>{{$item->id}}</td>
 
-            <td>{{$item->name}}</td>                            
+            <td>{{$item['name_'.my_lang()]}}</td>                            
             
-            <td>{{count($item->pieceAlternative)}}</td>
+            <td>{{count($item->alts)}}</td>
             
             <td>
-                <a href="{{ route('admin.piece.edit',$item->id) }}" class="btn btn-info btn-xs">
+                <a href="{{ route('admin.piece',$item->id) }}" class="btn btn-info btn-xs">
                    <i class="fa fa-edit"></i> </a>
 
                   <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
@@ -53,6 +77,12 @@
 <div class="text-center"> {{ $items->links() }} </div>
  
 
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @section('popup')
@@ -62,7 +92,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'piece']) 
   

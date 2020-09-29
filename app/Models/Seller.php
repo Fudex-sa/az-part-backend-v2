@@ -20,4 +20,9 @@ class Seller extends Model
         return $query->whereSaudi(1);
     }
     
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id');
+    }
+ 
 }

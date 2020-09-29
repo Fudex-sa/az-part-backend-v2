@@ -140,7 +140,7 @@ return [
     'piece_name' => 'اسم قطعة الغيار',
     'alternative_names' => 'اسماء مرادفة',
     'edit_piece' => 'تعديل الاسم',
-    'alternatives of' => 'بدائل ل',
+    'alternatives_of' => 'بدائل ل',
     'alternative_name' => 'اسم مرادف',
     'add_alternative_names' => 'اضف اسماء مرادفة',
     'edit_alternative_name' => 'تعديل الأسماء المرادفة',
@@ -833,4 +833,8 @@ return [
     'supervisor_name' => 'اسم المسؤول',
     'de_active' => 'معطل',
     'role' => 'الدور',
+    'store_name' => 'اسم المتجر',
+    'broker_name' => 'اسم الوسيط',
+    'rep_name' => 'اسم المندوب',
+    'search_brand' => 'بحث الماركات',
 ];

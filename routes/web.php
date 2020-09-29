@@ -35,14 +35,17 @@ Route::group([
             Route::delete('package/delete',[App\Http\Controllers\Admin\PackageController::class, 'delete'])->name('admin.package.delete');            
 
             /******************* Users ********************/                
+            Route::get('user/search',[App\Http\Controllers\Admin\UserController::class, 'search'])->name('admin.user.search');
             Route::get('users',[App\Http\Controllers\Admin\UserController::class, 'all'])->name('admin.users');            
             Route::get('user/add',[App\Http\Controllers\Admin\UserController::class, 'add'])->name('admin.user.add');            
             Route::get('user/{item}',[App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.user');
             Route::post('user/store/{id?}',[App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.user.store');            
             Route::delete('user/delete',[App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin.user.delete');
             Route::post('user/activate',[App\Http\Controllers\Admin\UserController::class, 'activate'])->name('admin.user.activate');
+            
 
             /******************* Companies ********************/    
+            Route::get('company/search',[App\Http\Controllers\Admin\CompanyController::class, 'search'])->name('admin.company.search');
             Route::get('companies',[App\Http\Controllers\Admin\CompanyController::class, 'all'])->name('admin.companies');
             Route::get('company/add',[App\Http\Controllers\Admin\CompanyController::class, 'add'])->name('admin.company.add');
             Route::get('company/{item}',[App\Http\Controllers\Admin\CompanyController::class, 'show'])->name('admin.company');
@@ -51,6 +54,7 @@ Route::group([
             Route::post('company/activate',[App\Http\Controllers\Admin\CompanyController::class, 'activate'])->name('admin.company.activate');
 
             /******************* Sellers ********************/    
+            Route::get('seller/search',[App\Http\Controllers\Admin\SellerController::class, 'search'])->name('admin.seller.search');
             Route::get('sellers',[App\Http\Controllers\Admin\SellerController::class, 'all'])->name('admin.sellers');            
             Route::get('seller/add',[App\Http\Controllers\Admin\SellerController::class, 'add'])->name('admin.seller.add');
             Route::get('seller/{item}',[App\Http\Controllers\Admin\SellerController::class, 'show'])->name('admin.seller');
@@ -59,6 +63,7 @@ Route::group([
             Route::post('seller/activate',[App\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.seller.activate');
 
             /******************* Brokers ********************/    
+            Route::get('broker/search',[App\Http\Controllers\Admin\BrokerController::class, 'search'])->name('admin.broker.search');
             Route::get('brokers',[App\Http\Controllers\Admin\BrokerController::class, 'all'])->name('admin.brokers');            
             Route::get('broker/add',[App\Http\Controllers\Admin\BrokerController::class, 'add'])->name('admin.broker.add');
             Route::get('broker/{item}',[App\Http\Controllers\Admin\BrokerController::class, 'show'])->name('admin.broker');
@@ -67,6 +72,7 @@ Route::group([
             Route::post('broker/activate',[App\Http\Controllers\Admin\BrokerController::class, 'activate'])->name('admin.broker.activate');
 
             /******************* Reps ********************/                
+            Route::get('rep/search',[App\Http\Controllers\Admin\RepController::class, 'search'])->name('admin.rep.search');
             Route::get('reps',[App\Http\Controllers\Admin\RepController::class, 'all'])->name('admin.reps');            
             Route::get('rep/add',[App\Http\Controllers\Admin\RepController::class, 'add'])->name('admin.rep.add');
             Route::get('rep/{item}',[App\Http\Controllers\Admin\RepController::class, 'show'])->name('admin.rep');
@@ -130,6 +136,39 @@ Route::group([
             Route::post('city/store/{item?}',[App\Http\Controllers\Admin\CityController::class, 'store'])->name('admin.city.store');
             Route::delete('city/delete',[App\Http\Controllers\Admin\CityController::class, 'delete'])->name('admin.city.delete');
             Route::post('city/activate',[App\Http\Controllers\Admin\CityController::class, 'activate'])->name('admin.city.activate');
+
+            /************ Brands  **********/
+            Route::get('brand/search',[App\Http\Controllers\Admin\BrandController::class, 'search'])->name('admin.brand.search');      
+            Route::get('brands',[App\Http\Controllers\Admin\BrandController::class, 'all'])->name('admin.brands');                        
+            Route::get('brand/{item}',[App\Http\Controllers\Admin\BrandController::class, 'edit'])->name('admin.brand');
+            Route::post('brand/store/{item?}',[App\Http\Controllers\Admin\BrandController::class, 'store'])->name('admin.brand.store');
+            Route::delete('brand/delete',[App\Http\Controllers\Admin\BrandController::class, 'delete'])->name('admin.brand.delete');
+            Route::post('brand/activate',[App\Http\Controllers\Admin\BrandController::class, 'activate'])->name('admin.brand.activate');
+
+            /************ Models  **********/
+            Route::get('models/{brand}',[App\Http\Controllers\Admin\ModelController::class, 'all'])->name('admin.models');      
+            Route::get('model/{item}',[App\Http\Controllers\Admin\ModelController::class, 'edit'])->name('admin.model');
+            Route::post('model/store/{item?}',[App\Http\Controllers\Admin\ModelController::class, 'store'])->name('admin.model.store');
+            Route::delete('model/delete',[App\Http\Controllers\Admin\ModelController::class, 'delete'])->name('admin.model.delete');
+            Route::post('model/activate',[App\Http\Controllers\Admin\ModelController::class, 'activate'])->name('admin.model.activate');
+
+            /************* Pieces *******************/     
+            Route::get('piece/search',[App\Http\Controllers\Admin\PieceController::class, 'search'])->name('admin.piece.search');      
+            Route::get('pieces',[App\Http\Controllers\Admin\PieceController::class, 'all'])->name('admin.pieces');      
+            Route::get('piece/{id}',[App\Http\Controllers\Admin\PieceController::class, 'edit'])->name('admin.piece');      
+            Route::post('piece/store/{item?}',[App\Http\Controllers\Admin\PieceController::class, 'store'])->name('admin.piece.store');      
+            Route::delete('piece/delete',[App\Http\Controllers\Admin\PieceController::class, 'delete'])->name('admin.piece.delete');      
+            
+            Route::post('alt/store/{piece}',[App\Http\Controllers\Admin\PieceController::class, 'store_alts'])->name('admin.alt.store');      
+            Route::delete('alt/delete',[App\Http\Controllers\Admin\PieceController::class, 'delete_alt'])->name('admin.alt.delete');      
+            Route::post('alt/update/{alt}',[App\Http\Controllers\Admin\PieceController::class, 'update_alt'])->name('admin.alt.update');      
+
+            /************ Bad Words  **********/
+            Route::get('badwords',[App\Http\Controllers\Admin\BadWordController::class, 'all'])->name('admin.badwords');                        
+            Route::get('badword/{item}',[App\Http\Controllers\Admin\BadWordController::class, 'edit'])->name('admin.badword');
+            Route::post('badword/store/{item?}',[App\Http\Controllers\Admin\BadWordController::class, 'store'])->name('admin.badword.store');
+            Route::delete('badword/delete',[App\Http\Controllers\Admin\BadWordController::class, 'delete'])->name('admin.badword.delete');
+              
 
 
 
@@ -212,35 +251,8 @@ Route::group([
             Route::post('bidding/delete','CarBiddingController@delete')->name('admin.bidding.delete');
             Route::post('bidding/update/{id?}','CarBiddingController@update')->name('admin.bidding.store');
 
-            /************* Brands *******************/
-            Route::get('brands/all','BrandsController@all')->name('admin.brands');
-            Route::get('brand/edit/{item}','BrandsController@edit')->name('admin.brand.edit');            
-            Route::post('brand/store/{item?}','BrandsController@store')->name('admin.brand.store');
-            Route::delete('brand/delete','BrandsController@delete')->name('admin.brand.delete');
-
-            /************* Models *******************/
-            Route::get('brand/models/{brand}','ModelsController@all')->name('admin.brand.models');
-            Route::get('model/edit/{item}','ModelsController@edit')->name('admin.model.edit');            
-            Route::post('model/store/{item?}','ModelsController@store')->name('admin.model.store');
-            Route::delete('model/delete','ModelsController@delete')->name('admin.model.delete');
-
-            /************* Pieces *******************/     
-            Route::get('pieces/all','PiecesController@all')->name('admin.pieces');                        
-            Route::get('piece/edit/{item}','PiecesController@edit')->name('admin.piece.edit');
-            Route::post('piece/store/{item?}','PiecesController@store')->name('admin.piece.store');
-            Route::delete('piece/delete','PiecesController@delete')->name('admin.piece.delete');
-            Route::get('pieces/search','PiecesController@search')->name('admin.pieces.search');
-
-            Route::post('piece/alt/store/{item?}','PiecesController@store_alts')->name('admin.piece.alts.store');
-            Route::delete('piece/alt/delete','PiecesController@delete_alt')->name('admin.alt.delete');
-            Route::post('piece/alt/update/{alt}','PiecesController@update_alt')->name('admin.piece.alt.update');
-
-            /************* Bad Words *******************/
-            Route::get('bad-word/all','BadWordsController@all')->name('admin.badwords');
-            Route::get('bad-word/edit/{item}','BadWordsController@edit')->name('admin.badwords.edit');
-            Route::post('bad-word/store/{id?}','BadWordsController@store')->name('admin.badwords.store');
-            Route::delete('bad-word/delete','BadWordsController@delete')->name('admin.badwords.delete');
-
+           
+ 
             /************* Contact Us *******************/
             Route::get('contact-us/all','ContactUsController@all')->name('admin.contact_us');
             Route::get('contact-us/show/{item}','ContactUsController@show')->name('admin.contact_us.show');

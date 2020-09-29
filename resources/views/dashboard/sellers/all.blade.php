@@ -9,6 +9,41 @@
 
 @section('content')
   
+<div class="col-md-12 col-sm-12 col-xs-12">
+  
+    
+    <div class="x_panel">
+         
+        <div class="x_content">
+    
+            <div class="table-responsive">
+                
+                @include('dashboard.sellers.filter')
+                
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @yield('title') </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                  
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+
+        <div class="table-responsive">
+
+            <div class="col-md-12">
+                @include('dashboard.layouts.message')
+            </div>
+
+
     <div class="btn-group">
         
         @if(has_permission('sellers_add'))
@@ -36,7 +71,8 @@
         <th> @lang('site.user_id')</th>
         <th> <i class="fa fa-camera"> </i> </th>
         <th> @lang('site.name')   </th>        
-        <th> @lang('site.total_requests')  </th>                
+        <th> @lang('site.total_requests')  </th>     
+        <th> @lang('site.city') </th>           
         <th> @lang('site.user_type') </th>
 
         <th> @lang('site.vip') </th>
@@ -65,6 +101,8 @@
              
             <td> {{ $item->total_requests }} @lang('site.request') </td>
  
+            <td> {{ $item->city ? $item->city['name_'.my_lang()] : '-' }} </td>
+
             <td> <span class="label label-{{ $item->user_type }}"> @lang('site.'.$item->user_type) </span> </td>
 
             <td>
@@ -120,6 +158,11 @@
 <div class="text-center"> {{ $items->links() }} </div>
  
 
+        </div>
+    </div>
+</div>
+</div>
+
 @endsection
 
 
@@ -131,4 +174,7 @@
 
     @include('dashboard.ajax.activate',['target'=>'seller']) 
  
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
+    
 @endsection

@@ -19,13 +19,10 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
 @csrf
 
     @foreach ($cols as $col)
-        @if($col != 'id' & $col != 'created_at' & $col != 'updated_at' & $col != 'verification_code' 
-            
-            & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'
-            
-            & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
-            
-            & $col != 'created_by' )
+        @if($col != 'id' & $col != 'created_at' & $col != 'updated_at' & $col != 'verification_code'             
+            & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'            
+            & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'            
+            & $col != 'created_by'   & $col != 'city_id' )
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -88,6 +85,40 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
         @endif
     @endforeach
   
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.country') </label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="country_id" id="country_id" class="form-control">
+                <option value=""> @lang('site.choose_country') </option>
+                
+                @foreach (countries() as $country)
+                    <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.region') </label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="region_id" id="region_id" class="form-control">
+                <option value=""> @lang('site.choose_region') </option>
+                 
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.city') </label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">            
+            <select id="cities" name="city_id" class="form-control">
+               
+            </select>
+        </div>
+    </div>
 
     <div class="ln_solid"></div>
     <div class="form-group">
@@ -113,4 +144,6 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
      
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
 
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
 @endsection

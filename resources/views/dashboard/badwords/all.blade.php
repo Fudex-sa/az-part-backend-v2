@@ -40,7 +40,7 @@
             <td>{{$item->word_hi}}</td>
            
             <td>
-                <a href="{{ route('admin.badwords.edit',$item->id) }}" class="btn btn-info btn-xs">
+                <a href="{{ route('admin.badword',$item->id) }}" class="btn btn-info btn-xs">
                     <i class="fa fa-edit"></i> </a>
 
                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
@@ -60,13 +60,13 @@
 
 @section('popup')
 
-    @include('dashboard.bad_words.create')
+    @include('dashboard.badwords.create')
 
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
-    @include('dashboard.ajax.delete',['target'=>'badwords']) 
+    @include('dashboard.ajax.delete',['target'=>'badword']) 
   
 @endsection

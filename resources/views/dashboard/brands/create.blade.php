@@ -11,11 +11,9 @@
             <div class="modal-body">
                
                 <form class="form-horizontal form-label-left" action="{{ route('admin.brand.store') }}" 
-                method="post" enctype="multipart/form-data" novalidate>
+                method="post" enctype="multipart/form-data" >
                     @csrf
-                
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                    
+                 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo"> @lang('site.logo') <span
                                 class="required">*</span>
@@ -27,15 +25,33 @@
                     </div>
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand_name"> @lang('site.brand_name') <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_ar"> @lang('site.name_ar') <span
                                 class="required">*</span>
                         </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="name" class="form-control col-md-7 col-xs-12" required 
-                            value="{{ old('name') }}" />
+                            <input type="text" name="name_ar" class="form-control col-md-7 col-xs-12" required 
+                            value="{{ old('name_ar') }}" />
                         </div>
-                    </div>                    
+                    </div>  
+                    
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_en"> @lang('site.name_en') </label>
+            
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="name_en" class="form-control col-md-7 col-xs-12"  
+                            value="{{ old('name_en') }}" />
+                        </div>
+                    </div>  
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_hi"> @lang('site.name_hi') </label>
+            
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="name_hi" class="form-control col-md-7 col-xs-12"  
+                            value="{{ old('name_hi') }}" />
+                        </div>
+                    </div>  
                 
                     <div class="ln_solid"></div>
                     <div class="form-group">

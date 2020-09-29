@@ -20,4 +20,9 @@ class Rep extends Model
         return $this->hasMany(UserRole::class,'user_id')->where('type','rep');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id');
+    }
+
 }
