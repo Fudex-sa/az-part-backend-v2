@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title') @lang('site.Bad_Words') @endsection
+@section('title') @lang('site.notifications')   @endsection
 
 @section('styles')
     
@@ -11,10 +11,11 @@
   
 <div class="btn-group">
 
-    @if(has_permission('badwords_add'))
+    @if(has_permission('notifications_add'))
         <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
                 <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-    @endif 
+    @endif
+
 </div>
 
 <br/> <br/>
@@ -23,9 +24,8 @@
     <thead class=" text-primary">
         <tr>
             <th scope="col">#  </th>
-            <th scope="col">{{__('site.word_ar')}} </th>
-            <th scope="col">{{__('site.word_en')}}  </th>
-            <th scope="col">{{__('site.word_hi')}}  </th>
+            <th scope="col">{{ __('site.keyword') }}  </th>
+            <th scope="col">{{ __('site.value_'.my_lang()) }}  </th>            
             <th scope="col"></th>
       </tr>
       </thead>
@@ -33,26 +33,25 @@
         @foreach($items as $item)
         <tr>
             <td>{{$item->id}}</td>
+
+            <td>{{$item->keyword}}</td>
             
-            <td>{{$item->word_ar}}</td>
+            <td>{{$item['value_'.my_lang()]}}</td>                                
             
-            <td>{{$item->word_en}}</td>
-            
-            <td>{{$item->word_hi}}</td>
-           
             <td>
-                @if(has_permission('badwords_edit'))
-                    <a href="{{ route('admin.badword',$item->id) }}" class="btn btn-info btn-xs">
+                @if(has_permission('notifications_edit'))
+                    <a href="{{ route('admin.notification',$item->id) }}" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> </a>
                 @endif
 
-                @if(has_permission('badwords_delete'))
-                   <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                       <i class="fa fa-trash"></i> </a>                       
+                @if(has_permission('notifications_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> </a>
                 @endif
+                        
             </td>
         </tr>
-    @endforeach 
+    @endforeach  
          
       </tbody>
 
@@ -65,13 +64,13 @@
 
 @section('popup')
 
-    @include('dashboard.badwords.create')
+    @include('dashboard.notifications.create')
 
 @endsection
 
 @section('scripts')
     @include('dashboard.layouts.message_growl') 
 
-    @include('dashboard.ajax.delete',['target'=>'badword']) 
-  
+    @include('dashboard.ajax.delete',['target'=>'notification']) 
+    
 @endsection

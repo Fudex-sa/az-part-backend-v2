@@ -10,22 +10,21 @@
             </div>
             <div class="modal-body">
                
-                <form class="form-horizontal form-label-left" action="{{ route('admin.ad.store') }}" method="post" novalidate>
+                <form class="form-horizontal form-label-left" action="{{ route('admin.ad.store') }}" method="post" 
+                    enctype="multipart/form-data">
                     @csrf
-                
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                    
+                 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image"> @lang('site.image') <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="img"> @lang('site.image') <span
                                 class="required">*</span>
                         </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" name="image" class="col-md-7 col-xs-12" required />
+                            <input type="file" name="img" class="col-md-7 col-xs-12" required />
                         </div>
                     </div>
 
-                    <div class="item form-group">
+                    {{-- <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="width"> @lang('site.choose_width') <span
                                 class="required">*</span>
                         </label>
@@ -37,9 +36,9 @@
                                     <option value="2" >300*250</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="item form-group">
+                    {{-- <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location"> @lang('site.location') <span
                                 class="required">*</span>
                         </label>
@@ -51,25 +50,51 @@
                                     <option value="antique"> @lang('site.antique') </option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="link"> @lang('site.link') <span
-                                class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="link"> @lang('site.link') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control" name="link" />
                         </div>
                     </div>
             
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="active"> @lang('site.active') </label>
+            
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                <input type="radio" class="flat" name="active" value="1"  
+                                    {{ old('active') == 1 ? 'checked' : '' }} required/> @lang('site.yes')
+                            </label>
+
+                            <label>
+                                <input type="radio" class="flat" name="active" value="0"  
+                                    {{ old('active') == 0 ? 'checked' : '' }} required/> @lang('site.no')
+                            </label>
+                            
+                        </div>
+                    </div> 
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sort"> @lang('site.sort') </label>
+            
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <select name="sort" id="sort" class="form-control">
+                                @for($i = 0 ; $i <= 20 ; $i++)
+                                    <option value="{{ $i }}"> {{ $i }} </option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div> 
                      
                 
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="button" class="btn btn-default" data-dismiss="modal"> @lang('site.close') </button>
-                            <button type="submit" class="btn btn-primary"> @lang('site.send')  </button>
+                            <button type="submit" class="btn btn-primary"> @lang('site.save')  </button>
                         </div>
                     </div>
             

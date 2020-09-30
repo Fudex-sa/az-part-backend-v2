@@ -11,9 +11,11 @@
   
 <div class="btn-group">
      
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
+    @if(has_permission('sliders_add'))
+        <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+    @endif
+
 </div>
 
 <br/> <br/>
@@ -22,8 +24,10 @@
     <thead class=" text-primary">
         <tr>
             <th scope="col">#  </th>
-            <th scope="col"> {{ __('site.image') }}  </th>
-            <th scope="col">{{ __('site.title') }}</th>
+            <th scope="col">  @lang('site.image') </th>
+            <th scope="col"> @lang('site.title') </th>
+            <th scope="col"> @lang('site.active') </th>
+            <th scope="col"> @lang('site.sort') </th>
             <th scope="col"></th>
       </tr>
       </thead>
@@ -34,14 +38,29 @@
 
                 <td><img src="{{asset('uploads/'.$item->img)}}" class="img-tbl"></td>
                 
-                <td>{{$item->title}}</td>                          
+                <td>{{$item['title_'.my_lang()]}}</td>    
+                
+                <td>                
+                    @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
+                        <i class="fa fa-check"></i> @lang('site.de_activate') </button>
+                    @else
+                        <button class="btn btn-warning btn-xs" onclick="activate({{ $item->id }})">
+                        <i class="fa fa-close"></i> @lang('site.activate') </button>
+                    @endif                     
+                </td>
+
+                <td> {{ $item->sort }} </td>
                 
                 <td>
-                    <a href="{{ route('admin.slider.edit',$item->id) }}" class="btn btn-info btn-xs">
-                        <i class="fa fa-edit"></i> </a>
-    
+                    @if(has_permission('sliders_edit'))
+                        <a href="{{ route('admin.slider',$item->id) }}" class="btn btn-info btn-xs">
+                            <i class="fa fa-edit"></i> </a>
+                    @endif
+
+                    @if(has_permission('sliders_delete'))
                         <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
                             <i class="fa fa-trash"></i> </a>
+                    @endif
                 </td>
             </tr>
         @endforeach 
@@ -62,8 +81,10 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
-    @include('dashboard.ajax.delete',['target'=>'slider']) 
+    @include('dashboard.ajax.delete',['target'=>'slider'])
+
+    @include('dashboard.ajax.activate',['target'=>'slider'])  
   
 @endsection

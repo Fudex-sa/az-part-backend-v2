@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title') {{__('site.edit_ad')}} |    {{ $item->name }} @endsection
+@section('title') {{__('site.edit_ad')}}  @endsection
 
 @section('styles')
     
@@ -9,24 +9,23 @@
 
 @section('content')
      
-    <form class="form-horizontal form-label-left" action="{{ route('admin.ad.store',$item->id) }}" method="post" novalidate>
+    <form class="form-horizontal form-label-left" action="{{ route('admin.ad.store',$item->id) }}" 
+        method="post" enctype="multipart/form-data">
         @csrf
     
-
-        <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                    
+ 
         <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image"> @lang('site.image') <span
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="img"> @lang('site.image') <span
                     class="required">*</span>
             </label>
 
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="file" name="image" class="col-md-7 col-xs-12" required/>
+                <input type="file" name="img" class="col-md-7 col-xs-12"/>
             </div>
         </div>
 
 
-        <div class="item form-group">
+        {{-- <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="width"> @lang('site.choose_width') <span
                     class="required">*</span>
             </label>
@@ -52,7 +51,7 @@
                         <option value="antique" {{ $item->location == 'antique' ? 'selected' : '' }}> @lang('site.antique') </option>
                 </select>
             </div>
-        </div>
+        </div> --}}
 
         <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="link"> @lang('site.link') <span
@@ -63,6 +62,35 @@
                 <input type="url" class="form-control col-md-7 col-xs-12" name="link" value="{{ $item->link }}" />
             </div>
         </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="active"> @lang('site.active') </label>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <label>
+                    <input type="radio" class="flat" name="active" value="1"  
+                        {{ $item->active == 1 ? 'checked' : '' }} required/> @lang('site.yes')
+                </label>
+
+                <label>
+                    <input type="radio" class="flat" name="active" value="0"  
+                        {{ $item->active == 0 ? 'checked' : '' }} required/> @lang('site.no')
+                </label>
+                
+            </div>
+        </div> 
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sort"> @lang('site.sort') </label>
+
+            <div class="col-md-2 col-sm-6 col-xs-12">
+                <select name="sort" id="sort" class="form-control">
+                    @for($i = 0 ; $i <= 20 ; $i++)
+                        <option value="{{ $i }}" {{ $item->sort == $i ? 'selected' : '' }}> {{ $i }} </option>
+                    @endfor
+                </select>
+            </div>
+        </div> 
     
         <div class="ln_solid"></div>
         <div class="form-group">

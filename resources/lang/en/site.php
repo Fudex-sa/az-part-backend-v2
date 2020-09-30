@@ -698,6 +698,10 @@ return [
     'broker_name' => 'Broker Name',
     'rep_name' => 'Rep Name',
     'search_brand' => 'Search Brand..',
+    'content_ar' => 'Content In Arabic',
+    'content_en' => 'Content In English',
+    'content_hi' => 'Content In Hindi',
+    'sort' => 'Sort',
 ];
 
 ?>

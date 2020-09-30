@@ -37,13 +37,19 @@
             <td> {{ $item->created_at }} </td>
             
             <td>
-                <a href="{{route('admin.contact_us.show',$item->id)}}" class="btn btn-info btn-xs"> <i class="fa fa-eye"></i> </a>
-                
-                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> </a>
+                @if(has_permission('contact_us_edit'))
+                    <a href="{{route('admin.contact_us.show',$item->id)}}" class="btn btn-info btn-xs"> <i class="fa fa-eye"></i> </a>
+                @endif
 
-                <a href='mailto:{{$item->email}}?subject=Replay Message' target="_blank" class="btn btn-warning btn-xs">
-                     <i class="fa fa-reply"></i> </a>
+                @if(has_permission('contact_us_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> </a>
+                @endif
+
+                @if(has_permission('contact_us_add'))
+                    <a href='mailto:{{$item->email}}?subject=Replay Message' target="_blank" class="btn btn-warning btn-xs">
+                        <i class="fa fa-reply"></i> </a>
+                @endif
             </td>
             
         </tr>
@@ -60,7 +66,7 @@
  
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'contact_us']) 
   

@@ -10,12 +10,9 @@
             </div>
             <div class="modal-body">
                
-                <form class="form-horizontal form-label-left" action="{{ route('admin.message.store') }}" 
-                method="post" enctype="multipart/form-data" novalidate>
+                <form class="form-horizontal form-label-left" action="{{ route('admin.notification.store') }}" method="post">
                     @csrf
-                
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                     
+                 
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="keyword"> @lang('site.keyword') <span
@@ -29,34 +26,37 @@
                     </div>  
                     
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="value"> @lang('site.value') <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="value_ar"> @lang('site.value_ar') <span
                                 class="required">*</span>
                         </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="value" class="form-control col-md-7 col-xs-12" required 
-                            value="{{ old('value') }}" />
+                            <textarea name="value_ar" class="form-control col-md-7 col-xs-12" required> {{ old('value_ar') }} </textarea>
                         </div>
                     </div>  
-
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="msg"> @lang('site.msg') <span
-                                class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="value_en"> @lang('site.value_en') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="msg" class="form-control col-md-7 col-xs-12" required 
-                            value="{{ old('msg') }}" />
+                            <textarea name="value_en" class="form-control col-md-7 col-xs-12"> {{ old('value_en') }} </textarea>
                         </div>
-                    </div>  
-
+                    </div> 
+                    
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="value_hi"> @lang('site.value_hi') </label>
+            
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea name="value_hi" class="form-control col-md-7 col-xs-12"> {{ old('value_hi') }} </textarea>
+                        </div>
+                    </div> 
+ 
                 
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="button" class="btn btn-default" data-dismiss="modal"> @lang('site.close') </button>
-                            <button type="submit" class="btn btn-primary"> @lang('site.send')  </button>
+                            <button type="submit" class="btn btn-primary"> @lang('site.save')  </button>
                         </div>
                     </div>
             
