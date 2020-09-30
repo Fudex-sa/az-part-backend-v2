@@ -40,6 +40,13 @@ class ProfileController extends Controller
          
          $data['password'] = $password; 
 
+        if($request->photo){
+            $fileName = time().'.'.$request->photo->extension();  
+            $request->photo->move(public_path('uploads'), $fileName);
+     
+            $data['photo'] = $fileName;
+        }  
+
          $response = Supervisor::where('id',$user->id)->update($data);
         
         if($response)

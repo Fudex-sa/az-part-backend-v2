@@ -45,7 +45,12 @@
     <!-- menu profile quick info -->
     <div class="profile clearfix">
         <div class="profile_pic">
-            <img src="{{ dashboard('build/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+
+            @if(auth('admin')->user()->photo != null)
+                <img src="{{ asset('uploads/'.auth('admin')->user()->photo) }}" alt="..." class="img-circle profile_img">
+            @else
+                <img src="{{ dashboard('build/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+            @endif
         </div>
         <div class="profile_info">
             <span> @lang('site.welcome')  ,</span>
@@ -271,8 +276,8 @@
                     <li><a href="{{ route('admin.engine') }}"><i class="fa fa-forward"></i>  {{ __('site.requests_engine') }} </a></li>
                 @endif
 
-                @if(has_permission('messages_show'))
-                    <li><a href="{{ route('admin.messages') }}"><i class="fa fa-comment"></i> {{ __('site.messages') }} </a></li>
+                @if(has_permission('notifications_show'))
+                    <li><a href="{{ route('admin.notifications') }}"><i class="fa fa-comment"></i> {{ __('site.notifications') }} </a></li>
                 @endif
             </ul>
 
@@ -316,7 +321,11 @@
             <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                     aria-expanded="false">
-                    <img src="{{ dashboard('build/images/img.jpg') }}" alt=""> {{ auth('admin')->user()->name }}
+                    @if(auth('admin')->user()->photo)
+                        <img src="{{ asset('uploads/'.auth('admin')->user()->photo) }}" alt=""> {{ auth('admin')->user()->name }}
+                    @else
+                        <img src="{{ dashboard('build/images/img.jpg') }}" alt=""> {{ auth('admin')->user()->name }}
+                    @endif
                     <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -387,9 +396,9 @@
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
             <div class="input-group">
                 <form method="get" action="{{ route('admin.search') }}">
-                    @csrf
+
                     <input type="text" class="form-control" name="search_text" 
-                            value="{{ app('request')->input('search_text') }}">
+                            value="{{ request()->search_text }}">
 
                     <span class="input-group-btn">
                         <button class="btn btn-default btn-search" type="submit">@lang('site.search')</button>

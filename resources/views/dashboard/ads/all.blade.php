@@ -11,9 +11,10 @@
   
 <div class="btn-group">
      
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
+    @if(has_permission('ads_add'))
+        <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+    @endif 
 </div>
 
 <br/> <br/>
@@ -21,11 +22,11 @@
 <table class="table table-striped jambo_table bulk_action" id="myTbl">
     <thead class=" text-primary">
         <tr>
-            <th scope="col">#  </th>
-            <th scope="col">{{__('site.image')}} </th>
-            <th scope="col">{{__('site.location')}} </th>
-            <th scope="col">{{__('site.with')}}  </th>
-            <th scope="col"></th>
+            <th>#  </th>
+            <th> <i class="fa fa-camera"> </i> </th>
+            <th> @lang('site.active') </th>
+            <th> @lang('site.sort') </th>
+            <th></th>
       </tr>
       </thead>
       <tbody>
@@ -33,21 +34,32 @@
           <tr>
             <td>{{$item->id}}</td>
             
-            <td>@if($item->image != '') <img src="{{asset('uploads/'.$item->image)}}" class="img-tbl"/>
+            <td>
+                @if($item->img != '') <img src="{{asset('uploads/'.$item->img)}}" class="img-tbl"/>
                 @else <img src="{{asset('templates/images/logo.png')}}"/> @endif
-
             </td>
             
-            <td> @lang('site.'.$item->location) </td>
-            
-            <td> {{ $item->width == 1 ?  '728*90' : '300*250' }} </td>
+            <td>                
+                @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-check"></i> @lang('site.de_activate') </button>
+                @else
+                    <button class="btn btn-warning btn-xs" onclick="activate({{ $item->id }})">
+                    <i class="fa fa-close"></i> @lang('site.activate') </button>
+                @endif                     
+            </td>
+
+            <td> {{ $item->sort }} </td>
 
             <td>
-                <a href="{{ route('admin.ad.edit',$item->id) }}" class="btn btn-info btn-xs">
-                    <i class="fa fa-edit"></i> </a>
+                @if(has_permission('ads_edit'))
+                    <a href="{{ route('admin.ad',$item->id) }}" class="btn btn-info btn-xs">
+                        <i class="fa fa-edit"></i> </a>
+                @endif
 
-                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> </a>
+                @if(has_permission('ads_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> </a>
+                @endif
             </td>
           </tr>
       @endforeach
@@ -68,8 +80,9 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
+    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'ad']) 
+    @include('dashboard.ajax.activate',['target'=>'ad']) 
   
 @endsection

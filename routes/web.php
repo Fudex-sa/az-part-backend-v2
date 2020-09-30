@@ -23,11 +23,12 @@ Route::group([
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
 
             Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
- 
 
             Route::get('profile',[App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');            
             Route::post('profile/update',[App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');            
 
+            Route::get('search',[App\Http\Controllers\Admin\SearchController::class, 'index'])->name('admin.search');            
+ 
             /*************** Packages  **********************/
             Route::get('packages',[App\Http\Controllers\Admin\PackageController::class, 'index'])->name('admin.packages');            
             Route::post('package/{id?}',[App\Http\Controllers\Admin\PackageController::class, 'store'])->name('admin.package.store');
@@ -170,6 +171,35 @@ Route::group([
             Route::delete('badword/delete',[App\Http\Controllers\Admin\BadWordController::class, 'delete'])->name('admin.badword.delete');
               
 
+            /************* Contact Us *******************/
+            Route::get('contact-us',[App\Http\Controllers\Admin\ContactUsController::class, 'all'])->name('admin.contact_us');                        
+            Route::get('contact-us/{item}',[App\Http\Controllers\Admin\ContactUsController::class, 'show'])->name('admin.contact_us.show');                        
+            Route::delete('contact-us/delete',[App\Http\Controllers\Admin\ContactUsController::class, 'delete'])->name('admin.contact_us.delete');                        
+ 
+            /************* Pages *******************/
+            Route::get('page/{item}',[App\Http\Controllers\Admin\PageController::class, 'edit'])->name('admin.page');                        
+            Route::post('page/store/{item}',[App\Http\Controllers\Admin\PageController::class, 'store'])->name('admin.page.store');                        
+ 
+            /************** Slider ***************************/
+            Route::get('sliders',[App\Http\Controllers\Admin\SliderController::class, 'all'])->name('admin.sliders');                        
+            Route::get('slider/{item}',[App\Http\Controllers\Admin\SliderController::class, 'edit'])->name('admin.slider');                        
+            Route::post('slider/store/{item?}',[App\Http\Controllers\Admin\SliderController::class, 'store'])->name('admin.slider.store');                        
+            Route::delete('slider/delete',[App\Http\Controllers\Admin\SliderController::class, 'delete'])->name('admin.slider.delete');                        
+            Route::post('slider/activate',[App\Http\Controllers\Admin\SliderController::class, 'activate'])->name('admin.slider.activate');
+
+            /************* Ads *******************/
+            Route::get('ads',[App\Http\Controllers\Admin\AdController::class, 'all'])->name('admin.ads');                        
+            Route::get('ad/{item}',[App\Http\Controllers\Admin\AdController::class, 'edit'])->name('admin.ad');                        
+            Route::post('ad/store/{item?}',[App\Http\Controllers\Admin\AdController::class, 'store'])->name('admin.ad.store');                        
+            Route::delete('ad/delete',[App\Http\Controllers\Admin\AdController::class, 'delete'])->name('admin.ad.delete');     
+            Route::post('ad/activate',[App\Http\Controllers\Admin\AdController::class, 'activate'])->name('admin.ad.activate');                   
+ 
+            /*************** Notifications  **********************/
+            Route::get('notifications',[App\Http\Controllers\Admin\NotificationController::class, 'all'])->name('admin.notifications');                        
+            Route::get('notification/{item}',[App\Http\Controllers\Admin\NotificationController::class, 'edit'])->name('admin.notification');                        
+            Route::post('notification/store/{item?}',[App\Http\Controllers\Admin\NotificationController::class, 'store'])->name('admin.notification.store');                        
+            Route::delete('notification/delete',[App\Http\Controllers\Admin\NotificationController::class, 'delete'])->name('admin.notification.delete');                        
+
 
 
             Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            
@@ -195,10 +225,7 @@ Route::group([
             /******************** Offers  **********/
             Route::get('offer/send/{item}','OffersController@send_offer')->name('admin.offer.send');
 
-            
-
-            /********* Search ********/
-            Route::get('search','SearchController@index')->name('admin.search');
+ 
 
 
              /************ Export PDF Data  ***************************/
@@ -250,32 +277,8 @@ Route::group([
             Route::get('bidding/edit-reject/{id}/{status}','CarBiddingController@updateStatusReject')->name('admin.bidding.updateStatusReject');
             Route::post('bidding/delete','CarBiddingController@delete')->name('admin.bidding.delete');
             Route::post('bidding/update/{id?}','CarBiddingController@update')->name('admin.bidding.store');
-
-           
  
-            /************* Contact Us *******************/
-            Route::get('contact-us/all','ContactUsController@all')->name('admin.contact_us');
-            Route::get('contact-us/show/{item}','ContactUsController@show')->name('admin.contact_us.show');
-            Route::delete('contact-us/delete','ContactUsController@delete')->name('admin.contact_us.delete');
-
-            /************* Ads *******************/
-            Route::get('ads/all','AdsController@all')->name('admin.ads');
-            Route::get('ad/edit/{item}','AdsController@edit')->name('admin.ad.edit');
-            Route::post('ad/store/{item?}','AdsController@store')->name('admin.ad.store');
-            Route::delete('ad/delete','AdsController@delete')->name('admin.ad.delete');
-
-            /************* Pages *******************/
-            Route::get('page/{item}','PagesController@edit')->name('admin.page');
-            Route::post('page/store/{item}','PagesController@store')->name('admin.page.store');
-
-            /************** Slider ***************************/
-            Route::get('sliders/all','SliderController@all')->name('admin.sliders');
-            Route::get('slider/add','SliderController@add')->name('admin.slider.add');
-            Route::get('slider/edit/{item}','SliderController@edit')->name('admin.slider.edit');
-            Route::post('slider/store/{item?}','SliderController@store')->name('admin.slider.store');
-            Route::delete('slider/delete','SliderController@delete')->name('admin.slider.delete');
-
-
+             
             /************* Ticker ****************************/
             Route::get('ticker/edit/{item}','TickerController@edit')->name('admin.ticker');
             Route::post('ticker/store/{item?}','TickerController@store')->name('admin.ticker.store');
@@ -296,11 +299,7 @@ Route::group([
             Route::get('engine/run','EngineController@run_engine')->name('engine.run');
             Route::get('engine/next_round','EngineController@next_round')->name('engine.next_round');
 
-            /*************** Messages  **********************/
-            Route::get('messages','MessagesController@all')->name('admin.messages');
-            Route::get('message/edit/{item}','MessagesController@edit')->name('admin.message.edit');
-            Route::post('message/store/{item?}','MessagesController@store')->name('admin.message.store');
-            Route::post('message/delete','MessagesController@delete')->name('admin.message.delete');
+            
 
             
 

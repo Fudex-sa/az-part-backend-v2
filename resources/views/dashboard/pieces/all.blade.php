@@ -35,9 +35,11 @@
 
 <div class="btn-group">
      
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
+    @if(has_permission('pieces_add'))
+        <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+                <i class="fa fa-plus"></i>  @lang('site.add') </a> 
+     @endif
+
 </div>
 
 <br/> <br/>
@@ -61,11 +63,15 @@
             <td>{{count($item->alts)}}</td>
             
             <td>
-                <a href="{{ route('admin.piece',$item->id) }}" class="btn btn-info btn-xs">
-                   <i class="fa fa-edit"></i> </a>
+                @if(has_permission('pieces_edit'))
+                    <a href="{{ route('admin.piece',$item->id) }}" class="btn btn-info btn-xs">
+                    <i class="fa fa-edit"></i> </a>
+                @endif
 
-                  <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                      <i class="fa fa-trash"></i> </a>
+                @if(has_permission('pieces_delete'))
+                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> </a>
+                @endif
             </td>
         </tr>
     @endforeach 

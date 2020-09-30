@@ -14,17 +14,20 @@
 <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
     <div class="profile_img">
         <div id="crop-avatar">
-            <!-- Current avatar -->
-        <img class="img-responsive avatar-view" src="{{ dashboard('build/images/user.png') }}" alt="Avatar" 
+            
+        @if(auth('admin')->user()->photo )
+            <img class="img-responsive avatar-view" src="{{ asset('uploads/'.auth('admin')->user()->photo) }}" alt="Avatar" 
                 title="{{ $user->name }}">
+        @else
+            <img class="img-responsive avatar-view" src="{{ dashboard('build/images/user.png') }}" alt="Avatar" 
+            title="{{ $user->name }}">
+        @endif
         </div>
     </div>
     <h3> {{ $user->name }} </h3>
 
     <ul class="list-unstyled user_data">
-        <li>
-            <i class="fa fa-briefcase user-profile-icon"></i>  {{ __('site.'.$user->user_role) }}
-        </li>
+        {{-- <li> <i class="fa fa-briefcase user-profile-icon"></i>  {{ __('site.'.$user->user_role) }} </li> --}}
 
         <li class="m-top-xs">
             <i class="fa fa-phone"></i> <a href="tel:{{ $user->mobile }}"> {{ $user->mobile }} </a>
@@ -66,12 +69,19 @@
 
             <div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="profile-tab">
                       
-            <form action="{{ route('admin.profile.update') }}" method="post" 
+            <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data"
                 data-parsley-validate class="form-horizontal form-label-left">
 
                 @csrf
-                <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
+ 
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.photo') </label>
 
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="file" name="photo" />             
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.name')
                             <span class="required">*</span>
@@ -86,6 +96,7 @@
                         </div>
                     </div>
                     
+
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.email')
                             <span class="required">*</span>
