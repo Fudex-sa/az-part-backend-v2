@@ -13,9 +13,11 @@
 <!-- Bootstrap -->
 <link href="{{ dashboard('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
-{{-- @if(cur_dir() == 'rtl') --}}
+@if(cur_dir() == 'rtl')
     <link href="{{ dashboard('vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css') }}" rel="stylesheet">
-{{-- @endif --}}
+@else 
+    <link href="{{ dashboard('ltr.css') }}" rel="stylesheet">
+@endif
 
 <!-- Font Awesome -->
 <link href="{{ dashboard('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -294,10 +296,10 @@
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         </a>
 
-        <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
+        <a data-toggle="tooltip" data-placement="top" title="@lang('site.full_page')" onclick="toggleFullScreen();">
             <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+        <a data-toggle="tooltip" data-placement="top" title="@lang('site.close')" class="lock_btn">
             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
         </a>
         <a data-toggle="tooltip" data-placement="top" title="@lang('site.logout')" 
@@ -383,13 +385,14 @@
 
 <div class="page-title">
     <div class="title_left">
-    <h3> 
-        <a href="{{ route('admin.dashboard') }}"> @lang('site.dashboard') </a> /
-        
-        @if(isset($level2)) <a href="{{ route($level2['link']) }}"> 
-                @lang('site.'.$level2['name']) </a> / @endif
+        <h3> 
+            <a href="{{ route('admin.dashboard') }}"> @lang('site.dashboard') </a> /
+            
+            @if(isset($level2)) <a href="{{ route($level2['link']) }}"> 
+                    @lang('site.'.$level2['name']) </a> / @endif
 
-         @yield('title') </h3>
+            @yield('title')
+        </h3>
     </div>
 
     <div class="title_right">

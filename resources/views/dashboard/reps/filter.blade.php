@@ -1,8 +1,7 @@
 
 
  <form action="{{ route('admin.rep.search') }}" method="get" class="form-horizontal form-label-left">
-
-    @csrf
+ 
         <div class="form-group col-md-5">
             <label class="col-md-5 col-sm-3 col-xs-12"> @lang('site.rep_name') </label>
 

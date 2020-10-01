@@ -6,6 +6,7 @@ use App\Models\RolePermission;
 use App\Models\UserPermission;
 use App\Models\Country;
 use App\Models\Region;
+use App\Models\Supervisor;
 
 if (! function_exists('my_lang')) {
     function my_lang() {
@@ -92,6 +93,24 @@ if (! function_exists('regions')) {
         return Region::where('country_id',$country_id)->orderby('name_ar','desc')->get();
     }
 }
+
+
+if (! function_exists('supervisors_by_month')) {
+    function supervisors_by_month($month)
+    {
+        $items = Supervisor::selectRaw('COUNT(*) as count, YEAR(created_at) year, MONTH(created_at) month')
+                            ->whereMonth('created_at', $month)
+                            ->groupBy('year', 'month')
+                            ->first();
+
+        return $items ? $items->count : 0;
+    }
+}
+ 
+
+
+
+
 
 
 
