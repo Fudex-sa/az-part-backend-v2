@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Models\Setting; 
+use App\Models\Social; 
 use App\Models\UserRole;
 use App\Models\RolePermission;
 use App\Models\UserPermission;
@@ -55,6 +56,14 @@ if (! function_exists('setting')) {
     {
         $getValue = Setting::where('keyword',$keyword)->first();
         return $getValue ? $getValue['value_'.my_lang()] : '';
+    }
+}
+
+if (! function_exists('social_links')) {
+    function social_links()
+    {
+        $links = Social::activeLinks()->get();
+        return $links;
     }
 }
 

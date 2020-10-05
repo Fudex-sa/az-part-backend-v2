@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.regions') | {{ $item['name_'.my_lang()] }} @endsection
 
@@ -83,8 +83,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message_growl') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'region']) 
 
     @include('dashboard.ajax.activate',['target'=>'region']) 

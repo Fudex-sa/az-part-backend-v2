@@ -18,4 +18,8 @@ footer{
 .pull-left{
     float: right !important;
 }
+
+.main_menu span.fa{
+    float: right !important;
+}
  

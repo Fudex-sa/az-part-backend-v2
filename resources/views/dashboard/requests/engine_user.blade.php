@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title')   {{$user->name}} @endsection
 
@@ -174,7 +174,6 @@
  
 @endsection
 
-@include('dashboard.layouts.message')
 
 @section('scripts')
      

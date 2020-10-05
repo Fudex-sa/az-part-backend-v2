@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') {{__('site.update')}} |  {{ $item->word_ar }} @endsection
 

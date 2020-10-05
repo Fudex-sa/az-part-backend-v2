@@ -19,6 +19,33 @@ Route::group([
         Route::post('regions/load',[App\Http\Controllers\RegionController::class, 'all'])->name('regions.load');            
         Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
 
+        Route::group(['namespace' => 'Site'], function () {
+
+            Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
+
+            Route::get('cars/damaged',[App\Http\Controllers\Site\CarsDamagedController::class, 'index'])->name('cars.damaged');
+
+            Route::get('cars/antique',[App\Http\Controllers\Site\CarsAntiqueController::class, 'index'])->name('cars.antique');
+
+            Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
+
+            Route::get('packages',[App\Http\Controllers\Site\PackagesController::class, 'index'])->name('packages');
+
+            Route::get('privacy',[App\Http\Controllers\Site\PageController::class, 'privacy'])->name('privacy');
+            Route::get('terms',[App\Http\Controllers\Site\PageController::class, 'terms'])->name('terms');
+            Route::get('about_us',[App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
+            
+
+            Route::post('user/login',[App\Http\Controllers\Site\UserController::class, 'login'])->name('user.login');
+            Route::get('user/register',[App\Http\Controllers\Site\UserController::class, 'register'])->name('user.register');
+            Route::get('verfication',[App\Http\Controllers\Site\VerficationController::class, 'verfication'])->name('verfication');
+            Route::post('user/signup',[App\Http\Controllers\Site\UserController::class, 'signup'])->name('user.signup');
+
+            Route::get('user/forget_password',[App\Http\Controllers\Site\UserController::class, 'forget_password'])->name('user.forget_password');
+             
+            Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
+
+        });
         
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
 
@@ -109,7 +136,7 @@ Route::group([
             Route::get('social/{item}',[App\Http\Controllers\Admin\SocialController::class, 'edit'])->name('admin.social');
             Route::post('social/store/{item?}',[App\Http\Controllers\Admin\SocialController::class, 'store'])->name('admin.social.store');
             Route::delete('social/delete',[App\Http\Controllers\Admin\SocialController::class, 'delete'])->name('admin.social.delete');
-
+            Route::post('social/activate',[App\Http\Controllers\Admin\SocialController::class, 'activate'])->name('admin.social.activate');
 
             /************ Settings  **********/
             Route::get('settings',[App\Http\Controllers\Admin\SettingController::class, 'all'])->name('admin.settings');                        

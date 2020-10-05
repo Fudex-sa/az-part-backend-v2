@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.dashboard') @endsection
 
@@ -192,8 +192,7 @@
 
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
-   
+    
     @include('dashboard.charts.supervisors_by_month')
 
 @endsection

@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="fontiran.com:license" content="Y68A9">
-<link rel="icon" href="{{ site('images/logo.png') }}" type="image/ico"/>
+<link rel="icon" href="{{ site('assets/images/logo.png') }}" type="image/ico"/>
 <title>{{ config('app.name', 'AZParts') }} | @yield('title') </title>
 
 <!-- Bootstrap -->
@@ -38,7 +38,7 @@
 <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
             <a href="{{ route('admin.dashboard') }}" class="site_title">
-            <img src="{{ site('images/logo.png') }}" class="img-logo"/>
+            <img src="{{ site('assets/images/logo.png') }}" class="img-logo"/>
             <span> {{ config('app.name', 'AZParts') }}  </span></a>
     </div>
 
@@ -427,11 +427,7 @@
     <div class="x_content">
 
         <div class="table-responsive">
-
-            <div class="col-md-12">
-                @include('dashboard.layouts.message')
-            </div>
-
+ 
             @yield('content')
 
         </div>
@@ -481,6 +477,7 @@
 <!-- Custom Theme Scripts -->
 <script src="{{ dashboard('build/js/custom.min.js') }}"></script>
 
+@include('layouts.message')
 
 @yield('popup')
 @yield('scripts')

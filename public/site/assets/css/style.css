@@ -1,0 +1,618 @@
+/* start my frame-work */
+
+/* start font */
+@font-face {
+  font-family: "Hacen Maghreb";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/hacen-maghreb-lt.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Hacen Maghreb";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/ArbFONTS-Hacen-Maghreb-Bd.ttf") format("truetype");
+}
+
+body {
+  font-family: "Hacen Maghreb", sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+p{
+    margin-bottom: 0;
+}
+.head-section h2{
+  color: #050708;
+  font-size: 35px;
+  font-weight: bold;
+}
+/* start navbar */
+
+.bg-light {
+  background-color: transparent;
+}
+.navbar-nav .nav-item {
+  margin-right: 25px;
+  margin-left: 25px;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #5a5a5a;
+  font-size: 21px;
+  font-weight: bold;
+  transition: all ease 0.2s;
+}
+.navbar-light .navbar-nav .nav-link:hover,.navbar-light .navbar-nav .nav-link:focus  {
+color:#1584BB ;
+  }
+.contact-nav .nav-item {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.contact-nav .nav-item .nav-link {
+  color: #5a5a5a;
+  font-size: 14px;
+  font-weight: bold;
+}
+.contact-nav .nav-item .nav-link .phone {
+  width: 20px;
+}
+.after-none .dropdown-toggle::after{
+    display: none;
+}
+.sepretor {
+color: #BCBCBC ;
+margin-right: 8px !important;
+margin-left: 8px !important;
+}
+.after-none .dropdown-menu{
+    min-width: 20rem;
+    padding: 20px 0;
+    border-radius: 0;
+}
+.after-none .dropdown-menu .dropdown-item{
+text-align: right;
+}
+.drop-form .form-check-label {
+    margin-bottom: 0;
+    padding-right: 24px;
+}
+.btn-dropform{
+    background-image: linear-gradient(to left,#E26941,#F2A736 60%);
+    color: #fff;
+    transition: all ease 0.2s;
+}
+.btn-dropform:hover{
+    color: #fff;
+}
+.btn-logindrop{
+    background-image: linear-gradient(to left,#1584BB,#80C2DB 60%);
+    color: #fff;
+    transition: all ease 0.2s;
+}
+.btn-logindrop:hover{
+    color: #fff;
+}
+.wx-70{
+    width: 70%;
+}
+.after-none  .dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: transparent;
+}
+.dropdown-head h3{
+    font-size: 30px;
+    font-weight: bold;
+}
+.dropdown-head p{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+/* start header section */
+.header{
+  background: url(../images/header.png) top no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+}
+.info-box{
+  margin-top: 30px;
+  margin-bottom: 50px;
+
+}
+.info-box h1{
+  color: #fff;
+font-size: 40px;
+font-weight: bold;
+}
+.info-box p{
+color: #EEEEEE;
+font-size: 18px;
+width: 69%;
+margin: 0 auto;
+}
+.input-A,.input-B,.input-C,.input-D,.input-E{
+  height: 50px;
+}
+.input-A::placeholder,.input-B::placeholder,.input-C::placeholder,.input-D::placeholder,.input-E::placeholder{
+  font-size: 18px;
+  color: #939393;
+  font-weight: bold;
+  font-family: "Hacen Maghreb", sans-serif;
+  padding-right: 40px;
+}
+.input-A{
+  background:url(../images/place-1.png)no-repeat 305px 12px,#fff ;
+}
+.input-B{
+  background:url(../images/place-2.png)no-repeat 310px 12px,#fff ;
+}
+.input-C{
+  background:url(../images/place-3.png)no-repeat 310px 12px,#fff ;
+}
+.input-D{
+  background:url(../images/place-4.png)no-repeat 310px 12px,#fff ;
+}
+.input-E{
+  background:url(../images/place-5.png)no-repeat 310px 12px,#fff ;
+}
+.input-A:focus,.input-B:focus,.input-C:focus,.input-D:focus,.input-E:focus{
+  background:#fff ;
+  font-size: 18px;
+  color: #939393;
+  font-weight: bold;
+  font-family: "Hacen Maghreb", sans-serif;
+}
+.btn-next{
+  background-image: linear-gradient(to left,#E26941,#F2A736 60%);
+  color: #fff;
+  transition: all ease 0.2s;
+  margin-top: 30px;
+  height: 50px;
+}
+.btn-next:hover{
+  color: #fff;
+}
+#slide-2{
+  visibility: hidden;
+  margin-top: -130px;
+}
+/* start login page */
+.login{
+    padding: 100px 0;
+
+}
+.white-card{
+    padding: 40px;
+}
+.nav-tabs .nav-link{
+    border: none;
+}
+.white-card .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+border: none;
+}
+.white-card .nav-tabs{
+    border: none;
+
+}
+.white-card  .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border: none;
+}
+.white-card .nav-tabs .nav-link{
+    color: #939393;
+    font-size: 18px;
+}
+.white-card .nav-tabs .nav-item .active{
+    color: #1584BB;
+}
+
+.cir{
+    width: 38px;
+    height: 38px;
+    background-color: #939393;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 10px;
+    padding: 1em .4em;
+}
+.cir-active{
+    width: 38px;
+    height: 38px;
+    background-color: #1584BB;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 10px;
+    padding: 1em .4em;
+}
+.activeted{
+    color: #1584BB !important;
+}
+.tab-card{
+    margin-top: 70px;
+}
+.tab-content .form-check-label{
+    padding-right: 25px;
+}
+.add-bg{
+    background: url(../images/add.png) no-repeat 10px ;
+}
+.ver-code{
+    height: 80px;
+}
+.white-card .nav-tabs .nav-item .active span {
+    background-color: #1584BB;
+}
+.step{
+    width: 100%;
+    height: 1px;
+    background-color:#939393 ;
+    margin-top: 30px;
+}
+.form-check-label a{
+    color: #212529;
+    text-decoration: underline;
+}
+.form-check-label a:hover{
+    color: #1584BB;
+}
+.up-img{
+    height: 100px;
+}
+.custom-file-label {
+    display: block;
+    width: 100%;
+    height:90px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s;
+    right: 15px;
+  }
+  
+  .custom-file-label::after {
+    border-radius: 15px;
+    content: "شعار الشركة";
+    color: #BCC2CD;
+    padding: 0.4rem;
+    right: 7%;
+    background-color: transparent;
+    border-color:transparent ;
+    font-size: 14px;
+    top: 27px;
+
+  }
+  
+  .custom-file-input:focus ~ .custom-file-label {
+    box-shadow: none;
+  }
+  .custom-file{
+    margin-bottom: 50px;
+  }
+  footer{
+background-image: linear-gradient(to left,#1584BB,#80C2DB 70%);
+padding-top: 250px;
+padding-bottom: 100px;
+color: #fff ;
+  }
+  footer a{
+    color: #fff;
+  }
+  footer a:hover{
+    color: #fff;
+  }
+  footer p{
+    margin: 20px 0;
+
+  }
+  .social-footer li{
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+  .social-footer li a i{
+font-size: 22px;
+  }
+.contact{
+  background-color: #F7F8FA;
+}
+.bg-white{
+  background-color: #fff;
+  box-shadow: 0 .5rem 1rem rgba(255, 255, 255, 0.376)!important;
+  position: relative;
+  bottom: -150px;
+  border-radius: 5px;
+}
+.map-card{
+  padding-top: 40px;
+  padding-left: 40px;
+}
+.map-card h4{
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.h-50{
+  height: 50px !important;
+}
+.h-50::placeholder{
+  font-size: 18px;
+  color: #939393;
+  font-weight: bold;
+  font-family: "Hacen Maghreb", sans-serif;}
+/* start order section */
+.order-box{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order{
+  padding: 100px 0;
+}
+.order-box-2{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-image: linear-gradient(to top,#E26941,#F2A736);
+  border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cust-m-mid{
+  margin-bottom: 100px;
+}
+.or-info h4{
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.step-1{
+  position: relative;
+  background: url(../images/step-2.svg) center 60px no-repeat;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.step-2{
+  position: relative;
+  background: url(../images/step-1.svg) center 70px no-repeat;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* start add section */
+.add{
+  background-color: #F7F8FA;
+padding: 80px 0;
+}
+.add-card{
+  background-color: #fff;
+  border: 3px solid #fff;
+  border-radius: 5px;
+  margin: 0 10px;
+  
+}
+.add-card-body{
+  padding: 10px;
+}
+.add-card-body h6{
+  font-size: 16px;
+  color: #050708;
+  font-weight: bold;
+}
+.add-card-footer{
+  padding: 10px;
+}
+.add-card-footer h6{
+  color: #939393;
+  font-size: 14px;
+  font-weight: bold;
+}
+.add-card-footer strong{
+  color: #1584BB;
+  font-size: 40px;
+  font-weight: bold;
+}
+.add-card-body h5{
+font-weight: bold;
+font-size: 30px;
+text-align: center;
+padding-top: 5px;
+
+
+}
+
+  .add-card-body p{
+    margin-top: 5px;  
+    color: #5A5A5A;
+    font-size: 22px;
+      }
+.add-card-head{
+  position: relative;
+}
+.add-card-layout{
+  background-color: rgba(36, 95, 124, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 5px;
+  opacity: 0;
+  transition: all ease 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.lay-out-menue li{
+  display: inline-block;
+  margin: 0 20px;
+}
+.add-card-layout:hover{
+
+  opacity: 1;
+}
+/* start price section */
+.price{
+  padding-top: 40px;
+  padding-bottom: 150px;
+}
+.p-container-image-box {
+  padding: 15px;
+  padding-bottom: 29px;
+ padding-top: 29px;
+  border-radius: 8px;
+  width: 28%;
+  margin-left: 2%;
+
+}
+.price-slider{
+  margin-top: 100px;
+  width: 100%;
+}
+.p-container-info-box{
+  padding: 15px;
+  border-radius: 8px;
+  width: 70%;
+margin-top: -16px;
+}
+.price-container li{
+  display: inline-block;
+}
+.price-container {
+  width: 500px;
+  margin-top: 100px;
+}
+.radius{
+  border-radius: 8px;
+}
+.color-g{
+  color: #15B915;
+  font-size: 22px;
+  font-weight: bold; margin-left: 5px;
+}
+.color-d{
+  color: #939393;
+  font-size: 22px;
+  font-weight: bold; margin-left: 5px;
+}
+.color-r{
+  color: #E26941;
+  font-size: 22px;
+  font-weight: bold; margin-left: 5px;
+}
+/* start ticker news */
+.clr{
+  clear: both;
+}
+/* start my media query */
+@media screen and (max-width: 1366px) {
+  .navbar-light .navbar-nav .nav-link {
+    font-size: 16px;
+  }
+  .navbar-nav .nav-item {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .contact-nav .nav-item {
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+}
+/* start media for ipad pro */
+@media only screen and (max-width: 1024px) and (orientation: portrait) { 
+  
+  
+  .navbar-light .navbar-nav .nav-link {
+    font-size: 12px;
+}
+.navbar-nav .nav-item {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.input-B,.input-A,.input-C,.input-D,.input-E {
+background-position: 245px 10px;
+}
+.pr-0{
+  padding-right: 15px !important;
+}
+.btn-next{
+  margin-bottom: 20px;
+}
+}
+/* start media for ipad */
+@media only screen 
+and (max-device-width : 768px) 
+ { 
+  
+  
+  .input-B,.input-A,.input-C,.input-D,.input-E {
+    background-position: 170px 10px;
+    }
+    .sepretor{
+      display: none;
+    }
+
+}
+
+
+/* start media for mobile */
+@media only screen and (max-width: 600px) {
+    .step{
+        display: none;
+    }
+    .step-1,.step-2{
+      display: none;
+
+    }
+    .pr-0{
+      padding-right: 15px !important;
+    }
+    .map-card{
+      padding-right: 40px;
+      padding-bottom: 40px;
+    }
+    .sepretor{
+      display: none;
+    }
+    .ui-widget{
+      margin-bottom: 20px;
+    }
+    .input-B, .input-A, .input-C, .input-D, .input-E {
+      background-position: 340px 10px;
+  }
+  #slide-2 {
+    margin-top: -310px;
+}
+.footer-box h4{
+  font-size: 14px;
+}
+.footer-box p{
+  font-size: 10px;
+}
+footer{
+  padding-bottom: 0;
+}
+  }

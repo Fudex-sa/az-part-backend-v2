@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') {{ __('site.update') .' | '. $item->title }} @endsection
 
@@ -367,7 +367,6 @@
 
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
 
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
    

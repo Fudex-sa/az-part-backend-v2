@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.contact_us') @endsection
 
@@ -66,8 +66,6 @@
  
 
 @section('scripts')
-    @include('dashboard.layouts.message_growl') 
-
     @include('dashboard.ajax.delete',['target'=>'contact_us']) 
   
 @endsection

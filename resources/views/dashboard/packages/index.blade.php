@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title')  @lang('site.packages_management') @endsection
 
@@ -45,10 +45,7 @@
     <div class="clearfix"></div>
      
 <div class="row">
- 
-    <div class="col-md-6">
-        @include('dashboard.layouts.message')
-    </div>
+  
 
     <div class="clearfix"></div>
 
@@ -190,7 +187,6 @@
 
 @section('scripts')
     
-    @include('dashboard.layouts.message_growl') 
 
     @include('dashboard.ajax.delete',['target'=>'package']) 
  

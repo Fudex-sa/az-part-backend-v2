@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.deleted_requests') @endsection
 
@@ -76,5 +76,5 @@
 
 
 @section('scripts')
-@include('dashboard.layouts.message') 
+
 @endsection

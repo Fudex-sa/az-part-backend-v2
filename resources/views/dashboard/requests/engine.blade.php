@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') {{ __('site.request_engine').' AZ-'. $item->id }}  @endsection
 
@@ -67,5 +67,5 @@
 
 
 @section('scripts')
-@include('dashboard.layouts.message') 
+
 @endsection
