@@ -30,27 +30,27 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto">
+      <ul class="navbar-nav mr-custom">
    
         <li class="nav-item">
-        <a class="nav-link {{ isset($home) ? 'activeLnk' : '' }}" href="{{ route('home') }}"> @lang('site.home') </a>
+          <a class="nav-link" href="{{ route('home') }}"> @lang('site.home') </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ isset($damaged) ? 'activeLnk' : '' }}" href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a>
+            <a class="nav-link" href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ isset($antique) ? 'activeLnk' : '' }}" href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a>
+            <a class="nav-link" href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ isset($stock) ? 'activeLnk' : '' }}" href="{{ route('stock') }}"> @lang('site.old_stock') </a>
+            <a class="nav-link" href="{{ route('stock') }}"> @lang('site.old_stock') </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ isset($packages) ? 'activeLnk' : '' }}" href="{{ route('packages') }}"> @lang('site.packages') </a>
+            <a class="nav-link" href="{{ route('packages') }}"> @lang('site.packages') </a>
           </li>
 
 
       </ul>
-      <ul class="navbar-nav contact-nav">
+      <ul class="navbar-nav contact-nav mr-auto">
         <li class="nav-item">
             <a class="nav-link" href="tel:{{ setting('mobile') }}">
             <img src="{{ site('assets/images/phone.png') }}" alt="" class="pl-1 phone"> {{ setting('mobile') }}
@@ -63,13 +63,28 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-            <img src="{{ site('assets/images/notif.png') }}" alt="">
-
+              <img src="{{ site('assets/images/notif.png') }}" alt="">
             </a>
           </li>
+
+          
+          @if(auth()->guard('company')->user() || auth()->user() )
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('profile') }}">
+              <img src="{{ site('assets/images/pro.png') }}" alt="">
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}">
+            <i class="fa fa-lock"> </i>
+            </a>
+          </li>
+
+         @else
           <li class="nav-item dropdown after-none">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{ site('assets/images/pro.png') }}" alt="">
+                <img src="{{ site('assets/images/pro.png') }}" alt="">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             
@@ -78,8 +93,9 @@
                     <p> @lang('site.enter_mobile_and_password') </p>
                   
                     <form class="drop-form" method="POST" action="{{ route('user.login') }}">
+                      @csrf
                         <div class="form-group">
-                          <input type="tel" class="form-control" name="mobile"  aria-describedby="emailHelp" placeholder="@lang('site.mobile')" required>
+                        <input type="tel" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="@lang('site.mobile')" required>
                         </div>
 
                         <div class="form-group">
@@ -91,9 +107,9 @@
                           <label class="form-check-label" for="exampleCheck1"> @lang('site.remember_me')  </label>
                         </div>
                         
-                        <a href="{{ route('user.forget_password') }}"> @lang('site.forget_password') </a>
+                        <a href="{{ route('user.forget_password') }} " class="an-forgget"> @lang('site.forget_password') </a>
 
-                        <button type="submit" class="btn btn-dropform btn-block btn-lg"> @lang('site.login') </button>
+                        <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
                     </form>
 
                       <p class="mt-2"> @lang('site.easy_to_register') </p>
@@ -105,29 +121,14 @@
   
             </div>
           </li>
+          @endauth
+
           <li class="nav-item sepretor mt-2">
             |
           </li>
+ 
 
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
-                    <defs>
-                      <linearGradient id="linear-gradient" y1="-0.11" x2="1.415" y2="1.121" gradientUnits="objectBoundingBox">
-                        <stop offset="0" stop-color="#80c2db"/>
-                        <stop offset="1" stop-color="#1584bb"/>
-                      </linearGradient>
-                    </defs>
-                    <g id="Group_10113" data-name="Group 10113" transform="translate(-32 -64)">
-                      <rect id="Rectangle_4081" data-name="Rectangle 4081" width="26" height="26" rx="3" transform="translate(32 64)" fill="url(#linear-gradient)"/>
-                      <text id="E" transform="translate(40 83)" fill="#fff" font-size="18" font-family="HacenMaghrebLt, Hacen Maghreb Lt"><tspan x="9" y="0">E</tspan></text>
-                    </g>
-                  </svg>
-                  
-            </a>
-        </li> --}}
-
-        <li role="presentation" class="dropdown">
+        <li role="presentation" class="dropdown lang-padding">
             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-globe"></i>
             </a>
@@ -150,6 +151,7 @@
   </nav>
  
   @yield('content')
+ 
 
 <!-- start footer -->
 <footer>
@@ -213,7 +215,6 @@
   </div>
 </footer>
 
- 
 
 <!-- start my script -->
     <script src="{{ site('assets/js/jquery-3.3.1.min.js') }}"></script>
@@ -226,8 +227,20 @@
 
     @include('layouts.message')
 
-  @yield('scripts')
-
+    @yield('scripts')
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

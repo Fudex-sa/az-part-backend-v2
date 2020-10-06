@@ -13,7 +13,7 @@
         customImage: '{{ asset('growl2/success.png') }}'
       },
       position: 'top-right',
-      closeTimeout: 3000,   
+      closeTimeout: 0,   
       'type' : 'success'
     });
 </script>
@@ -29,7 +29,7 @@
         customImage: '{{ asset('growl2/error.png') }}'
       },
       position: 'top-right',
-      closeTimeout: 3000,   
+      closeTimeout: 0,   
       'type' : 'error'
     });
 </script>
@@ -45,7 +45,7 @@
         customImage: '{{ asset('growl2/error.png') }}'
       },
       position: 'top-right',
-      closeTimeout: 3000,      
+      closeTimeout: 0,      
       'type' : 'error'
     });
      

@@ -25,7 +25,8 @@ class CreateUsersTable extends Migration
             $table->boolean('vip')->nullable()->default(0);
             $table->integer('available_requests')->default(0);
             $table->integer('total_requests')->default(0);
-            
+            $table->string('address')->nullable();
+
             $table->integer('city_id');
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();            

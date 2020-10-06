@@ -43,12 +43,14 @@
                                         <form class="row" method="post" action="{{ route('user.signup') }}" enctype="multipart/form-data">
                                             @csrf 
                                             <div class="form-check col-3 mb-3">
-                                                <input class="form-check-input" type="radio" name="user_type" id="individual" value="individual" checked>
+                                                <input class="form-check-input" type="radio" name="user_type" id="individual" value="u" 
+                                                checked {{ old('user_type') == 'user' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="individual"> @lang('site.individual') </label>
                                             </div>
 
                                             <div class="form-check col-3 mb-3">
-                                                <input class="form-check-input" type="radio" name="user_type" id="company" value="company">
+                                                <input class="form-check-input" type="radio" name="user_type" id="company" value="c"
+                                                {{ old('user_type') == 'company' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="company"> @lang('site.company') </label>
                                             </div>
                                             
@@ -61,11 +63,13 @@
                                             </div>
                                                   
                                             <div class="form-group col-12">
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="@lang('site.name')">
+                                                <input type="text" class="form-control" id="name" name="name" 
+                                                    placeholder="@lang('site.name')" value="{{ old('name') }}">
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="@lang('site.mobile')">
+                                                <input type="tel" class="form-control" id="mobile" name="mobile" 
+                                                    value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
                                             </div>
                                             
                                             <div class="form-group col-12">
@@ -73,13 +77,13 @@
                                             </div>
                                             
                                             <div class="form-group col-12">
-                                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" 
+                                                <input type="password" class="form-control" id="confirm_password" name="password_confirmation" 
                                                     placeholder="@lang('site.confirm_password')">
                                             </div>
                                             
                                             <div class="form-group col-12">
                                                 <input id="pac-input" class="form-control add-bg" name="address" type="text"
-                                                    placeholder="{{ __('site.find_address') }}">
+                                                    placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
 
                                                 <div id="map" style="width:420px;height: 400px;"></div>
                                                 <input type="hidden" name="latitude"  id="latitude" value="26.420031"/>
@@ -87,7 +91,7 @@
                                             </div>
                                              
                                             <div class="form-group form-check col-12">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                                                 <label class="form-check-label" for="exampleCheck1"> @lang('site.agree_to_all') 
                                                     <a href="{{ route('terms') }}"> @lang('site.terms_and_condition') </a>    
                                                     &     

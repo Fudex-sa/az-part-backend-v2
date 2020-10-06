@@ -8,6 +8,8 @@ use App\Models\UserPermission;
 use App\Models\Country;
 use App\Models\Region;
 use App\Models\Supervisor;
+use App\Models\Notification;
+use Mobily;
 
 if (! function_exists('my_lang')) {
     function my_lang() {
@@ -55,6 +57,14 @@ if (! function_exists('setting')) {
     function setting($keyword)
     {
         $getValue = Setting::where('keyword',$keyword)->first();
+        return $getValue ? $getValue['value_'.my_lang()] : '';
+    }
+}
+
+if (! function_exists('notification')) {
+    function notification($keyword)
+    {
+        $getValue = Notification::where('keyword',$keyword)->first();
         return $getValue ? $getValue['value_'.my_lang()] : '';
     }
 }
@@ -116,6 +126,14 @@ if (! function_exists('supervisors_by_month')) {
     }
 }
  
+if (! function_exists('send_sms')) {
+    function send_sms($numbers,$message)
+    {
+        // $numbers = array('966555555555','966545555555','966565555555');        
+        Mobily::send($numbers, $message);
+    }
+}
+
 
 
 

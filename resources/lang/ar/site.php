@@ -510,7 +510,7 @@ return [
     'reject_request' => 'رفض الطلب',
     'rejected' => 'غير متوفرة القطعة',
     'duplicated_row' => 'عنصر مكرر بنفس البيانات',
-    'your_verfication_code_sent' => 'لقد تم ارسال الرمز التحقق لجوالك',
+    'your_verfication_code_sent' => 'لقد تم ارسال رمز  التحقق لجوالك',
     'change_status' => 'تغيير الحالة',
     'change' => 'تغيير',
     'request_vip' => 'طلب تمييز الحساب',

@@ -26,6 +26,7 @@ class CreateAdminsTable extends Migration
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();
             $table->integer('city_id');
+            $table->string('address')->nullable();
             
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
