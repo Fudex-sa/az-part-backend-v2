@@ -8,6 +8,7 @@
 
 @section('content')
     
+
 <section class="header">
     <div class="container">
       <div class="row">
@@ -16,53 +17,87 @@
           <img src="{{ site('assets/images/logo-box.png') }}" alt="">
           </div>
           <div class="info-box text-center">
-            <h1>هل تبحث عن قطع غيار لسيارتك ؟</h1>
-            <p>كان لورم اوبسم هو النص الوهمي القياسي في الصناعة منذ القرن الخامس عشر الميلادي ، عندما أخذت الطابعة غير المعروفة مجموعة من الألوان
-            </p>
+            <h1> @lang('site.did_u_search_about_part') </h1>
+            <p> @lang('site.search_spare_text') </p>
           </div>
         </div>
-        <div class="col-md-12" id="slide">
-          <div class="row">
-            <div class="ui-widget col-md-4">
-              <input id="tags" class="form-control input-A" placeholder="إختر المركة">
-              
-            </div>
-            <div class="ui-widget col-md-4">
-              <input id="tags-2" class="form-control input-B" placeholder="إختر الموديل">
-              
-            </div>
-            <div class="ui-widget col-md-4">
-              <input id="tags-3" class="form-control input-C" placeholder="سنة الصنع">
-              
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4 ">
-              <button type="button" class="btn btn-next btn-block btn-lg" id="btn-slide"  value="Show text input">التالي</button>
-  
+       
+        <div class="col-md-12">
+        <form method="GET" action="{{ route('search.parts') }}" id="frm_search">
+          <div class="col-md-12" id="slide1">
+        
+              <div class="row">
+                <div class="ui-widget col-md-4">
+                  <select class="form-control select2 input-A" name="brand_id" id="brand_id" required>
+                      <option value=""> @lang('site.choose_brand') </option>
+                      @foreach ($brands as $brand)
+                          <option value="{{ $brand->id }}"
+                            data-image="{{ brand_img($brand->logo) }}"  class="left"> {{ $brand['name_'.my_lang()] }} </option>    
+                      @endforeach
+                  </select>
+                </div>
+
+                <div class="ui-widget col-md-4">
+                    <select class="form-control select2 input-B" name="model_id" id="model_id" required>
+                        <option value=""> @lang('site.choose_model') </option>
+                      
+                  </select>
+                </div>
+
+                <div class="ui-widget col-md-4">
+                    <select class="form-control input-C" name="year" id="year" required>
+                      <option value=""> @lang('site.manufacturing_year') </option>
+                      @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                          <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
+                          >{{$i}}</option>
+                      @endfor
+                    </select>              
+                </div>
+
+                <div class="col-md-4"></div>
+                <div class="col-md-4 ">
+                  <button type="button" id="btn-slide1" class="btn btn-next btn-block btn-lg"  value="Show text input">التالي</button>
+                </div>
+              </div>
+            
+
+          </div>
+        
+          <div class="col-md-12" id="slide2" style="display: none">
+            <div class="row ">
+            
+              <div class="ui-widget col-md-4">
+                  <select class="form-control select2" name="country_id" id="country_id" required>
+                    <option value=""> @lang('site.choose_country') </option>
+                    @foreach (countries() as $country)
+                        <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>    
+                    @endforeach
+                  </select>
+              </div>
+
+              <div class="ui-widget col-md-4">
+                <select class="form-control select2" name="region_id" id="region_id" required>
+                  <option value=""> @lang('site.choose_region') </option>                 
+                </select>
+              </div>
+
+              <div class="ui-widget col-md-4">
+                <select class="form-control select2" name="city_id" id="cities" required>
+                  <option value=""> @lang('site.choose_city') </option>                 
+                </select>
+              </div>
+   
+              <div class="col-md-4 "> </div>
+
+              <div class="col-md-4 ">
+                <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.next')  </button>
+              </div>
             </div>
           </div>
+
+        </form>
         </div>
-        <div class="col-md-12" id="slide-2">
-          <div class="row ">
-            <div class="col-md-2"></div>
-            <div class="ui-widget col-md-4">
-              <input id="tags-4" class="form-control input-D" placeholder="إختر المركة">
-              
-            </div>
-            <div class="ui-widget col-md-4">
-              <input id="tags-5" class="form-control input-E" placeholder="إختر الموديل">
-              
-            </div>
-            <div class="col-md-2"></div>
-  
-            <div class="col-md-4"></div>
-  
-            <div class="col-md-4 ">
-              <button type="button" class="btn btn-next btn-block btn-lg" >بحث الآن</button>
-  
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
 </section>
@@ -389,7 +424,7 @@
 
   </div>
 </section>
-
+ 
 
 @endsection
 
@@ -409,5 +444,25 @@
         });
 
         });
-    </script>    
+    </script> 
+
+    <script>
+      
+      $( "#btn-slide1" ).click(function( event ) {
+        
+        $("#slide1").hide();
+        $("#slide2").show();
+
+      });
+    </script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<script src="{{ site('assets/js/select2.js') }}"></script>
+
+@include('dashboard.ajax.load_models') 
+@include('dashboard.ajax.load_regions') 
+@include('dashboard.ajax.load_cities')
+
 @endsection

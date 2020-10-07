@@ -18,6 +18,7 @@ Route::group([
         /*************** AJAX  **********************/
         Route::post('regions/load',[App\Http\Controllers\RegionController::class, 'all'])->name('regions.load');            
         Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
+        Route::post('models/load',[App\Http\Controllers\ModelController::class, 'all'])->name('models.load');            
 
         Route::group(['namespace' => 'Site'], function () {
 
@@ -36,22 +37,23 @@ Route::group([
             Route::get('about_us',[App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
             
 
-            Route::post('user/login',[App\Http\Controllers\Site\UserController::class, 'login'])->name('user.login');
+            Route::post('user/login',[App\Http\Controllers\Site\AuthController::class, 'login'])->name('user.login');
+            Route::get('user/forget_password',[App\Http\Controllers\Site\AuthController::class, 'forget_password'])->name('user.forget_password');
+            Route::post('reset_password',[App\Http\Controllers\Site\AuthController::class, 'reset_password'])->name('reset_password');
+            Route::get('logout',[App\Http\Controllers\Site\AuthController::class, 'logout'])->name('logout');
+
             Route::get('user/register',[App\Http\Controllers\Site\UserController::class, 'register'])->name('user.register');
+            Route::post('user/signup',[App\Http\Controllers\Site\UserController::class, 'signup'])->name('user.signup');
+
             Route::get('verfication/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'index'])->name('verfication');
             Route::post('confirm/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'confirm'])->name('confirm');
             Route::get('resend_code/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'resend_code'])->name('resend_code');
 
-            Route::post('user/signup',[App\Http\Controllers\Site\UserController::class, 'signup'])->name('user.signup');
-
-            Route::get('user/forget_password',[App\Http\Controllers\Site\UserController::class, 'forget_password'])->name('user.forget_password');
-            Route::post('reset_password',[App\Http\Controllers\Site\UserController::class, 'reset_password'])->name('reset_password');
-
             Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
 
             Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
-
-            Route::get('logout',[App\Http\Controllers\Site\UserController::class, 'logout'])->name('logout');
+ 
+            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'index'])->name('search.parts');
 
         });
         

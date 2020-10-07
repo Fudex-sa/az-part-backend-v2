@@ -161,8 +161,8 @@ return [
 'change_pic' => 'Change Picture',
 'upload_image' => 'Upload Image',
 'seller_mediator' => 'Seller & Mediator',
-'mediator' => 'Mediator',
-'mediators' => 'Mediators',
+'broker' => 'Mediator',
+'brokers' => 'Mediators',
 'user_type' => 'User Type',
 'antique' => 'Antique',
 'cancel' => 'Cancel',
@@ -730,6 +730,8 @@ return [
     'agree_to_all' => 'Agree To All',
     'continue_signup' => 'Continue Registeration',
     'confirmation' => 'Confirmation',
+    'did_u_search_about_part' => 'Are you looking for spare parts for your car?',
+    'search_spare_text' => 'Now you can search for spare parts for your car through Easy Parts',
 ];
 
 ?>

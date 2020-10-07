@@ -35,6 +35,12 @@ if (! function_exists('img_path')) {
     }
 }
 
+if (! function_exists('brand_img')) {
+    function brand_img($img_name) {
+        return asset('uploads/brands/'.$img_name);
+    }
+}
+
 if (! function_exists('cur_dir')) {
     function cur_dir() {
         return LaravelLocalization::getCurrentLocaleDirection();

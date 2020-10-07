@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    
     <link rel="stylesheet" href="{{ site('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ site('assets/css/all.min.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -18,6 +19,8 @@
     <link rel="stylesheet" href="{{ site('assets/css/dev.css') }}">
 
     @yield('styles')
+    
+    
 </head>
 
 <body>
@@ -102,6 +105,29 @@
                           <input type="password" class="form-control" name="password" placeholder="@lang('site.password')" required>
                         </div>
                         
+                        <div class="form-group form-check">
+                          <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
+                          {{ old('user_type') == 'u' ? 'checked' : '' }} required> 
+                          <label class="form-check-label" for="user"> @lang('site.user')  </label>
+
+                          <input type="radio" class="form-check-input" id="company" name="user_type" value="c"
+                          {{ old('user_type') == 'c' ? 'checked' : '' }}> 
+                          <label class="form-check-label" for="company"> @lang('site.company')  </label>
+
+                          <input type="radio" class="form-check-input" id="seller_manu" name="user_type" value="sm"
+                          {{ old('user_type') == 'sm' ? 'checked' : '' }}> 
+                          <label class="form-check-label" for="seller_manu"> @lang('site.manufacturing')  </label>
+
+                          <input type="radio" class="form-check-input" id="seller_tashlih" name="user_type" value="st"
+                          {{ old('user_type') == 'st' ? 'checked' : '' }}> 
+                          <label class="form-check-label" for="seller_tashlih"> @lang('site.tashalih')  </label>
+
+                          <input type="radio" class="form-check-input" id="broker" name="user_type" value="b"
+                          {{ old('user_type') == 'b' ? 'checked' : '' }}> 
+                          <label class="form-check-label" for="broker"> @lang('site.broker')  </label>
+
+                        </div>
+
                         <div class="form-group form-check">
                           <input type="checkbox" class="form-check-input" id="exampleCheck1">
                           <label class="form-check-label" for="exampleCheck1"> @lang('site.remember_me')  </label>

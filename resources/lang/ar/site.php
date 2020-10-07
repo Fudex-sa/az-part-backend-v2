@@ -173,8 +173,8 @@ return [
     'change_pic' => 'تعديل صورتي الشخصية',
     'upload_image' => 'رفع صورة',
     'seller_mediator' => 'وسيط/تشليح',
-    'mediator' => 'وسيط',
-    'mediators' => 'وسطاء',
+    'broker' => 'وسيط',
+    'brokers' => 'وسطاء',
     'user_type' => 'نوع المستخدم',
     'antique' => 'أثرية',
     'cancel' => 'الغاء',
@@ -868,4 +868,6 @@ return [
     'agree_to_all' => 'اوافق على جميع',
     'continue_signup' => 'استكمال عملية التسجيل',
     'confirmation' => 'التأكيد',
+    'did_u_search_about_part' => 'هل تبحث عن قطع غيار لسيارتك ؟',
+    'search_spare_text' => 'الان يمكنك البحث عن قطع غيار لسيارتك من خلال ايزى بارتس',
 ];
