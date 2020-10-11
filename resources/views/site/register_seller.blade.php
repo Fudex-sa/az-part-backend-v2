@@ -40,22 +40,27 @@
                                             <p> @lang('site.complete_data_entry') </p>
                                         </div>
                                         <div class="tab-content mt-5">
-                                        <form class="row" method="post" action="{{ route('user.signup') }}" enctype="multipart/form-data">
+                                        <form class="row" method="post" action="{{ route('seller.signup') }}" enctype="multipart/form-data">
                                             @csrf 
-                                            <div class="form-check col-3 mb-3">
-                                                <input class="form-check-input" type="radio" name="user_type" id="individual" value="u" 
-                                                checked {{ old('user_type') == 'u' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="individual"> @lang('site.individual') </label>
+                                            <div class="form-group col-4">
+                                                <input class="form-check-input" type="radio" name="user_type" id="broker" value="b" 
+                                                checked {{ old('user_type') == 'b' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="broker"> @lang('site.broker') </label>
                                             </div>
 
-                                            <div class="form-check col-3 mb-3">
-                                                <input class="form-check-input" type="radio" name="user_type" id="company" value="c"
-                                                {{ old('user_type') == 'c' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="company"> @lang('site.company') </label>
+                                            <div class="form-group col-4">
+                                                <input class="form-check-input" type="radio" name="user_type" id="tashalih" value="t"
+                                                {{ old('user_type') == 't' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="tashalih"> @lang('site.tashalih') </label>
+                                            </div>
+
+                                            <div class="form-group col-4">
+                                                <input class="form-check-input" type="radio" name="user_type" id="manufacturing" value="m"
+                                                {{ old('user_type') == 'm' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="manufacturing"> @lang('site.manufacturing') </label>
                                             </div>
                                             
-                                            <div class="col-6"></div>
-                                            
+                                              
                                             <div class="form-group">
                                                 <div class="custom-file col-4">
                                                     <input type="file" name="photo" >                                                   

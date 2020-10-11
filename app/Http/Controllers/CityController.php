@@ -17,7 +17,7 @@ class CityController extends Controller
         
         $cities = City::whereRegion_id($region_id)->orderby('name_ar','desc')->get();
         
-        $result .= "<option value=''> ".__('site.choose_region')." </option>";
+        $result .= "<option value=''> ".__('site.choose_city')." </option>";
 
         foreach($cities as $city){
             $result .= "<option value='".$city->id."'>" . $city['name_'.my_lang()] . "</option>";

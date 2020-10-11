@@ -378,6 +378,10 @@ return [
     'brand_required' => 'من فضلك أدخل الماركة',
     'model_required' => 'من فضلك أدخل نوع السيارة',
     'year_required' => 'من فضلك ادخل السنة',
+    'country_required' => 'من فضلك ادخل الدولة',
+    'region_required' => 'من فضلك ادخل المنطقة',    
+    'search_type_required' => 'من فضلك اختر نوع البحث  ',
+
     'piece_required' => 'من فضلك أدخل اسم القطعة',
     'city_required' => 'من فضلك ادخل اسم المدينة',
     'request_type_required' => 'نوع الطلب إجباري',
@@ -660,6 +664,7 @@ return [
     'discount' => 'الخصم',
     'brokers' => 'الوسايط',
     'reps' => 'مندوبى الشحن',
+    'rep' => 'مندوب شحن',
     'add_company' => 'اضف شركة',
     'company_requests' => 'طلبات الشركة',
     'available_requests' => 'الطلبات المتاحة',
@@ -870,4 +875,9 @@ return [
     'confirmation' => 'التأكيد',
     'did_u_search_about_part' => 'هل تبحث عن قطع غيار لسيارتك ؟',
     'search_spare_text' => 'الان يمكنك البحث عن قطع غيار لسيارتك من خلال ايزى بارتس',
+    'search_type' => 'نوع البحث',
+    'choose_signup_type' => 'اختر نوع التسجيل',
+    'seller_or_broker' => 'تشليح / تاجر / وسيط',
+    'signup_as' => 'تسجيل اشتراك',
+    'avaliable_models' => 'انواع السيارات المتوفرة',
 ];

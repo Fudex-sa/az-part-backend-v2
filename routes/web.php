@@ -20,13 +20,20 @@ Route::group([
         Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
         Route::post('models/load',[App\Http\Controllers\ModelController::class, 'all'])->name('models.load');            
 
+        Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
+
+            Route::get('avaliable_models',[App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
+
+        });
+
+         
         Route::group(['namespace' => 'Site'], function () {
 
             Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
 
-            Route::get('cars/damaged',[App\Http\Controllers\Site\CarsDamagedController::class, 'index'])->name('cars.damaged');
+            Route::get('cars/damaged',[App\Http\Controllers\Site\CarDamagedController::class, 'index'])->name('cars.damaged');
 
-            Route::get('cars/antique',[App\Http\Controllers\Site\CarsAntiqueController::class, 'index'])->name('cars.antique');
+            Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
 
             Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
 
@@ -37,6 +44,9 @@ Route::group([
             Route::get('about_us',[App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
             
 
+            Route::get('signup_as',[App\Http\Controllers\Site\AuthController::class, 'signup_as'])->name('signup_as');
+            Route::get('login_as',[App\Http\Controllers\Site\AuthController::class, 'login_as'])->name('login_as');
+
             Route::post('user/login',[App\Http\Controllers\Site\AuthController::class, 'login'])->name('user.login');
             Route::get('user/forget_password',[App\Http\Controllers\Site\AuthController::class, 'forget_password'])->name('user.forget_password');
             Route::post('reset_password',[App\Http\Controllers\Site\AuthController::class, 'reset_password'])->name('reset_password');
@@ -44,6 +54,12 @@ Route::group([
 
             Route::get('user/register',[App\Http\Controllers\Site\UserController::class, 'register'])->name('user.register');
             Route::post('user/signup',[App\Http\Controllers\Site\UserController::class, 'signup'])->name('user.signup');
+
+            Route::get('seller/register',[App\Http\Controllers\Site\SellerController::class, 'register'])->name('seller.register');
+            Route::post('seller/signup',[App\Http\Controllers\Site\SellerController::class, 'signup'])->name('seller.signup');
+
+            Route::get('rep/register',[App\Http\Controllers\Site\RepController::class, 'register'])->name('rep.register');
+            Route::post('rep/signup',[App\Http\Controllers\Site\RepController::class, 'signup'])->name('rep.signup');
 
             Route::get('verfication/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'index'])->name('verfication');
             Route::post('confirm/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'confirm'])->name('confirm');
@@ -53,7 +69,7 @@ Route::group([
 
             Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
  
-            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'index'])->name('search.parts');
+            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts');
 
         });
         

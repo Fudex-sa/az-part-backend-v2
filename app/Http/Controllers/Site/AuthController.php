@@ -6,12 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\seller;
+use App\Models\Broker;
+use App\Models\rep;
 use Auth;
 use App\Http\Requests\Site\LoginRequest;
 
 class AuthController extends Controller
 {
-    
+    public function signup_as()
+    {
+        return view('site.signup_as');
+    }
+
+    public function login_as()
+    {
+        return view('site.login_as');
+    }
+
     public function forget_password()
     {
         return view('site.reset_password');
@@ -25,8 +37,19 @@ class AuthController extends Controller
 
         if($type == 'u')
             $item = User::where('mobile',$request->mobile)->first();
+        
         elseif($type == 'c')
             $item = Company::where('mobile',$request->mobile)->first();
+
+        elseif($type == 'b')
+            $item = Broker::where('mobile',$request->mobile)->first();
+
+        elseif($type == 'r')
+            $item = Rep::where('mobile',$request->mobile)->first();
+
+        else
+            $item = Seller::where('mobile',$request->mobile)->first();
+
 
         if($item){
             $item->verification_code = $verification_code;
@@ -52,9 +75,18 @@ class AuthController extends Controller
         if($request->user_type == 'c')
             $response = company_login($request,$cred);
 
-        else
+        elseif($request->user_type == 'u')
             $response = $this->user_login($request,$cred);
+
+        elseif($request->user_type == 'b')
+            $response = $this->broker_login($request,$cred);
  
+        elseif($request->user_type == 'r')
+            $response = $this->rep_login($request,$cred);
+
+        else
+            $response = $this->seller_login($request,$cred);
+
         if($response == 1)
             return redirect()->route('profile'); 
 
@@ -72,6 +104,60 @@ class AuthController extends Controller
             $user = Company::where('mobile',$request->mobile)->first();
 
             if ($user->active == 1 && Auth::guard('company')->attempt($cred)) {
+                return true;         
+
+            } else {                
+                $this->send_new_code($user);
+ 
+                return $user->id;       
+            }
+        }else
+          return -1;
+    }
+
+    public function seller_login(LoginRequest $request,$cred)
+    {
+        if (auth()->guard('seller')->validate($cred)) {
+            
+            $user = Seller::where('mobile',$request->mobile)->first();
+
+            if ($user->active == 1 && Auth::guard('seller')->attempt($cred)) {
+                return true;         
+
+            } else {                
+                $this->send_new_code($user);
+ 
+                return $user->id;       
+            }
+        }else
+          return -1;
+    }
+
+    public function broker_login(LoginRequest $request,$cred)
+    {
+        if (auth()->guard('broker')->validate($cred)) {
+            
+            $user = Broker::where('mobile',$request->mobile)->first();
+
+            if ($user->active == 1 && Auth::guard('broker')->attempt($cred)) {
+                return true;         
+
+            } else {                
+                $this->send_new_code($user);
+ 
+                return $user->id;       
+            }
+        }else
+          return -1;
+    }
+
+    public function rep_login(LoginRequest $request,$cred)
+    {
+        if (auth()->guard('rep')->validate($cred)) {
+            
+            $user = Rep::where('mobile',$request->mobile)->first();
+
+            if ($user->active == 1 && Auth::guard('rep')->attempt($cred)) {
                 return true;         
 
             } else {                
@@ -105,6 +191,9 @@ class AuthController extends Controller
     {
         Auth::logout();
         Auth::guard('company')->logout();
+        Auth::guard('broker')->logout();
+        Auth::guard('seller')->logout();
+        Auth::guard('rep')->logout();
 
         return redirect()->route('home');
     }

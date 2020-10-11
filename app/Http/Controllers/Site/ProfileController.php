@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CarDamagedController extends Controller
+class ProfileController extends Controller
 {
     
     public function index()
     {
-        return view('site.car_damaged');
+        return view('site.profile');
     }
 }

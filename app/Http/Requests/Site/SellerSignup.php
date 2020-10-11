@@ -4,7 +4,7 @@ namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserSignup extends FormRequest
+class SellerSignup extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,18 @@ class UserSignup extends FormRequest
      */
     public function rules()
     {
-        if($this->user_type == 'u')
+        if($this->user_type == 'b')
             return [
                 'name' => 'required',
-                'mobile' => 'required|numeric|min:9|unique:users,mobile,'.$this->id,
+                'mobile' => 'required|numeric|min:9|unique:brokers,mobile,'.$this->id,
                 'password' => 'required|confirmed|min:6',
                 'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ];
+        
         else
             return [
                 'name' => 'required',
-                'mobile' => 'required|numeric|min:9|unique:companies,mobile,'.$this->id,
+                'mobile' => 'required|numeric|min:9|unique:sellers,mobile,'.$this->id,
                 'password' => 'required|confirmed|min:6',
                 'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ];
