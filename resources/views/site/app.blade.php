@@ -71,7 +71,9 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> @lang('site.profile')  </a>
 
+              {{-- @can('createAvailableBrand') --}}
               <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> @lang('site.avaliable_models')  </a>
+              {{-- @endcan --}}
 
               <a class="dropdown-item log-out" href="{{ route('logout') }}"> @lang('site.logout') </a>
             </div>

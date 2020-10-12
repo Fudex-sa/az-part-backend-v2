@@ -28,6 +28,10 @@ class CreateAdminsTable extends Migration
             $table->integer('city_id');
             $table->string('address')->nullable();
             
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('phone')->nullable();
+            
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
             $table->enum('user_type',['supervisor','admin'])->default('supervisor');

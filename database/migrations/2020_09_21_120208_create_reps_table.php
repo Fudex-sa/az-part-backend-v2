@@ -25,6 +25,10 @@ class CreateRepsTable extends Migration
             $table->integer('city_id');
             $table->string('address')->nullable();
              
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('phone')->nullable();
+            
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();            
             $table->string('photo')->nullable();

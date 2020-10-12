@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Seller;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\AvailableModel;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -75,7 +76,9 @@ class SellerController extends Controller
             $regions = null;
         }
 
-        return view($this->view.'show',compact('item','cols','region_cities','regions'));
+        $avaliable_models = AvailableModel::userBrands($item->id)->orderby('id','desc')->paginate(pagger());
+
+        return view($this->view.'show',compact('item','cols','region_cities','regions','avaliable_models'));
 
     }
 

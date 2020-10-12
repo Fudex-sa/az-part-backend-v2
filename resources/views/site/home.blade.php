@@ -72,7 +72,7 @@
 
             <div class="ui-widget col-md-4">
 
-                <select class="form-control select2" name="country" id="country_id">
+                <select class="form-control" name="country" id="country_id">
                     <option value=""> @lang('site.choose_country') </option>
                     @foreach (countries() as $country)
                         <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>    
@@ -81,13 +81,13 @@
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control select2" name="region" id="region_id">
+              <select class="form-control" name="region" id="region_id">
                 <option value=""> @lang('site.choose_region') </option>                 
               </select>
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control select2" name="city" id="cities">
+              <select class="form-control" name="city" id="cities">
                 <option value=""> @lang('site.choose_city') </option>                 
               </select>
             </div>
@@ -715,29 +715,24 @@
 
 @section('scripts')
     <script src="{{ site('assets/js/highlight.pack.js') }}"></script>
-    <script type="text/javascript">
 
+    <script type="text/javascript">
         hljs.initHighlightingOnLoad();
 
         $(document).ready(function () {
-
-        $('#newsTicker2').breakingNews({
-            direction: 'rtl',
-            play:true,
-            scrollSpeed:3,
-            stopOnHover:true,
-        });
-
+            $('#newsTicker2').breakingNews({
+                direction: 'rtl',
+                play:true,
+                scrollSpeed:3,
+                stopOnHover:true,
+            });
         });
     </script> 
 
-    <script>
-      
-      $( "#btn-slide1" ).click(function( event ) {
-        
+    <script>      
+      $( "#btn-slide1" ).click(function( event ) {        
         $("#slide1").hide();
         $("#slide2").show();
-
       });
     </script>
 

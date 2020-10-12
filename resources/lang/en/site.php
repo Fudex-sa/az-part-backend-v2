@@ -742,6 +742,15 @@ return [
     'signup_as' => 'Signup As',
     'seller_or_broker' => 'Seller / Tashlih / Broker',
     'avaliable_models' => 'Avaliable Models',
+    'years' => 'Years',
+    'this_is_your_search_result' => 'Here is what matches the type of search you entered',
+    'search_keyword' => 'Search Keywords:',
+    'or_contact_seller' => 'Or Contact Seller',
+    'enter_required_pieces' => 'Enter the required spare parts information',
+    'shipping_address' => 'Shipping Address',
+    'address_description' => 'Address Description',
+    'building_number' => 'Building Number',
+    'another_notes' => 'Another Notes',
 ];
 
 ?>

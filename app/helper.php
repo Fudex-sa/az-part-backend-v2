@@ -141,6 +141,36 @@ if (! function_exists('send_sms')) {
 }
 
 
+if (! function_exists('user_id')) {
+    function user_id()
+    {
+        if(auth()->guard('seller'))
+            $item = auth()->guard('seller')->user();
+
+        elseif(auth()->guard('broker'))
+            $item = auth()->guard('broker')->user();
+
+        elseif(auth()->guard('company'))
+            $item = auth()->guard('company')->user();
+
+        elseif(auth()->guard('admin'))
+            $item = auth()->guard('admin')->user();
+
+        elseif(auth()->guard('rep'))
+            $item = auth()->guard('rep')->user();
+
+        elseif(auth()) 
+            $item = auth()->user();
+
+        else $item = null;
+
+        return $item ? $item->id : 0;
+    }
+}
+
+
+
+
 
 
 

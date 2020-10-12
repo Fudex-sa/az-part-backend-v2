@@ -10,8 +10,11 @@
     </nav>
 </div>
 
+
+@if(cur_root() != 'search.parts')
 <div class="col-md-12">
   <div class="head-section my-3">
     <h2> @yield('title') </h2>
   </div>
 </div>
+@endif

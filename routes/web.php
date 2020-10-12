@@ -23,6 +23,9 @@ Route::group([
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
 
             Route::get('avaliable_models',[App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
+            Route::post('avaliable_model/{id?}',[App\Http\Controllers\Seller\AvliableModelController::class, 'store'])->name('seller.avaliable_model.store');
+            Route::get('avaliable_model/{item}',[App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');            
+            Route::delete('avaliable_model/delete',[App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
 
         });
 
@@ -70,6 +73,7 @@ Route::group([
             Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
  
             Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts');
+            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller');
 
         });
         

@@ -14,3 +14,7 @@
 .sign-box{
     margin-top: -90px;
 }
+
+.select2-container{
+    width: 100% !important;
+}

@@ -32,6 +32,10 @@ class CreateSellersTable extends Migration
             $table->integer('city_id');
             $table->string('address')->nullable();
             
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('phone')->nullable();
+            
             $table->integer('created_by')->nullable();
             
             $table->string('api_token',80)->unique()->nullable()->default(null);

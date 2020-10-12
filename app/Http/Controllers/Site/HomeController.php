@@ -12,6 +12,7 @@ class HomeController extends Controller
     
     public function index()
     {
+         
         $home = true;
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
 
