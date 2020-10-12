@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title')   {{$item->name}} @endsection
 
@@ -65,6 +65,11 @@
                                                       role="tab" data-toggle="tab"
                                                       aria-expanded="true">  @lang('site.seller_requests') </a>
             </li>
+
+            <li role="presentation" class=""><a href="#tab_content3" 
+                role="tab" data-toggle="tab"
+                aria-expanded="true">  @lang('site.available_brands') </a>
+            </li>
              
            
         </ul>
@@ -101,6 +106,13 @@
 
 
 </div>
+
+<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+        
+    @include('dashboard.sellers.available_models')
+
+</div>
+
 
 </div>
     </div>

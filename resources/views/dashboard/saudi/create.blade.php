@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.add_supervisor') @endsection
 

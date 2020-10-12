@@ -26,6 +26,11 @@ class CreateCompaniesTable extends Migration
             $table->integer('available_requests')->default(0);
             $table->integer('total_requests')->default(0);
             $table->integer('city_id');
+            $table->string('address')->nullable();
+            
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('phone')->nullable();
             
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();

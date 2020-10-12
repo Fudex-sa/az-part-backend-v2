@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.pieces_management') @endsection
 
@@ -98,8 +98,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message_growl') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'piece']) 
   
 @endsection

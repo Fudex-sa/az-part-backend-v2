@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Seller extends Model
+class Seller extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'  ,
-        'total_requests' , 'created_by' , 'city_id'   
+        'total_requests' , 'created_by' , 'city_id' , 'address'        
     ];
 
     public function scopeSaudi($query)

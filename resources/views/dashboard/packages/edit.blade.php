@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') {{__('site.update')}} |    {{ $item['title_'.my_lang()] }} @endsection
 
@@ -95,8 +95,10 @@
 
     <div class="ln_solid"></div>
     <div class="form-group">
-        <div class="col-md-6 col-md-offset-3">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> @lang('site.close') </button>
+        <div class="col-md-6 col-md-offset-3">            
+            <button type="button" onclick="location.href='{{ route('admin.packages') }}'" class="btn btn-default"> 
+                @lang('site.cancel') </button>
+
             <button type="submit" class="btn btn-primary"> @lang('site.save')  </button>
         </div>
     </div>

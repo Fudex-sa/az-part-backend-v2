@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') 
     {{ __('site.send_offer_on') . 'AZ-'.  $item->request_id }}
@@ -148,7 +148,6 @@
 
 @endsection
 
-@include('dashboard.layouts.message')
 
 @section('scripts')
      

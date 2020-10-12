@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.stock') @endsection
 
@@ -76,8 +76,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'stock']) 
   
     <script>

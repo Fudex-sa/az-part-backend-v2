@@ -33,9 +33,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-
-            @include('dashboard.layouts.message')
-
+ 
             <form method="post" action="{{ route('admin.login') }}">
                 @csrf
 
@@ -95,5 +93,7 @@
 
       </div>
     </div>
+
+    @include('layouts.message')
   </body>
 </html>

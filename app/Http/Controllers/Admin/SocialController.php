@@ -54,4 +54,17 @@ class SocialController extends Controller
         return 0;
     }
 
+    public function activate(Request $request)
+    {
+        $item = $request->input('id');
+
+        $row = Social::find($item);
+        $row->active == 1 ? $active = 0 : $active = 1;
+
+        if( Social::where('id',$item)->update(['active' => $active]) )
+            return 1;
+
+        return 0;        
+    }
+
 }

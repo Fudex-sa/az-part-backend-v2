@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.supervisors') @endsection
 
@@ -38,13 +38,7 @@
         <div class="x_content">
     
             <div class="table-responsive">
-    
-                <div class="col-md-12">
-                    @include('dashboard.layouts.message')
-                </div>
-    
-                
-                
+     
                 <div class="btn-group">
         
                     @if(has_permission('supervisors_add'))
@@ -170,8 +164,7 @@
 
 
 @section('scripts')
-    @include('dashboard.layouts.message_growl') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'supervisor']) 
     
     @include('dashboard.ajax.activate',['target'=>'supervisor']) 

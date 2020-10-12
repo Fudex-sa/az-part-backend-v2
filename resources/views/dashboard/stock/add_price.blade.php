@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') {{__('site.add_price')}} |   
         {{ $item->brand ? $item->brand['name'] : '' }} -

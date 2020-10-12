@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Rep extends Model
+class Rep extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
             'name' , 'mobile' , 'email' , 'saudi' , 'active' , 'verification_code' , 'verified' ,
             'lang' , 'last_login' , 'photo' , 'national_id' , 'rating' , 'api_token' , 'password'
-            , 'created_by' , 'city_id'    
+            , 'created_by' , 'city_id', 'address'          
     ];
  
 

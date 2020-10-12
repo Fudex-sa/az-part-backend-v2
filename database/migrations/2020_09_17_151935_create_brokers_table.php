@@ -29,6 +29,11 @@ class CreateBrokersTable extends Migration
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
             $table->integer('city_id');
+            $table->string('address')->nullable();
+            
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('phone')->nullable();
             
             $table->integer('created_by')->nullable();
             

@@ -46,6 +46,26 @@ return [
             'provider' => 'admin',
         ],
 
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'company',
+        ],
+
+        'broker' => [
+            'driver' => 'session',
+            'provider' => 'broker',
+        ],
+
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'seller',
+        ],
+
+        'rep' => [
+            'driver' => 'session',
+            'provider' => 'rep',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -79,6 +99,26 @@ return [
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\Supervisor::class,
+        ],
+
+        'company' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class,
+        ],
+
+        'broker' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Broker::class,
+        ],
+
+        'seller' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Seller::class,
+        ],
+
+        'rep' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Rep::class,
         ],
 
         // 'users' => [

@@ -1,9 +1,10 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.dashboard') @endsection
 
 @section('styles')
-    
+     
+
 @endsection
 
 
@@ -30,9 +31,9 @@
             </div>
         </div>
     </div>
-
+ 
     <div class="clearfix"></div>
-    
+ 
 <div class="row top_tiles">
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="tile-stats">
@@ -67,6 +68,24 @@
 </div>
 
 <hr/>
+
+<div class="col-md-8 col-sm-6 col-xs-12 widget_tally_box">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>   </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                    
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+
+            <canvas id="myChart"></canvas>
+            
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -166,14 +185,16 @@
 </div>
 
 </div>
-
+  
+ 
 @endsection
 
 
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
-   
+    
+    @include('dashboard.charts.supervisors_by_month')
+
 @endsection
 
 

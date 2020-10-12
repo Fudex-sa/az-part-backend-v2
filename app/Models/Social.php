@@ -12,4 +12,9 @@ class Social extends Model
     protected $fillable =[
         'name' , 'value' , 'active'
     ];
+ 
+    public function scopeActiveLinks($query)
+    {
+        return $query->whereActive(1);
+    }
 }

@@ -1,0 +1,25 @@
+
+
+.nav-md .container.body .right_col{
+
+    margin-left: 230px;
+    margin-right : 0px !important;
+}
+
+.main_container .top_nav{
+    margin-left: 230px;
+    margin-right: 0px !important;
+}
+
+footer{
+    margin-left: 230px;
+    margin-right: 0px !important;
+}
+.pull-left{
+    float: right !important;
+}
+
+.main_menu span.fa{
+    float: right !important;
+}
+ 

@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title')  {{ $item['name_'.my_lang()] }} @endsection
 
@@ -11,8 +11,16 @@
 
 <div class="page-title">
     <div class="title_left">
-        <h3> @yield('title')  </h3>
+        <h3> 
+            <a href="{{ route('admin.dashboard') }}"> @lang('site.dashboard') </a> /
+            
+            @if(isset($level2)) <a href="{{ route($level2['link']) }}"> 
+                    @lang('site.'.$level2['name']) </a> / @endif
+
+            @yield('title')
+        </h3>
     </div>
+    
 
     @include('dashboard.pieces.filter')
     
@@ -159,8 +167,6 @@
 
 @section('scripts')
     
-    @include('dashboard.layouts.message_growl') 
-
     @include('dashboard.ajax.delete',['target'=>'alt']) 
 
 <script>

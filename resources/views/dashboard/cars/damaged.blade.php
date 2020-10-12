@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.damaged_cars') @endsection
 
@@ -68,9 +68,7 @@
 
 
 @section('scripts')
-    @include('dashboard.layouts.message') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'car']) 
- 
-   
+
 @endsection

@@ -19,7 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password',
-        'total_requests' , 'available_requests'  , 'created_by', 'city_id'    
+        'total_requests' , 'available_requests'  , 'created_by', 'city_id', 'address'          
     ];
 
     /**

@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6cfa97617b5d4debefb2101295968d9",
+    "content-hash": "081bc280954968c1769f2d95eaa7e35b",
     "packages": [
+        {
+            "name": "abdullahobaid/mobilywslaraval",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AbdullahObaid/Mobilyws-Laraval.git",
+                "reference": "ef6e0e0b8875fed51249c2aa44f1b842f6eafce6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AbdullahObaid/Mobilyws-Laraval/zipball/ef6e0e0b8875fed51249c2aa44f1b842f6eafce6",
+                "reference": "ef6e0e0b8875fed51249c2aa44f1b842f6eafce6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "abdullahobaid\\mobilywslaraval\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "waqf"
+            ],
+            "authors": [
+                {
+                    "name": "Abdullah Obaid",
+                    "email": "imobde3@gmail.com",
+                    "homepage": "http://safhty.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to send SMS using Mobily.ws API",
+            "keywords": [
+                "laravel",
+                "mobily.ws"
+            ],
+            "time": "2019-10-25T16:11:28+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.1",
@@ -7161,7 +7203,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "abdullahobaid/mobilywslaraval": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.site_settings') @endsection
 
@@ -71,8 +71,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message_growl') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'setting']) 
   
 @endsection

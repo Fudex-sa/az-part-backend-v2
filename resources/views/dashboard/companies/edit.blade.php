@@ -115,7 +115,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                 <button type="submit" class="btn btn-success"> @lang('site.save') </button>
     
-                <button type="button" onclick="window.location.href='{{ route('admin.users') }}'" 
+                <button type="button" onclick="window.location.href='{{ route('admin.companies') }}'" 
                 class="btn btn-primary"> @lang('site.cancel') </button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.admin_requests_assigned') @endsection
 
@@ -73,5 +73,5 @@
 
 
 @section('scripts')
-@include('dashboard.layouts.message') 
+
 @endsection

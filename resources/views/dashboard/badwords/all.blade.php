@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.app')
 
 @section('title') @lang('site.Bad_Words') @endsection
 
@@ -70,8 +70,7 @@
 @endsection
 
 @section('scripts')
-    @include('dashboard.layouts.message_growl') 
-
+    
     @include('dashboard.ajax.delete',['target'=>'badword']) 
   
 @endsection

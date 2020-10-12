@@ -18,7 +18,64 @@ Route::group([
         /*************** AJAX  **********************/
         Route::post('regions/load',[App\Http\Controllers\RegionController::class, 'all'])->name('regions.load');            
         Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
+        Route::post('models/load',[App\Http\Controllers\ModelController::class, 'all'])->name('models.load');            
 
+        Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
+
+            Route::get('avaliable_models',[App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
+            Route::post('avaliable_model/{id?}',[App\Http\Controllers\Seller\AvliableModelController::class, 'store'])->name('seller.avaliable_model.store');
+            Route::get('avaliable_model/{item}',[App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');            
+            Route::delete('avaliable_model/delete',[App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
+
+        });
+
+         
+        Route::group(['namespace' => 'Site'], function () {
+
+            Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
+
+            Route::get('cars/damaged',[App\Http\Controllers\Site\CarDamagedController::class, 'index'])->name('cars.damaged');
+
+            Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
+
+            Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
+
+            Route::get('packages',[App\Http\Controllers\Site\PackagesController::class, 'index'])->name('packages');
+
+            Route::get('privacy',[App\Http\Controllers\Site\PageController::class, 'privacy'])->name('privacy');
+            Route::get('terms',[App\Http\Controllers\Site\PageController::class, 'terms'])->name('terms');
+            Route::get('about_us',[App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
+            
+
+            Route::get('signup_as',[App\Http\Controllers\Site\AuthController::class, 'signup_as'])->name('signup_as');
+            Route::get('login_as',[App\Http\Controllers\Site\AuthController::class, 'login_as'])->name('login_as');
+
+            Route::post('user/login',[App\Http\Controllers\Site\AuthController::class, 'login'])->name('user.login');
+            Route::get('user/forget_password',[App\Http\Controllers\Site\AuthController::class, 'forget_password'])->name('user.forget_password');
+            Route::post('reset_password',[App\Http\Controllers\Site\AuthController::class, 'reset_password'])->name('reset_password');
+            Route::get('logout',[App\Http\Controllers\Site\AuthController::class, 'logout'])->name('logout');
+
+            Route::get('user/register',[App\Http\Controllers\Site\UserController::class, 'register'])->name('user.register');
+            Route::post('user/signup',[App\Http\Controllers\Site\UserController::class, 'signup'])->name('user.signup');
+
+            Route::get('seller/register',[App\Http\Controllers\Site\SellerController::class, 'register'])->name('seller.register');
+            Route::post('seller/signup',[App\Http\Controllers\Site\SellerController::class, 'signup'])->name('seller.signup');
+
+            Route::get('rep/register',[App\Http\Controllers\Site\RepController::class, 'register'])->name('rep.register');
+            Route::post('rep/signup',[App\Http\Controllers\Site\RepController::class, 'signup'])->name('rep.signup');
+
+            Route::get('verfication/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'index'])->name('verfication');
+            Route::post('confirm/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'confirm'])->name('confirm');
+            Route::get('resend_code/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'resend_code'])->name('resend_code');
+
+            Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
+
+            Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
+ 
+            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts');
+            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller');
+
+        });
         
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
 
@@ -109,7 +166,7 @@ Route::group([
             Route::get('social/{item}',[App\Http\Controllers\Admin\SocialController::class, 'edit'])->name('admin.social');
             Route::post('social/store/{item?}',[App\Http\Controllers\Admin\SocialController::class, 'store'])->name('admin.social.store');
             Route::delete('social/delete',[App\Http\Controllers\Admin\SocialController::class, 'delete'])->name('admin.social.delete');
-
+            Route::post('social/activate',[App\Http\Controllers\Admin\SocialController::class, 'activate'])->name('admin.social.activate');
 
             /************ Settings  **********/
             Route::get('settings',[App\Http\Controllers\Admin\SettingController::class, 'all'])->name('admin.settings');                        

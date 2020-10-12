@@ -30,6 +30,11 @@ class CreateSellersTable extends Migration
             $table->integer('rating')->default(0);
             $table->enum('user_type',['tashalih','manufacturing']);
             $table->integer('city_id');
+            $table->string('address')->nullable();
+            
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('phone')->nullable();
             
             $table->integer('created_by')->nullable();
             

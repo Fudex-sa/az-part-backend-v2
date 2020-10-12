@@ -28,8 +28,13 @@ class PieceController extends Controller
          if($id) 
             $response = Piece::where('id',$id)->update($data);
         
-        else $response = Piece::create($data);
+        else {
+            $response = Piece::create($data);
+            $data2 = $request->except('_token');
+            $data2['piece_id'] = $response->id;
 
+            PieceAlt::create($data2);  
+        }
         if($response)
             return redirect()->route('admin.pieces')->with('success' , __('site.success-save') );
 
