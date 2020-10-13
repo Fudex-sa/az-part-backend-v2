@@ -55,9 +55,8 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <img src="{{ site('assets/images/notif.png') }}" alt="">
-          </a>
+          <a class="nav-link" href="{{ route('cart') }}">  <i class="fa fa-bell"> </i>
+            <span class="blue"> {{ count(cart()) }} </span> </a>
         </li>
 
         <li class="nav-item dropdown ">

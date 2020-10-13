@@ -9,12 +9,12 @@ class AvailableModel extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'years' => 'array'
-    ];
+    // protected $casts = [
+    //     'years' => 'array'
+    // ];
 
     protected $fillable = [
-        'user_id' , 'brand_id' , 'model_id' , 'years' 
+        'user_id' , 'brand_id' , 'model_id' , 'year' 
     ];
 
     public function brand(){
@@ -36,8 +36,9 @@ class AvailableModel extends Model
         return $q->where('user_id',$user_id);
     }
 
-    public function scopeMatchOrder($query,$brand_id,$model_id) {         
-        return $query->where('brand_id',$brand_id)->where('model_id',$model_id);        
+    public function scopeMatchOrder($query,$brand_id,$model_id,$year) {         
+        return $query->where('brand_id',$brand_id)->where('model_id',$model_id)
+                    ->where('year',$year);        
     }
 
 }

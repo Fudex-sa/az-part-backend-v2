@@ -141,30 +141,31 @@ if (! function_exists('send_sms')) {
 }
 
 
-if (! function_exists('user_id')) {
-    function user_id()
+if (! function_exists('logged_user')) {
+    function logged_user()
     {
-        if(auth()->guard('seller'))
+        if(auth()->guard('seller')->check())
             $item = auth()->guard('seller')->user();
 
-        elseif(auth()->guard('broker'))
+        elseif(auth()->guard('broker')->check())
             $item = auth()->guard('broker')->user();
 
-        elseif(auth()->guard('company'))
+        elseif(auth()->guard('company')->check())
             $item = auth()->guard('company')->user();
 
-        elseif(auth()->guard('admin'))
+        elseif(auth()->guard('admin')->check())
             $item = auth()->guard('admin')->user();
 
-        elseif(auth()->guard('rep'))
+        elseif(auth()->guard('rep')->check())
             $item = auth()->guard('rep')->user();
 
-        elseif(auth()) 
+        elseif(auth()->user()) 
             $item = auth()->user();
 
         else $item = null;
 
-        return $item ? $item->id : 0;
+        return $item;
+ 
     }
 }
 

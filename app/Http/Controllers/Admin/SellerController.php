@@ -76,7 +76,8 @@ class SellerController extends Controller
             $regions = null;
         }
 
-        $avaliable_models = AvailableModel::userBrands($item->id)->orderby('id','desc')->paginate(pagger());
+        $avaliable_models = AvailableModel::userBrands($item->id)->orderby('brand_id','desc')
+                                ->orderby('model_id','desc')->paginate(pagger());
 
         return view($this->view.'show',compact('item','cols','region_cities','regions','avaliable_models'));
 

@@ -18,7 +18,7 @@ class CreateAvailableModelsTable extends Migration
             $table->integer('user_id');
             $table->integer('brand_id');
             $table->integer('model_id');
-            $table->json('years');
+            $table->int('year');
             $table->timestamps();
         });
     }

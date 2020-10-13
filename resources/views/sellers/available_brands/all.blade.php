@@ -29,7 +29,7 @@
                     <th>#  </th>
                     <th> @lang('site.brand') </th>
                     <th> @lang('site.model') </th>
-                    <th> @lang('site.years') </th>
+                    <th> @lang('site.year') </th>
                     <th></th>
               </tr>
               </thead>
@@ -45,7 +45,7 @@
                     
                     <td>{{$item->model['name_'.my_lang()]}}</td>
  
-                    <td> {{ implode(',',$item->years) }} </td>
+                    <td> {{ $item->year }} </td>
 
                     <td>
                         

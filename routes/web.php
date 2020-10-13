@@ -16,10 +16,11 @@ Route::group([
         Route::post('admin/logout',[App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 
         /*************** AJAX  **********************/
-        Route::post('regions/load',[App\Http\Controllers\RegionController::class, 'all'])->name('regions.load');            
-        Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
-        Route::post('models/load',[App\Http\Controllers\ModelController::class, 'all'])->name('models.load');            
-
+        Route::post('regions/load',[App\Http\Controllers\AjaxController::class, 'regions'])->name('regions.load');            
+        Route::post('cities/load',[App\Http\Controllers\AjaxController::class, 'cities'])->name('cities.load');            
+        Route::post('models/load',[App\Http\Controllers\AjaxController::class, 'models'])->name('models.load');            
+        Route::post('reps/load',[App\Http\Controllers\AjaxController::class, 'reps'])->name('reps.load');            
+ 
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
 
             Route::get('avaliable_models',[App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
@@ -50,6 +51,7 @@ Route::group([
             Route::get('signup_as',[App\Http\Controllers\Site\AuthController::class, 'signup_as'])->name('signup_as');
             Route::get('login_as',[App\Http\Controllers\Site\AuthController::class, 'login_as'])->name('login_as');
 
+            Route::get('user/login',[App\Http\Controllers\Site\AuthController::class, 'signin'])->name('user.signin');
             Route::post('user/login',[App\Http\Controllers\Site\AuthController::class, 'login'])->name('user.login');
             Route::get('user/forget_password',[App\Http\Controllers\Site\AuthController::class, 'forget_password'])->name('user.forget_password');
             Route::post('reset_password',[App\Http\Controllers\Site\AuthController::class, 'reset_password'])->name('reset_password');
@@ -72,9 +74,14 @@ Route::group([
 
             Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
  
-            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts');
-            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller');
+            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
+            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller')->middleware('isLogged');
 
+            Route::get('cart',[App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
+            Route::get('shipping',[App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
+            Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'create'])->name('shipping.save')->middleware('isLogged');
+            Route::get('payment',[App\Http\Controllers\Site\PaymentController::class, 'index'])->name('payment')->middleware('isLogged');
+            
         });
         
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {

@@ -751,6 +751,24 @@ return [
     'address_description' => 'Address Description',
     'building_number' => 'Building Number',
     'another_notes' => 'Another Notes',
+    'my_info' => 'My Information',
+    'my_orders' => 'My Orders',
+
+    'shipping_country_required' => 'Shipping Country Required',
+    'shipping_region_required' => 'Shipping Region Required',
+    'shipping_city_required' => 'Shipping City Required',
+    'street_required' => 'Street Required',
+    'cart' => 'Cart',
+    'items_added' => 'Items Added',
+    'shipping' => 'Shipping',
+    'pieces_prices' => 'Prices Of Spare Parts',
+    'order_cost' => 'Order Cost',
+    'continue_purchase' => 'Continue Purchase',
+    'parts_total' => 'Parts Total',
+    'add_note' => 'Add Note',
+    'choose_rep' => 'Choose Representative',
+    'rep_required' => 'Please Choose Representative',
+
 ];
 
 ?>

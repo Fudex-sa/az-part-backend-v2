@@ -24,8 +24,7 @@
 
         @if($items)
             @foreach ($items as $item)
-                @if(in_array(request()->year,$item->years))
-        
+                 
                     <div class="col-md-12  mt-5">
                     <div class="row shadow e-back">
                         <div class="col-md-2 pr-0">
@@ -69,7 +68,7 @@
                         </div>
                     </div>
                     </div>
-                @endif
+             
             @endforeach
         @else
 
@@ -130,4 +129,9 @@
 <script src="{{site('maps/script.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
 async defer></script>
+
+<script src="{{ site('assets/js/bootstrap-input-spinner.js') }}"></script>
+<script>
+  $("input[type='number']").inputSpinner()
+</script>
 @endsection
