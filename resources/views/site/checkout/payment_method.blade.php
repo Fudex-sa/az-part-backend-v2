@@ -1,7 +1,7 @@
 
 @extends('site.app')
 
-@section('title') @lang('site.payment') @endsection
+@section('title') @lang('site.payment_method') @endsection
 
 @section('styles')
     
@@ -48,22 +48,48 @@
                         <div class="row mt-5">
                           <div class="col-md-7">
                             <div class="cart-address shadow rounded">
-                              <h3> @lang('site.enter_data_to_complete_payment')  </h3>
+                              <h3> @lang('site.please_choose_payment_method')  </h3>
 
-                              
-                              <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId={{$checkoutId}}"></script>
-                              
-                              <form action="{{url('/resourcePath=/v1/checkouts/'.$checkoutId.'/payment')}}" 
-                              class="paymentWidgets" data-brands="VISA MASTER MADA"></form>
+                              <form method="get" action="{{ route('payment.choose') }}" class="row">
+                                 
+                                <div class="form-group col-12">
+                                    <label for="visa">
+                                        <input id="visa" type="radio" name="method" value="visa" checked required>
+                                        {{__('site.visa_or_master')}}
+                                         
+                                        <img src="{{ site('assets/images/cc.png') }}" class="payment_logos"/>
+                                    </label>
+                                </div>
+                             
+                                <div class="form-group col-12">
+                                    <label for="mada">
+                                        <input id="mada" type="radio" name="method" value="mada">
+                                        {{__('site.mada')}}
+                        
+                                        <img src="{{ site('assets/images/mada.png') }}" class="payment_logos"/>
+                                    </label>
+                                </div>
+                                 
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-next btn-block btn-lg" value="@lang('site.continue_purchase')"> 
+                                  </div>
 
-                              
+                              </form>
                             </div>
                     
                           </div>
                           <div class="col-md-5">
-                            
+                             
+                            <div class="row mt-4">
+                              <div class="alert alert-success col-md-12 text-center pt-4 shadow rounded" role="alert">
+                                <h5>تم إستخدام كود خصم</h5>
+                                <h4 class="pt-2"> <img src="assets/images/ok.png" alt="" class=" pl-2">HANNR15</h4>
+                              </div>
+                            </div>
                             <div class="cart-details row  p-4 shadow rounded">
+                                 
                               @include('site.checkout.sammary')
+                              
                             </div>
                           </div>
                         </div>

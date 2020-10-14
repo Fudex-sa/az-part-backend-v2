@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSettingsTable extends Migration
+class CreateDataSitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('data_sites', function (Blueprint $table) {
             $table->id();
             $table->string('keyword');
-            $table->text('value');
-            
+            $table->text('value_ar')->nullable();
+            $table->text('value_en')->nullable();
+            $table->text('value_hi')->nullable(); 
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('data_sites');
     }
 }

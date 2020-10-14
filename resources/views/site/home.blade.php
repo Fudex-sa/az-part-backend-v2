@@ -11,7 +11,7 @@
     
 <section class="header">
   <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
 
       <form method="GET" action="{{ route('search.parts') }}" id="frm_search">
 
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-md-12" id="slide">
-          <div class="row">
+          <div class="row ">
             <div class="ui-widget col-md-4">
 
                 <select class="form-control select2 input-A" name="brand" id="brand_id">
@@ -67,12 +67,11 @@
         </div>
 
         <div class="col-md-12" id="slide-2">
-          <div class="row ">
-            <div class="col-md-2"></div>
+          <div class="row">
 
             <div class="ui-widget col-md-4">
 
-                <select class="form-control" name="country" id="country_id">
+                <select class="form-control input-C" name="country" id="country_id">
                     <option value=""> @lang('site.choose_country') </option>
                     @foreach (countries() as $country)
                         <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>    
@@ -81,44 +80,46 @@
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control" name="region" id="region_id">
+              <select class="form-control input-C" name="region" id="region_id">
                 <option value=""> @lang('site.choose_region') </option>                 
               </select>
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control" name="city" id="cities">
+              <select class="form-control input-C" name="city" id="cities">
                 <option value=""> @lang('site.choose_city') </option>                 
               </select>
             </div>
+            <div class="col-md-4"></div>
 
-            <div class="ui-widget col-md-4">
-              <div class="row">
-                <select name="search_type" class="form-control input-E col-md-10">
+            <div class="ui-widget col-md-4 col-10">
+                           <select name="search_type" class="form-control input-E  mt-44">
                     <option value=""> @lang('site.search_type') </option>
                     <option value="manual"> @lang('site.manual') </option>
                     <option value="electronic"> @lang('site.electronic') </option>
                 </select>
-                
-                <div class="col-md-2">                  
+
+            </div>
+            
+                <div class="col-md-2 col-2">                  
                   <button type="button" class="btn btn-info-2" data-toggle="modal" data-target="#exampleModal"></button>
                 </div>
+                            <div class="col-md-2"></div>
 
-              </div>
+            <div class="col-md-3"></div>
+
+             <div class="col-md-1 col-1">
+             <a href="javascript:void(0);" class="float-left an-back" id="back"> <img src="{{ site('assets/images/back.png') }}" alt="" class="img-fluid"> </a>
+
             </div>
+            <div class="col-md-4 col-11">
+              <button type="submit" class="btn btn-next  btn-lg btn-block"> @lang('site.search')  </button>
 
-            <div class="col-md-2"></div>
-
-            <div class="col-md-4"></div>
-
-            <div class="col-md-4 ">
-              <div class="row">
-                <a href="javascript:void(0);" class="col-md-2" id="back"> <img src="{{ site('assets/images/back.png') }}" alt="" class="img-fluid"> </a>
-
-                <button type="submit" class="btn btn-next col-md-10 btn-lg"> @lang('site.search')  </button>
-
-              </div>
             </div>
+                                
+            
+
+
           </div>
         </div>
 

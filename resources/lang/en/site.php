@@ -647,7 +647,7 @@ return [
     'title_ar' => 'Title In Arabic',
     'title_en' =>  'Title In English',
     'title_hi' => 'Title In Hindi',
-    'stores_no' => 'Stores No/Requests No',
+    'stores_no' => 'Stores Number',
     'discount' => 'Discount',
     'brokers' => 'Brokers',
     'reps' => 'Shipping Representatives',
@@ -768,7 +768,18 @@ return [
     'add_note' => 'Add Note',
     'choose_rep' => 'Choose Representative',
     'rep_required' => 'Please Choose Representative',
-
+    'payment_method' => 'Payment Method',
+    'enter_data_to_complete_payment' => 'Enter your information to complete the payment process',
+    'requests_no' => 'Requests Number',
+    'call_seller' => 'Call Seller',
+    'complete_order' => 'Complete Order',
+    'data_site' => 'Data Site',
+    'add_data' => 'Add Data',
+    'site_commission' => 'Site Commission',
+    'pieces_tax' => 'Pieces Tax', 
+    'get_more_results' => 'Get more results',
+    'choose_your_package' => 'Choose the type of subscription that best suits you',
+    'subscribe_in_package' => 'Subscribe to the package',
 ];
 
 ?>

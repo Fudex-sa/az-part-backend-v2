@@ -21,8 +21,11 @@ class ShippingController extends Controller
     {
          
         Session::put('shipping',['country_id' => $request->country_id , 'region_id' => $request->region_id ,
-                                'city_id' => $request->city_id , 'notes' => $request->notes , 'rep_id' => $request->rep_id]);
+                                'city_id' => $request->city_id , 'street' => $request->street ,
+                                'address' => $request->address , 'lat' => $request->lat ,
+                                'lng' => $request->lng , 
+                                'notes' => $request->notes , 'rep_id' => $request->rep_id]);
 
-        return redirect()->route('payment');
+        return redirect()->route('payment.method');
     }
 }

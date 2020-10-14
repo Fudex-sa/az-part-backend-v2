@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSettingsTable extends Migration
+class CreateOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('keyword');
-            $table->text('value');
-            
+            $table->integer('user_id');
+            $table->float('sub_total');
+            $table->float('taxs')->default(0);
+            $table->float('total');
+            $table->integer('status')->default(1);
+             
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('orders');
     }
 }

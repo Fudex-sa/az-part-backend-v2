@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Site\PartSearchRequest;
 use App\Models\AvailableModel;
 use App\Models\PieceAlt;
-use App\Models\Order;
+use App\Models\Cart;
 use App\Models\OrderShipping;
 use App\Http\Requests\Site\OrderRequest;
 use Session;
@@ -34,7 +34,7 @@ class PartController extends Controller
         
         $data['user_id'] = logged_user()->id;
   
-        $item = Order::create($data);
+        $item = Cart::create($data);
         
         if($item){
             Session::forget('search');

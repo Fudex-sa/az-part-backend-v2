@@ -1,7 +1,7 @@
 
 @extends('site.app')
 
-@section('title') @lang('site.payment') @endsection
+@section('title') @lang('site.payment_status') @endsection
 
 @section('styles')
     
@@ -46,26 +46,35 @@
                        <div class="tab-pane fade show active" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
                       
                         <div class="row mt-5">
-                          <div class="col-md-7">
+                          <div class="col-md-12">
                             <div class="cart-address shadow rounded">
-                              <h3> @lang('site.enter_data_to_complete_payment')  </h3>
+                            
+                                @if($responseData['result']['code'] == env('HYPERPAY_SUCCESS'))
+                                
+                                    <div class="alert alert-success col-md-12 text-center pt-4 shadow rounded" role="alert">
 
-                              
-                              <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId={{$checkoutId}}"></script>
-                              
-                              <form action="{{url('/resourcePath=/v1/checkouts/'.$checkoutId.'/payment')}}" 
-                              class="paymentWidgets" data-brands="VISA MASTER MADA"></form>
+                                        <h4 class="pt-2"> <img src="assets/images/ok.png" alt="" class=" pl-2">
+                                            {{$responseData['result']['description']}}
+                                        </h4>
 
-                              
+                                    </div>
+                                    @else
+
+                                    <div class="alert alert-danger col-md-12 text-center pt-4 shadow rounded" role="alert">
+
+                                        <h4 class="pt-2"> <i class="fa fa-close"> </i>
+                                            {{$responseData['result']['description']}}
+                                        </h4>
+                                        
+                                    </div>
+                                    
+                                @endif
+
                             </div>
                     
                           </div>
-                          <div class="col-md-5">
-                            
-                            <div class="cart-details row  p-4 shadow rounded">
-                              @include('site.checkout.sammary')
-                            </div>
-                          </div>
+                           
+
                         </div>
                   
                   </div>

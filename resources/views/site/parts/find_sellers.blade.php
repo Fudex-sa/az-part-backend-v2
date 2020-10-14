@@ -5,7 +5,6 @@
 
 @section('styles')
     
-    <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet">
     
 @endsection
 
@@ -51,19 +50,21 @@
 
                         <div class="col-md-3">
                         <div class="e-end">
-                            <h6><img src="{{ site('assets/images/phone.png') }}" alt="" class="ml-3"> 
-                                {{ $item->seller['mobile'] .' - '. $item->seller['phone'] }} 
-                            
-                            <a href="https://wa.me/{{ $item->seller['mobile'] }}" target="_blank"> 
-                                <img src="{{ site('assets/images/whatsapp-green.png') }}" width="25"/> 
-                            </a>
+                            <h6>
+                              <a href="tel:{{ $item->seller['mobile'] }}" class="btn btn-whatsapp" >
+                                  <img src="{{ site('assets/images/phone.png') }}" alt="" class="ml-3"> 
+                                  @lang('site.call_seller')
+                              </a>
+
+                              <a href="https://wa.me/{{ $item->seller['mobile'] }}" target="_blank"> 
+                                  <img src="{{ site('assets/images/whatsapp-green.png') }}" width="25"/> 
+                              </a>
                             </h6>
 
                         </div>
-                 
-                        <button type="button" class="btn btn-whatsapp  btn-block btnContact" data-toggle="modal" 
-                            data-target="#contact_seller" data-item="{{ $item->id }}"> @lang('site.or_contact_seller')
-                        </button>
+                  
+                      <button class="btnContact btn btn-block btn-whatsapp" data-toggle="modal" data-target="#contact_seller" 
+                      data-item="{{ $item->id }}"> @lang('site.complete_order') </button>
 
                         </div>
                     </div>
@@ -85,7 +86,9 @@
         <div class="col-md-12">
           <div class="advice text-center">
             <p> {{ notification('contact_seller_hint') }} </p>
-            <a href="#" class="btn btn-results">الحصول على المزيد من النتائج</a>
+ 
+            <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>
+  
           </div>
         </div>
 
@@ -125,10 +128,6 @@
 
 <script src="{{ site('assets/js/select2.js') }}"></script>
 
-
-<script src="{{site('maps/script.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
-async defer></script>
 
 <script src="{{ site('assets/js/bootstrap-input-spinner.js') }}"></script>
 <script>

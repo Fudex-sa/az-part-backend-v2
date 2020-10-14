@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title') @lang('site.site_settings') @endsection
+@section('title') @lang('site.data_site') @endsection
 
 @section('styles')
     
@@ -11,7 +11,7 @@
   
 <div class="btn-group">
      
-    @if(has_permission('settings_add'))
+    @if(has_permission('data_site_add'))
         <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
                 <i class="fa fa-plus"></i>  @lang('site.add') </a> 
     @endif
@@ -39,15 +39,15 @@
             
             <td>{{$item->keyword}}</td>
             
-            <td>{{$item['value']}}</td>             
+            <td>{{$item['value_'.my_lang()]}}</td>             
 
             <td>
-                @if(has_permission('settings_edit'))
-                    <a href="{{ route('admin.setting',$item->id) }}" class="btn btn-info btn-xs">
+                @if(has_permission('data_site_edit'))
+                    <a href="{{ route('admin.data_site',$item->id) }}" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> </a>
                 @endif
 
-                @if(has_permission('settings_delete'))
+                @if(has_permission('data_site_delete'))
                     <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
                         <i class="fa fa-trash"></i> </a>
                 @endif
@@ -66,12 +66,12 @@
 
 @section('popup')
 
-    @include('dashboard.settings.create')
+    @include('dashboard.data_site.create')
 
 @endsection
 
 @section('scripts')
     
-    @include('dashboard.ajax.delete',['target'=>'setting']) 
+    @include('dashboard.ajax.delete',['target'=>'data_site']) 
   
 @endsection

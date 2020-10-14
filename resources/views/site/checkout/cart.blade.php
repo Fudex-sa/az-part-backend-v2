@@ -80,7 +80,7 @@
 
                         <div class=" col-md-3 col-sm-3">       
                             <div class="cart-box">                     
-                                <h5><a href="">
+                            <h5><a onclick="deleteItem({{ $item->id }})" href="javascript:void(0);">
                                     <img src="{{ site('assets/images/remove.png') }}" alt="" class="remove-pen mt-2">
                                 </a></h5>                  
                             </div>          
@@ -106,19 +106,18 @@
                   
                   <div class="col-lg-5 col-md-7">
                     <div class="cart-details row  p-4 shadow rounded">
-                      <h3 class="col-md-12"> @lang('site.order_cost') </h3>
+                      
+                      @include('site.checkout.sammary')
 
-                      <div class="col-md-6"> <h6> @lang('site.parts_total')  </h6> </div>   
-                      <div class="col-md-6"> <h6 class="float-left"> {{ sub_total() }}  @lang('site.rs')  </h6> </div>
- 
-                      <div class="col-md-6"> <h6> @lang('site.total') </h6> </div>
-                      <div class="col-md-6"> <h6 class="float-left"> <span> {{ total() }}  @lang('site.rs')  </span> </h6> </div>
-
-                      <div class="col-md-12">
-                            <a href="{{ route('shipping') }}" class="btn btn-next btn-block btn-lg"> @lang('site.continue_purchase') </a>
-                      </div>
-
+                      @if(sub_total() > 0)
+                        <div class="col-md-12">
+                              <a href="{{ route('shipping') }}" class="btn btn-next btn-block btn-lg"> @lang('site.continue_purchase') </a>
+                        </div>
+                      @endif
+                
                     </div>
+
+                    
                   </div>
 
                 </div>
@@ -143,5 +142,7 @@
 <script>
     $("input[type='number']").inputSpinner()
 </script>
+
+@include('dashboard.ajax.delete',['target'=>'cart']) 
 
 @endsection

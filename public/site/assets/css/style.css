@@ -29,6 +29,43 @@ ul {
 p {
   margin-bottom: 0;
 }
+.fa-bell{
+        font-size: 17px;
+    margin-top: 5px;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    padding: 30px;
+    text-align:right;
+     min-width: 32rem;
+}
+.select2-container--default .select2-selection--single {
+
+    height: 50px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 50px !important ;
+    color: #939393 !important;
+    font-weight: bold;
+    font-family: "Hacen Maghreb", sans-serif;
+}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+            font-size: 18px;
+    color: #939393;
+    font-weight: bold;
+    font-family: "Hacen Maghreb", sans-serif;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+ 
+    top: 12px !important;
+    right:0;
+    left:1px !important;
+
+}
+.mt-44 {
+    margin-top:30px;
+}
 .head-section h2 {
   color: #050708;
   font-size: 30px;
@@ -111,11 +148,11 @@ p {
 .after-none .dropdown-toggle::after {
   display: none;
 }
-.sepretor {
-  color: #bcbcbc;
-  margin-right: 8px !important;
-  margin-left: 25px !important;
-}
+/*.sepretor {*/
+/*  color: #bcbcbc;*/
+/*  margin-right: 8px !important;*/
+/*  margin-left: 25px !important;*/
+/*}*/
 .after-none .dropdown-menu {
   min-width: 25rem;
   padding: 60px 20px;
@@ -125,8 +162,9 @@ p {
   text-align: right;
 }
 .drop-form .form-check-label {
-  margin-bottom: 0;
-  padding-right: 24px;
+    margin-bottom: 0;
+    padding-right: 20px;
+    padding-left: 10px;
 }
 .btn-dropform {
   background-image: linear-gradient(to left, #e26941, #f2a736 60%);
@@ -201,23 +239,24 @@ p {
   color: #939393;
   font-weight: bold;
   font-family: "Hacen Maghreb", sans-serif;
-  padding-right: 40px;
+  /*padding-right: 80px;*/
+  /*margin-right:80px;*/
 }
-.input-A {
-  background: url(../images/place-1.png) no-repeat 305px 12px, #fff;
-}
-.input-B {
-  background: url(../images/place-2.png) no-repeat 310px 12px, #fff;
-}
-.input-C {
-  background: url(../images/place-3.png) no-repeat 310px 12px, #fff;
-}
-.input-D {
-  background: url(../images/place-4.png) no-repeat 310px 12px, #fff;
-}
-.input-E {
-  background: url(../images/place-5.png) no-repeat 310px 12px, #fff;
-}
+/*.input-A {*/
+/*  background: url(../images/place-1.png) no-repeat 270px 12px, #fff;*/
+/*}*/
+/*.input-B {*/
+/*  background: url(../images/place-2.png) no-repeat 270px 12px, #fff;*/
+/*}*/
+/*.input-C {*/
+/*  background: url(../images/place-3.png) no-repeat 270px 12px, #fff;*/
+/*}*/
+/*.input-D {*/
+/*  background: url(../images/place-4.png) no-repeat 270px 12px, #fff;*/
+/*}*/
+/*.input-E {*/
+/*  background: url(../images/place-5.png) no-repeat 270px 12px, #fff;*/
+/*}*/
 .input-A:focus,
 .input-B:focus,
 .input-C:focus,
@@ -1283,13 +1322,14 @@ input::-moz-range-track {
   background: url(../images/info.png) center center no-repeat;
   height: 30px;
   background-size: contain;
+  margin-top:40px;
 }
 .border-none .modal-header {
   border: none;
 }
-.input-E {
-  background: url(../images/place-5.png) no-repeat 275px 12px, #fff;
-}
+/*.input-E {*/
+/*  background: url(../images/place-5.png) no-repeat 275px 12px, #fff;*/
+/*}*/
 .modal-body {
   font-family: "Hacen Maghreb";
   padding: 20px;
@@ -1936,5 +1976,29 @@ margin-bottom: 15px;
 }
 .tabel-order td p{
   font-size: 12px;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    padding: 30px;
+    text-align: right;
+    min-width: 20rem;
+}
+.drop-form .form-check-label {
+    margin-bottom: 0;
+    padding-right: 20px;
+    padding-left: 13px;
+}
+.an-back{
+    float:none !important;
+}
+.info-box h1 {
+    font-size: 30px;
+}
+#menu1 {
+    padding: 0.5rem 5px;
+}
+.fa-bell {
+
+    margin-right: 5px;
 }
 }

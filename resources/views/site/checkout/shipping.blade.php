@@ -4,6 +4,8 @@
 @section('title') @lang('site.shipping') @endsection
 
 @section('styles')
+  
+  <link href="{{site('assets/maps/style.css')}}" type="text/css" rel="stylesheet">
     
 @endsection
 
@@ -57,25 +59,55 @@
                         <div class="form-group col-12">
                             <select class="form-control" name="country_id" id="country_id">
                                 <option value=""> @lang('site.choose_country') </option>
+                                
                                 @foreach (countries() as $country)
-                                    <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>    
+                                    <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
+                                       {{ $country['name_'.my_lang()] }} </option>    
                                 @endforeach
+
                             </select>
                         </div>
                         
                         <div class="form-group col-12">
                             <select class="form-control" name="region_id" id="region_id">
-                                <option value=""> @lang('site.choose_region') </option>                 
+                                <option value=""> @lang('site.choose_region') </option>    
+                                  
+                                  @foreach (regions(old('country_id')) as $reg)
+                                    <option value="{{ $reg->id }}" {{ old('region_id') == $reg->id ? 'selected' : '' }}>
+                                       {{ $reg['name_'.my_lang()] }} </option>
+                                  @endforeach             
+
                               </select>
                         </div>
                         <div class="form-group col-12">
                             <select class="form-control" name="city_id" id="cities">
-                                <option value=""> @lang('site.choose_city') </option>                 
+                                <option value=""> @lang('site.choose_city') </option>    
+                                             
+                                @foreach (cities(old('city_id')) as $cit)
+                                    <option value="{{ $cit->id }}" {{ old('city_id') == $cit->id ? 'selected' : '' }}>
+                                       {{ $cit['name_'.my_lang()] }} </option>
+                                  @endforeach 
+
                               </select>
                         </div>
                        
+                        <div class="form-group col-md-12">
+                          <input type="text" class="form-control" name="street" value="{{ old('street') }}" 
+                          placeholder="@lang('site.building_number')">
+                        </div>
+               
+                        <div class="form-group col-md-12">
+                           <input id="pac-input" class="form-control add-bg" name="address" type="text"
+                           placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
+               
+                           <div id="map" style="width:100%;height: 400px;"></div>
+                        <input type="hidden" name="latitude"  id="latitude" value="{{ old('lat') ? old('lat') : '26.420031' }}"/>
+                        <input type="hidden" name="longitude" id="longitude" value="{{ old('lng') ? old('lng') : '50.089986' }}"/>
+                        </div>
+                
                         <div class="form-group col-12">
-                          <input type="text" class="form-control" name="note" id="note" placeholder="@lang('site.add_note')">
+                          <input type="text" class="form-control" name="notes" value="{{ old('notes') }}" 
+                            placeholder="@lang('site.add_note')">
                         </div>
                      
                     </div>
@@ -88,7 +120,12 @@
  
                             <div class="col-md-12">
                             <ul class="my-ordar row" id="reps">
-                                 
+                                @foreach (reps(old('city_id')) as $r)
+                                  <li> <label> 
+                                          <input type='radio' name='rep_id' value="{{ $r->id }}" /> {{ $r->name }} 
+                                      </label> 
+                                  </li>    
+                                @endforeach
                             </ul>                          
                             </div>
                         
@@ -102,19 +139,13 @@
                     </div>
 
                     <div class="cart-details row  p-4 shadow rounded">
-                      <h3 class="col-md-12">@lang('site.order_cost')  </h3>
+                      
+                      @include('site.checkout.sammary')
 
-                        <div class="col-md-6"> <h6> @lang('site.parts_total')  </h6> </div>   
-                      <div class="col-md-6"> <h6 class="float-left"> {{ sub_total() }}  @lang('site.rs')  </h6> </div>
- 
-                      <div class="col-md-6"> <h6> @lang('site.total') </h6> </div>
-                      <div class="col-md-6"> <h6 class="float-left"> <span> {{ total() }}  @lang('site.rs')  </span> </h6> </div>
-
-                        
                       <div class="col-md-12">
                         <input type="submit" class="btn btn-next btn-block btn-lg" value="@lang('site.continue_purchase')"> 
-
                       </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -139,5 +170,9 @@
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities')
     @include('dashboard.ajax.load_reps')
+
+    <script src="{{site('maps/script.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
+    async defer></script>
 
 @endsection

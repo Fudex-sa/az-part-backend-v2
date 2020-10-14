@@ -34,11 +34,6 @@ class OrderRequest extends FormRequest
             'piece_alt_id' => 'required|numeric',
             'price' => 'required',
             
-
-            'shipping_country_id' => 'required|numeric',
-            'shipping_region_id' => 'required|numeric',
-            'shipping_city_id' => 'required|numeric',
-            'street' => 'required',
         ];
     }
 
@@ -55,11 +50,7 @@ class OrderRequest extends FormRequest
 
             'piece_alt_id.required' =>  __('site.piece_required'),
             'price.required' =>  __('site.price_required'),
-
-            'shipping_country_id.required' =>  __('site.shipping_country_required'),
-            'shipping_region_id.required' =>  __('site.shipping_region_required'),
-            'shipping_city_id.required' =>  __('site.shipping_city_required'),
-            'street.required' =>  __('site.street_required'),
+ 
         ];
     }
 }

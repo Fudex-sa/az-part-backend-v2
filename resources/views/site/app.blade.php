@@ -38,7 +38,7 @@
           
         <li class="nav-item"> <a class="nav-link" href="{{ route('stock') }}"> @lang('site.old_stock') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('packages') }}"> @lang('site.packages') </a> </li>
+        <li class="nav-item"> <a class="nav-link" href="{{ route('package.show','electronic') }}"> @lang('site.packages') </a> </li>
 
       </ul>
       <ul class="navbar-nav contact-nav mr-auto">
@@ -56,7 +56,8 @@
 
         <li class="nav-item">
           <a class="nav-link" href="{{ route('cart') }}">  <i class="fa fa-bell"> </i>
-            <span class="blue"> {{ count(cart()) }} </span> </a>
+            @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
+           </a>
         </li>
 
         <li class="nav-item dropdown ">
@@ -67,7 +68,7 @@
           @if(auth()->guard('company')->user() || auth()->user() || auth()->guard('broker')->user() ||
             auth()->guard('seller')->user() || auth()->guard('rep')->user() )
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> @lang('site.profile')  </a>
 
               {{-- @can('createAvailableBrand') --}}
@@ -147,7 +148,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="menu1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-globe"></i>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
               <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                 {{ $properties['native'] }}  </a>

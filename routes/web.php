@@ -40,9 +40,11 @@ Route::group([
             Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
 
             Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
+ 
+            Route::get('package/{type}',[App\Http\Controllers\Site\PackageController::class, 'show'])->name('package.show');            
+            Route::get('package/subscribe/{id}',[App\Http\Controllers\Site\PackageController::class, 'subscribe'])->name('package.subscribe');            
 
-            Route::get('packages',[App\Http\Controllers\Site\PackagesController::class, 'index'])->name('packages');
-
+            
             Route::get('privacy',[App\Http\Controllers\Site\PageController::class, 'privacy'])->name('privacy');
             Route::get('terms',[App\Http\Controllers\Site\PageController::class, 'terms'])->name('terms');
             Route::get('about_us',[App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
@@ -78,10 +80,16 @@ Route::group([
             Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller')->middleware('isLogged');
 
             Route::get('cart',[App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
+            Route::delete('cart/delete',[App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');            
+
             Route::get('shipping',[App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
             Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'create'])->name('shipping.save')->middleware('isLogged');
+            Route::get('payment/method',[App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');            
+            Route::get('payment/choose',[App\Http\Controllers\Site\PaymentController::class, 'choose'])->name('payment.choose')->middleware('isLogged');
             Route::get('payment',[App\Http\Controllers\Site\PaymentController::class, 'index'])->name('payment')->middleware('isLogged');
-            
+            Route::get('/resourcePath=/v1/checkouts/{checkoutId}/payment',
+                    [App\Http\Controllers\Site\PaymentController::class, 'pay_response'])->name('pay_response')->middleware('isLogged');
+ 
         });
         
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
@@ -180,6 +188,12 @@ Route::group([
             Route::get('setting/{item}',[App\Http\Controllers\Admin\SettingController::class, 'edit'])->name('admin.setting');
             Route::post('setting/store/{item?}',[App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.store');
             Route::delete('setting/delete',[App\Http\Controllers\Admin\SettingController::class, 'delete'])->name('admin.setting.delete');
+
+            /************ Data Site  **********/
+            Route::get('data_sites',[App\Http\Controllers\Admin\DataSiteController::class, 'all'])->name('admin.data_sites');                        
+            Route::get('data_site/{item}',[App\Http\Controllers\Admin\DataSiteController::class, 'edit'])->name('admin.data_site');
+            Route::post('data_site/store/{item?}',[App\Http\Controllers\Admin\DataSiteController::class, 'store'])->name('admin.data_site.store');
+            Route::delete('data_site/delete',[App\Http\Controllers\Admin\DataSiteController::class, 'delete'])->name('admin.data_site.delete');
 
             /************ Countries  **********/
             Route::get('countries',[App\Http\Controllers\Admin\CountryController::class, 'all'])->name('admin.countries');                

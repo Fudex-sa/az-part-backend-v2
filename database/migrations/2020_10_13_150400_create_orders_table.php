@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
             $table->enum('type',['manual','electronic'])->default('manual');
             $table->integer('user_id');
             $table->integer('seller_id');
-            
+            $table->integer('order_id')->nullable();
+
             $table->integer('brand_id');
             $table->integer('model_id');
             $table->integer('year');
@@ -31,9 +32,6 @@ class CreateOrdersTable extends Migration
             $table->string('guarantee')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('bought')->default(0);
- 
-            $table->integer('status')->default(1);
-            $table->float('total')->default(0);
              
             $table->timestamps();
         });

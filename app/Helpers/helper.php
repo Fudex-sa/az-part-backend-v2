@@ -1,12 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Models\Setting; 
+use App\Models\DataSite; 
 use App\Models\Social; 
 use App\Models\UserRole;
 use App\Models\RolePermission;
 use App\Models\UserPermission;
 use App\Models\Country;
 use App\Models\Region;
+use App\Models\City;
+use App\Models\Rep;
 use App\Models\Supervisor;
 use App\Models\Notification;
 use Mobily;
@@ -63,6 +66,14 @@ if (! function_exists('setting')) {
     function setting($keyword)
     {
         $getValue = Setting::where('keyword',$keyword)->first();
+        return $getValue ? $getValue['value'] : '';
+    }
+}
+
+if (! function_exists('data')) {
+    function data($keyword)
+    {
+        $getValue = DataSite::where('keyword',$keyword)->first();
         return $getValue ? $getValue['value_'.my_lang()] : '';
     }
 }
@@ -116,6 +127,20 @@ if (! function_exists('regions')) {
     function regions($country_id)
     {
         return Region::where('country_id',$country_id)->orderby('name_ar','desc')->get();
+    }
+}
+
+if (! function_exists('cities')) {
+    function cities($region_id)
+    {
+        return City::where('region_id',$region_id)->orderby('name_ar','desc')->get();
+    }
+}
+
+if (! function_exists('reps')) {
+    function reps($city_id)
+    {
+        return Rep::where('city_id',$city_id)->orderby('name','desc')->get();
     }
 }
 

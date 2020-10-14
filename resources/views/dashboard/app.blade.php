@@ -129,6 +129,10 @@
                             <li> <a  href="{{ route('admin.socials') }}">  {{ __('site.social_links') }} </a> </li>
                         @endif
 
+                        @if(has_permission('data_site_show'))
+                            <li> <a href="{{ route('admin.data_sites') }}"> {{ __('site.data_site') }} </a> </li>
+                        @endif
+
                         @if(has_permission('settings_show'))
                             <li> <a href="{{ route('admin.settings') }}"> {{ __('site.site_settings') }} </a> </li>
                         @endif
