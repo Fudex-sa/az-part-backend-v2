@@ -194,6 +194,34 @@ if (! function_exists('logged_user')) {
     }
 }
 
+if (! function_exists('user_type')) {
+    function user_type()
+    {
+        if(auth()->guard('seller')->check())
+            $result = 'seller';
+
+        elseif(auth()->guard('broker')->check())
+            $result = 'broker';
+
+        elseif(auth()->guard('company')->check())
+            $result = 'company';
+
+        elseif(auth()->guard('admin')->check())
+            $result = 'admin'; 
+
+        elseif(auth()->guard('rep')->check())
+            $result = 'rep';
+
+        elseif(auth()->user()) 
+            $result = 'user';
+
+        else $result = 'guest';
+
+        return $result;
+ 
+    }
+}
+
 
 
 

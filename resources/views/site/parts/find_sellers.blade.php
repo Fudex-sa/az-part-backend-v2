@@ -64,7 +64,7 @@
                         </div>
                   
                       <button class="btnContact btn btn-block btn-whatsapp" data-toggle="modal" data-target="#contact_seller" 
-                      data-item="{{ $item->id }}"> @lang('site.complete_order') </button>
+                      data-item="{{ $item->seller['id'] }}"> @lang('site.complete_order') </button>
 
                         </div>
                     </div>
@@ -114,10 +114,10 @@
        
        $('#contact_seller').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var item_id = button.data('item');
+            var seller_id = button.data('item');
             
             var modal = $(this);
-            modal.find('.item_id').val(item_id);
+            modal.find('.seller_id').val(seller_id);
         });
 
         

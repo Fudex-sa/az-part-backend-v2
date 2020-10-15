@@ -30,7 +30,14 @@ Route::group([
 
         });
 
-         
+        Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
+            
+            Route::get('profile',[App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
+            Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('isLogged');
+
+        });
+
+
         Route::group(['namespace' => 'Site'], function () {
 
             Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
@@ -53,7 +60,7 @@ Route::group([
             Route::get('signup_as',[App\Http\Controllers\Site\AuthController::class, 'signup_as'])->name('signup_as');
             Route::get('login_as',[App\Http\Controllers\Site\AuthController::class, 'login_as'])->name('login_as');
 
-            Route::get('user/login',[App\Http\Controllers\Site\AuthController::class, 'signin'])->name('user.signin');
+            Route::get('user/login',[App\Http\Controllers\Site\AuthController::class, 'signin'])->name('user.signin')->middleware('guest');
             Route::post('user/login',[App\Http\Controllers\Site\AuthController::class, 'login'])->name('user.login');
             Route::get('user/forget_password',[App\Http\Controllers\Site\AuthController::class, 'forget_password'])->name('user.forget_password');
             Route::post('reset_password',[App\Http\Controllers\Site\AuthController::class, 'reset_password'])->name('reset_password');
@@ -73,15 +80,14 @@ Route::group([
             Route::get('resend_code/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'resend_code'])->name('resend_code');
 
             Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
-
-            Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
  
             Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
             Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller')->middleware('isLogged');
 
             Route::get('cart',[App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
             Route::delete('cart/delete',[App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');            
-
+            Route::post('coupon/use',[App\Http\Controllers\Site\CartController::class, 'use_coupon'])->name('coupon.use')->middleware('isLogged');
+            
             Route::get('shipping',[App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
             Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'create'])->name('shipping.save')->middleware('isLogged');
             Route::get('payment/method',[App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');            
@@ -90,6 +96,7 @@ Route::group([
             Route::get('/resourcePath=/v1/checkouts/{checkoutId}/payment',
                     [App\Http\Controllers\Site\PaymentController::class, 'pay_response'])->name('pay_response')->middleware('isLogged');
  
+
         });
         
         Route::group(['prefix'=> 'admin','namespace' => 'Admin','middleware'=>'admin'], function () {
@@ -277,6 +284,12 @@ Route::group([
             Route::get('notification/{item}',[App\Http\Controllers\Admin\NotificationController::class, 'edit'])->name('admin.notification');                        
             Route::post('notification/store/{item?}',[App\Http\Controllers\Admin\NotificationController::class, 'store'])->name('admin.notification.store');                        
             Route::delete('notification/delete',[App\Http\Controllers\Admin\NotificationController::class, 'delete'])->name('admin.notification.delete');                        
+
+            /************ Coupons  **********/
+            Route::get('coupons',[App\Http\Controllers\Admin\CouponController::class, 'all'])->name('admin.coupons');                        
+            Route::get('coupon/{item}',[App\Http\Controllers\Admin\CouponController::class, 'edit'])->name('admin.coupon');
+            Route::post('coupon/store/{item?}',[App\Http\Controllers\Admin\CouponController::class, 'store'])->name('admin.coupon.store');
+            Route::delete('coupon/delete',[App\Http\Controllers\Admin\CouponController::class, 'delete'])->name('admin.coupon.delete');
 
 
 

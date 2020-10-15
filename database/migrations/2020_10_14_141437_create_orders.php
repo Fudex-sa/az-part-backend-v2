@@ -18,6 +18,8 @@ class CreateOrders extends Migration
             $table->integer('user_id');
             $table->float('sub_total');
             $table->float('taxs')->default(0);
+            $table->integer('coupon_id')->nullable();
+            $table->float('coupon_value')->default(0);
             $table->float('total');
             $table->integer('status')->default(1);
              

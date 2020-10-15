@@ -147,6 +147,14 @@
 
             @endif 
 
+            <ul class="nav side-menu">
+                
+                @if(has_permission('coupons_show'))
+                    <li> <a  href="{{ route('admin.coupons')}}"> <i class="fa fa-image"></i>  {{ __('site.coupons') }} </a> </li>
+                @endif
+ 
+            </ul>
+
             @if(has_permission('car_bidding_show') || has_permission('antiques_show') || has_permission('damaged_show') )
 
             <ul class="nav side-menu">

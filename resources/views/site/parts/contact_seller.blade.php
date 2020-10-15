@@ -14,7 +14,7 @@
       <form class="col-md-12 pop-margin" method="POST" action="{{ route('contact_seller') }}">
        @csrf
        
-        <input type="hidden" name="seller_id" class="item_id" />
+        <input type="hidden" name="seller_id" class="seller_id" />
 
         <input type="hidden" name="brand_id" value="{{ request()->brand }}" />
         <input type="hidden" name="model_id" value="{{ request()->model }}" />

@@ -11,15 +11,26 @@ use App\Models\Cart;
 use App\Models\OrderShipping;
 use App\Http\Requests\Site\OrderRequest;
 use Session;
+use App\Helpers\PackageHelp;
 
 class PartController extends Controller
 {
     protected $view = "site.parts.";
- 
+    public $package;
+
+    public function __construct()
+    {     
+        $this->package = new PackageHelp();
+    }
+
     public function search(PartSearchRequest $request)
     { 
-
-        $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)->limit(1)                    
+        session()->put('has_request',1);
+         
+        $this->package->stores_limit() > 0 ? $limit = $this->package->stores_limit() : $limit = 1; 
+         
+        $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+                    ->limit($limit)                    
                     ->get();
      
         $piece_alts = PieceAlt::orderby('name_'.my_lang(),'desc')->get();
@@ -37,7 +48,7 @@ class PartController extends Controller
         $item = Cart::create($data);
         
         if($item){
-            Session::forget('search');
+            // Session::forget('search');
 
             return redirect()->route('cart');
         }

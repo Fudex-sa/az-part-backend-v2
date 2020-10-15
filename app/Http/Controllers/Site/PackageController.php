@@ -9,14 +9,14 @@ use Session;
 
 class PackageController extends Controller
 {
-    protected $view = "site.packages.";
-
-
+ 
     public function show($type)
     {
+        $packages = true;
+
         $items = Package::type($type)->orderby('id','desc')->get();
 
-        return view($this->view . 'show',compact('type','items'));
+        return view('site.packages',compact('type','items','packages'));
     }
 
     public function subscribe($id)

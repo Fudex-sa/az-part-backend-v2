@@ -12,6 +12,11 @@
 
         <div class="col-md-6"> <h6> @lang('site.site_commission')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left"> {{ setting('site_commission') }}  @lang('site.rs')  </h6> </div>
+
+
+        <div class="col-md-6"> <h6> @lang('site.coupon')  </h6> </div>   
+        <div class="col-md-6"> <h6 class="float-left"> {{ coupon_discount() }}  @lang('site.rs')  </h6> </div>
+
     @endif
 
     <div class="col-md-6"> <h6> @lang('site.total') </h6> </div>

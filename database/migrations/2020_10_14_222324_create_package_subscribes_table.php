@@ -16,8 +16,12 @@ class CreatePackageSubscribesTable extends Migration
         Schema::create('package_subscribes', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->enum('user_type',['user','company','admin','broker','seller','rep'])->default('user');
             $table->integer('package_id');
+            $table->integer('stores_no');
             $table->float('price');
+            $table->boolean('expired')->default(1);
+            $table->integer('order_id')->nullable();
             $table->timestamps();
         });
     }

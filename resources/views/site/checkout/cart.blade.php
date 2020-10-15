@@ -68,7 +68,8 @@
                         <div class="col-md-2 col-sm-3">
                             <div class="cart-box">
                                 <h5> <span class="blue"> @lang('site.seller') : </span>
-                                     {{ $item->seller['name'] }}  </h5>
+                                     {{ $item->seller['name'] }}
+                                      </h5>
                             </div>
                         </div>
 
@@ -96,10 +97,17 @@
                 <div class="row mt-5">
                   <div class="col-lg-7 col-md-5">
                     <div class="dis  shadow  p-4 rounded">
-                      <h3 class="col-md-12">كوبون الخصم</h3>
-                      <div class="form-group col-md-12">
-                        <input type="text" class="form-control" id="discount" placeholder="  أدخل كوبون الخصم">
-                      </div>
+                      <h3 class="col-md-12"> @lang('site.coupon')  </h3>
+                      
+                    <form method="post" action="{{ route('coupon.use') }}" class="row">
+                          @csrf
+                          <div class="form-group col-md-8">
+                            <input type="text" name="code" class="form-control" placeholder="@lang('site.enter_coupon')" required>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="submit" value="@lang('site.use_now')" class="btn btn-primary" />                        
+                          </div>
+                        </form>
                     </div>
 
                   </div>

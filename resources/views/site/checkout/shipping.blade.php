@@ -131,12 +131,8 @@
                         
                       </div>
                     </div>
-                    <div class="row mt-4">
-                      <div class="alert alert-success col-md-12 text-center pt-4 shadow rounded" role="alert">
-                        <h5>تم إستخدام كود خصم</h5>
-                        <h4 class="pt-2"> <img src="assets/images/ok.png" alt="" class=" pl-2">HANNR15</h4>
-                      </div>
-                    </div>
+
+                    @include('site.checkout.coupon')
 
                     <div class="cart-details row  p-4 shadow rounded">
                       

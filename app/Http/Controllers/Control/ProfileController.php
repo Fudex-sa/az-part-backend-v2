@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Control;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    protected $view = "control.";
     
     public function index()
     {
-        return view('site.profile');
+        $profile = true;
+
+        return view($this->view . 'profile', compact('profile'));
     }
 }

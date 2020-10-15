@@ -780,6 +780,27 @@ return [
     'get_more_results' => 'Get more results',
     'choose_your_package' => 'Choose the type of subscription that best suits you',
     'subscribe_in_package' => 'Subscribe to the package',
+    'my_packages' => 'My Packages',
+    'package_name' => 'Package Name',
+    'created_at' => 'Created Date',
+    'subscribe_date' => 'Subscribe Date',
+    'package_type' => 'Package Type',
+    'stores_no_or_requests_no' => 'Stores No/Request No',
+    'store' => 'Store',
+    'expired' => 'Expired?',
+    'order_no' => 'Order No',
+    'coupons' => 'Coupons',
+    'coupon' => 'Coupon',
+    'code' => 'Code',
+    'enter_coupon' => 'Enter Coupon',
+    'use_now' => 'Use Now',
+    'uses_number' => 'Uses Number',
+    'expiration_date' => 'Expiration Date',
+    'users_used_time' => 'Users Used Times',
+    'coupon_added_successfully' => 'Coupon Added Successfully',
+    'coupon_use_name' => 'Coupon Name Used',
+    'coupon_added_failed' => 'Invalid Coupon',
+     
 ];
 
 ?>

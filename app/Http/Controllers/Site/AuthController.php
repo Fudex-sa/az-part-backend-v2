@@ -12,10 +12,17 @@ use App\Models\rep;
 use Auth;
 use App\Http\Requests\Site\LoginRequest;
 use Session;
+use App\Helpers\Search;
 
 class AuthController extends Controller
 {
     protected $view = "site.auth.";
+    protected $search;
+
+    public function __construct()
+    {    
+        $this->search = new Search();
+    }
 
     public function signup_as()
     {
@@ -100,19 +107,10 @@ class AuthController extends Controller
             $search = Session::get('search');
  
             if( $search && $search['has_request'] == 1){
-                $brand = $search['brand'];
-                $model = $search['model'];
-                $year = $search['year'];
-                $country = $search['country'];
-                $region = $search['region'];
-                $city = $search['city'];
-                $search_type = $search['search_type'];
 
-                $url = 'parts/search?brand='.$brand.'&model='.$model.'&year='.$year.'&country='.
-                            $country.'&region='.$region.'&city='.$city.'&search_type='.$search_type;
-
-                return redirect($url); 
+                return redirect($this->search->search_url()); 
             }
+
             return redirect()->route('profile'); 
         }
         else  if($response == -1)

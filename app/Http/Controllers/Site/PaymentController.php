@@ -8,20 +8,23 @@ use Session;
 use App\Helpers\HyperPay;
 use App\Helpers\OrderHelp;
 use App\Helpers\PackageHelp;
+use App\Helpers\Search;
 
 class PaymentController extends Controller
 {
     protected $view = "site.checkout.";
     
-    public $hyperPay;
-    public $order;
-    public $package;
+    protected $hyperPay;
+    protected $order;
+    protected $package;
+    protected $search;
 
     public function __construct()
     {
         $this->hyperPay = new HyperPay();
         $this->order = new OrderHelp();
         $this->package = new PackageHelp();
+        $this->search = new Search();
     }
 
     public function payment_method()
@@ -60,6 +63,15 @@ class PaymentController extends Controller
             else
                 $this->order->create_order();
         }
+
+        //--------- Redirect after payment -----
+        $search = Session::get('search');
+
+        if( $search && $search['has_request'] == 1){
+  
+            return redirect($this->search->search_url()); 
+        }
+
         return view($this->view . 'response', compact('responseData'));
     }
 }

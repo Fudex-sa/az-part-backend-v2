@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use Session;
 
 class CartController extends Controller
 {
@@ -22,5 +23,18 @@ class CartController extends Controller
             return 1;
 
         return 0;
+    }
+
+    public function use_coupon(Request $request)
+    {
+        $code = $request->code;
+        
+        if(valid_coupon($code) == 1){
+            session()->put('coupon',$code);
+
+            return back()->with('success' , __('site.coupon_added_successfully') );
+        }                
+        else
+            return back()->with('failed' , __('site.coupon_added_failed'))->withInput();
     }
 }

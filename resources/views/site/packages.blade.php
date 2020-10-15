@@ -61,7 +61,7 @@
                     <div class="sub-card-body">
                       <ul>
                           <li> 
-                            {{ $type == 'manaul' ? __('site.stores_no') : __('site.requests_no') }}  :
+                            {{ $type == 'manual' ? __('site.stores_no') : __('site.requests_no') }}  :
                             {{ $item->stores_no }}
                           </li>
 

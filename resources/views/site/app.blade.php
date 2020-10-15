@@ -30,15 +30,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-custom">
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('home') }}"> @lang('site.home') </a> </li>
+      <li class="nav-item"> <a class="nav-link {{ isset($home) ? 'blue' : '' }}" 
+            href="{{ route('home') }}"> @lang('site.home') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($cars_yard) ? 'blue' : '' }}" 
+            href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a> </li>
         
-        <li class="nav-item"> <a class="nav-link" href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($antique_cars) ? 'blue' : '' }}" 
+          href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a> </li>
           
-        <li class="nav-item"> <a class="nav-link" href="{{ route('stock') }}"> @lang('site.old_stock') </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($old_stock) ? 'blue' : '' }}" 
+            href="{{ route('stock') }}"> @lang('site.old_stock') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('package.show','electronic') }}"> @lang('site.packages') </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($packages) ? 'blue' : '' }}" 
+          href="{{ route('package.show','electronic') }}"> @lang('site.packages') </a> </li>
 
       </ul>
       <ul class="navbar-nav contact-nav mr-auto">

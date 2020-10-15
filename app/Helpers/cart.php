@@ -2,8 +2,9 @@
 
 use App\Models\Cart;
 use App\Models\Package;
-use Session;
-
+use App\Models\Coupon;
+use App\Models\Order;
+ 
 if (! function_exists('cart')) {
     function cart() {
 
@@ -35,7 +36,7 @@ if (! function_exists('taxs')) {
 if (! function_exists('payment_type')) {
     function payment_type() {
 
-        $payment_type = Session::get('payment_type') ? Session::get('payment_type') : 'cart';
+        $payment_type = session()->get('payment_type') ? session()->get('payment_type') : 'cart';
  
         return $payment_type;
     }
@@ -46,14 +47,15 @@ if (! function_exists('total')) {
     function total() {
                 
         if(payment_type() == 'package')
-            $result = Package::packagePrice(Session::get('package_id'));
+            $result = Package::packagePrice(session()->get('package_id'));
 
         else
             $result = sub_total() + taxs();
         
-        return $result;
+        return $result - coupon_discount();
     }
 }
+
 
 if (! function_exists('update_cart')) {
     function update_cart($order_id) {
@@ -62,3 +64,47 @@ if (! function_exists('update_cart')) {
         
     }
 }
+
+if (! function_exists('valid_coupon')) {
+    function valid_coupon($code)
+    {         
+        $coupon = Coupon::where('code',$code)->first();
+
+        if($coupon){
+            $used_times = Order::couponByUser($coupon->id)->get()->count();
+            
+            if($used_times < $coupon->uses_number)                
+                return 1;
+                 
+            else return 0;
+        }
+        
+        else return 0;
+    }
+}
+ 
+if (! function_exists('coupon_discount')) {
+    function coupon_discount()
+    {   
+        if(session()->get('coupon')) 
+            $discount = Coupon::couponValue(session()->get('coupon'))->first()->value;
+
+        else $discount = 0;
+
+        return $discount;
+    }
+}
+
+if (! function_exists('coupon_id')) {
+    function coupon_id()
+    {   
+        if(session()->get('coupon')) 
+            $id = Coupon::where('code',session()->get('coupon'))->first()->id;
+
+        else $id = 0;
+
+        return $id;
+    }
+}
+
+ 
