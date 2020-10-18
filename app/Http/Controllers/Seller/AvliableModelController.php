@@ -18,7 +18,7 @@ class AvliableModelController extends Controller
          
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
 
-        $items = AvailableModel::userBrands(user_id())->orderby('brand_id','desc')
+        $items = AvailableModel::userBrands(logged_user()->id)->orderby('brand_id','desc')
                                 ->orderby('model_id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('brands','items'));
@@ -38,7 +38,7 @@ class AvliableModelController extends Controller
         
         $data = $request->except('_token');
         
-        $data['user_id'] = user_id();
+        $data['user_id'] = logged_user()->id;
   
         if(! $id){
             foreach($request->years as $year){

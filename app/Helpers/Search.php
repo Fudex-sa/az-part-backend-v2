@@ -10,8 +10,9 @@ class Search
     public function search_url()
     {
         $search = Session::get('search');
+        $has_request = Session::get('has_request');
 
-        if( $search && $search['has_request'] == 1){
+        if( $search && $has_request == 1){
             $brand = $search['brand'];
             $model = $search['model'];
             $year = $search['year'];

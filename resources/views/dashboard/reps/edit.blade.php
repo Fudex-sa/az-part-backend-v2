@@ -12,7 +12,7 @@
                 
                 & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
                 
-                & $col != 'created_by' & $col != 'city_id')
+                & $col != 'created_by' & $col != 'city_id' & $col != 'region_id' & $col != 'lat' & $col != 'lng')
     
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -29,18 +29,18 @@
                             <input type="email" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
                             required>  
     
-                        @elseif($col == 'mobile')
+                        @elseif($col == 'mobile' || $col == 'phone')
                             <input type="tel" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
                             required>  
     
                         @elseif($col == 'password')
-                            <input type="password" name="{{ $col }}" class="form-control">  
+                            <input type="password" name="{{ $col }}" class="form-control" autocomplete="new-password">  
     
                         @elseif($col == 'available_requests')
                             <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
                                 required>  
 
-                        @elseif($col == 'photo')
+                        @elseif($col == 'photo' || $col == 'id_copy' || $col == 'car_license_img' || $col == 'car_img')
                             <input type="file" name="{{ $col }}" >  
     
                         @elseif($col == 'saudi' || $col == 'active' || $col == 'vip')
@@ -54,17 +54,59 @@
                                     {{ $item->$col == 0 ? 'checked' : '' }} required/> @lang('site.no')
                             </label>
                             
-                        @elseif($col == 'user_type')
+                            @elseif($col == 'type')
                             <label>
-                                <input type="radio" class="flat" name="{{ $col }}" value="tashalih"  
-                                    {{ $item->$col  == 'tashalih' ? 'checked' : '' }} required/> @lang('site.tashalih')
+                                <input type="radio" class="flat" name="{{ $col }}" value="individual"  checked
+                                {{ $item->$col == 'individual' ? 'checked' : '' }} required/> @lang('site.individual')
                             </label>
+        
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="company"  
+                                    {{ $item->$col == 'company' ? 'checked' : '' }} required/> @lang('site.company')
+                            </label>
+        
+                            @elseif($col == 'status')
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="join_request"
+                                {{ $item->$col == 'join_request' ? 'checked' : '' }} required/> @lang('site.join_request')
+                            </label>
+        
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="activated"  checked
+                                    {{ $item->$col == 'activated' ? 'checked' : '' }} required/> @lang('site.activated')
+                            </label>
+        
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="not_activated"  
+                                    {{ $item->$col == 'not_activated' ? 'checked' : '' }} required/> @lang('site.not_activated')
+                            </label>
+        
+                            <label>
+                                <input type="radio" class="flat" name="{{ $col }}" value="rejected"  
+                                    {{ $item->$col == 'rejected' ? 'checked' : '' }} required/> @lang('site.rejected')
+                            </label>
+        
+                            @elseif($col == 'bank_id')
+                            <select name="{{ $col }}" class="form-control">
+                                <option value=""> @lang('site.choose_bank') </option>
+                                
+                                @foreach ($banks as $bank)
+                                    <option value="{{ $bank->id }}" {{ $item->$col == $bank->id ? 'selected' : '' }}>
+                                         {{ $bank['name_'.my_lang()] }} </option>    
+                                @endforeach
+                            </select>
+        
+                            @elseif($col == 'address')
+                            <input id="pac-input" class="form-control add-bg" name="{{ $col }}" type="text"
+                            placeholder="{{ __('site.find_address') }}" value="{{ $item->$col }}">
+        
+                            <div id="map" style="width:420px;height: 400px;"></div>
+                            <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
+                            <input type="hidden" name="lng" id="longitude" value="50.089986"/>
 
-                            <label>
-                                <input type="radio" class="flat" name="{{ $col }}" value="manufacturing"  
-                                    {{ $item->$col == 'manufacturing' ? 'checked' : '' }} required/> @lang('site.manufacturing')
-                            </label>
-                         
+                        @elseif($col == 'car_data') 
+                        <textarea name="{{ $col }}" class="form-control"> {{ $item->$col }} </textarea>
+                            
                         @else
                         <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
     
@@ -120,7 +162,7 @@
                     <option value=""> @lang('site.choose_region') </option>
                     @if($regions)
                         @foreach ($regions as $region)
-                            <option value="{{ $region->id }}">
+                            <option value="{{ $region->id }}" {{ $region_city->id == $item->city_id ? 'selected' : '' }}>
                                 {{ $region['name_'.my_lang()] }} </option>
                         @endforeach
                     @endif

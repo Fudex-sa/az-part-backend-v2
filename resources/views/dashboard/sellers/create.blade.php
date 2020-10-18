@@ -5,6 +5,7 @@
 @section('styles')
     
     <link href="{{ dashboard('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet">
 
 @endsection
 
@@ -22,7 +23,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
         @if($col != 'id' & $col != 'created_at' & $col != 'updated_at' & $col != 'verification_code'             
             & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'            
             & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'            
-            & $col != 'created_by'   & $col != 'city_id' )
+            & $col != 'created_by'   & $col != 'city_id' & $col != 'lat' & $col != 'lng')
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -46,7 +47,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                         required>  
 
                     @elseif($col == 'password')
-                        <input type="password" name="{{ $col }}" class="form-control" required>  
+                        <input type="password" name="{{ $col }}" class="form-control" required autocomplete="new-password">  
 
                     @elseif($col == 'photo')
                         <input type="file" name="{{ $col }}" >  
@@ -75,7 +76,14 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                         </label>
                     @else
 
+                    @elseif($col == 'address')
+                    <input id="pac-input" class="form-control add-bg" name="address" type="text"
+                    placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
 
+                    <div id="map" style="width:420px;height: 400px;"></div>
+                    <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
+                    <input type="hidden" name="lng" id="longitude" value="50.089986"/>
+                    
                     <input type="text" name="{{ $col }}" class="form-control" value="{{ old($col) }}">                                
 
                     @endif

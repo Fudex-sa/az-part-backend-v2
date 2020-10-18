@@ -5,6 +5,7 @@
 @section('styles')
     
     <link href="{{ dashboard('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet">
 
 @endsection
 
@@ -57,27 +58,32 @@
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 
             <li role="presentation" class="active"><a href="#tab_content1" role="tab"
-                id="profile-tab2" data-toggle="tab"
+               data-toggle="tab"
                 aria-expanded="false"> @lang('site.personal_info') </a>
             </li>
 
-            <li role="presentation" class=""><a href="#tab_content2" id="home-tab"
+            <li role="presentation" class=""><a href="#tab_content2"  
                                                       role="tab" data-toggle="tab"
-                                                      aria-expanded="true">  @lang('site.broker_requests') </a>
+                                                      aria-expanded="true">  @lang('site.my_requests') </a>
+            </li>
+
+            <li role="presentation" class=""><a href="#tab_content3"  
+                role="tab" data-toggle="tab"
+                aria-expanded="true">  @lang('site.my_prices') </a>
             </li>
              
            
         </ul>
 <div id="myTabContent" class="tab-content">
 
-<div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="profile-tab">
+<div role="tabpanel" class="tab-pane fade  active in" id="tab_content1">
         
 @include('dashboard.reps.edit')   
 
 </div>
 
 
-<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+<div role="tabpanel" class="tab-pane fade" id="tab_content2">
 
     
 <table class="data table table-striped no-margin">
@@ -102,6 +108,10 @@
 
 </div>
 
+<div role="tabpanel" class="tab-pane fade" id="tab_content3">
+    @include('dashboard.reps.my_prices')       
+</div>
+
 </div>
     </div>
 </div>
@@ -116,7 +126,10 @@
 @section('scripts')
      
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
-
+    <script src="{{site('maps/script.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
+    async defer></script>
+    
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities')
 

@@ -18,5 +18,8 @@
       <a class="nav-link {{ isset($my_packages) ? 'active' : '' }}"  
           href="{{ route('my_packages') }}"> @lang('site.my_packages') </a>
 
+     <a class="nav-link {{ isset($my_prices) ? 'active' : '' }}"  
+          href="{{ route('rep.my_prices') }}"> @lang('site.my_prices') </a>
+
     </div>
   </div>

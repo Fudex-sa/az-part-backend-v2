@@ -13,14 +13,15 @@ class Cart extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type' , 'user_id' , 'seller_id' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
+        'type' , 'user_id' , 'user_type', 'seller_id' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
 
         'region_id' , 'city_id' , 'piece_alt_id' , 'price' , 'guarantee' , 'notes' , 'bought' , 'order_id'
     ];
 
     public function scopeMyCart($q)
     {
-        return $q->where('bought',0)->where('user_id',logged_user()->id)->orderby('id','desc');
+        return $q->where('bought',0)->where('user_id',logged_user()->id)
+                    ->where('user_type',user_type())->orderby('id','desc');
     }
 
     public function piece_alt()

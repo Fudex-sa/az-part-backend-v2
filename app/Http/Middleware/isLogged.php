@@ -18,26 +18,24 @@ class isLogged
     public function handle(Request $request, Closure $next)
     {
         if ( auth()->guard('seller')->check() || auth()->guard('broker')->check() ||
-            auth()->guard('company')->check() ||  auth()->check()) 
+            auth()->guard('company')->check() || auth()->guard('rep')->check()
+            || auth()->guard('admin')->check() ||  auth()->check()) 
 
             return $next($request);
         
         else{
-            Session::put('search',[
-                'brand' => $request->brand , 'model' => $request->model ,
-                'year' => $request->year , 'country' => $request->country ,
-                'region' => $request->region , 'city' => $request->city ,
-                'search_type' => $request->search_type , 'has_request' => 1 
-            ]);
+            
+            if(session()->get('has_request'))
+
+                Session::put('search',[
+                    'brand' => $request->brand , 'model' => $request->model ,
+                    'year' => $request->year , 'country' => $request->country ,
+                    'region' => $request->region , 'city' => $request->city ,
+                    'search_type' => $request->search_type 
+                ]);
   
             return redirect()->route('user.signin');
         }
-
-        
-
-        
-        
-        
     }
 
     

@@ -20,7 +20,8 @@ class OrderHelp
     {
         
         $item = Order::create([
-            'user_id' => logged_user()->id , 'sub_total' => sub_total() , 
+            'user_id' => logged_user()->id , 'sub_total' => sub_total() ,
+            'delivery_price' => session()->get('delivery_price'),
             'taxs' => taxs() , 'total' => total() , 'coupon_value' => coupon_discount(),
             'coupon_id' => coupon_id()
         ]);
@@ -33,7 +34,9 @@ class OrderHelp
             $this->package->update_expired($item->id);
 
             Session::forget('search');
+            Session::forget('has_request');
             Session::forget('coupon');
+            Session::forget('delivery_price');
             
         }
         return $item->id;
@@ -43,14 +46,16 @@ class OrderHelp
     {
         $shipping = Session::get('shipping');
 
+        $data = [
+            'country_id' => $shipping['country_id'] , 'region_id' => $shipping['region_id'] , 
+            'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 
+            'address' => $shipping['address'] , 'lat' => $shipping['lat'] , 
+            'lng' => $shipping['lng'] , 'notes' => $shipping['notes'] , 
+            'rep_id' => $shipping['rep_id'] , 'order_id' => $order_id
+        ];
+
         if($shipping){
-            $item = OrderShipping::create([
-                'country_id' => $shipping['country_id'] , 'region_id' => $shipping['region_id'] , 
-                'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 
-                'address' => $shipping['address'] , 'lat' => $shipping['lat'] , 
-                'lng' => $shipping['lng'] , 'notes' => $shipping['notes'] , 
-                'rep_id' => $shipping['rep_id'] , 'order_id' => $order_id
-            ]);
+            $item = OrderShipping::create($data);
         }
 
         Session::forget('shipping');

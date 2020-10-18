@@ -20,6 +20,7 @@ Route::group([
         Route::post('cities/load',[App\Http\Controllers\AjaxController::class, 'cities'])->name('cities.load');            
         Route::post('models/load',[App\Http\Controllers\AjaxController::class, 'models'])->name('models.load');            
         Route::post('reps/load',[App\Http\Controllers\AjaxController::class, 'reps'])->name('reps.load');            
+        Route::post('rep/choose',[App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');            
  
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
 
@@ -28,6 +29,17 @@ Route::group([
             Route::get('avaliable_model/{item}',[App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');            
             Route::delete('avaliable_model/delete',[App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
 
+        });
+
+
+        Route::group(['prefix'=> 'rep','namespace' => 'Rep','middleware'=>'rep'], function () {
+
+            Route::get('my_prices',[App\Http\Controllers\Rep\MyPricesController::class, 'index'])->name('rep.my_prices');            
+            Route::post('my_price/{id?}',[App\Http\Controllers\Rep\MyPricesController::class, 'store'])->name('rep.my_price.store');
+            Route::get('my_price/{item}',[App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');            
+            Route::delete('my_price/delete',[App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');            
+            Route::post('my_price/activate',[App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
+             
         });
 
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
@@ -400,3 +412,5 @@ Route::group([
  
 
 
+//--------- Help APIs ----------
+Route::get('clear/session',[App\Http\Controllers\HelpController::class, 'clear_session'])->name('session.clear');

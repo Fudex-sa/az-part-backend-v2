@@ -8,7 +8,7 @@ use App\Models\Region;
 use App\Models\City;
 use App\Models\Brand;
 use App\Models\Modell;
-use App\Models\Rep;
+use App\Models\RepPrice;
  
 class AjaxController extends Controller
 {
@@ -70,14 +70,53 @@ class AjaxController extends Controller
         
         $city_id = $request->input('city_id');
         
-        $reps = Rep::whereCity_id($city_id)->orderby('name','desc')->get();
+        $rep_prices = RepPrice::with('rep')->whereHas('rep',function($q){
+                        $q->orderby('lat','asc')->orderby('lng','asc');
+                    })
+                    ->whereCity_id($city_id)
+                    ->orderby('price','asc')
+                    ->where('active',1)->get();
         
- 
-        foreach($reps as $rep){
-            $result .= "<li> <label> <input type='radio' name='rep_id' value='".$rep->id."' />" . $rep->name . '</label> </li>';         
+        if(count($rep_prices) > 0) {
+            foreach($rep_prices as $k=>$rep_price){
+                $number = $k+1;
+
+                $result .= "<tr>";
+                $result .= "<td> ". $number ." </td>";
+
+                $result .= "<td>
+                            <label> 
+                                <input type='radio' name='rep_price_id' value='".$rep_price->id."' /> ". $rep_price->rep['name'] ."
+                            </label>   
+                            </td>";
+
+                $result .= "<td> ". $rep_price->price . __('site.rs') ." </td>";
+                $result .= "</tr>";
+            }
+        }else{
+
+            $result .= "<tr class='text-center'> <td colspan='3'> ". __('site.no_reps_in_this_city_found') ." </td> </tr>";
         }
 
         return $result;
     }
 
+    public function rep_choose(Request $request)
+    {
+        $rep_price_id = $request->input('rep_price_id');
+
+        $rep_price = RepPrice::find($rep_price_id);
+        
+        $delivery_price = $rep_price->price;
+
+        session()->put('delivery_price',$delivery_price);
+
+        if(session()->get('delivery_price'))
+            $total = total() - session()->get('delivery_price') + $delivery_price;
+        else
+            $total = total() + $delivery_price;
+
+        return response()->json(['total'=> $total, 'delivery_price'=> $delivery_price]);
+
+    }
 }

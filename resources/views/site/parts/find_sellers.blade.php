@@ -17,7 +17,12 @@
 
         <div class="col-md-12 my-3">
           <div class="head-section">
-            <h2> @lang('site.this_is_your_search_result') </h2>
+            <h2>
+              @if($found_result == 1) @lang('site.this_is_your_search_result')
+              
+              @elseif($found_result == 2) @lang('site.search_found_in_other_cities') 
+              @else @lang('site.not_found') @endif
+            </h2>
           </div>
         </div>
 

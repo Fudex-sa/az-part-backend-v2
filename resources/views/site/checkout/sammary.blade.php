@@ -13,6 +13,9 @@
         <div class="col-md-6"> <h6> @lang('site.site_commission')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left"> {{ setting('site_commission') }}  @lang('site.rs')  </h6> </div>
 
+        <div class="col-md-6"> <h6> @lang('site.delivery_price')  </h6> </div>   
+        <div class="col-md-6"> <h6 class="float-left">  
+            <span id="delivery_price"> {{ session()->get('delivery_price') ? session()->get('delivery_price') : 0 }} </span>  @lang('site.rs')  </h6> </div>
 
         <div class="col-md-6"> <h6> @lang('site.coupon')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left"> {{ coupon_discount() }}  @lang('site.rs')  </h6> </div>
@@ -20,6 +23,8 @@
     @endif
 
     <div class="col-md-6"> <h6> @lang('site.total') </h6> </div>
-    <div class="col-md-6"> <h6 class="float-left"> <span> {{ total() }}  @lang('site.rs')  </span> </h6> </div>
+    <div class="col-md-6"> <h6 class="float-left"> 
+        <span id="total"> {{ total() }}  </span> <span>  @lang('site.rs') </span> </h6> 
+    </div>
     
   

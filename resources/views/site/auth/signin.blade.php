@@ -75,6 +75,13 @@
                                            
                                                 <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
                                             </form>
+
+                                            <div class="form-group col-12">
+                                                <label class="form-check-label">
+                                                    <a href="{{ route('signup_as') }}" class=""> @lang('site.or_register_now') </a>
+                                                </label>                                                
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

@@ -5,7 +5,7 @@
 
 @section('styles')
   
-  <link href="{{site('assets/maps/style.css')}}" type="text/css" rel="stylesheet">
+  <link href="{{site('maps/style.css')}}" type="text/css" rel="stylesheet">
     
 @endsection
 
@@ -119,14 +119,23 @@
                         <h3 class="col-md-12"> @lang('site.choose_rep') </h3>
  
                             <div class="col-md-12">
-                            <ul class="my-ordar row" id="reps">
-                                @foreach (reps(old('city_id')) as $r)
-                                  <li> <label> 
-                                          <input type='radio' name='rep_id' value="{{ $r->id }}" /> {{ $r->name }} 
-                                      </label> 
-                                  </li>    
-                                @endforeach
-                            </ul>                          
+                              <table class="table table-striped" id="reps">
+                                <thead>
+                                  <tr>
+                                    <td> # </td>
+                                    <td> @lang('site.rep_name') </td>
+                                    <td> @lang('site.delivery_price') </td>
+                                  </tr>
+                                </thead>
+
+                                <tbody id="my_reps">
+                                  <tr class="text-center">
+                                     <td colspan="3">  @lang('site.choose_city_to_display_reps') </td> 
+                                  </tr>
+                                </tbody>
+
+                              </table>
+                           
                             </div>
                         
                       </div>
@@ -166,9 +175,10 @@
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities')
     @include('dashboard.ajax.load_reps')
+    @include('dashboard.ajax.choose_rep')
 
     <script src="{{site('maps/script.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
     async defer></script>
-
+ 
 @endsection

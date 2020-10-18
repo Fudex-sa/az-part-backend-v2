@@ -9,17 +9,23 @@
 
 @section('content')
 
-<div class="about">
-    <div class="container">
-      <div class="row">
-        
-        @include('layouts.breadcrumb')
+<section class="profile">
+  <div class="container">
+    <div class="row">
 
-        <div class="col-md-8">
-          <div class="privacy-box">
-           
-        
-            <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
+      @include('layouts.breadcrumb')
+ 
+      <div class="col-md-12">
+        <div class="row">
+
+          @include('layouts.nav_side_menu')          
+
+          <div class="col-lg-10 col-md-10  col-12">
+         
+               
+                <div class="table-responsive">
+                 
+                  <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
                     <i class="fa fa-plus"></i>  @lang('site.add') </a> 
         
             
@@ -64,15 +70,19 @@
             </table>
           
         <div class="text-center"> {{ $items->links() }} </div>
-            
+        
+                </div>
+           
+ 
+  
           </div>
         </div>
- 
-        
       </div>
     </div>
   </div>
+</section>
 
+ 
 @endsection
 
 @section('popup')

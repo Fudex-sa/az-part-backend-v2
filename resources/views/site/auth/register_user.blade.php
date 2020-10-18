@@ -86,8 +86,8 @@
                                                     placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
 
                                                 <div id="map" style="width:420px;height: 400px;"></div>
-                                                <input type="hidden" name="latitude"  id="latitude" value="26.420031"/>
-                                                <input type="hidden" name="longitude" id="longitude" value="50.089986"/>
+                                                <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
+                                                <input type="hidden" name="lng" id="longitude" value="50.089986"/>
                                             </div>
                                              
                                             <div class="form-group form-check col-12">

@@ -49,9 +49,15 @@ if (! function_exists('total')) {
         if(payment_type() == 'package')
             $result = Package::packagePrice(session()->get('package_id'));
 
-        else
+        else{
+
             $result = sub_total() + taxs();
-        
+
+            if(session()->get('delivery_price'))
+            $result = $result + session()->get('delivery_price');            
+            
+        }
+                    
         return $result - coupon_discount();
     }
 }

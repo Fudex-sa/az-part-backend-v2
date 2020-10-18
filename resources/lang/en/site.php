@@ -800,7 +800,27 @@ return [
     'coupon_added_successfully' => 'Coupon Added Successfully',
     'coupon_use_name' => 'Coupon Name Used',
     'coupon_added_failed' => 'Invalid Coupon',
-     
+    'lat' => 'Lat',
+    'lng' => 'Lng',
+    'phone' => 'Phone',
+    'id_copy' => 'ID Copy',
+    'bank_id' => 'Bank',
+    'car_license_img' => 'Car License Image',
+    'car_data' => 'Car Data',
+    'car_img' => 'Car Image',
+    'join_request' => 'Join Request',
+    'activated' => 'Activated',
+    'not_activated' => 'Not Activated',
+    'rejected' => 'Rejected',
+    'choose_bank' => 'Choose Bank',
+    'or_register_now' => 'Or Register Now', 
+    'new_rep_registeration' => 'New Representative Registeration',
+    'my_prices' => 'My Prices',
+    'add_city_price' => 'Add City Price',
+    'delivery_price' => 'Delivery Price',
+    'no_reps_in_this_city_found' => 'No Delivery Rep In This City',
+    'choose_city_to_display_reps' => 'Choose City For Reps Displaying',
+    'search_found_in_other_cities' => 'Search Did Not Found Any Result In Your City, But Here In This Region',
 ];
 
 ?>

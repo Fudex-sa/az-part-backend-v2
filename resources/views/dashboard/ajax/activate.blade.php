@@ -13,6 +13,7 @@ function activate(id){
             url: "{{ $route_name }}",
             data: {_token: _token , id:id},
             success: function (response) {
+                
                 if(response == 1)
                     GrowlNotification.notify({
                         title: "{{__('site.success')}}",

@@ -16,7 +16,7 @@ $("#cities").change(function(){
             data: {_token: _token , city_id:city_id},
             success: function (response) {
                 if(response)
-                  $("#reps").html(response);
+                  $("#my_reps").html(response);
             }
         });            
  

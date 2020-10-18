@@ -27,7 +27,7 @@ class ShippingRequest extends FormRequest
             'country_id' => 'required|numeric',
             'region_id' => 'required|numeric',
             'city_id' => 'required|numeric',            
-            'rep_id' => 'required|numeric',            
+            'rep_price_id' => 'required|numeric',            
         ];
     }
 
@@ -38,7 +38,7 @@ class ShippingRequest extends FormRequest
             'country_id.required' =>  __('site.country_required'),
             'region_id.required' =>  __('site.region_required'),
             'city_id.required' =>  __('site.city_required'),            
-            'rep_id.required' =>  __('site.rep_required'),            
+            'rep_price_id.required' =>  __('site.rep_required'),            
         ];
     }
 }

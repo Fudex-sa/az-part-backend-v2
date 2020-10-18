@@ -11,10 +11,11 @@ use Auth;
 
 class UserController extends Controller
 {
-    
+    protected $view = "site.auth.";
+
     public function register()
     {
-        return view('site.register_user');
+        return view($this->view . 'register_user');
     }
 
    
