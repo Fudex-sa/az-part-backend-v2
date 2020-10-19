@@ -15,7 +15,10 @@ class Cart extends Model
     protected $fillable = [
         'type' , 'user_id' , 'user_type', 'seller_id' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
 
-        'region_id' , 'city_id' , 'piece_alt_id' , 'price' , 'guarantee' , 'notes' , 'bought' , 'order_id'
+        'region_id' , 'city_id' , 'piece_alt_id' , 'price' , 'guarantee' , 'notes' , 'bought' , 'order_id' ,
+        
+        'color' , 'notes'
+
     ];
 
     public function scopeMyCart($q)

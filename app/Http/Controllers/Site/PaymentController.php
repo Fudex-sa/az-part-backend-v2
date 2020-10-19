@@ -67,7 +67,7 @@ class PaymentController extends Controller
         //--------- Redirect after payment -----
         $search = Session::get('search');
 
-        if( $search && $search['has_request'] == 1){
+        if( session()->get('has_request') == 1){
   
             return redirect($this->search->search_url()); 
         }

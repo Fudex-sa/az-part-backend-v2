@@ -89,7 +89,7 @@ class AuthController extends Controller
         $type = $request->user_type ? $request->user_type : 'u';
 
         if($request->user_type == 'c')
-            $response = company_login($request,$cred);
+            $response = $this->company_login($request,$cred);
 
         elseif($request->user_type == 'u')
             $response = $this->user_login($request,$cred);
@@ -106,7 +106,7 @@ class AuthController extends Controller
         if($response == 1){
             $search = Session::get('search');
  
-            if( $search && $search['has_request'] == 1){
+            if( $search && session()->get('has_request') == 1){
 
                 return redirect($this->search->search_url()); 
             }

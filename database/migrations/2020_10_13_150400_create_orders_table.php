@@ -32,6 +32,8 @@ class CreateOrdersTable extends Migration
             $table->string('guarantee')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('bought')->default(0);
+            $table->string('color')->nullable();
+            $table->text('notes')->nullable();
              
             $table->timestamps();
         });

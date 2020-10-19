@@ -30,7 +30,7 @@
                         </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="value" class="form-control col-md-7 col-xs-12" required > {{ old('value') }} </textarea>                            
+                            <input type="number" name="value" class="form-control col-md-7 col-xs-12" value="{{ old('value') }}" required > 
                         </div>
                     </div>
 

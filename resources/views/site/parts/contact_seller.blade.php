@@ -43,6 +43,14 @@
          <div class="form-group col-md-5">
            <input type="text" class="form-control" name="guarantee"  placeholder="@lang('site.guarantee')">
          </div>
+
+         <div class="form-group col-md-4">
+          <input type="text" class="form-control" name="color"  placeholder="@lang('site.color')">
+        </div>
+
+        <div class="form-group col-md-8">
+          <input type="text" class="form-control" name="notes"  placeholder="@lang('site.notes')">
+        </div>
  
          <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.send') </button>
        </form>

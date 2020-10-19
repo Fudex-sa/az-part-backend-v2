@@ -14,7 +14,7 @@ class MyPackageController extends Controller
     {
         $my_packages = true;
 
-        $items = PackageSubscribe::myAllPackages()->with('package')->get();
+        $items = PackageSubscribe::myAllPackages()->with('package')->orderby('id','desc')->get();
  
         return view($this->view . 'my_packages',compact('my_packages','items'));
     }

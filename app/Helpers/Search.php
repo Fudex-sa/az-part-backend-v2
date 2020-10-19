@@ -2,10 +2,22 @@
 namespace App\Helpers;
 
 use Session;
- 
+use Illuminate\Http\Request; 
 
 class Search
 {
+
+    public function save_search(Request $request)
+    {
+        session()->put('has_request',1);
+
+        session()->put('search',[
+            'brand' => $request->brand , 'model' => $request->model ,
+            'year' => $request->year , 'country' => $request->country ,
+            'region' => $request->region , 'city' => $request->city ,
+            'search_type' => $request->search_type 
+        ]);
+    }
 
     public function search_url()
     {

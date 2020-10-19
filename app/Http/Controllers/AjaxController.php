@@ -71,7 +71,7 @@ class AjaxController extends Controller
         $city_id = $request->input('city_id');
         
         $rep_prices = RepPrice::with('rep')->whereHas('rep',function($q){
-                        $q->orderby('lat','asc')->orderby('lng','asc');
+                        $q->where('active',1)->orderby('lat','asc')->orderby('lng','asc');
                     })
                     ->whereCity_id($city_id)
                     ->orderby('price','asc')

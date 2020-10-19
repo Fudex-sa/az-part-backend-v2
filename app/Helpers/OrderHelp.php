@@ -27,11 +27,13 @@ class OrderHelp
         ]);
 
         if($item){
+            $search = session()->get('search');
+
             update_cart($item->id);
 
             $this->create_shipping($item->id);
 
-            $this->package->update_expired($item->id);
+            $this->package->update_expired($item->id,$search['search_type']);
 
             Session::forget('search');
             Session::forget('has_request');

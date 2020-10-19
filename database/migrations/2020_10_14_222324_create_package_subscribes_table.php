@@ -17,6 +17,7 @@ class CreatePackageSubscribesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->enum('user_type',['user','company','admin','broker','seller','rep'])->default('user');
+            $table->enum('package_type',['manual','electronic'])->default('manual');
             $table->integer('package_id');
             $table->integer('stores_no');
             $table->float('price');

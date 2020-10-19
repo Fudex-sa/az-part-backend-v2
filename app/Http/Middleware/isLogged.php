@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Session;
+use App\Helpers\Search;
 
 class isLogged
 {
@@ -15,6 +16,14 @@ class isLogged
      * @param  \Closure  $next
      * @return mixed
      */
+
+    protected $search;
+
+    public function __construct()
+    {     
+        $this->search = new Search();
+    }
+
     public function handle(Request $request, Closure $next)
     {
         if ( auth()->guard('seller')->check() || auth()->guard('broker')->check() ||
@@ -25,14 +34,7 @@ class isLogged
         
         else{
             
-            if(session()->get('has_request'))
-
-                Session::put('search',[
-                    'brand' => $request->brand , 'model' => $request->model ,
-                    'year' => $request->year , 'country' => $request->country ,
-                    'region' => $request->region , 'city' => $request->city ,
-                    'search_type' => $request->search_type 
-                ]);
+            $this->search->save_search($request);
   
             return redirect()->route('user.signin');
         }
