@@ -10,10 +10,11 @@ use App\Http\Requests\Site\SellerSignup;
 
 class SellerController extends Controller
 {
+    protected $view = "site.auth.";
     
     public function register()
     {
-        return view('site.register_seller');
+        return view($this->view . 'register_seller');
     }
 
    

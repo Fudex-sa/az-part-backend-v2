@@ -10,13 +10,21 @@ use App\Models\Broker;
 use App\Models\Seller;
 use App\Models\Rep;
 use Auth;
+use App\Helpers\Search;
 
 class VerficationController extends Controller
 {
+    protected $view = "site.auth.";
+    
+
+    public function __construct()
+    {    
+        $this->search = new Search();
+    }
     
     public function index($id,$type)
     {
-        return view('site.verfication',compact('id','type'));
+        return view($this->view . 'verfication',compact('id','type'));
     }
 
     public function confirm($id,$type,Request $request)
@@ -48,6 +56,12 @@ class VerficationController extends Controller
             elseif($type == 'b') Auth::guard('broker')->login($item);
             elseif($type == 'r') Auth::guard('rep')->login($item);
             else Auth::guard('seller')->login($item);
+
+            $search = session()->get('search');
+            if( $search && session()->get('has_request') == 1){
+
+                return redirect($this->search->search_url()); 
+            }
 
             return redirect()->route('home');
         }

@@ -23,11 +23,18 @@ class AvailableModelRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'brand_id' => 'required',
-            'model_id' => 'required',
-            'years' => 'required',
-        ];
+        if($this->id)
+            return [
+                'brand_id' => 'required',
+                'model_id' => 'required',
+                'year' => 'required',
+            ];
+        else
+            return [
+                'brand_id' => 'required',
+                'model_id' => 'required',
+                'years' => 'required',
+            ];
     }
 
     public function messages()
@@ -36,6 +43,7 @@ class AvailableModelRequest extends FormRequest
             'brand_id.required' =>  __('site.brand_required'),
             'model_id.required' =>  __('site.model_required'),
             'years.required' =>  __('site.year_required'),
+            'year.required' =>  __('site.year_required'),
              
         ];
     }

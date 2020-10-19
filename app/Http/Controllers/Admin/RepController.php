@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rep;
+use App\Models\RepPrice;
 use App\Models\UserRole;
 use App\Models\Role;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\Bank;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -28,8 +30,9 @@ class RepController extends Controller
     {
         $cols = Schema::getColumnListing('reps');
         $roles = Role::orderby('id','desc')->get();
+        $banks = Bank::orderby('name_'.my_lang(),'desc')->get();
 
-        return view($this->view.'create',compact('cols','roles'));
+        return view($this->view.'create',compact('cols','roles','banks'));
     }
 
     public function store(UserRequest $request,$id = null)
@@ -87,6 +90,7 @@ class RepController extends Controller
         $level2['link'] = 'admin.reps';
 
         $roles = Role::orderby('id','desc')->get();
+        $banks = Bank::orderby('name_'.my_lang(),'desc')->get();
 
         $rep_rols = UserRole::user_roles($item->id,'rep')->toArray();
 
@@ -99,8 +103,10 @@ class RepController extends Controller
             $regions = null;
         }
 
+        $myCities = RepPrice::myCities($item->id)->get();
+
         return view($this->view.'show',compact('item','cols','roles','level2','rep_rols','region_cities',
-                    'regions'));
+                    'regions','banks','myCities'));
 
     }
 

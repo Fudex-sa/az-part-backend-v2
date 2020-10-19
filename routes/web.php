@@ -16,10 +16,12 @@ Route::group([
         Route::post('admin/logout',[App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 
         /*************** AJAX  **********************/
-        Route::post('regions/load',[App\Http\Controllers\RegionController::class, 'all'])->name('regions.load');            
-        Route::post('cities/load',[App\Http\Controllers\CityController::class, 'all'])->name('cities.load');            
-        Route::post('models/load',[App\Http\Controllers\ModelController::class, 'all'])->name('models.load');            
-
+        Route::post('regions/load',[App\Http\Controllers\AjaxController::class, 'regions'])->name('regions.load');            
+        Route::post('cities/load',[App\Http\Controllers\AjaxController::class, 'cities'])->name('cities.load');            
+        Route::post('models/load',[App\Http\Controllers\AjaxController::class, 'models'])->name('models.load');            
+        Route::post('reps/load',[App\Http\Controllers\AjaxController::class, 'reps'])->name('reps.load');            
+        Route::post('rep/choose',[App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');            
+ 
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
 
             Route::get('avaliable_models',[App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
@@ -29,7 +31,25 @@ Route::group([
 
         });
 
-         
+
+        Route::group(['prefix'=> 'rep','namespace' => 'Rep','middleware'=>'rep'], function () {
+
+            Route::get('my_prices',[App\Http\Controllers\Rep\MyPricesController::class, 'index'])->name('rep.my_prices');            
+            Route::post('my_price/{id?}',[App\Http\Controllers\Rep\MyPricesController::class, 'store'])->name('rep.my_price.store');
+            Route::get('my_price/{item}',[App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');            
+            Route::delete('my_price/delete',[App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');            
+            Route::post('my_price/activate',[App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
+             
+        });
+
+        Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
+            
+            Route::get('profile',[App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
+            Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('isLogged');
+
+        });
+
+
         Route::group(['namespace' => 'Site'], function () {
 
             Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
@@ -39,9 +59,11 @@ Route::group([
             Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
 
             Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
+ 
+            Route::get('package/{type}',[App\Http\Controllers\Site\PackageController::class, 'show'])->name('package.show');            
+            Route::get('package/subscribe/{id}',[App\Http\Controllers\Site\PackageController::class, 'subscribe'])->name('package.subscribe');            
 
-            Route::get('packages',[App\Http\Controllers\Site\PackagesController::class, 'index'])->name('packages');
-
+            
             Route::get('privacy',[App\Http\Controllers\Site\PageController::class, 'privacy'])->name('privacy');
             Route::get('terms',[App\Http\Controllers\Site\PageController::class, 'terms'])->name('terms');
             Route::get('about_us',[App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
@@ -50,6 +72,7 @@ Route::group([
             Route::get('signup_as',[App\Http\Controllers\Site\AuthController::class, 'signup_as'])->name('signup_as');
             Route::get('login_as',[App\Http\Controllers\Site\AuthController::class, 'login_as'])->name('login_as');
 
+            Route::get('user/login',[App\Http\Controllers\Site\AuthController::class, 'signin'])->name('user.signin')->middleware('guest');
             Route::post('user/login',[App\Http\Controllers\Site\AuthController::class, 'login'])->name('user.login');
             Route::get('user/forget_password',[App\Http\Controllers\Site\AuthController::class, 'forget_password'])->name('user.forget_password');
             Route::post('reset_password',[App\Http\Controllers\Site\AuthController::class, 'reset_password'])->name('reset_password');
@@ -69,11 +92,22 @@ Route::group([
             Route::get('resend_code/{id}/{type}',[App\Http\Controllers\Site\VerficationController::class, 'resend_code'])->name('resend_code');
 
             Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
-
-            Route::get('profile',[App\Http\Controllers\Site\ProfileController::class, 'index'])->name('profile');
  
-            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts');
-            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller');
+            Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
+            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller')->middleware('isLogged');
+
+            Route::get('cart',[App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
+            Route::delete('cart/delete',[App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');            
+            Route::post('coupon/use',[App\Http\Controllers\Site\CartController::class, 'use_coupon'])->name('coupon.use')->middleware('isLogged');
+            
+            Route::get('shipping',[App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
+            Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'create'])->name('shipping.save')->middleware('isLogged');
+            Route::get('payment/method',[App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');            
+            Route::get('payment/choose',[App\Http\Controllers\Site\PaymentController::class, 'choose'])->name('payment.choose')->middleware('isLogged');
+            Route::get('payment',[App\Http\Controllers\Site\PaymentController::class, 'index'])->name('payment')->middleware('isLogged');
+            Route::get('/resourcePath=/v1/checkouts/{checkoutId}/payment',
+                    [App\Http\Controllers\Site\PaymentController::class, 'pay_response'])->name('pay_response')->middleware('isLogged');
+ 
 
         });
         
@@ -174,6 +208,12 @@ Route::group([
             Route::post('setting/store/{item?}',[App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.store');
             Route::delete('setting/delete',[App\Http\Controllers\Admin\SettingController::class, 'delete'])->name('admin.setting.delete');
 
+            /************ Data Site  **********/
+            Route::get('data_sites',[App\Http\Controllers\Admin\DataSiteController::class, 'all'])->name('admin.data_sites');                        
+            Route::get('data_site/{item}',[App\Http\Controllers\Admin\DataSiteController::class, 'edit'])->name('admin.data_site');
+            Route::post('data_site/store/{item?}',[App\Http\Controllers\Admin\DataSiteController::class, 'store'])->name('admin.data_site.store');
+            Route::delete('data_site/delete',[App\Http\Controllers\Admin\DataSiteController::class, 'delete'])->name('admin.data_site.delete');
+
             /************ Countries  **********/
             Route::get('countries',[App\Http\Controllers\Admin\CountryController::class, 'all'])->name('admin.countries');                
             Route::get('country/{item}',[App\Http\Controllers\Admin\CountryController::class, 'edit'])->name('admin.country');
@@ -256,6 +296,12 @@ Route::group([
             Route::get('notification/{item}',[App\Http\Controllers\Admin\NotificationController::class, 'edit'])->name('admin.notification');                        
             Route::post('notification/store/{item?}',[App\Http\Controllers\Admin\NotificationController::class, 'store'])->name('admin.notification.store');                        
             Route::delete('notification/delete',[App\Http\Controllers\Admin\NotificationController::class, 'delete'])->name('admin.notification.delete');                        
+
+            /************ Coupons  **********/
+            Route::get('coupons',[App\Http\Controllers\Admin\CouponController::class, 'all'])->name('admin.coupons');                        
+            Route::get('coupon/{item}',[App\Http\Controllers\Admin\CouponController::class, 'edit'])->name('admin.coupon');
+            Route::post('coupon/store/{item?}',[App\Http\Controllers\Admin\CouponController::class, 'store'])->name('admin.coupon.store');
+            Route::delete('coupon/delete',[App\Http\Controllers\Admin\CouponController::class, 'delete'])->name('admin.coupon.delete');
 
 
 
@@ -366,3 +412,5 @@ Route::group([
  
 
 
+//--------- Help APIs ----------
+Route::get('clear/session',[App\Http\Controllers\HelpController::class, 'clear_session'])->name('session.clear');

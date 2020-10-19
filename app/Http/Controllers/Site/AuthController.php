@@ -11,22 +11,38 @@ use App\Models\Broker;
 use App\Models\rep;
 use Auth;
 use App\Http\Requests\Site\LoginRequest;
+use Session;
+use App\Helpers\Search;
 
 class AuthController extends Controller
 {
+    protected $view = "site.auth.";
+    protected $search;
+
+    public function __construct()
+    {    
+        $this->search = new Search();
+    }
+
     public function signup_as()
     {
-        return view('site.signup_as');
+        return view($this->view . 'signup_as');
+    }
+
+
+    public function signin()
+    {
+        return view($this->view . 'signin');
     }
 
     public function login_as()
     {
-        return view('site.login_as');
+        return view($this->view . 'login_as');
     }
 
     public function forget_password()
     {
-        return view('site.reset_password');
+        return view($this->view . 'reset_password');
     }
 
     public function reset_password(Request $request)
@@ -73,7 +89,7 @@ class AuthController extends Controller
         $type = $request->user_type ? $request->user_type : 'u';
 
         if($request->user_type == 'c')
-            $response = company_login($request,$cred);
+            $response = $this->company_login($request,$cred);
 
         elseif($request->user_type == 'u')
             $response = $this->user_login($request,$cred);
@@ -87,9 +103,16 @@ class AuthController extends Controller
         else
             $response = $this->seller_login($request,$cred);
 
-        if($response == 1)
-            return redirect()->route('profile'); 
+        if($response == 1){
+            $search = Session::get('search');
+ 
+            if( $search && session()->get('has_request') == 1){
 
+                return redirect($this->search->search_url()); 
+            }
+
+            return redirect()->route('profile'); 
+        }
         else  if($response == -1)
             return back()->with('failed' , __('site.invalid_login') )->withInput();
         

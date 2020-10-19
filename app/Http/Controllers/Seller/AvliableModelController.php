@@ -18,7 +18,8 @@ class AvliableModelController extends Controller
          
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
 
-        $items = AvailableModel::userBrands(user_id())->orderby('id','desc')->paginate(pagger());
+        $items = AvailableModel::userBrands(logged_user()->id)->orderby('brand_id','desc')
+                                ->orderby('model_id','desc')->paginate(pagger());
 
         return view($this->view.'all',compact('brands','items'));
     }
@@ -37,11 +38,19 @@ class AvliableModelController extends Controller
         
         $data = $request->except('_token');
         
-        $data['user_id'] = user_id();
+        $data['user_id'] = logged_user()->id;
   
-        $id ? $item = AvailableModel::where('id',$id)->update($data) : 
+        if(! $id){
+            foreach($request->years as $year){
+                $data['year'] = $year;
 
-        $item = AvailableModel::create($data);
+                $item = AvailableModel::create($data);
+            }
+        }else{
+
+            $item = AvailableModel::where('id',$id)->update($data);
+        }
+        
 
         if($item)
             return redirect()->route('seller.avaliable_models')->with('success' , __('site.success-save') );

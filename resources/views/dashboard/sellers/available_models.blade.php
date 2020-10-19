@@ -6,7 +6,7 @@
         <th>#</th>
         <th> @lang('site.brand') </th>        
         <th> @lang('site.model') </th>
-        <th> @lang('site.years') </th>        
+        <th> @lang('site.year') </th>        
     </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
 
                 <td> {{ $avaliable_model->model['name_'.my_lang()] }} </td>
 
-                <td> {{ implode(',',$avaliable_model->years) }} </td>
+                <td> {{ $avaliable_model->year }} </td>
             </tr>
         @endforeach
 

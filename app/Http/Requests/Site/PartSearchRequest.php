@@ -40,7 +40,7 @@ class PartSearchRequest extends FormRequest
             'brand.required' =>  __('site.brand_required'),
             'model.required' =>  __('site.model_required'),
             'year.required' =>  __('site.year_required'),
-            'country.required' =>  __('site.year_required'),
+            'country.required' =>  __('site.country_required'),
             'region.required' =>  __('site.region_required'),
             'city.required' =>  __('site.city_required'),
             'search_type.required' =>  __('site.search_type_required'),

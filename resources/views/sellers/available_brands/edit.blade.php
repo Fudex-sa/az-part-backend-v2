@@ -46,15 +46,21 @@
                 </div>
                 
                 <div class="form-group col-12">
-                  @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                  <select name="year" class="form-control"> 
+                    <option> @lang('site.choose_year') </option>
+                    @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                      <option value="{{ $i }}" {{ $item->year == $i ? 'selected' : '' }}> {{ $i }} </option>
+                    @endfor
+                  </select>
+                  {{-- @for($i = date('Y')+1  ; $i >= 1970 ; $i--) --}}
 
-                    @if(in_array($i,$item->years))
+                    {{-- @if(in_array($i,$item->years))
                         <label>  <input type="checkbox" name="years[]" value="{{ $i }}" checked> {{ $i }} </label>
                     @else
                         <label>  <input type="checkbox" name="years[]" value="{{ $i }}"> {{ $i }} </label>
-                    @endif
+                    @endif --}}
 
-                  @endfor
+                  {{-- @endfor --}}
                 </div>
                 
                     <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.next') </button>

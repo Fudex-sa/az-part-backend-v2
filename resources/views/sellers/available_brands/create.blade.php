@@ -34,7 +34,7 @@
                 </div>
                 
                 <div class="form-group col-12">
-                  @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                  @for($i = date('Y')+1  ; $i >= 1970 ; $i--)                    
                     <label> 
                     <input type="checkbox" name="years[]" value="{{ $i }}"> {{ $i }}
                     </label>

@@ -10,6 +10,8 @@ class CarDamagedController extends Controller
     
     public function index()
     {
-        return view('site.car_damaged');
+        $cars_yard = true;
+
+        return view('site.car_damaged' , compact('cars_yard'));
     }
 }

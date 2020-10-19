@@ -18,3 +18,29 @@
 .select2-container{
     width: 100% !important;
 }
+
+.blue{
+    color: #1584BB !important;
+}
+.payment_logos{
+    width: 100px;
+}
+
+.logged_menu{
+    min-width: 16rem !important;
+}
+
+.sub-head-box{
+    margin-top: 1px;
+}
+.sub-card{
+    margin-top: 1px;
+}
+ 
+.myTbl{
+    margin-top: 0px !important;
+}
+#delivery_price{
+    color: #5a5a5a;
+    font-size: 18px;
+}

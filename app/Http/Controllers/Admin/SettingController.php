@@ -19,7 +19,7 @@ class SettingController extends Controller
         return view($this->view.'all',compact('items'));
     }
 
-    public function store(SettingRequest $request,$id = null)
+    public function store(Request $request,$id = null)
     {
          
         $data = $request->except('_token');

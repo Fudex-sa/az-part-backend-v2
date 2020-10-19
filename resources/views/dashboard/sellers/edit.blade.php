@@ -9,7 +9,7 @@
                 
                 & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
                 
-                & $col != 'created_by' & $col != 'city_id')
+                & $col != 'created_by' & $col != 'city_id' & $col != 'region_id' & $col != 'lat' & $col != 'lng')
     
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -31,7 +31,7 @@
                             required>  
     
                         @elseif($col == 'password')
-                            <input type="password" name="{{ $col }}" class="form-control">  
+                            <input type="password" name="{{ $col }}" class="form-control" autocomplete="new-password">  
     
                         @elseif($col == 'available_requests')
                             <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
@@ -61,7 +61,15 @@
                                 <input type="radio" class="flat" name="{{ $col }}" value="manufacturing"  
                                     {{ $item->$col == 'manufacturing' ? 'checked' : '' }} required/> @lang('site.manufacturing')
                             </label>
-                         
+                    
+                        @elseif($col == 'address')
+                            <input id="pac-input" class="form-control add-bg" name="address" type="text"
+                            placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
+        
+                            <div id="map" style="width:420px;height: 400px;"></div>
+                            <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
+                            <input type="hidden" name="lng" id="longitude" value="50.089986"/>
+                             
                         @else
                         <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
     
@@ -95,7 +103,7 @@
                     <option value=""> @lang('site.choose_region') </option>
                     @if($regions)
                         @foreach ($regions as $region)
-                            <option value="{{ $region->id }}">
+                            <option value="{{ $region->id }}" {{ $item->region_id == $region->id ? 'selected' : '' }}>
                                 {{ $region['name_'.my_lang()] }} </option>
                         @endforeach
                     @endif

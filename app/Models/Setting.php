@@ -10,6 +10,6 @@ class Setting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'keyword' , 'value_ar' , 'value_en' , 'value_hi'
+        'keyword' , 'value' 
     ];
 }

@@ -27,7 +27,7 @@
 
           <th> @lang('site.keyword') </th>
 
-          <th> @lang('site.value_'.my_lang()) </th>
+          <th> @lang('site.value') </th>
           
           <th style="width: 100px;"></th>
       </tr>
@@ -39,7 +39,7 @@
             
             <td>{{$item->keyword}}</td>
             
-            <td>{{$item['value_'.my_lang()]}}</td>             
+            <td>{{$item['value']}}</td>             
 
             <td>
                 @if(has_permission('settings_edit'))

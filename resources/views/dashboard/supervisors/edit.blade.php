@@ -33,7 +33,7 @@
                             required>  
     
                         @elseif($col == 'password')
-                            <input type="password" name="{{ $col }}" class="form-control">  
+                            <input type="password" name="{{ $col }}" class="form-control" autocomplete="new-password">  
     
                         @elseif($col == 'available_requests')
                             <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"

@@ -14,7 +14,7 @@ class Seller extends Authenticatable
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password'  ,
-        'total_requests' , 'created_by' , 'city_id' , 'address'        
+        'total_requests' , 'created_by' ,'region_id', 'city_id' , 'address' , 'lat' , 'lng'       
     ];
 
     public function scopeSaudi($query)
@@ -25,6 +25,11 @@ class Seller extends Authenticatable
     public function city()
     {
         return $this->belongsTo(City::class,'city_id');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id');
     }
  
 }

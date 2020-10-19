@@ -14,4 +14,14 @@ class Package extends Model
         'discount'
     ];
 
+    public function scopeType($q,$type)
+    {
+        return $q->whereType($type);
+    }
+
+    public function scopePackagePrice($q,$id)
+    {
+        return $q->where('id',$id)->first()->price;
+    }
+
 }

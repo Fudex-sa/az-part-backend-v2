@@ -30,15 +30,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-custom">
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('home') }}"> @lang('site.home') </a> </li>
+      <li class="nav-item"> <a class="nav-link {{ isset($home) ? 'blue' : '' }}" 
+            href="{{ route('home') }}"> @lang('site.home') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($cars_yard) ? 'blue' : '' }}" 
+            href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a> </li>
         
-        <li class="nav-item"> <a class="nav-link" href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($antique_cars) ? 'blue' : '' }}" 
+          href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a> </li>
           
-        <li class="nav-item"> <a class="nav-link" href="{{ route('stock') }}"> @lang('site.old_stock') </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($old_stock) ? 'blue' : '' }}" 
+            href="{{ route('stock') }}"> @lang('site.old_stock') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link" href="{{ route('packages') }}"> @lang('site.packages') </a> </li>
+        <li class="nav-item"> <a class="nav-link {{ isset($packages) ? 'blue' : '' }}" 
+          href="{{ route('package.show','electronic') }}"> @lang('site.packages') </a> </li>
 
       </ul>
       <ul class="navbar-nav contact-nav mr-auto">
@@ -55,9 +60,9 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <img src="{{ site('assets/images/notif.png') }}" alt="">
-          </a>
+          <a class="nav-link" href="{{ route('cart') }}">  <i class="fa fa-bell"> </i>
+            @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
+           </a>
         </li>
 
         <li class="nav-item dropdown ">
@@ -68,7 +73,7 @@
           @if(auth()->guard('company')->user() || auth()->user() || auth()->guard('broker')->user() ||
             auth()->guard('seller')->user() || auth()->guard('rep')->user() )
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> @lang('site.profile')  </a>
 
               {{-- @can('createAvailableBrand') --}}
@@ -116,6 +121,10 @@
                     {{ old('user_type') == 'b' ? 'checked' : '' }}> 
                     <label class="form-check-label" for="broker"> @lang('site.broker')  </label>
 
+                    <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
+                    {{ old('user_type') == 'r' ? 'checked' : '' }}> 
+                    <label class="form-check-label" for="rep"> @lang('site.rep')  </label>
+
                   </div>
 
                   <div class="form-group form-check">
@@ -148,7 +157,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="menu1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-globe"></i>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
               <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                 {{ $properties['native'] }}  </a>

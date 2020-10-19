@@ -49,7 +49,7 @@
                         required>  
 
                     @elseif($col == 'password')
-                        <input type="password" name="{{ $col }}" class="form-control" required>  
+                        <input type="password" name="{{ $col }}" class="form-control" required autocomplete="new-password">  
 
                     @elseif($col == 'photo')
                         <input type="file" name="{{ $col }}" >  

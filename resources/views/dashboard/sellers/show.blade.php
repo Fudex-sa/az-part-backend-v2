@@ -5,6 +5,7 @@
 @section('styles')
     
     <link href="{{ dashboard('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet">
 
 @endsection
 
@@ -128,5 +129,10 @@
 @section('scripts')
      
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
+    <script src="{{site('maps/script.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
+    async defer></script>
 
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
 @endsection

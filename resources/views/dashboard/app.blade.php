@@ -129,6 +129,10 @@
                             <li> <a  href="{{ route('admin.socials') }}">  {{ __('site.social_links') }} </a> </li>
                         @endif
 
+                        @if(has_permission('data_site_show'))
+                            <li> <a href="{{ route('admin.data_sites') }}"> {{ __('site.data_site') }} </a> </li>
+                        @endif
+
                         @if(has_permission('settings_show'))
                             <li> <a href="{{ route('admin.settings') }}"> {{ __('site.site_settings') }} </a> </li>
                         @endif
@@ -142,6 +146,14 @@
             </ul>
 
             @endif 
+
+            <ul class="nav side-menu">
+                
+                @if(has_permission('coupons_show'))
+                    <li> <a  href="{{ route('admin.coupons')}}"> <i class="fa fa-image"></i>  {{ __('site.coupons') }} </a> </li>
+                @endif
+ 
+            </ul>
 
             @if(has_permission('car_bidding_show') || has_permission('antiques_show') || has_permission('damaged_show') )
 

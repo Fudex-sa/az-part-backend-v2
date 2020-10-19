@@ -126,7 +126,7 @@
                         <tr>
                           <th scope="col">#  </th>
                           <th scope="col"> {{ __('site.title') }}  </th>
-                          <th scope="col">{{ __('site.stores_no') }}</th>
+                          <th scope="col">{{ __('site.requests_no') }}</th>
                           <th scope="col">{{ __('site.price') }}</th>
                           <th scope="col">{{ __('site.discount') }}</th>
                           <th scope="col" style="width: 80px;"></th>

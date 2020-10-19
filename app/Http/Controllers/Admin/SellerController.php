@@ -37,7 +37,7 @@ class SellerController extends Controller
     public function store(UserRequest $request,$id = null)
     {
          
-        $data = $request->except('_token','api_token','country_id','region_id');
+        $data = $request->except('_token','api_token','country_id');
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Seller::where('id',$id)->first()->password;
@@ -76,7 +76,8 @@ class SellerController extends Controller
             $regions = null;
         }
 
-        $avaliable_models = AvailableModel::userBrands($item->id)->orderby('id','desc')->paginate(pagger());
+        $avaliable_models = AvailableModel::userBrands($item->id)->orderby('brand_id','desc')
+                                ->orderby('model_id','desc')->paginate(pagger());
 
         return view($this->view.'show',compact('item','cols','region_cities','regions','avaliable_models'));
 
