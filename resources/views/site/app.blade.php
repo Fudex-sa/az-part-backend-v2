@@ -78,6 +78,8 @@
 
               {{-- @can('createAvailableBrand') --}}
               <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> @lang('site.avaliable_models')  </a>
+
+              <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> @lang('site.my_packages')  </a>
               {{-- @endcan --}}
 
               <a class="dropdown-item log-out" href="{{ route('logout') }}"> @lang('site.logout') </a>

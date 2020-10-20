@@ -821,6 +821,12 @@ return [
     'no_reps_in_this_city_found' => 'No Delivery Rep In This City',
     'choose_city_to_display_reps' => 'Choose City For Reps Displaying',
     'search_found_in_other_cities' => 'Search Did Not Found Any Result In Your City, But Here In This Region',
+    'You_already_join_in_package' => 'You Already Subscribe One Of Our Packages',
+    'subscribe_package' => 'Subscribe Package',
+    'order' => 'Order',
+    'my_rest_orders' => 'My Rest Orders',
+    'please_subscribe_package_first' => 'Please Subscribe One Of Our Packages To Compelete Your Search',
+    'change_password' => 'Change Password',
 ];
 
 ?>

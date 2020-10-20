@@ -22,7 +22,12 @@
 
           <div class="col-lg-10 col-md-10  col-12">
          
-               
+            <div class="btn-add-container float-left">
+            <a href="{{ route('package.show','electronic') }}" class="btn btn-save"> @lang('site.subscribe_package') </a>
+              <br/><br/>
+            </div>
+            
+
                 <div class="table-responsive">
                   <table class="table mt-5 tabel-order myTbl">
                     <thead class="thead-light">
@@ -33,7 +38,7 @@
                         <th scope="col"> @lang('site.discount') </th>
                         <th scope="col"> @lang('site.price') </th>
                         <th scope="col"> @lang('site.expired') </th>
-                        <th scope="col"> @lang('site.order_no') </th>
+                        <th scope="col"> @lang('site.my_rest_orders') </th>
                         <th scope="col"> @lang('site.subscribe_date') </th>
                       </tr>
                     </thead>
@@ -55,7 +60,7 @@
 
                             <td> {{ $item->expired == 1 ? __('site.yes') : __('site.no') }} </td>
 
-                            <td> {{ $item->order_id ? $item->order_id : '-' }} </td>
+                            <td>  {{ $item->stores_no - count($item->my_orders) }} @lang('site.order') </td>
 
                             <td> {{ $item->created_at }} </td>
                           </tr>     

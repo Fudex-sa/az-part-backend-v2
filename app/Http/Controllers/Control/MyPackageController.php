@@ -13,9 +13,11 @@ class MyPackageController extends Controller
     public function index()
     {
         $my_packages = true;
-
-        $items = PackageSubscribe::myAllPackages()->with('package')->orderby('id','desc')->get();
  
+        $items = PackageSubscribe::with('my_orders')
+                    ->myAllPackages()                    
+                    ->with('package')->orderby('id','desc')->get(); 
+
         return view($this->view . 'my_packages',compact('my_packages','items'));
     }
 }

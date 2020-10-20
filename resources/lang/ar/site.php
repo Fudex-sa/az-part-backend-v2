@@ -959,4 +959,10 @@ return [
     'no_reps_in_this_city_found' => 'لا يوجد مندوبين شحن فى هذه المدينة',
     'choose_city_to_display_reps' => 'اختر مدينة لإظهار مندوبين الشحن المتاحين',
     'search_found_in_other_cities' => 'لم يجد البحث اى نتائج فى مدينتك ولكن تم العثور على نتائج فى نفس المنطقة',
+    'You_already_join_in_package' => 'انت بالفعل مشترك فى باقة من باقاتنا',
+    'subscribe_package' => 'اشترك فى باقاتنا',
+    'order' => 'طلب',
+    'my_rest_orders' => 'طلباتى المتبقية',
+    'please_subscribe_package_first' => 'من فضلك اشترك فى باقة من باقتنا لإستكمال عملية البحث',
+    'change_password' => 'تغيير كلمة المرور',
 ];

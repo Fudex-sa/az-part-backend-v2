@@ -4,6 +4,7 @@ namespace App\Helpers;
 use Session;
 use App\Models\PackageSubscribe;
 use App\Models\Package;
+use App\Models\Order;
 
 class PackageHelp
 {
@@ -14,16 +15,25 @@ class PackageHelp
 
         $package = Package::find($package_id);
 
-        if($package_id){
-            $item = PackageSubscribe::create([
-                'user_id' => logged_user()->id ,'user_type' => user_type() , 'package_id' => $package_id ,
-                'package_type' => $package->type ,
-                'price' => total() , 'stores_no' => $package->stores_no                 
-            ]);
+        $my_subscribes = PackageSubscribe::myPackages()->get()->count();
+
+        if($my_subscribes < 1){
+            if($package_id){
+                $item = PackageSubscribe::create([
+                    'user_id' => logged_user()->id ,'user_type' => user_type() , 'package_id' => $package_id ,
+                    'package_type' => $package->type ,
+                    'price' => total() , 'stores_no' => $package->stores_no                 
+                ]);
+            }
+            $response = true;
+            
         }
+        else $response = false;
 
         Session::forget('payment_type');
         Session::forget('package_id');
+
+        return $response;
     }
 
     public function stores_limit($package_type)
@@ -33,18 +43,22 @@ class PackageHelp
         return $limit;
     }
 
-    public function update_expired($order_id,$package_type) {
+    public function update_expired($package_sub_id) {
 
-        if($package_type == 'manual')
-            PackageSubscribe::myPackagesByType($package_type)->update([
-                'expired' => 1 , 'order_id' => $order_id
-            ]);
+        $my_subscribe = PackageSubscribe::find($package_sub_id);
+ 
+        $reqs = $my_subscribe->stores_no;
 
-        else 
-            PackageSubscribe::myPackagesByType($package_type)->update([
-                'order_id' => $order_id
-            ]);  
-        
+        if($my_subscribe->package_type == 'manual')
+            PackageSubscribe::myPackages()->update(['expired' => 1]);
+
+        else {
+
+            $my_orders = Order::where('package_sub_id',$package_sub_id)->count();
+
+            if($my_orders == $reqs)
+                PackageSubscribe::myPackages()->update(['expired' => 1]);  
+        }
     }
 
 }

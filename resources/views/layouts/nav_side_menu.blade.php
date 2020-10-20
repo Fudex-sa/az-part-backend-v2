@@ -6,7 +6,8 @@
     <a class="nav-link {{ isset($profile) ? 'active' : '' }}" 
           href="{{ route('profile') }}"> @lang('site.my_info') </a>
       
-      <a class="nav-link {{ isset($my_orders) ? 'active' : '' }}"> @lang('site.my_orders') </a>
+      <a class="nav-link {{ isset($my_orders) ? 'active' : '' }}" href="{{ route('user.my_orders') }}">
+         @lang('site.my_orders') </a>
 
       <a class="nav-link {{ isset($my_interests) ? 'active' : '' }}"> @lang('site.my_interests') </a>
       

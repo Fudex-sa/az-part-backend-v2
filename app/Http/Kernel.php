@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\CheckIfAdmin::class,
         'seller' => \App\Http\Middleware\SellerMiddleware::class,
         'rep' => \App\Http\Middleware\RepMiddleware::class,
+        'user' => \App\Http\Middleware\UserMiddleware::class,
         'isLogged' => \App\Http\Middleware\isLogged::class,
 
         'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

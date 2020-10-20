@@ -10,7 +10,7 @@ class PackageSubscribe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id' , 'package_id' ,'package_type' , 'price' , 'stores_no' , 'user_type' , 'expired' , 'order_id'
+        'user_id' , 'package_id' ,'package_type' , 'price' , 'stores_no' , 'user_type' , 'expired' 
     ];
 
     public function scopeMyPackages()
@@ -33,5 +33,10 @@ class PackageSubscribe extends Model
     public function package()
     {
         return $this->belongsTo(Package::class);
+    }
+
+    public function my_orders()
+    {
+        return $this->hasMany(Order::class,'package_sub_id');
     }
 }

@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use Session;
 use Illuminate\Http\Request; 
+use App\Models\AvailableModel;
 
 class Search
 {
@@ -41,6 +42,99 @@ class Search
 
     }
 
+    public function search_res($session_name)
+    {
+        $search = session()->get('search');
+        
+        return $search[$session_name];
+    }
 
+    public function manual_search(Request $request,$limit)
+    {
+        $city = $request->city;
+        $region = $request->region;
+ 
+        $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+                                ->with('seller')
+                                ->whereHas('seller',function($q) use ($city){
+                                    $q->where('city_id',$city);
+                                })
+                                ->limit($limit)                    
+                                ->get();
+         
+            if(count($items) > 0){
+                $response['found_result'] = 1; //--- Case found 
+                $response['items'] = $items;
+
+            }else{
+
+                $items_region = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+                        ->with('seller')
+                        ->whereHas('seller',function($q) use ($region){
+                            $q->where('region_id',$region);
+                        })
+                        ->limit($limit)                    
+                        ->get();
+
+                if(count($items_region) > 0) {
+                    
+                    $response['found_result'] = 2; // ---- Case found in same region
+                    $response['items'] = $items_region;
+
+                }else {
+                    $response['found_result'] = 0; // --- Case not found
+                    $response['items'] = null;
+                }
+            }
+
+            return $response;
+    }
+
+
+    public function electronic_search(Request $request,$limit)
+    {
+        $city = $request->city;
+        $region = $request->region;
+ 
+        if($limit > 0){
+
+            $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+                            ->with('seller')
+                            ->whereHas('seller',function($q) use ($city){
+                                $q->where('city_id',$city);
+                            })                                                
+                            ->get();
+                            
+                if(count($items) > 0){
+                    $response['found_result'] = 1; //--- Case found 
+                    $response['items'] = $items;
+
+                }else{
+
+                    $items_region = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+                            ->with('seller')
+                            ->whereHas('seller',function($q) use ($region){
+                                $q->where('region_id',$region);
+                            })                                         
+                            ->get();
+                    
+                    if(count($items_region) > 0) {
+                        
+                        $response['found_result'] = 2; // ---- Case found in same region
+                        $response['items'] = $items_region;
+
+                    }else $response['found_result'] = 0; // --- Case not found
+                }
+
+
+        }else{
+            $response['items'] = null;
+            $response['found_result'] = 3; // --- Case not joined any electronic package
+            
+        }
+
+        return $response;
+
+    }
 
 }

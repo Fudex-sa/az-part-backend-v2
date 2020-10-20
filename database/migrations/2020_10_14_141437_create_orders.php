@@ -23,6 +23,7 @@ class CreateOrders extends Migration
             $table->float('coupon_value')->default(0);
             $table->float('total');
             $table->integer('status')->default(1);
+            $table->integer('package_sub_id')->nullable();
              
             $table->timestamps();
         });

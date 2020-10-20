@@ -42,11 +42,22 @@ Route::group([
              
         });
 
+
+        Route::group(['prefix'=> 'user','namespace' => 'User','middleware'=>'user'], function () {
+
+            Route::get('my_orders',[App\Http\Controllers\User\MyOrderController::class, 'index'])->name('user.my_orders');            
+            
+             
+        });
+
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
             
             Route::get('profile',[App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
+            Route::post('profile/update',[App\Http\Controllers\Control\ProfileController::class, 'update'])->name('profile.update');
+
             Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('isLogged');
 
+            Route::get('order/{id}',[App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
         });
 
 
