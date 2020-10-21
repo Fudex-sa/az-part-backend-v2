@@ -44,3 +44,9 @@
     color: #5a5a5a;
     font-size: 18px;
 }
+.list-icons{
+    width: 130px;
+}
+.list-icons li{
+    display: inline;
+}

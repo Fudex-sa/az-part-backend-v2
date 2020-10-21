@@ -25,6 +25,8 @@ class CreateOrderShippingsTable extends Migration
             $table->string('lat',100)->nullable();
             $table->string('lng',100)->nullable();
             $table->integer('rep_id')->nullable();
+            $table->text('delivery_time')->nullable();
+            $table->enum('status',['pending','accepted','rejected'])->default('pending');
             $table->text('notes')->nullable();
             
             $table->timestamps();

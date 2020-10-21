@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
         'rep' => \App\Http\Middleware\RepMiddleware::class,
         'user' => \App\Http\Middleware\UserMiddleware::class,
         'isLogged' => \App\Http\Middleware\isLogged::class,
+        'myPackages' => \App\Http\Middleware\Control\MyPackageMiddleware::class,
+        'userOrders' => \App\Http\Middleware\Control\UserOrdersMiddleware::class,
 
         'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
         'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,

@@ -74,13 +74,37 @@
             auth()->guard('seller')->user() || auth()->guard('rep')->user() )
             
             <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> @lang('site.profile')  </a>
+              <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> 
+                  <i class="fa fa-user"></i> @lang('site.profile')  </a>
 
-              {{-- @can('createAvailableBrand') --}}
-              <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> @lang('site.avaliable_models')  </a>
+                  @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
+              <a class="dropdown-item profile-drob" href="{{ route('user.my_orders') }}"> 
+                <i class="fa fa-list"></i> @lang('site.my_orders')  </a>
+              @endif
 
-              <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> @lang('site.my_packages')  </a>
-              {{-- @endcan --}}
+              @if(user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> 
+                <i class="fa fa-car"></i> @lang('site.avaliable_models')  </a>
+              @endif
+ 
+              <a class="dropdown-item profile-drob" href=""> 
+                <i class="fa fa-heart"></i> @lang('site.my_interests')  </a>
+
+              <a class="dropdown-item profile-drob" href=""> 
+                <i class="fa fa-car"></i> @lang('site.my_cars')  </a>
+
+              @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.my_packages')  </a>
+              @endif
+
+              @if(user_type() == 'rep')
+              <a class="dropdown-item profile-drob" href="{{ route('rep.my_prices') }}"> 
+                <i class="fa fa-list"></i> @lang('site.my_prices') </a>
+
+              <a class="dropdown-item profile-drob" href="{{ route('rep.my_orders') }}"> 
+                  <i class="fa fa-list"></i> @lang('site.my_orders') </a>
+              @endif
 
               <a class="dropdown-item log-out" href="{{ route('logout') }}"> @lang('site.logout') </a>
             </div>

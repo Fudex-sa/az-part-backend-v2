@@ -827,6 +827,18 @@ return [
     'my_rest_orders' => 'My Rest Orders',
     'please_subscribe_package_first' => 'Please Subscribe One Of Our Packages To Compelete Your Search',
     'change_password' => 'Change Password',
+    'accept_order' => 'Accept',
+    'accept_reject' => 'Accept/Reject',
+    'shipping_details' => 'Shipping Details',
+    'delivery_time' => 'Expected Delivery Time',
+    'street' => 'Street',
+    'update_shipping_status' => 'Update Shipping Status',
+    'reject_reason' => 'Rejection Reason',
+    'orders' => 'Orders',
+    'electronic_orders' => 'Electronic Orders',
+    'manual_orders' => 'Manual Orders',
+    'all_orders' => 'All Orders',
+    'pieces_count' => 'Pieces Count',
 ];
 
 ?>

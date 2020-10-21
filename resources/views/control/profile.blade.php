@@ -32,16 +32,23 @@
                     <div class="up-img">
                       <input type='file' name="photo" class="imgpo" onchange="readURLL(this);" />
                       <span class="file-hover"> @lang('site.change') </span>
-                    <img id="blah" src="{{ site('assets/images/avatar.jpg') }}" alt="" class="img-fluid">
+                    
+                      @if(logged_user()->photo)
+                          <img id="blah" src="{{ img_path(logged_user()->photo) }}" alt="" class="img-fluid">
+                      @else
+                          <img id="blah" src="{{ site('assets/images/avatar.jpg') }}" alt="" class="img-fluid">
+                      @endif
                     </div>
+
                     <div class="pro-image-upload mt-4">
                       
                       <h5> {{ logged_user()->name }} </h5>
-                      <h6> {{ logged_user()->mobile }} </h6>
+                      <h6> {{ __('site.'.user_type()) }} </h6>
                     </div>
                   </div>
                   <div class="col-md-12">
-                  <form class="profile-form row mt-3" method="POST" action="{{ route('profile.update') }}">
+                  <form class="profile-form row mt-3" method="POST" action="{{ route('profile.update') }}"
+                  enctype="multipart/form-data">
                       @csrf
                       <div class="form-group col-md-6">
                         <input type="text" name="name" id="name" class="form-control pro-input" placeholder="@lang('site.name')"

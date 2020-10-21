@@ -40,12 +40,16 @@ Route::group([
             Route::delete('my_price/delete',[App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');            
             Route::post('my_price/activate',[App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
              
+
+            Route::get('my_orders',[App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');            
+            Route::post('order/update/{shipping}',[App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');            
+            
         });
 
 
         Route::group(['prefix'=> 'user','namespace' => 'User','middleware'=>'user'], function () {
 
-            Route::get('my_orders',[App\Http\Controllers\User\MyOrderController::class, 'index'])->name('user.my_orders');            
+            Route::get('my_orders',[App\Http\Controllers\User\MyOrderController::class, 'index'])->name('user.my_orders')->middleware('userOrders');            
             
              
         });
@@ -55,7 +59,7 @@ Route::group([
             Route::get('profile',[App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
             Route::post('profile/update',[App\Http\Controllers\Control\ProfileController::class, 'update'])->name('profile.update');
 
-            Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('isLogged');
+            Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('myPackages');
 
             Route::get('order/{id}',[App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
         });
@@ -130,6 +134,11 @@ Route::group([
             Route::post('profile/update',[App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');            
 
             Route::get('search',[App\Http\Controllers\Admin\SearchController::class, 'index'])->name('admin.search');            
+
+            /*************** Orders  **********************/
+            Route::get('orders',[App\Http\Controllers\Admin\OrderController::class, 'all'])->name('admin.orders');            
+            Route::get('order/{id}',[App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');   
+            Route::delete('order/delete',[App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');                     
  
             /*************** Packages  **********************/
             Route::get('packages',[App\Http\Controllers\Admin\PackageController::class, 'index'])->name('admin.packages');            

@@ -965,4 +965,17 @@ return [
     'my_rest_orders' => 'طلباتى المتبقية',
     'please_subscribe_package_first' => 'من فضلك اشترك فى باقة من باقتنا لإستكمال عملية البحث',
     'change_password' => 'تغيير كلمة المرور',
+    'accept_order' => 'قبول',
+    'accept_reject' => 'قبول/رفض',
+    'shipping_details' => 'تفاصيل الشحنة',
+    'delivery_time' => 'الوقت المتوقع للتوصيل',
+    'street' => 'رقم البناية',    
+    'update_shipping_status' => 'تحديث حالة الشحنة',
+    'reject_reason' => 'سبب الرفض',
+    'orders' => 'الطلبات',
+    'electronic_orders' => 'طلبات الحجز الإلكترونى',
+    'manual_orders' => 'طلبات الحجز اليدوى',
+    'all_orders' => 'جميع الطلبات',
+    'pieces_count' => 'عدد القطع',
 ];
+
