@@ -839,6 +839,18 @@ return [
     'manual_orders' => 'Manual Orders',
     'all_orders' => 'All Orders',
     'pieces_count' => 'Pieces Count',
+    'order_owner' => 'Order Owner',
+    'shipping_data' => 'Shipping Data',
+    'sub_total' => 'Sub Total',
+    'taxs' => 'Taxs & Commissions',
+    'order_status' => 'Order Status',
+    'order_user' => 'Order By',
+    'coupon_value' => 'Coupon Value',
+    'coupon_used' => 'Coupon Used',
+    'order_package' => 'Order Package',
+    'order_data' => 'Order Data',
+    'deleted_orders' => 'Deleted Orders',
+    'orders_this_month' => 'Month Orders',
 ];
 
 ?>

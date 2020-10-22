@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
         'user_id' , 'sub_total' , 'delivery_price' , 'taxs' , 'total' , 'status' , 'coupon_id' , 'coupon_value',
@@ -19,6 +20,11 @@ class Order extends Model
         return $q->where('user_id',logged_user()->id)->where('coupon_id',$coupon_id);
     }
 
+    public function scopeCouponUsedCount($q,$coupon_id)
+    {
+        return $q->where('coupon_id',$coupon_id);
+    }
+
     public function scopeMyOrders($q)
     {
         return $q->where('user_id',logged_user()->id)->where('user_type',user_type());
@@ -27,6 +33,11 @@ class Order extends Model
     public function order_status()
     {
         return $this->belongsTo(OrderStatus::class,'status');
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class,'coupon_id');
     }
 
     public function user()
@@ -40,6 +51,11 @@ class Order extends Model
     public function cart()
     {
         return $this->hasMany(Cart::class,'order_id');
+    }
+
+    public function package_subscribe()
+    {
+        return $this->belongsTo(PackageSubscribe::class,'package_sub_id');
     }
  
 }

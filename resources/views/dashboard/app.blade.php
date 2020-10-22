@@ -195,8 +195,10 @@
                             <li> <a href="{{route('admin.orders')}}"> {{ __('site.all_orders') }} </a> </li>
                         @endif
 
-                       
-                                            
+                        @if(has_permission('order_show'))
+                            <li> <a href="{{route('admin.orders.deleted')}}"> {{ __('site.deleted_orders') }} </a> </li>
+                        @endif
+                    
                     </ul>
                 </li>                             
             </ul>

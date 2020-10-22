@@ -3,10 +3,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart2').getContext('2d');
 
     var chart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
 
         data: {
             labels: ["{{ __('site.January') }}", "{{__('site.February')}}", "{{__('site.March')}}"
@@ -16,7 +16,6 @@
                     
             datasets: [{
                 label: '{{ __("site.orders") }}',
-
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -47,12 +46,12 @@
                     'rgba(0, 255, 255, 1)',
                     'rgba(25, 25, 112, 1)'
                 ],
-                borderWidth: 1 ,
-                
+                borderWidth: 1,
+
                 data: [
                     @php
                         for($i = 1 ; $i <= 12 ; $i++){
-                            echo  supervisors_by_month($i).',';
+                            echo  orders_by_month($i).',';
                         }
                     @endphp                     
                 ],

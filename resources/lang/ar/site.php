@@ -977,5 +977,17 @@ return [
     'manual_orders' => 'طلبات الحجز اليدوى',
     'all_orders' => 'جميع الطلبات',
     'pieces_count' => 'عدد القطع',
+    'order_owner' => 'عن صاحب الطلب',
+    'shipping_data' => 'بيانات التوصيل',
+    'sub_total' => 'سعر القطع',
+    'taxs' => 'الضرايب والعمولة',
+    'order_status' => 'حالة الطلب',
+    'order_user' => 'صاحب الطلب',
+    'coupon_value' => 'خصم الكوبون',
+    'coupon_used' => 'الكوبون المستخدم',
+    'order_package' => 'باقة الطلب',
+    'order_data' => 'بيانات الطلب',
+    'deleted_orders' => 'الطلبات المحذوفة',
+    'orders_this_month' => 'طلبات  الشهر',
 ];
 

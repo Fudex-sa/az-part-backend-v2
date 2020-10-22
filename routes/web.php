@@ -137,6 +137,7 @@ Route::group([
 
             /*************** Orders  **********************/
             Route::get('orders',[App\Http\Controllers\Admin\OrderController::class, 'all'])->name('admin.orders');            
+            Route::get('orders/deleted',[App\Http\Controllers\Admin\OrderController::class, 'deleted'])->name('admin.orders.deleted');            
             Route::get('order/{id}',[App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');   
             Route::delete('order/delete',[App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');                     
  
