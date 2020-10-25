@@ -63,7 +63,8 @@ class OrderHelp
             'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 
             'address' => $shipping['address'] , 'lat' => $shipping['lat'] , 
             'lng' => $shipping['lng'] , 'notes' => $shipping['notes'] , 
-            'rep_id' => $shipping['rep_id'] , 'order_id' => $order_id
+            'rep_id' => $shipping['rep_id'] , 'order_id' => $order_id , 'size' => $shipping['size'],
+            'with_oil' => $shipping['with_oil']
         ];
 
         if($shipping){

@@ -17,6 +17,11 @@
         <div class="col-md-6"> <h6 class="float-left">  
             <span id="delivery_price"> {{ session()->get('delivery_price') ? session()->get('delivery_price') : 0 }} </span>  @lang('site.rs')  </h6> </div>
 
+        <div class="col-md-6"> <h6> @lang('site.with_oil_cost')  </h6> </div>   
+        <div class="col-md-6"> <h6 class="float-left">  
+            <span id="with_oil"> {{ session()->get('with_oil') ? session()->get('with_oil') : 0 }} </span>  @lang('site.rs')  </h6> </div>
+ 
+
         <div class="col-md-6"> <h6> @lang('site.coupon')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left"> {{ coupon_discount() }}  @lang('site.rs')  </h6> </div>
 

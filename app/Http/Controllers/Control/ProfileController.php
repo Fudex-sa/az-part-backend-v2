@@ -12,6 +12,7 @@ use App\Models\Broker;
 use App\Models\Rep;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\Bank;
 
 class ProfileController extends Controller
 {
@@ -21,7 +22,7 @@ class ProfileController extends Controller
     {
         $profile = true;
 
-        if(logged_user()->region){
+        if(logged_user()->region){            
             $regions = Region::where('country_id',logged_user()->region['country_id'])->orderby('name_ar','desc')->get();
             $cities = City::where('region_id',logged_user()->region_id)->orderby('name_ar','desc')->get();
         }else{
@@ -29,7 +30,9 @@ class ProfileController extends Controller
             $cities = null;
         } 
 
-        return view($this->view . 'profile', compact('profile','regions','cities'));
+        $banks = Bank::all();
+
+        return view($this->view . 'profile', compact('profile','regions','cities','banks'));
     }
 
     public function update(AllUsersRequest $request)

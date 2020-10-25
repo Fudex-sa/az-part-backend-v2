@@ -43,7 +43,19 @@
                                         <div class="tab-content mt-5">
                                         <form class="row" method="post" action="{{ route('rep.signup') }}" enctype="multipart/form-data">
                                             @csrf 
-                                               
+                                             
+                                            <div class="form-group">
+                                                
+                                                    <input type="radio" class="" id="individual" name="type" value="individual"
+                                                    {{ old('type') == 'individual' ? 'checked' : '' }} checked> 
+                                                    <label class="form-check-label" for="individual"> @lang('site.delivery_individual')  </label>
+                        
+                                                    <input type="radio" class="" id="company" name="type" value="company"
+                                                    {{ old('type') == 'company' ? 'checked' : '' }}> 
+                                                    <label class="form-check-label" for="company"> @lang('site.delivery_company')  </label>
+                                                
+                                              </div>
+
                                             <div class="form-group">
                                                 <div class="custom-file col-4">
                                                     <input type="file" name="photo" >                                                   
@@ -56,12 +68,13 @@
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <input type="tel" class="form-control" id="mobile" name="mobile" 
+                                                <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="10"
                                                     value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
                                             </div>
                                             
                                             <div class="form-group col-12">
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="@lang('site.password')">
+                                                <input type="password" class="form-control" id="password" name="password" 
+                                                placeholder="@lang('site.password')" autocomplete="new-password">
                                             </div>
                                             
                                             <div class="form-group col-12">
@@ -78,13 +91,13 @@
                                                 <input type="hidden" name="lng" id="longitude" value="50.089986"/>
                                             </div>
                                              
-                                            <div class="form-group form-check col-12">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-                                                <label class="form-check-label" for="exampleCheck1"> @lang('site.agree_to_all') 
-                                                    <a href="{{ route('terms') }}"> @lang('site.terms_and_condition') </a>    
-                                                    &     
-                                                    <a href="{{ route('privacy') }}"> @lang('site.privacy_policy') </a>                                               
-                                                </label>
+                                            <div class="form-group form-check col-12">                                                
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                                                    <label class="form-check-label" for="exampleCheck1"> @lang('site.agree_to_all') 
+                                                        <a href="{{ route('terms') }}"> @lang('site.terms_and_condition') </a>    
+                                                        &     
+                                                        <a href="{{ route('privacy') }}"> @lang('site.privacy_policy') </a>                                               
+                                                    </label>                                                
                                             </div>
                                                 <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.next') </button>
                                             </form>

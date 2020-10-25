@@ -27,7 +27,9 @@ class ShippingController extends Controller
                                 'city_id' => $request->city_id , 'street' => $request->street ,
                                 'address' => $request->address , 'lat' => $request->lat ,
                                 'lng' => $request->lng , 
-                                'notes' => $request->notes , 'rep_id' => $rep->id]);
+                                'notes' => $request->notes , 'rep_id' => $rep->id ,
+                                'size' => $request->size , 'with_oil' => $request->with_oil                                
+                                ]);
 
         return redirect()->route('payment.method');
     }

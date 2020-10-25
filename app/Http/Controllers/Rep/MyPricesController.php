@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Rep;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RepPrice;
+use App\Models\RepCarSize;
 
 class MyPricesController extends Controller
 {
@@ -59,4 +60,5 @@ class MyPricesController extends Controller
         return 0; 
          
     }
+ 
 }

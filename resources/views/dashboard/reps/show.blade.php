@@ -71,6 +71,11 @@
                 role="tab" data-toggle="tab"
                 aria-expanded="true">  @lang('site.my_prices') </a>
             </li>
+
+            <li role="presentation" class=""><a href="#tab_content4"  
+                role="tab" data-toggle="tab"
+                aria-expanded="true">  @lang('site.car_size') </a>
+            </li>
              
            
         </ul>
@@ -110,6 +115,10 @@
 
 <div role="tabpanel" class="tab-pane fade" id="tab_content3">
     @include('dashboard.reps.my_prices')       
+</div>
+
+<div role="tabpanel" class="tab-pane fade" id="tab_content4">
+    @include('dashboard.reps.car_sizes')       
 </div>
 
 </div>

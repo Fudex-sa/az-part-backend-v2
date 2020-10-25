@@ -20,7 +20,9 @@ Route::group([
         Route::post('cities/load',[App\Http\Controllers\AjaxController::class, 'cities'])->name('cities.load');            
         Route::post('models/load',[App\Http\Controllers\AjaxController::class, 'models'])->name('models.load');            
         Route::post('reps/load',[App\Http\Controllers\AjaxController::class, 'reps'])->name('reps.load');            
-        Route::post('rep/choose',[App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');            
+        Route::post('rep/choose',[App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');                    
+        Route::post('with_oil',[App\Http\Controllers\AjaxController::class, 'with_oil'])->name('with_oil');                      
+        
  
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
 

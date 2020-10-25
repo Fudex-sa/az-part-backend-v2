@@ -157,12 +157,14 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1"> @lang('site.remember_me')  </label>
                   </div>
-                  
-                  <a href="{{ route('user.forget_password') }} " class="an-forgget"> @lang('site.forget_password') </a>
 
                   <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
               </form>
 
+              <br/>
+
+              <a href="{{ route('user.forget_password') }} " class="an-forgget"> @lang('site.forget_password') </a>
+              
                 <p class="mt-2"> @lang('site.easy_to_register') </p>
                  
               <a href="{{ route('signup_as') }}" class="btn btn-logindrop btn-lg btn-block"> @lang('site.register_a_new_account') </a>

@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Bank;
+use App\Models\RepCarSize;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -95,18 +96,19 @@ class RepController extends Controller
         $rep_rols = UserRole::user_roles($item->id,'rep')->toArray();
 
         if($item->city){
-            $region_cities = City::regions($item->city['region_id'])->get();
-            $regions = Region::where('country_id',$item->city->region['country_id'])->orderby('name_ar','desc')->get();
+            $myCities = City::regions($item->city['region_id'])->get();
+            $my_regions = Region::where('country_id',$item->city->region['country_id'])->orderby('name_ar','desc')->get();
         }            
         else {
-            $region_cities = null;
-            $regions = null;
+            $myCities = null;
+            $my_regions = null;
         }
 
-        $myCities = RepPrice::myCities($item->id)->get();
+        $myPrices = RepPrice::myCities($item->id)->get();
+        $carSizes = RepCarSize::where('rep_id',$item->id)->get();
 
-        return view($this->view.'show',compact('item','cols','roles','level2','rep_rols','region_cities',
-                    'regions','banks','myCities'));
+        return view($this->view.'show',compact('item','cols','roles','level2','rep_rols','myCities',
+                    'my_regions','banks','myPrices','carSizes'));
 
     }
 
@@ -125,8 +127,9 @@ class RepController extends Controller
 
         $user = Rep::find($item);
         $user->active == 1 ? $active = 0 : $active = 1;
+        if($active == 1) $status = 'activated'; else $status = $user->status;
 
-        if( Rep::where('id',$item)->update(['active' => $active]) )
+        if( Rep::where('id',$item)->update(['active' => $active , 'status' => $status]) )
             return 1;
 
         return 0;        

@@ -48,13 +48,18 @@ class VerficationController extends Controller
             $item = Seller::find($id);
 
         if($item->verification_code == $verification_code){
-            $item->active = 1;
-            $item->save();
+            if($type != 'r'){
+                $item->active = 1;
+                $item->save();
+            }
 
             if($type == 'u') Auth::login($item);
             elseif($type == 'c') Auth::guard('company')->login($item);
             elseif($type == 'b') Auth::guard('broker')->login($item);
-            elseif($type == 'r') Auth::guard('rep')->login($item);
+            elseif($type == 'r') 
+            // Auth::guard('rep')->login($item);
+                return redirect('/')->with('success' , __('site.register_success_waiting_approve'));
+            
             else Auth::guard('seller')->login($item);
 
             $search = session()->get('search');

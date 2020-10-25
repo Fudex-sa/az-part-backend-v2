@@ -851,6 +851,19 @@ return [
     'order_data' => 'Order Data',
     'deleted_orders' => 'Deleted Orders',
     'orders_this_month' => 'Month Orders',
+    'delivery_individual' => 'Delivery Individual',
+    'delivery_company' => 'Delivery Company',
+    'rep_info' => 'Rep Info',
+    'car_info' => 'Model - Year - Car Number',
+    'car_size' => 'Car Size',
+    'light' => 'Light',
+    'medium' => 'Medium',
+    'heavy' => 'Heavy',
+    'spare' => 'Spare Part',
+    'with_oil' => 'With Oil',
+    'without_oil' => 'Without Oil',
+    'shipping_size' => 'Shipping Size',
+    'with_oil_cost' => 'With Oil Cost',
 ];
 
 ?>

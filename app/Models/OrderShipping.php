@@ -11,7 +11,8 @@ class OrderShipping extends Model
 
     protected $fillable = [
         'order_id' , 'country_id' , 'region_id' , 'city_id' , 'street' , 'address' , 
-        'lat' , 'lng' , 'rep_id' , 'notes' , 'delivery_time' , 'status'
+        'lat' , 'lng' , 'rep_id' , 'notes' , 'delivery_time' , 'status' , 'with_oil' ,
+        'size'
     ];
 
 

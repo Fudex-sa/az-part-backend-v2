@@ -68,12 +68,13 @@
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <input type="tel" class="form-control" id="mobile" name="mobile" 
+                                                <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="10"
                                                     value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
                                             </div>
                                             
                                             <div class="form-group col-12">
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="@lang('site.password')">
+                                                <input type="password" class="form-control" id="password" name="password" 
+                                                placeholder="@lang('site.password')" autocomplete="new-password">
                                             </div>
                                             
                                             <div class="form-group col-12">

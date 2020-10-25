@@ -21,11 +21,8 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12">
-         
-               
-                <div class="table-responsive">
-                 
+          <div class="col-lg-10 col-md-10  col-12 row" style="margin-top: -40px;">
+          
                   <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
                     <i class="fa fa-plus"></i>  @lang('site.add') </a> 
         
@@ -37,6 +34,7 @@
                     <th> @lang('site.city') </th>
                     <th> @lang('site.price') </th>
                     <th> @lang('site.active') </th>
+                    <th> @lang('site.car_size') </th>
                     <th></th>
               </tr>
               </thead>
@@ -58,6 +56,8 @@
                     @endif       
                     </td>
 
+                    <td> {{ implode(',',$item->car_size) }} </td>
+
                     <td>
                         
                         <a href="{{ route('rep.my_price',$item->id) }}" class="btn btn-info btn-xs">
@@ -73,9 +73,8 @@
               </tbody>
         
             </table>
-          
-                </div>
            
+            
  
   
           </div>
@@ -102,8 +101,10 @@
     @include('dashboard.ajax.delete',['target'=>'my_price']) 
 
     @include('dashboard.ajax.activate',['target'=>'my_price'])  
-
+ 
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities') 
+
+    @include('dashboard.ajax.rep_car_size') 
 
 @endsection
