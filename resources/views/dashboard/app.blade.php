@@ -69,7 +69,7 @@
             
             @if( has_permission('users_show') || has_permission('companies_show') || has_permission('sellers_show')
             ||  has_permission('brokers_show') ||  has_permission('reps_show') || has_permission('supervisors_show')
-            || has_permission('saudis_show') || has_permission('vip_requests_show') || has_permission('roles_show')
+            || has_permission('saudis_show') ||  has_permission('roles_show')
             )
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-users"></i> {{ __('site.users_management') }}
@@ -102,10 +102,6 @@
 
                         @if(has_permission('saudis_show'))
                             <li> <a href="{{route('admin.saudis')}}"> {{ __('site.saudi_section') }} </a> </li>
-                        @endif
-
-                        @if(has_permission('vip_requests_show'))
-                            <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>                        
                         @endif
 
                         @if(has_permission('roles_show'))
@@ -258,11 +254,11 @@
 
                     <ul class="nav child_menu">
                         @if(has_permission('ticker'))
-                            <li> <a href="{{ route('admin.ticker',1) }}">   {{ __('site.ticker_setting') }} </a> </li>
+                            {{-- <li> <a href="{{ route('admin.ticker',1) }}">   {{ __('site.ticker_setting') }} </a> </li> --}}
                         @endif
 
                         @if(has_permission('stock'))
-                            <li><a href="{{ route('admin.stock') }}"> {{ __('site.stock') }} </a></li>
+                            <li><a href="{{ route('admin.stocks') }}"> {{ __('site.stock') }} </a></li>
                         @endif
                     </ul>
                 </li>                             

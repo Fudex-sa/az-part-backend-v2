@@ -1004,5 +1004,9 @@ return [
     'without_oil' => 'بدون زيت',
     'shipping_size' => 'حجم الحمولة',
     'with_oil_cost' => 'تكلفة الشحنة المحملة بزيت',
+    'highest_price' => 'الأعلى سعر',
+    'medium_price' => 'السعر المتوسط',
+    'lower_price' => 'الأقل سعر',
+    'count_prices' => 'عدد الأسعار',
 ];
 

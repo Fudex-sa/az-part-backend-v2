@@ -10,6 +10,7 @@ use App\Models\Cart;
 use App\Models\OrderShipping;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\Stock;
 use App\Http\Requests\Site\OrderRequest;
 use Session;
 use App\Helpers\PackageHelp;
@@ -65,9 +66,19 @@ class PartController extends Controller
         $data['user_type'] = user_type();
   
         $item = Cart::create($data);
-        
-        if($item){
- 
+
+        $piece_id = PieceAlt::where('id',$request->piece_alt_id)->first()->piece_id;
+
+        if($piece_id){
+            $data2 = [
+                'brand_id' => $request->brand_id , 'model_id' => $request->model_id ,
+                'year' => $request->year ,
+                'piece_id' => $piece_id , 'price' => $request->price , 'seller_id' => $request->seller_id
+            ];
+            Stock::create($data2);
+        }
+
+        if($item){ 
             return redirect()->route('cart');
         }
     }

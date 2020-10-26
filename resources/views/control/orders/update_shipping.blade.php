@@ -17,15 +17,14 @@
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status"> @lang('site.status') </label>
             
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <label> <input type="radio" name="status" value="pending" 
-                                {{ $shipping->status == 'pending' ? 'checked' : '' }} /> @lang('site.pending') </label>
-
-                            <label> <input type="radio" name="status" value="accepted" 
-                                {{ $shipping->status == 'accepted' ? 'checked' : '' }} /> @lang('site.accepted') </label>
-
-                            <label> <input type="radio" name="status" value="rejected" 
-                                {{ $shipping->status == 'rejected' ? 'checked' : '' }} /> @lang('site.rejected') </label>
+                        <div class="row">
+                            @foreach ($ordr_stat as $od_st)
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <label> <input type="radio" name="status" value="{{ $od_st->id }}" 
+                                            {{ $od_st->id == $item->status ? 'checked' : '' }} /> {{ $od_st['name_'.my_lang()] }} </label>    
+                            </div>
+                            @endforeach
+                            
                         </div>
                     </div>
              
@@ -34,7 +33,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="delivery_time"> @lang('site.delivery_time') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" name="delivery_time" value="{{ $shipping->delivery_time }}" class="form-control" />
+                        <input type="text" name="delivery_time" value="{{ $shipping->delivery_time }}"
+                         class="form-control" required/>
                         </div>
                     </div> 
 
@@ -42,7 +42,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reject_reason"> @lang('site.reject_reason') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                           <textarea name="reject_reason" class="form-control"> </textarea>
+                           <textarea name="reject_reason" class="form-control" required> </textarea>
                         </div>
                     </div> 
                      

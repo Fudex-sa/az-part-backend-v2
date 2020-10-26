@@ -23,17 +23,18 @@ class MyOrderController extends Controller
 
     public function update(Request $request,OrderShipping $shipping)
     {
-        $shipping->status = $request->status;
-        $shipping->delivery_time = $request->delivery_time;
-        $shipping->save();
 
-        if($request->status == 'accepted')
-            Order::where('id',$shipping->order_id)->update(['status'=>2]);
-
-        if($request->status == 'rejected')
+        Order::where('id',$shipping->order_id)->update(['status'=>$request->status]);
+        
+        if($request->status == 8){
+            $shipping->delivery_time = $request->delivery_time;
+            $shipping->save();
+        }
+        else if($request->status == 9){
             OrderShippingRejecte::create([
                 'order_shipping_id' => $shipping->id , 'reject_reason' => $request->reject_reason
             ]);
+        }
 
         return back()->with('success' , __('site.success-save') );
     }

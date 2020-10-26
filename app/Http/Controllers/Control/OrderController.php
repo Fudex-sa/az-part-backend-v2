@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderShipping;
 use App\Models\OrderShippingRejecte;
+use App\Models\OrderStatus;
 
 class OrderController extends Controller
 {
@@ -22,7 +23,9 @@ class OrderController extends Controller
 
         $order_rejected = OrderShippingRejecte::where('order_shipping_id',$shipping->id)->first();
 
-        return view($this->view . 'show',compact('item','my_orders','shipping','order_rejected'));
+        $ordr_stat = OrderStatus::all();
+
+        return view($this->view . 'show',compact('item','my_orders','shipping','order_rejected','ordr_stat'));
     }
 
    

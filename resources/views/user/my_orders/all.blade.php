@@ -26,7 +26,8 @@
                     <table class="table mt-5 tabel-order myTbl">
                       <thead class="thead-light">
                         <tr>
-                          <th> @lang('site.order_no')  </th>
+                          <th style="width: 100px;"> @lang('site.order_no')  </th>
+                          
                           <th > @lang('site.total')  </th>
                           <th > @lang('site.status')  </th>
                           <th > @lang('site.created_at')  </th>
@@ -39,7 +40,7 @@
                             <tr>
                             <td> <a href="{{ route('order',$item) }}">
                                 <i class="fa fa-eye"></i> AZ-{{ $item->id }} </a> </td>
-
+ 
                                 <td> {{ $item->total }} @lang('site.rs') </td>
 
                                 <td> {{ $item->order_status ? $item->order_status['name_'.my_lang()] 

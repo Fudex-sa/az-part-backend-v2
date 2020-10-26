@@ -27,13 +27,13 @@
                       <thead class="thead-light">
                         <tr>
                           <th style="width: 100px;"> @lang('site.order_no')  </th>
+                          <th> @lang('site.order_user')  </th>
                           <th> @lang('site.region')  </th>
                           <th> @lang('site.address')  </th>
                           <th> @lang('site.notes')  </th>
                           <th > @lang('site.total')  </th>
                           <th > @lang('site.status')  </th>
-                          <th > @lang('site.created_at')  </th>
-                          <th style="width: 100px;"> </th> 
+                          <th > @lang('site.created_at')  </th>                        
                         </tr>
                       </thead>
                       <tbody>
@@ -42,6 +42,8 @@
                             <tr>
                                 <td> <a href="{{ route('order',$item) }}">
                                 <i class="fa fa-eye"></i> AZ-{{ $item->id }} </a> </td>
+
+                                <td> {{ $item->order->user? $item->order->user['name'] : '' }} </td>
 
                                 <td>                                     
                                     {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
@@ -54,16 +56,11 @@
 
                                 <td> {{ $item->order->total }} @lang('site.rs') </td>
 
-                                <td> {{  __('site.'.$item->status) }} </td>
+                                <td> {{  $item->order->order_status ? $item->order->order_status['name_'.my_lang()] : '-' }} </td>
 
                                 <td> {{ $item->created_at }} </td>
 
-                                <td class="list-icons"> 
-                                    @if($item->status == 'pending') 
-                                <li> <a class="btn-success btn-xs" href="{{ route('order',$item) }}">
-                                        <i class="fa fa-check"></i> @lang('site.accept_reject') </a> </li>                                    
-                                    @endif    
-                                </td>
+                                
                             </tr>
                         @endforeach
                        

@@ -864,6 +864,10 @@ return [
     'without_oil' => 'Without Oil',
     'shipping_size' => 'Shipping Size',
     'with_oil_cost' => 'With Oil Cost',
+    'highest_price' => 'Highest Price',
+    'medium_price' => 'Medium Price',
+    'lower_price' => 'Lower Price',
+    'count_prices' => 'Count Prices',
 ];
 
 ?>

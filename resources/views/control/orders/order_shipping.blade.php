@@ -3,7 +3,9 @@
   
     <h3> @lang('site.shipping_details') </h3>
 
-    <table class="table table-success">
+    <table class="table @if($item->status == 1)  table-warning
+            @elseif($item->status == 8) table-success @else table-danger
+        @endif">
         
         <tr>
             <td> @lang('site.country') </td>
@@ -21,26 +23,37 @@
             <td> @lang('site.street') </td>
             <td> {{ $shipping->street }} </td>
         </tr>
+
+        <tr>
+            <td> @lang('site.with_oil') </td>
+            <td> {{ $shipping->with_oil == 1 ? __('site.yes') : __('site.no') }} </td>
+        </tr>
+
+        <tr>
+            <td> @lang('site.car_size') </td>
+            <td> {{ __('site.'.$shipping->size) }} </td>
+        </tr>
+
         <tr>
             <td> @lang('site.rep') </td>
             <td> {{ $shipping->rep ? $shipping->rep['name'] : '-' }} </td>
         </tr>
 
-        @if($shipping->status == 'accepted')
+        @if($item->status == 8)
         <tr>
             <td> @lang('site.delivery_time') </td>
             <td> {{ $shipping->delivery_time }} </td>
         </tr>
-        @elseif($shipping->status == 'rejected')
+        @elseif($item->status == 9)
         <tr>
             <td> @lang('site.reject_reason') </td>
-            <td> {{ $order_rejected->reject_reason }} </td>
+            <td> {{ $order_rejected ? $order_rejected->reject_reason : '' }} </td>
         </tr>
         @endif
 
         <tr>
             <td> @lang('site.status') </td>
-            <td> {{ __('site.'.$shipping->status) }} </td>
+            <td> {{ $item->order_status['name_'.my_lang()] }} </td>
         </tr>
 
         <tr>
@@ -50,7 +63,7 @@
 
         <tr class="text-center">
             <td colspan="2">
-                @if($shipping->status == 'pending')
+                @if(user_type() == 'rep' && $shipping->rep_id == logged_user()->id)
                  <button class="btn btn-info" data-toggle="modal" data-target=".update_shipping"> 
                      @lang('site.update') </button> </td>
                 @endif

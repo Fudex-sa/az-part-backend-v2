@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title') @lang('site.stock') @endsection
+@section('title') @lang('site.stock')  @endsection
 
 @section('styles')
     
@@ -8,15 +8,7 @@
 
 
 @section('content')
-  
-<div class="btn-group">
-     
-    <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-     
-</div>
-
-<br/> <br/>
+ 
 
 <table class="table table-striped jambo_table bulk_action" id="myTbl">
     <thead class=" text-primary">
@@ -25,10 +17,9 @@
             <th scope="col"> {{ __('site.brand') }}  </th>
             <th scope="col"> {{ __('site.model') }}  </th>
             <th scope="col"> {{ __('site.year') }}  </th>
-            <th scope="col">{{ __('site.piece_name') }}</th>
-            <th scope="col">{{ __('site.count_prices') }}</th>
-            <th scope="col">{{ __('site.prices') }}</th>
-            
+            <th scope="col">{{ __('site.piece_name') }}</th>            
+            <th scope="col">{{ __('site.price') }}</th>
+            <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -44,13 +35,12 @@
                 
                 <td>{{$item->piece['name_'.my_lang()]}}</td>
                 
-                <td> {{ $item->count_price }} </td>
+                <td> {{ $item->price }} @lang('site.rs') </td>
 
-            <td> <a href="{{ route('admin.stock',
-                    ['brand'=>$item->brand_id,'model'=>$item->model_id,'year'=>$item->year,'piece'=>$item->piece_id]) }}"> 
-                    <i class="fa fa-eye"></i> @lang('site.view') </a> </td>
-                
-                 
+                <td>                  
+                        <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i> </a>
+                </td>
             </tr>
         @endforeach 
          
@@ -58,7 +48,6 @@
 
     </table>
   
-<div class="text-center"> {{ $items->links() }} </div>
  
 
 @endsection
@@ -70,7 +59,7 @@
 @endsection
 
 @section('scripts')
-     
-    @include('dashboard.ajax.load_models') 
-
+    
+    @include('dashboard.ajax.delete',['target'=>'stock']) 
+   
 @endsection
