@@ -4,6 +4,8 @@
 @section('title') @lang('site.profile') @endsection
 
 @section('styles')
+
+  <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet">
     
 @endsection
 
@@ -20,60 +22,199 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12">
+          <div class="col-lg-10 col-md-10  col-12" style="margin-top: -40px;">
          
               <div class="tab-pane fade show active" id="profile" role="tabpanel"
                 aria-labelledby="profile">
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="btn-add-container float-left">
-                      <button type="submit" class="btn btn-save"> @lang('site.save') </button>
-
-                    </div>
+                    
                     <div class="up-img">
-                      <input type='file' class="imgpo" onchange="readURLL(this);" />
+                      <input type='file' name="photo" class="imgpo" onchange="readURLL(this);" />
                       <span class="file-hover"> @lang('site.change') </span>
-                    <img id="blah" src="{{ site('assets/images/avatar.jpg') }}" alt="" class="img-fluid">
+                    
+                      @if(logged_user()->photo)
+                          <img id="blah" src="{{ img_path(logged_user()->photo) }}" alt="" class="img-fluid">
+                      @else
+                          <img id="blah" src="{{ site('assets/images/avatar.jpg') }}" alt="" class="img-fluid">
+                      @endif
                     </div>
+
                     <div class="pro-image-upload mt-4">
                       
                       <h5> {{ logged_user()->name }} </h5>
-                      <h6> {{ logged_user()->mobile }} </h6>
+                      <h6> {{ __('site.'.user_type()) }} </h6>
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <form class="profile-form row mt-3">
-                      <div class="form-group col-md-6">
-                        <input type="text" class="form-control pro-input" id="username" placeholder="الإسم ">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <input type="email" class="form-control pro-input" id="Email"
-                          placeholder="البريد الإلكتروني ">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <input type="tel" class="form-control pro-input" id="userphone" placeholder="الجوال ">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <input type="text" class="form-control pro-input" id="city" placeholder="المدينة ">
-                      </div>
-                      <div class="form-group col-md-12">
-                        <input type="text" class="form-control pro-input" id="address" placeholder="العنوان ">
-                      </div>
-                      <div class="form-group col-md-6  offset-md-6">
-                        <h3 class="mt-5 mb-2">تغيير كلمة المرور</h3>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <input type="password" class="form-control pro-input" id="oldpass"
-                          placeholder="كلمة المرور القديمة ">
-                      </div>
-                      <div class="form-group col-md-6  offset-md-6">
-                        <input type="password" class="form-control pro-input" id="newpass"
-                          placeholder="كلمة المرور الجديدة ">
-                      </div>
-                      <div class="form-group col-md-6  offset-md-6">
-                        <input type="password" class="form-control pro-input" id="renewpass"
-                          placeholder="أعد كلمة المرور الجديدة ">
-                      </div>
+                  <form class="profile-form row" method="POST" action="{{ route('profile.update') }}"
+                  enctype="multipart/form-data">
+                      @csrf
+ 
+                        <div class="col-md-7 row">
+                          
+                          <div class="form-group">
+                            <h3 class="mt-5 mb-2"> @lang('site.personal_info') </h3>
+                          </div>
+
+                          <div class="form-group col-md-12">
+                            @if(user_type() == 'rep')
+                                <input type="radio" class="" id="individual" name="type" value="individual"
+                                {{ logged_user()->type == 'individual' ? 'checked' : '' }}> 
+                                <label class="form-check-label" for="individual"> @lang('site.delivery_individual')  </label>
+    
+                                <input type="radio" class="" id="company" name="type" value="company"
+                                {{ logged_user()->type == 'company' ? 'checked' : '' }}> 
+                                <label class="form-check-label" for="company"> @lang('site.delivery_company')  </label>
+                            @endif
+                          </div>
+    
+    
+                          <div class="form-group col-md-6">
+                            <input type="text" name="name" id="name" class="form-control pro-input" placeholder="@lang('site.name')"
+                          value="{{ logged_user()->name }}">
+                          </div>
+                          
+                          <div class="form-group col-md-6">
+                            <input type="email" name="email" id="email" class="form-control pro-input" placeholder="@lang('site.email')"
+                            value="{{ logged_user()->email }}">
+                          </div>
+    
+                          <div class="form-group col-md-6">
+                            <input type="tel" name="mobile" id="mobile" class="form-control pro-input" placeholder="@lang('site.mobile')"
+                            value="{{ logged_user()->mobile }}">
+                          </div>
+    
+                          <div class="form-group col-md-6">
+                            <input type="tel" name="phone" id="phone" class="form-control pro-input" placeholder="@lang('site.phone')"
+                            value="{{ logged_user()->phone }}">
+                          </div>
+    
+                          <div class="form-group col-md-6">
+                            <select name="country_id" id="country_id" class="form-control pro-input">
+                              <option value=""> @lang('site.choose_country') </option>
+                              
+                              @foreach (countries() as $country)
+                                  <option value="{{ $country->id }}" 
+                                    @if(isset(logged_user()->region['country_id'])) 
+                                        {{ logged_user()->region['country_id'] == $country->id ? 'selected' : '' }}
+                                   @endif>
+                                     {{ $country['name_'.my_lang()] }} </option>
+                              @endforeach
+                          </select>
+                          </div>
+    
+                          <div class="form-group col-md-6">
+                            <select name="region_id" id="region_id" class="form-control pro-input">
+                              <option value=""> @lang('site.choose_region') </option>
+                              @if($regions)
+                                  @foreach ($regions as $region)
+                                      <option value="{{ $region->id }}" {{ logged_user()->region_id == $region->id ? 'selected' : '' }}>
+                                          {{ $region['name_'.my_lang()] }} </option>
+                                  @endforeach
+                              @endif
+                            </select>
+                          </div>
+    
+                          <div class="form-group col-md-6">
+                            <select id="cities" name="city_id" class="form-control pro-input">
+                              <option value=""> @lang('site.choose_city') </option>
+                              @if($cities)
+                                  @foreach ($cities as $city)
+                                      <option value="{{ $city->id }}" {{ $city->id == logged_user()->city_id ? 'selected' : '' }}>
+                                          {{ $city['name_'.my_lang()] }} </option>
+                                  @endforeach
+                              @endif
+                          </select>
+                          </div>
+    
+                          <div class="form-group col-md-12">
+                            <input id="pac-input" class="form-control add-bg" name="address" type="text"
+                                placeholder="{{ __('site.find_address') }}" value="{{ logged_user()->address }}">
+    
+                            <div id="map" style="width:100%;height: 400px;"></div>
+                            
+                          <input type="hidden" name="lat"  id="latitude" value="{{ logged_user()->lat }}"/>
+                            <input type="hidden" name="lng" id="longitude" value="{{ logged_user()->lng }}"/>
+                        </div>
+
+
+                        </div>
+
+                        <div class="col-md-5">
+                          
+                          @if(user_type() == 'rep')
+                            <div class="form-group">
+                              <h3 class="mt-5 mb-2"> @lang('site.rep_info') </h3>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                              <label> @lang('site.national_id') </label>
+
+                              <input type="text" name="national_id" id="national_id" class="form-control pro-input" 
+                              value="{{ logged_user()->national_id }}">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                              <label> @lang('site.id_copy') </label>
+
+                              <input type="file" name="id_copy" id="id_copy" class="form-control pro-input">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                              <label> @lang('site.bank_id') </label>
+
+                              <select name="bank_id" class="form-control">
+                                <option value=""> @lang('site.choose_bank') </option>
+
+                                @foreach ($banks as $bank)
+                                  <option value="{{ $bank->id }}" {{ $bank->id == logged_user()->bank_id ? 'selected' : '' }}>
+                                     {{ $bank['name_'.my_lang()] }} </option>    
+                                @endforeach
+                              </select>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                              <label> @lang('site.car_license_img') </label>
+
+                              <input type="file" name="car_license_img" id="car_license_img" class="form-control pro-input">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                              <label> @lang('site.car_data') </label>
+
+                              <input type="text" name="car_data" id="car_data" class="form-control pro-input" 
+                                placeholder="@lang('site.car_info')" value="{{ logged_user()->car_data }}">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                              <label> @lang('site.car_img') </label>
+
+                              <input type="file" name="car_img" id="car_img" class="form-control pro-input">
+                            </div>
+
+                              <hr class="dashed-hr"/>
+                          @endif
+
+                          <div class="form-group">
+                            <h3 class="mt-5 mb-2"> @lang('site.change_password') </h3>
+                          </div>
+                          
+                          <div class="form-group">
+                            <input type="password" name="password" class="form-control pro-input" 
+                              placeholder="@lang('site.password')" autocomplete="new-password">
+                          </div>
+                          <div class="form-group">
+                            <input type="password" name="confirm_password" class="form-control pro-input" 
+                              placeholder="@lang('site.confirm_password')">
+                          </div>
+
+                        </div> 
+                         
+                        <div class="form-group col-md-12 text-center">
+                          <button type="submit" class="btn btn-save col-md-3"> @lang('site.save') </button>
+                        </div>
+
                     </form>
                   </div>
 
@@ -98,5 +239,12 @@
     <script>
       $("input[type='number']").inputSpinner()
     </script>
+
+    <script src="{{site('maps/script.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
+    async defer></script>
+
+    @include('dashboard.ajax.load_regions') 
+    @include('dashboard.ajax.load_cities')
 
 @endsection

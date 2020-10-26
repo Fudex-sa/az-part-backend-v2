@@ -74,11 +74,37 @@
             auth()->guard('seller')->user() || auth()->guard('rep')->user() )
             
             <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> @lang('site.profile')  </a>
+              <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> 
+                  <i class="fa fa-user"></i> @lang('site.profile')  </a>
 
-              {{-- @can('createAvailableBrand') --}}
-              <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> @lang('site.avaliable_models')  </a>
-              {{-- @endcan --}}
+                  @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
+              <a class="dropdown-item profile-drob" href="{{ route('user.my_orders') }}"> 
+                <i class="fa fa-list"></i> @lang('site.my_orders')  </a>
+              @endif
+
+              @if(user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> 
+                <i class="fa fa-car"></i> @lang('site.avaliable_models')  </a>
+              @endif
+ 
+              <a class="dropdown-item profile-drob" href=""> 
+                <i class="fa fa-heart"></i> @lang('site.my_interests')  </a>
+
+              <a class="dropdown-item profile-drob" href=""> 
+                <i class="fa fa-car"></i> @lang('site.my_cars')  </a>
+
+              @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.my_packages')  </a>
+              @endif
+
+              @if(user_type() == 'rep')
+              <a class="dropdown-item profile-drob" href="{{ route('rep.my_prices') }}"> 
+                <i class="fa fa-list"></i> @lang('site.my_prices') </a>
+
+              <a class="dropdown-item profile-drob" href="{{ route('rep.my_orders') }}"> 
+                  <i class="fa fa-list"></i> @lang('site.my_orders') </a>
+              @endif
 
               <a class="dropdown-item log-out" href="{{ route('logout') }}"> @lang('site.logout') </a>
             </div>
@@ -131,12 +157,14 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1"> @lang('site.remember_me')  </label>
                   </div>
-                  
-                  <a href="{{ route('user.forget_password') }} " class="an-forgget"> @lang('site.forget_password') </a>
 
                   <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
               </form>
 
+              <br/>
+
+              <a href="{{ route('user.forget_password') }} " class="an-forgget"> @lang('site.forget_password') </a>
+              
                 <p class="mt-2"> @lang('site.easy_to_register') </p>
                  
               <a href="{{ route('signup_as') }}" class="btn btn-logindrop btn-lg btn-block"> @lang('site.register_a_new_account') </a>

@@ -53,7 +53,6 @@ class ProfileController extends Controller
              return back()->with('success' , __('site.success-save') );
 
         return back()->with('failed' , __('site.error-happen') );
-
              
     }
 }

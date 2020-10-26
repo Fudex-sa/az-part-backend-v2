@@ -14,7 +14,7 @@ class Rep extends Authenticatable
     protected $fillable = [
             'name' , 'mobile' , 'email' , 'saudi' , 'active' , 'verification_code' , 'verified' ,
             'lang' , 'last_login' , 'photo' , 'national_id' , 'rating' , 'api_token' , 'password'
-            , 'created_by' , 'city_id', 'address' , 'type' , 'status' , 'id_copy' , 'bank_id' ,
+            , 'created_by' ,'region_id', 'city_id', 'address' , 'type' , 'status' , 'id_copy' , 'bank_id' ,
             'car_license_img' , 'car_data' , 'car_img' ,'phone' , 'lat' , 'lng'         
     ];
  
@@ -27,5 +27,12 @@ class Rep extends Authenticatable
     {
         return $this->belongsTo(City::class,'city_id');
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id');
+    }
+  
+ 
 
 }

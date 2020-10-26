@@ -25,6 +25,10 @@ class CreateOrderShippingsTable extends Migration
             $table->string('lat',100)->nullable();
             $table->string('lng',100)->nullable();
             $table->integer('rep_id')->nullable();
+            $table->text('delivery_time')->nullable();
+            $table->boolean('with_oil')->default(0);
+            $table->enum('size',['light','medium','heavy'])->default('medium');
+            
             $table->text('notes')->nullable();
             
             $table->timestamps();

@@ -54,7 +54,10 @@ if (! function_exists('total')) {
             $result = sub_total() + taxs();
 
             if(session()->get('delivery_price'))
-            $result = $result + session()->get('delivery_price');            
+                $result = $result + session()->get('delivery_price');            
+            
+            if(session()->get('with_oil'))
+                $result = $result + session()->get('with_oil');            
             
         }
                     

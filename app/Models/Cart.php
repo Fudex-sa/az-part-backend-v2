@@ -36,4 +36,29 @@ class Cart extends Model
     {
         return $this->belongsTo(Seller::class,'seller_id');
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function model()
+    {
+        return $this->belongsTo(Modell::class,'model_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

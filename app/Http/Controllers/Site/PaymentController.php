@@ -58,13 +58,18 @@ class PaymentController extends Controller
  
         if($responseData['result']['code'] == env('HYPERPAY_SUCCESS')){
         
-            if(payment_type() == 'package')
-                $this->package->subscribe();
-            else
+            if(payment_type() == 'package'){
+               $response =  $this->package->subscribe();
+
+               if($response == 0)
+                    return redirect()->route('my_packages')
+                        ->with('failed' , __('site.You_already_join_in_package')); 
+
+            }else
                 $this->order->create_order();
         }
 
-        //--------- Redirect after payment -----
+        // --------- Redirect after payment -----
         $search = Session::get('search');
 
         if( session()->get('has_request') == 1){

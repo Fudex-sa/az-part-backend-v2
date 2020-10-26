@@ -139,7 +139,7 @@
       <div class="col-md-12">
         <div class="head-section text-center cust-m-midn">
           <img src="{{ site('assets/images/statistics.png') }}" alt="" class="mb-4">
-          <h2>مؤشر أسعار قطع الغيار</h2>
+          <h2> @lang('site.stock') </h2>
         </div>
       </div>
 
@@ -150,19 +150,26 @@
   <div class="bn-breaking-news" id="newsTicker2">
     <div class="bn-news">
       <ul>
+
+        @foreach ($stocks as $stock)
+
+        @if($stock->max_price != $stock->min_price)
         <li>
           <div class="price-container ">
             <div class="p-container-info-box  float-left">
               <div class="add-card-body shadow p-3 radius">
-                <p class="float-left">1999</p>
+                <p class="float-left"> {{ $stock->year }} </p>
 
-                <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-                <h4 class="text-center pt-2">الماركة</h4>
-                <h6 class="text-center mt-3">مكان مخصص لاسم قطعة الغيار</h6>
-                <p class="float-left"> <span class="color-r">400</span>ريال</p>
+                <img src="{{ brand_img($stock->brand->logo) }}" alt="" class="float-right brand-logo">
 
-                <p class="float-right"> <span class="color-g">400</span>ريال</p>
-                <p class="pt-2 text-center"> <span class="color-d">400</span>ريال</p>
+                <h4 class="text-center pt-2"> {{ $stock->brand['name_'.my_lang()] }} </h4>
+
+                <h6 class="text-center mt-3"> {{ $stock->piece['name_'.my_lang()] }} </h6>
+
+                <p class="float-left"> <span class="color-r"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
+
+                <p class="float-right"> <span class="color-g"> {{ $stock->avg_price }} </span> @lang('site.rs') </p>
+                <p class="pt-2 text-center"> <span class="color-d"> {{ $stock->min_price }} </span> @lang('site.rs') </p>
 
               </div>
             </div>
@@ -170,106 +177,11 @@
               <a href="#"><img src="{{ site('assets/images/logo.png') }}" alt="">
               </a>
             </div>
-
-
           </div>
-        </li>
-        <li>
-          <div class="price-container ">
-            <div class="p-container-info-box  float-left">
-              <div class="add-card-body shadow p-3 radius">
-                <p class="float-left">1999</p>
-
-                <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-                <h4 class="text-center pt-2">الماركة</h4>
-                <h6 class="text-center mt-3">مكان مخصص لاسم قطعة الغيار</h6>
-                <p class="float-left"> <span class="color-r">400</span>ريال</p>
-
-                <p class="float-right"> <span class="color-g">400</span>ريال</p>
-                <p class="pt-2 text-center"> <span class="color-d">400</span>ريال</p>
-
-              </div>
-            </div>
-            <div class="p-container-image-box shadow">
-              <a href="#"><img src="{{ site('assets/images/logo.png') }}" alt="">
-              </a>
-            </div>
-
-
-          </div>
-        </li>
-        <li>
-          <div class="price-container ">
-            <div class="p-container-info-box  float-left">
-              <div class="add-card-body shadow p-3 radius">
-                <p class="float-left">1999</p>
-
-                <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-                <h4 class="text-center pt-2">الماركة</h4>
-                <h6 class="text-center mt-3">مكان مخصص لاسم قطعة الغيار</h6>
-                <p class="float-left"> <span class="color-r">400</span>ريال</p>
-
-                <p class="float-right"> <span class="color-g">400</span>ريال</p>
-                <p class="pt-2 text-center"> <span class="color-d">400</span>ريال</p>
-
-              </div>
-            </div>
-            <div class="p-container-image-box shadow">
-              <a href="#"><img src="{{ site('assets/images/logo.png') }}" alt="">
-              </a>
-            </div>
-
-
-          </div>
-        </li>
-        <li>
-          <div class="price-container ">
-            <div class="p-container-info-box  float-left">
-              <div class="add-card-body shadow p-3 radius">
-                <p class="float-left">1999</p>
-
-                <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-                <h4 class="text-center pt-2">الماركة</h4>
-                <h6 class="text-center mt-3">مكان مخصص لاسم قطعة الغيار</h6>
-                <p class="float-left"> <span class="color-r">400</span>ريال</p>
-
-                <p class="float-right"> <span class="color-g">400</span>ريال</p>
-                <p class="pt-2 text-center"> <span class="color-d">400</span>ريال</p>
-
-              </div>
-            </div>
-            <div class="p-container-image-box shadow">
-              <a href="#"><img src="{{ site('assets/images/logo.png') }}" alt="">
-              </a>
-            </div>
-
-
-          </div>
-        </li>
-        <li>
-          <div class="price-container ">
-            <div class="p-container-info-box  float-left">
-              <div class="add-card-body shadow p-3 radius">
-                <p class="float-left">1999</p>
-
-                <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-                <h4 class="text-center pt-2">الماركة</h4>
-                <h6 class="text-center mt-3">مكان مخصص لاسم قطعة الغيار</h6>
-                <p class="float-left"> <span class="color-r">400</span>ريال</p>
-
-                <p class="float-right"> <span class="color-g">400</span>ريال</p>
-                <p class="pt-2 text-center"> <span class="color-d">400</span>ريال</p>
-
-              </div>
-            </div>
-            <div class="p-container-image-box shadow">
-              <a href="#"><img src="{{ site('assets/images/logo.png') }}" alt="">
-              </a>
-            </div>
-
-
-          </div>
-        </li>
+        </li>   
+        @endif
+        @endforeach
+         
       </ul>
     </div>
 

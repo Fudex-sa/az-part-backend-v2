@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class RepPrice extends Model
 {
     use HasFactory;
+    
+    protected $casts = [
+        'car_size' => 'array'
+    ];
 
     protected $fillable = [
-        'rep_id' , 'city_id' , 'price' , 'active'
+        'rep_id' , 'city_id' , 'price' , 'active' , 'car_size'
     ];
 
     public function rep()
@@ -27,4 +31,6 @@ class RepPrice extends Model
     {
         return $q->where('rep_id',$rep_id);
     }
+
+    
 }

@@ -101,8 +101,8 @@
                             placeholder="{{ __('site.find_address') }}" value="{{ $item->$col }}">
         
                             <div id="map" style="width:420px;height: 400px;"></div>
-                            <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
-                            <input type="hidden" name="lng" id="longitude" value="50.089986"/>
+                            <input type="hidden" name="lat"  id="latitude" value="{{ $item->lat }}"/>
+                            <input type="hidden" name="lng" id="longitude" value="{{ $item->lng }}"/>
 
                         @elseif($col == 'car_data') 
                         <textarea name="{{ $col }}" class="form-control"> {{ $item->$col }} </textarea>
@@ -160,9 +160,9 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <select name="region_id" id="region_id" class="form-control">
                     <option value=""> @lang('site.choose_region') </option>
-                    @if($regions)
-                        @foreach ($regions as $region)
-                            <option value="{{ $region->id }}" {{ $region_city->id == $item->city_id ? 'selected' : '' }}>
+                    @if($my_regions)
+                        @foreach ($my_regions as $region)
+                            <option value="{{ $region->id }}" {{ $region->id == $item->region_id ? 'selected' : '' }}>
                                 {{ $region['name_'.my_lang()] }} </option>
                         @endforeach
                     @endif
@@ -177,10 +177,10 @@
                 
                 <select id="cities" name="city_id" class="form-control">
                     <option value=""> @lang('site.choose_city') </option>
-                    @if($region_cities)
-                        @foreach ($region_cities as $region_city)
-                            <option value="{{ $region_city->id }}" {{ $region_city->id == $item->city_id ? 'selected' : '' }}>
-                                {{ $region_city['name_'.my_lang()] }} </option>
+                    @if($myCities)
+                        @foreach ($myCities as $myCity)
+                            <option value="{{ $myCity->id }}" {{ $myCity->id == $item->city_id ? 'selected' : '' }}>
+                                {{ $myCity['name_'.my_lang()] }} </option>
                         @endforeach
                     @endif
                 </select>

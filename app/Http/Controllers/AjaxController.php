@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Brand;
 use App\Models\Modell;
 use App\Models\RepPrice;
+use App\Models\Rep;
  
 class AjaxController extends Controller
 {
@@ -69,29 +70,34 @@ class AjaxController extends Controller
         $result = "";
         
         $city_id = $request->input('city_id');
-        
-        $rep_prices = RepPrice::with('rep')->whereHas('rep',function($q){
-                        $q->where('active',1)->orderby('lat','asc')->orderby('lng','asc');
-                    })
-                    ->whereCity_id($city_id)
-                    ->orderby('price','asc')
-                    ->where('active',1)->get();
-        
+        $size = $request->input('size');
+ 
+        $rep_prices = RepPrice::with('rep')->whereHas('rep' , function($q){
+                                $q->where('active',1)->orderby('lat','asc')->orderby('lng','asc');
+                                })                                
+                                ->where('city_id',$city_id)->where('active',1)
+                                ->orderby('price','asc')
+                                ->get();
+
+
         if(count($rep_prices) > 0) {
+            
             foreach($rep_prices as $k=>$rep_price){
-                $number = $k+1;
+                if(in_array($size,$rep_price->car_size)){    
+                    $number = $k+1;
 
-                $result .= "<tr>";
-                $result .= "<td> ". $number ." </td>";
+                    $result .= "<tr>";
+                    $result .= "<td> ". $number ." </td>";
 
-                $result .= "<td>
-                            <label> 
-                                <input type='radio' name='rep_price_id' value='".$rep_price->id."' /> ". $rep_price->rep['name'] ."
-                            </label>   
-                            </td>";
+                    $result .= "<td>
+                                <label> 
+                                    <input type='radio' name='rep_price_id' value='".$rep_price->id."' /> ". $rep_price->rep['name'] ."
+                                </label>   
+                                </td>";
 
-                $result .= "<td> ". $rep_price->price . __('site.rs') ." </td>";
-                $result .= "</tr>";
+                    $result .= "<td> ". $rep_price->price . __('site.rs') ." </td>";
+                    $result .= "</tr>";
+                }
             }
         }else{
 
@@ -117,6 +123,20 @@ class AjaxController extends Controller
             $total = total() + $delivery_price;
 
         return response()->json(['total'=> $total, 'delivery_price'=> $delivery_price]);
+
+    }
+
+    public function with_oil(Request $request)
+    {
+        $with_oil = $request->input('with_oil');
+
+        $with_oil ? $with_oil_fees = setting('with_oil_fees') : $with_oil_fees = 0;
+ 
+        session()->put('with_oil',$with_oil_fees);
+
+        $total = total()  + $with_oil_fees;
+         
+        return response()->json(['total'=> $total, 'with_oil_fees'=> $with_oil_fees]);
 
     }
 }

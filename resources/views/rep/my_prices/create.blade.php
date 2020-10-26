@@ -42,6 +42,15 @@
                 <div class="form-group col-12">
                   <input type="number" name="price" min="0" class="form-control" placeholder="@lang('site.price')"/>
                 </div>
+
+                <div class="form-group col-12">
+                  <label> @lang('site.car_size') </label>
+
+                  <label> <input type="checkbox" value="light" name="car_size[]" /> @lang('site.light') </label>
+                  <label> <input type="checkbox" value="medium" name="car_size[]" /> @lang('site.medium') </label>
+                  <label> <input type="checkbox" value="heavy" name="car_size[]" /> @lang('site.heavy') </label>
+
+                </div>
                 
                     <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.save') </button>
                 </form>

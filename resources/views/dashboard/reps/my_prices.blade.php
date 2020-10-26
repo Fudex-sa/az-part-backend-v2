@@ -12,13 +12,14 @@
     </thead>
     <tbody>
         
-        @foreach ($myCities as $myCity)
+        @foreach ($myPrices as $k=>$myPrice)
             <tr>
-                <td> {{ $myCity->city['name_'.my_lang()] }} </td>
+                <td> {{ $k+1 }} </td>
+                <td> {{ $myPrice->city['name_'.my_lang()] }} </td>
 
-                <td> {{ $myCity->price }} @lang('site.rs') </td>
+                <td> {{ $myPrice->price }} @lang('site.rs') </td>
 
-                <td> {{ $myCity->active == 1 ? __('site.yes') : __('site.no') }} </td>
+                <td> {{ $myPrice->active == 1 ? __('site.yes') : __('site.no') }} </td>
             </tr>
         @endforeach
         

@@ -19,7 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password',
-        'total_requests' , 'available_requests'  , 'created_by', 'city_id', 'address', 'lat' , 'lng'          
+        'total_requests' , 'available_requests'  , 'created_by' ,'region_id', 'city_id', 'address', 'lat' , 'lng'          
     ];
 
     /**
@@ -48,6 +48,11 @@ class User extends Authenticatable
     public function city()
     {
         return $this->belongsTo(City::class,'city_id');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id');
     }
  
 }

@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Site\PartSearchRequest;
-use App\Models\AvailableModel;
 use App\Models\PieceAlt;
 use App\Models\Cart;
 use App\Models\OrderShipping;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\Stock;
 use App\Http\Requests\Site\OrderRequest;
 use Session;
 use App\Helpers\PackageHelp;
@@ -31,10 +31,6 @@ class PartController extends Controller
     public function search(PartSearchRequest $request)
     { 
         $search_type =  $request->search_type;
-        $city = $request->city;
-        $region = $request->region;
-
-        $found_result = 0;
         
         $this->search->save_search($request); //--- save search in session
 
@@ -48,80 +44,16 @@ class PartController extends Controller
            
         if($search_type == 'manual'){
 
-            $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-                        ->with('seller')
-                        ->whereHas('seller',function($q) use ($city){
-                            $q->where('city_id',$city);
-                        })
-                        ->limit($limit)                    
-                        ->get();
-                        
-            if(count($items) > 0){
-                $found_result = 1; //--- Case found 
-                $items = $items;
-
-            }else{
-
-                $items_region = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-                        ->with('seller')
-                        ->whereHas('seller',function($q) use ($region){
-                            $q->where('region_id',$region);
-                        })
-                        ->limit($limit)                    
-                        ->get();
-                
-                if(count($items_region) > 0) {
-                    
-                    $found_result = 2; // ---- Case found in same region
-                    $items = $items_region;
-
-                }else $found_result = 0; // --- Case not found
-            }
+           $response = $this->search->manual_search($request,$limit);
         
         }else{
 
-            if($limit > 0){
-
-                $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-                                ->with('seller')
-                                ->whereHas('seller',function($q) use ($city){
-                                    $q->where('city_id',$city);
-                                })                                                
-                                ->get();
-                                
-                    if(count($items) > 0){
-                        $found_result = 1; //--- Case found 
-                        $items = $items;
-
-                    }else{
-
-                        $items_region = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-                                ->with('seller')
-                                ->whereHas('seller',function($q) use ($region){
-                                    $q->where('region_id',$region);
-                                })                                         
-                                ->get();
-                        
-                        if(count($items_region) > 0) {
-                            
-                            $found_result = 2; // ---- Case found in same region
-                            $items = $items_region;
-
-                        }else $found_result = 0; // --- Case not found
-                    }
-
-
-            }else{
-                $items = null;
-                $found_result = 3; // --- Case not joined any electronic package
-                
-            }
-
+            $response = $this->search->electronic_search($request,$limit);
         }
 
-
-        
-
+        $items = $response['items'];
+        $found_result = $response['found_result'];
+ 
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result'));
     }
 
@@ -134,9 +66,19 @@ class PartController extends Controller
         $data['user_type'] = user_type();
   
         $item = Cart::create($data);
-        
-        if($item){
- 
+
+        $piece_id = PieceAlt::where('id',$request->piece_alt_id)->first()->piece_id;
+
+        if($piece_id){
+            $data2 = [
+                'brand_id' => $request->brand_id , 'model_id' => $request->model_id ,
+                'year' => $request->year ,
+                'piece_id' => $piece_id , 'price' => $request->price , 'seller_id' => $request->seller_id
+            ];
+            Stock::create($data2);
+        }
+
+        if($item){ 
             return redirect()->route('cart');
         }
     }

@@ -40,7 +40,29 @@
 .myTbl{
     margin-top: 0px !important;
 }
-#delivery_price{
+#delivery_price,#with_oil{
     color: #5a5a5a;
     font-size: 18px;
+}
+.list-icons{
+    width: 130px;
+}
+.list-icons li{
+    display: inline;
+}
+
+.an-forgget{
+    text-decoration: underline;
+}
+
+.form-check .form-group{
+    display: inline;
+}
+
+.dashed-hr{
+    border: 1px dashed #1584BB;
+    width: 98%;
+}
+.brand-logo{
+    width: 50px;
 }

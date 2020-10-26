@@ -22,7 +22,7 @@ class CreatePackageSubscribesTable extends Migration
             $table->integer('stores_no');
             $table->float('price');
             $table->boolean('expired')->default(1);
-            $table->integer('order_id')->nullable();
+            
             $table->timestamps();
         });
     }

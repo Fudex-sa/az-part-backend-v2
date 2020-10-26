@@ -38,8 +38,8 @@
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="tile-stats">
             <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-            <div class="count"> {{ isset($open_requests) ? $open_requests : '0' }}  </div>
-            <h3> @lang('site.open_requests') </h3>
+            <div class="count"> {{ isset($orders_this_month) ? $orders_this_month : '0' }}  </div>
+            <h3> @lang('site.orders_this_month') </h3>
             
         </div>
     </div>
@@ -72,7 +72,7 @@
 <div class="col-md-8 col-sm-6 col-xs-12 widget_tally_box">
     <div class="x_panel">
         <div class="x_title">
-            <h2>   </h2>
+            <h2> {{ __("site.orders") }}  </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                    
             </ul>
@@ -81,7 +81,7 @@
 
         <div class="x_content">
 
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart2"></canvas>
             
         </div>
     </div>
@@ -182,6 +182,27 @@
         </div>
     </div>
 
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12 widget_tally_box">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> {{ __("site.users_registerations") }}  </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                    
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+    
+            <div class="x_content">
+    
+                <canvas id="myChart"></canvas>
+                
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 </div>
@@ -194,6 +215,7 @@
 @section('scripts')
     
     @include('dashboard.charts.supervisors_by_month')
+    @include('dashboard.charts.orders')
 
 @endsection
 

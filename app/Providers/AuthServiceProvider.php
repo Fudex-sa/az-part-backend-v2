@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Models\AvailableModel' => 'App\Policies\AvaliableModelPolicy',
+        // 'App\Models\AvailableModel' => 'App\Policies\AvaliableModelPolicy',
     ];
 
     /**
@@ -25,7 +25,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('createAvailableBrand','App\Policies\AvaliableModelPolicy@create');
- 
     }
 }

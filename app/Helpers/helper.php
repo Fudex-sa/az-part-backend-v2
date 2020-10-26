@@ -12,6 +12,8 @@ use App\Models\City;
 use App\Models\Rep;
 use App\Models\Supervisor;
 use App\Models\Notification;
+use App\Models\Order;
+use App\Models\RepCarSize;
 use Mobily;
 
 if (! function_exists('my_lang')) {
@@ -156,6 +158,19 @@ if (! function_exists('supervisors_by_month')) {
         return $items ? $items->count : 0;
     }
 }
+
+
+if (! function_exists('orders_by_month')) {
+    function orders_by_month($month)
+    {
+        $items = Order::selectRaw('COUNT(*) as count, YEAR(created_at) year, MONTH(created_at) month')
+                            ->whereMonth('created_at', $month)
+                            ->groupBy('year', 'month')
+                            ->first();
+
+        return $items ? $items->count : 0;
+    }
+}
  
 if (! function_exists('send_sms')) {
     function send_sms($numbers,$message)
@@ -224,7 +239,13 @@ if (! function_exists('user_type')) {
 
 
 
-
+if (! function_exists('rep_car_size')) {
+    function rep_car_size($size)
+    {
+        $car_size = RepCarSize::where('rep_id',logged_user()->id)->where('size',$size)->first();
+        return $car_size;
+    }
+}
 
 
 

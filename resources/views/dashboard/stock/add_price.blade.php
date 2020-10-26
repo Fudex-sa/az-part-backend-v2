@@ -18,9 +18,7 @@
     <form class="form-horizontal form-label-left" action="{{ route('admin.stock.store_price',$item->id) }}"
          method="post" enctype="multipart/form-data" novalidate>
         @csrf
-    
-        <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-             
+     
         <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price"> @lang('site.price') <span
                     class="required">*</span>

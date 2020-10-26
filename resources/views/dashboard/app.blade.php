@@ -69,7 +69,7 @@
             
             @if( has_permission('users_show') || has_permission('companies_show') || has_permission('sellers_show')
             ||  has_permission('brokers_show') ||  has_permission('reps_show') || has_permission('supervisors_show')
-            || has_permission('saudis_show') || has_permission('vip_requests_show') || has_permission('roles_show')
+            || has_permission('saudis_show') ||  has_permission('roles_show')
             )
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-users"></i> {{ __('site.users_management') }}
@@ -102,10 +102,6 @@
 
                         @if(has_permission('saudis_show'))
                             <li> <a href="{{route('admin.saudis')}}"> {{ __('site.saudi_section') }} </a> </li>
-                        @endif
-
-                        @if(has_permission('vip_requests_show'))
-                            <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>                        
                         @endif
 
                         @if(has_permission('roles_show'))
@@ -179,37 +175,26 @@
              @endif
 
 
-             @if(has_permission('vip_requests_show') || has_permission('normal_requests_show') || has_permission('assign_to_admin_show')
+             @if(has_permission('order_show') || has_permission('electronic_orders_show') 
+                    || has_permission('assign_to_admin_show')
 
                 || has_permission('express_requests') || has_permission('deleted_requests') 
              )
 
             <ul class="nav side-menu">
-                <li><a><i class="fa fa-shopping-cart"></i> {{ __('site.requests_and_offers') }}
+                <li><a><i class="fa fa-shopping-cart"></i> {{ __('site.orders') }}
                         <span class="fa fa-chevron-down"></span></a>
 
                     <ul class="nav child_menu">
 
-                        @if(has_permission('vip_requests_show'))
-                            <li> <a href="{{route('admin.requests.vip')}}"> {{ __('site.special_requests') }} </a> </li>
+                        @if(has_permission('order_show'))
+                            <li> <a href="{{route('admin.orders')}}"> {{ __('site.all_orders') }} </a> </li>
                         @endif
 
-                        @if(has_permission('normal_requests_show'))
-                            <li> <a href="{{url('admin/requests/normal')}}">  {{ __('site.normal_requests') }} </a> </li>
+                        @if(has_permission('order_show'))
+                            <li> <a href="{{route('admin.orders.deleted')}}"> {{ __('site.deleted_orders') }} </a> </li>
                         @endif
-        
-                        @if(has_permission('assign_to_admin_show'))
-                            <li> <a href="{{url('admin/requests/assign_to_admin')}}"> {{ __('site.admin_requests_assigned') }} </a> </li>
-                        @endif
-        
-                        @if(has_permission('express_requests_show'))
-                            <li> <a href="{{url('admin/requests/express')}}">  {{ __('site.let_admin_deal_requests') }} </a> </li>
-                        @endif
-        
-                        @if(has_permission('deleted_requests_show'))
-                            <li> <a href="{{url('admin/requests/deleted')}}">  {{ __('site.deleted_requests') }} </a> </li>
-                        @endif
-                                            
+                    
                     </ul>
                 </li>                             
             </ul>
@@ -269,11 +254,11 @@
 
                     <ul class="nav child_menu">
                         @if(has_permission('ticker'))
-                            <li> <a href="{{ route('admin.ticker',1) }}">   {{ __('site.ticker_setting') }} </a> </li>
+                            {{-- <li> <a href="{{ route('admin.ticker',1) }}">   {{ __('site.ticker_setting') }} </a> </li> --}}
                         @endif
 
                         @if(has_permission('stock'))
-                            <li><a href="{{ route('admin.stock') }}"> {{ __('site.stock') }} </a></li>
+                            <li><a href="{{ route('admin.stocks') }}"> {{ __('site.stock') }} </a></li>
                         @endif
                     </ul>
                 </li>                             

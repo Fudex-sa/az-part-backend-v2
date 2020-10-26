@@ -56,6 +56,29 @@
                     <div class="cart-address shadow rounded">
                       <h3> @lang('site.shipping_address')  </h3>
 
+                      <div class="form-group col-12">
+                        <label class="col-3"> @lang('site.shipping_size') : </label>
+
+                          <label> <input type="radio" name="size" value="light"
+                            {{ old('size') == 'light' ? 'checked' : '' }}> @lang('site.light') </label>
+
+                          <label> <input type="radio" name="size" value="medium" checked
+                            {{ old('size') == 'medium' ? 'checked' : '' }}> @lang('site.medium') </label>
+
+                          <label> <input type="radio" name="size" value="heavy"
+                            {{ old('size') == 'heavy' ? 'checked' : '' }}> @lang('site.heavy') </label>                      
+                      </div>
+
+                      <div class="form-group col-12">
+                          <label class="col-3"> @lang('site.spare') : </label>
+
+                          <label> <input type="radio" name="with_oil" value="1"
+                            {{ old('with_oil') == 1 ? 'checked' : '' }}> @lang('site.with_oil') </label>
+
+                          <label> <input type="radio" name="with_oil" value="0" checked
+                            {{ old('with_oil') == 0 ? 'checked' : '' }}> @lang('site.without_oil') </label>
+                      </div>
+
                         <div class="form-group col-12">
                             <select class="form-control" name="country_id" id="country_id">
                                 <option value=""> @lang('site.choose_country') </option>
@@ -176,6 +199,7 @@
     @include('dashboard.ajax.load_cities')
     @include('dashboard.ajax.load_reps')
     @include('dashboard.ajax.choose_rep')
+    @include('dashboard.ajax.with_oil_cost')
 
     <script src="{{site('maps/script.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"

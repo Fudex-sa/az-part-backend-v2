@@ -36,5 +36,10 @@ class Supervisor extends Authenticatable
     {
         return $this->belongsTo(City::class,'city_id');
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id');
+    }
  
 }

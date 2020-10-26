@@ -20,7 +20,9 @@ Route::group([
         Route::post('cities/load',[App\Http\Controllers\AjaxController::class, 'cities'])->name('cities.load');            
         Route::post('models/load',[App\Http\Controllers\AjaxController::class, 'models'])->name('models.load');            
         Route::post('reps/load',[App\Http\Controllers\AjaxController::class, 'reps'])->name('reps.load');            
-        Route::post('rep/choose',[App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');            
+        Route::post('rep/choose',[App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');                    
+        Route::post('with_oil',[App\Http\Controllers\AjaxController::class, 'with_oil'])->name('with_oil');                      
+        
  
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
 
@@ -40,13 +42,28 @@ Route::group([
             Route::delete('my_price/delete',[App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');            
             Route::post('my_price/activate',[App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
              
+
+            Route::get('my_orders',[App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');            
+            Route::post('order/update/{shipping}',[App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');            
+            
+        });
+
+
+        Route::group(['prefix'=> 'user','namespace' => 'User','middleware'=>'user'], function () {
+
+            Route::get('my_orders',[App\Http\Controllers\User\MyOrderController::class, 'index'])->name('user.my_orders')->middleware('userOrders');            
+            
+             
         });
 
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
             
             Route::get('profile',[App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
-            Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('isLogged');
+            Route::post('profile/update',[App\Http\Controllers\Control\ProfileController::class, 'update'])->name('profile.update');
 
+            Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('myPackages');
+
+            Route::get('order/{id}',[App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
         });
 
 
@@ -59,6 +76,7 @@ Route::group([
             Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
 
             Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
+            Route::get('stock/filter',[App\Http\Controllers\Site\StockController::class, 'filter'])->name('stock.filter');
  
             Route::get('package/{type}',[App\Http\Controllers\Site\PackageController::class, 'show'])->name('package.show');            
             Route::get('package/subscribe/{id}',[App\Http\Controllers\Site\PackageController::class, 'subscribe'])->name('package.subscribe');            
@@ -119,6 +137,12 @@ Route::group([
             Route::post('profile/update',[App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');            
 
             Route::get('search',[App\Http\Controllers\Admin\SearchController::class, 'index'])->name('admin.search');            
+
+            /*************** Orders  **********************/
+            Route::get('orders',[App\Http\Controllers\Admin\OrderController::class, 'all'])->name('admin.orders');            
+            Route::get('orders/deleted',[App\Http\Controllers\Admin\OrderController::class, 'deleted'])->name('admin.orders.deleted');            
+            Route::get('order/{id}',[App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');   
+            Route::delete('order/delete',[App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');                     
  
             /*************** Packages  **********************/
             Route::get('packages',[App\Http\Controllers\Admin\PackageController::class, 'index'])->name('admin.packages');            
@@ -303,30 +327,11 @@ Route::group([
             Route::post('coupon/store/{item?}',[App\Http\Controllers\Admin\CouponController::class, 'store'])->name('admin.coupon.store');
             Route::delete('coupon/delete',[App\Http\Controllers\Admin\CouponController::class, 'delete'])->name('admin.coupon.delete');
 
-
-
-            Route::get('vip_requests',[App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');            
-             
- 
-            
-            
-            /************ Requests  **********/
-            Route::get('requests/normal', 'RequestsController@normal')->name('admin.requests.normal');
-            Route::get('requests/vip', 'RequestsController@vip')->name('admin.requests.vip');
-            Route::get('requests/express', 'RequestsController@express')->name('admin.requests.express');
-            Route::get('requests/assign_to_admin', 'RequestsController@assign_to_admin')->name('admin.requests.assign_to_admin');
-            Route::get('requests/deleted', 'RequestsController@deleted')->name('admin.requests.deleted');
-            Route::get('request/{item}', 'RequestsController@show')->name('admin.request.show');
-            Route::post('request/update/{item}','RequestsController@update')->name('admin.request.update');
-            Route::post('request/delete/{item}','RequestsController@delete')->name('admin.request.delete');
-
-            Route::get('request/engine/{item}', 'RequestsController@engine')->name('admin.request.engine');
-            Route::get('engine_user/{user}/{item}','RequestsController@engine_user')->name('admin.request.engine_user');
-            Route::post('engine_user/status/change/{item}','RequestsController@change_offer_status')->name('offerChange');
-
-
-            /******************** Offers  **********/
-            Route::get('offer/send/{item}','OffersController@send_offer')->name('admin.offer.send');
+            /************ Stock  **********/
+            Route::get('stock',[App\Http\Controllers\Admin\StockController::class, 'all'])->name('admin.stocks');                        
+            Route::get('stock/{brand}/{model}/{year}/{piece}',[App\Http\Controllers\Admin\StockController::class, 'show'])->name('admin.stock');
+            Route::post('stock/store/{item?}',[App\Http\Controllers\Admin\StockController::class, 'store'])->name('admin.stock.store');
+            Route::delete('stock/delete',[App\Http\Controllers\Admin\StockController::class, 'delete'])->name('admin.stock.delete');
 
  
 
@@ -381,20 +386,7 @@ Route::group([
             Route::post('bidding/delete','CarBiddingController@delete')->name('admin.bidding.delete');
             Route::post('bidding/update/{id?}','CarBiddingController@update')->name('admin.bidding.store');
  
-             
-            /************* Ticker ****************************/
-            Route::get('ticker/edit/{item}','TickerController@edit')->name('admin.ticker');
-            Route::post('ticker/store/{item?}','TickerController@store')->name('admin.ticker.store');
-
-
-            /************ Stock Management *****************/
-            Route::get('stock','StocksController@all')->name('admin.stock');
-            Route::get('stock/edit/{item}','StocksController@edit')->name('admin.stock.edit');
-            Route::post('stock/store/{item?}','StocksController@store')->name('admin.stock.store');
-            Route::get('stock/price/add/{item}','StocksController@add_price')->name('admin.stock.add_price');
-            Route::post('stock/price/store/{item}','StocksController@store_price')->name('admin.stock.store_price');
-            Route::delete('stock/delete','StocksController@delete')->name('admin.stock.delete');
-
+              
             //---------- Engine ------------------            
             Route::get('engine','EngineController@index')->name('admin.engine');
             Route::get('engine/vip/delete','EngineController@vip_delete');

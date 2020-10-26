@@ -22,11 +22,13 @@
     <thead class=" text-primary">
         <tr>
             <th scope="col">#  </th>
-            <th> @lang('site.stock_id') </th>
+            <th scope="col"> {{ __('site.brand') }}  </th>
             <th scope="col"> {{ __('site.model') }}  </th>
+            <th scope="col"> {{ __('site.year') }}  </th>
             <th scope="col">{{ __('site.piece_name') }}</th>
+            <th scope="col">{{ __('site.count_prices') }}</th>
             <th scope="col">{{ __('site.prices') }}</th>
-            <th scope="col"></th>
+            
       </tr>
       </thead>
       <tbody>
@@ -34,29 +36,21 @@
             <tr>
                 <td>{{$k+1}}</td>
 
-                <td> S#{{ $item->id }} </td>
+                <td> {{ $item->brand['name_'.my_lang()] }} </td>
+
+                <td> {{ $item->model['name_'.my_lang()] }} </td>
                 
-                <td> {{$item->brand ? $item->brand['name'] : '' }} -
-                    {{ $item->model ? $item->model['name'] : '' }} -
-                    {{ $item->year}}
-                </td>
+                <td> {{ $item->year}} </td>
                 
-                <td>{{$item->piece['name']}}</td>
+                <td>{{$item->piece['name_'.my_lang()]}}</td>
                 
-                <td>@if(count($item->movements) > 0)
-                    @foreach($item->movements as $movement)
-                        {{ $movement->price . __('site.rs') }} -
-                    @endforeach
-                    @else - @endif
-                </td>                      
+                <td> {{ $item->count_price }} </td>
+
+            <td> <a href="{{ route('admin.stock',
+                    ['brand'=>$item->brand_id,'model'=>$item->model_id,'year'=>$item->year,'piece'=>$item->piece_id]) }}"> 
+                    <i class="fa fa-eye"></i> @lang('site.view') </a> </td>
                 
-                <td>
-                    <a href="{{ route('admin.stock.add_price',$item->id) }}"  class="btn btn-info btn-xs">
-                        <i class="fa fa-money"></i> @lang('site.add_price') </a>                         
-    
-                        <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                            <i class="fa fa-trash"></i> </a>
-                </td>
+                 
             </tr>
         @endforeach 
          
@@ -76,24 +70,7 @@
 @endsection
 
 @section('scripts')
-    
-    @include('dashboard.ajax.delete',['target'=>'stock']) 
-  
-    <script>
-         $("#brand_id").change(function () {
-            var _token = "{{ csrf_token() }}";
-            var brand_id = $(this).val();
-            var lang = "{{app()->getLocale()}}";
+     
+    @include('dashboard.ajax.load_models') 
 
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('getModels') }}",
-                data: {  _token:_token ,brand_id:brand_id,lang:lang},
-                success: function(response) {
-                    $("#model_id").html(response);
-                }
-            });
-        });
-
-    </script>
 @endsection

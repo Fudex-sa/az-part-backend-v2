@@ -21,6 +21,9 @@
               @if($found_result == 1) @lang('site.this_is_your_search_result')
               
               @elseif($found_result == 2) @lang('site.search_found_in_other_cities') 
+
+              @elseif($found_result == 3) @lang('site.please_subscribe_package_first') 
+
               @else @lang('site.not_found') @endif
             </h2>
           </div>
@@ -45,6 +48,9 @@
                                     <a href="https://maps.google.com/?q={{$item->seller['lat']}},{{$item->seller['lng']}}" target="_blank"> 
                                         <img src="{{ site('assets/images/location.png') }}" alt="">  {{ $item->seller['address'] }}
                                     </a>
+
+                                    {{ $item->seller->region['name_'.my_lang()] }} - 
+                                    {{ $item->seller->city['name_'.my_lang()] }}
                                 </h6>
                                 <p> @lang('site.search_keyword') 
                                     <span> {{ $item->brand['name_'.my_lang()] }}
@@ -80,8 +86,8 @@
 
         <div class="col-md-12">
             <div class="advice text-center">
-              <p> @lang('site.search_found_no_result') </p>
-              <a href="#" class="btn btn-results"> @lang('site.request_From_another_city') </a>
+              {{-- <p> @lang('site.search_found_no_result') </p> --}}
+              {{-- <a href="#" class="btn btn-results"> @lang('site.request_From_another_city') </a> --}}
             </div>
           </div>
         

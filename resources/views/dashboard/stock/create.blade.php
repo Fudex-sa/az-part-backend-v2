@@ -13,9 +13,7 @@
                 <form class="form-horizontal form-label-left" action="{{ route('admin.stock.store') }}" 
                 method="post" enctype="multipart/form-data" novalidate>
                     @csrf
-                
-                    <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                    
+                 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand_id"> @lang('site.brand') <span
                                 class="required">*</span>
@@ -25,11 +23,10 @@
                             <select class="form-control col-md-7 col-xs-12" name="brand_id" id="brand_id">
                                 <option value="">{{__('site.choose_brand')}}</option>
                                 
-                                @if(Cache::get('brands'))
-                                    @foreach(Cache::get('brands') as $brand)
-                                        <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
+                                    @foreach($brands as $brand)
+                                        <option value="{{ $brand->id }}"> {{ $brand['name_'.my_lang()] }} </option>
                                     @endforeach
-                                @endif
+                             
                             </select>
                         </div>
                     </div>
@@ -71,14 +68,23 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <select class="form-control col-md-7 col-xs-12" name="piece_id" id="piece_id">
                                 <option value="">{{__('site.choose_piece')}}</option>
-
-                                @if(Cache::get('pieces'))
-                                    @foreach(Cache::get('pieces') as $piece)
-                                        <option value="{{ $piece->id }}"> {{ $piece->name }} </option>
+ 
+                                    @foreach($pieces as $piece)
+                                        <option value="{{ $piece->id }}"> {{ $piece['name_'.my_lang()] }} </option>
                                     @endforeach
-                                @endif
+                               
                             </select>
  
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="piece"> @lang('site.price') <span
+                                class="required">*</span>
+                        </label>
+            
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                           <input type="number" name="price" class="form-control" />
                         </div>
                     </div>
                   
