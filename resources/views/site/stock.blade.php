@@ -103,17 +103,19 @@
                   <td> {{ $item->piece['name_'.my_lang()] }} </td>
                   <td>
                     <p class="color-dark">
-                      @if($item->max_price != $item->min_price) {{ $item->max_price }}  @lang('site.rs') @else - @endif
+                      @if($item->max_price != $item->min_price) <span class="p-green"> {{ $item->max_price }}</span> 
+                       @lang('site.rs') @else - @endif
                     </p>
                   </td>
                   <td>
                     <p class="color-dark">
-                       {{ $item->avg_price }}  @lang('site.rs') 
+                       {{ round($item->avg_price,2) }}  @lang('site.rs') 
                     </p>
                   </td>
                   <td>
                     <p class="color-dark"> 
-                      @if($item->max_price != $item->min_price) {{ $item->min_price }}  @lang('site.rs') @else - @endif
+                      @if($item->max_price != $item->min_price) <span class="p-orange"> {{ $item->min_price }} </span>
+                        @lang('site.rs') @else - @endif
                     </p>
                   </td>
 

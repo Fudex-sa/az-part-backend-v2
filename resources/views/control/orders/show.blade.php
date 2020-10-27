@@ -82,11 +82,11 @@
         
         var status = $(this).val();
         
-        if(status == 'accepted'){          
+        if(status == 8){          
           $("#delivery_time").show();
           $("#reject_reason").hide();
 
-        }else if(status == 'rejected'){
+        }else if(status == 9){
           $("#reject_reason").show();
           $("#delivery_time").hide();
         }else{

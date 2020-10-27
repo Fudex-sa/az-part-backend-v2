@@ -1008,5 +1008,7 @@ return [
     'medium_price' => 'السعر المتوسط',
     'lower_price' => 'الأقل سعر',
     'count_prices' => 'عدد الأسعار',
+    'enter_car_details' => 'ادخل تفاصيل السيارة',
+    'fees' => 'سوم',
 ];
 

@@ -376,7 +376,7 @@
         && cur_root() != 'admin.seller.search'  && cur_root() != 'admin.brokers'  && cur_root() != 'admin.broker.search'
         && cur_root() != 'admin.reps' && cur_root() != 'admin.rep.search' && cur_root() != 'admin.pieces'
         && cur_root() != 'admin.piece' && cur_root() != 'admin.piece.search' && cur_root() != 'admin.brands'
-        && cur_root() != 'admin.brand.search')
+        && cur_root() != 'admin.brand.search' && cur_root() != 'admin.stocks' && cur_root() != 'admin.stock.search')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

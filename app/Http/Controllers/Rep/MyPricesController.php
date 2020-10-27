@@ -20,15 +20,6 @@ class MyPricesController extends Controller
         return view($this->view . 'all' , compact('items','my_prices') );
     }
 
-    public function delete(Request $request){
-        $item = $request->input('id');
-
-        if(RepPrice::find($item)->delete()) 
-            return 1;
-
-        return 0;
-    }
-
     public function store(Request $request,$id = null)
     {
          
@@ -59,6 +50,15 @@ class MyPricesController extends Controller
 
         return 0; 
          
+    }
+
+    public function delete(Request $request){
+        $item = $request->input('id');
+
+        if(RepPrice::find($item)->delete()) 
+            return 1;
+
+        return 0;
     }
  
 }

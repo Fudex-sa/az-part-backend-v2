@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Car extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'type' , 'user_id' , 'title' , 'brand_id' , 'model_id' , 'year' , 'color' , 'kilo_no' ,
+        'country_id' , 'region_id' , 'city_id' , 'price_type' , 'price' , 'validatly' , 'examination' ,
+        'notes' , 'publish' , 'views' , 'user_type'
+    ];
+
+    
+    public function user()
+    {
+        if($this->user_type == 'company')
+            return $this->belongsTo(Company::class,'user_id');
+        else
+            return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function brand()
+    {        
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function model()
+    {        
+        return $this->belongsTo(Modell::class);
+    }
+
+    public function country()
+    {        
+        return $this->belongsTo(Country::class);
+    }
+
+    public function region()
+    {        
+        return $this->belongsTo(Region::class);
+    }
+
+    public function city()
+    {        
+        return $this->belongsTo(City::class);
+    }
+
+    public function imgs()
+    {
+        return $this->hasMany(CarImage::class,'car_id');
+    }
+}

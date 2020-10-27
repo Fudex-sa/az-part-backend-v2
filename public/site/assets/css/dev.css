@@ -66,3 +66,19 @@
 .brand-logo{
     width: 50px;
 }
+
+.my-wrap{
+    background: #f7f8fa;
+    padding: 20px;
+}
+.car-imgs{
+    width: 90%;
+    height: 100px;
+}
+.btn-delete{
+    color: red !important;
+    cursor: pointer;
+}
+.clear-fix{
+    clear: both !important;
+}

@@ -868,6 +868,8 @@ return [
     'medium_price' => 'Medium Price',
     'lower_price' => 'Lower Price',
     'count_prices' => 'Count Prices',
+    'enter_car_details' => 'Enter Car Details',
+    'fees' => 'Fees',
 ];
 
 ?>

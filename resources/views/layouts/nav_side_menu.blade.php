@@ -11,9 +11,13 @@
          @lang('site.my_orders') </a>
     @endif
 
+    @if(user_type() == 'user' || user_type() == 'company')
       <a class="nav-link {{ isset($my_interests) ? 'active' : '' }}"> @lang('site.my_interests') </a>
-      
-      <a class="nav-link {{ isset($my_cars) ? 'active' : '' }}"> @lang('site.my_cars') </a>
+    @endif
+
+    @if(user_type() == 'user' || user_type() == 'company')
+      <a class="nav-link {{ isset($my_cars) ? 'active' : '' }}" href="{{ route('control.cars') }}"> @lang('site.my_cars') </a>
+    @endif
 
     @if(user_type() == 'seller' || user_type() == 'broker')
       <a class="nav-link {{ isset($avaliable_models) ? 'active' : '' }}"  

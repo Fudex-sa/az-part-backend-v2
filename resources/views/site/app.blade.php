@@ -69,15 +69,18 @@
           <a class="nav-link dropdown-toggle after-none-2" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="{{ site('assets/images/pro.png') }}" alt="">
           </a>
+ 
+            @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' 
+            || user_type() == 'seller' || user_type() == 'rep' || user_type() == 'admin')
 
-          @if(auth()->guard('company')->user() || auth()->user() || auth()->guard('broker')->user() ||
-            auth()->guard('seller')->user() || auth()->guard('rep')->user() )
-            
             <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
+
+              @if(user_type() != 'admin')
               <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> 
                   <i class="fa fa-user"></i> @lang('site.profile')  </a>
+              @endif
 
-                  @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
+              @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
               <a class="dropdown-item profile-drob" href="{{ route('user.my_orders') }}"> 
                 <i class="fa fa-list"></i> @lang('site.my_orders')  </a>
               @endif
@@ -87,11 +90,15 @@
                 <i class="fa fa-car"></i> @lang('site.avaliable_models')  </a>
               @endif
  
+              @if(user_type() == 'user' || user_type() == 'company')
               <a class="dropdown-item profile-drob" href=""> 
                 <i class="fa fa-heart"></i> @lang('site.my_interests')  </a>
+              @endif
 
-              <a class="dropdown-item profile-drob" href=""> 
+              @if(user_type() == 'user' || user_type() == 'company')
+              <a class="dropdown-item profile-drob" href="{{ route('control.cars') }}"> 
                 <i class="fa fa-car"></i> @lang('site.my_cars')  </a>
+              @endif
 
               @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
               <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> 

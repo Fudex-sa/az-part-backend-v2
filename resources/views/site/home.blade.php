@@ -168,7 +168,7 @@
 
                 <p class="float-left"> <span class="color-r"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
 
-                <p class="float-right"> <span class="color-g"> {{ $stock->avg_price }} </span> @lang('site.rs') </p>
+                <p class="float-right"> <span class="color-g"> {{ round($stock->avg_price,2) }} </span> @lang('site.rs') </p>
                 <p class="pt-2 text-center"> <span class="color-d"> {{ $stock->min_price }} </span> @lang('site.rs') </p>
 
               </div>

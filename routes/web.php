@@ -64,6 +64,12 @@ Route::group([
             Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('myPackages');
 
             Route::get('order/{id}',[App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
+
+            Route::get('cars',[App\Http\Controllers\Control\CarController::class, 'all'])->name('control.cars');
+            Route::get('car/{item}',[App\Http\Controllers\Control\CarController::class, 'edit'])->name('control.car');
+            Route::post('car/store/{id?}',[App\Http\Controllers\Control\CarController::class, 'store'])->name('control.car.store');
+            Route::delete('car/delete',[App\Http\Controllers\Control\CarController::class, 'delete'])->name('admin.car.delete');                     
+            Route::delete('car/img/delete',[App\Http\Controllers\Control\CarController::class, 'car_img_delete'])->name('admin.car_img.delete');                     
         });
 
 
@@ -332,7 +338,7 @@ Route::group([
             Route::get('stock/{brand}/{model}/{year}/{piece}',[App\Http\Controllers\Admin\StockController::class, 'show'])->name('admin.stock');
             Route::post('stock/store/{item?}',[App\Http\Controllers\Admin\StockController::class, 'store'])->name('admin.stock.store');
             Route::delete('stock/delete',[App\Http\Controllers\Admin\StockController::class, 'delete'])->name('admin.stock.delete');
-
+            Route::get('stock/search',[App\Http\Controllers\Admin\StockController::class, 'search'])->name('admin.stock.search');
  
 
 
@@ -366,36 +372,8 @@ Route::group([
             Route::get('export/stock/excel','ExportExcelController@stock');
 
             /************ Cars  ***************************/            
-            Route::get('cars/damaged','CarsController@damaged')->name('admin.cars.damaged');
-            Route::get('cars/antiques','CarsController@antiques')->name('admin.cars.antiques');
-            Route::get('car/damaged/edit/{item}','CarsController@edit_damaged')->name('admin.car.damaged.edit');
-            Route::get('car/antique/edit/{item}','CarsController@edit_antique')->name('admin.car.antique.edit');
-            Route::get('car/{item}/comments','CarsController@comments')->name('admin.cars.comments');
-            Route::post('car/comment/delete','CarsController@delete_comment')->name('admin.car.comment.delete');
-            Route::post('car/comment/approve','CarsController@approve_comment')->name('admin.car.comment.approve');
-            Route::post('car/damaged/store/{item}','CarsController@store_damaged')->name('admin.car.damaged.store');
-            Route::post('car/antique/store/{item}','CarsController@store_antique')->name('admin.car.antique.store');
-            Route::delete('car/delete','CarsController@delete')->name('admin.car.delete');
-            Route::post('car/deleteImg','CarsController@deleteImg')->name('admin.carImg.delete');
-            Route::post('car/images/store/{item}','CarsController@store_imgs')->name('admin.car.store_imgs');
-
-            /************* Car Bidding *******************/
-            Route::get('bidding/all','CarBiddingController@all')->name('admin.cars.bidding');
-            Route::get('bidding/edit-approve/{id}/{status}','CarBiddingController@updateStatusApprove')->name('admin.bidding.updateStatusApprove');
-            Route::get('bidding/edit-reject/{id}/{status}','CarBiddingController@updateStatusReject')->name('admin.bidding.updateStatusReject');
-            Route::post('bidding/delete','CarBiddingController@delete')->name('admin.bidding.delete');
-            Route::post('bidding/update/{id?}','CarBiddingController@update')->name('admin.bidding.store');
- 
-              
-            //---------- Engine ------------------            
-            Route::get('engine','EngineController@index')->name('admin.engine');
-            Route::get('engine/vip/delete','EngineController@vip_delete');
-            Route::get('engine/normal/delete','EngineController@normal_delete');
-            Route::get('engine/run','EngineController@run_engine')->name('engine.run');
-            Route::get('engine/next_round','EngineController@next_round')->name('engine.next_round');
-
             
-
+ 
             
 
         });
