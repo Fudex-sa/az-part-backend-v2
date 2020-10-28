@@ -77,9 +77,11 @@ Route::group([
 
             Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
 
-            Route::get('cars/damaged',[App\Http\Controllers\Site\CarDamagedController::class, 'index'])->name('cars.damaged');
-
-            Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
+            Route::get('cars/damaged',[App\Http\Controllers\Site\CarController::class, 'damaged'])->name('cars.damaged');
+            Route::get('cars/antique',[App\Http\Controllers\Site\CarController::class, 'antique'])->name('cars.antique');
+            Route::get('car/{id}',[App\Http\Controllers\Site\CarController::class, 'show'])->name('car');
+            Route::get('cars/search',[App\Http\Controllers\Site\CarController::class, 'search'])->name('cars.search');
+            Route::post('car/comment/store/{id}',[App\Http\Controllers\Site\CarController::class, 'store_comment'])->name('car.comment.store');
 
             Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
             Route::get('stock/filter',[App\Http\Controllers\Site\StockController::class, 'filter'])->name('stock.filter');
@@ -340,7 +342,16 @@ Route::group([
             Route::delete('stock/delete',[App\Http\Controllers\Admin\StockController::class, 'delete'])->name('admin.stock.delete');
             Route::get('stock/search',[App\Http\Controllers\Admin\StockController::class, 'search'])->name('admin.stock.search');
  
-
+            /************ Cars  **********/            
+            
+            Route::get('cars/antiques',[App\Http\Controllers\Admin\CarController::class, 'antiques'])->name('admin.antiques');                                    
+            Route::get('cars/damaged',[App\Http\Controllers\Admin\CarController::class, 'damaged'])->name('admin.damaged');                                    
+            Route::get('car/{id}',[App\Http\Controllers\Admin\CarController::class, 'edit'])->name('admin.car');                        
+            Route::get('car/comments/{car}',[App\Http\Controllers\Admin\CarController::class, 'comments'])->name('admin.car.comments');
+            Route::delete('car_comment/delete',[App\Http\Controllers\Admin\CarController::class, 'comment_delete'])->name('admin.car_comment.delete');
+            Route::post('car_comment/activate',[App\Http\Controllers\Admin\CarController::class, 'comment_activate'])->name('admin.car_comment.activate');                   
+            Route::post('car/store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');                        
+            Route::post('car/imgs_store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');                        
 
              /************ Export PDF Data  ***************************/
              Route::get('export/users/pdf','ExportPdfController@users')->name('export.pdf.users');

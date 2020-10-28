@@ -159,15 +159,15 @@
 
                     <ul class="nav child_menu">
                         @if(has_permission('car_bidding_show'))
-                            <li> <a href="{{ route('admin.cars.bidding') }}"> {{ __('site.car_bidding') }} </a> </li>
+                            {{-- <li> <a href="{{ route('admin.cars.bidding') }}"> {{ __('site.car_bidding') }} </a> </li> --}}
                         @endif
 
                         @if(has_permission('antiques_show'))
-                            <li> <a href="{{ route('admin.cars.antiques') }}"> {{ __('site.antique_cars') }} </a> </li>
+                            <li> <a href="{{ route('admin.antiques') }}"> {{ __('site.antique_cars') }} </a> </li>
                         @endif
 
                         @if(has_permission('damaged_show'))
-                            <li> <a href="{{ route('admin.cars.damaged') }}"> {{ __('site.damaged_cars') }} </a> </li>
+                            <li> <a href="{{ route('admin.damaged') }}"> {{ __('site.damaged_cars') }} </a> </li>
                         @endif
                     </ul>
                 </li>                             
@@ -272,7 +272,7 @@
                 @endif
 
                 @if(has_permission('engine_show'))
-                    <li><a href="{{ route('admin.engine') }}"><i class="fa fa-forward"></i>  {{ __('site.requests_engine') }} </a></li>
+                    {{-- <li><a href="{{ route('admin.engine') }}"><i class="fa fa-forward"></i>  {{ __('site.requests_engine') }} </a></li> --}}
                 @endif
 
                 @if(has_permission('notifications_show'))

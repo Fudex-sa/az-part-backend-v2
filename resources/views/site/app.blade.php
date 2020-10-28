@@ -33,10 +33,10 @@
       <li class="nav-item"> <a class="nav-link {{ isset($home) ? 'blue' : '' }}" 
             href="{{ route('home') }}"> @lang('site.home') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link {{ isset($cars_yard) ? 'blue' : '' }}" 
+        <li class="nav-item"> <a class="nav-link {{ isset($damaged) ? 'blue' : '' }}" 
             href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a> </li>
         
-        <li class="nav-item"> <a class="nav-link {{ isset($antique_cars) ? 'blue' : '' }}" 
+        <li class="nav-item"> <a class="nav-link {{ isset($antique) ? 'blue' : '' }}" 
           href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a> </li>
           
         <li class="nav-item"> <a class="nav-link {{ isset($old_stock) ? 'blue' : '' }}" 

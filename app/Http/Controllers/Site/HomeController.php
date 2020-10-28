@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Stock;
+use App\Models\Car;
 use DB;
-
 
 class HomeController extends Controller
 {
@@ -29,6 +29,9 @@ class HomeController extends Controller
                         ->limit(30)
                         ->get();
 
-        return view("site.home",compact('home','brands','stocks'));
+        $cars = Car::with('brand')->with('model')->with('region')->with('city')
+                        ->orderby('id','desc')->limit(12)->get();
+
+        return view("site.home",compact('home','brands','stocks','cars'));
     }
 }

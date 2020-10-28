@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th scope="col">#  </th>
-            <th scope="col" style="width: 100px;"> {{__('site.image')}}</th>
+            <th scope="col" style="width: 100px;"> <i class="fa fa-camera"></i> </th>
             <th scope="col"> {{__('site.title')}}</th>            
             <th scope="col"> {{__('site.model')}}</th>
             <th scope="col"> {{__('site.price')}}</th>
@@ -21,7 +21,7 @@
             <th scope="col"> {{__('site.views')}}</th>
             <th scope="col"> {{__('site.date')}}</th>
             <th scope="col"> {{__('site.comments')}}</th>
-            <th scope="col" style="width: 100px;"> </th>
+            <th scope="col"> </th>
           </tr>
     </thead>
 
@@ -31,25 +31,31 @@
         <tr>
             <td>{{$item->id}}</td>
             
-            <td>@if($item->img != '') <img src="{{asset('uploads/'.$item->img)}}" class="img-tbl"/> @endif
+            <td>
+                @if(count($item->imgs) > 0)
+                  <img src="{{ img_path($item->imgs[0]->photo) }}" alt="" class="img-tbl">
+                @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-tbl"> @endif
             </td>
             
-            <td><a href="{{url('car/'.$item->id)}}" target="_blank">{{$item->title}}</a></td>
+            <td><a href="{{ route('car',$item->id) }}" target="_blank"> {{ $item->title }} </a></td>
             
-            <td>{{$item->brand['name']}} - {{$item->model['name']}} - {{$item->year}} </td>
+            <td>{{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} - 
+                {{ $item->model ? $item->model['name_'.my_lang()] : '' }} - 
+                {{$item->year}} 
+            </td>
             
-            <td>{{$item->price}} {{__('site.rs')}}</td>
+            <td>{{ $item->price_type == 'fixed' ? $item->price . __('site.rs') : ''}} </td>
             
-            <td>{{$item->user['name']}}</td>
+            <td>{{ $item->user ? $item->user['name'] : ''}}</td>
             
-            <td>{{$item->views}}</td>
+            <td>{{ $item->views }}</td>
             
             <td>{{date('d-m-Y',strtotime($item->created_at))}}</td>
             
-            <td><a href="{{ route('admin.cars.comments',$item->id) }}">{{ $item->comments->count() }}</a></td>
+            <td><a href="{{ route('admin.car.comments',$item->id) }}">{{ $item->comments->count() }}</a></td>
 
             <td>
-                <a href="{{ route('admin.car.damaged.edit',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                <a href="{{ route('admin.car',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
 
                 <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
 
@@ -70,5 +76,6 @@
 @section('scripts')
     
     @include('dashboard.ajax.delete',['target'=>'car']) 
-
+ 
+   
 @endsection

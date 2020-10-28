@@ -25,13 +25,10 @@
         
         <div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="car_details">
 
-            <form class="form-horizontal form-label-left" action="{{ route('admin.car.damaged.store',$item->id) }}"
+            <form class="form-horizontal form-label-left" action="{{ route('admin.car.store',$item->id) }}"
                 method="post" enctype="multipart/form-data" novalidate>
                @csrf
-            
-            
-               <input type="hidden" value="{{ LaravelLocalization::getCurrentLocale() }}" name="lang" />
-                
+             
                <div class="item form-group">
                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="img"> @lang('site.car_image') <span
                            class="required">*</span>
@@ -62,7 +59,7 @@
                             <option disabled selected>{{__('site.choose_brand')}}</option>
                             @foreach($brands as $brand)
                                 <option value="{{$brand->id}}" @if($item->brand_id == $brand->id) selected @endif>
-                                    {{$brand->name}}</option>
+                                    {{$brand['name_'.my_lang()]}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -79,7 +76,7 @@
                             <option disabled selected> {{__('site.choose_model')}}</option>
                             @foreach($models as $model)
                                 <option value="{{$model->id}}" @if($item->model_id == $model->id) selected @endif>
-                                        {{$model->name}}</option>
+                                        {{$model['name_'.my_lang()]}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -107,18 +104,48 @@
             
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <label> 
-                            <input id="car_damaged" type="radio" name="car_type" value="damaged" class="flat"
-                            {{$item->car_type == 'damaged' ? 'checked' : ''}} > {{__('site.damaged_cars')}}   
+                            <input id="car_damaged" type="radio" name="type" value="damaged" class="flat"
+                            {{$item->type == 'damaged' ? 'checked' : ''}} > {{__('site.damaged_cars')}}   
                         </label>
             
                         <label>
-                            <input id="car_antique" type="radio" name="car_type" value="antique" class="flat"
-                            {{$item->car_type == 'antique' ? 'checked' : ''}} > {{__('site.antique_cars')}}   
+                            <input id="car_antique" type="radio" name="type" value="antique" class="flat"
+                            {{$item->type == 'antique' ? 'checked' : ''}} > {{__('site.antique_cars')}}   
                         </label>
                     </div>
                 </div>
             
-              
+            
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">   </label>
+            
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label> 
+                            <input id="original_yes" type="radio" name="original" value="1" @if($item->original == '1') 
+                            class="flat" checked @endif> {{__('site.original')}}
+                        </label>
+            
+                        <label>
+                            <input id="original_no" type="radio" name="original" value="0" @if($item->original == '0') 
+                            class="flat" checked @endif> {{__('site.replica')}}   
+                        </label>
+                    </div>
+                </div>
+            
+            
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="car_type"> @lang('site.original_manufacture_year')   </label>
+            
+                    <div class="col-md-2 col-sm-6 col-xs-12">
+                        <input type="text" name="original_manufacture_year" class="form-control" value="{{$item->original_manufacture_year}}">   
+                    </div>
+            
+                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="car_type"> @lang('site.replica_manufacture_year')   </label>
+            
+                    <div class="col-md-2 col-sm-6 col-xs-12">
+                        <input type="text" name="replica_manufacture_year" class="form-control" value="{{$item->replica_manufacture_year}}">   
+                    </div>
+                </div>
             
                 <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="car_color"> @lang('site.car_color')   </label>
@@ -130,7 +157,7 @@
                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="kilometers"> @lang('site.kilometers')   </label>
             
                     <div class="col-md-2 col-sm-6 col-xs-12">
-                        <input type="number" name="kilometers" class="form-control" value="{{$item->kilometers}}">   
+                        <input type="number" name="kilo_no" class="form-control" value="{{$item->kilometers}}">   
                     </div>
                 </div>
             
@@ -143,7 +170,7 @@
                             <option value="0" disabled selected> {{__('site.choose_city')}}</option>
                             @foreach($cities as $city)
                                 <option value="{{$city->id}}" @if($item->city_id == $city->id) selected @endif>
-                                        {{$city->name}}</option>
+                                        {{$city['name_'.my_lang()]}}</option>
                             @endforeach
                         </select>    
                     </div>
@@ -189,19 +216,19 @@
             
             
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="periodic_inspection_validity"> 
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> 
                         @lang('site.periodic_inspection_validity')   </label>
              
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <label> 
-                            <input id="periodic_inspection_validity_yes" type="radio" class="flat" name="periodic_inspection_validity" value="1"
-                                           @if($item->periodic_inspection_validity == 1) checked @endif >
+                            <input type="radio" class="flat" name="examination" value="1"
+                                           @if($item->examination == 1) checked @endif >
                                     {{__('site.yes')}}
                         </label>
             
                         <label>
-                            <input id="periodic_inspection_validity_no" type="radio" class="flat" name="periodic_inspection_validity" value="0" 
-                                           @if($item->periodic_inspection_validity == 0) checked @endif>
+                            <input type="radio" class="flat" name="examination" value="0" 
+                                           @if($item->examination == 0) checked @endif>
                                     {{__('site.no')}}
                         </label>
                     </div>
@@ -252,8 +279,14 @@
                <div class="ln_solid"></div>
                <div class="form-group">
                    <div class="col-md-6 col-md-offset-3">
-                   <button type="button" onclick="location.href='{{ route('admin.cars.damaged') }}'" class="btn btn-primary"> 
-                       @lang('site.cancel') </button>
+                       @if($item->type == 'damaged')
+                        <button type="button" onclick="location.href='{{ route('admin.damaged') }}'" class="btn btn-primary"> 
+                            @lang('site.cancel') </button>
+
+                       @else
+                        <button type="button" onclick="location.href='{{ route('admin.antiques') }}'" class="btn btn-primary"> 
+                            @lang('site.cancel') </button>
+                       @endif
             
                        <button type="submit" class="btn btn-success"> @lang('site.update') </button>
                    </div>
@@ -265,7 +298,7 @@
 
 
         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="car_images">
-            <form class="form-horizontal form-label-left" action="{{ route('admin.car.store_imgs',$item->id) }}"
+            <form class="form-horizontal form-label-left" action="{{ route('admin.car.imgs_store',$item->id) }}"
                 method="post" enctype="multipart/form-data" novalidate>
                @csrf
              
@@ -312,8 +345,14 @@
                <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
-                    <button type="button" onclick="location.href='{{ route('admin.cars.antiques') }}'" class="btn btn-primary"> 
-                        @lang('site.cancel') </button>
+                        @if($item->type == 'damaged')
+                        <button type="button" onclick="location.href='{{ route('admin.damaged') }}'" class="btn btn-primary"> 
+                            @lang('site.cancel') </button>
+
+                       @else
+                        <button type="button" onclick="location.href='{{ route('admin.antiques') }}'" class="btn btn-primary"> 
+                            @lang('site.cancel') </button>
+                       @endif
              
                         <button type="submit" class="btn btn-success"> @lang('site.update') </button>
                     </div>

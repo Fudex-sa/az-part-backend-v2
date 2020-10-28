@@ -17,11 +17,13 @@ class Car extends Model
 
     
     public function user()
-    {
-        if($this->user_type == 'company')
-            return $this->belongsTo(Company::class,'user_id');
-        else
-            return $this->belongsTo(User::class,'user_id');
+    {         
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function company()
+    {         
+        return $this->belongsTo(Company::class,'user_id');
     }
 
     public function brand()
@@ -52,5 +54,10 @@ class Car extends Model
     public function imgs()
     {
         return $this->hasMany(CarImage::class,'car_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(CarComment::class,'car_id');
     }
 }

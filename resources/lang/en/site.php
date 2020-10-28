@@ -870,6 +870,9 @@ return [
     'count_prices' => 'Count Prices',
     'enter_car_details' => 'Enter Car Details',
     'fees' => 'Fees',
+    'result_no' => 'Result Number',
+    'result' => 'Result',
+    'share_via' => 'Share Via',
 ];
 
 ?>
