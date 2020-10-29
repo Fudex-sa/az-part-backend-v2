@@ -54,40 +54,38 @@ class Search
         $city = $request->city;
         $region = $request->region;
  
-        $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+        $city_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
                                 ->whereHas('seller',function($q) use ($city){
                                     $q->where('city_id',$city);
-                                })
-                                ->limit($limit)                    
-                                ->get();
-         
-            if(count($items) > 0){
-                $response['found_result'] = 1; //--- Case found 
-                $response['items'] = $items;
+                                });                                
+                                
 
-            }else{
+        $region_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+                    ->with('seller')
+                    ->whereHas('seller',function($q) use ($region){
+                        $q->where('region_id',$region);
+                    });                                
+                     
 
-                $items_region = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-                        ->with('seller')
-                        ->whereHas('seller',function($q) use ($region){
-                            $q->where('region_id',$region);
-                        })
-                        ->limit($limit)                    
-                        ->get();
-
-                if(count($items_region) > 0) {
+        if($city_items->count() > 0){
+            $response['found_result'] = 1; //--- Case found 
+            $response['items'] = $city_items->limit($limit)->get();
+        }else{
+            if($region_items->count() > 0) {
                     
-                    $response['found_result'] = 2; // ---- Case found in same region
-                    $response['items'] = $items_region;
+                $response['found_result'] = 2; // ---- Case found in same region
+                $response['items'] = $region_items->limit($limit)->get();
 
-                }else {
-                    $response['found_result'] = 0; // --- Case not found
-                    $response['items'] = null;
-                }
+            }else {
+                $response['found_result'] = 0; // --- Case not found
+                $response['items'] = null;
             }
-
-            return $response;
+        }
+ 
+        $response['city_items'] = $city_items->get();
+        $response['region_items'] = $region_items->get();
+        return $response;
     }
 
 

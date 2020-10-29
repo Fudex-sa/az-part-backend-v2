@@ -29,6 +29,11 @@
           href="{{ route('my_packages') }}"> @lang('site.my_packages') </a>
     @endif
 
+    @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
+      <a class="nav-link {{ isset($my_requests) ? 'active' : '' }}"  
+          href="{{ route('my_requests') }}"> @lang('site.electronic_requests') </a>
+    @endif
+
     @if(user_type() == 'rep')
         <a class="nav-link {{ isset($my_prices) ? 'active' : '' }}"  
           href="{{ route('rep.my_prices') }}"> @lang('site.my_prices') </a>
@@ -37,6 +42,8 @@
           href="{{ route('rep.my_orders') }}"> @lang('site.my_orders') </a>
     @endif
 
+
+    
     
     </div>
   </div>

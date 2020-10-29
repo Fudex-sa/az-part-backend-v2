@@ -4,6 +4,10 @@ use App\Models\Cart;
 use App\Models\Package;
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\user;
+use App\Models\Company;
+use App\Models\Seller;
+use App\Models\Broker;
  
 if (! function_exists('cart')) {
     function cart() {
@@ -71,6 +75,36 @@ if (! function_exists('update_cart')) {
                 
         Cart::myCart()->update(['order_id' => $order_id , 'bought' => 1]);
         
+    }
+}
+
+if (! function_exists('my_orders')) {
+    function my_orders($user_id,$user_type) {
+          
+        $items = Order::where('user_type',$user_type)->where('user_id',$user_id)->get();
+        
+        return $items; 
+    }
+}
+
+if (! function_exists('update_available_orders')) {
+    function update_available_orders($user_id) {
+                
+        if(user_type() == 'company')
+            $user = Company::find($user_id);
+        
+        else if(user_type() == 'seller')
+            $user = Seller::find($user_id);
+        
+        else if(user_type() == 'broker')
+            $user = Broker::find($user_id);
+        
+        else
+            $user = User::find($user_id);
+
+        $user->available_orders = $user->available_orders - 1;
+        $user->save();
+         
     }
 }
 

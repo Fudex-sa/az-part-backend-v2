@@ -82,3 +82,11 @@
 .clear-fix{
     clear: both !important;
 }
+
+.advice{
+    margin-top:35px;
+}
+
+.advice a{
+    margin-top: 25px;
+}

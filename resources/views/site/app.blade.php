@@ -105,6 +105,11 @@
                 <i class="fa fa-hashtag"></i> @lang('site.my_packages')  </a>
               @endif
 
+              @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('my_requests') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.electronic_requests')  </a>
+              @endif
+
               @if(user_type() == 'rep')
               <a class="dropdown-item profile-drob" href="{{ route('rep.my_prices') }}"> 
                 <i class="fa fa-list"></i> @lang('site.my_prices') </a>
@@ -212,21 +217,14 @@
         <div class="col">
           <div class="footer-box">
             <h4> @lang('site.latest_additional') </h4>
-            <p><a href="#">الدمام</a></p>
-            <p><a href="#">الخبر</a></p>
-            <p><a href="#">لنكولن ٢٠٠٨ ام كي اكس</a></p>
-  
+            
+            @foreach (lateset_cars() as $lateset_car)
+              <p><a href="{{ route('car',$lateset_car->id) }}"> {{ $lateset_car->title }} </a></p>    
+            @endforeach
+             
           </div>
         </div>
-        <div class="col">
-          <div class="footer-box">
-            <h4> &nbsp;</h4>
-            <p><a href="#">حفر الباطن</a></p>
-            <p><a href="#">القطيف</a></p>
-            <p><a href="#">اكسنت 2004</a></p>
-  
-          </div>
-        </div>
+       
         <div class="col">
           <div class="footer-box">
             <h4> @lang('site.browse') </h4>

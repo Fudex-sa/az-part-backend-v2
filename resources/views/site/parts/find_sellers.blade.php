@@ -26,6 +26,22 @@
 
               @else @lang('site.not_found') @endif
             </h2>
+
+            <div class="results">
+              <h6>  @lang('site.result_no_in_this_city') :   
+                    <span class="text-dark"> {{ count($city_items) }}  @lang('site.result')  </span> 
+              </h6>
+
+              <h6>  @lang('site.result_no_in_this_region') :   
+                <span class="text-dark"> {{ count($region_items) }}  @lang('site.result')  </span> 
+              </h6>
+
+              <div class="advice">
+                  <p>  {{ data('for_viewing_all_subscribe_first') }}   </p>
+              </div>
+
+            </div>
+
           </div>
         </div>
 
@@ -77,6 +93,8 @@
                       <button class="btnContact btn btn-block btn-whatsapp" data-toggle="modal" data-target="#contact_seller" 
                       data-item="{{ $item->seller['id'] }}"> @lang('site.complete_order') </button>
 
+                      <a class="btn btn-block"  href="{{ route('report',$item->seller['id']) }}" target="_blank"> @lang('site.report') </a>
+
                         </div>
                     </div>
                     </div>
@@ -112,12 +130,14 @@
 @endsection
 
 @section('popup')
-    @include('site.parts.contact_seller')
-
+    
+    @include('site.parts.add_to_cart')
+    
 @endsection
 
-@section('scripts')
 
+@section('scripts')
+ 
 @include('dashboard.ajax.load_regions') 
 @include('dashboard.ajax.load_cities')
 
@@ -142,6 +162,12 @@
 
 <script src="{{ site('assets/js/bootstrap-input-spinner.js') }}"></script>
 <script>
-  $("input[type='number']").inputSpinner()
+  $("input[type='number']").inputSpinner();
+  
+  function addNewPiece(){
+        $.get("{{ route('more_pieces') }}", function(data){
+            $("#more_pieces").append(data);
+        });
+    };
 </script>
 @endsection

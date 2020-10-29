@@ -65,15 +65,15 @@
         <th>#  </th>
         <th> @lang('site.user_id')</th>
         <th> <i class="fa fa-camera"> </i> </th>
-        <th> @lang('site.name')   </th>        
-        <th> @lang('site.total_requests')  </th>     
+        <th> @lang('site.name')   </th>                
         <th> @lang('site.city') </th>           
         <th> @lang('site.user_type') </th>
 
         <th> @lang('site.vip') </th>
         <th> @lang('site.active') </th>
         <th> @lang('site.saudi') </th>
-        <th> @lang('site.available_requests') </th>
+        <th> @lang('site.orders_count')  </th> 
+        <th> @lang('site.available_orders') </th>
         <th style="width:120px;"></th>
     </tr>
     </thead>
@@ -93,9 +93,7 @@
             </td>
 
             <td>{{$item->name}}</td>
-             
-            <td> {{ $item->total_requests }} @lang('site.request') </td>
- 
+            
             <td> {{ $item->city ? $item->city['name_'.my_lang()] : '-' }} </td>
 
             <td> <span class="label label-{{ $item->user_type }}"> @lang('site.'.$item->user_type) </span> </td>
@@ -128,8 +126,10 @@
                 @endif     
             </td>
           
-            <td> {{ $item->available_requests }} </td>
-    
+            <td> {{ count(my_orders($item->id,'user')) }} @lang('site.request') </td>
+
+            <td> {{ $item->available_orders }} @lang('site.request') </td>
+            
             <td>
                 <a class="whatsapp btn btn-success btn-xs" target="_blank" href="https://wa.me/966{{$item->mobile}}?text=
                     {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>

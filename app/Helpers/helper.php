@@ -14,6 +14,7 @@ use App\Models\Supervisor;
 use App\Models\Notification;
 use App\Models\Order;
 use App\Models\RepCarSize;
+use App\Models\Car;
 use Mobily;
 
 if (! function_exists('my_lang')) {
@@ -43,6 +44,12 @@ if (! function_exists('img_path')) {
 if (! function_exists('brand_img')) {
     function brand_img($img_name) {
         return asset('uploads/brands/'.$img_name);
+    }
+}
+
+if (! function_exists('cart_img')) {
+    function cart_img($img_name) {
+        return asset('uploads/cart/'.$img_name);
     }
 }
 
@@ -244,6 +251,14 @@ if (! function_exists('rep_car_size')) {
     {
         $car_size = RepCarSize::where('rep_id',logged_user()->id)->where('size',$size)->first();
         return $car_size;
+    }
+}
+
+if (! function_exists('lateset_cars')) {
+    function lateset_cars()
+    {
+        $items = Car::orderby('id','desc')->limit(6)->get();
+        return $items;
     }
 }
 

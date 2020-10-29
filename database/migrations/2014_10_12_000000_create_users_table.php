@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('verification_code',50)->unique();
             $table->boolean('verified')->nullable()->default(0);
             $table->boolean('vip')->nullable()->default(0);
-            $table->integer('available_requests')->default(0);
-            $table->integer('total_requests')->default(0);
+            $table->integer('available_orders')->default(0);            
             $table->string('address')->nullable();
             
             $table->string('lat')->nullable();

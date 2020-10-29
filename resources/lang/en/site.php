@@ -873,6 +873,19 @@ return [
     'result_no' => 'Result Number',
     'result' => 'Result',
     'share_via' => 'Share Via',
+    'report' => 'Report',
+    'report_complain' => 'Report/Complain',
+    'complain' => 'Complain',
+    'complain_type' => 'Complain Type',
+    'send_successfully' => 'Send Successfully',
+    'orders_count' => 'Orders Count',
+    'available_orders' => 'Available Orders',
+    'result_no_in_this_city' => 'Result Number in Your City',
+    'result_no_in_this_region' => 'Result Number in Your Region',
+    'electronic_search' => 'Electronic Search',
+    'qty' => 'Quantity',
+    'your_request_sent_successfully' => 'Your Request Sent Successfully, Please Follow Your Requests For New Offers',
+    'electronic_requests' => 'Electronic Search Requests',
 ];
 
 ?>

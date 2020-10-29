@@ -25,7 +25,7 @@ class CreateBrokersTable extends Migration
             $table->boolean('vip')->nullable()->default(0);
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();
-            $table->integer('total_requests')->default(0);
+            $table->integer('available_orders')->default(0);
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
             $table->integer('city_id');

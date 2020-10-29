@@ -70,6 +70,10 @@ Route::group([
             Route::post('car/store/{id?}',[App\Http\Controllers\Control\CarController::class, 'store'])->name('control.car.store');
             Route::delete('car/delete',[App\Http\Controllers\Control\CarController::class, 'delete'])->name('admin.car.delete');                     
             Route::delete('car/img/delete',[App\Http\Controllers\Control\CarController::class, 'car_img_delete'])->name('admin.car_img.delete');                     
+
+            Route::get('requests/all',[App\Http\Controllers\Control\MyRequestsController::class, 'all'])->name('my_requests');
+            Route::get('request/show/{item}',[App\Http\Controllers\Control\MyRequestsController::class, 'show'])->name('request.show');
+            Route::delete('my_requests/delete',[App\Http\Controllers\Control\MyRequestsController::class, 'delete'])->name('admin.my_request.delete');                     
         });
 
 
@@ -120,7 +124,12 @@ Route::group([
             Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
  
             Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
-            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller')->middleware('isLogged');
+            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'addToCart'])->name('addToCart')->middleware('isLogged');
+            Route::get('report/{id}',[App\Http\Controllers\Site\PartController::class, 'report'])->name('report')->middleware('isLogged');
+            Route::post('report',[App\Http\Controllers\Site\PartController::class, 'send_report'])->name('send_report')->middleware('isLogged');
+            Route::get('more_pieces',[App\Http\Controllers\Site\PartController::class, 'more_pieces'])->name('more_pieces');
+            Route::post('create_request',[App\Http\Controllers\Site\ElectronicController::class, 'create_request'])->name('create_request')->middleware('isLogged');
+            
 
             Route::get('cart',[App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
             Route::delete('cart/delete',[App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');            
@@ -185,7 +194,8 @@ Route::group([
             Route::post('seller/store/{item?}',[App\Http\Controllers\Admin\SellerController::class, 'store'])->name('admin.seller.store');
             Route::delete('seller/delete',[App\Http\Controllers\Admin\SellerController::class, 'delete'])->name('admin.seller.delete');
             Route::post('seller/activate',[App\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.seller.activate');
-
+            Route::post('available_brand/store',[App\Http\Controllers\Admin\SellerController::class, 'available_brand_store'])->name('admin.available_brand.store');
+ 
             /******************* Brokers ********************/    
             Route::get('broker/search',[App\Http\Controllers\Admin\BrokerController::class, 'search'])->name('admin.broker.search');
             Route::get('brokers',[App\Http\Controllers\Admin\BrokerController::class, 'all'])->name('admin.brokers');            

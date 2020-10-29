@@ -11,7 +11,7 @@ class Order extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = [
-        'user_id' , 'sub_total' , 'delivery_price' , 'taxs' , 'total' , 'status' , 'coupon_id' , 'coupon_value',
+        'user_id' , 'user_type' , 'sub_total' , 'delivery_price' , 'taxs' , 'total' , 'status' , 'coupon_id' , 'coupon_value',
         'package_sub_id'
     ];
 

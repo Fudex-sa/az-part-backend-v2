@@ -60,7 +60,10 @@
 
                             <td> {{ $item->expired == 1 ? __('site.yes') : __('site.no') }} </td>
 
-                            <td>  {{ $item->stores_no - count($item->my_orders) }} @lang('site.order') </td>
+                            <td> @if($item->package['type'] == 'electronic')
+                                   {{ $item->stores_no - count($item->my_orders)  }} @lang('site.order')
+                                 @endif      
+                            </td>
 
                             <td> {{ $item->created_at }} </td>
                           </tr>     

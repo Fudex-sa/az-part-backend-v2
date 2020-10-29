@@ -17,7 +17,7 @@ class Cart extends Model
 
         'region_id' , 'city_id' , 'piece_alt_id' , 'price' , 'guarantee' , 'notes' , 'bought' , 'order_id' ,
         
-        'color' , 'notes'
+        'color' , 'notes' , 'photo'
 
     ];
 

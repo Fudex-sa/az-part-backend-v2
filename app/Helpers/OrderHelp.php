@@ -29,7 +29,8 @@ class OrderHelp
         $my_subscribe ? $package_sub_id = $my_subscribe->id : $package_sub_id = 0 ;
 
         $item = Order::create([
-            'user_id' => logged_user()->id , 'sub_total' => sub_total() ,
+            'user_id' => logged_user()->id , 'user_type' => user_type() ,
+            'sub_total' => sub_total() ,
             'delivery_price' => session()->get('delivery_price'),
             'taxs' => taxs() , 'total' => total() , 'coupon_value' => coupon_discount(),
             'coupon_id' => coupon_id() , 'package_sub_id' => $package_sub_id
@@ -39,6 +40,7 @@ class OrderHelp
             $search = session()->get('search');
 
             update_cart($item->id);
+            update_available_orders(logged_user()->id);
 
             $this->create_shipping($item->id);
 

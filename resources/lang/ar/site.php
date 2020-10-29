@@ -1013,5 +1013,18 @@ return [
     'result_no' => 'عدد النتائج',
     'result' => 'نتيجة',
     'share_via' => 'مشاركة عن طريق',
+    'report' => 'ابلاغ',
+    'report_complain' => 'ابلاغ/شكوى',
+    'complain' => 'الشكوى',
+    'complain_type' => 'نوع الشكوى',
+    'send_successfully' => 'تم الإرسال بنجاح',
+    'orders_count' => 'عدد طلباتى',
+    'available_orders' => 'طلباتى المتاحة',
+    'result_no_in_this_city' => 'عدد النتائج فى مدينتك',
+    'result_no_in_this_region' => 'عدد النتائج فى منطقتك',
+    'electronic_search' => 'البحث الإلكترونى',
+    'qty' => 'عدد القطع',
+    'your_request_sent_successfully' => 'لقد تم ارسال طلبك بنجاح , من فضلك تابع صفحة طلباتك للعروض الجديدة',
+    'electronic_requests' => 'طلبات البحث الإلكترونى',
 ];
 
