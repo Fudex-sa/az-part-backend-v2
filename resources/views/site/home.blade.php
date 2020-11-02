@@ -213,7 +213,7 @@
               <div class="add-card-head">
                 <div class="add-card-layout">
                   <ul class="lay-out-menue">
-                    <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
+                    <li><a href="{{ route('car',$car->id) }}"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
                     <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
                     <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
                     </ul>
@@ -229,7 +229,7 @@
 
                 <img src="{{ brand_img($car->brand ? $car->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
-                <h6> <a href="{{ route('car',$car->id) }}">{{ $car->model ? $car->model['name_'.my_lang()] : '' }} </a> </h6>
+                <h6> {{ $car->model ? $car->model['name_'.my_lang()] : '' }}  </h6>
 
                 <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">
                   {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -

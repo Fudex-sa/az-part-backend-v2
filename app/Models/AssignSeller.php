@@ -27,4 +27,5 @@ class AssignSeller extends Model
     {
         return $this->belongsTo(ElectronicRequest::class,'request_id');
     }
+ 
 }

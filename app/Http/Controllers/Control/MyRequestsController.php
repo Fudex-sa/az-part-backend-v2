@@ -16,8 +16,8 @@ class MyRequestsController extends Controller
     {
         $my_requests = true;
 
-        $items = ElectronicRequest::with('piece_alt')->myRequests()->orderby('id','desc')->get();
-        
+        $items = ElectronicRequest::with('assign_sellers')->with('piece_alt')->myRequests()->orderby('id','desc')->get();
+
         return view($this->view . 'all',compact('items','my_requests'));
     }
     

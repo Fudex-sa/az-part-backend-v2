@@ -15,7 +15,7 @@
 
         <div class="col-md-6"> <h6> @lang('site.delivery_price')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left">  
-            <span id="delivery_price"> {{ session()->get('delivery_price') ? session()->get('delivery_price') : 0 }} </span>  @lang('site.rs')  </h6> </div>
+            <span id="delivery_price"> {{ delivery_price() }} </span>  @lang('site.rs')  </h6> </div>
 
         <div class="col-md-6"> <h6> @lang('site.with_oil_cost')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left">  

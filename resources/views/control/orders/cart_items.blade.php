@@ -3,14 +3,15 @@
   
     <h3> @lang('site.order_content') </h3>
 
-    <table class="table table-striped">
+    <table class="text-center my-tbl">
         
-         <tr class="text-center">
+         <tr>
             <th> # </th>
             <th> <i class=" fa fa-camera"></i> </th>
             <th> @lang('site.piece_name') </th>
             <th> @lang('site.qty') </th>
             <th> @lang('site.price') </th>
+            <th> @lang('site.pieces_price') </th>
             <th> @lang('site.seller') </th>
             <th> @lang('site.guarantee') </th>
             <th> @lang('site.notes') </th>
@@ -33,6 +34,8 @@
 
                 <td> {{ $cart_item->price }} @lang('site.rs') </td>
 
+                <td> {{ $cart_item->price * $cart_item->qty }} @lang('site.rs') </td>
+
                 <td> {{ $cart_item->seller->name }} </td>
                 
                 <td> {{ $cart_item->guarantee ? $cart_item->guarantee : '-' }} </td>
@@ -50,7 +53,7 @@
     <hr/>
         <h3> @lang('site.coupon_used')  </h3>
     
-        <table class="table table-striped">
+        <table class="my-tbl">
             <tbody>
                 <tr>
                     <th> @lang('site.code') </th>
@@ -76,7 +79,7 @@
 <hr/>
     <h3> @lang('site.order_package')  </h3>
 
-    <table class="table table-striped">
+    <table class="my-tbl text-center">
         <tbody>
             <tr>
                 <th> @lang('site.package_name') </th>
@@ -89,7 +92,7 @@
                 <td> {{  __('site.'.$item->package_subscribe->package_type) }} </td>
                 <td> {{ $item->package_subscribe->price }} @lang('site.rs') </td>
                 <td> {{ $item->package_subscribe->stores_no }} </td>
-                <td> {{ $item->package_subscribe->active == 1 ? __('site.yes') : __('site.no')  }} </td>
+                <td> {{ $item->package_subscribe->expired == 1 ? __('site.yes') : __('site.no')  }} </td>
             </tr>
  
         </tbody>

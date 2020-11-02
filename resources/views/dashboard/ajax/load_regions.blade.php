@@ -19,8 +19,6 @@ $("#country_id").change(function(){
                   $("#region_id").html(response);
             }
         });            
- 
-
 });
  
 </script>

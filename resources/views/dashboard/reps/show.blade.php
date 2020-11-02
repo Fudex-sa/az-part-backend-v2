@@ -71,13 +71,7 @@
                 role="tab" data-toggle="tab"
                 aria-expanded="true">  @lang('site.my_prices') </a>
             </li>
-
-            <li role="presentation" class=""><a href="#tab_content4"  
-                role="tab" data-toggle="tab"
-                aria-expanded="true">  @lang('site.car_size') </a>
-            </li>
-             
-           
+ 
         </ul>
 <div id="myTabContent" class="tab-content">
 
@@ -104,9 +98,7 @@
     </tr>
     </thead>
     <tbody>
-        
-
-        
+         
     </tbody>
 </table>
 
@@ -116,10 +108,7 @@
 <div role="tabpanel" class="tab-pane fade" id="tab_content3">
     @include('dashboard.reps.my_prices')       
 </div>
-
-<div role="tabpanel" class="tab-pane fade" id="tab_content4">
-    @include('dashboard.reps.car_sizes')       
-</div>
+ 
 
 </div>
     </div>
@@ -141,5 +130,38 @@
     
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities')
+
+    <script>
+        $("#country").change(function(){
+
+            var country_id = $(this).val();
+            var _token = "{{ csrf_token() }}"; 
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('regions.load') }}",
+                data: {_token: _token , country_id:country_id},
+                success: function (response) {
+                    if(response)
+                    $("#region").html(response);
+                }
+            });            
+        });
+
+        $("#region").change(function(){             
+            var region_id = $(this).val();
+            var _token = "{{ csrf_token() }}"; 
+ 
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cities.load') }}",
+                data: {_token: _token , region_id:region_id},
+                success: function (response) {
+                    if(response)
+                    $("#city").html(response);
+                }
+            });            
+        });
+    </script>
 
 @endsection

@@ -161,3 +161,31 @@
     width: 100px;
     border: 1px solid #DCDCDC;
 }
+
+.advice a:hover{
+    margin-top: 25px;
+}
+.cart-head{
+    background: #e26941;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+}
+.input-group-prepend{
+    margin-right: -10px;        
+}
+.input-group-append{
+    margin-left:-10px;
+}
+.my-tbl2 thead{
+    background: #e26941;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-weight: bold;    
+}
+.add-card-footer strong{
+    font-size: 25px;
+}

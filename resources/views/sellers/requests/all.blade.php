@@ -35,6 +35,7 @@
               </thead>
               <tbody class="text-center">
                 @foreach($items as $k=>$item)
+                @if($item->request)
                   <tr>
                     <td> {{ $k+1 }} </td>
   
@@ -42,15 +43,16 @@
  
                     <td> {{ $item->price ? $item->price . __('site.rs') : '-'}} </td>
 
-                  <td> <span class="btn status-{{ $item->status_id }}"> {{ $item->status['name_'.my_lang()] }} </span> </td>
+                    <td> <span class="btn status-{{ $item->status_id }}"> {{ $item->status['name_'.my_lang()] }} </span> </td>
 
                     <td>
                         
-                        <a href="{{ route('seller.request',$item->request->id) }}" class="btn-edit">
+                        <a href="{{ route('request.show',$item->request->id) }}" class="btn-edit">
                             <i class="fa fa-edit"></i> </a>
                    
                     </td>
                   </tr>
+                  @endif
               @endforeach
                   
               </tbody>

@@ -31,8 +31,7 @@ Route::group([
             Route::get('avaliable_model/{item}',[App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');            
             Route::delete('avaliable_model/delete',[App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
 
-            Route::get('requests',[App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
-            Route::get('request/{item}',[App\Http\Controllers\Seller\RequestsController::class, 'show'])->name('seller.request');
+            Route::get('requests',[App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');            
             Route::post('request/update/{item}',[App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update'); 
             
         });
@@ -81,7 +80,7 @@ Route::group([
             Route::delete('my_requests/delete',[App\Http\Controllers\Control\MyRequestsController::class, 'delete'])->name('admin.my_request.delete');                     
 
             Route::get('offer/add_to_cart/{id}',[App\Http\Controllers\Control\OfferController::class, 'add_to_cart'])->name('offer.add_to_cart');
-            
+            Route::get('request/{item}',[App\Http\Controllers\Control\RequestsController::class, 'show'])->name('request.show');
         });
 
 
@@ -143,8 +142,12 @@ Route::group([
             Route::delete('cart/delete',[App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');            
             Route::post('coupon/use',[App\Http\Controllers\Site\CartController::class, 'use_coupon'])->name('coupon.use')->middleware('isLogged');
             
+            Route::get('reps',[App\Http\Controllers\Site\ShippingController::class, 'reps'])->name('reps')->middleware('isLogged');
+            Route::get('reps/filter',[App\Http\Controllers\Site\ShippingController::class, 'reps_filter'])->name('reps.filter')->middleware('isLogged');
+            Route::get('choose_rep/{id}',[App\Http\Controllers\Site\ShippingController::class, 'choose_rep'])->name('choose_rep')->middleware('isLogged');
+
             Route::get('shipping',[App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
-            Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'create'])->name('shipping.save')->middleware('isLogged');
+            Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'store_shipping'])->name('shipping.save')->middleware('isLogged');
             Route::get('payment/method',[App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');            
             Route::get('payment/choose',[App\Http\Controllers\Site\PaymentController::class, 'choose'])->name('payment.choose')->middleware('isLogged');
             Route::get('payment',[App\Http\Controllers\Site\PaymentController::class, 'index'])->name('payment')->middleware('isLogged');
@@ -222,6 +225,7 @@ Route::group([
             Route::delete('rep/delete',[App\Http\Controllers\Admin\RepController::class, 'delete'])->name('admin.rep.delete');
             Route::post('rep/activate',[App\Http\Controllers\Admin\RepController::class, 'activate'])->name('admin.rep.activate');
 
+            Route::post('rep_price/store',[App\Http\Controllers\Admin\RepController::class, 'price_store'])->name('admin.rep_price.store');
             /******************* Supervisors ********************/                
             Route::get('supervisor/search',[App\Http\Controllers\Admin\SupervisorController::class, 'search'])->name('admin.supervisor.search');
             Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');  

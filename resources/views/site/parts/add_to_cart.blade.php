@@ -43,13 +43,13 @@
              </select>
            </div>
 
-           <div class="form-group col-md-2">
+           <div class="form-group col-md-4">
             <label> @lang('site.qty') </label>
         
             <input type="number" class="form-control" name="qty[]" min="1" value="1" placeholder="@lang('site.qty')">
           </div>
 
-         <div class="form-group col-md-2">
+         <div class="form-group col-md-4">
           <label> @lang('site.price') </label>
 
            <input type="number" min="1" class="form-control" name="price[]"  placeholder="@lang('site.price')"> @lang('site.rs')
@@ -73,7 +73,7 @@
           <input type="file" class="form-control" name="photo[]">
         </div>
         
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-12">
           <label> @lang('site.notes') </label>
 
           <input type="text" class="form-control" name="notes[]"  placeholder="@lang('site.notes')">

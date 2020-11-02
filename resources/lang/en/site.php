@@ -893,6 +893,10 @@ return [
     'request_number' => 'Request No',
     'piece_data' => 'Piece Data',
     'elec_req_no' => 'Electronic Request No',
+    'piece_price' => 'Piece Price',
+    'pieces_price' => 'Pieces Price',
+    'request_sellers' => 'Request Sellers',
+    'available_reps' => 'Available Reps',
 ];
 
 ?>

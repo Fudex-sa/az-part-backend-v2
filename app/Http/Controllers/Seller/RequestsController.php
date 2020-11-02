@@ -15,7 +15,8 @@ class RequestsController extends Controller
     {
         $my_requests = true;
 
-        $items = AssignSeller::where('seller_id',logged_user()->id)->orderby('id','desc')->paginate(pagger());
+        $items = AssignSeller::with('request')->where('seller_id',logged_user()->id)
+                        ->orderby('id','desc')->paginate(pagger());
 
         return view($this->view . 'all',compact('my_requests','items'));
     }

@@ -56,7 +56,8 @@
                 </table>
 
                  <div class="col-md-1"></div>
- 
+                
+                 @if($req_seller)
                     <table class="table table-striped col-md-3">                  
                       <form method="POST" action="{{ route('seller.request.update',$req_seller->id) }}">
                           @csrf
@@ -70,7 +71,7 @@
                         </tr>
                       </form>
                     </table>
-                 
+                 @endif
             </div>
 
             <hr/>
@@ -83,7 +84,12 @@
                     <td> {{ $item->piece_alt['name_'.my_lang()] }} </td>
 
                     <th> @lang('site.piece_img') </th>                    
-                    <td>  <img src="{{ cart_img($item->photo) }}" class="img-table" /> </td>
+                    <td>  
+                      @if($item->photo)
+                                  <img src="{{ cart_img($item->photo) }}" class="img-table" />  
+                                @else <img src="{{ site('assets/images/logo.png') }}" class="img-table" />
+                      @endif
+                    </td>
                 </tr>
 
                 <tr>

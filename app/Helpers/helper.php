@@ -13,7 +13,6 @@ use App\Models\Rep;
 use App\Models\Supervisor;
 use App\Models\Notification;
 use App\Models\Order;
-use App\Models\RepCarSize;
 use App\Models\Car;
 
 if (! function_exists('my_lang')) {
@@ -243,21 +242,19 @@ if (! function_exists('user_type')) {
     }
 }
 
-
-
-if (! function_exists('rep_car_size')) {
-    function rep_car_size($size)
-    {
-        $car_size = RepCarSize::where('rep_id',logged_user()->id)->where('size',$size)->first();
-        return $car_size;
-    }
-}
-
+ 
 if (! function_exists('lateset_cars')) {
     function lateset_cars()
     {
         $items = Car::orderby('id','desc')->limit(6)->get();
         return $items;
+    }
+}
+
+if (! function_exists('search_session')) {
+    function search_session()
+    {
+        return session()->get('search');
     }
 }
 

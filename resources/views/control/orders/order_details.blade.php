@@ -3,9 +3,9 @@
   
     <h3> @lang('site.order_data') </h3>
 
-    <table class="table table-striped">
+    <table class="my-tbl text-center">
         <tr>
-            <td> @lang('site.order_no') </td>
+            <th> @lang('site.order_no') </th>
             <td> AZ-{{ $item->id }} </td>
         </tr>
 

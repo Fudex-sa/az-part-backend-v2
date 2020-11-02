@@ -59,10 +59,8 @@ class OrderHelp
 
         $data = [
             'country_id' => $shipping['country_id'] , 'region_id' => $shipping['region_id'] , 
-            'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 
-            'address' => $shipping['address'] , 'lat' => $shipping['lat'] , 
-            'lng' => $shipping['lng'] , 'notes' => $shipping['notes'] , 
-            'rep_id' => $shipping['rep_id'] , 'order_id' => $order_id , 'size' => $shipping['size'],
+            'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 'notes' => $shipping['notes'] , 
+            'rep_id' => delivery()->rep_id , 'order_id' => $order_id , 'size' => session()->get('shippment_size'),
             'with_oil' => $shipping['with_oil']
         ];
 
@@ -70,7 +68,7 @@ class OrderHelp
             $item = OrderShipping::create($data);
         }
 
-        Session::forget('shipping');
+        Session::forget('rep_price');
         
     }
 

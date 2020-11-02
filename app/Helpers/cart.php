@@ -8,6 +8,7 @@ use App\Models\user;
 use App\Models\Company;
 use App\Models\Seller;
 use App\Models\Broker;
+use App\Models\RepPrice;
  
 if (! function_exists('cart')) {
     function cart() {
@@ -20,10 +21,17 @@ if (! function_exists('cart')) {
 
 if (! function_exists('sub_total')) {
     function sub_total() {
-                
-        $result = Cart::myCart()->with('piece_alt')->with('seller')->sum('price');
+        $sub_total = 0;
+        // $result = Cart::myCart()->with('piece_alt')->with('seller')->sum('price');
+
+        $carts = Cart::myCart()->with('piece_alt')->with('seller')->get();
+        if($carts){
+            foreach($carts as $cart){
+                $sub_total += $cart->price * $cart->qty;
+            }
+        }
         
-        return $result;
+        return $sub_total;
     }
 }
 
@@ -55,11 +63,8 @@ if (! function_exists('total')) {
 
         else{
 
-            $result = sub_total() + taxs();
-
-            if(session()->get('delivery_price'))
-                $result = $result + session()->get('delivery_price');            
-            
+            $result = sub_total() + taxs() + delivery_price();
+ 
             if(session()->get('with_oil'))
                 $result = $result + session()->get('with_oil');            
             
@@ -150,5 +155,23 @@ if (! function_exists('coupon_id')) {
     }
 }
 
+if (! function_exists('delivery_price')) {
+    function delivery_price()
+    {   
+        $rep_price = RepPrice::find(session()->get('rep_price'));
+        return $rep_price ? $rep_price->price : 0;
+    }
+}
+
+if (! function_exists('delivery')) {
+    function delivery()
+    {   
+        $rep_price = RepPrice::find(session()->get('rep_price'));
+        return $rep_price;
+    }
+}
+
+
+        
  
  

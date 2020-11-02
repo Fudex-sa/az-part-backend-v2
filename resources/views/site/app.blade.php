@@ -106,9 +106,14 @@
                 <i class="fa fa-hashtag"></i> @lang('site.my_packages')  </a>
               @endif
 
-              @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
+              @if(user_type() == 'user' || user_type() == 'company')
               <a class="dropdown-item profile-drob" href="{{ route('my_requests') }}"> 
                 <i class="fa fa-hashtag"></i> @lang('site.electronic_requests')  </a>
+              @endif
+
+              @if(user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('seller.requests') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.seller_requests')  </a>
               @endif
 
               @if(user_type() == 'rep')

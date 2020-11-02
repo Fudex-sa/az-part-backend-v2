@@ -12,7 +12,7 @@ class ElectronicRequest extends Model
     protected $fillable = [
         'user_id' , 'user_type' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
 
-        'region_id' , 'city_id' , 'piece_alt_id' , 'notes' , 'color' , 'notes' , 'photo'
+        'region_id' , 'city_id' , 'piece_alt_id' , 'notes' , 'color' , 'notes' , 'photo' , 'qty'
 
     ];
 
@@ -55,6 +55,11 @@ class ElectronicRequest extends Model
     public function assign_sellers()
     {
         return $this->hasMany(AssignSeller::class,'request_id');
+    }
+
+    public function assign_sellers_replied()
+    {
+        return $this->hasMany(AssignSeller::class,'request_id')->where('price','!=',null);
     }
 
     public function user()

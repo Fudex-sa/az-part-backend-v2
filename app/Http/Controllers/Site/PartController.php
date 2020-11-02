@@ -88,10 +88,9 @@ class PartController extends Controller
         $items = $response['items'];
         $found_result = $response['found_result'];
         $city_items = $response['city_items'];
-        $region_items = $response['region_items'];
+        // $region_items = $response['region_items'];
  
-        return view($this->view.'find_sellers',compact('items','piece_alts','found_result',
-                        'city_items','region_items'));
+        return view($this->view.'find_sellers',compact('items','piece_alts','found_result','city_items'));
     }
 
 

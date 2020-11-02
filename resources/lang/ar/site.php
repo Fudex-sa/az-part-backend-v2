@@ -1033,5 +1033,9 @@ return [
     'request_number' => 'طلب رقم',
     'piece_data' => 'بيانات القطعة',
     'elec_req_no' => 'طلب الكترونى رقم',
+    'piece_price' => 'سعر القطعة',
+    'pieces_price' => 'سعر القطع',
+    'request_sellers' => 'تجار الطلب',
+    'available_reps' => 'المندوبين المتاحين',
 ];
 

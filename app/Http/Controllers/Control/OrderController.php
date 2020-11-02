@@ -21,7 +21,9 @@ class OrderController extends Controller
 
         $shipping = OrderShipping::where('order_id',$item->id)->first();
 
-        $order_rejected = OrderShippingRejecte::where('order_shipping_id',$shipping->id)->first();
+        if($shipping)
+            $order_rejected = OrderShippingRejecte::where('order_shipping_id',$shipping->id)->first();
+        else $order_rejected = array();
 
         $ordr_stat = OrderStatus::all();
 

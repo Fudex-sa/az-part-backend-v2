@@ -54,38 +54,52 @@ class Search
         $city = $request->city;
         $region = $request->region;
  
+        // $city_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+        //                         ->with('seller')
+        //                         ->whereHas('seller',function($q) use ($city){
+        //                             $q->where('city_id',$city);
+        //                         });                                
+       
+
+        // if($city_items->count() > 0){
+        //     $response['found_result'] = 1; //--- Case found 
+        //     $response['items'] = $city_items->limit($limit)->get();
+        // }else{
+
+        //     $region_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+        //     ->with('seller')
+        //     ->whereHas('seller',function($q) use ($region){
+        //         $q->where('region_id',$region);
+        //     }); 
+
+            
+        //     if($region_items->count() > 0) {
+                    
+        //         $response['found_result'] = 2; // ---- Case found in same region
+        //         $response['items'] = $region_items->limit($limit)->get();
+
+        //     }else {
+        //         $response['found_result'] = 0; // --- Case not found
+        //         $response['items'] = null;
+        //     }
+        // }
+ 
+        // // $response['city_items'] = $city_items->get();
+        // // $response['region_items'] = $region_items->get();
+        // return $response;
+
         $city_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
                                 ->whereHas('seller',function($q) use ($city){
                                     $q->where('city_id',$city);
-                                });                                
-       
+                                });
 
         if($city_items->count() > 0){
+            $response['city_items'] = $city_items->get();
             $response['found_result'] = 1; //--- Case found 
-            $response['items'] = $city_items->limit($limit)->get();
-        }else{
-
-            $region_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-            ->with('seller')
-            ->whereHas('seller',function($q) use ($region){
-                $q->where('region_id',$region);
-            }); 
-
+            $response['items'] = $city_items->limit($limit)->get();            
+        } 
             
-            if($region_items->count() > 0) {
-                    
-                $response['found_result'] = 2; // ---- Case found in same region
-                $response['items'] = $region_items->limit($limit)->get();
-
-            }else {
-                $response['found_result'] = 0; // --- Case not found
-                $response['items'] = null;
-            }
-        }
- 
-        $response['city_items'] = $city_items->get();
-        $response['region_items'] = $region_items->get();
         return $response;
     }
 
