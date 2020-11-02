@@ -12,13 +12,10 @@ class OrderHelp
 {
 
     protected $package;
-    protected $search;
 
     public function __construct()
     {    
         $this->package = new PackageHelp();
-
-        $this->search = new Search();
 
     }
 
@@ -37,8 +34,7 @@ class OrderHelp
         ]);
 
         if($item){
-            $search = session()->get('search');
-
+          
             update_cart($item->id);
             update_available_orders(logged_user()->id);
 
@@ -51,6 +47,7 @@ class OrderHelp
             Session::forget('has_request');
             Session::forget('coupon');
             Session::forget('delivery_price');
+            Session::forget('with_oil');
             
         }
         return $item->id;
@@ -74,6 +71,7 @@ class OrderHelp
         }
 
         Session::forget('shipping');
+        
     }
 
   

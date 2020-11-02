@@ -13,13 +13,11 @@ class CreateElectronicEnginesTable extends Migration
      */
     public function up()
     {
-        Schema::create('electronic_engines', function (Blueprint $table) {
+        Schema::create('electronic_requests', function (Blueprint $table) {
             $table->id();            
             $table->integer('user_id');
             $table->enum('user_type',['user','company','seller','broker','rep','admin'])->default('user');
-            $table->integer('seller_id');
-            $table->integer('order_id')->nullable();
-
+           
             $table->integer('brand_id');
             $table->integer('model_id');
             $table->integer('year');
@@ -30,10 +28,8 @@ class CreateElectronicEnginesTable extends Migration
             $table->integer('piece_alt_id');
             $table->string('photo')->nullable();
             $table->integer('qty')->default(1);
-            $table->float('price')->nullable();
-            $table->string('guarantee')->nullable();
-            $table->text('notes')->nullable();
-            $table->boolean('bought')->default(0);
+             
+            $table->text('notes')->nullable();            
             $table->string('color')->nullable();            
 
             $table->timestamps();
@@ -47,6 +43,6 @@ class CreateElectronicEnginesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('electronic_engines');
+        Schema::dropIfExists('electronic_requests');
     }
 }

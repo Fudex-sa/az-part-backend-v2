@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ElectronicEngine extends Model
+class ElectronicRequest extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id' , 'user_type', 'seller_id' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
+        'user_id' , 'user_type' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
 
-        'region_id' , 'city_id' , 'piece_alt_id' , 'price' , 'guarantee' , 'notes' , 'bought' , 'order_id' ,
-        
-        'color' , 'notes' , 'photo'
+        'region_id' , 'city_id' , 'piece_alt_id' , 'notes' , 'color' , 'notes' , 'photo'
 
     ];
 
@@ -28,12 +26,7 @@ class ElectronicEngine extends Model
     {
         return $this->belongsTo(PieceAlt::class,'piece_alt_id');
     }
-
-    public function seller()
-    {
-        return $this->belongsTo(Seller::class,'seller_id');
-    }
-
+ 
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -57,5 +50,18 @@ class ElectronicEngine extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function assign_sellers()
+    {
+        return $this->hasMany(AssignSeller::class,'request_id');
+    }
+
+    public function user()
+    {
+        if($this->user_type == 'company')
+            return $this->belongsTo(Ccompany::class,'user_id');
+        else
+            return $this->belongsTo(User::class,'user_id');
     }
 }

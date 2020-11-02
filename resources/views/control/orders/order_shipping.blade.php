@@ -3,7 +3,7 @@
   
     <h3> @lang('site.shipping_details') </h3>
 
-    <table class="table @if($item->status == 1)  table-warning
+    <table class="table @if($item->status == 1)  table-striped
             @elseif($item->status == 8) table-success @else table-danger
         @endif">
         

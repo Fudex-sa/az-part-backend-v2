@@ -20,14 +20,12 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12" style="margin-top: -120px;">
+          <div class="col-lg-9 col-md-9  col-9">
           
             <div class="row">
-             
-              <div class="col-md-12">
-                <div class="table-responsive">
-                  <table class="table mt-5 tabel-order">
-                    <thead class="thead-light">
+              
+                  <table class="my-tbl">
+                    <thead class="text-center">
                       <tr>
                         <th scope="col"> #  </th>         
                         <th scope="col"> <i class="fa fa-camera"></i> </th>                                       
@@ -36,14 +34,14 @@
                         <th scope="col"> @lang('site.qty') </th>                        
                         <th scope="col"> @lang('site.offers_placed_no') </th>                        
                         <th scope="col"> @lang('site.created_at') </th>
-                        <th style="width: 115px;"> </th>
+                        <th class="operations_th"> </th>
                       </tr>
                     </thead>
                     <tbody>
                         @foreach ($items as $item)
                           <tr>
                               <td> {{ $item->id }} </td>
-                              <td> <img src="{{ cart_img($item->photo) }}" style="width: 100px;" /> </td>
+                              <td> <img src="{{ cart_img($item->photo) }}" class="img-table" /> </td>
                               
                               <td> 
                                 {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} -
@@ -54,12 +52,16 @@
                               <td> {{ $item->piece_alt ? $item->piece_alt['name_'.my_lang()] : '' }} </td>
 
                               <td> {{ $item->qty }} </td>
-                              <td> </td>
-                              <td> {{ $item->created_at }} </td>
+                            
+                              <td> <a href="{{ route('request.offers',$item->id) }}"> 
+                                    <span class="bg-circle"> {{ count($item->assign_sellers) }} </span> </a> </td>
+                            
+                              <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
+                            
                               <td>
-                              <a href="{{ route('request.show',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                                <a href="{{ route('request.edit',$item->id) }}" class="btn-edit"> <i class="fa fa-edit"></i> </a>
     
-                                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                                <a onclick="deleteItem({{ $item->id }})" class="btn-delete"><i class="fa fa-trash"></i> </a>
 
                               </td>
                           </tr>
@@ -67,9 +69,8 @@
                       
                     </tbody>
                   </table>
-                </div>
+                
           
-              </div>
             </div>
 
           </div>

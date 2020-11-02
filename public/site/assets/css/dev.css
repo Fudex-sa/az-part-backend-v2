@@ -90,3 +90,74 @@
 .advice a{
     margin-top: 25px;
 }
+
+.status-1{
+    background: yellow;
+}
+
+.status-10{
+    background: greenyellow;
+}
+
+.status-8{
+    background: green;
+    color: #FFF;
+}
+
+.flex-column{
+    background: #f7f8fa;
+}
+.flex-column a{
+    padding: 10px;
+    border-bottom: 1px solid #DCDCDC;
+}
+.flex-column a:hover{
+    background: #DCDCDC;
+}
+.head-section{
+    margin-top: 0px !important;
+    margin-bottom: 30px !important;
+}
+.img-piece{
+    width: 100px;
+    border: 1px solid #DCDCDC;
+}
+
+.head-section h2{
+    color: #e26941;
+}
+.operations_th{
+    width: 70px;
+}
+.btn-edit{
+    color: blue;
+}
+.btn-edit:hover{
+    text-decoration: none;
+}
+
+.my-tbl {    
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .my-tbl td, .my-tbl th {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .my-tbl tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .my-tbl tr:hover {background-color: #ddd;}
+  
+  .my-tbl th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #f7f8fa;
+    color: #050708;
+  }
+.img-table{
+    width: 100px;
+    border: 1px solid #DCDCDC;
+}

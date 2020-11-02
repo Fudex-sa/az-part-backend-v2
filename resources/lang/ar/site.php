@@ -1026,5 +1026,12 @@ return [
     'qty' => 'عدد القطع',
     'your_request_sent_successfully' => 'لقد تم ارسال طلبك بنجاح , من فضلك تابع صفحة طلباتك للعروض الجديدة',
     'electronic_requests' => 'طلبات البحث الإلكترونى',
+    'add_to_cart' => 'اضف للسلة',
+    'piec' => 'قطعة',
+    'order_content' => 'محتوى الطلب',
+    'the_request' => 'الطلب',
+    'request_number' => 'طلب رقم',
+    'piece_data' => 'بيانات القطعة',
+    'elec_req_no' => 'طلب الكترونى رقم',
 ];
 

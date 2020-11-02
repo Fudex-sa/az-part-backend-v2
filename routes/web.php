@@ -31,6 +31,10 @@ Route::group([
             Route::get('avaliable_model/{item}',[App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');            
             Route::delete('avaliable_model/delete',[App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
 
+            Route::get('requests',[App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
+            Route::get('request/{item}',[App\Http\Controllers\Seller\RequestsController::class, 'show'])->name('seller.request');
+            Route::post('request/update/{item}',[App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update'); 
+            
         });
 
 
@@ -72,8 +76,12 @@ Route::group([
             Route::delete('car/img/delete',[App\Http\Controllers\Control\CarController::class, 'car_img_delete'])->name('admin.car_img.delete');                     
 
             Route::get('requests/all',[App\Http\Controllers\Control\MyRequestsController::class, 'all'])->name('my_requests');
-            Route::get('request/show/{item}',[App\Http\Controllers\Control\MyRequestsController::class, 'show'])->name('request.show');
+            Route::get('request/offers/{id}',[App\Http\Controllers\Control\MyRequestsController::class, 'offers'])->name('request.offers');
+            Route::get('request/edit/{item}',[App\Http\Controllers\Control\MyRequestsController::class, 'edit'])->name('request.edit');
             Route::delete('my_requests/delete',[App\Http\Controllers\Control\MyRequestsController::class, 'delete'])->name('admin.my_request.delete');                     
+
+            Route::get('offer/add_to_cart/{id}',[App\Http\Controllers\Control\OfferController::class, 'add_to_cart'])->name('offer.add_to_cart');
+            
         });
 
 

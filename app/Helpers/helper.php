@@ -15,7 +15,6 @@ use App\Models\Notification;
 use App\Models\Order;
 use App\Models\RepCarSize;
 use App\Models\Car;
-use Mobily;
 
 if (! function_exists('my_lang')) {
     function my_lang() {

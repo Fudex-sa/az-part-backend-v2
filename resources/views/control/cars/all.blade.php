@@ -20,21 +20,22 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12" style="margin-top: -120px;">
+          <div class="col-lg-9 col-md-9  col-12" style="margin-top: -120px;">
           
             <div class="row">
               <div class="col-md-12">
-                <div class="btn-add-container float-left">                  
+                <div class="btn-add-container float-left" style="margin-bottom: 10px;">                  
                   <button type="button" class="btn btn-save" data-toggle="modal"
-                    data-target=".bd-example-modal-lg"> <i class="fa fa-plus"></i> @lang('site.add_car')   </button>
-
+                    data-target=".bd-example-modal-lg"> 
+                    <i class="fa fa-plus"></i> @lang('site.add_car')   
+                  </button>
                   
                 </div>
               </div>
               <div class="col-md-12">
-                <div class="table-responsive">
-                  <table class="table mt-5 tabel-order">
-                    <thead class="thead-light">
+               
+                  <table class="my-tbl">
+                    <thead>
                       <tr>
                         <th scope="col"> #  </th>                        
                         <th scope="col"> @lang('site.title') </th>
@@ -70,7 +71,7 @@
                       
                     </tbody>
                   </table>
-                </div>
+                
           
               </div>
             </div>

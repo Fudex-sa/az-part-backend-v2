@@ -54,14 +54,15 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{ route('cart') }}"> 
             <img src="{{ site('assets/images/cart.png') }}" alt="">
+            @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('cart') }}">  <i class="fa fa-bell"> </i>
-            @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
+          <a class="nav-link"> 
+           <i class="fa fa-bell"> </i>            
            </a>
         </li>
 

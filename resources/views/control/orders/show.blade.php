@@ -20,36 +20,24 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12">
+          <div class="col-lg-9 col-md-10  col-12">
            <div class="row">
             <div class="col-lg-7 col-md-8  col-10">
 
-                  <div class="table-responsive">
-                    <table class="table mt-5 tabel-success myTbl">
-                       <tr>
-                          <th> @lang('site.user') </th>
-                          <td> {{ $item->user['name'] }} </td>
-                       </tr>
-
-                       <tr>
-                          <th> @lang('site.status') </th>
-                          <td> {{ $item->order_status['name_'.my_lang()] }} </td>
-                        </tr>
-
-                       <tr>
-                          <th> @lang('site.total') </th>
-                          <td> {{ $item->total }} @lang('site.rs') </td>
-                        </tr>
-                      
-                    </table>
-
+              @include('control.orders.order_details')
                   
-                  </div>
             </div>
 
-            <div class="col-lg-5 col-md-4  col-4">
+            <div class="col-lg-5 col-md-5  col-5">
                 
                   @include('control.orders.order_shipping')
+            </div>
+
+            
+            <div class="col-lg-12 col-md-12  col-12">
+              <hr/>
+            
+              @include('control.orders.cart_items')
             </div>
 
            </div>

@@ -886,6 +886,13 @@ return [
     'qty' => 'Quantity',
     'your_request_sent_successfully' => 'Your Request Sent Successfully, Please Follow Your Requests For New Offers',
     'electronic_requests' => 'Electronic Search Requests',
+    'add_to_cart' => 'Add To Cart',
+    'piec' => 'Piece',
+    'order_content' => 'Order Content',
+    'the_request' => 'The Request',
+    'request_number' => 'Request No',
+    'piece_data' => 'Piece Data',
+    'elec_req_no' => 'Electronic Request No',
 ];
 
 ?>

@@ -59,19 +59,20 @@ class Search
                                 ->whereHas('seller',function($q) use ($city){
                                     $q->where('city_id',$city);
                                 });                                
-                                
-
-        $region_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
-                    ->with('seller')
-                    ->whereHas('seller',function($q) use ($region){
-                        $q->where('region_id',$region);
-                    });                                
-                     
+       
 
         if($city_items->count() > 0){
             $response['found_result'] = 1; //--- Case found 
             $response['items'] = $city_items->limit($limit)->get();
         }else{
+
+            $region_items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
+            ->with('seller')
+            ->whereHas('seller',function($q) use ($region){
+                $q->where('region_id',$region);
+            }); 
+
+            
             if($region_items->count() > 0) {
                     
                 $response['found_result'] = 2; // ---- Case found in same region

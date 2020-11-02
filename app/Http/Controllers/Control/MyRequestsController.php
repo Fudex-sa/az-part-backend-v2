@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Control;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ElectronicEngine;
+use App\Models\ElectronicRequest;
+use App\Models\AssignSeller;
+
 
 class MyRequestsController extends Controller
 {
@@ -14,22 +16,35 @@ class MyRequestsController extends Controller
     {
         $my_requests = true;
 
-        $items = ElectronicEngine::with('piece_alt')->myRequests()->orderby('id','desc')->get();
+        $items = ElectronicRequest::with('piece_alt')->myRequests()->orderby('id','desc')->get();
         
         return view($this->view . 'all',compact('items','my_requests'));
     }
     
-    function show($id)
+    function offers($id)
     {
-        $item = ElectronicEngine::with('piece_alt')->where('id',$id)->first();
+        $my_requests = true;
 
-        return view($this->view . 'show',compact('item'));
+        $item = ElectronicRequest::with('piece_alt')->where('id',$id)->first();
+
+        $sellers = AssignSeller::with('seller')->where('request_id',$id)->orderby('id','desc')->get();
+        
+        return view($this->view . 'offers',compact('my_requests','item','sellers'));
+    }
+
+    function edit($id)
+    {
+        $my_requests = true;
+
+        $item = ElectronicRequest::with('piece_alt')->where('id',$id)->first();
+
+        return view($this->view . 'edit',compact('item','my_requests'));
     }
 
     public function delete(Request $request){
         $item = $request->input('id');
 
-        if(ElectronicEngine::find($item)->delete()) 
+        if(ElectronicRequest::find($item)->delete()) 
             return 1;
 
         return 0;
