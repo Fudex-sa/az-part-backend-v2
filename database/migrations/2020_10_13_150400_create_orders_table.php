@@ -28,13 +28,14 @@ class CreateOrdersTable extends Migration
             $table->integer('city_id');
             
             $table->integer('piece_alt_id');
-            $table->float('price');
+            $table->string('photo')->nullable();
+            $table->integer('qty')->default(1);
+            $table->float('price')->nullable();
             $table->string('guarantee')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('bought')->default(0);
             $table->string('color')->nullable();
-            $table->text('notes')->nullable();
-             
+              
             $table->timestamps();
         });
     }

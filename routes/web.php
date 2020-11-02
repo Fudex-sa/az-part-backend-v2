@@ -31,6 +31,9 @@ Route::group([
             Route::get('avaliable_model/{item}',[App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');            
             Route::delete('avaliable_model/delete',[App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
 
+            Route::get('requests',[App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');            
+            Route::post('request/update/{item}',[App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update'); 
+            
         });
 
 
@@ -64,6 +67,20 @@ Route::group([
             Route::get('my_packages',[App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('myPackages');
 
             Route::get('order/{id}',[App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
+
+            Route::get('cars',[App\Http\Controllers\Control\CarController::class, 'all'])->name('control.cars');
+            Route::get('car/{item}',[App\Http\Controllers\Control\CarController::class, 'edit'])->name('control.car');
+            Route::post('car/store/{id?}',[App\Http\Controllers\Control\CarController::class, 'store'])->name('control.car.store');
+            Route::delete('car/delete',[App\Http\Controllers\Control\CarController::class, 'delete'])->name('admin.car.delete');                     
+            Route::delete('car/img/delete',[App\Http\Controllers\Control\CarController::class, 'car_img_delete'])->name('admin.car_img.delete');                     
+
+            Route::get('requests/all',[App\Http\Controllers\Control\MyRequestsController::class, 'all'])->name('my_requests');
+            Route::get('request/offers/{id}',[App\Http\Controllers\Control\MyRequestsController::class, 'offers'])->name('request.offers');
+            Route::get('request/edit/{item}',[App\Http\Controllers\Control\MyRequestsController::class, 'edit'])->name('request.edit');
+            Route::delete('my_requests/delete',[App\Http\Controllers\Control\MyRequestsController::class, 'delete'])->name('admin.my_request.delete');                     
+
+            Route::get('offer/add_to_cart/{id}',[App\Http\Controllers\Control\OfferController::class, 'add_to_cart'])->name('offer.add_to_cart');
+            Route::get('request/{item}',[App\Http\Controllers\Control\RequestsController::class, 'show'])->name('request.show');
         });
 
 
@@ -71,9 +88,11 @@ Route::group([
 
             Route::get('/',[App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
 
-            Route::get('cars/damaged',[App\Http\Controllers\Site\CarDamagedController::class, 'index'])->name('cars.damaged');
-
-            Route::get('cars/antique',[App\Http\Controllers\Site\CarAntiqueController::class, 'index'])->name('cars.antique');
+            Route::get('cars/damaged',[App\Http\Controllers\Site\CarController::class, 'damaged'])->name('cars.damaged');
+            Route::get('cars/antique',[App\Http\Controllers\Site\CarController::class, 'antique'])->name('cars.antique');
+            Route::get('car/{id}',[App\Http\Controllers\Site\CarController::class, 'show'])->name('car');
+            Route::get('cars/search',[App\Http\Controllers\Site\CarController::class, 'search'])->name('cars.search');
+            Route::post('car/comment/store/{id}',[App\Http\Controllers\Site\CarController::class, 'store_comment'])->name('car.comment.store');
 
             Route::get('stock',[App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
             Route::get('stock/filter',[App\Http\Controllers\Site\StockController::class, 'filter'])->name('stock.filter');
@@ -112,14 +131,23 @@ Route::group([
             Route::post('contact_us',[App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
  
             Route::get('parts/search',[App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
-            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'contact_seller'])->name('contact_seller')->middleware('isLogged');
+            Route::post('contact_seller',[App\Http\Controllers\Site\PartController::class, 'addToCart'])->name('addToCart')->middleware('isLogged');
+            Route::get('report/{id}',[App\Http\Controllers\Site\PartController::class, 'report'])->name('report')->middleware('isLogged');
+            Route::post('report',[App\Http\Controllers\Site\PartController::class, 'send_report'])->name('send_report')->middleware('isLogged');
+            Route::get('more_pieces',[App\Http\Controllers\Site\PartController::class, 'more_pieces'])->name('more_pieces');
+            Route::post('create_request',[App\Http\Controllers\Site\ElectronicController::class, 'create_request'])->name('create_request')->middleware('isLogged');
+            
 
             Route::get('cart',[App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
             Route::delete('cart/delete',[App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');            
             Route::post('coupon/use',[App\Http\Controllers\Site\CartController::class, 'use_coupon'])->name('coupon.use')->middleware('isLogged');
             
+            Route::get('reps',[App\Http\Controllers\Site\ShippingController::class, 'reps'])->name('reps')->middleware('isLogged');
+            Route::get('reps/filter',[App\Http\Controllers\Site\ShippingController::class, 'reps_filter'])->name('reps.filter')->middleware('isLogged');
+            Route::get('choose_rep/{id}',[App\Http\Controllers\Site\ShippingController::class, 'choose_rep'])->name('choose_rep')->middleware('isLogged');
+
             Route::get('shipping',[App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
-            Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'create'])->name('shipping.save')->middleware('isLogged');
+            Route::post('shipping',[App\Http\Controllers\Site\ShippingController::class, 'store_shipping'])->name('shipping.save')->middleware('isLogged');
             Route::get('payment/method',[App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');            
             Route::get('payment/choose',[App\Http\Controllers\Site\PaymentController::class, 'choose'])->name('payment.choose')->middleware('isLogged');
             Route::get('payment',[App\Http\Controllers\Site\PaymentController::class, 'index'])->name('payment')->middleware('isLogged');
@@ -177,7 +205,8 @@ Route::group([
             Route::post('seller/store/{item?}',[App\Http\Controllers\Admin\SellerController::class, 'store'])->name('admin.seller.store');
             Route::delete('seller/delete',[App\Http\Controllers\Admin\SellerController::class, 'delete'])->name('admin.seller.delete');
             Route::post('seller/activate',[App\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.seller.activate');
-
+            Route::post('available_brand/store',[App\Http\Controllers\Admin\SellerController::class, 'available_brand_store'])->name('admin.available_brand.store');
+ 
             /******************* Brokers ********************/    
             Route::get('broker/search',[App\Http\Controllers\Admin\BrokerController::class, 'search'])->name('admin.broker.search');
             Route::get('brokers',[App\Http\Controllers\Admin\BrokerController::class, 'all'])->name('admin.brokers');            
@@ -196,6 +225,7 @@ Route::group([
             Route::delete('rep/delete',[App\Http\Controllers\Admin\RepController::class, 'delete'])->name('admin.rep.delete');
             Route::post('rep/activate',[App\Http\Controllers\Admin\RepController::class, 'activate'])->name('admin.rep.activate');
 
+            Route::post('rep_price/store',[App\Http\Controllers\Admin\RepController::class, 'price_store'])->name('admin.rep_price.store');
             /******************* Supervisors ********************/                
             Route::get('supervisor/search',[App\Http\Controllers\Admin\SupervisorController::class, 'search'])->name('admin.supervisor.search');
             Route::get('supervisors',[App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');  
@@ -332,9 +362,18 @@ Route::group([
             Route::get('stock/{brand}/{model}/{year}/{piece}',[App\Http\Controllers\Admin\StockController::class, 'show'])->name('admin.stock');
             Route::post('stock/store/{item?}',[App\Http\Controllers\Admin\StockController::class, 'store'])->name('admin.stock.store');
             Route::delete('stock/delete',[App\Http\Controllers\Admin\StockController::class, 'delete'])->name('admin.stock.delete');
-
+            Route::get('stock/search',[App\Http\Controllers\Admin\StockController::class, 'search'])->name('admin.stock.search');
  
-
+            /************ Cars  **********/            
+            
+            Route::get('cars/antiques',[App\Http\Controllers\Admin\CarController::class, 'antiques'])->name('admin.antiques');                                    
+            Route::get('cars/damaged',[App\Http\Controllers\Admin\CarController::class, 'damaged'])->name('admin.damaged');                                    
+            Route::get('car/{id}',[App\Http\Controllers\Admin\CarController::class, 'edit'])->name('admin.car');                        
+            Route::get('car/comments/{car}',[App\Http\Controllers\Admin\CarController::class, 'comments'])->name('admin.car.comments');
+            Route::delete('car_comment/delete',[App\Http\Controllers\Admin\CarController::class, 'comment_delete'])->name('admin.car_comment.delete');
+            Route::post('car_comment/activate',[App\Http\Controllers\Admin\CarController::class, 'comment_activate'])->name('admin.car_comment.activate');                   
+            Route::post('car/store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');                        
+            Route::post('car/imgs_store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');                        
 
              /************ Export PDF Data  ***************************/
              Route::get('export/users/pdf','ExportPdfController@users')->name('export.pdf.users');
@@ -366,36 +405,8 @@ Route::group([
             Route::get('export/stock/excel','ExportExcelController@stock');
 
             /************ Cars  ***************************/            
-            Route::get('cars/damaged','CarsController@damaged')->name('admin.cars.damaged');
-            Route::get('cars/antiques','CarsController@antiques')->name('admin.cars.antiques');
-            Route::get('car/damaged/edit/{item}','CarsController@edit_damaged')->name('admin.car.damaged.edit');
-            Route::get('car/antique/edit/{item}','CarsController@edit_antique')->name('admin.car.antique.edit');
-            Route::get('car/{item}/comments','CarsController@comments')->name('admin.cars.comments');
-            Route::post('car/comment/delete','CarsController@delete_comment')->name('admin.car.comment.delete');
-            Route::post('car/comment/approve','CarsController@approve_comment')->name('admin.car.comment.approve');
-            Route::post('car/damaged/store/{item}','CarsController@store_damaged')->name('admin.car.damaged.store');
-            Route::post('car/antique/store/{item}','CarsController@store_antique')->name('admin.car.antique.store');
-            Route::delete('car/delete','CarsController@delete')->name('admin.car.delete');
-            Route::post('car/deleteImg','CarsController@deleteImg')->name('admin.carImg.delete');
-            Route::post('car/images/store/{item}','CarsController@store_imgs')->name('admin.car.store_imgs');
-
-            /************* Car Bidding *******************/
-            Route::get('bidding/all','CarBiddingController@all')->name('admin.cars.bidding');
-            Route::get('bidding/edit-approve/{id}/{status}','CarBiddingController@updateStatusApprove')->name('admin.bidding.updateStatusApprove');
-            Route::get('bidding/edit-reject/{id}/{status}','CarBiddingController@updateStatusReject')->name('admin.bidding.updateStatusReject');
-            Route::post('bidding/delete','CarBiddingController@delete')->name('admin.bidding.delete');
-            Route::post('bidding/update/{id?}','CarBiddingController@update')->name('admin.bidding.store');
- 
-              
-            //---------- Engine ------------------            
-            Route::get('engine','EngineController@index')->name('admin.engine');
-            Route::get('engine/vip/delete','EngineController@vip_delete');
-            Route::get('engine/normal/delete','EngineController@normal_delete');
-            Route::get('engine/run','EngineController@run_engine')->name('engine.run');
-            Route::get('engine/next_round','EngineController@next_round')->name('engine.next_round');
-
             
-
+ 
             
 
         });

@@ -18,5 +18,8 @@ class Region extends Model
         return $this->hasMany(City::class);
     }
 
-    
+    public function scopeCountry_regions($q,$country_id)
+    {
+        return $q->where('country_id',$country_id);
+    }    
 }

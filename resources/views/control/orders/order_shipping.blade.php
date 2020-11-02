@@ -2,72 +2,73 @@
  
   
     <h3> @lang('site.shipping_details') </h3>
-
-    <table class="table @if($item->status == 1)  table-warning
-            @elseif($item->status == 8) table-success @else table-danger
-        @endif">
+    
+    @if($shipping)
+    <table class="my-tbl text-center">
         
         <tr>
-            <td> @lang('site.country') </td>
+            <th> @lang('site.country') </th>
             <td> {{ $shipping->country['name_'.my_lang()] }} </td>
         </tr>
         <tr>
-            <td> @lang('site.region') </td>
+            <th> @lang('site.region') </th>
             <td> {{ $shipping->region['name_'.my_lang()] }} </td>
         </tr>
         <tr>
-            <td> @lang('site.city') </td>
+            <th> @lang('site.city') </th>
             <td> {{ $shipping->city['name_'.my_lang()] }} </td>
         </tr>
         <tr>
-            <td> @lang('site.street') </td>
-            <td> {{ $shipping->street }} </td>
+            <th> @lang('site.street') </th>
+            <td> {{ $shipping->street ? $shipping->street : '-' }} </td>
         </tr>
 
         <tr>
-            <td> @lang('site.with_oil') </td>
+            <th> @lang('site.with_oil') </th>
             <td> {{ $shipping->with_oil == 1 ? __('site.yes') : __('site.no') }} </td>
         </tr>
 
         <tr>
-            <td> @lang('site.car_size') </td>
+            <th> @lang('site.car_size') </th>
             <td> {{ __('site.'.$shipping->size) }} </td>
         </tr>
 
         <tr>
-            <td> @lang('site.rep') </td>
+            <th> @lang('site.rep') </th>
             <td> {{ $shipping->rep ? $shipping->rep['name'] : '-' }} </td>
         </tr>
 
         @if($item->status == 8)
         <tr>
-            <td> @lang('site.delivery_time') </td>
+            <th> @lang('site.delivery_time') </th>
             <td> {{ $shipping->delivery_time }} </td>
         </tr>
         @elseif($item->status == 9)
         <tr>
-            <td> @lang('site.reject_reason') </td>
+            <th> @lang('site.reject_reason') </th>
             <td> {{ $order_rejected ? $order_rejected->reject_reason : '' }} </td>
         </tr>
         @endif
 
         <tr>
-            <td> @lang('site.status') </td>
+            <th> @lang('site.status') </th>
             <td> {{ $item->order_status['name_'.my_lang()] }} </td>
         </tr>
 
         <tr>
-            <td> @lang('site.notes') </td>
+            <th> @lang('site.notes') </th>
             <td> {{ $shipping->notes ? $shipping->notes : '-' }} </td>
         </tr>
 
-        <tr class="text-center">
-            <td colspan="2">
-                @if(user_type() == 'rep' && $shipping->rep_id == logged_user()->id)
-                 <button class="btn btn-info" data-toggle="modal" data-target=".update_shipping"> 
-                     @lang('site.update') </button> </td>
-                @endif
-        </tr>
+        @if(user_type() == 'rep' && $shipping->rep_id == logged_user()->id)
+            <tr class="text-center">
+                <td colspan="2">               
+                    <button class="btn btn-info" data-toggle="modal" data-target=".update_shipping"> 
+                        @lang('site.update') </button> </td>               
+            </tr>
+        @endif
     </table>
+
+    @endif
  
     

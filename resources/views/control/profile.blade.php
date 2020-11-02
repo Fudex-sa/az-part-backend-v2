@@ -22,12 +22,16 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12" style="margin-top: -40px;">
+          <div class="col-lg-9 col-md-9  col-12" style="margin-top: -40px;">
          
               <div class="tab-pane fade show active" id="profile" role="tabpanel"
                 aria-labelledby="profile">
                 <div class="row">
-                  <div class="col-md-12">
+                  <form class="profile-form row" method="POST" action="{{ route('profile.update') }}"
+                  enctype="multipart/form-data">
+                      @csrf
+                      
+                  <div class="col-md-3">
                     
                     <div class="up-img">
                       <input type='file' name="photo" class="imgpo" onchange="readURLL(this);" />
@@ -46,18 +50,16 @@
                       <h6> {{ __('site.'.user_type()) }} </h6>
                     </div>
                   </div>
-                  <div class="col-md-12">
-                  <form class="profile-form row" method="POST" action="{{ route('profile.update') }}"
-                  enctype="multipart/form-data">
-                      @csrf
- 
-                        <div class="col-md-7 row">
+                  <div class="col-md-9">
+                   
+                        <div class="row">
                           
-                          <div class="form-group">
-                            <h3 class="mt-5 mb-2"> @lang('site.personal_info') </h3>
+                          <div class="form-group col-md-6">
+                            <h3 class=""> @lang('site.personal_info') </h3>
                           </div>
+                          
 
-                          <div class="form-group col-md-12">
+                          <div class="form-group col-md-6">
                             @if(user_type() == 'rep')
                                 <input type="radio" class="" id="individual" name="type" value="individual"
                                 {{ logged_user()->type == 'individual' ? 'checked' : '' }}> 
@@ -137,31 +139,28 @@
                           <input type="hidden" name="lat"  id="latitude" value="{{ logged_user()->lat }}"/>
                             <input type="hidden" name="lng" id="longitude" value="{{ logged_user()->lng }}"/>
                         </div>
-
-
-                        </div>
-
-                        <div class="col-md-5">
+ 
+                        <hr class="dashed-hr"/>
                           
                           @if(user_type() == 'rep')
-                            <div class="form-group">
-                              <h3 class="mt-5 mb-2"> @lang('site.rep_info') </h3>
+                            <div class="form-group col-md-12">
+                              <h3> @lang('site.rep_info') </h3>
                             </div>
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label> @lang('site.national_id') </label>
 
                               <input type="text" name="national_id" id="national_id" class="form-control pro-input" 
                               value="{{ logged_user()->national_id }}">
                             </div>
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label> @lang('site.id_copy') </label>
 
                               <input type="file" name="id_copy" id="id_copy" class="form-control pro-input">
                             </div>
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label> @lang('site.bank_id') </label>
 
                               <select name="bank_id" class="form-control">
@@ -174,20 +173,20 @@
                               </select>
                             </div>
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label> @lang('site.car_license_img') </label>
 
                               <input type="file" name="car_license_img" id="car_license_img" class="form-control pro-input">
                             </div>
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label> @lang('site.car_data') </label>
 
                               <input type="text" name="car_data" id="car_data" class="form-control pro-input" 
                                 placeholder="@lang('site.car_info')" value="{{ logged_user()->car_data }}">
                             </div>
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label> @lang('site.car_img') </label>
 
                               <input type="file" name="car_img" id="car_img" class="form-control pro-input">
@@ -196,20 +195,21 @@
                               <hr class="dashed-hr"/>
                           @endif
 
-                          <div class="form-group">
-                            <h3 class="mt-5 mb-2"> @lang('site.change_password') </h3>
+                          <div class="form-group col-md-6">
+                            <h3 class=""> @lang('site.change_password') </h3>
                           </div>
                           
-                          <div class="form-group">
+                          <div class="form-group col-md-6"></div>
+                          
+                          <div class="form-group col-md-6">
                             <input type="password" name="password" class="form-control pro-input" 
                               placeholder="@lang('site.password')" autocomplete="new-password">
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-md-6">
                             <input type="password" name="confirm_password" class="form-control pro-input" 
                               placeholder="@lang('site.confirm_password')">
                           </div>
-
-                        </div> 
+ 
                          
                         <div class="form-group col-md-12 text-center">
                           <button type="submit" class="btn btn-save col-md-3"> @lang('site.save') </button>

@@ -57,19 +57,6 @@
                       <h3> @lang('site.shipping_address')  </h3>
 
                       <div class="form-group col-12">
-                        <label class="col-3"> @lang('site.shipping_size') : </label>
-
-                          <label> <input type="radio" name="size" value="light"
-                            {{ old('size') == 'light' ? 'checked' : '' }}> @lang('site.light') </label>
-
-                          <label> <input type="radio" name="size" value="medium" checked
-                            {{ old('size') == 'medium' ? 'checked' : '' }}> @lang('site.medium') </label>
-
-                          <label> <input type="radio" name="size" value="heavy"
-                            {{ old('size') == 'heavy' ? 'checked' : '' }}> @lang('site.heavy') </label>                      
-                      </div>
-
-                      <div class="form-group col-12">
                           <label class="col-3"> @lang('site.spare') : </label>
 
                           <label> <input type="radio" name="with_oil" value="1"
@@ -118,15 +105,7 @@
                           <input type="text" class="form-control" name="street" value="{{ old('street') }}" 
                           placeholder="@lang('site.building_number')">
                         </div>
-               
-                        <div class="form-group col-md-12">
-                           <input id="pac-input" class="form-control add-bg" name="address" type="text"
-                           placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
-               
-                           <div id="map" style="width:100%;height: 400px;"></div>
-                        <input type="hidden" name="latitude"  id="latitude" value="{{ old('lat') ? old('lat') : '26.420031' }}"/>
-                        <input type="hidden" name="longitude" id="longitude" value="{{ old('lng') ? old('lng') : '50.089986' }}"/>
-                        </div>
+                
                 
                         <div class="form-group col-12">
                           <input type="text" class="form-control" name="notes" value="{{ old('notes') }}" 
@@ -137,32 +116,7 @@
                      
                   </div>
                   <div class="col-md-5">
-                    <div class="row">
-                      <div class="cart-order shadow col-md-12 rounded">
-                        <h3 class="col-md-12"> @lang('site.choose_rep') </h3>
- 
-                            <div class="col-md-12">
-                              <table class="table table-striped" id="reps">
-                                <thead>
-                                  <tr>
-                                    <td> # </td>
-                                    <td> @lang('site.rep_name') </td>
-                                    <td> @lang('site.delivery_price') </td>
-                                  </tr>
-                                </thead>
-
-                                <tbody id="my_reps">
-                                  <tr class="text-center">
-                                     <td colspan="3">  @lang('site.choose_city_to_display_reps') </td> 
-                                  </tr>
-                                </tbody>
-
-                              </table>
-                           
-                            </div>
-                        
-                      </div>
-                    </div>
+                     
 
                     @include('site.checkout.coupon')
 

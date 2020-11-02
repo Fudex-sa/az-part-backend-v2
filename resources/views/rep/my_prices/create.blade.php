@@ -14,7 +14,7 @@
             <form class="row" method="post" action="{{ route('rep.my_price.store') }}">
                 @csrf 
                   
-                <div class="form-group col-12">
+                <div class="form-group col-6">
                 
                   <select name="country_id" id="country_id" class="form-control">
                     <option value=""> @lang('site.choose_country') </option>
@@ -26,20 +26,20 @@
 
                 </div>
 
-                <div class="form-group col-12">
+                <div class="form-group col-6">
                   <select name="region_id" id="region_id" class="form-control">
                     <option value=""> @lang('site.choose_region') </option>
                      
                 </select>
                 </div>
                 
-                <div class="form-group col-12">
+                <div class="form-group col-6">
                   <select id="cities" name="city_id" class="form-control">
                
                   </select>
                 </div>
 
-                <div class="form-group col-12">
+                <div class="form-group col-6">
                   <input type="number" name="price" min="0" class="form-control" placeholder="@lang('site.price')"/>
                 </div>
 

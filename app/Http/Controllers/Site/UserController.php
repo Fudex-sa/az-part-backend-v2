@@ -26,7 +26,8 @@ class UserController extends Controller
         $data['password'] = bcrypt($request->password);
         $verification_code = rand(10000,99999);
         $data['verification_code'] = $verification_code;
-
+        
+        
         if($request->photo){
             $fileName = time().'.'.$request->photo->extension();  
             $request->photo->move(public_path('uploads'), $fileName);

@@ -21,6 +21,7 @@
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="form-group row">
               <label for="city" class="col-md-5"> @lang('site.brand') </label>
+
               <select class="form-control col-md-7 select2" name="brand_id" id="brand_id">
                 <option value=""> @lang('site.choose_brand') </option>
                 @foreach ($brands as $brand)
@@ -29,8 +30,8 @@
                 @endforeach
               </select>
             </div>
-
           </div>
+
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="form-group row">
               <label for="city" class="col-md-5"> @lang('site.choose_model') </label>
@@ -39,8 +40,8 @@
                 
               </select>
             </div>
-
           </div>
+          
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="form-group row">
               <label for="city1" class="col-md-5"> @lang('site.manufacturing_year') </label>
@@ -103,17 +104,19 @@
                   <td> {{ $item->piece['name_'.my_lang()] }} </td>
                   <td>
                     <p class="color-dark">
-                      @if($item->max_price != $item->min_price) {{ $item->max_price }}  @lang('site.rs') @else - @endif
+                      @if($item->max_price != $item->min_price) <span class="p-green"> {{ $item->max_price }}</span> 
+                       @lang('site.rs') @else - @endif
                     </p>
                   </td>
                   <td>
                     <p class="color-dark">
-                       {{ $item->avg_price }}  @lang('site.rs') 
+                       {{ round($item->avg_price,2) }}  @lang('site.rs') 
                     </p>
                   </td>
                   <td>
                     <p class="color-dark"> 
-                      @if($item->max_price != $item->min_price) {{ $item->min_price }}  @lang('site.rs') @else - @endif
+                      @if($item->max_price != $item->min_price) <span class="p-orange"> {{ $item->min_price }} </span>
+                        @lang('site.rs') @else - @endif
                     </p>
                   </td>
 

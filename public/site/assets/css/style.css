@@ -1459,6 +1459,9 @@ font-weight: bold;
 .p-orange{
   color: #E26941;
 }
+.orang{
+  color: #F2A736 !important;
+}
 .color-dark{
   color: #939393;
   font-size: 15px;
@@ -2001,4 +2004,16 @@ margin-bottom: 15px;
 
     margin-right: 5px;
 }
+}
+
+.bg-circle{
+  background-color:#F2A736 ;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  padding: 12px 14px;
+}
+
+.btn-lory{
+  background-image: linear-gradient(to left, #E26941, #F2A736);
 }

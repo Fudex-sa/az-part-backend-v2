@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
                 'name' => 'required|max:200',
                 'password' => 'sometimes',
                 'mobile' => 'required|numeric|unique:users,mobile,'.$this->id,
-                'email' => 'required|unique:users,email,'.$this->id,                    
+                // 'email' => 'required|unique:users,email,'.$this->id,                    
             ];
         
         else
@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
                 'name' => 'required|max:200',
                 'password' => 'sometimes',
                 'mobile' => 'required|numeric|unique:users,mobile',
-                'email' => 'required|unique:users,email',                     
+                // 'email' => 'required|unique:users,email',                     
             ];
     }
 }

@@ -20,16 +20,15 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12">
+          <div class="col-lg-9 col-md-9  col-12" style="margin-top: -65px;">
          
             <div class="btn-add-container float-left">
             <a href="{{ route('package.show','electronic') }}" class="btn btn-save"> @lang('site.subscribe_package') </a>
               <br/><br/>
             </div>
             
-
-                <div class="table-responsive">
-                  <table class="table mt-5 tabel-order myTbl">
+ 
+                  <table class="my-tbl">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col"> @lang('site.package_name') </th>
@@ -60,7 +59,10 @@
 
                             <td> {{ $item->expired == 1 ? __('site.yes') : __('site.no') }} </td>
 
-                            <td>  {{ $item->stores_no - count($item->my_orders) }} @lang('site.order') </td>
+                            <td> @if($item->package['type'] == 'electronic')
+                                   {{ $item->stores_no - count($item->my_orders)  }} @lang('site.order')
+                                 @endif      
+                            </td>
 
                             <td> {{ $item->created_at }} </td>
                           </tr>     
@@ -68,10 +70,7 @@
                        
                     </tbody>
                   </table>
-                </div>
-           
- 
-  
+                
           </div>
         </div>
       </div>

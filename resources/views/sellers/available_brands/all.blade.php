@@ -20,26 +20,26 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-10 col-md-10  col-12">
-         
-               
-                <div class="table-responsive">
-                 
-                  <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
-                    <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-        
+          <div class="col-lg-9 col-md-9  col-12">
+          
+            <div class="btn-add-container float-left">
+              <a data-toggle="modal" data-target=".add_item" class="btn btn-save">
+                <i class="fa fa-plus"></i>  @lang('site.add') </a>
+                <br/><br/>
+            </div>
+ 
             
-          <table class="table table-striped jambo_table bulk_action" id="myTbl">
+          <table class="my-tbl" id="myTbl">
             <thead class=" text-primary">
                 <tr>
                     <th>#  </th>
                     <th> @lang('site.brand') </th>
                     <th> @lang('site.model') </th>
                     <th> @lang('site.year') </th>
-                    <th></th>
+                    <th class="operations_th"></th>
               </tr>
               </thead>
-              <tbody>
+              <tbody class="text-center">
                 @foreach($items as $k=>$item)
                   <tr>
                     <td> {{ $k+1 }} </td>
@@ -55,10 +55,10 @@
 
                     <td>
                         
-                        <a href="{{ route('seller.avaliable_model',$item->id) }}" class="btn btn-info btn-xs">
+                        <a href="{{ route('seller.avaliable_model',$item->id) }}" class="btn-edit">
                             <i class="fa fa-edit"></i> </a>
                   
-                        <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <a onclick="deleteItem({{ $item->id }})" class="btn-delete">
                               <i class="fa fa-trash"></i> </a>
                       
                     </td>
@@ -70,11 +70,7 @@
             </table>
           
         <div class="text-center"> {{ $items->links() }} </div>
-        
-                </div>
-           
- 
-  
+         
           </div>
         </div>
       </div>

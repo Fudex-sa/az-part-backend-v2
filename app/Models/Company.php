@@ -15,7 +15,7 @@ class Company extends Authenticatable
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password',
-        'total_requests' , 'available_requests'  , 'created_by'   , 'city_id' , 'address'  , 'lat' , 'lng'        
+        'available_orders' , 'created_by' , 'region_id' , 'city_id' , 'address'  , 'lat' , 'lng'        
     ];
 
 
@@ -24,6 +24,11 @@ class Company extends Authenticatable
         return $query->whereSaudi(1);
     }
     
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id');
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class,'city_id');

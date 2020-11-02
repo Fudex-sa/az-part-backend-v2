@@ -18,21 +18,28 @@
         <div class="col-md-12 my-3">
           <div class="head-section">
             <h2>
-              @if($found_result == 1) @lang('site.this_is_your_search_result')
-              
-              @elseif($found_result == 2) @lang('site.search_found_in_other_cities') 
-
-              @elseif($found_result == 3) @lang('site.please_subscribe_package_first') 
-
-              @else @lang('site.not_found') @endif
+              @lang('site.this_is_your_search_result')
             </h2>
+
+            <div class="results">
+              <h6>  @lang('site.result_no_in_this_city') : 
+                    <span class="text-dark"> {{ count($city_items) }}  @lang('site.result')  </span> 
+              </h6>
+ 
+
+              {{-- <div class="advice">
+                  <p>  {{ data('for_viewing_all_subscribe_first') }}   </p>
+              </div> --}}
+
+            </div>
+
           </div>
         </div>
 
         @if($items)
             @foreach ($items as $item)
                  
-                    <div class="col-md-12  mt-5">
+                    <div class="col-md-12">
                     <div class="row shadow e-back">
                         <div class="col-md-2 pr-0">
                             @if($item->seller['photo'])
@@ -44,7 +51,7 @@
                         <div class="col-md-7">
                             <div class="e-box">
                                 <h4> {{ $item->seller['name'] }} </h4>
-                                <h6>                                  
+                                <h6 class="orang">                                  
                                     <a href="https://maps.google.com/?q={{$item->seller['lat']}},{{$item->seller['lng']}}" target="_blank"> 
                                         <img src="{{ site('assets/images/location.png') }}" alt="">  {{ $item->seller['address'] }}
                                     </a>
@@ -52,6 +59,12 @@
                                     {{ $item->seller->region['name_'.my_lang()] }} - 
                                     {{ $item->seller->city['name_'.my_lang()] }}
                                 </h6>
+
+                                <h6> 
+                                    <img class="ml-3" src="{{ site('assets/images/phone.png') }}" />
+                                    {{ $item->seller->mobile }}  {{ $item->seller->phone ? ' - ' .$item->seller->phone : '' }}
+                                </h6>
+                                
                                 <p> @lang('site.search_keyword') 
                                     <span> {{ $item->brand['name_'.my_lang()] }}
                                         - {{ $item->model['name_'.my_lang()] }}
@@ -60,22 +73,29 @@
                         </div>
 
                         <div class="col-md-3">
-                        <div class="e-end">
-                            <h6>
-                              <a href="tel:{{ $item->seller['mobile'] }}" class="btn btn-whatsapp" >
-                                  <img src="{{ site('assets/images/phone.png') }}" alt="" class="ml-3"> 
-                                  @lang('site.call_seller')
-                              </a>
+                            <div class="e-end row">
+                                <div class="col-md-8">
+                                    <a href="tel:{{ $item->seller['mobile'] }}" class="btn btn-whatsapp  btn-block">
+                                        <img src="{{ site('assets/images/phone.png') }}" alt="" class="ml-3"> 
+                                        @lang('site.call_seller')
+                                    </a>
+                                </div>
 
-                              <a href="https://wa.me/{{ $item->seller['mobile'] }}" target="_blank"> 
-                                  <img src="{{ site('assets/images/whatsapp-green.png') }}" width="25"/> 
-                              </a>
-                            </h6>
+                               <div class="col-md-4">
+                                    <a href="https://wa.me/{{ $item->seller['mobile'] }}" target="_blank" class="btn btn-whatsapp  btn-block"> 
+                                        <img src="{{ site('assets/images/w-2.png') }}" /> 
+                                    </a>
+                                </div>
+ 
+                                <div class="col-md-12">
+                                  <button class="btn btn-whatsapp btn-block btn-lory" data-toggle="modal" data-target="#contact_seller" 
+                                  data-item="{{ $item->seller['id'] }}"> @lang('site.complete_order') </button>
 
-                        </div>
-                  
-                      <button class="btnContact btn btn-block btn-whatsapp" data-toggle="modal" data-target="#contact_seller" 
-                      data-item="{{ $item->seller['id'] }}"> @lang('site.complete_order') </button>
+                                  <a class="btn btn-block"  href="{{ route('report',$item->seller['id']) }}" target="_blank">
+                                     @lang('site.report') </a>
+
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -96,7 +116,8 @@
 
         <div class="col-md-12">
           <div class="advice text-center">
-            <p> {{ notification('contact_seller_hint') }} </p>
+            @if(count($items) > 0)
+            <p> {{ notification('contact_seller_hint') }} </p> @endif
  
             <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>
   
@@ -112,12 +133,14 @@
 @endsection
 
 @section('popup')
-    @include('site.parts.contact_seller')
-
+    
+    @include('site.parts.add_to_cart')
+    
 @endsection
 
-@section('scripts')
 
+@section('scripts')
+ 
 @include('dashboard.ajax.load_regions') 
 @include('dashboard.ajax.load_cities')
 
@@ -142,6 +165,12 @@
 
 <script src="{{ site('assets/js/bootstrap-input-spinner.js') }}"></script>
 <script>
-  $("input[type='number']").inputSpinner()
+  $("input[type='number']").inputSpinner();
+  
+  function addNewPiece(){
+        $.get("{{ route('more_pieces') }}", function(data){
+            $("#more_pieces").append(data);
+        });
+    };
 </script>
 @endsection

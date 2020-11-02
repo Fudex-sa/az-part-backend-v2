@@ -31,8 +31,8 @@ class OrderRequest extends FormRequest
             'region_id' => 'required|numeric',
             'city_id' => 'required|numeric',
             'type' => 'required',
-            'piece_alt_id' => 'required|numeric',
-            'price' => 'required',
+            // 'piece_alt_id' => 'required|numeric',
+            // 'price' => 'required',
             
         ];
     }
@@ -48,8 +48,8 @@ class OrderRequest extends FormRequest
             'city_id.required' =>  __('site.city_required'),
             'type.required' =>  __('site.search_type_required'),
 
-            'piece_alt_id.required' =>  __('site.piece_required'),
-            'price.required' =>  __('site.price_required'),
+            // 'piece_alt_id.required' =>  __('site.piece_required'),
+            // 'price.required' =>  __('site.price_required'),
  
         ];
     }

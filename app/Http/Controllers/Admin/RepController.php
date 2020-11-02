@@ -11,7 +11,6 @@ use App\Models\Role;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Bank;
-use App\Models\RepCarSize;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -104,11 +103,10 @@ class RepController extends Controller
             $my_regions = null;
         }
 
-        $myPrices = RepPrice::myCities($item->id)->get();
-        $carSizes = RepCarSize::where('rep_id',$item->id)->get();
+        $myPrices = RepPrice::myCities($item->id)->get();        
 
         return view($this->view.'show',compact('item','cols','roles','level2','rep_rols','myCities',
-                    'my_regions','banks','myPrices','carSizes'));
+                    'my_regions','banks','myPrices'));
 
     }
 
@@ -170,4 +168,16 @@ class RepController extends Controller
         return view($this->view.'all',compact('items'));
     }
 
+    public function price_store(Request $request)
+    {
+        $data = $request->except('_token');
+        
+        $item = RepPrice::create($data);
+
+        if($item)
+            return back()->with('success' , __('site.success-save') );
+
+        return back()->with('failed' , __('site.error-happen'))->withInput();
+
+    }
 }

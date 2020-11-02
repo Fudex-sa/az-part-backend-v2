@@ -33,10 +33,10 @@
       <li class="nav-item"> <a class="nav-link {{ isset($home) ? 'blue' : '' }}" 
             href="{{ route('home') }}"> @lang('site.home') </a> </li>
 
-        <li class="nav-item"> <a class="nav-link {{ isset($cars_yard) ? 'blue' : '' }}" 
+        <li class="nav-item"> <a class="nav-link {{ isset($damaged) ? 'blue' : '' }}" 
             href="{{ route('cars.damaged') }}">@lang('site.cars_yard')  </a> </li>
         
-        <li class="nav-item"> <a class="nav-link {{ isset($antique_cars) ? 'blue' : '' }}" 
+        <li class="nav-item"> <a class="nav-link {{ isset($antique) ? 'blue' : '' }}" 
           href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a> </li>
           
         <li class="nav-item"> <a class="nav-link {{ isset($old_stock) ? 'blue' : '' }}" 
@@ -54,14 +54,15 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{ route('cart') }}"> 
             <img src="{{ site('assets/images/cart.png') }}" alt="">
+            @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('cart') }}">  <i class="fa fa-bell"> </i>
-            @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
+          <a class="nav-link"> 
+           <i class="fa fa-bell"> </i>            
            </a>
         </li>
 
@@ -69,15 +70,18 @@
           <a class="nav-link dropdown-toggle after-none-2" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="{{ site('assets/images/pro.png') }}" alt="">
           </a>
+ 
+            @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' 
+            || user_type() == 'seller' || user_type() == 'rep' || user_type() == 'admin')
 
-          @if(auth()->guard('company')->user() || auth()->user() || auth()->guard('broker')->user() ||
-            auth()->guard('seller')->user() || auth()->guard('rep')->user() )
-            
             <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
+
+              @if(user_type() != 'admin')
               <a class="dropdown-item profile-drob" href="{{ route('profile') }}"> 
                   <i class="fa fa-user"></i> @lang('site.profile')  </a>
+              @endif
 
-                  @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
+              @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
               <a class="dropdown-item profile-drob" href="{{ route('user.my_orders') }}"> 
                 <i class="fa fa-list"></i> @lang('site.my_orders')  </a>
               @endif
@@ -87,15 +91,29 @@
                 <i class="fa fa-car"></i> @lang('site.avaliable_models')  </a>
               @endif
  
+              @if(user_type() == 'user' || user_type() == 'company')
               <a class="dropdown-item profile-drob" href=""> 
                 <i class="fa fa-heart"></i> @lang('site.my_interests')  </a>
+              @endif
 
-              <a class="dropdown-item profile-drob" href=""> 
+              @if(user_type() == 'user' || user_type() == 'company')
+              <a class="dropdown-item profile-drob" href="{{ route('control.cars') }}"> 
                 <i class="fa fa-car"></i> @lang('site.my_cars')  </a>
+              @endif
 
               @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
               <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> 
                 <i class="fa fa-hashtag"></i> @lang('site.my_packages')  </a>
+              @endif
+
+              @if(user_type() == 'user' || user_type() == 'company')
+              <a class="dropdown-item profile-drob" href="{{ route('my_requests') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.electronic_requests')  </a>
+              @endif
+
+              @if(user_type() == 'seller' || user_type() == 'broker')
+              <a class="dropdown-item profile-drob" href="{{ route('seller.requests') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.seller_requests')  </a>
               @endif
 
               @if(user_type() == 'rep')
@@ -205,21 +223,14 @@
         <div class="col">
           <div class="footer-box">
             <h4> @lang('site.latest_additional') </h4>
-            <p><a href="#">الدمام</a></p>
-            <p><a href="#">الخبر</a></p>
-            <p><a href="#">لنكولن ٢٠٠٨ ام كي اكس</a></p>
-  
+            
+            @foreach (lateset_cars() as $lateset_car)
+              <p><a href="{{ route('car',$lateset_car->id) }}"> {{ $lateset_car->title }} </a></p>    
+            @endforeach
+             
           </div>
         </div>
-        <div class="col">
-          <div class="footer-box">
-            <h4> &nbsp;</h4>
-            <p><a href="#">حفر الباطن</a></p>
-            <p><a href="#">القطيف</a></p>
-            <p><a href="#">اكسنت 2004</a></p>
-  
-          </div>
-        </div>
+       
         <div class="col">
           <div class="footer-box">
             <h4> @lang('site.browse') </h4>

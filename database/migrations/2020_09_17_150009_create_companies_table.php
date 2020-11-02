@@ -23,8 +23,8 @@ class CreateCompaniesTable extends Migration
             $table->string('verification_code',50)->unique();
             $table->boolean('verified')->nullable()->default(0);
             $table->boolean('vip')->nullable()->default(0);
-            $table->integer('available_requests')->default(0);
-            $table->integer('total_requests')->default(0);
+            $table->integer('available_orders')->default(0);            
+            $table->integer('region_id');
             $table->integer('city_id');
             $table->string('address')->nullable();
             

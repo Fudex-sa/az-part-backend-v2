@@ -166,10 +166,14 @@
 
                 <h6 class="text-center mt-3"> {{ $stock->piece['name_'.my_lang()] }} </h6>
 
-                <p class="float-left"> <span class="color-r"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
+                <p class="float-right"> <span class="color-r"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
 
-                <p class="float-right"> <span class="color-g"> {{ $stock->avg_price }} </span> @lang('site.rs') </p>
-                <p class="pt-2 text-center"> <span class="color-d"> {{ $stock->min_price }} </span> @lang('site.rs') </p>
+                <p class="float-left">
+                  <span class="color-g"> {{ $stock->min_price }} </span> @lang('site.rs')
+                </p>
+                <p class="pt-2 text-center">
+                  <span class="color-d"> {{ round($stock->avg_price,2) }} </span> @lang('site.rs') 
+                </p>
 
               </div>
             </div>
@@ -198,320 +202,52 @@
       <div class="col-md-12">
         <div class="head-section text-center cust-m-mid">
           <img src="{{ site('assets/images/speed.png') }}" alt="" class="mb-3">
-          <h2>أخر الإضافات</h2>
+          <h2> @lang('site.latest_additional')  </h2>
         </div>
       </div>
       <div class="col-md-12">
         <div class="responsive">
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
 
+          @foreach ($cars as $car)
+            <div class="add-card">
+              <div class="add-card-head">
+                <div class="add-card-layout">
+                  <ul class="lay-out-menue">
+                    <li><a href="{{ route('car',$car->id) }}"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
+                    <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                    <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
+                    </ul>
+                </div>
 
+                @if(count($car->imgs) > 0)
+                  <img src="{{ img_path($car->imgs[0]->photo) }}" alt="" class="img-fluid">
+                @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-fluid"> @endif
 
-                </ul>
               </div>
+              <div class="add-card-body">
+                <p class="float-left"> {{ $car->year }} </p>
 
-              <img src="{{ site('assets/images/car-1.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
+                <img src="{{ brand_img($car->brand ? $car->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
+                <h6> {{ $car->model ? $car->model['name_'.my_lang()] : '' }}  </h6>
 
+                <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">
+                  {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
+                  {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
+                </h6>
 
-
-                </ul>
               </div>
+              
+              @if($car->price_type == 'fixed')
+                <div class="add-card-footer">
+                  <h6><strong> {{ $car->price }} </strong> @lang('site.rs')  </h6>
+                </div>
+              @endif
 
-              <img src="{{ site('assets/images/car-3.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-2.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-4.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-1.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-3.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-2.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-4.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-1.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-3.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-
-
-
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-2.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
-          <div class="add-card">
-            <div class="add-card-head">
-              <div class="add-card-layout">
-                <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-                </ul>
-              </div>
-
-              <img src="{{ site('assets/images/car-4.png') }}" alt="" class="img-fluid">
-            </div>
-            <div class="add-card-body">
-              <p class="float-left">1999</p>
-
-              <img src="{{ site('assets/images/brand-1.png') }}" alt="" class="float-right">
-              <h5>الماركة</h5>
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">العنوان - السعودية\الدمام</h6>
-            </div>
-            <div class="add-card-footer">
-              <h6><strong>1190</strong> ريال سعودي</h6>
-            </div>
-          </div>
+            </div>   
+          @endforeach
+           
+            
         </div>
 
       </div>

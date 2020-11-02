@@ -4,6 +4,11 @@ use App\Models\Cart;
 use App\Models\Package;
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\user;
+use App\Models\Company;
+use App\Models\Seller;
+use App\Models\Broker;
+use App\Models\RepPrice;
  
 if (! function_exists('cart')) {
     function cart() {
@@ -16,10 +21,17 @@ if (! function_exists('cart')) {
 
 if (! function_exists('sub_total')) {
     function sub_total() {
-                
-        $result = Cart::myCart()->with('piece_alt')->with('seller')->sum('price');
+        $sub_total = 0;
+        // $result = Cart::myCart()->with('piece_alt')->with('seller')->sum('price');
+
+        $carts = Cart::myCart()->with('piece_alt')->with('seller')->get();
+        if($carts){
+            foreach($carts as $cart){
+                $sub_total += $cart->price * $cart->qty;
+            }
+        }
         
-        return $result;
+        return $sub_total;
     }
 }
 
@@ -51,11 +63,8 @@ if (! function_exists('total')) {
 
         else{
 
-            $result = sub_total() + taxs();
-
-            if(session()->get('delivery_price'))
-                $result = $result + session()->get('delivery_price');            
-            
+            $result = sub_total() + taxs() + delivery_price();
+ 
             if(session()->get('with_oil'))
                 $result = $result + session()->get('with_oil');            
             
@@ -71,6 +80,36 @@ if (! function_exists('update_cart')) {
                 
         Cart::myCart()->update(['order_id' => $order_id , 'bought' => 1]);
         
+    }
+}
+
+if (! function_exists('my_orders')) {
+    function my_orders($user_id,$user_type) {
+          
+        $items = Order::where('user_type',$user_type)->where('user_id',$user_id)->get();
+        
+        return $items; 
+    }
+}
+
+if (! function_exists('update_available_orders')) {
+    function update_available_orders($user_id) {
+                
+        if(user_type() == 'company')
+            $user = Company::find($user_id);
+        
+        else if(user_type() == 'seller')
+            $user = Seller::find($user_id);
+        
+        else if(user_type() == 'broker')
+            $user = Broker::find($user_id);
+        
+        else
+            $user = User::find($user_id);
+
+        $user->available_orders = $user->available_orders - 1;
+        $user->save();
+         
     }
 }
 
@@ -116,4 +155,23 @@ if (! function_exists('coupon_id')) {
     }
 }
 
+if (! function_exists('delivery_price')) {
+    function delivery_price()
+    {   
+        $rep_price = RepPrice::find(session()->get('rep_price'));
+        return $rep_price ? $rep_price->price : 0;
+    }
+}
+
+if (! function_exists('delivery')) {
+    function delivery()
+    {   
+        $rep_price = RepPrice::find(session()->get('rep_price'));
+        return $rep_price;
+    }
+}
+
+
+        
+ 
  

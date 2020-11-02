@@ -19,8 +19,6 @@ $("#brand_id").change(function(){
                   $("#model_id").html(response);
             }
         });            
- 
-
 });
  
 </script>

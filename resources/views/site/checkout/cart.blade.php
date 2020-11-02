@@ -46,50 +46,43 @@
                
 
                 <div class="shadow row p-5 mt-5 rounded">
-                    <div class="col-md-12 mb-5">
-                        <div class="head-page">
-                        <h4> @lang('site.pieces_prices') </h4>
-                        </div>
-                    </div>
+                     <table class="table text-center my-tbl2">
+                        <thead>
+                          <tr>
+                            <td> # </td>
+                            <td> <i class="fa fa-camera"></i> </td>
+                            <td> @lang('site.piece_name') </td>
+                            <td> @lang('site.piece_price') </td>
+                            <td> @lang('site.qty') </td>
+                            <td> @lang('site.pieces_price') </td>
+                            <td> @lang('site.delete') </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (cart() as $k=>$item)
+                          <tr>
+                            <td>  {{ $k+1 }} </td>
 
-                    @foreach (cart() as $k=>$item)
-                          
-                        <div class="col-md-1 col-sm-1">
-                            <div class="cart-box"> <h5> {{ $k+1 }} </h5> </div>
-                        </div>
-         
-        
-                        <div class="col-md-3 col-sm-3">
-                            <div class="cart-box">
-                                <h5> {{ $item->piece_alt['name_'.my_lang()] }}  </h5>
-                            </div>
-                        </div>
+                            <td>  <img src="{{ cart_img($item->photo) }}" alt="" class="img-fluid img-table"> </td>
 
-                        <div class="col-md-2 col-sm-3">
-                            <div class="cart-box">
-                                <h5> <span class="blue"> @lang('site.seller') : </span>
-                                     {{ $item->seller['name'] }}
-                                      </h5>
-                            </div>
-                        </div>
+                            <td> {{ $item->piece_alt['name_'.my_lang()] }}  </td>
 
-                        <div class="col-md-3 col-sm-3">
-                            <div class="cart-box">
-                            <h5> {{ $item->price }} @lang('site.rs') </h5>
-                            </div>
-                        </div>
+                            <td>  {{ $item->price }} @lang('site.rs') </td>
 
-                        <div class=" col-md-3 col-sm-3">       
-                            <div class="cart-box">                     
-                            <h5><a onclick="deleteItem({{ $item->id }})" href="javascript:void(0);">
-                                    <img src="{{ site('assets/images/remove.png') }}" alt="" class="remove-pen mt-2">
-                                </a></h5>                  
-                            </div>          
-                        </div>
-                        
-                    @endforeach
+                            <td> <input type="number" name="qty" value="{{ $item->qty }}" min="1" max="1000" step="1" readonly/> </td>
+                              
+                            <td>  {{ $item->price * $item->qty }} @lang('site.rs')  </td>
 
-                   
+                            <td> <a onclick="deleteItem({{ $item->id }})" href="javascript:void(0);">
+                              <img src="{{ site('assets/images/remove.png') }}" alt="" class="remove-pen mt-2">
+                            </a> </td>
+
+                          </tr>
+                        @endforeach
+                        </tbody>
+                     </table>
+ 
+
                 </div>
 
 
@@ -119,7 +112,8 @@
 
                       @if(sub_total() > 0)
                         <div class="col-md-12">
-                              <a href="{{ route('shipping') }}" class="btn btn-next btn-block btn-lg"> @lang('site.continue_purchase') </a>
+                              <a href="{{ route('reps') }}" class="btn btn-next btn-block btn-lg"> 
+                                @lang('site.continue_purchase') </a>
                         </div>
                       @endif
                 

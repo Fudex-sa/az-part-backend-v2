@@ -15,22 +15,25 @@ class AvliableModelController extends Controller
 
     public function index()
     {
-         
+        $avaliable_models = true;
+
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
 
         $items = AvailableModel::userBrands(logged_user()->id)->orderby('brand_id','desc')
                                 ->orderby('model_id','desc')->paginate(pagger());
 
-        return view($this->view.'all',compact('brands','items'));
+        return view($this->view.'all',compact('brands','items','avaliable_models'));
     }
 
     public function edit(AvailableModel $item)
     {
+        $avaliable_models = true;
+
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
 
         $models = Modell::models_brand($item->brand_id)->get();
 
-        return view($this->view.'edit',compact('item','brands','models'));
+        return view($this->view.'edit',compact('item','brands','models','avaliable_models'));
 
     }
 

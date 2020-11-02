@@ -29,7 +29,7 @@
                     </div>
              
 
-                <div class="item form-group" id="delivery_time" style="display: {{ $shipping->status == 'accepted' ? 'block' : 'none' }}">
+                <div class="item form-group" id="delivery_time" style="display: {{ $item->status == 8 ? 'block' : 'none' }}">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="delivery_time"> @lang('site.delivery_time') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -38,7 +38,7 @@
                         </div>
                     </div> 
 
-                    <div class="item form-group" id="reject_reason" style="display: {{ $shipping->status == 'rejected' ? 'block' : 'none' }}">
+                    <div class="item form-group" id="reject_reason" style="display: {{ $item->status == 9 ? 'block' : 'none' }}">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reject_reason"> @lang('site.reject_reason') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Seller;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\Brand;
 use App\Models\AvailableModel;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
@@ -79,7 +80,10 @@ class SellerController extends Controller
         $avaliable_models = AvailableModel::userBrands($item->id)->orderby('brand_id','desc')
                                 ->orderby('model_id','desc')->paginate(pagger());
 
-        return view($this->view.'show',compact('item','cols','region_cities','regions','avaliable_models'));
+        $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
+
+        return view($this->view.'show',compact('item','cols','region_cities','regions'
+                            ,'avaliable_models','brands'));
 
     }
 
@@ -138,6 +142,19 @@ class SellerController extends Controller
                             ->paginate(pagger());
          
         return view($this->view.'all',compact('items'));
+    }
+
+    public function available_brand_store(Request $request)
+    {
+        $data = $request->except('_token');
+
+        $item = AvailableModel::create($data);
+
+        if($item)
+            return back()->with('success' , __('site.success-save') );
+
+        return back()->with('failed' , __('site.error-happen'))->withInput();
+
     }
 
 }
