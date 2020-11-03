@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRepPricesTable extends Migration
+class CreateDeliveryRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateRepPricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rep_prices', function (Blueprint $table) {
+        Schema::create('delivery_regions', function (Blueprint $table) {
             $table->id();
-            $table->integer('rep_id');
-            $table->integer('_from');
-            $table->integer('city_id');
-            $table->float('price')->default(0);
-            $table->json('car_price');
+            $table->string('name_ar');
+            $table->string('name_en')->nullable();
+            $table->string('name_hi')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateRepPricesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rep_prices');
+        Schema::dropIfExists('delivery_regions');
     }
 }

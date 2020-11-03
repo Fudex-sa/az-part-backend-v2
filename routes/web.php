@@ -41,7 +41,7 @@ Route::group([
 
             Route::get('my_prices',[App\Http\Controllers\Rep\MyPricesController::class, 'index'])->name('rep.my_prices');            
             Route::post('my_price/{id?}',[App\Http\Controllers\Rep\MyPricesController::class, 'store'])->name('rep.my_price.store');
-            Route::get('my_price/{item}',[App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');            
+            Route::get('my_price/{id}',[App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');            
             Route::delete('my_price/delete',[App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');            
             Route::post('my_price/activate',[App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
              
@@ -364,8 +364,7 @@ Route::group([
             Route::delete('stock/delete',[App\Http\Controllers\Admin\StockController::class, 'delete'])->name('admin.stock.delete');
             Route::get('stock/search',[App\Http\Controllers\Admin\StockController::class, 'search'])->name('admin.stock.search');
  
-            /************ Cars  **********/            
-            
+            /************ Cars  **********/                        
             Route::get('cars/antiques',[App\Http\Controllers\Admin\CarController::class, 'antiques'])->name('admin.antiques');                                    
             Route::get('cars/damaged',[App\Http\Controllers\Admin\CarController::class, 'damaged'])->name('admin.damaged');                                    
             Route::get('car/{id}',[App\Http\Controllers\Admin\CarController::class, 'edit'])->name('admin.car');                        
@@ -375,6 +374,13 @@ Route::group([
             Route::post('car/store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');                        
             Route::post('car/imgs_store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');                        
 
+            /************ Delivery Regions  **********/                        
+            Route::get('delivery_regions',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'all'])->name('admin.delivery_regions');                                    
+            Route::get('delivery_region/{item}',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'edit'])->name('admin.delivery_region');                        
+            Route::post('delivery_region/store/{item?}',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'store'])->name('admin.delivery_region.store');                        
+            Route::delete('delivery_region/delete',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'delete'])->name('admin.delivery_region.delete');     
+            Route::post('delivery_region/activate',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'activate'])->name('admin.delivery_region.activate');
+            
              /************ Export PDF Data  ***************************/
              Route::get('export/users/pdf','ExportPdfController@users')->name('export.pdf.users');
              Route::get('export/sellers/pdf','ExportPdfController@sellers')->name('export.pdf.sellers');

@@ -258,6 +258,13 @@ if (! function_exists('search_session')) {
     }
 }
 
+if (! function_exists('shipping_session')) {
+    function shipping_session()
+    {
+        return session()->get('shipping');
+    }
+}
+
 
 
 

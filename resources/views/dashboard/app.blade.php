@@ -175,11 +175,9 @@
              @endif
 
 
-             @if(has_permission('order_show') || has_permission('electronic_orders_show') 
-                    || has_permission('assign_to_admin_show')
-
-                || has_permission('express_requests') || has_permission('deleted_requests') 
-             )
+            @if(has_permission('order_show') || has_permission('electronic_orders_show') || 
+                    has_permission('assign_to_admin_show') || has_permission('express_requests') ||
+                     has_permission('deleted_requests') )
 
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-shopping-cart"></i> {{ __('site.orders') }}
@@ -200,6 +198,23 @@
             </ul>
             @endif
 
+
+            @if(has_permission('delivery_region_show') )
+
+            <ul class="nav side-menu">
+                <li><a><i class="fa fa-shopping-cart"></i> {{ __('site.shipping_and_delivery') }}
+                        <span class="fa fa-chevron-down"></span></a>
+
+                    <ul class="nav child_menu">
+
+                        @if(has_permission('delivery_region_show'))
+                            <li> <a href="{{route('admin.delivery_regions')}}"> {{ __('site.tashlih_regions') }} </a> </li>
+                        @endif
+                    
+                    </ul>
+                </li>                             
+            </ul>
+            @endif
 
             
             <ul class="nav side-menu">

@@ -171,6 +171,18 @@ if (! function_exists('delivery')) {
     }
 }
 
+if (! function_exists('clear_session')) {
+    function clear_session()
+    {   
+        session()->forget('search');
+        session()->forget('has_request');
+        session()->forget('coupon');
+        session()->forget('delivery_price');
+        session()->forget('with_oil');
+    }
+}
+
+
 
         
  

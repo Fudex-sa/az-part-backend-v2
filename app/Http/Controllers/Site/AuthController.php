@@ -218,6 +218,8 @@ class AuthController extends Controller
         Auth::guard('seller')->logout();
         Auth::guard('rep')->logout();
 
+        clear_session();
+        
         return redirect()->route('home');
     }
 

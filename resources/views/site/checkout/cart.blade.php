@@ -112,7 +112,7 @@
 
                       @if(sub_total() > 0)
                         <div class="col-md-12">
-                              <a href="{{ route('reps') }}" class="btn btn-next btn-block btn-lg"> 
+                              <a href="{{ route('shipping') }}" class="btn btn-next btn-block btn-lg"> 
                                 @lang('site.continue_purchase') </a>
                         </div>
                       @endif

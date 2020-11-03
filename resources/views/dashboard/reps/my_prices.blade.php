@@ -5,7 +5,17 @@
 
 <input type="hidden" value="{{ $item->id }}" name="rep_id" />
 
-    <div class="col-md-3">
+    <div class="col-md-4">
+        <select class="form-control" name="_from" id="_from">
+            <option value=""> @lang('site.choose_tashlih_region') </option>
+            @foreach ($delivery_regions as $delivery_region)
+                <option value="{{ $delivery_region->id }}">
+                    {{ $delivery_region['name_'.my_lang()] }} </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="col-md-4">
         <select class="form-control" name="country_id" id="country">
             <option value=""> @lang('site.choose_country') </option>
             @foreach (countries() as $country)
@@ -14,27 +24,29 @@
         </select>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <select class="form-control col-md-8" name="region_id" id="region">
             <option value=""> @lang('site.choose_region') </option>                 
         </select>
     </div>
 
-    <div class="col-md-3">        
+    <br/> <br/>
+
+    <div class="col-md-4">        
         <select class="form-control col-md-8" name="city_id" id="city">
             <option value=""> @lang('site.choose_city') </option>                 
         </select> 
     </div>
 
-    <div class="col-md-3">        
+    <div class="col-md-4">        
         <input type="number" name="price" class="form-control" min="0" placeholder="@lang('site.price')"/> @lang('site.rs')
     </div>
 
-    <div class="col-md-6">        
+    <div class="col-md-5">        
         <label> @lang('site.car_size') </label>
 
         <label> <input type="checkbox" value="light" name="car_size[]" /> @lang('site.light') </label>
-        <label> <input type="checkbox" value="medium" name="car_size[]" /> @lang('site.medium') </label>
+        <label> <input type="checkbox" value="medium" name="car_size[]" checked /> @lang('site.medium') </label>
         <label> <input type="checkbox" value="heavy" name="car_size[]" /> @lang('site.heavy') </label>
 
     </div>
@@ -51,6 +63,7 @@
     <thead>
     <tr>
         <th>#</th>
+        <th> @lang('site.tashlih_region') </th>
         <th> @lang('site.city') </th>
         <th> @lang('site.price') </th>  
         <th> @lang('site.car_size') </th>     
@@ -63,7 +76,9 @@
             <tr>
                 <td> {{ $k+1 }} </td>
                 
-                <td> {{ $myPrice->city['name_'.my_lang()] }} </td>
+                <td>{{$myPrice->region_from ? $myPrice->region_from['name_'.my_lang()] : ''}}</td>
+
+                <td> {{ $myPrice->city ? $myPrice->city['name_'.my_lang()] : '' }} </td>
 
                 <td> {{ $myPrice->price }} @lang('site.rs') </td>
 

@@ -1037,5 +1037,11 @@ return [
     'pieces_price' => 'سعر القطع',
     'request_sellers' => 'تجار الطلب',
     'available_reps' => 'المندوبين المتاحين',
+    'shipping_and_delivery' => 'الشحن والتوصيل',
+    'tashlih_regions' => 'مناطق التشليح',
+    'tashlih_region' => 'منطقة التشليح',
+    'add_delivery_region' => 'اضف منطقة شحن',
+    'choose_tashlih_region' => 'اختر منطقة تشليح',
+    'update_delivery_price' => 'تحديث سعر توصيل',
 ];
 

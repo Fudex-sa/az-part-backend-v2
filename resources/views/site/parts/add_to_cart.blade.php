@@ -81,7 +81,7 @@
  
         <div id="more_pieces" class="row"> </div>
 
-         <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.send') </button>
+         <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.add_to_cart') </button>
        </form>
 
      </div>

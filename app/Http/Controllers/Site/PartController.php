@@ -85,12 +85,11 @@ class PartController extends Controller
            
         $response = $this->search->manual_search($request,$limit);
  
-        $items = $response['items'];
-        $found_result = $response['found_result'];
-        $city_items = $response['city_items'];
-        // $region_items = $response['region_items'];
- 
-        return view($this->view.'find_sellers',compact('items','piece_alts','found_result','city_items'));
+        $items = $response ? $response['items'] : null;
+        $found_result = $response  ? $response['found_result'] : 0;
+        $all_items = $response ? $response['all_items'] : null;
+         
+        return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }
 
 

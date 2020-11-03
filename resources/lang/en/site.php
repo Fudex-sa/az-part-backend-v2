@@ -897,6 +897,12 @@ return [
     'pieces_price' => 'Pieces Price',
     'request_sellers' => 'Request Sellers',
     'available_reps' => 'Available Reps',
+    'shipping_and_delivery' => 'Shipping & Delivery',
+    'tashlih_regions' => 'Tashlih Regions',
+    'tashlih_region' => 'Tashlih Region',
+    'add_delivery_region' => 'Add Delivery Region',
+    'choose_tashlih_region' => 'Choose Tashalih Region',
+    'update_delivery_price' => 'Update Delivery Price',
 ];
 
 ?>

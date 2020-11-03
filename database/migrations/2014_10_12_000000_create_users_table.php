@@ -30,8 +30,9 @@ class CreateUsersTable extends Migration
             $table->string('lng')->nullable();
             $table->string('phone')->nullable();
             
-            $table->integer('region_id')->nullable();
-            $table->integer('city_id')->nullable();
+            $table->integer('country_id');
+            $table->integer('region_id');
+            $table->integer('city_id');
             $table->string('lang',10)->nullable()->default('ar');
             $table->datetime('last_login')->nullable();            
             $table->string('photo')->nullable();

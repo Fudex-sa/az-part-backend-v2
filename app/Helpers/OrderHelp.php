@@ -43,11 +43,7 @@ class OrderHelp
             if($package_sub_id != 0)
                 $this->package->update_expired($package_sub_id);
 
-            Session::forget('search');
-            Session::forget('has_request');
-            Session::forget('coupon');
-            Session::forget('delivery_price');
-            Session::forget('with_oil');
+            clear_session();
             
         }
         return $item->id;
@@ -60,7 +56,7 @@ class OrderHelp
         $data = [
             'country_id' => $shipping['country_id'] , 'region_id' => $shipping['region_id'] , 
             'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 'notes' => $shipping['notes'] , 
-            'rep_id' => delivery()->rep_id , 'order_id' => $order_id , 'size' => session()->get('shippment_size'),
+            'rep_id' => delivery()->rep_id , 'order_id' => $order_id , 'size' => $shipping['size'],
             'with_oil' => $shipping['with_oil']
         ];
 

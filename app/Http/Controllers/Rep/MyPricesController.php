@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RepPrice;
 use App\Models\RepCarSize;
+use App\Models\DeliveryRegion;
 
 class MyPricesController extends Controller
 {
@@ -15,9 +16,21 @@ class MyPricesController extends Controller
     {
         $my_prices = true;
 
-        $items = RepPrice::myCities(logged_user()->id)->get();
-        
-        return view($this->view . 'all' , compact('items','my_prices') );
+        $items = RepPrice::myCities(logged_user()->id)->orderby('id','desc')->get();
+        $delivery_regions = DeliveryRegion::orderby('name_'.my_lang(),'desc')->get();
+
+        return view($this->view . 'all' , compact('items','my_prices','delivery_regions') );
+    }
+
+    public function edit($id)
+    {
+        $my_prices = true;
+
+        $item = RepPrice::where('id',$id)->first();
+
+        $delivery_regions = DeliveryRegion::orderby('name_'.my_lang(),'desc')->get();
+
+        return view($this->view . 'edit' , compact('item','my_prices','delivery_regions') );
     }
 
     public function store(Request $request,$id = null)
