@@ -380,6 +380,10 @@ Route::group([
             Route::post('delivery_region/store/{item?}',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'store'])->name('admin.delivery_region.store');                        
             Route::delete('delivery_region/delete',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'delete'])->name('admin.delivery_region.delete');     
             Route::post('delivery_region/activate',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'activate'])->name('admin.delivery_region.activate');
+
+            /************ DB Engine  **********/                        
+            Route::get('db_engine',[App\Http\Controllers\Admin\DBEngineController::class, 'index'])->name('admin.db_engine');                                    
+            Route::get('empty_tables',[App\Http\Controllers\Admin\DBEngineController::class, 'empty_tables'])->name('admin.empty_tables');                                    
             
              /************ Export PDF Data  ***************************/
              Route::get('export/users/pdf','ExportPdfController@users')->name('export.pdf.users');

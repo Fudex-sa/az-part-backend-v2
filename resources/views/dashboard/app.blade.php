@@ -136,7 +136,11 @@
                         @if(has_permission('countries_show'))
                             <li> <a href="{{route('admin.countries')}}"> {{ __('site.countries') }} </a> </li>
                         @endif
-                                            
+                                
+                        @if(has_permission('db_engine'))
+                            <li> <a href="{{ route('admin.db_engine') }}"> {{ __('site.db_engine') }} </a> </li>
+                        @endif
+
                     </ul>
                 </li>                             
             </ul>

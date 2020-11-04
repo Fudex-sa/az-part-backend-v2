@@ -28,8 +28,8 @@
             </div>
             
  
-                  <table class="my-tbl">
-                    <thead class="thead-light">
+                  <table class="my-tbl text-center">
+                    <thead>
                       <tr>
                         <th scope="col"> @lang('site.package_name') </th>
                         <th scope="col"> @lang('site.package_type') </th>
@@ -47,7 +47,11 @@
                         <tr>
                             <td> {{ $item->package['title_'.my_lang()] }} </td>
                             
-                            <td> {{ __('site.'.$item->package['type']) }} </td>
+                            <td> 
+                              @if($item->package['type'] == 'manual') <i class="fa fa-user"></i>
+                              @else  <i class="fa fa-cogs"></i> @endif
+
+                              {{ __('site.'.$item->package['type']) }} </td>
 
                             <td> {{ $item->stores_no }} 
                                 {{ $item->package['type'] == 'manual' ? __('site.store') : __('site.request') }} 
@@ -61,10 +65,10 @@
 
                             <td> @if($item->package['type'] == 'electronic')
                                    {{ $item->stores_no - count($item->my_orders)  }} @lang('site.order')
-                                 @endif      
+                                 @else - @endif      
                             </td>
 
-                            <td> {{ $item->created_at }} </td>
+                            <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
                           </tr>     
                         @endforeach
                        

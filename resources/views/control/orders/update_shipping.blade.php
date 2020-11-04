@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                
-                <form class="form-horizontal form-label-left" action="{{ route('rep.order.update',$shipping->id) }}" method="post" 
+                <form class="form-horizontal form-label-left" action="{{ route('rep.order.update',$item->shipping->id) }}" method="post" 
                     enctype="multipart/form-data">
                     @csrf
                    
@@ -33,7 +33,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="delivery_time"> @lang('site.delivery_time') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" name="delivery_time" value="{{ $shipping->delivery_time }}"
+                        <input type="text" name="delivery_time" value="{{ $item->shipping->delivery_time }}"
                          class="form-control" required/>
                         </div>
                     </div> 

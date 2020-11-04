@@ -903,6 +903,20 @@ return [
     'add_delivery_region' => 'Add Delivery Region',
     'choose_tashlih_region' => 'Choose Tashalih Region',
     'update_delivery_price' => 'Update Delivery Price',
+    'db_engine' => 'DB Engine',
+    'empty_tables' => 'Empty Tables',
+    'empty_now' => 'Empty Now',
+    'empty_save' => 'Tables Empty Success',
+    'assign_sellers' => 'Assigned Sellers',
+    'car_comments' => 'Car Comments',
+    'order_shipping' => 'Order Shipping',
+    'order_shipping_rejected' => 'Order Shipping Rejected',
+    'package_subscribe' => 'Package Subscribes',
+    'reports' => 'Reports',
+    'free_manul_search' => 'Stores Count avialiable in manual search',
+    'free_elec_search' => 'Electronic Orders Avialiable For Free',
+    'my_free_elec_search' => 'My Electronic Orders Avialiable For Free',
+    'order_type' => 'Order Type',
 ];
 
 ?>

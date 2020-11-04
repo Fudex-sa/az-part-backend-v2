@@ -15,6 +15,8 @@ class CreateOrders extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->enum('type',['manual','electronic'])->default('manual');
+            $table->integer('shipping_id');
             $table->integer('user_id');
             $table->float('sub_total');
             $table->float('delivery_price')->nullable();

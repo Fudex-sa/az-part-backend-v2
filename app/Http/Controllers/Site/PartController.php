@@ -66,15 +66,16 @@ class PartController extends Controller
 
     public function search(PartSearchRequest $request)
     { 
+
         $piece_alts = PieceAlt::orderby('name_'.my_lang(),'desc')->get();
 
         $search_type =  $request->search_type;
         
         $this->search->save_search($request); //--- save search in session
 
-        if($search_type == 'electronic')
+        if($search_type == 'electronic'){
             return view($this->view . 'electronic_search',compact('piece_alts'));
-
+        }
        
 
         $sys_limit = setting('manual_search_result');

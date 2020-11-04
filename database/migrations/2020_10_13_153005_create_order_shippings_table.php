@@ -15,8 +15,7 @@ class CreateOrderShippingsTable extends Migration
     {
         Schema::create('order_shippings', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-          
+        
             $table->integer('country_id');
             $table->integer('region_id');
             $table->integer('city_id');

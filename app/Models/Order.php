@@ -12,7 +12,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id' , 'user_type' , 'sub_total' , 'delivery_price' , 'taxs' , 'total' , 'status' , 'coupon_id' , 'coupon_value',
-        'package_sub_id'
+        'package_sub_id' , 'shipping_id' , 'type'
     ];
 
     public function scopeCouponByUser($q,$coupon_id)
@@ -56,6 +56,11 @@ class Order extends Model
     public function package_subscribe()
     {
         return $this->belongsTo(PackageSubscribe::class,'package_sub_id');
+    }
+
+    public function shipping()
+    {
+        return $this->belongsTo(OrderShipping::class,'shipping_id');
     }
  
 }

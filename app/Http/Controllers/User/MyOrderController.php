@@ -14,7 +14,7 @@ class MyOrderController extends Controller
     {
         $my_orders = true;
 
-        $items = Order::with('order_status')->with('user')
+        $items = Order::with('order_status')->with('user')->with('shipping')
                         ->where('user_type',user_type())
                         ->where('user_id',logged_user()->id)
                         ->orderby('id','desc')->paginate(pagger());

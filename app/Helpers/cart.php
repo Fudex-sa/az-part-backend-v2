@@ -9,7 +9,8 @@ use App\Models\Company;
 use App\Models\Seller;
 use App\Models\Broker;
 use App\Models\RepPrice;
- 
+use App\Models\PackageSubscribe; 
+
 if (! function_exists('cart')) {
     function cart() {
 
@@ -92,26 +93,26 @@ if (! function_exists('my_orders')) {
     }
 }
 
-if (! function_exists('update_available_orders')) {
-    function update_available_orders($user_id) {
+// if (! function_exists('update_available_orders')) {
+//     function update_available_orders($user_id) {
                 
-        if(user_type() == 'company')
-            $user = Company::find($user_id);
+//         if(user_type() == 'company')
+//             $user = Company::find($user_id);
         
-        else if(user_type() == 'seller')
-            $user = Seller::find($user_id);
+//         else if(user_type() == 'seller')
+//             $user = Seller::find($user_id);
         
-        else if(user_type() == 'broker')
-            $user = Broker::find($user_id);
+//         else if(user_type() == 'broker')
+//             $user = Broker::find($user_id);
         
-        else
-            $user = User::find($user_id);
+//         else
+//             $user = User::find($user_id);
 
-        $user->available_orders = $user->available_orders - 1;
-        $user->save();
+//         $user->available_orders = $user->available_orders - 1;
+//         $user->save();
          
-    }
-}
+//     }
+// }
 
 if (! function_exists('valid_coupon')) {
     function valid_coupon($code)
@@ -179,6 +180,26 @@ if (! function_exists('clear_session')) {
         session()->forget('coupon');
         session()->forget('delivery_price');
         session()->forget('with_oil');
+        session()->forget('rep_price');
+    }
+}
+
+if (! function_exists('valid_for_elec')) {
+    function valid_for_elec()
+    {   
+        $sys_elec_search =  setting('electronic_search_result');
+        $available_orders = logged_user()->available_orders;
+
+        $avialable_package_orders = PackageSubscribe::myPackagesByType('electronic')->get()->sum('stores_no');
+
+        $my_elec_orders = Order::where('type','electronic')->where('package_sub_id',0)
+                    ->where('user_id',logged_user()->id)->count();
+        
+        if($my_elec_orders < $sys_elec_search || $my_elec_orders < $available_orders) return 1;
+        else {
+            if($avialable_package_orders > 0) return 1;
+            else return 0;
+        }
     }
 }
 

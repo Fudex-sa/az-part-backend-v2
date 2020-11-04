@@ -21,13 +21,20 @@
           @include('layouts.nav_side_menu')          
 
           <div class="col-lg-9 col-md-9  col-9">
-           
+           <ul>
+              <li> @lang('site.free_manul_search') : {{ setting('manual_search_result') }} </li>
+              <li> @lang('site.free_elec_search') : {{ setting('electronic_search_result') }} </li>
+              <li> @lang('site.my_free_elec_search') : {{ logged_user()->available_orders }}  </li>
+           </ul>
+
                   <div class="table-responsive">
                     <table class="table mt-5 tabel-order myTbl">
                       <thead class="thead-light">
                         <tr>
                           <th style="width: 100px;"> @lang('site.order_no')  </th>
                           <th> @lang('site.pieces_count') </th>
+                          <th> @lang('site.rep') </th>
+                          <th> @lang('site.delivery_price') </th>
                           <th> @lang('site.total')  </th>                          
                           <th> @lang('site.status')  </th>
                           <th> @lang('site.created_at')  </th>                           
@@ -43,13 +50,17 @@
  
                             <td> {{ count($item->cart) }} @lang('site.piec') </td>
 
+                            <td> {{ $item->shipping->rep->name }} </td>
+
+                            <td> {{ $item->delivery_price}} @lang('site.rs') </td>
+
                             <td> {{ $item->total }} @lang('site.rs') </td>
 
                             <td> <span class="btn status-{{ $item->order_status->id }}"> 
                                 {{ $item->order_status ? $item->order_status['name_'.my_lang()] 
                                 : '-' }} </td>
 
-                            <td> {{ $item->created_at }} </td>
+                            <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
 
                             </tr>
                         @endforeach

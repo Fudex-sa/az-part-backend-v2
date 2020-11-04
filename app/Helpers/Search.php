@@ -79,8 +79,8 @@ class Search
             else $response['found_result'] = 3; //--- Case not found
         }
 
-        $response['items'] = $items->limit($limit)->get();            
         $response['all_items'] = $items->get();
+        $response['items'] = $items->limit($limit)->get();                    
             
         return $response;
     }
