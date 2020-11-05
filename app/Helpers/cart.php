@@ -39,7 +39,9 @@ if (! function_exists('sub_total')) {
 if (! function_exists('taxs')) {
     function taxs() {
                 
-        $result = setting('pieces_tax') + setting('site_commission');
+        $commission = setting('site_commission') / 100 * sub_total();
+
+        $result = setting('pieces_tax') + $commission;
         
         return $result;
     }

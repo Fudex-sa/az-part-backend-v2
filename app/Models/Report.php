@@ -13,6 +13,14 @@ class Report extends Model
         'user_id' , 'seller_id' , 'piece_id' , 'user_type' , 'complain_id' , 'comment'
     ];
 
+    public function user()
+    {
+        if($this->user_type == 'company')
+            return $this->belongsTo(Company::class,'user_id');
+        else
+            return $this->belongsTo(User::class,'user_id');
+    }
+
     public function seller()
     {
         return $this->belongsTo(Seller::class,'seller_id');

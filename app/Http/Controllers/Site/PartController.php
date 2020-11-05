@@ -107,10 +107,11 @@ class PartController extends Controller
         foreach ($request->piece_alt_id as $k=>$piece_alt) {
              
             if (isset($request->photo)) {
-                $img = $request->photo[$k];
-                $fileName = time() . '.' . $img->getClientOriginalName();
-                $img->move(public_path('uploads/cart'), $fileName);    
-                
+                if(isset($request->photo[$k])) {
+                    $img = $request->photo[$k]; 
+                    $fileName = time() . '.' . $img->getClientOriginalName();
+                    $img->move(public_path('uploads/cart'), $fileName);    
+                } else $fileName = "";
                 $data['photo'] = $fileName;
             }
 

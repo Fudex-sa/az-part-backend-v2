@@ -21,11 +21,6 @@ class OrderShipping extends Model
         return $this->whereRep_id(logged_user()->id);
     }
 
-    public function order()
-    {
-        return $this->belongsTo(Order::class);
-    }
-
     public function country()
     {
         return $this->belongsTo(Country::class);

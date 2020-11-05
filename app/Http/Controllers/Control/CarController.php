@@ -20,7 +20,7 @@ class CarController extends Controller
     {
         $my_cars = true;
 
-        $items = Car::where('user_id',logged_user()->id)->where('user_type',user_type())
+        $items = Car::with('imgs')->where('user_id',logged_user()->id)->where('user_type',user_type())
                     ->orderby('id','desc')->get();
 
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();

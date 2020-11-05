@@ -11,7 +11,7 @@
         <div class="col-md-6"> <h6 class="float-left"> {{ setting('pieces_tax') }}  @lang('site.rs')  </h6> </div>
 
         <div class="col-md-6"> <h6> @lang('site.site_commission')  </h6> </div>   
-        <div class="col-md-6"> <h6 class="float-left"> {{ setting('site_commission') }}  @lang('site.rs')  </h6> </div>
+        <div class="col-md-6"> <h6 class="float-left"> {{ setting('site_commission') }} % </h6> </div>
 
         <div class="col-md-6"> <h6> @lang('site.delivery_price')  </h6> </div>   
         <div class="col-md-6"> <h6 class="float-left">  

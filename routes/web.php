@@ -47,7 +47,7 @@ Route::group([
              
 
             Route::get('my_orders',[App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');            
-            Route::post('order/update/{shipping}',[App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');            
+            Route::post('order/update/{id}',[App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');            
             
         });
 
@@ -167,11 +167,17 @@ Route::group([
             Route::get('search',[App\Http\Controllers\Admin\SearchController::class, 'index'])->name('admin.search');            
 
             /*************** Orders  **********************/
+            Route::get('orders/search',[App\Http\Controllers\Admin\OrderController::class, 'search'])->name('admin.orders.search');
             Route::get('orders',[App\Http\Controllers\Admin\OrderController::class, 'all'])->name('admin.orders');            
             Route::get('orders/deleted',[App\Http\Controllers\Admin\OrderController::class, 'deleted'])->name('admin.orders.deleted');            
             Route::get('order/{id}',[App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');   
             Route::delete('order/delete',[App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');                     
- 
+            Route::post('order/update/{id}',[App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
+
+            /*************** Orders Reports  **********************/
+            Route::get('reports',[App\Http\Controllers\Admin\ReportController::class, 'all'])->name('admin.reports');            
+            Route::delete('report/delete',[App\Http\Controllers\Admin\ReportController::class, 'delete'])->name('admin.report.delete');            
+
             /*************** Packages  **********************/
             Route::get('packages',[App\Http\Controllers\Admin\PackageController::class, 'index'])->name('admin.packages');            
             Route::post('package/{id?}',[App\Http\Controllers\Admin\PackageController::class, 'store'])->name('admin.package.store');

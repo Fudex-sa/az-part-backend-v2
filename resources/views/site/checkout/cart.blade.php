@@ -63,7 +63,11 @@
                           <tr>
                             <td>  {{ $k+1 }} </td>
 
-                            <td>  <img src="{{ cart_img($item->photo) }}" alt="" class="img-fluid img-table"> </td>
+                            <td>  
+                              @if($item->photo)
+                                  <img src="{{ cart_img($item->photo) }}" alt="" class="img-fluid img-table">
+                              @else <i class="fa fa-info img-table"></i> @endif    
+                            </td>
 
                             <td> {{ $item->piece_alt['name_'.my_lang()] }}  </td>
 

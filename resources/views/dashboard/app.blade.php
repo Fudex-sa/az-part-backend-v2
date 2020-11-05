@@ -196,6 +196,10 @@
                         @if(has_permission('order_show'))
                             <li> <a href="{{route('admin.orders.deleted')}}"> {{ __('site.deleted_orders') }} </a> </li>
                         @endif
+
+                        @if(has_permission('reports_show'))
+                            <li> <a href="{{route('admin.reports')}}"> {{ __('site.orders_reports') }} </a> </li>
+                        @endif
                     
                     </ul>
                 </li>                             
@@ -395,7 +399,8 @@
         && cur_root() != 'admin.seller.search'  && cur_root() != 'admin.brokers'  && cur_root() != 'admin.broker.search'
         && cur_root() != 'admin.reps' && cur_root() != 'admin.rep.search' && cur_root() != 'admin.pieces'
         && cur_root() != 'admin.piece' && cur_root() != 'admin.piece.search' && cur_root() != 'admin.brands'
-        && cur_root() != 'admin.brand.search' && cur_root() != 'admin.stocks' && cur_root() != 'admin.stock.search')
+        && cur_root() != 'admin.brand.search' && cur_root() != 'admin.stocks' && cur_root() != 'admin.stock.search'
+        && cur_root() != 'admin.orders' && cur_root() != 'admin.orders.search')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

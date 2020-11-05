@@ -120,3 +120,24 @@
     padding: 10px;
     margin: 3px 20px;
 }
+
+.status-1{
+    background: yellow;
+    color: #000;
+}
+
+.status-10{
+    background: greenyellow;
+}
+
+.status-8{
+    background: green;
+    color: #FFF;
+}
+
+#myTbl th{
+    text-align: center;
+}
+.tbl2 th{
+    text-align: center;
+}

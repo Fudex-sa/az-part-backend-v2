@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                
-                <form class="form-horizontal form-label-left" action="{{ route('rep.order.update',$item->shipping->id) }}" method="post" 
+                <form class="form-horizontal form-label-left" action="{{ route('rep.order.update',$item->id) }}" method="post" 
                     enctype="multipart/form-data">
                     @csrf
                    

@@ -23,7 +23,7 @@ class OrderController extends Controller
       
         $order_rejected = OrderShippingRejecte::where('order_shipping_id',$item->shipping->id)->first();
        
-        $ordr_stat = OrderStatus::all();
+        $ordr_stat = OrderStatus::orderby('sort','asc')->get();
 
         return view($this->view . 'show',compact('item','my_orders','order_rejected','ordr_stat'));
     }

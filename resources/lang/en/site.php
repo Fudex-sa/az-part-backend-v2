@@ -917,6 +917,11 @@ return [
     'free_elec_search' => 'Electronic Orders Avialiable For Free',
     'my_free_elec_search' => 'My Electronic Orders Avialiable For Free',
     'order_type' => 'Order Type',
+    'equal' => 'Equal',
+    'piece_no' => 'Piece No',
+    'change_order_status' => 'Change Order Status',
+    'change_order_rep' => 'Change Order Rep',
+    'orders_reports' => 'Orders Reports',
 ];
 
 ?>

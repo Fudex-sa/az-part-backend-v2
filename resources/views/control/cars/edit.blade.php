@@ -228,7 +228,7 @@
                     </div>
           
                     <div class="form-group custom-custom-2 col-md-12">
-                      <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.send') </button>
+                      <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.save') </button>
                     </div>
 
                     </form>
