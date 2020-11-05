@@ -24,6 +24,7 @@ class CreateCompaniesTable extends Migration
             $table->boolean('verified')->nullable()->default(0);
             $table->boolean('vip')->nullable()->default(0);
             $table->integer('available_orders')->default(0);            
+            $table->integer('country_id');
             $table->integer('region_id');
             $table->integer('city_id');
             $table->string('address')->nullable();

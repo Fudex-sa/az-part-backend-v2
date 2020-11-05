@@ -37,20 +37,25 @@
                   <table class="my-tbl">
                     <thead>
                       <tr>
-                        <th scope="col"> #  </th>                        
+                        <th scope="col"> #  </th>     
+                        <th scope="col"> <i class="fa fa-camera"></i>  </th>                        
                         <th scope="col"> @lang('site.title') </th>
                         <th scope="col"> @lang('site.model') </th>
                         <th scope="col"> @lang('site.type') </th>
                         <th scope="col"> @lang('site.price') </th>
                         <th scope="col"> @lang('site.created_at') </th>
-                        <th> </th>
+                        <th class="operations_th"> </th>
                       </tr>
                     </thead>
                     <tbody>
                         @foreach ($items as $item)
                           <tr>
                               <td> {{ $item->id }} </td>
-                              <td> {{ $item->title }} </td>
+                              
+                              <td> <img src="{{ img_path($item->imgs[0]->photo) }}" class="img-table"/></td>
+
+                              <td> <a href="{{ route('car',$item->id) }}" target="_blank"> {{ $item->title }} </a> </td>
+
                               <td> 
                                 {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} -
                                 {{ $item->model ? $item->model['name_'.my_lang()] : '' }} -
@@ -59,11 +64,11 @@
                               
                               <td> {{ __('site.'.$item->type) }} </td>
                               <td> {{ $item->price_type == 'fixed' ? $item->price . ' '. __('site.rs') : __('site.'.$item->price_type) }} </td>
-                              <td> {{ $item->created_at }} </td>
+                              <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
                               <td>
-                              <a href="{{ route('control.car',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
+                                <a href="{{ route('control.car',$item->id) }}" class="btn-edit"> <i class="fa fa-edit"></i> </a>
     
-                                <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>
+                                <a onclick="deleteItem({{ $item->id }})" class="btn-delete"><i class="fa fa-trash"></i> </a>
 
                               </td>
                           </tr>

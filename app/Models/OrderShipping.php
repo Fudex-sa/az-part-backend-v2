@@ -10,20 +10,15 @@ class OrderShipping extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id' , 'country_id' , 'region_id' , 'city_id' , 'street' , 'address' , 
+        'country_id' , 'region_id' , 'city_id' , 'street' , 'address' , 
         'lat' , 'lng' , 'rep_id' , 'notes' , 'delivery_time' , 'with_oil' ,
-        'size'
+        'size' 
     ];
 
 
     public function scopeRepOrders()
     {
         return $this->whereRep_id(logged_user()->id);
-    }
-
-    public function order()
-    {
-        return $this->belongsTo(Order::class);
     }
 
     public function country()

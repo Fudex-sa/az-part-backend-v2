@@ -14,7 +14,7 @@ class RepPrice extends Model
     ];
 
     protected $fillable = [
-        'rep_id' , 'city_id' , 'price' , 'active' , 'car_size'
+        'rep_id' , '_from' , 'city_id' , 'price' , 'active' , 'car_size'
     ];
 
     public function rep()
@@ -25,6 +25,11 @@ class RepPrice extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function region_from()
+    {
+        return $this->belongsTo(DeliveryRegion::class,'_from');
     }
 
     public function scopeMyCities($q,$rep_id)

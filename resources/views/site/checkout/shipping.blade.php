@@ -57,6 +57,19 @@
                       <h3> @lang('site.shipping_address')  </h3>
 
                       <div class="form-group col-12">
+                        <label class="col-3"> @lang('site.shipping_size') : </label>
+
+                          <label> <input type="radio" name="size" value="light"
+                            {{ old('size') == 'light' ? 'checked' : '' }}> @lang('site.light') </label>
+
+                          <label> <input type="radio" name="size" value="medium" checked
+                            {{ old('size') == 'medium' ? 'checked' : '' }}> @lang('site.medium') </label>
+
+                          <label> <input type="radio" name="size" value="heavy"
+                            {{ old('size') == 'heavy' ? 'checked' : '' }}> @lang('site.heavy') </label>                      
+                      </div>
+                      
+                      <div class="form-group col-12">
                           <label class="col-3"> @lang('site.spare') : </label>
 
                           <label> <input type="radio" name="with_oil" value="1"

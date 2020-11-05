@@ -20,7 +20,7 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9  col-12">
+          <div class="col-lg-9 col-md-9  col-12" style="margin-top: -66px;">
 
             <div class="btn-add-container float-left">
               <a data-toggle="modal" data-target=".add_item" class="btn btn-save"> 
@@ -33,6 +33,7 @@
                 <thead class=" text-primary">
                     <tr>
                         <th>#  </th>
+                        <th> @lang('site.tashlih_region') </th>
                         <th> @lang('site.city') </th>
                         <th> @lang('site.price') </th>
                         <th> @lang('site.active') </th>
@@ -45,7 +46,9 @@
                       <tr>
                         <td> {{ $k+1 }} </td>
      
-                        <td>{{$item->city['name_'.my_lang()]}}</td>
+                        <td>{{ $item->region_from ? $item->region_from['name_'.my_lang()] : ''}}</td>
+
+                        <td>{{ $item->city ? $item->city['name_'.my_lang()] : ''}}</td>
      
                         <td> {{ $item->price }} @lang('site.rs') </td>
     

@@ -66,15 +66,16 @@ class PartController extends Controller
 
     public function search(PartSearchRequest $request)
     { 
+
         $piece_alts = PieceAlt::orderby('name_'.my_lang(),'desc')->get();
 
         $search_type =  $request->search_type;
         
         $this->search->save_search($request); //--- save search in session
 
-        if($search_type == 'electronic')
+        if($search_type == 'electronic'){
             return view($this->view . 'electronic_search',compact('piece_alts'));
-
+        }
        
 
         $sys_limit = setting('manual_search_result');
@@ -85,12 +86,11 @@ class PartController extends Controller
            
         $response = $this->search->manual_search($request,$limit);
  
-        $items = $response['items'];
-        $found_result = $response['found_result'];
-        $city_items = $response['city_items'];
-        // $region_items = $response['region_items'];
- 
-        return view($this->view.'find_sellers',compact('items','piece_alts','found_result','city_items'));
+        $items = $response ? $response['items'] : null;
+        $found_result = $response  ? $response['found_result'] : 0;
+        $all_items = $response ? $response['all_items'] : null;
+         
+        return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }
 
 
@@ -107,10 +107,11 @@ class PartController extends Controller
         foreach ($request->piece_alt_id as $k=>$piece_alt) {
              
             if (isset($request->photo)) {
-                $img = $request->photo[$k];
-                $fileName = time() . '.' . $img->getClientOriginalName();
-                $img->move(public_path('uploads/cart'), $fileName);    
-                
+                if(isset($request->photo[$k])) {
+                    $img = $request->photo[$k]; 
+                    $fileName = time() . '.' . $img->getClientOriginalName();
+                    $img->move(public_path('uploads/cart'), $fileName);    
+                } else $fileName = "";
                 $data['photo'] = $fileName;
             }
 

@@ -21,11 +21,11 @@ class ShippingController extends Controller
 
     public function reps()
     {
-        $search = session()->get('search');
+        $shipping = session()->get('shipping');
         
-        $country = $search ? $search['country'] : logged_user()->country_id;
-        $region = $search ? $search['region'] : logged_user()->region_id;
-        $city = $search ? $search['city'] : logged_user()->city_id;
+        $country = $shipping ? $shipping['country_id'] : logged_user()->country_id;
+        $region = $shipping ? $shipping['region_id'] : logged_user()->region_id;
+        $city = $shipping ? $shipping['city_id'] : logged_user()->city_id;
 
         $rep_prices = RepPrice::with('rep')->whereHas('rep' , function($q){
                             $q->where('active',1)->orderby('lat','asc')->orderby('lng','asc');
@@ -41,11 +41,7 @@ class ShippingController extends Controller
     }
 
     public function reps_filter(Request $request)
-    {
-        $size = $request->size ? $request->size : 'medium';
-        
-        Session::put('shippment_size',$size);
-
+    { 
         $city = $request->city;
 
         $rep_prices = RepPrice::with('rep')->whereHas('rep' , function($q){
@@ -66,16 +62,17 @@ class ShippingController extends Controller
        
         Session::put('rep_price',$id);
         
-        return redirect()->route('shipping');
+        return redirect()->route('payment.method');
     }
 
     public function store_shipping(ShippingRequest $request)
     {
         Session::put('shipping',['country_id' => $request->country_id , 'region_id' => $request->region_id ,
                                 'city_id' => $request->city_id , 'street' => $request->street ,                                 
-                                'notes' => $request->notes , 'with_oil' => $request->with_oil                                
+                                'notes' => $request->notes , 'with_oil' => $request->with_oil ,  
+                                'size' => $request->size                             
                                 ]);
 
-        return redirect()->route('payment.method');
+        return redirect()->route('reps');
     }
 }

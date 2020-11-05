@@ -15,6 +15,7 @@
       <div class="row">
         @include('layouts.breadcrumb')
  
+        @if(valid_for_elec() == 1)
         <div class="modal-body modal-padding">
             <div class="head-section mb-5">
               <h2> @lang('site.enter_required_pieces') </h2>              
@@ -75,16 +76,22 @@
 
                 <div id="more_pieces" class="row"> </div>
       
-              <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.send') </button>
+              <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.add_to_cart') </button>
             </form>
      
           </div>
         
+          @else          
+            <div class="advice"> 
+              <p> {{ data('invalid_for_elec') }} </p>
+            </div>          
+          @endif
 
         <div class="col-md-12">
 
           <div class="advice text-center">            
-            <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>
+            <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results">
+               @lang('site.get_more_results') </a>
           </div>
           
         </div>

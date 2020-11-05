@@ -17,17 +17,15 @@ class OrderController extends Controller
     {
         $my_orders = true;
 
-        $item = Order::with('order_status')->with('user')->where('id',$id)->first();
+        $item = Order::with('order_status')->with('user')->with('shipping')
+                    ->where('id',$id)->first();
+ 
+      
+        $order_rejected = OrderShippingRejecte::where('order_shipping_id',$item->shipping->id)->first();
+       
+        $ordr_stat = OrderStatus::orderby('sort','asc')->get();
 
-        $shipping = OrderShipping::where('order_id',$item->id)->first();
-
-        if($shipping)
-            $order_rejected = OrderShippingRejecte::where('order_shipping_id',$shipping->id)->first();
-        else $order_rejected = array();
-
-        $ordr_stat = OrderStatus::all();
-
-        return view($this->view . 'show',compact('item','my_orders','shipping','order_rejected','ordr_stat'));
+        return view($this->view . 'show',compact('item','my_orders','order_rejected','ordr_stat'));
     }
 
    

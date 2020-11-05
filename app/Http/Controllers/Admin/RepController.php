@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Bank;
+use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -105,8 +106,10 @@ class RepController extends Controller
 
         $myPrices = RepPrice::myCities($item->id)->get();        
 
+        $delivery_regions = DeliveryRegion::orderby('name_'.my_lang(),'desc')->get();
+
         return view($this->view.'show',compact('item','cols','roles','level2','rep_rols','myCities',
-                    'my_regions','banks','myPrices'));
+                    'my_regions','banks','myPrices','delivery_regions'));
 
     }
 

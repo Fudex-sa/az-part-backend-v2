@@ -10,6 +10,11 @@
         </tr>
 
         <tr>
+            <th> @lang('site.order_type') </th>
+            <td> {{ __('site.'.$item->type) }} </td>
+        </tr>
+
+        <tr>
             <th> @lang('site.order_package') </th>
             <td> {{ $item->package_subscribe ? __('site.'.$item->package_subscribe->package_type) : '-' }} </td>
        </tr>

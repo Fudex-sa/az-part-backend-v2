@@ -63,7 +63,11 @@
                           <tr>
                             <td>  {{ $k+1 }} </td>
 
-                            <td>  <img src="{{ cart_img($item->photo) }}" alt="" class="img-fluid img-table"> </td>
+                            <td>  
+                              @if($item->photo)
+                                  <img src="{{ cart_img($item->photo) }}" alt="" class="img-fluid img-table">
+                              @else <i class="fa fa-info img-table"></i> @endif    
+                            </td>
 
                             <td> {{ $item->piece_alt['name_'.my_lang()] }}  </td>
 
@@ -112,7 +116,7 @@
 
                       @if(sub_total() > 0)
                         <div class="col-md-12">
-                              <a href="{{ route('reps') }}" class="btn btn-next btn-block btn-lg"> 
+                              <a href="{{ route('shipping') }}" class="btn btn-next btn-block btn-lg"> 
                                 @lang('site.continue_purchase') </a>
                         </div>
                       @endif

@@ -29,6 +29,8 @@ class CreateSellersTable extends Migration
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
             $table->enum('user_type',['tashalih','manufacturing']);
+            $table->integer('country_id');
+            $table->integer('region_id');
             $table->integer('city_id');
             $table->string('address')->nullable();
             

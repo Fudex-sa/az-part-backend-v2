@@ -23,10 +23,9 @@
 
             <div class="results">
               <h6>  @lang('site.result_no_in_this_city') : 
-                    <span class="text-dark"> {{ count($city_items) }}  @lang('site.result')  </span> 
+                    <span class="text-dark"> {{ $all_items ? count($all_items) : 0 }}  @lang('site.result')  </span> 
               </h6>
- 
-
+  
               {{-- <div class="advice">
                   <p>  {{ data('for_viewing_all_subscribe_first') }}   </p>
               </div> --}}
@@ -116,7 +115,7 @@
 
         <div class="col-md-12">
           <div class="advice text-center">
-            @if(count($items) > 0)
+            @if($items && count($items) > 0)
             <p> {{ notification('contact_seller_hint') }} </p> @endif
  
             <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>

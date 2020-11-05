@@ -53,11 +53,9 @@
 @endsection
 
 @section('popup')
-
-@if($shipping)
+ 
     @include('control.orders.update_shipping')
-@endif
-
+ 
 @endsection
 
 @section('scripts')

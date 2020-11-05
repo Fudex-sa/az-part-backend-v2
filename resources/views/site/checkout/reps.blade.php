@@ -24,7 +24,7 @@
                 <option value=""> @lang('site.choose_country') </option>
                 @foreach (countries() as $country)
                     <option value="{{ $country->id }}" @if(request()->country) {{ request()->country == $country->id ? 'selected' : '' }}
-                      @elseif(search_session()) {{  search_session()['country'] == $country->id ? 'selected' : '' }} @endif>
+                      @elseif(shipping_session()) {{  shipping_session()['country_id'] == $country->id ? 'selected' : '' }} @endif>
                          {{ $country['name_'.my_lang()] }} </option>    
                 @endforeach
               </select>
@@ -38,7 +38,7 @@
                 <option value=""> @lang('site.choose_region') </option>     
                 @foreach ($regions as $region)
                   <option value="{{ $region->id }}" @if(request()->region) {{ request()->region == $region->id ? 'selected' : '' }} 
-                    @else {{ search_session()['region'] == $region->id ? 'selected' : '' }} @endif>
+                    @else {{ shipping_session()['region_id'] == $region->id ? 'selected' : '' }} @endif>
                      {{$region['name_'.my_lang()] }} </option>    
                 @endforeach            
               </select>             
@@ -52,7 +52,7 @@
                 
                 @foreach ($cities as $city)
                   <option value="{{ $city->id }}" @if(request()->city) {{ request()->city == $city->id ? 'selected' : '' }}
-                    @else {{ search_session()['city'] == $city->id ? 'selected' : '' }} @endif>
+                    @else {{ shipping_session()['city_id'] == $city->id ? 'selected' : '' }} @endif>
                      {{$city['name_'.my_lang()] }} </option>    
                 @endforeach 
               </select>          

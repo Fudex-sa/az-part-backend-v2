@@ -61,7 +61,6 @@
             <div class="col-md-4 ">
               <button type="button" class="btn btn-next btn-block btn-lg" id="btn-slide"
                 value="Show text input"> @lang('site.next') </button>
-
             </div>
           </div>
         </div>
@@ -102,9 +101,9 @@
             </div>
             
                 <div class="col-md-2 col-2">                  
-                  <button type="button" class="btn btn-info-2" data-toggle="modal" data-target="#exampleModal"></button>
+                  <button type="button" class="btn btn-info-2" data-toggle="modal" data-target="#search_types"></button>
                 </div>
-                            <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
 
             <div class="col-md-3"></div>
 
@@ -377,13 +376,7 @@
             });
         });
     </script> 
-
-    <script>      
-      $( "#btn-slide1" ).click(function( event ) {        
-        $("#slide1").hide();
-        $("#slide2").show();
-      });
-    </script>
+ 
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
@@ -399,9 +392,9 @@
 @section('popup')
 
  <!-- Modal -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+ <div class="modal fade" id="search_types" tabindex="-1" role="dialog"
  aria-labelledby="exampleModalLabel" aria-hidden="true">
- <div class="modal-dialog" role="document">
+ <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content border-none">
      <div class="modal-header">
        <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -409,22 +402,65 @@
          <span aria-hidden="true">&times;</span>
        </button>
      </div>
-     <div class="modal-body">
-       <div class="modal-head text-center">
-         <h2>البحث العادي والبحث الالكتورني</h2>
+     <div class="modal-body row px-5">
+       <div class="modal-head text-center col-md-12">
+         <h2>أختر نوع البحث</h2>
        </div>
-       <div class="modal-box">
-         <h3>البحث العادي</h3>
-         <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء.</p>
+       <div class="modal-box col-md-6">
+         <div class="alert-info-2">
+         <h3> <img src="{{ site('assets/images/hand.svg') }}" alt="" class="pb-3 pl-2"> البحث العادي</h3>
+           <h5 class="my-3"><span class="warning">تنبيهات </span></h5>
+           <ul class="take-care">
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
 
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+
+           </ul>
+         </div>
+         <div class="skills-11">
+           <h5 class="my-3"><span class="skill">مميزات </span></h5>
+           <ul class="take-care">
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+           </ul>
+
+         </div>
        </div>
-       <div class="modal-box">
-         <h3> البحث الالكتورني</h3>
-         <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء.</p>
+       <div class="modal-box col-md-6">
+         <div class="alert-info-2">
+         <h3> <img src="{{ site('assets/images/rocket.svg') }}" alt="" class="pb-3 pl-2">البحث الإلكترونى</h3>
+           <h5 class="my-3"><span class="warning">تنبيهات </span></h5>
+           <ul class="take-care">
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
 
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+
+           </ul>
+         </div>
+         <div class="skills-11">
+           <h5 class="my-3"><span class="skill">مميزات </span></h5>
+           <ul class="take-care">
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
+           </ul>
+
+         </div>
        </div>
      </div>
- 
+     <div class="modal-footer-2 text-center mb-5 row">
+       <div class="form-check col-md-12 text-center">
+         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required>
+         <label class="form-check-label pr-4" for="exampleRadios1">
+           أوافق على جميع الشروط والأحكام الخاصة          
+         </label>
+       </div>
+       <div class="col-md-4"></div>
+       <button type="button" class="btn btn-next col-md-4 btn-block" data-dismiss="modal">موافق علي اكمال الطلب</button>
+     </div>
    </div>
  </div>
 </div>

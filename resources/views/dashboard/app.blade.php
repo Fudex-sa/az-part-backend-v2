@@ -136,7 +136,11 @@
                         @if(has_permission('countries_show'))
                             <li> <a href="{{route('admin.countries')}}"> {{ __('site.countries') }} </a> </li>
                         @endif
-                                            
+                                
+                        @if(has_permission('db_engine'))
+                            <li> <a href="{{ route('admin.db_engine') }}"> {{ __('site.db_engine') }} </a> </li>
+                        @endif
+
                     </ul>
                 </li>                             
             </ul>
@@ -175,11 +179,9 @@
              @endif
 
 
-             @if(has_permission('order_show') || has_permission('electronic_orders_show') 
-                    || has_permission('assign_to_admin_show')
-
-                || has_permission('express_requests') || has_permission('deleted_requests') 
-             )
+            @if(has_permission('order_show') || has_permission('electronic_orders_show') || 
+                    has_permission('assign_to_admin_show') || has_permission('express_requests') ||
+                     has_permission('deleted_requests') )
 
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-shopping-cart"></i> {{ __('site.orders') }}
@@ -194,12 +196,33 @@
                         @if(has_permission('order_show'))
                             <li> <a href="{{route('admin.orders.deleted')}}"> {{ __('site.deleted_orders') }} </a> </li>
                         @endif
+
+                        @if(has_permission('reports_show'))
+                            <li> <a href="{{route('admin.reports')}}"> {{ __('site.orders_reports') }} </a> </li>
+                        @endif
                     
                     </ul>
                 </li>                             
             </ul>
             @endif
 
+
+            @if(has_permission('delivery_region_show') )
+
+            <ul class="nav side-menu">
+                <li><a><i class="fa fa-shopping-cart"></i> {{ __('site.shipping_and_delivery') }}
+                        <span class="fa fa-chevron-down"></span></a>
+
+                    <ul class="nav child_menu">
+
+                        @if(has_permission('delivery_region_show'))
+                            <li> <a href="{{route('admin.delivery_regions')}}"> {{ __('site.tashlih_regions') }} </a> </li>
+                        @endif
+                    
+                    </ul>
+                </li>                             
+            </ul>
+            @endif
 
             
             <ul class="nav side-menu">
@@ -376,7 +399,8 @@
         && cur_root() != 'admin.seller.search'  && cur_root() != 'admin.brokers'  && cur_root() != 'admin.broker.search'
         && cur_root() != 'admin.reps' && cur_root() != 'admin.rep.search' && cur_root() != 'admin.pieces'
         && cur_root() != 'admin.piece' && cur_root() != 'admin.piece.search' && cur_root() != 'admin.brands'
-        && cur_root() != 'admin.brand.search' && cur_root() != 'admin.stocks' && cur_root() != 'admin.stock.search')
+        && cur_root() != 'admin.brand.search' && cur_root() != 'admin.stocks' && cur_root() != 'admin.stock.search'
+        && cur_root() != 'admin.orders' && cur_root() != 'admin.orders.search')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

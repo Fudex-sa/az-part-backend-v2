@@ -189,3 +189,11 @@
 .add-card-footer strong{
     font-size: 25px;
 }
+.orders-info i{
+    background: #f7f8fa;
+    padding: 6px 10px;
+    border-radius: 100%;
+}
+.orders-info li{
+    margin-bottom: 5px;
+}

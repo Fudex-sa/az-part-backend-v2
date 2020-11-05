@@ -16,6 +16,7 @@ class CreateRepPricesTable extends Migration
         Schema::create('rep_prices', function (Blueprint $table) {
             $table->id();
             $table->integer('rep_id');
+            $table->integer('_from');
             $table->integer('city_id');
             $table->float('price')->default(0);
             $table->json('car_price');

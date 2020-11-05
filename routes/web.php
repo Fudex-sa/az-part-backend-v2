@@ -41,13 +41,13 @@ Route::group([
 
             Route::get('my_prices',[App\Http\Controllers\Rep\MyPricesController::class, 'index'])->name('rep.my_prices');            
             Route::post('my_price/{id?}',[App\Http\Controllers\Rep\MyPricesController::class, 'store'])->name('rep.my_price.store');
-            Route::get('my_price/{item}',[App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');            
+            Route::get('my_price/{id}',[App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');            
             Route::delete('my_price/delete',[App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');            
             Route::post('my_price/activate',[App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
              
 
             Route::get('my_orders',[App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');            
-            Route::post('order/update/{shipping}',[App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');            
+            Route::post('order/update/{id}',[App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');            
             
         });
 
@@ -167,11 +167,17 @@ Route::group([
             Route::get('search',[App\Http\Controllers\Admin\SearchController::class, 'index'])->name('admin.search');            
 
             /*************** Orders  **********************/
+            Route::get('orders/search',[App\Http\Controllers\Admin\OrderController::class, 'search'])->name('admin.orders.search');
             Route::get('orders',[App\Http\Controllers\Admin\OrderController::class, 'all'])->name('admin.orders');            
             Route::get('orders/deleted',[App\Http\Controllers\Admin\OrderController::class, 'deleted'])->name('admin.orders.deleted');            
             Route::get('order/{id}',[App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');   
             Route::delete('order/delete',[App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');                     
- 
+            Route::post('order/update/{id}',[App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
+
+            /*************** Orders Reports  **********************/
+            Route::get('reports',[App\Http\Controllers\Admin\ReportController::class, 'all'])->name('admin.reports');            
+            Route::delete('report/delete',[App\Http\Controllers\Admin\ReportController::class, 'delete'])->name('admin.report.delete');            
+
             /*************** Packages  **********************/
             Route::get('packages',[App\Http\Controllers\Admin\PackageController::class, 'index'])->name('admin.packages');            
             Route::post('package/{id?}',[App\Http\Controllers\Admin\PackageController::class, 'store'])->name('admin.package.store');
@@ -364,8 +370,7 @@ Route::group([
             Route::delete('stock/delete',[App\Http\Controllers\Admin\StockController::class, 'delete'])->name('admin.stock.delete');
             Route::get('stock/search',[App\Http\Controllers\Admin\StockController::class, 'search'])->name('admin.stock.search');
  
-            /************ Cars  **********/            
-            
+            /************ Cars  **********/                        
             Route::get('cars/antiques',[App\Http\Controllers\Admin\CarController::class, 'antiques'])->name('admin.antiques');                                    
             Route::get('cars/damaged',[App\Http\Controllers\Admin\CarController::class, 'damaged'])->name('admin.damaged');                                    
             Route::get('car/{id}',[App\Http\Controllers\Admin\CarController::class, 'edit'])->name('admin.car');                        
@@ -375,6 +380,17 @@ Route::group([
             Route::post('car/store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');                        
             Route::post('car/imgs_store/{id?}',[App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');                        
 
+            /************ Delivery Regions  **********/                        
+            Route::get('delivery_regions',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'all'])->name('admin.delivery_regions');                                    
+            Route::get('delivery_region/{item}',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'edit'])->name('admin.delivery_region');                        
+            Route::post('delivery_region/store/{item?}',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'store'])->name('admin.delivery_region.store');                        
+            Route::delete('delivery_region/delete',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'delete'])->name('admin.delivery_region.delete');     
+            Route::post('delivery_region/activate',[App\Http\Controllers\Admin\DeliveryRegionController::class, 'activate'])->name('admin.delivery_region.activate');
+
+            /************ DB Engine  **********/                        
+            Route::get('db_engine',[App\Http\Controllers\Admin\DBEngineController::class, 'index'])->name('admin.db_engine');                                    
+            Route::get('empty_tables',[App\Http\Controllers\Admin\DBEngineController::class, 'empty_tables'])->name('admin.empty_tables');                                    
+            
              /************ Export PDF Data  ***************************/
              Route::get('export/users/pdf','ExportPdfController@users')->name('export.pdf.users');
              Route::get('export/sellers/pdf','ExportPdfController@sellers')->name('export.pdf.sellers');

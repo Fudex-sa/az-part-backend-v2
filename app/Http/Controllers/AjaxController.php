@@ -130,11 +130,11 @@ class AjaxController extends Controller
     {
         $with_oil = $request->input('with_oil');
 
-        $with_oil ? $with_oil_fees = setting('with_oil_fees') : $with_oil_fees = 0;
+        ($with_oil == 1) ? $with_oil_fees = setting('with_oil_fees') : $with_oil_fees = 0;
  
         session()->put('with_oil',$with_oil_fees);
 
-        $total = total()  + $with_oil_fees;
+        $total = total();
          
         return response()->json(['total'=> $total, 'with_oil_fees'=> $with_oil_fees]);
 

@@ -28,6 +28,8 @@ class CreateBrokersTable extends Migration
             $table->integer('available_orders')->default(0);
             $table->string('photo')->nullable();
             $table->integer('rating')->default(0);
+            $table->integer('country_id');
+            $table->integer('region_id');
             $table->integer('city_id');
             $table->string('address')->nullable();
             

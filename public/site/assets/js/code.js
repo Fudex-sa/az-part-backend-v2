@@ -155,7 +155,6 @@ document.getElementById('btn-slide').onclick = function() {
 	document.getElementById('slide-2').style.visibility = 'visible';
   	document.getElementById('slide').style.visibility = 'hidden';
     document.getElementById('btn-slide').style.visibility = 'hidden';
-
 }
 document.getElementById('back').onclick = function() {
 	document.getElementById('slide-2').style.visibility = 'hidden';

@@ -7,17 +7,31 @@
             <th> @lang('site.order_no') </th>
             <td> AZ-{{ $item->id }} </td>
 
-            <th> @lang('site.order_user') </th>
-            <td> {{ $item->user->name }} </td>
         </tr>
- 
 
-        <tr>
-            <th> @lang('site.user_type') </th>
-            <td> {{ __('site.'.$item->user_type) }} </td>
+        <tr>            
+            <th> @lang('site.order_type') </th>
+            <td> {{ __('site.'.$item->type) }} </td>
 
             <th> @lang('site.order_package') </th>
             <td> {{ $item->package_subscribe ? __('site.'.$item->package_subscribe->package_type) : '-' }} </td>
+        </tr>
+
+        <tr>
+            <th> @lang('site.order_user') </th>
+            <td> 
+                @if($item->user_type == 'user')
+                    <a href="{{ route('admin.user',$item->user->id) }}" target="_blank">
+                         <i class="fa fa-user"></i> {{ $item->user->name }} </a>
+                         
+                @elseif($item->user_type == 'company')
+                    <a href="{{ route('admin.company',$item->user->id) }}" target="_blank"> 
+                        <i class="fa fa-user"></i> {{ $item->user->name }} </a>
+                @endif
+                </td>
+
+            <th> @lang('site.user_type') </th>
+            <td> {{ __('site.'.$item->user_type) }} </td>
         </tr>
  
         <tr>
@@ -41,7 +55,8 @@
             <td> {{ $item->total }} @lang('site.rs') </td>
 
             <th> @lang('site.order_status') </th>
-            <td> {{ $item->order_status['name_'.my_lang()] }} </td>
+            <td> <span class="btn status-{{ $item->order_status->id }}">
+                 {{ $item->order_status['name_'.my_lang()] }} </span> </td>
         </tr>
  
 
