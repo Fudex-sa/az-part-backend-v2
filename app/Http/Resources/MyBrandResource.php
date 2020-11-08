@@ -16,6 +16,7 @@ class MyBrandResource extends JsonResource
     {
         $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
         app()->setLocale($lang);
+        $name = 'name_'.$lang;
 
         return [
             'id' => $this->id ,
@@ -23,8 +24,8 @@ class MyBrandResource extends JsonResource
             'brand_id' => $this->brand_id,
             'model_id' => $this->model_id,
             'year' => $this->year,
-            'brand_name' => $this->brand ? $this->brand->name : '',
-            'model_name' => $this->model ? $this->model->name : '',
+            'brand_name' => $this->brand ? $this->brand->$name : '',
+            'model_name' => $this->model ? $this->model->$name : '',
             'user_name' => $this->user ? $this->user->name : '',
         ];
 

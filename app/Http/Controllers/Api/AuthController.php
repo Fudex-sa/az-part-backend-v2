@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Seller;
+
 use App\Http\Resources\UserResource;
+use App\Http\Resources\SellerResource;
+
 use Auth;
 use Validator;
 use File;
@@ -19,8 +23,8 @@ class AuthController extends Controller
     {
         $validator = Validator::make(request()->all(), [
         'name' => 'required',
-        'email' => 'required|unique:users',
-        'mobile' => 'required|unique:users,phone',
+        'email' => 'required|unique:sellers',
+        'mobile' => 'required|unique:sellers,mobile',
         'password' => 'required|min:6',
         'accepted' => 'required'
         ]);
@@ -37,18 +41,19 @@ class AuthController extends Controller
 
         $inputs['password'] = bcrypt($inputs['password']);
 
-        $user = new User($inputs);
+        $user = new Seller($inputs);
 
 
         if ($user->save()) {
-            if (Auth::attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
-                $user = Auth::user();
+            if (Auth::guard('seller')->attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
+                //dd('aa');
+                $user = Auth::guard('seller')->user();
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $user->token = 'Bearer ' .$success['token'];
             }
 
-            $user = collect($user)->except(['created_at', 'updated_at']);
-            $user = new UserResource($user);
+            $user = collect($user)->except(['created_at', 'updated_at','password']);
+            $user = new SellerResource($user);
             return response()->json(['status'=>true,'msg' => 'sign up successfully', 'data' => $user], 200);
         }
         return response()->json(['status'=>false,'msg' => 'Something Wrong']);
@@ -61,15 +66,16 @@ class AuthController extends Controller
             return response()->json(['status' => false,'msg' => $validator->errors()->first()], 400);
         }
 
-        if (Auth::attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
-            $user = Auth::user();
+        if (Auth::guard('seller')->attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
+            $user = Auth::guard('seller')->user();
+            //dd($user);
             $user->update(['token' => request('mobile_token')]);
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $user->token = 'Bearer ' .$success['token'];
 
 
-            $user = collect($user)->except(['created_at', 'updated_at']);
-            $user = new UserResource($user);
+            $user = collect($user)->except(['created_at', 'updated_at','password']);
+            $user = new SellerResource($user);
 
 
             return response()->json(['status'=>true, 'data' => $user], 200);
@@ -97,18 +103,20 @@ class AuthController extends Controller
         }
         $data = request()->all();
         if (request()->hasFile('photo')) {
-            if (Auth::user()->photo) {
-                File::delete(public_path('/uploads/'.Auth::user()->photo));
+            $user = Auth::guard('seller')->user();
+
+            if ($user->photo) {
+                File::delete(public_path('/uploads/'.$user->photo));
             }
             $data['photo'] = uploadImgFromMobile(request('photo'), 'user');
         }
-        Auth::user()->update($data);
+        $user = Auth::guard('seller')->user();
+        $user->update($data);
 
-        $user = Auth::user();
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $user->token = 'Bearer ' .$success['token'];
         $user = collect($user)->except(['created_at', 'updated_at']);
-        $user = new UserResource($user);
+        $user = new SellerResource($user);
         return response()->json(['status' => true, 'data' => $user], 200);
     }
 
@@ -118,11 +126,11 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => false, 'msg' => $validator->errors()->first()], 400);
         }
-        $user = User::find(request('user_id'));
+        $user = Seller::find(request('user_id'));
         if ($user) {
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $user->token = 'Bearer ' .$success['token'];
-            $user = new UserResource($user);
+            $user = new SellerResource($user);
             $user = collect($user)->except(['created_at', 'updated_at']);
 
             return response()->json(['status' => true, 'data' => $user], 200);
@@ -160,14 +168,14 @@ class AuthController extends Controller
         }
 
         if (Auth::user()->phone != request('new_phone')) {
-            while (User::where('phone', request('new_phone'))->first()) {
+            while (Seller::where('phone', request('new_phone'))->first()) {
                 return response()->json(['status' => false, 'msg' => 'The phone has already been taken.'], 400);
             }
         }
 
 
 
-        if (User::where('phone', request('old_phone'))->first()) {
+        if (Seller::where('phone', request('old_phone'))->first()) {
             $user->update(['phone' => request('new_phone')]);
             return response()->json(['status' => true, 'msg' => 'Phone was successfully Updated!'], 200);
         }
@@ -186,7 +194,7 @@ class AuthController extends Controller
 
 
         if (!empty(request('phone'))) {
-            $user = User::where('phone', request('phone'))->first();
+            $user = Seller::where('phone', request('phone'))->first();
             if ($user) {
                 $code = mt_rand(1000, 9999);
                 $number = request('phone');
@@ -219,7 +227,7 @@ class AuthController extends Controller
 
 
         if (!empty(request('email'))) {
-            $user = User::where('email', request('email'))->first();
+            $user = Seller::where('email', request('email'))->first();
             if ($user) {
                 $code = mt_rand(1000, 9999);
                 $user->update(['reset_code' => $code]);
@@ -244,7 +252,7 @@ class AuthController extends Controller
         }
 
 
-        $user = User::where('email', request('email'))->first();
+        $user = Seller::where('email', request('email'))->first();
 
         if ($user) {
             if ($user->reset_code == request('code')) {
@@ -266,7 +274,7 @@ class AuthController extends Controller
         }
 
 
-        $user = User::where('email', request('email'))->first();
+        $user = Seller::where('email', request('email'))->first();
 
 
 
@@ -276,5 +284,15 @@ class AuthController extends Controller
             return response()->json(['status' => true, 'msg' => 'تم تغيير كلمة المرور بنجاح'], 200);
         }
         return response()->json(['status' => false, 'msg' => 'حدث خطا ما'], 400);
+    }
+
+    public function logout(Request $request)
+    {
+        $user = Auth::guard('seller')->user();
+        if ($user) {
+            $user->logout();
+        }
+
+        return response()->json(['status' => false, 'msg' => 'User Logout Successfully'], 200);
     }
 }

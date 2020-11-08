@@ -29,11 +29,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
       Route::get('cars/antique', 'CarsController@antique');
       Route::get('car/{id}', 'CarsController@show');
 
+      Route::get('brands', 'BrandsController@index');
+      Route::get('brand/{id}', 'BrandsController@show');
+
+      Route::get('cities', 'CitiesController@index');
+
+      Route::get('stocks', 'StocksController@index');
+      Route::get('stock/{id}', 'StocksController@show');
+      Route::get('stocks/search', 'StocksController@search');
+
 
       Route::group(['middleware'=>'auth:api'], function () {
           Route::post('profile', 'AuthController@edit_profile');
           Route::post('car', 'CarsController@store');
-          Route::put('car', 'CarsController@store');
+          Route::post('updateCar', 'CarsController@update');
           Route::delete('car/{id}', 'CarsController@destroy');
+          Route::get('logout', 'AuthController@logout');
       });
   });

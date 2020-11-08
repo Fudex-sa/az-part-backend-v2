@@ -14,14 +14,14 @@ class BrandsResource extends JsonResource
      */
     public function toArray($request)
     {
-      $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
-      app()->setLocale($lang);
-
+        $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
+        app()->setLocale($lang);
+        $name = 'name_'.$lang;
+      
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => $this->$name,
             'logo' => $this->logo,
         ];
-
     }
 }

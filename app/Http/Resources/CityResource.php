@@ -14,15 +14,16 @@ class CityResource extends JsonResource
      */
     public function toArray($request)
     {
-      $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
-      app()->setLocale($lang);
+        $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
+        app()->setLocale($lang);
+        $name = 'name_'.$lang;
 
-      return [
+        return [
           'id' => $this->id,
           'region_id' => $this->region_id,
-          'name' => $this->name,
+          'name' => $this->$name,
           'active' => $this->active
       ];
-      //  return parent::toArray($request);
+        //  return parent::toArray($request);
     }
 }

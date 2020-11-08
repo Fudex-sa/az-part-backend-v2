@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\CarImage;
+
 use App\Http\Resources\CarsResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Api\CommonController;
+use Auth;
 
 class CarsController extends Controller
 {
@@ -31,8 +34,8 @@ class CarsController extends Controller
         }
 
         $items = Car::with('brand')->with('model')->with('city')
-                ->where('car_type', 'damaged')->orderby('id', 'desc')->paginate($limit);
-        return CarsResource::collection($items);
+                ->where('type', 'damaged')->orderby('id', 'desc')->paginate($limit);
+        return response()->json(['status'=>true, 'data' => CarsResource::collection($items)], 200);
     }
 
     public function antique(Request $request)
@@ -44,9 +47,9 @@ class CarsController extends Controller
         }
 
         $items = Car::with('brand')->with('model')->with('city')
-                ->where('car_type', 'antique')->with('brand')
+                ->where('type', 'antique')->with('brand')
                 ->with('model')->orderby('id', 'desc')->paginate($limit);
-        return CarsResource::collection($items);
+        return response()->json(['status'=>true, 'data' => CarsResource::collection($items)], 200);
     }
 
     /**
@@ -67,85 +70,116 @@ class CarsController extends Controller
      */
     public function store(Request $request, $id=null)
     {
-        $validator = Validator::make(
-            Input::all(),
-            array(
-                'title' => 'required|max:255',
-                'car_type' => 'required|max:255',
-                'brand_id' => 'required',
-                'model_id' => 'required',
-                'auction' => 'required',
-                'user_id' => 'required',
-                'img' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-            )
-        );
+        $validator = Validator::make(request()->all(), [
+          'title' => 'required|max:255',
+          'car_type' => 'required|max:255',
+          'brand_id' => 'required',
+          'model_id' => 'required',
+        ]);
 
         if ($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()], 401);
+            return response()->json(['status' => false,'msg' => $validator->errors()->first()], 401);
         }
 
         $item = $request->isMethod('put') ? Car::findOrFail($request->item_id) : new Car;
+        $user = Auth::guard('seller')->user();
 
         $item->title = $request->title;
-        $item->user_id = $request->user_id;
-        $item->category_id = $request->category_id;
+        $item->user_id = $user->id;
         $item->brand_id = $request->brand_id;
         $item->model_id = $request->model_id;
-        $item->brand_name = $request->brand_name;
-        $item->model_name = $request->model_name;
         $item->year = $request->year;
 
         $item->color = $request->color;
-        $item->kilometers = $request->kilometers;
+        $item->kilo_no = $request->kilometers;
         $item->city_id = $request->city_id;
-        $item->auction = $request->auction;
+        $item->country_id = $request->country_id;
+        $item->region_id = $request->region_id;
         $item->price_type = $request->price_type;
         $item->price = $request->price;
         $item->validatly = $request->validatly;
+        $item->publish = $request->publish;
         $item->notes = $request->notes;
-        $item->car_type = $request->car_type;
-        $item->status = "pending";
-        $item->date_auction = $request->date_auction;
-        $item->periodic_inspection_validity = $request->periodic_inspection_validity;
-        $item->original = $request->original;
-        $item->original_manufacture_year = $request->original_manufacture_year;
-        $item->replica_manufacture_year = $request->replica_manufacture_year;
+        $item->type = $request->car_type;
 
-        if ($request->hasFile('img')) {
-            $fileName =  time().'.'.$request->file('img')->getClientOriginalName();
-            $request->file('img')->move(base_path().'/public/uploads/', $fileName);
-        } else {
-            if ($id) {
-                $fileName = $item->img;
-            } else {
-                $fileName = "";
-            }
-        }
 
-        $item->img = $fileName;
+        $item->save();
 
-        $imgs = [];
         if ($request->hasFile('imgs')) {
             foreach ($request->file('imgs') as $img) {
-                $imgName =  time().'.'.$img->getClientOriginalName();
-                $img->move(base_path().'/public/uploads/', $imgName);
-                $imgs[] = $imgName;
+                $destinationPath = public_path('uploads');
+                $name=$img->getClientOriginalName();
+                $img->move($destinationPath, $name);
+                $carImage = new CarImage;
+                $carImage->photo  = $name;
+                $carImage->car_id = $item->id;
+                $carImage->save();
             }
         }
 
-        if ($imgs != null) {
-            $carImgs = $imgs;
-        } else {
-            $carImgs = $item->imgs;
-        }
 
-        $item->imgs = $carImgs;
-
-        if ($item->save()) {
-            return new CarsResource($item);
-        }
+        return response()->json(['status'=>true, 'data' => new CarsResource($item)], 200);
     }
 
+
+
+    public function update(Request $request, $id=null)
+    {
+        $validator = Validator::make(request()->all(), [
+          'title' => 'required|max:255',
+          'car_type' => 'required|max:255',
+          'brand_id' => 'required',
+          'model_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => false,'msg' => $validator->errors()->first()], 401);
+        }
+
+        $item = Car::findOrFail($request->item_id);
+        $user = Auth::guard('seller')->user();
+
+        $item->title = $request->title;
+        $item->user_id = $user->id;
+        $item->brand_id = $request->brand_id;
+        $item->model_id = $request->model_id;
+        $item->year = $request->year;
+
+        $item->color = $request->color;
+        $item->kilo_no = $request->kilometers;
+        $item->city_id = $request->city_id;
+        $item->country_id = $request->country_id;
+        $item->region_id = $request->region_id;
+        $item->price_type = $request->price_type;
+        $item->price = $request->price;
+        $item->validatly = $request->validatly;
+        $item->publish = $request->publish;
+        $item->notes = $request->notes;
+        $item->type = $request->car_type;
+
+
+        $item->save();
+
+        if ($request->hasFile('imgs')) {
+            $carImages = CarImage::where('car_id', $item->id)->get();
+            foreach ($carImages as $key => $carImage) {
+                // code...
+                $carImage->delete();
+            }
+            foreach ($request->file('imgs') as $img) {
+                $destinationPath = public_path('uploads');
+                $name=$img->getClientOriginalName();
+                $img->move($destinationPath, $name);
+                $carImage = new CarImage;
+                $carImage->photo  = $name;
+                $carImage->car_id = $item->id;
+                $carImage->save();
+            }
+        }
+
+
+        return response()->json(['status'=>true, 'data' => new CarsResource($item)], 200);
+    }
     /**
      * Display the specified resource.
      *
@@ -156,7 +190,8 @@ class CarsController extends Controller
     {
         $item = Car::with('user')->with('brand')->with('model')->with('city')->with('user')
                 ->where('id', $id)->first();
-        return new CarsResource($item);
+
+        return response()->json(['status'=>true, 'data' => new CarsResource($item)], 200);
     }
 
 
@@ -169,9 +204,16 @@ class CarsController extends Controller
     public function destroy($id)
     {
         $item = Car::findOrFail($id);
+        if ($item) {
+            $carImages = CarImage::where('car_id', $id)->get();
+            foreach ($carImages as $key => $carImage) {
+                // code...
+                $carImage->delete();
+            }
+        }
 
         if ($item->delete()) {
-            return response()->json(['success'=> true,'error' => 'Successfully Deleted.'], 200);
+            return response()->json(['status'=>true, 'msg' =>'Successfully Deleted.'], 200);
         }
     }
 }
