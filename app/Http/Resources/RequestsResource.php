@@ -14,10 +14,11 @@ class RequestsResource extends JsonResource
      */
     public function toArray($request)
     {
-      $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
-      app()->setLocale($lang);
+        $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
+        app()->setLocale($lang);
+        $name = 'name_'.$lang;
 
-      return [
+        return [
           'id' => $this->id,
           'user_id' => $this->user_id,
           'request_type' => $this->request_type,
@@ -42,24 +43,24 @@ class RequestsResource extends JsonResource
           'deleted_at' => $this->deleted_at,
           'brand' => [
             'id' => $this->brand ? $this->brand->id : '',
-            'name' => $this->brand ? $this->brand->name : '',
+            'name' => $this->brand ? $this->brand->$name : '',
             'logo' => $this->brand ? $this->brand->logo : '',
           ],
           'model' => [
             'id' => $this->model ? $this->model->id : '',
-            'name' => $this->model ? $this->model->name : '',
+            'name' => $this->model ? $this->model->$name : '',
           ],
           'piece' => [
             'id' => $this->piece ? $this->piece->id : '',
             'img' => $this->piece ? $this->piece->img : '',
-            'name' => $this->piece ? $this->piece->name : ''
+            'name' => $this->piece ? $this->piece->$name : ''
           ],
           'city' => [
             'id' => $this->city ? $this->city->id : '',
-            'name' => $this->city ? $this->city->name : ''
+            'name' => $this->city ? $this->city->$name : ''
           ]
 
       ];
-          //return parent::toArray($request);
+        //return parent::toArray($request);
     }
 }

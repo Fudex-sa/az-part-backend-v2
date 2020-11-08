@@ -14,22 +14,20 @@ class CarsResource extends JsonResource
      */
     public function toArray($request)
     {
-      $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
-      app()->setLocale($lang);
+        $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
+        app()->setLocale($lang);
+        $name = 'name_'.$lang;
 
-      return [
+        return [
           'id' => $this->id,
           'title' => $this->title,
           'user_id' => $this->user_id,
-          'category_id' => $this->category_id,
           'brand_id' => $this->brand_id,
           'model_id' => $this->model_id,
           'year' => $this->year,
-          'img' => $this->img,
           'color' => $this->color,
-          'kilometers' => $this->kilometers,
+          'kilometers' => $this->kilo_no,
           'city_id' => $this->city_id,
-          'auction' => $this->auction,
           'price_type' => $this->price_type,
           'price' => $this->price,
           'validatly' => $this->validatly,
@@ -37,27 +35,20 @@ class CarsResource extends JsonResource
           'notes' => $this->notes,
           'imgs' => $this->imgs,
           'created_at' => $this->created_at,
-          'car_type' => $this->car_type,
-          'status' => $this->status,
-          'date_auction' => $this->date_auction,
-          'periodic_inspection_validity' => $this->periodic_inspection_validity,
-          'original' => $this->original,
-          'original_manufacture_year' => $this->original_manufacture_year,
-          'replica_manufacture_year' => $this->replica_manufacture_year,
-          'views' => $this->views,
+          'car_type' => $this->type,
           'brand' => [
             'id' => $this->brand ? $this->brand->id : '',
-            'name' => $this->brand ? $this->brand->name : '',
+            'name' => $this->brand ? $this->brand->$name : '',
             'logo' => $this->brand ? $this->brand->logo : ''
           ],
           'model' => [
             'id' => $this->model ? $this->model->id : '',
-            'name' => $this->model ? $this->model->name : '',
+            'name' => $this->model ? $this->model->$name : '',
             'brand_id' => $this->model ? $this->model->brand_id : ''
           ],
           'city' => [
               'id' => $this->city ? $this->city->id : '',
-              'name' => $this->city ? $this->city->name : '',
+              'name' => $this->city ? $this->city->$name : '',
               'region_id' => $this->city ? $this->city->region_id : ''
           ],
           'user' => [

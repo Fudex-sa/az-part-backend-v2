@@ -11,53 +11,53 @@ class Car extends Model
 
     protected $fillable = [
         'type' , 'user_id' , 'title' , 'brand_id' , 'model_id' , 'year' , 'color' , 'kilo_no' ,
-        'country_id' , 'region_id' , 'city_id' , 'price_type' , 'price' , 'validatly' , 'examination' ,
+        'country_id' , 'region_id' , 'city_id' , 'price_type' , 'price' , 'validatly' , 'examination' ,'kilo_no',
         'notes' , 'publish' , 'views' , 'user_type' , 'qty'
     ];
 
-    
+
     public function user()
-    {         
-        return $this->belongsTo(User::class,'user_id');
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function company()
-    {         
-        return $this->belongsTo(Company::class,'user_id');
+    {
+        return $this->belongsTo(Company::class, 'user_id');
     }
 
     public function brand()
-    {        
+    {
         return $this->belongsTo(Brand::class);
     }
 
     public function model()
-    {        
+    {
         return $this->belongsTo(Modell::class);
     }
 
     public function country()
-    {        
+    {
         return $this->belongsTo(Country::class);
     }
 
     public function region()
-    {        
+    {
         return $this->belongsTo(Region::class);
     }
 
     public function city()
-    {        
+    {
         return $this->belongsTo(City::class);
     }
 
     public function imgs()
     {
-        return $this->hasMany(CarImage::class,'car_id');
+        return $this->hasMany(CarImage::class, 'car_id');
     }
 
     public function comments()
     {
-        return $this->hasMany(CarComment::class,'car_id');
+        return $this->hasMany(CarComment::class, 'car_id');
     }
 }
