@@ -86,6 +86,11 @@
                 <i class="fa fa-list"></i> @lang('site.my_orders')  </a>
               @endif
 
+              @if(user_type() == 'user' || user_type() == 'company')
+              <a class="dropdown-item profile-drob" href="{{ route('my_requests') }}"> 
+                <i class="fa fa-hashtag"></i> @lang('site.electronic_requests')  </a>
+              @endif
+
               @if(user_type() == 'seller' || user_type() == 'broker')
               <a class="dropdown-item profile-drob" href="{{ route('seller.avaliable_models') }}"> 
                 <i class="fa fa-car"></i> @lang('site.avaliable_models')  </a>
@@ -104,11 +109,6 @@
               @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
               <a class="dropdown-item profile-drob" href="{{ route('my_packages') }}"> 
                 <i class="fa fa-hashtag"></i> @lang('site.my_packages')  </a>
-              @endif
-
-              @if(user_type() == 'user' || user_type() == 'company')
-              <a class="dropdown-item profile-drob" href="{{ route('my_requests') }}"> 
-                <i class="fa fa-hashtag"></i> @lang('site.electronic_requests')  </a>
               @endif
 
               @if(user_type() == 'seller' || user_type() == 'broker')

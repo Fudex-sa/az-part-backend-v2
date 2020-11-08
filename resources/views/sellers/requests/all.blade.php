@@ -29,8 +29,12 @@
                     <th>#  </th>
                     <th> @lang('site.the_request') </th>
                     <th> @lang('site.price') </th>
+                    <th> @lang('site.composition') </th>
+                    <th> @lang('site.return_possibility') </th>
+                    <th> @lang('site.delivery_possibility') </th>
                     <th> @lang('site.status') </th>
-                    <th class="operations_th"></th>
+                    <th> @lang('site.created_at') </th>
+                    <th> @lang('site.add_price') </th>                    
               </tr>
               </thead>
               <tbody class="text-center">
@@ -39,18 +43,26 @@
                   <tr>
                     <td> {{ $k+1 }} </td>
   
-                    <td> @lang('site.elec_req_no') {{$item->request->id}}   </td>
+                    <td>  <a href="{{ route('request.show',$item->request->id) }}" class="btn-edit">
+                      <i class="fa fa-eye"></i> ER {{$item->request->id}} </a> </td>
  
                     <td> {{ $item->price ? $item->price . __('site.rs') : '-'}} </td>
 
+                    <td> {{ $item->composition == 1 ? __('site.yes') : __('site.no') }} </td>
+
+                    <td> {{ $item->return_possibility == 1 ? __('site.yes') : __('site.no') }} </td>
+
+                    <td> {{ $item->delivery_possibility == 1 ? __('site.yes') : __('site.no') }} </td>
+
                     <td> <span class="btn status-{{ $item->status_id }}"> {{ $item->status['name_'.my_lang()] }} </span> </td>
 
-                    <td>
-                        
-                        <a href="{{ route('request.show',$item->request->id) }}" class="btn-edit">
-                            <i class="fa fa-edit"></i> </a>
-                   
+                    <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
+
+                    <td> @if($item->status_id != 10) <a href="{{ route('seller.add_price',$item->id) }}"> 
+                          <i class="fa fa-plus"> </i> @lang('site.add') </a>
+                          @else @lang('site.done_send') @endif
                     </td>
+                    
                   </tr>
                   @endif
               @endforeach

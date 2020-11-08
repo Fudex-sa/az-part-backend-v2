@@ -20,95 +20,87 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9  col-12">
+          <div class="col-lg-9 col-md-9  col-12" style="margin-top:-20px;">
            
             
             <div class="row">
-                <h3 class="col-md-12"> @lang('site.request_details') </h3>
+            
+            <div class="col-md-12">
+              <div class="row">
 
-                <table class="table table-striped col-md-8">
-                    <tr>
-                        <th> @lang('site.request_no') </th>
-                        <td> ER-{{ $item->id }} </td>
-                    </tr>
+                <div class="col-md-12">
+                  <div class="map-info-xz">                    
+                    <h5 class="mt-3"> <a href="#" class="padiaa" >
+                    <img src="{{ site('assets/images/location.png') }}" alt="">  
+                        {{ $item->country ? $item->country['name_'.my_lang()] : '' }} -
+                        {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
+                        {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
+                    </a></h5>                    
+                  </div>
+                   
+                </div>
 
-                    <tr>
-                        <th> @lang('site.user') </th>
-                        <td> {{ $item->user->name }}   ( {{ __('site.'.$item->user_type) }} ) </td>
-                    </tr>
+                <div class="col-md-12 ">
+                  <div class="border rounded mt-3 pt-3 pr-3 pb-1">
+                    <div class="row ">
+                      <div class="col-md-4">
+                        <div class="back-back">
+                          <h4> @lang('site.request_no') : <span> ER-{{ $item->id }} </span></h4>
+                        </div>
+                      </div>
+    
+                      <div class="col-md-8">
+                        <div class="back-back">
+                          <h4> @lang('site.user') : 
+                            <span>  {{ $item->user->name }}   ( {{ __('site.'.$item->user_type) }} )  </span>
+                          </h4>
+                        </div>
+                      </div>
+                        
+                    </div>
+                  </div>
+                  <br/> <br/>
 
-                    <tr>
-                        <th> @lang('site.model') </th>
-                        <td> {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }}-
-                            {{ $item->model ? $item->model['name_'.my_lang()] : '' }}-
-                            {{ $item->year }}
-                        </td>
-                    </tr>
+                </div>
 
-                    <tr>
-                        <th> @lang('site.region') </th>
-                        <td> {{ $item->country ? $item->country['name_'.my_lang()] : '' }} -
-                              {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
-                              {{ $item->city ? $item->city['name_'.my_lang()] : '' }} 
-                        </td>
-                    </tr>
-                    
-                </table>
+                <div class="col-md-2">
+                  @if($item->photo)
+                      <img src="{{ cart_img($item->photo) }}" class="img-fluid" />  
+                    @else <img src="{{ site('assets/images/logo.png') }}" class="img-fluid" />
+                  @endif                  
+                </div>
+                <div class="col-md-8">
+                  <div class="model-xx mt-2">
+                    <h6> 
+                      {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }}-
+                      {{ $item->model ? $item->model['name_'.my_lang()] : '' }}-
+                      {{ $item->year }}  
+                    </h6>
 
-                 <div class="col-md-1"></div>
-                
-                 @if($req_seller)
-                    <table class="table table-striped col-md-3">                  
-                      <form method="POST" action="{{ route('seller.request.update',$req_seller->id) }}">
-                          @csrf
-                        <tr>
-                            <th> @lang('site.price') </th>
-                        <td> <input type="number" name="price" class="form-control" required
-                            value="{{ $req_seller ? $req_seller->price : '' }}"/> </td>
-                        </tr>
-                        <tr class="text-center">
-                          <td colspan="2"> <input type="submit" value="@lang('site.send')" class="btn btn-success" /> </td>
-                        </tr>
-                      </form>
-                    </table>
-                 @endif
+                    <h6>  {{ $item->piece_alt['name_'.my_lang()] }}  </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="pri-pop mt-2">
+                    <h6> @lang('site.qty') : {{ $item->qty }} </h6>
+                    <h6> @lang('site.color') : {{ $item->color }} </h6>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="cli-nots mt-3 border rounded p-3">
+                    <h6><span class="noti"> @lang('site.notes') </span></h6>
+                    <h6> {{ $item->notes ? $item->notes : '-' }} </h6>
+                  </div>
+                </div>
+
+              </div>
             </div>
-
-            <hr/>
-
-            <h3> @lang('site.piece_data') </h3>
-
-            <table class="table table-striped">
-                <tr>
-                    <th> @lang('site.piece_name') </th>
-                    <td> {{ $item->piece_alt['name_'.my_lang()] }} </td>
-
-                    <th> @lang('site.piece_img') </th>                    
-                    <td>  
-                      @if($item->photo)
-                                  <img src="{{ cart_img($item->photo) }}" class="img-table" />  
-                                @else <img src="{{ site('assets/images/logo.png') }}" class="img-table" />
-                      @endif
-                    </td>
-                </tr>
-
-                <tr>
-                  <th> @lang('site.qty') </th>
-                  <td> {{ $item->qty }} </td>
-
-                  <th> @lang('site.notes') </th>
-                  <td> {{ $item->notes }} </td>
-                </tr>
-
-                <tr>
-                  <th> @lang('site.color') </th>
-                  <td> {{ $item->color }} </td>
-
-                </tr>
  
-                 
-            </table>
-
+              
+          </div>
+ 
          
           </div>
         </div>

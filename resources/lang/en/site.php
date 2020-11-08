@@ -885,7 +885,7 @@ return [
     'electronic_search' => 'Electronic Search',
     'qty' => 'Quantity',
     'your_request_sent_successfully' => 'Your Request Sent Successfully, Please Follow Your Requests For New Offers',
-    'electronic_requests' => 'Electronic Search Requests',
+    'electronic_requests' => 'Electronic Search Engine',
     'add_to_cart' => 'Add To Cart',
     'piec' => 'Piece',
     'order_content' => 'Order Content',
@@ -922,6 +922,9 @@ return [
     'change_order_status' => 'Change Order Status',
     'change_order_rep' => 'Change Order Rep',
     'orders_reports' => 'Orders Reports',
+    'rate' => 'Rate',
+    'return_possibility' => 'Return Possibility',
+    'delivery_possibility' => 'Delivery Possibility',
 ];
 
 ?>

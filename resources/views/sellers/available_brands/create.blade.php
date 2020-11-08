@@ -14,8 +14,9 @@
             <form class="row" method="post" action="{{ route('seller.avaliable_model.store') }}">
                 @csrf 
                   
-                <div class="form-group col-12">
-                
+                <div class="form-group col-6">
+                  <label> @lang('site.brand') </label>
+
                   <select class="form-control select2 input-A" name="brand_id" id="brand_id">
                     <option value=""> @lang('site.choose_brand') </option>
                     @foreach ($brands as $brand)
@@ -26,7 +27,9 @@
 
                 </div>
 
-                <div class="form-group col-12">
+                <div class="form-group col-6">
+                  <label> @lang('site.model') </label>
+
                   <select class="form-control select2 input-B" name="model_id" id="model_id">
                     <option value=""> @lang('site.choose_model') </option>
                 
@@ -34,6 +37,9 @@
                 </div>
                 
                 <div class="form-group col-12">
+                  <label> @lang('site.manufacturing_year') </label>
+                  <br/>
+                  
                   @for($i = date('Y')+1  ; $i >= 1970 ; $i--)                    
                     <label> 
                     <input type="checkbox" name="years[]" value="{{ $i }}"> {{ $i }}

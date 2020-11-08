@@ -1025,7 +1025,7 @@ return [
     'electronic_search' => 'البحث الإلكترونى',
     'qty' => 'عدد القطع',
     'your_request_sent_successfully' => 'لقد تم ارسال طلبك بنجاح , من فضلك تابع صفحة طلباتك للعروض الجديدة',
-    'electronic_requests' => 'طلبات البحث الإلكترونى',
+    'electronic_requests' => 'محرك الطلبات الإلكترونى',
     'add_to_cart' => 'اضف للسلة',
     'piec' => 'قطعة',
     'order_content' => 'محتوى الطلب',
@@ -1062,5 +1062,8 @@ return [
     'change_order_status' => 'تغيير حالة الطلب',
     'change_order_rep' => 'تغيير مندوب التوصيل',
     'orders_reports' => 'شكاوى الطلبات',
+    'rate' => 'التقييم',
+    'return_possibility' => 'إمكانية الرجيع',
+    'delivery_possibility' => 'امكانية التوصيل',
 ];
 

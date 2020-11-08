@@ -20,7 +20,7 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9  col-12">
+          <div class="col-lg-9 col-md-9  col-12" style="margin-top: -66px;">
           
             <div class="btn-add-container float-left">
               <a data-toggle="modal" data-target=".add_item" class="btn btn-save">
