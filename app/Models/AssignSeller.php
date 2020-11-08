@@ -10,7 +10,8 @@ class AssignSeller extends Model
     use HasFactory;
 
     protected $fillable = [
-        'seller_id' , 'request_id' , 'status_id' , 'seller_type' , 'price'
+        'seller_id' , 'request_id' , 'status_id' , 'seller_type' , 'price' , 'composition' ,
+        'return_possibility' , 'delivery_possibility'
     ];
 
     public function seller()

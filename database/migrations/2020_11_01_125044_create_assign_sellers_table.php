@@ -20,7 +20,9 @@ class CreateAssignSellersTable extends Migration
             $table->integer('status_id')->default(1);
             $table->float('price')->nullable();
             $table->enum('seller_type',['broker','tashalih','manufacturing'])->default('tashalih');            
-            
+            $table->boolean('composition')->default(0);
+            $table->boolean('return_possibility')->default(0);
+            $table->boolean('delivery_possibility')->default(0);
             $table->timestamps();
         });
     }

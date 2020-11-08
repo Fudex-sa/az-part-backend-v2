@@ -33,6 +33,8 @@ Route::group([
 
             Route::get('requests',[App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');            
             Route::post('request/update/{item}',[App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update'); 
+            Route::get('request/add_price/{id}',[App\Http\Controllers\Seller\RequestsController::class, 'add_price'])->name('seller.add_price');            
+            Route::post('request/send_price/{id}',[App\Http\Controllers\Seller\RequestsController::class, 'send_price'])->name('seller.send_price');            
             
         });
 

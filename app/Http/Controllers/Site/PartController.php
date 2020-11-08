@@ -30,40 +30,7 @@ class PartController extends Controller
         $this->package = new PackageHelp();
         $this->search = new Search();
     }
-
-    // public function search(PartSearchRequest $request)
-    // { 
-    //     $search_type =  $request->search_type;
-        
-    //     $this->search->save_search($request); //--- save search in session
-
-    //     if($search_type == 'electronic')
-    //         return view($this->view . 'electronic_search');
-
-    //     $piece_alts = PieceAlt::orderby('name_'.my_lang(),'desc')->get();
-
-    //     $search_type == 'manual' ? $sys_limit = setting('manual_search_result') : $sys_limit = setting('electronic_search_result');
-         
-    //     $this->package->stores_limit($search_type) > 0 ? 
-
-    //             $limit = $this->package->stores_limit($search_type) : $limit = $sys_limit;
-           
-    //     if($search_type == 'manual'){
-
-    //        $response = $this->search->manual_search($request,$limit);
-        
-    //     }else{
-
-    //         $response = $this->search->electronic_search($request,$limit);
-    //     }
-
-    //     $items = $response['items'];
-    //     $found_result = $response['found_result'];
  
-    //     return view($this->view.'find_sellers',compact('items','piece_alts','found_result'));
-    // }
-
-
     public function search(PartSearchRequest $request)
     { 
 

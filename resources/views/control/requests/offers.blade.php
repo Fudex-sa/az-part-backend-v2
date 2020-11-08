@@ -2,7 +2,7 @@
 @extends('site.app')
 
 @section('title') 
-  @lang('site.request') {{ $item->id }} : 
+  @lang('site.request_offers') {{ $item->id }} : 
   {{ $item->piece_alt ? $item->piece_alt['name_'.my_lang()] : '' }}
 
 @endsection
@@ -24,41 +24,73 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9  col-9" style="margin-top: -48px;">
-          
-            <div class="row">
-              
-              <div class="results">
-                <h6>  @lang('site.result_no') :   <span class="text-dark"> @lang('site.result')  {{ count($sellers) }} </span> </h6>
-              </div>
-            </div>
+          <div class="col-lg-9 col-md-9  col-9">
+           
 
             <div class="row">
-            @foreach ($sellers as $seller)
-              
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="search-box shadow">
-                  <div class="s-box-head text-center">
-                    @if($seller->seller->photo)
-                      <img src="{{ img_path($seller->seller->photo) }}" alt="" class="img-fluid">
-                    @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-fluid"> @endif
-                  </div>
-      
-                  <div class="s-box-body">
-                    <h4> {{ $seller->seller->name }} </h4>
-                    <h6> <span class="btn status-{{ $seller->status_id }}"> {{ $seller->status['name_'.my_lang()] }} </span> </h6>
-                  </div>
-                  
-                  @if($seller->price) 
-                    <div class="s-box-footer">
-                    <a href="{{ route('offer.add_to_cart',$seller->id) }}" class="btn btn-client float-left"> @lang('site.add_to_cart') </a>
-                      <h6> <span> {{ $seller->price }} </span> @lang('site.rs')  </h6>
-                    </div>
-                  @endif
-      
-                </div>
-              </div>    
-            @endforeach
+              <table class="table my-tbl text-center">
+                <thead>
+                  <th> # </th>
+                  <th> <i class="fa fa-camera"></i> </th>
+                  <th> @lang('site.seller') </th>
+                  <th> @lang('site.price') </th>
+                  <th> @lang('site.details') </th>
+                  {{-- <th> @lang('site.add_to_cart') </th> --}}
+                  <th> @lang('site.rate') </th>
+                </thead>
+
+                <tbody>
+                  @foreach ($sellers as $k=>$seller)
+                    <tr>
+                      <td> {{ $k+1 }} </td>
+                      
+                      <td> 
+                        @if($seller->seller->photo)
+                        <img src="{{ img_path($seller->seller->photo) }}" alt="" class="img-table">
+                      @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-table"> @endif
+                      </td>
+
+                      <td>
+                         {{ $seller->price ? $seller->seller->name : 'S'.$seller->seller->id }} </a>
+                      </td>
+
+                      <td>
+                        @if($seller->price)
+                            {{ $seller->price }}  @lang('site.rs') 
+                        @else
+                            <span class="btn status-{{ $seller->status_id }}"> 
+                              {{ $seller->status['name_'.my_lang()] }} </span>
+                        @endif
+                      </td>
+ 
+                      <td> @if($seller->price) 
+                        <button class="btn add-to" data-toggle="modal" data-target="#view_details" 
+                                  data-item="{{ $seller->id }}">
+                                   <i class="fa fa-eye"></i> @lang('site.view') </button>
+  
+                        @else - @endif </td>
+
+                      {{-- <td> 
+                        @if($seller->price)
+                          <a href="{{ route('offer.add_to_cart',$seller->id) }}" 
+                            class="btn btn-client float-left"> @lang('site.add_to_cart') </a>                          
+                        @else -  @endif
+                      </td> --}}
+
+                      <td>
+                        <div class="rating-33">
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star notchecked"></span>
+                          <span class="fa fa-star notchecked"></span>
+                        </div>  
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+ 
             </div>
 
           
@@ -78,10 +110,21 @@
 
 @section('popup')
    
+    @include('control.requests.offer_details')
 @endsection
 
 @section('scripts')
-  
+<script>
+       
+  $('#view_details').on('show.bs.modal', function (event) {
+       var button = $(event.relatedTarget);
+       var seller = button.data('item');
+       
+       var modal = $(this);
+       modal.find('.seller').val(seller);
+   });
+    
+</script>
   
 
 @endsection

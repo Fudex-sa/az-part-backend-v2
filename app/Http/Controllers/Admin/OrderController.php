@@ -30,7 +30,9 @@ class OrderController extends Controller
 
         $items = Order::with('cart')->orderby('id','desc')->onlyTrashed()->paginate(pagger());
 
-        return view($this->view . 'all',compact('items','title'));
+        $order_status = OrderStatus::orderby('sort','asc')->get();
+
+        return view($this->view . 'all',compact('items','title','order_status'));
     }
     public function show($id)
     {
