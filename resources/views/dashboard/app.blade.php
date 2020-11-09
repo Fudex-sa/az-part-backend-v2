@@ -192,6 +192,10 @@
                         @if(has_permission('order_show'))
                             <li> <a href="{{route('admin.orders')}}"> {{ __('site.all_orders') }} </a> </li>
                         @endif
+ 
+                        @if(has_permission('order_show'))
+                            <li> <a href="{{route('admin.electronic.engine')}}"> {{ __('site.electronic_engine') }} </a> </li>
+                        @endif
 
                         @if(has_permission('order_show'))
                             <li> <a href="{{route('admin.orders.deleted')}}"> {{ __('site.deleted_orders') }} </a> </li>
@@ -400,7 +404,7 @@
         && cur_root() != 'admin.reps' && cur_root() != 'admin.rep.search' && cur_root() != 'admin.pieces'
         && cur_root() != 'admin.piece' && cur_root() != 'admin.piece.search' && cur_root() != 'admin.brands'
         && cur_root() != 'admin.brand.search' && cur_root() != 'admin.stocks' && cur_root() != 'admin.stock.search'
-        && cur_root() != 'admin.orders' && cur_root() != 'admin.orders.search')
+        && cur_root() != 'admin.orders' && cur_root() != 'admin.electronic.engine')
 
 <div class="col-md-12 col-sm-12 col-xs-12">
 

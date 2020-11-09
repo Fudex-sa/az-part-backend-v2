@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title') {{ $title ? $title : __('site.all_orders') }} @endsection
+@section('title') {{ __('site.all_orders') }} @endsection
 
 @section('styles')
     

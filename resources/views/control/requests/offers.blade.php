@@ -33,6 +33,8 @@
                   <th> # </th>
                   <th> <i class="fa fa-camera"></i> </th>
                   <th> @lang('site.seller') </th>
+                  <th> @lang('site.seller_type') </th>
+                  <th> @lang('site.vip') </th>
                   <th> @lang('site.price') </th>
                   <th> @lang('site.details') </th>
                   {{-- <th> @lang('site.add_to_cart') </th> --}}
@@ -52,6 +54,14 @@
 
                       <td>
                          {{ $seller->price ? $seller->seller->name : 'S'.$seller->seller->id }} </a>
+                      </td>
+
+                      <td> <label class="label label-{{ $seller->seller->user_type }}"> 
+                            {{ __('site.'.$seller->seller->user_type) }} </label> </td>
+
+                      <td> @if($seller->seller->vip == 1) 
+                              <span class="success"> <i class="fa fa-check"></i> @lang('site.yes') </span>
+                          @else<span class="false"> <i class="fa fa-times"></i> @lang('site.no') </span>  @endif
                       </td>
 
                       <td>

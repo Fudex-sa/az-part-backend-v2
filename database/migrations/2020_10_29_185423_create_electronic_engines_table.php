@@ -28,6 +28,7 @@ class CreateElectronicEnginesTable extends Migration
             $table->integer('piece_alt_id');
             $table->string('photo')->nullable();
             $table->integer('qty')->default(1);
+            $table->integer('status_id')->default(11);
              
             $table->text('notes')->nullable();            
             $table->string('color')->nullable();            

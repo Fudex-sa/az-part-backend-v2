@@ -128,7 +128,7 @@
             </div>
           @else
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu login_drop" aria-labelledby="navbarDropdown">
 
             <div class="dropdown-head">
               <h3> @lang('site.login') </h3>

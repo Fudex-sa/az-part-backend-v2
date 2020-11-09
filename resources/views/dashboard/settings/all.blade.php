@@ -26,7 +26,7 @@
           <th>#  </th>
 
           <th> @lang('site.keyword') </th>
-
+          <th> Keyword </th>  
           <th> @lang('site.value') </th>
           
           <th style="width: 100px;"></th>
@@ -37,6 +37,8 @@
           <tr>
             <td>{{$item->id}}</td>
             
+            <td> {{ __('site.'.$item->keyword) }} </td>
+
             <td>{{$item->keyword}}</td>
             
             <td>{{$item['value']}}</td>             

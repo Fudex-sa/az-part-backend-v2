@@ -12,7 +12,8 @@ class ElectronicRequest extends Model
     protected $fillable = [
         'user_id' , 'user_type' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
 
-        'region_id' , 'city_id' , 'piece_alt_id' , 'notes' , 'color' , 'notes' , 'photo' , 'qty'
+        'region_id' , 'city_id' , 'piece_alt_id' , 'notes' , 'color' , 'notes' , 'photo' , 'qty' ,
+        'status_id'
 
     ];
 
@@ -68,5 +69,10 @@ class ElectronicRequest extends Model
             return $this->belongsTo(Ccompany::class,'user_id');
         else
             return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function order_status()
+    {
+        return $this->belongsTo(OrderStatus::class,'status_id');
     }
 }

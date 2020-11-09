@@ -11,12 +11,17 @@ class AssignSeller extends Model
 
     protected $fillable = [
         'seller_id' , 'request_id' , 'status_id' , 'seller_type' , 'price' , 'composition' ,
-        'return_possibility' , 'delivery_possibility'
+        'return_possibility' , 'delivery_possibility' , 'taken'
     ];
 
     public function seller()
-    {
-        return $this->belongsTo(Seller::class,'seller_id');
+    {         
+        return $this->belongsTo(Seller::class,'seller_id');        
+    }
+
+    public function broker()
+    {         
+        return $this->belongsTo(Broker::class,'seller_id');        
     }
 
     public function status()

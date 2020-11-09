@@ -31,7 +31,8 @@
                         <th> @lang('site.the_request') </th>       
                         <th scope="col"> <i class="fa fa-camera"></i> </th>                                       
                         <th scope="col"> @lang('site.piece') </th>                        
-                        <th scope="col"> @lang('site.request_sellers') </th>                        
+                        <th scope="col"> @lang('site.request_sellers') </th> 
+                        <th> @lang('site.status') </th>                       
                         <th scope="col"> @lang('site.created_at') </th>
                         <th class="operations_th"> </th>
                       </tr>
@@ -56,6 +57,9 @@
                                      
                                   </a> </td>
                             
+                              <td> <span class="btn status-{{ $item->status_id }}">
+                                    {{ $item->order_status['name_'.my_lang()] }} </span> </td>
+
                               <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
                             
                               <td>
