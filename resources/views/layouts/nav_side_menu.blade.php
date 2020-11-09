@@ -11,6 +11,12 @@
         <i class="fa fa-list"></i> @lang('site.my_orders') </a>
     @endif
 
+    @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
+      <a class="nav-link {{ isset($my_requests) ? 'active' : '' }}"  
+          href="{{ route('my_requests') }}"> 
+          <i class="fa fa-search"></i> @lang('site.electronic_requests') </a>
+    @endif
+
     @if( user_type() == 'broker' || user_type() == 'seller')
       <a class="nav-link {{ isset($seller_requests) ? 'active' : '' }}" href="{{ route('seller.requests') }}">
         <i class="fa fa-list"></i> @lang('site.seller_requests') </a>
@@ -35,12 +41,6 @@
     @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
       <a class="nav-link {{ isset($my_packages) ? 'active' : '' }}"  
           href="{{ route('my_packages') }}"> <i class="fa fa-hashtag"></i> @lang('site.my_packages') </a>
-    @endif
-
-    @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
-      <a class="nav-link {{ isset($my_requests) ? 'active' : '' }}"  
-          href="{{ route('my_requests') }}"> 
-          <i class="fa fa-search"></i> @lang('site.electronic_requests') </a>
     @endif
 
     @if(user_type() == 'rep')
