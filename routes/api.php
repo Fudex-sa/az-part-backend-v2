@@ -38,6 +38,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
       Route::get('stock/{id}', 'StocksController@show');
       Route::get('stocks/search', 'StocksController@search');
 
+      Route::post('lang/change', 'LanguageController@change');
+
+      Route::post('get_checkout', 'PaymentController@getCheckout');
+      Route::post('getTransaction', 'PaymentController@getTransaction');
+
 
       Route::group(['middleware'=>'auth:api'], function () {
           Route::post('profile', 'AuthController@edit_profile');
