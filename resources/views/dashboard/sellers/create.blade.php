@@ -23,7 +23,8 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
         @if($col != 'id' & $col != 'created_at' & $col != 'updated_at' & $col != 'verification_code'             
             & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'            
             & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'            
-            & $col != 'created_by'   & $col != 'city_id' & $col != 'lat' & $col != 'lng')
+            & $col != 'created_by'   & $col != 'city_id' & $col != 'lat' & $col != 'lng'
+            & $col != 'country_id' & $col != 'region_id')
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -74,8 +75,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                             <input type="radio" class="flat" name="{{ $col }}" value="manufacturing"  
                                 {{ old($col) == 'manufacturing' ? 'checked' : '' }} required/> @lang('site.manufacturing')
                         </label>
-                    @else
-
+                  
                     @elseif($col == 'address')
                     <input id="pac-input" class="form-control add-bg" name="address" type="text"
                     placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
@@ -84,6 +84,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                     <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
                     <input type="hidden" name="lng" id="longitude" value="50.089986"/>
                     
+                    @else
                     <input type="text" name="{{ $col }}" class="form-control" value="{{ old($col) }}">                                
 
                     @endif
@@ -151,7 +152,10 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
 @section('scripts')
      
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
-
+    <script src="{{site('maps/script.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
+    async defer></script>
+    
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities')
 @endsection

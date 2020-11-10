@@ -5,22 +5,34 @@ use Session;
 use App\Models\ElectronicRequest;
 use App\Models\AvailableModel;
 use App\Models\AssignSeller;
+use App\Models\Broker;
+use App\Models\EngineJob;
+use App\Models\EngineJobBroker;
 use Illuminate\Http\Request;
 use App\Helpers\Search;
+use Log;
+
 
 class ElecEngine
 {
  
     protected $search;
+    protected $tashlih_no_by_cycle;
+    protected $manufacturing_no_by_cycle;
+
 
     public function __construct()
     {    
         $this->search = new Search();
+        $this->tashlih_no_by_cycle = setting('tashlih_no_by_cycle') ? setting('tashlih_no_by_cycle') : 3;
+
+        $this->manufacturing_no_by_cycle = setting('manufacturing_no_by_cycle') ? 
+                setting('manufacturing_no_by_cycle') : 3;
+
     }
 
     public function create_request(Request $request)
-    {
-        
+    {        
         $response = 0;
 
         $data = $request->except('_token');
@@ -45,8 +57,10 @@ class ElecEngine
 
             $item = ElectronicRequest::create($data);
             if($item) {
-                $this->assign_sellers($item->id);
+                $req_id = $item->id;
 
+                $this->assign_sellers($req_id);
+                $this->run_first_cycle($req_id);
                 $response = 1;
             }
 
@@ -55,51 +69,7 @@ class ElecEngine
         if($response == 1) return true; else return false;
 
     }
-    
-
-    // public function match_sellers()
-    // {
-    //     $brand = $this->search->search_res('brand');
-    //     $model = $this->search->search_res('model');
-    //     $year = $this->search->search_res('year');
-    //     $city = $this->search->search_res('city');
-    //     $region = $this->search->search_res('region');
- 
-    //     $city_items = AvailableModel::matchOrder($brand,$model,$year)
-    //                             ->with('seller')
-    //                             ->whereHas('seller',function($q) use ($city){
-    //                                 $q->where('city_id',$city);
-    //                             });                                
-       
-
-    //     if($city_items->count() > 0){
-    //         $response['found_result'] = 1; //--- Case found 
-    //         $response['items'] = $city_items->get();
-    //     }else{
-
-    //         $region_items = AvailableModel::matchOrder($brand,$model,$year)
-    //                             ->with('seller')
-    //                             ->whereHas('seller',function($q) use ($region){
-    //                                 $q->where('region_id',$region);
-    //                             }); 
-
-            
-    //         if($region_items->count() > 0) {
-                    
-    //             $response['found_result'] = 2; // ---- Case found in same region
-    //             $response['items'] = $region_items->get();
-
-    //         }else {
-    //             $response['found_result'] = 0; // --- Case not found
-    //             $response['items'] = null;
-    //         }
-    //     }
- 
-    //     // $response['city_items'] = $city_items->get();
-    //     // $response['region_items'] = $region_items->get();
-    //     return $response;
-
-    // }
+     
 
     public function matched_sellers()
     {
@@ -112,12 +82,12 @@ class ElecEngine
         $items = AvailableModel::matchOrder($brand,$model,$year)
                         ->with('seller')
                         ->whereHas('seller',function($q) use ($city){
-                            $q->where('city_id',$city);
+                            $q->where('city_id',$city)->where('active',1);
                         })->get();
 
         return $items;
-
     }
+ 
 
     public function assign_sellers($req_id)
     {
@@ -129,11 +99,21 @@ class ElecEngine
                 AssignSeller::create([
                     'seller_id' => $seller->seller->id , 'request_id' => $req_id 
                 ]);
+        }}
 
-            }
-        }
+        $sellers_count = AssignSeller::with('seller')->whereHas('seller',function($q){
+                            $q->where('vip',0);
+                        })
+                        ->where('request_id',$req_id)->count();
+
+        $this->create_job($req_id,$sellers_count);
         
-        return count($sellers);           
+        return $sellers_count;           
+    }
+
+    public function create_job($req_id,$sellers_count)
+    {
+        EngineJob::create(['request_id' => $req_id , 'sellers_count' => $sellers_count]);
     }
 
     public function send_request(Request $request)
@@ -143,4 +123,139 @@ class ElecEngine
         return $response;
     }
 
+    //--------- Engine -----------
+    public function run_first_cycle($req_id)
+    {
+        $data = ['status_id' => 11 , 'taken' => 1];
+ 
+        //---------- VIP ------------
+        $items = AssignSeller::with('seller')->whereHas('seller',function($q){
+                      $q->where('vip',1);  
+                    })
+                    ->where('request_id',$req_id)->update($data);
+
+        //---------- Tashlih ------------
+        $items = AssignSeller::with('seller')->whereHas('seller',function($q){
+                    $q->where('vip',0)->where('user_type','tashalih')->orderby('saudi','desc');
+                })
+                ->where('request_id',$req_id)                
+                ->limit($this->tashlih_no_by_cycle)
+                ->update($data);
+
+
+        //---------- Manufacturing ------------
+        $items = AssignSeller::with('seller')->whereHas('seller',function($q){
+                    $q->where('vip',0)->where('user_type','manufacturing')->orderby('saudi','desc');
+                })
+                ->where('request_id',$req_id)                
+                ->limit($this->manufacturing_no_by_cycle)
+                ->update($data);
+    }
+
+    public function update_to_not_allowed($req_id)
+    {        
+        $items = AssignSeller::with('seller')->whereHas('seller',function($q){
+                    $q->where('vip',0)->where('status_id',11);
+                })
+                ->where('request_id',$req_id)                                
+                ->update(['status_id' => 12 , 'taken' => 1]);
+    }
+
+    public function next_sellers($req_id)
+    {
+        $data = ['status_id' => 11 ];
+ 
+        //---------- Tashlih ------------
+        $items = AssignSeller::with('seller')->whereHas('seller',function($q){
+                    $q->where('vip',0)->where('user_type','tashalih')->orderby('saudi','desc');
+                })
+                ->where('request_id',$req_id)                
+                ->where('status_id',1)
+                ->limit($this->tashlih_no_by_cycle)
+                ->update($data);
+
+        //---------- Manufacturing ------------
+        $items = AssignSeller::with('seller')->whereHas('seller',function($q){
+                    $q->where('vip',0)->where('user_type','manufacturing')->orderby('saudi','desc');
+                })
+                ->where('request_id',$req_id)  
+                ->where('status_id',1)              
+                ->limit($this->manufacturing_no_by_cycle)
+                ->update($data);
+    }
+
+    public function run_next_round()
+    {
+        
+        $reqs = EngineJob::get();        
+         
+        foreach($reqs as $req){
+            $req_id = $req->request_id;
+ 
+            $this->update_to_not_allowed($req_id);
+            $this->next_sellers($req_id);
+                        
+        }
+  
+    }
+ 
+    public function assign_to_brokers($req_id)
+    {
+        $brokers = Broker::all();
+
+        foreach($brokers as $broker){
+            AssignSeller::create([
+                'seller_id' => $broker->id , 'seller_type' => 'broker' , 'request_id' => $req_id ,
+                'status_id' => 11
+            ]);
+        }
+    }
+
+    public function brokers_round()
+    {        
+        $reqs = EngineJob::get();        
+         
+        foreach($reqs as $req){
+            $req_id = $req->request_id;
+ 
+            EngineJobBroker::create(['request_id'=> $req_id]);
+
+            $assigned_sellers = AssignSeller::with('seller')->whereHas('seller',function($q){
+                            $q->where('vip',0);
+                        })
+                        ->where('request_id',$req_id)->where('taken',1)->count();
+            
+            if($assigned_sellers == $req->sellers_count){
+
+                $this->assign_to_brokers($req_id);
+                $req->delete(); 
+            }
+                        
+        }
+    }
+
+    public function update_brokers_not_allowed($req_id)
+    {
+        $items = AssignSeller::where('request_id',$req_id)                              
+                            ->where('status_id',11)      
+                            // ->where('seller_type','broker')                 
+                            ->update(['status_id' => 12 , 'taken' => 1]);
+       
+    }
+
+    public function assign_to_admin()
+    {
+        $reqs = EngineJobBroker::get(); 
+
+        foreach($reqs as $req){
+            $req_id = $req->request_id;
+            
+            ElectronicRequest::where('id',$req_id)->update(['status_id' => 7 ]);
+
+            $this->update_brokers_not_allowed($req_id);
+
+            $req->delete();
+        }
+
+    }
 }

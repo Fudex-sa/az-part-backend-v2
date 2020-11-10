@@ -221,7 +221,7 @@ return [
     'items' => 'قطع الغيار',
     'the_items' => 'القطع',
     'search_engine' => 'محرك البحث',
-    'engine' => 'محرك البحث',
+    'engine' => 'محرك الطلب',
     'refresh_sellers' => 'تحديث المتاجر',
     'sellers_count' => 'عدد المتاجر',
     'mediators_count' => 'عدد الوسطاء',
@@ -1065,5 +1065,16 @@ return [
     'rate' => 'التقييم',
     'return_possibility' => 'إمكانية الرجيع',
     'delivery_possibility' => 'امكانية التوصيل',
+    'search_orders' => 'بحث الطلبات',
+    'electronic_engine' => 'محرك الطلبات الإلكترونى',
+    'order_engine' => 'محرك الطلب',
+    'updated_at' => 'حدث بتاريح',
+    'order_now' => 'اطلب الان',
+    'manufacturing_no_by_cycle' => 'عدد تجار قطع الغيار فى الراوند الواحد للمحرك',
+    'tashlih_no_by_cycle' => 'عدد تجار التشاليح فى الراوند الواحد للمحرك',
+    'with_oil_fees' => 'التكلفة الإضافية للشحنة المحملة بزيت',
+    'electronic_search_result' => 'عدد الطلبات الإلكترونية المجانية',
+    'manual_search_result' => 'عدد المتاجر المعروضة مجانا فى الطلب اليدوى',
+    
 ];
 

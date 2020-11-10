@@ -60,8 +60,9 @@ class Search
         $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
                                 ->whereHas('seller',function($q) use ($city){
-                                    $q->where('city_id',$city);
-                                });
+                                    $q->where('city_id',$city)->where('active',1)
+                                        ->orderby('saudi','desc')->orderby('vip','desc');
+                                });                            
 
         if($items->count() > 0){
             
@@ -70,8 +71,9 @@ class Search
             $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
                                 ->whereHas('seller',function($q) use ($country){
-                                    $q->where('country_id',$country);
-                                });
+                                    $q->where('country_id',$country)->where('active',1)
+                                        ->orderby('saudi','desc')->orderby('vip','desc');
+                                });                                 
 
             if($items->count() > 0)
                 $response['found_result'] = 2; //--- Case found in other cities           

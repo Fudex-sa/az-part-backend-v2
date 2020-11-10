@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\NextRound::class,
+        Commands\AssignBrokers::class,
+        Commands\AssignAdmin::class,
     ];
 
     /**
@@ -24,7 +26,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $day = date('D');
+
+        if ($day != 'Fri') {        
+            $schedule->command('next_round:cron')->everyMinute();
+                        // ->timezone('Asia/Riyadh')
+                        // ->between('9:00', '18:00');
+                        
+            $schedule->command('assign_brokers:cron')->everyMinute();
+                        // ->timezone('Asia/Riyadh')
+                        // ->between('9:00', '18:00');
+
+            $schedule->command('assign_admin:cron')->everyMinute();
+                        // ->timezone('Asia/Riyadh')
+                        // ->between('9:00', '18:00');
+        }
+
     }
 
     /**

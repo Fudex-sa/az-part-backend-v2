@@ -15,24 +15,23 @@ class OrderController extends Controller
 
     public function all()
     {
-        $title = __('site.all_orders');
-
+        
         $order_status = OrderStatus::orderby('sort','asc')->get();
 
-        $items = Order::with('cart')->with('shipping')->orderby('id','desc')->paginate(pagger());
+        $items = Order::with('cart')->with('shipping')
+                        ->orderby('id','desc')->paginate(pagger());
 
-        return view($this->view . 'all',compact('items','title','order_status'));
+        return view($this->view . 'all',compact('items','order_status'));
     }
 
     public function deleted()
     {
-        $title = __('site.deleted_orders');
-
+        
         $items = Order::with('cart')->orderby('id','desc')->onlyTrashed()->paginate(pagger());
 
         $order_status = OrderStatus::orderby('sort','asc')->get();
 
-        return view($this->view . 'all',compact('items','title','order_status'));
+        return view($this->view . 'all',compact('items','order_status'));
     }
     public function show($id)
     {
@@ -81,8 +80,7 @@ class OrderController extends Controller
     public function search(Request $request)
     {
         $name = $request->name;
-
-        $title = __('site.all_orders');
+ 
         $order_status = OrderStatus::orderby('sort','asc')->get();
 
         if($request->status)
@@ -112,6 +110,7 @@ class OrderController extends Controller
                             ->orderby('id','desc')                                  
                             ->paginate(pagger());
          
-        return view($this->view.'all',compact('items','title','order_status'));
+        return view($this->view.'all',compact('items','order_status'));
     }
+ 
 }

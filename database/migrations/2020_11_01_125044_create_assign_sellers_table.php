@@ -16,10 +16,11 @@ class CreateAssignSellersTable extends Migration
         Schema::create('assign_sellers', function (Blueprint $table) {
             $table->id();
             $table->integer('seller_id');
+            $table->enum('seller_type',['seller','broker'])->default('seller');
             $table->integer('request_id');
             $table->integer('status_id')->default(1);
-            $table->float('price')->nullable();
-            $table->enum('seller_type',['broker','tashalih','manufacturing'])->default('tashalih');            
+            $table->boolean('taken')->default(0);
+            $table->float('price')->nullable();            
             $table->boolean('composition')->default(0);
             $table->boolean('return_possibility')->default(0);
             $table->boolean('delivery_possibility')->default(0);

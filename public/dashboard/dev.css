@@ -19,6 +19,10 @@
     background-color: #f0ad4e;
 }
 
+.label-broker {
+    background-color: #169f85;
+}
+
 .label-assign_to_admin,.label-manufacturing,.label-replied{
     background-color: #5bc0de;
 }
@@ -129,6 +133,10 @@
 .status-10{
     background: greenyellow;
 }
+.status-11{
+    background: orange;
+    color: #FFF;
+}
 
 .status-8{
     background: green;
@@ -140,4 +148,18 @@
 }
 .tbl2 th{
     text-align: center;
+}
+.img-user{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    border: 1px solid #DCDCDC;
+}
+
+.success{
+    color: green;
+}
+
+.false{
+    color: red;
 }

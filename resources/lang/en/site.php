@@ -210,7 +210,7 @@ return [
 'items' => 'Items',
 'the_items' => 'The items are',
 'search_engine' => 'Search Engine',
-'engine' => 'Search Engine',
+'engine' => 'Order Engine',
 'refresh_sellers' => 'Refresh to see sellers',
 'sellers_count' => 'No. of Sellers',
 'mediators_count' => 'No. of Mediators',
@@ -925,6 +925,11 @@ return [
     'rate' => 'Rate',
     'return_possibility' => 'Return Possibility',
     'delivery_possibility' => 'Delivery Possibility',
+    'search_orders' => 'Search Orders',
+    'electronic_engine' => 'Electronic Engine',
+    'order_engine' => 'Order Engine',
+    'updated_at' => 'Updated at',
+    'order_now' => 'Order Now',
 ];
 
 ?>

@@ -175,6 +175,13 @@ Route::group([
             Route::get('order/{id}',[App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');   
             Route::delete('order/delete',[App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');                     
             Route::post('order/update/{id}',[App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
+            
+            
+            /*************** Electronic Engine  **********************/
+            Route::get('orders/electronic/engine',[App\Http\Controllers\Admin\ElecEngineController::class, 'all'])->name('admin.electronic.engine');                        
+            Route::get('orders/electronic/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'show'])->name('admin.elec_order');                                    
+            Route::get('order/engine/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'engine'])->name('admin.order.engine');   
+            Route::delete('order/electronic/delete',[App\Http\Controllers\Admin\ElecEngineController::class, 'delete'])->name('admin.electronic.delete');                                    
 
             /*************** Orders Reports  **********************/
             Route::get('reports',[App\Http\Controllers\Admin\ReportController::class, 'all'])->name('admin.reports');            
