@@ -9,12 +9,17 @@ return [
 'contact_us' => 'Contact Us',
 'profile' => 'My Profile',
 'my_cars' => 'My Cars',
+'add-new-interest'=>'Add new interests',
+'my_interests'=>'My interests',
+'interest-saved'=>'Interest saved successfully',
+'you_can_manage_interestes_from_here' => 'You can modify your interests by filling the following fields',
 'requests_and_offers' => 'Requests & Offers',
 'available_brands' => 'Available Cars',
 'request_no' => 'Request No.',
 'user' => 'User',
 'user_name' => 'User Name',
 'first_name' => 'First Name',
+'enter_interest_details' => 'Enter Intersts Details',
 'last_name' => 'Last Name',
 'brand' => 'Brand',
 'brand_id' => 'Brand',
@@ -709,7 +714,7 @@ return [
     'content_hi' => 'Content In Hindi',
     'sort' => 'Sort',
     'users_registerations' => 'Users Registrations',
-    
+
     'January' => 'January',
     'February' => 'February',
     'March' => 'March',
@@ -776,7 +781,7 @@ return [
     'data_site' => 'Data Site',
     'add_data' => 'Add Data',
     'site_commission' => 'Site Commission',
-    'pieces_tax' => 'Pieces Tax', 
+    'pieces_tax' => 'Pieces Tax',
     'get_more_results' => 'Get more results',
     'choose_your_package' => 'Choose the type of subscription that best suits you',
     'subscribe_in_package' => 'Subscribe to the package',
@@ -813,7 +818,7 @@ return [
     'not_activated' => 'Not Activated',
     'rejected' => 'Rejected',
     'choose_bank' => 'Choose Bank',
-    'or_register_now' => 'Or Register Now', 
+    'or_register_now' => 'Or Register Now',
     'new_rep_registeration' => 'New Representative Registeration',
     'my_prices' => 'My Prices',
     'add_city_price' => 'Add City Price',
@@ -931,5 +936,3 @@ return [
     'updated_at' => 'Updated at',
     'order_now' => 'Order Now',
 ];
-
-?>
