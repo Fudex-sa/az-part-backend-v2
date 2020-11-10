@@ -42,14 +42,15 @@
                 </thead>
 
                 <tbody>
-                  @foreach ($sellers as $k=>$seller)
+                  
+                  @foreach ($item->assign_sellers_replied as $k=>$seller)
                     <tr>
                       <td> {{ $k+1 }} </td>
                       
                       <td> 
                         @if($seller->seller->photo)
-                        <img src="{{ img_path($seller->seller->photo) }}" alt="" class="img-table">
-                      @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-table"> @endif
+                        <img src="{{ img_path($seller->seller->photo) }}" alt="" class="img-user">
+                      @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-user"> @endif
                       </td>
 
                       <td>
@@ -120,7 +121,10 @@
 
 @section('popup')
    
+@if(count($item->assign_sellers_replied) > 0)
     @include('control.requests.offer_details')
+@endif
+
 @endsection
 
 @section('scripts')

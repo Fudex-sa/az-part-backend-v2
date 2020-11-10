@@ -82,7 +82,8 @@ class ElecEngine
         $items = AvailableModel::matchOrder($brand,$model,$year)
                         ->with('seller')
                         ->whereHas('seller',function($q) use ($city){
-                            $q->where('city_id',$city)->where('active',1);
+                            $q->where('city_id',$city)->where('active',1)
+                                ->orderby('vip','desc')->orderby('saudi','desc');
                         })->get();
 
         return $items;
@@ -217,8 +218,6 @@ class ElecEngine
          
         foreach($reqs as $req){
             $req_id = $req->request_id;
- 
-            EngineJobBroker::create(['request_id'=> $req_id]);
 
             $assigned_sellers = AssignSeller::with('seller')->whereHas('seller',function($q){
                             $q->where('vip',0);
@@ -226,6 +225,8 @@ class ElecEngine
                         ->where('request_id',$req_id)->where('taken',1)->count();
             
             if($assigned_sellers == $req->sellers_count){
+
+                EngineJobBroker::create(['request_id'=> $req_id]);
 
                 $this->assign_to_brokers($req_id);
                 $req->delete(); 

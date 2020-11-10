@@ -24,9 +24,9 @@
             <th> @lang('site.return_possibility') </th>            
             <th> @lang('site.delivery_possibility') </th> 
             
-            <th> @lang('site.status') </th>            
-            <th> @lang('site.created_at') </th>
+            <th> @lang('site.status') </th>                        
             <th> @lang('site.updated_at') </th>
+            <th> @lang('site.edit') </th>
             
       </tr>
       </thead>
@@ -67,9 +67,11 @@
             <td>
                 <span class="btn status-{{ $row->status_id }}"> {{ $row->status['name_'.my_lang()] }} </span>
             </td>
-             
-            <td> {{ $row->created_at }} </td>
+            
             <td> {{ $row->updated_at }} </td>
+
+            <td> <a href="{{ route('admin.engine.edit',$row->id) }}" class="btn btn-info btn-xs"> 
+                <i class="fa fa-edit"></i> </a> </td>
           </tr>
       @endforeach
          

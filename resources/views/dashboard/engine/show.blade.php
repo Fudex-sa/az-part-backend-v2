@@ -39,6 +39,14 @@
                                 </tr>
 
                                 <tr>
+                                    <th> @lang('site.mobile') </th>
+                                    <td> {{ $item->user->mobile }} </td>
+                                 
+                                    <th> @lang('site.phone') </th>
+                                    <td> {{ $item->user->phone ? $item->user->phone : '-' }} </td>
+                                </tr>
+
+                                <tr>
                                     <th> @lang('site.country') </th>
                                     <td> {{ $item->country ? $item->country['name_'.my_lang()] : '' }} </td>
 
@@ -46,7 +54,16 @@
                                     <td> {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
                                         {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
                                     </td>
-                                </tr>                         
+                                </tr> 
+                                
+                                <tr>
+                                    <th> @lang('site.date') </th>
+                                    <td> {{ $item->created_at }} </td>
+
+                                    <th> @lang('site.status') </th>
+                                    <td> <span class="label-{{ $item->status_id }}"> 
+                                        {{ $item->order_status['name_'.my_lang()] }} </span> </td>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -74,7 +91,7 @@
 
                                 <tr>
                                     <th> @lang('site.color') </th>
-                                    <th> {{ $item->color }} </th>
+                                    <th> {{ $item->color ? $item->color : '-' }} </th>
 
                                     <th> @lang('site.qty') </th>
                                     <th> {{ $item->qty }} </th>
@@ -82,7 +99,32 @@
 
                                 <tr>
                                     <th> @lang('site.notes') </th>
-                                    <th colspan="3"> {{ $item->notes }} </th>
+                                    <th colspan="3"> {{ $item->notes ? $item->notes : '-' }} </th>
+                                </tr>
+
+                                <tr>
+                                    <th> @lang('site.change_order_status') </th>
+                                    <td> 
+                                    <form method="post" action="{{ route('admin.engine.update_order',$item->id) }}">
+                                            @csrf
+                                            <div class="row">
+                                                
+                                                <div class="col-md-10">
+                                                    <select class="form-control" name="status_id"> 
+                                                        @foreach ($status as $st)
+                                                            <option value="{{ $st->id }}" 
+                                                                {{ $st->id == $item->status_id ? 'selected' : '' }}> {{ $st['name_'.my_lang()] }} </option>    
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-success" type="submit"> @lang('site.save') </button>
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

@@ -26,6 +26,8 @@ class OrderHelp
         $my_subscribe ? $package_sub_id = $my_subscribe->id : $package_sub_id = 0 ;
 
         $shipping = $this->create_shipping();
+        
+        search_session()['search_type'] ? $order_type = search_session()['search_type'] : $order_type = order_type();
 
         $item = Order::create([
             'user_id' => logged_user()->id , 'user_type' => user_type() ,
@@ -33,7 +35,7 @@ class OrderHelp
             'delivery_price' => delivery_price(),
             'taxs' => taxs() , 'total' => total() , 'coupon_value' => coupon_discount(),
             'coupon_id' => coupon_id() , 'package_sub_id' => $package_sub_id ,
-            'shipping_id' => $shipping->id , 'type' => search_session()['search_type']
+            'shipping_id' => $shipping->id , 'type' => $order_type
         ]);
 
         if($item){          

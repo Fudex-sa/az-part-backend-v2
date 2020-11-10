@@ -62,6 +62,12 @@
                                                 {{ old('user_type') == 'b' ? 'checked' : '' }}> 
                                                 <label class="form-check-label" for="broker"> @lang('site.broker')  </label>
                                             </div>
+
+                                            <div class="form-group col-4">
+                                                <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
+                                                {{ old('user_type') == 'r' ? 'checked' : '' }}> 
+                                                <label class="form-check-label" for="rep"> @lang('site.rep')  </label>
+                                            </div>
  
                                             <div class="form-group col-12">
                                                 <input type="tel" class="form-control" id="mobile" name="mobile" 

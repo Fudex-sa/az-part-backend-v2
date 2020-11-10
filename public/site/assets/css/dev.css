@@ -251,3 +251,10 @@
 .label-paied{
     background-color: #1abb9c;
 }
+
+.img-user{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    border: 1px solid #DCDCDC;
+}

@@ -16,7 +16,7 @@ class MyRequestsController extends Controller
     {
         $my_requests = true;
 
-        $items = ElectronicRequest::with('assign_sellers')->with('piece_alt')->myRequests()->orderby('id','desc')->get();
+        $items = ElectronicRequest::with('assign_sellers_replied')->with('piece_alt')->myRequests()->orderby('id','desc')->get();
 
         return view($this->view . 'all',compact('items','my_requests'));
     }
@@ -25,11 +25,10 @@ class MyRequestsController extends Controller
     {
         $my_requests = true;
 
-        $item = ElectronicRequest::with('piece_alt')->where('id',$id)->first();
+        $item = ElectronicRequest::with('assign_sellers_replied')->with('piece_alt')->myRequests()
+                                    ->where('id',$id)->orderby('id','desc')->first();
 
-        $sellers = AssignSeller::with('seller')->where('request_id',$id)->orderby('id','desc')->get();
-        
-        return view($this->view . 'offers',compact('my_requests','item','sellers'));
+        return view($this->view . 'offers',compact('my_requests','item'));
     }
 
     function edit($id)

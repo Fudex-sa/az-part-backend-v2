@@ -173,11 +173,15 @@ Route::group(
 
 
             /*************** Electronic Engine  **********************/
-            Route::get('orders/electronic/engine', [App\Http\Controllers\Admin\ElecEngineController::class, 'all'])->name('admin.electronic.engine');
-            Route::get('orders/electronic/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'show'])->name('admin.elec_order');
-            Route::get('order/engine/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'engine'])->name('admin.order.engine');
-            Route::delete('order/electronic/delete', [App\Http\Controllers\Admin\ElecEngineController::class, 'delete'])->name('admin.electronic.delete');
 
+            Route::get('orders/electronic/engine',[App\Http\Controllers\Admin\ElecEngineController::class, 'all'])->name('admin.electronic.engine');                        
+            Route::get('orders/electronic/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'show'])->name('admin.elec_order');                                    
+            Route::get('order/engine/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'engine'])->name('admin.order.engine');   
+            Route::delete('order/electronic/delete',[App\Http\Controllers\Admin\ElecEngineController::class, 'delete'])->name('admin.electronic.delete');                       
+            Route::get('engine/edit/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'edit'])->name('admin.engine.edit'); 
+            Route::post('engine/update/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'update'])->name('admin.engine.update');                                                 
+            Route::post('engine/update_order/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'update_order'])->name('admin.engine.update_order');                                                 
+             
             /*************** Orders Reports  **********************/
             Route::get('reports', [App\Http\Controllers\Admin\ReportController::class, 'all'])->name('admin.reports');
             Route::delete('report/delete', [App\Http\Controllers\Admin\ReportController::class, 'delete'])->name('admin.report.delete');

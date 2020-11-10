@@ -31,7 +31,7 @@
                         <th> @lang('site.the_request') </th>       
                         <th scope="col"> <i class="fa fa-camera"></i> </th>                                       
                         <th scope="col"> @lang('site.piece') </th>                        
-                        <th scope="col"> @lang('site.request_sellers') </th> 
+                        <th scope="col"> @lang('site.offers') </th> 
                         <th> @lang('site.status') </th>                       
                         <th scope="col"> @lang('site.created_at') </th>
                         <th class="operations_th"> </th>
@@ -53,7 +53,7 @@
                               <td> {{ $item->piece_alt ? $item->piece_alt['name_'.my_lang()] : '' }} </td>
  
                               <td> <a href="{{ route('request.offers',$item->id) }}"> 
-                                    <span class="bg-circle"> {{ count($item->assign_sellers) }} </span> 
+                                    <span class="bg-circle"> {{ count($item->assign_sellers_replied) }} </span> 
                                      
                                   </a> </td>
                             
