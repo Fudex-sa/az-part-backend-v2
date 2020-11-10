@@ -48,13 +48,13 @@
     <thead class="text-primary text-center">
         <tr>
             <th> # </th>            
-            <th> @lang('site.request_no') </th>
-            <th> <i class="fa fa-camera"></i> </th>
+            <th> @lang('site.request_no') </th>            
             <th> @lang('site.user') </th>
             <th> @lang('site.user_type') </th>             
             <th> @lang('site.piece_name') </th>            
             <th> @lang('site.qty') </th> 
             <th> @lang('site.status') </th> 
+            <th> @lang('site.offers') </th> 
             <th> @lang('site.engine') </th>            
             <th> @lang('site.date') </th>
             <th style="width: 100px;"></th>
@@ -66,11 +66,7 @@
             <td> {{ $k+1 }} </td>            
             
             <td> ER-{{$item->id}}</td>
-            
-            <td> 
-                @if($item->photo) <img src="{{ cart_img($item->photo) }}" class="img-tbl" /> 
-                @else <img src="{{ site('assets/images/logo.png') }}" class="img-tbl" /> @endif
-            </td>
+           
             
             <td> {{ $item->user ? $item->user->name : '' }} </td>
             
@@ -82,6 +78,8 @@
  
             <td> <span class="btn status-{{ $item->status_id }}">
                      {{ $item->order_status['name_'.my_lang()] }} </span> </td>
+
+            <td> {{ offers_count($item->id) }} </td>
 
             <td> <a href="{{ route('admin.order.engine',$item->id) }}" target="_blank">
                  <i class="fa fa-cogs"></i> @lang('site.view') </a> </td>

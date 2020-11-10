@@ -14,6 +14,7 @@ use App\Models\Supervisor;
 use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Car;
+use App\Models\AssignSeller;
 
 if (! function_exists('my_lang')) {
     function my_lang()
@@ -267,20 +268,32 @@ if (! function_exists('shipping_session')) {
 }
 
 
-function uploadImgFromMobile($img, $tag)
-{
-    $fullName = $tag.'_'.mt_rand(10, 100).date('Y-m-d').'.jpeg';
-    $path = public_path('/uploads/');
-    $img = Image::make($img)->save($path.$fullName);
+if (! function_exists('uploadImgFromMobile')) {
+    function uploadImgFromMobile($img, $tag)
+    {
+        $fullName = $tag.'_'.mt_rand(10, 100).date('Y-m-d').'.jpeg';
+        $path = public_path('/uploads/');
+        $img = Image::make($img)->save($path.$fullName);
 
-    return $fullName;
+        return $fullName;
+    }
 }
 
-function uploadImage($img, $tag)
-{
-    $fullName = $tag.'_'.mt_rand(10, 100).date('Y-m-d').'.jpeg';
-    $path = public_path('/uploads/');
-    $img = Image::make($img)->save($path.$fullName);
+if (! function_exists('uploadImage')) {
+    function uploadImage($img, $tag)
+    {
+        $fullName = $tag.'_'.mt_rand(10, 100).date('Y-m-d').'.jpeg';
+        $path = public_path('/uploads/');
+        $img = Image::make($img)->save($path.$fullName);
 
-    return $fullName;
+        return $fullName;
+    }
+}
+
+if (! function_exists('offers_count')) {
+    function offers_count($request_id)
+    {
+        $count = AssignSeller::where('request_id',$request_id)->where('price','!=',null)->count();
+        return $count;
+    }
 }

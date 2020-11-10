@@ -930,6 +930,7 @@ return [
     'order_engine' => 'Order Engine',
     'updated_at' => 'Updated at',
     'order_now' => 'Order Now',
+    'taken' => 'Taken',
 ];
 
 ?>

@@ -52,7 +52,8 @@
          <div class="form-group col-md-4">
           <label> @lang('site.price') </label>
 
-           <input type="number" min="1" class="form-control" name="price[]"  placeholder="@lang('site.price')"> @lang('site.rs')
+           <input type="number" min="1" class="form-control" name="price[]"  required
+              placeholder="@lang('site.price')"> @lang('site.rs')
          </div>
 
          <div class="form-group col-md-4">

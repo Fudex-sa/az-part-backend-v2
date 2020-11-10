@@ -20,6 +20,15 @@ if (! function_exists('cart')) {
     }
 }
 
+if (! function_exists('order_type')) {
+    function order_type() {
+
+        $item = Cart::myCart()->first();
+        
+        return $item->type;
+    }
+}
+
 if (! function_exists('sub_total')) {
     function sub_total() {
         $sub_total = 0;

@@ -15,7 +15,7 @@ class ShippingController extends Controller
     protected $view = "site.checkout.";
 
     public function index()
-    {
+    {         
         return view($this->view.'shipping');
     }
 

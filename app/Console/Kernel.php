@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
                         // ->timezone('Asia/Riyadh')
                         // ->between('9:00', '18:00');
 
-            $schedule->command('assign_admin:cron')->everyMinute();
+            // $schedule->command('assign_admin:cron')->everyMinute();
                         // ->timezone('Asia/Riyadh')
                         // ->between('9:00', '18:00');
         }
