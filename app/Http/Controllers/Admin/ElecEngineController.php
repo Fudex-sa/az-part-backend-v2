@@ -69,6 +69,9 @@ class ElecEngineController extends Controller
         $item = AssignSeller::where('id',$id)->first();
 
         $data = $request->only('price','composition','return_possibility','delivery_possibility');
+        
+        if($request->price)
+            $data['status_id'] = 10;
 
         $update = AssignSeller::where('id',$id)->update($data);
 
