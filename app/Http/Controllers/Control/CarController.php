@@ -11,6 +11,7 @@ use App\Models\Modell;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Country;
+use App\Http\Requests\Control\CarRequest;
 
 class CarController extends Controller
 {
@@ -43,7 +44,7 @@ class CarController extends Controller
         return view($this->view . 'edit', compact('item', 'brands', 'countries', 'my_cars', 'models', 'regions', 'cities'));
     }
 
-    public function store($id = null, Request $request)
+    public function store($id = null, CarRequest $request)
     {
         $data = $request->except('_token');
         $data['user_id'] = logged_user()->id;

@@ -6,7 +6,7 @@
     <a class="nav-link {{ isset($profile) ? 'active' : '' }}"
           href="{{ route('profile') }}"> <i class="fa fa-user"></i> @lang('site.my_info') </a>
 
-    @if(user_type() == 'user' || user_type() == 'company')
+    @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')
       <a class="nav-link {{ isset($my_orders) ? 'active' : '' }}" href="{{ route('user.my_orders') }}">
         <i class="fa fa-list"></i> @lang('site.my_orders') </a>
     @endif

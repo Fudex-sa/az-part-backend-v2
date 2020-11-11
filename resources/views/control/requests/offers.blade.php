@@ -90,11 +90,12 @@
 
                       <td>
                         <div class="rating-33">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star notchecked"></span>
-                          <span class="fa fa-star notchecked"></span>
+                          <span class="fa fa-star {{ $seller->seller->rating > 0 ? 'checked' : 'notchecked'}}" onclick="rate(1,{{ $seller->id }})"></span>
+                          <span class="fa fa-star {{ $seller->seller->rating > 4 ? 'checked' : 'notchecked'}}" onclick="rate(2,{{ $seller->id }})"></span>
+                          <span class="fa fa-star {{ $seller->seller->rating > 10 ? 'checked' : 'notchecked'}}" onclick="rate(3,{{ $seller->id }})"></span>
+                          <span class="fa fa-star {{ $seller->seller->rating > 15 ? 'checked' : 'notchecked'}}" onclick="rate(4,{{ $seller->id }})"></span>
+                          <span class="fa fa-star {{ $seller->seller->rating > 20 ? 'checked' : 'notchecked'}}" onclick="rate(5,{{ $seller->id }})"></span>
+                          ({{ $seller->seller->rating }})
                         </div>  
                       </td>
                     </tr>
@@ -137,8 +138,11 @@
        var modal = $(this);
        modal.find('.seller').val(seller);
    });
-    
+  
 </script>
+
+@include('dashboard.ajax.rate') 
+
   
 
 @endsection

@@ -423,7 +423,7 @@ return [
 'new_request_no' => 'New order number',
 'rate_service' => 'Service Rating',
 'success' => 'Done',
-'service_rated_successfully' => 'The service was evaluated successfully',
+'seller_rated_successfully' => 'Seller Rated successfully',
 'register_as' => 'Register',
 'as_seller' => 'Seller',
 'as_user_and_company' => 'Individual or Company',
@@ -938,4 +938,5 @@ return [
     'updated_at' => 'Updated at',
     'order_now' => 'Order Now',
     'taken' => 'Taken',
+    'already_rated_before' => 'Already Rated Before',
 ];
