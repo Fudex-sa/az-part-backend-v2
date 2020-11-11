@@ -359,6 +359,8 @@ return [
 'confirm_delete' => 'Confirm deletion?',
 'delete_success' => 'Deleted Successfully',
 'add_to_fav' => 'Add to Favorites',
+'added_to_fav' => 'Car added to Favorite successfully',
+'removed_to_fav' => 'Car deleted from favorite successfully',
 'update_offer' => 'Edit an offer',
 'update_offer_no' => 'Edit offer number ',
 'request_closed' => 'Request closed, you may not be able to participate',

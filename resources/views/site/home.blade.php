@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    
+
 <section class="header">
   <div class="container">
     <div class="row d-flex justify-content-center">
@@ -33,28 +33,28 @@
                   <option value=""> @lang('site.choose_brand') </option>
                   @foreach ($brands as $brand)
                       <option value="{{ $brand->id }}"
-                        data-image="{{ brand_img($brand->logo) }}"  class="left"> {{ $brand['name_'.my_lang()] }} </option>    
+                        data-image="{{ brand_img($brand->logo) }}"  class="left"> {{ $brand['name_'.my_lang()] }} </option>
                   @endforeach
                 </select>
-             
+
             </div>
             <div class="ui-widget col-md-4">
-             
+
               <select class="form-control select2 input-B" name="model" id="model_id">
                   <option value=""> @lang('site.choose_model') </option>
-              
+
               </select>
 
             </div>
             <div class="ui-widget col-md-4">
-              
+
               <select class="form-control input-C" name="year" id="year">
                 <option value=""> @lang('site.manufacturing_year') </option>
                 @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
                     <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
                     >{{$i}}</option>
                 @endfor
-              </select> 
+              </select>
 
             </div>
             <div class="col-md-4"></div>
@@ -73,20 +73,20 @@
                 <select class="form-control input-C" name="country" id="country_id">
                     <option value=""> @lang('site.choose_country') </option>
                     @foreach (countries() as $country)
-                        <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>    
+                        <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
                     @endforeach
                 </select>
             </div>
 
             <div class="ui-widget col-md-4">
               <select class="form-control input-C" name="region" id="region_id">
-                <option value=""> @lang('site.choose_region') </option>                 
+                <option value=""> @lang('site.choose_region') </option>
               </select>
             </div>
 
             <div class="ui-widget col-md-4">
               <select class="form-control input-C" name="city" id="cities">
-                <option value=""> @lang('site.choose_city') </option>                 
+                <option value=""> @lang('site.choose_city') </option>
               </select>
             </div>
             <div class="col-md-4"></div>
@@ -99,8 +99,8 @@
                 </select>
 
             </div>
-            
-                <div class="col-md-2 col-2">                  
+
+                <div class="col-md-2 col-2">
                   <button type="button" class="btn btn-info-2" data-toggle="modal" data-target="#search_types"></button>
                 </div>
                 <div class="col-md-2"></div>
@@ -115,8 +115,8 @@
               <button type="submit" class="btn btn-next  btn-lg btn-block"> @lang('site.search')  </button>
 
             </div>
-                                
-            
+
+
 
 
           </div>
@@ -171,7 +171,7 @@
                   <span class="color-g"> {{ $stock->min_price }} </span> @lang('site.rs')
                 </p>
                 <p class="pt-2 text-center">
-                  <span class="color-d"> {{ round($stock->avg_price,2) }} </span> @lang('site.rs') 
+                  <span class="color-d"> {{ round($stock->avg_price,2) }} </span> @lang('site.rs')
                 </p>
 
               </div>
@@ -181,10 +181,10 @@
               </a>
             </div>
           </div>
-        </li>   
+        </li>
         @endif
         @endforeach
-         
+
       </ul>
     </div>
 
@@ -213,7 +213,13 @@
                 <div class="add-card-layout">
                   <ul class="lay-out-menue">
                     <li><a href="{{ route('car',$car->id) }}"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                    <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                      @if(logged_user() && user_type() == 'user')
+                      @if(App\Models\CarFavorite::where('car_id',$car->id)->where('user_id',logged_user()->id)->first())
+                        <li><a href="{{ route('control.wishlist.remove_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                        @else
+                        <li><a href="{{ route('control.wishlist.add_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                      @endif
+                    @endif
                     <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
                     </ul>
                 </div>
@@ -236,17 +242,17 @@
                 </h6>
 
               </div>
-              
+
               @if($car->price_type == 'fixed')
                 <div class="add-card-footer">
                   <h6><strong> {{ $car->price }} </strong> @lang('site.rs')  </h6>
                 </div>
               @endif
 
-            </div>   
+            </div>
           @endforeach
-           
-            
+
+
         </div>
 
       </div>
@@ -280,10 +286,10 @@
 
         <div class="col">
           <div class="order-box-2 shadow text-center">
-            <img src="{{ site('assets/images/img2.png') }}" alt="">          
+            <img src="{{ site('assets/images/img2.png') }}" alt="">
           </div>
           <div class="or-info">
-            <h4> @lang('site.recive_prices') </h4>  
+            <h4> @lang('site.recive_prices') </h4>
           </div>
         </div>
 
@@ -330,24 +336,24 @@
                   <input type="email" class="form-control h-50" id="email" name="email" value="{{ old('email') }}"
                      placeholder="@lang('site.email')">
                 </div>
-                
+
                 <div class="form-group col-12">
                   <input type="tel" class="form-control h-50" id="mobile" name="mobile" value="{{ old('mobile') }}"
                     placeholder="@lang('site.mobile')" required>
                 </div>
-                
+
                 <div class="form-group col-12">
                   <textarea class="form-control h-50" id="message" name="message" rows="1" placeholder="@lang('site.your_message')" required>
                   {{ old('message') }} </textarea>
                 </div>
-                
+
                 <div class="col-3"></div>
-                
+
                 <div class="col-6">
                   <button type="submit" class="btn btn-next btn-block">@lang('site.send')</button>
                 </div>
-                
-                <div class="col-3"></div>  
+
+                <div class="col-3"></div>
             </form>
 
           </div>
@@ -357,7 +363,7 @@
 
   </div>
 </section>
- 
+
 
 @endsection
 
@@ -375,16 +381,16 @@
                 stopOnHover:true,
             });
         });
-    </script> 
- 
+    </script>
+
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 <script src="{{ site('assets/js/select2.js') }}"></script>
 
-@include('dashboard.ajax.load_models') 
-@include('dashboard.ajax.load_regions') 
+@include('dashboard.ajax.load_models')
+@include('dashboard.ajax.load_regions')
 @include('dashboard.ajax.load_cities')
 
 @endsection
@@ -455,7 +461,7 @@
        <div class="form-check col-md-12 text-center">
          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required>
          <label class="form-check-label pr-4" for="exampleRadios1">
-           أوافق على جميع الشروط والأحكام الخاصة          
+           أوافق على جميع الشروط والأحكام الخاصة
          </label>
        </div>
        <div class="col-md-4"></div>

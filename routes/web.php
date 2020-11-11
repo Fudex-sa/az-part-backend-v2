@@ -73,6 +73,11 @@ Route::group(
             Route::get('user_interest/delete/{id?}', [App\Http\Controllers\Control\UserInterestsController::class, 'delete'])->name('control.user_interest.delete');
 
 
+            Route::get('wishlist/add/{id?}', [App\Http\Controllers\Control\CarFavoritesController::class, 'add_wish_list'])->name('control.wishlist.add_wish_list');
+            Route::get('wishlist/delete/{id?}', [App\Http\Controllers\Control\CarFavoritesController::class, 'remove_wish_list'])->name('control.wishlist.remove_wish_list');
+            Route::get('wishlists', [App\Http\Controllers\Control\CarFavoritesController::class, 'wish_list'])->name('control.wish_list');
+
+
             Route::get('requests/all', [App\Http\Controllers\Control\MyRequestsController::class, 'all'])->name('my_requests');
             Route::get('request/offers/{id}', [App\Http\Controllers\Control\MyRequestsController::class, 'offers'])->name('request.offers');
             Route::get('request/edit/{item}', [App\Http\Controllers\Control\MyRequestsController::class, 'edit'])->name('request.edit');
@@ -174,14 +179,14 @@ Route::group(
 
             /*************** Electronic Engine  **********************/
 
-            Route::get('orders/electronic/engine',[App\Http\Controllers\Admin\ElecEngineController::class, 'all'])->name('admin.electronic.engine');                        
-            Route::get('orders/electronic/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'show'])->name('admin.elec_order');                                    
-            Route::get('order/engine/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'engine'])->name('admin.order.engine');   
-            Route::delete('order/electronic/delete',[App\Http\Controllers\Admin\ElecEngineController::class, 'delete'])->name('admin.electronic.delete');                       
-            Route::get('engine/edit/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'edit'])->name('admin.engine.edit'); 
-            Route::post('engine/update/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'update'])->name('admin.engine.update');                                                 
-            Route::post('engine/update_order/{id}',[App\Http\Controllers\Admin\ElecEngineController::class, 'update_order'])->name('admin.engine.update_order');                                                 
-             
+            Route::get('orders/electronic/engine', [App\Http\Controllers\Admin\ElecEngineController::class, 'all'])->name('admin.electronic.engine');
+            Route::get('orders/electronic/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'show'])->name('admin.elec_order');
+            Route::get('order/engine/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'engine'])->name('admin.order.engine');
+            Route::delete('order/electronic/delete', [App\Http\Controllers\Admin\ElecEngineController::class, 'delete'])->name('admin.electronic.delete');
+            Route::get('engine/edit/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'edit'])->name('admin.engine.edit');
+            Route::post('engine/update/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'update'])->name('admin.engine.update');
+            Route::post('engine/update_order/{id}', [App\Http\Controllers\Admin\ElecEngineController::class, 'update_order'])->name('admin.engine.update_order');
+
             /*************** Orders Reports  **********************/
             Route::get('reports', [App\Http\Controllers\Admin\ReportController::class, 'all'])->name('admin.reports');
             Route::delete('report/delete', [App\Http\Controllers\Admin\ReportController::class, 'delete'])->name('admin.report.delete');

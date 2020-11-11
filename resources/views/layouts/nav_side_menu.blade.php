@@ -23,8 +23,13 @@
     @endif
 
     @if(user_type() == 'user' || user_type() == 'company')
-      <a class="nav-link {{ isset($my_interests) ? 'active' : '' }}" href="{{ route('control.user_interests') }}"> 
-        <i class="fa fa-fav"></i> @lang('site.my_interests') </a>
+      <a class="nav-link {{ isset($interests) ? 'active' : '' }}" href="{{ route('control.user_interests') }}">
+        <i class="fa fa-heart"></i>@lang('site.my_interests') </a>
+    @endif
+
+    @if(user_type() == 'user' || user_type() == 'company')
+      <a class="nav-link {{ isset($items) ? 'active' : '' }}" href="{{ route('control.wish_list') }}">
+        <i class="fa fa-heart"></i> @lang('site.my_favorite') </a>
     @endif
 
     @if(user_type() == 'user' || user_type() == 'company')

@@ -4,7 +4,7 @@
 @section('title')  @lang('site.antique_cars') @endsection
 
 @section('styles')
-    
+
 @endsection
 
 @section('content')
@@ -26,18 +26,25 @@
 
         @if(count($items) > 0)
           @foreach ($items as $item)
-              
+
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="add-card shadow">
               <div class="add-card-head">
                 <div class="add-card-layout">
                   <ul class="lay-out-menue">
                   <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                  @if(logged_user() && user_type() == 'user')
+                  @if(App\Models\CarFavorite::where('car_id',$item->id)->where('user_id',logged_user()->id)->first())
+                    <li><a href="{{ route('control.wishlist.remove_wish_list',$item->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                    @else
+                    <li><a href="{{ route('control.wishlist.add_wish_list',$item->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                  @endif
+                @endif
+
                   <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
                   </ul>
                 </div>
-                
+
                 @if(count($item->imgs) > 0)
                   <img src="{{ img_path($item->imgs[0]->photo) }}" alt="" class="img-fluid">
                 @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-fluid"> @endif
@@ -45,7 +52,7 @@
               </div>
               <div class="add-card-body">
                 <p class="float-left"> {{ $item->year }} </p>
-  
+
               <img src="{{ brand_img($item->brand ? $item->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
               <h6> <a href="{{ route('car',$item->id) }}">{{ $item->model ? $item->model['name_'.my_lang()] : '' }} </a> </h6>
@@ -78,7 +85,7 @@
 
 @section('scripts')
 
-  @include('dashboard.ajax.load_models') 
+  @include('dashboard.ajax.load_models')
 
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>

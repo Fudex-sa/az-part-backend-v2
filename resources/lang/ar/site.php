@@ -373,6 +373,8 @@ return [
     'confirm_delete' => 'تأكيد الحذف',
     'delete_success' => 'لقد تم الحذف بنجاح',
     'add_to_fav' => 'أضف للمفضلة',
+    'added_to_fav' => 'لقد تم اضافةالسيارة للمفضلة بنجاح',
+    'removed_to_fav' => 'تم المسح من المفضلة بنجاح',
     'update_offer' => 'تعديل عرض',
     'update_offer_no' => 'تعديل عرض رقم ',
     'request_closed' => 'طلب مغلق , لا يمكنك المشاركة فيه',

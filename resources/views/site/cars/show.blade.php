@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="{{ site('assets/Css/refineslide.css') }}">
 
-  <script type='text/javascript' 
+  <script type='text/javascript'
   src='https://platform-api.sharethis.com/js/sharethis.js#property=5e3cb8a1cd980c0012d9bbf0&product=inline-share-buttons' async='async'></script>
 
 @endsection
@@ -17,26 +17,26 @@
 <div class="cars-yard">
   <div class="container">
     <div class="row">
-      @include('layouts.breadcrumb') 
- 
-      
+      @include('layouts.breadcrumb')
+
+
       <div class="col-md-5">
         <ul id="images" class="rs-slider">
           @if($item->imgs)
             @foreach ($item->imgs as $img)
-                <li class="group"> <a href="#"> 
-                <img src="{{ img_path($img->photo) }}" alt="" /> </a> 
-                </li>      
+                <li class="group"> <a href="#">
+                <img src="{{ img_path($img->photo) }}" alt="" /> </a>
+                </li>
             @endforeach
-          
+
           @endif
 
           </ul>
       </div>
       <div class="col-md-7">
-        
+
         <div class="pragraph-box mt-3">
-            <p><img src="{{ site('assets/images/place-1.png') }}" alt="">  
+            <p><img src="{{ site('assets/images/place-1.png') }}" alt="">
               @lang('site.model') : {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} -
                                     {{ $item->model ? $item->model['name_'.my_lang()] : '' }}
                                     {{ $item->year }}
@@ -51,27 +51,27 @@
             <p><img src="{{ site('assets/images/cart-gray.png') }}" alt="">
                     @lang('site.notes') : {{ __('site.'.$item->notes) }} </p>
 
-            <p><img src="{{ site('assets/images/loc-gray.png') }}" alt=""> @lang('site.address') : 
+            <p><img src="{{ site('assets/images/loc-gray.png') }}" alt=""> @lang('site.address') :
               {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
-              {{ $item->city ? $item->city['name_'.my_lang()] : '' }} 
+              {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
             </p>
 
             <p><img src="{{ site('assets/images/cal-gray.png') }}" alt=""> {{ $item->created_at }} </p>
-            
-            <p><img src="{{ site('assets/images/per-gray.png') }}" alt="">  
+
+            <p><img src="{{ site('assets/images/per-gray.png') }}" alt="">
                 @lang('site.owner') : {{ $item->user ? $item->user->name : '' }}
 
             <p> <i class="fa fa-eye"></i>
                   @lang('site.views') : {{ $item->views }}
             </p>
-            
+
         </div>
         <div class="row mt-4">
-          <span class=" badge badge-line col"> 
+          <span class=" badge badge-line col">
             @lang('site.validatly') : {{ $item->validatly == 1 ? __('site.yes') : __('site.no') }}
           </span>
 
-          <span class="badge badge-line col"> 
+          <span class="badge badge-line col">
             @lang('site.periodic_inspection_validity') : {{ $item->examination == 1 ? __('site.yes') : __('site.no') }}
           </span>
 
@@ -108,7 +108,7 @@
         @endif
 
       </div>
-       
+
 
       @if(count($cars) > 0)
 
@@ -117,18 +117,24 @@
       </div>
 
           @foreach ($cars as $car)
-              
+
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="add-card shadow">
               <div class="add-card-head">
                 <div class="add-card-layout">
                   <ul class="lay-out-menue">
                   <li><a href="#"><img src="{{ asset('assets/images/1.png') }}" alt=""></a></li>
-                  <li><a href="#"><img src="{{ asset('assets/images/2.png') }}" alt=""></a></li>
+                  @if(logged_user() && user_type() == 'user')
+                  @if(App\Models\CarFavorite::where('car_id',$car->id)->where('user_id',logged_user()->id)->first())
+                    <li><a href="{{ route('control.wishlist.remove_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                    @else
+                    <li><a href="{{ route('control.wishlist.add_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
+                  @endif
+                @endif
                   <li><a href="#"><img src="{{ asset('assets/images/3.png') }}" alt=""></a></li>
                   </ul>
                 </div>
-                
+
               @if(count($car->imgs) > 0)
                 <img src="{{ img_path($car->imgs[0]->photo) }}" alt="" class="img-fluid">
               @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-fluid"> @endif
@@ -136,7 +142,7 @@
               </div>
               <div class="add-card-body">
                 <p class="float-left"> {{ $car->year }} </p>
-  
+
               <img src="{{ brand_img($car->brand ? $car->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
               <h6> <a href="{{ route('car',$car->id) }}">{{ $car->model ? $car->model['name_'.my_lang()] : '' }} </a> </h6>
@@ -158,7 +164,7 @@
 
           @endforeach
         @endif
-        
+
 
     </div>
   </div>
