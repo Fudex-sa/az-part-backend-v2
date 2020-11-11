@@ -435,7 +435,7 @@ return [
     'new_request_no' => 'طلب جديد رقم',
     'rate_service' => 'تقييم الخدمة',
     'success' => 'تم',
-    'service_rated_successfully' => 'تم تقييم الخدمة بنجاح',
+    'seller_rated_successfully' => 'تم تقييم التاجر بنجاح',
     'register_as' => 'تسجيل',
     'as_seller' => 'تاجر',
     'as_user_and_company' => 'فرد أو شركة',
@@ -1080,5 +1080,5 @@ return [
     'with_oil_fees' => 'التكلفة الإضافية للشحنة المحملة بزيت',
     'electronic_search_result' => 'عدد الطلبات الإلكترونية المجانية',
     'manual_search_result' => 'عدد المتاجر المعروضة مجانا فى الطلب اليدوى',
-
+    'already_rated_before' => 'لقد سبق وقمت بتقييم هذا التاجر',
 ];

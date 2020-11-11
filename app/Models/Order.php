@@ -40,12 +40,24 @@ class Order extends Model
         return $this->belongsTo(Coupon::class,'coupon_id');
     }
 
+    public function company()
+    {        
+        return $this->belongsTo(Company::class,'user_id');
+    }
+
     public function user()
-    {
-        if($this->user_type == 'company')
-            return $this->belongsTo(Company::class,'user_id');
-        else
-            return $this->belongsTo(User::class,'user_id');
+    {        
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function seller()
+    {        
+        return $this->belongsTo(Seller::class,'user_id');
+    }
+
+    public function broker()
+    {        
+        return $this->belongsTo(Broker::class,'user_id');
     }
 
     public function cart()

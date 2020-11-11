@@ -21,7 +21,11 @@
 
        <tr>
             <th> @lang('site.request_owner') </th>
-            <td> {{ $item->user->name }} </td>
+            <td> @if($item->user_type == 'seller') {{ $item->seller ? $item->seller->name : ''}}
+                 @elseif($item->user_type == 'broker') {{ $item->broker ? $item->broker->name : ''}}
+                 @elseif($item->user_type == 'company') {{ $item->company ? $item->company->name : ''}}
+                 @else {{ $item->user ? $item->user->name : ''}} @endif
+            </td>
         </tr>
 
         <tr>

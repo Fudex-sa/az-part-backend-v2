@@ -49,8 +49,10 @@ Route::group(
         });
 
 
-        Route::group(['prefix'=> 'user','namespace' => 'User','middleware'=>'user'], function () {
+        Route::group(['prefix'=> 'user','namespace' => 'User'], function () {
             Route::get('my_orders', [App\Http\Controllers\User\MyOrderController::class, 'index'])->name('user.my_orders')->middleware('userOrders');
+
+            Route::post('rate', [App\Http\Controllers\User\RateController::class, 'index'])->name('rate');
         });
 
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
