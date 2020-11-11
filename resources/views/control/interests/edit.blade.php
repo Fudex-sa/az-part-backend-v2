@@ -78,7 +78,29 @@
 
 
 
+                    <div class="form-group col-md-4">
+                        <label> @lang('site.country') </label>
 
+                        <select class="form-control" name="country_id" id="country_id">
+                            <option value=""> @lang('site.choose_country') </option>
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}" {{ $item->country_id == $country->id ? 'selected' : '' }} >
+                                   {{ $country['name_'.my_lang()] }} </option>
+                            @endforeach
+                            </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label> @lang('site.region') </label>
+
+                        <select class="form-control" name="region_id" id="region_id">
+                            <option value=""> @lang('site.choose_region') </option>
+                              @foreach ($regions as $region)
+                                  <option value="{{ $region->id }}" {{ $region->id == $item->region_id ? 'selected' : '' }}>
+                                     {{ $region['name_'.my_lang()] }} </option>
+                              @endforeach
+                            </select>
+                    </div>
 
                     <div class="form-group col-md-4">
                         <label> @lang('site.city') </label>

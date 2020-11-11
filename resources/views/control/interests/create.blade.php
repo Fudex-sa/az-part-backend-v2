@@ -47,7 +47,25 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
             </select>
     </div>
 
+    <div class="form-group col-md-4">
+        <label> @lang('site.country') </label>
 
+        <select class="form-control" name="country_id" id="country_id">
+            <option value=""> @lang('site.choose_country') </option>
+            @foreach ($countries as $country)
+                <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
+            @endforeach
+            </select>
+    </div>
+
+    <div class="form-group col-md-4">
+        <label> @lang('site.region') </label>
+
+        <select class="form-control" name="region_id" id="region_id">
+            <option value=""> @lang('site.choose_region') </option>
+
+            </select>
+    </div>
 
 
     <div class="form-group col-md-4">

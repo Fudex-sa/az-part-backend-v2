@@ -42,6 +42,8 @@
                         <th scope="col"> @lang('site.model') </th>
                         <th scope="col"> @lang('site.manufacturing_year') </th>
                         <th scope="col"> @lang('site.price') </th>
+                        <th scope="col"> @lang('site.country') </th>
+                        <th scope="col"> @lang('site.region') </th>
                         <th scope="col"> @lang('site.city') </th>
 
                         <th class="operations_th"> </th>
@@ -63,6 +65,8 @@
                                         {{  __('site.from').":".$interest->price_from." ".__('site.to').":".$interest->price_to }}
                                     @endif
                                </td>
+                                 <td> {{ $interest->country ? $interest->country['name_'.my_lang()] : '' }}  </td>
+                                   <td> {{ $interest->region ? $interest->region['name_'.my_lang()] : '' }}  </td>
                               <td> {{ $interest->city ? $interest->city['name_'.my_lang()] : '' }}  </td>
 
 
