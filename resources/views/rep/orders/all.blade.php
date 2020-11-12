@@ -42,7 +42,12 @@
                             <td> <a href="{{ route('order',$item) }}">
                             <i class="fa fa-eye"></i> AZ-{{ $item->id }} </a> </td>
 
-                            <td> {{ $item->user? $item->user['name'] : '' }} </td>
+                            <td> 
+                              @if($item->user_type == 'seller') {{ $item->seller ? $item->seller->name : '' }}
+                              @elseif($item->user_type == 'broker') {{ $item->broker ? $item->broker->name : '' }}
+                              @elseif($item->user_type == 'company') {{ $item->company ? $item->company->name : '' }}
+                              @else {{ $item->user ? $item->user->name : '' }} @endif
+                            </td>
 
                             <td>                                     
                                 {{ $item->shipping->region ? $item->shipping->region['name_'.my_lang()] : '' }} -

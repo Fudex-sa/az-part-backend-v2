@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OrderShippingRejecte;
 use App\Models\Order;
+use App\Http\Requests\Rep\UpdateOrderRequest;
 
 class MyOrderController extends Controller
 {
@@ -15,14 +16,15 @@ class MyOrderController extends Controller
     {
         $rep_orders = true;
 
-        $items = Order::with('shipping')->whereHas('shipping',function($q){
+        $items = Order::with('shipping')->with('user')->with('company')->with('seller')->with('broker')
+                        ->whereHas('shipping',function($q){
                             $q->where('rep_id',logged_user()->id);
                         })->orderby('id','desc')->paginate(pagger());
 
         return view($this->view . 'all',compact('items','rep_orders'));
     }
 
-    public function update(Request $request,$id)
+    public function update(UpdateOrderRequest $request,$id)
     {
 
         Order::where('id',$id)->update(['status'=>$request->status]);

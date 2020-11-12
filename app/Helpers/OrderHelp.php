@@ -21,14 +21,16 @@ class OrderHelp
 
     public function create_order()
     {
+        $shipping = $this->create_shipping();
 
-        $my_subscribe = PackageSubscribe::myPackages()->first();
+        search_session()['search_type'] ?             
+            $order_type = search_session()['search_type'] : $order_type = order_type();
+
+
+        $my_subscribe = PackageSubscribe::myPackagesByType($order_type)->first();
         $my_subscribe ? $package_sub_id = $my_subscribe->id : $package_sub_id = 0 ;
 
-        $shipping = $this->create_shipping();
-        
-        search_session()['search_type'] ? $order_type = search_session()['search_type'] : $order_type = order_type();
-
+         
         $item = Order::create([
             'user_id' => logged_user()->id , 'user_type' => user_type() ,
             'sub_total' => sub_total() ,

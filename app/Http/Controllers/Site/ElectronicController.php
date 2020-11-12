@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Helpers\ElecEngine;
+use App\Http\Requests\Site\ElecRequest;
 
 class ElectronicController extends Controller
 {
@@ -18,7 +19,7 @@ class ElectronicController extends Controller
 
     }
 
-    public function create_request(Request $request)
+    public function create_request(ElecRequest $request)
     {
          
         if($this->elechelp->send_request($request) == 1){ 

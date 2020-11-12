@@ -34,7 +34,7 @@
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" name="delivery_time" value="{{ $item->shipping->delivery_time }}"
-                         class="form-control" required/>
+                         class="form-control" />
                         </div>
                     </div> 
 
@@ -42,7 +42,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reject_reason"> @lang('site.reject_reason') </label>
             
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                           <textarea name="reject_reason" class="form-control" required> </textarea>
+                           <textarea name="reject_reason" class="form-control" > </textarea>
                         </div>
                     </div> 
                      

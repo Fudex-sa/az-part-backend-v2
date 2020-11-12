@@ -53,7 +53,7 @@
     <hr/>
         <h3> @lang('site.coupon_used')  </h3>
     
-        <table class="my-tbl">
+        <table class="my-tbl text-center">
             <tbody>
                 <tr>
                     <th> @lang('site.code') </th>
@@ -65,7 +65,7 @@
                 <tr>
                     <td> {{ $item->coupon->code }} </td>
                     <td> {{ $item->coupon->value }} @lang('site.rs') </td>
-                    <td> {{ $couponUsedCount }}  </td>
+                    <td> {{ coupon_used_times($item->coupon->id) }}  </td>
                     <td> {{ $item->coupon->expiration_date }} </td>
                 </tr>
 

@@ -58,11 +58,12 @@ class MyPricesController extends Controller
         $row = RepPrice::find($item);
         $row->active == 1 ? $active = 0 : $active = 1;
 
-        if( RepPrice::where('id',$item)->update(['active' => $active]) )
+        $item = RepPrice::where('id',$item)->update(['active' => $active]);
+
+        if($item)
             return 1;
 
-        return 0; 
-         
+        return 0;          
     }
 
     public function delete(Request $request){

@@ -81,7 +81,13 @@
             <td> @if($item->type == 'manual') <i class="fa fa-pointer"></i>
                 @else <i class="fa fa-cogs"></i> @endif  {{ __('site.'.$item->type) }} </td>
 
-            <td>{{$item->user->name}}</td>
+            <td>
+                @if($item->user_type == 'seller') {{ $item->seller ? $item->seller->name : ''}}
+                @elseif($item->user_type == 'broker') {{ $item->broker ? $item->broker->name : ''}}
+                @elseif($item->user_type == 'company') {{ $item->company ? $item->company->name : ''}}
+                @else {{ $item->user ? $item->user->name : ''}}
+                @endif
+            </td>
             
             <td> {{ count($item->cart) }} </td>
             

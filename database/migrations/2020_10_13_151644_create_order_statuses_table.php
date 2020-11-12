@@ -18,6 +18,7 @@ class CreateOrderStatusesTable extends Migration
             $table->string('name_ar');
             $table->string('name_en')->nullable();
             $table->string('name_hi')->nullable();
+            $table->enum('type',['order','shipping'])->default('order');
             $table->boolean('active')->default(1);
             $table->integer('sort')->default(0);
             $table->timestamps();

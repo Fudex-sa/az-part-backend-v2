@@ -20,7 +20,7 @@
 
 <br/> <br/>
 
-<table class="table table-striped jambo_table bulk_action" id="myTbl">
+<table class="table table-striped jambo_table bulk_action text-center" id="myTbl">
     <thead class=" text-primary">
         <tr>
           <th>#  </th>
@@ -49,7 +49,7 @@
 
             <td>{{$item->active == 1 ? __('site.yes') : __('site.no') }}</td>
 
-            <td> </td>
+            <td> {{ coupon_used_times($item->id) }} </td>
 
             <td>
                 @if(has_permission('coupons_edit'))

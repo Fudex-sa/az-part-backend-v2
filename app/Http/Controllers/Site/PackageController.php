@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Package;
+use App\Models\PackageSubscribe;
 use Session;
 
 class PackageController extends Controller
@@ -21,10 +22,16 @@ class PackageController extends Controller
 
     public function subscribe($id)
     {
-        Session::put('payment_type','package');
+        $package = Package::find($id);
+        $myPackage = PackageSubscribe::myPackagesByType($package->type)->count();
 
-        Session::put('package_id',$id);
-        
-        return redirect()->route('payment.method');
+        if($myPackage < 1){
+            Session::put('payment_type','package');
+
+            Session::put('package_id',$id);
+            
+            return redirect()->route('payment.method');
+        }else
+            return back()->with('failed' , __('site.You_already_join_in_package'))->withInput();
     }
 }

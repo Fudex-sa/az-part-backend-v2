@@ -14,19 +14,17 @@ class OrderController extends Controller
     protected $view = "dashboard.orders.";
 
     public function all()
-    {
-        
+    {        
         $order_status = OrderStatus::orderby('sort','asc')->get();
 
-        $items = Order::with('cart')->with('shipping')
+        $items = Order::with('cart')->with('shipping')->with('user')->with('seller')->with('broker')->with('company')
                         ->orderby('id','desc')->paginate(pagger());
 
         return view($this->view . 'all',compact('items','order_status'));
     }
 
     public function deleted()
-    {
-        
+    {        
         $items = Order::with('cart')->orderby('id','desc')->onlyTrashed()->paginate(pagger());
 
         $order_status = OrderStatus::orderby('sort','asc')->get();
