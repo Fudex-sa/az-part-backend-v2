@@ -939,4 +939,8 @@ return [
     'order_now' => 'Order Now',
     'taken' => 'Taken',
     'already_rated_before' => 'Already Rated Before',
+    'delivery_time_required' => 'Delivery Time Required',
+    'reject_reason_required' => 'Reject Reason Required',
+    'rep_mobile' => 'Rep Mobile',
+    'not_allowed_to_join_this_service' => 'You are not allowed to order this service',
 ];

@@ -81,8 +81,9 @@ if (! function_exists('total')) {
                 $result = $result + session()->get('with_oil');            
             
         }
-                    
-        return $result - coupon_discount();
+              
+        $total = (int)$result - coupon_discount();
+        return $total;
     }
 }
 
@@ -213,6 +214,16 @@ if (! function_exists('valid_for_elec')) {
         }
     }
 }
+
+if (! function_exists('coupon_used_times')) {
+    function coupon_used_times($coupon_id)
+    {   
+        $count = Order::where('coupon_id',$coupon_id)->count();
+        return $count;
+    }
+}
+
+
 
 
 

@@ -15,19 +15,16 @@ class PackageHelp
 
         $package = Package::find($package_id);
 
-        $my_subscribes = PackageSubscribe::myPackages()->get()->count();
+        $item = PackageSubscribe::create([
+            'user_id' => logged_user()->id ,'user_type' => user_type() , 'package_id' => $package_id ,
+            'package_type' => $package->type ,
+            'price' => total() , 'stores_no' => $package->stores_no                 
+        ]);
+    
 
-        if($my_subscribes < 1){
-            if($package_id){
-                $item = PackageSubscribe::create([
-                    'user_id' => logged_user()->id ,'user_type' => user_type() , 'package_id' => $package_id ,
-                    'package_type' => $package->type ,
-                    'price' => total() , 'stores_no' => $package->stores_no                 
-                ]);
-            }
+        if($item)
             $response = true;
-            
-        }
+        
         else $response = false;
 
         Session::forget('payment_type');

@@ -110,7 +110,5 @@
  
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities') 
-
-    {{-- @include('dashboard.ajax.rep_car_size')  --}}
-
+ 
 @endsection

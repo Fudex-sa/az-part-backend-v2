@@ -53,12 +53,14 @@
           </a>
         </li>
 
+        @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'broker' || user_type() == 'seller')
         <li class="nav-item">
           <a class="nav-link" href="{{ route('cart') }}">
             <img src="{{ site('assets/images/cart.png') }}" alt="">
             @if(logged_user()) <span class="blue"> {{ count(cart()) }} </span> @endif
           </a>
         </li>
+        @endif
 
         <li class="nav-item">
           <a class="nav-link">

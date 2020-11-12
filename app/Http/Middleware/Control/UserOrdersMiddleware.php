@@ -21,6 +21,6 @@ class UserOrdersMiddleware
 
             return $next($request);
             
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('failed' , __('site.not_allowed_to_join_this_service'));
     }
 }

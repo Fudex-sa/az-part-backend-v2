@@ -26,19 +26,23 @@
 
             <tr>
                 <th> @lang('site.rep') </th>
-                <td>  {{ $item->shipping->rep ? $item->shipping->rep->name : '-' }}
+                <td>  {{ $item->shipping->rep ? $item->shipping->rep->name : '-' }} </td>
+            </tr>
+            
+            <tr>
+                <th> @lang('site.rep_mobile') </th>
+                <td>  {{ $item->shipping->rep ? $item->shipping->rep->mobile : '-' }} </td>
+            </tr>
                 
-                    <hr/>
-                    <div class="row">
-                        <label class="col-md-5"> @lang('site.change_order_rep') </label>
-
-                        <select name="rep_id" class="col-md-6">
-                            @foreach ($reps as $rep)
-                                <option value="{{ $rep->id }}" {{ $rep->id == $item->shipping->rep_id ? 'selected' : '' }}>
-                                    {{ $rep['name'] }} </option>
-                            @endforeach
-                        </select>    
-                    </div>
+            <tr>
+                <td>  @lang('site.change_order_rep') </td>
+                <td>
+                    <select name="rep_id" class="col-md-6">
+                        @foreach ($reps as $rep)
+                            <option value="{{ $rep->id }}" {{ $rep->id == $item->shipping->rep_id ? 'selected' : '' }}>
+                                {{ $rep['name'] }} </option>
+                        @endforeach
+                    </select>                        
                 </td>
             </tr>
  

@@ -37,11 +37,12 @@ Route::group(
 
 
         Route::group(['prefix'=> 'rep','namespace' => 'Rep','middleware'=>'rep'], function () {
+            Route::post('my_price/activate', [App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
             Route::get('my_prices', [App\Http\Controllers\Rep\MyPricesController::class, 'index'])->name('rep.my_prices');
             Route::post('my_price/{id?}', [App\Http\Controllers\Rep\MyPricesController::class, 'store'])->name('rep.my_price.store');
             Route::get('my_price/{id}', [App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');
             Route::delete('my_price/delete', [App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');
-            Route::post('my_price/activate', [App\Http\Controllers\Rep\MyPricesController::class, 'activate'])->name('admin.my_price.activate');
+            
 
 
             Route::get('my_orders', [App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');
@@ -103,7 +104,7 @@ Route::group(
             Route::get('stock/filter', [App\Http\Controllers\Site\StockController::class, 'filter'])->name('stock.filter');
 
             Route::get('package/{type}', [App\Http\Controllers\Site\PackageController::class, 'show'])->name('package.show');
-            Route::get('package/subscribe/{id}', [App\Http\Controllers\Site\PackageController::class, 'subscribe'])->name('package.subscribe');
+            Route::get('package/subscribe/{id}', [App\Http\Controllers\Site\PackageController::class, 'subscribe'])->name('package.subscribe')->middleware('userOrders');
 
 
             Route::get('privacy', [App\Http\Controllers\Site\PageController::class, 'privacy'])->name('privacy');
@@ -135,15 +136,15 @@ Route::group(
 
             Route::post('contact_us', [App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
 
-            Route::get('parts/search', [App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
-            Route::post('contact_seller', [App\Http\Controllers\Site\PartController::class, 'addToCart'])->name('addToCart')->middleware('isLogged');
-            Route::get('report/{id}', [App\Http\Controllers\Site\PartController::class, 'report'])->name('report')->middleware('isLogged');
-            Route::post('report', [App\Http\Controllers\Site\PartController::class, 'send_report'])->name('send_report')->middleware('isLogged');
-            Route::get('more_pieces', [App\Http\Controllers\Site\PartController::class, 'more_pieces'])->name('more_pieces');
-            Route::post('create_request', [App\Http\Controllers\Site\ElectronicController::class, 'create_request'])->name('create_request')->middleware('isLogged');
+            Route::get('parts/search', [App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('userOrders');
+            Route::post('contact_seller', [App\Http\Controllers\Site\PartController::class, 'addToCart'])->name('addToCart')->middleware('userOrders');
+            Route::get('report/{id}', [App\Http\Controllers\Site\PartController::class, 'report'])->name('report')->middleware('userOrders');
+            Route::post('report', [App\Http\Controllers\Site\PartController::class, 'send_report'])->name('send_report')->middleware('userOrders');
+            Route::get('more_pieces', [App\Http\Controllers\Site\PartController::class, 'more_pieces'])->name('more_pieces')->middleware('userOrders');
+            Route::post('create_request', [App\Http\Controllers\Site\ElectronicController::class, 'create_request'])->name('create_request')->middleware('userOrders');
 
 
-            Route::get('cart', [App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('isLogged');
+            Route::get('cart', [App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('userOrders');
             Route::delete('cart/delete', [App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');
             Route::post('coupon/use', [App\Http\Controllers\Site\CartController::class, 'use_coupon'])->name('coupon.use')->middleware('isLogged');
 

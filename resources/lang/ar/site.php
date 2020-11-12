@@ -1083,4 +1083,8 @@ return [
     'electronic_search_result' => 'عدد الطلبات الإلكترونية المجانية',
     'manual_search_result' => 'عدد المتاجر المعروضة مجانا فى الطلب اليدوى',
     'already_rated_before' => 'لقد سبق وقمت بتقييم هذا التاجر',
+    'delivery_time_required' => 'وقت التوصيل المتوقع مطلوب',
+    'reject_reason_required' => 'سبب رفض التوصيل مطلوب',
+    'rep_mobile' => 'جوال مندوب الشحن',
+    'not_allowed_to_join_this_service' => 'غير مسموح لك بطلب هذه الخدمة',
 ];
