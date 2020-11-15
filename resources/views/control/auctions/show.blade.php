@@ -35,58 +35,50 @@
       </div>
       <div class="col-md-7">
 
-        <div class="pragraph-box mt-3">
+
+
+        <div class="count-head">
+          <h3>
             <p><img src="{{ site('assets/images/place-1.png') }}" alt="">
               @lang('site.model') : {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} -
                                     {{ $item->model ? $item->model['name_'.my_lang()] : '' }}
                                     {{ $item->year }}
             </p>
+          </h3>
+          <h5 class="count-h5">تفاصيل أخرى عن القطعة </h5>
+          <div class="contain-count">
+            <h5 class="text-center mt-5">الوقت المتبقي للمزايدة</h5>
+            <div class="jumbotron countdown show" data-Date='{{ $item->date_auction }}'>
+              <div class="running">
+                <timer>
+                  <span class=" seconds"></span><span class="minutes"></span><span class=" hours"></span><span
+                    class="days"></span>
+                </timer>
 
-            <p><img src="{{ site('assets/images/place-2.png') }}" alt="">
-                @lang('site.type') : {{ __('site.'.$item->type) }} </p>
+                </div>
 
-            <p><img src="{{ site('assets/images/place-2.png') }}" alt="">
-                  @lang('site.color') : {{ $item->color }} </p>
+              </div>
 
-            <p><img src="{{ site('assets/images/cart-gray.png') }}" alt="">
-                    @lang('site.notes') : {{ __('site.'.$item->notes) }} </p>
 
-            <p><img src="{{ site('assets/images/loc-gray.png') }}" alt=""> @lang('site.address') :
-              {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
-              {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
-            </p>
+            </div>
 
-            <p><img src="{{ site('assets/images/cal-gray.png') }}" alt=""> {{ $item->created_at }} </p>
+            <form class="row" method="post" action="{{ route('control.carStoreBidding') }}" enctype="multipart/form-data">
+              @csrf
 
-            <p><img src="{{ site('assets/images/per-gray.png') }}" alt="">
-                @lang('site.owner') : {{ $item->user ? $item->user->name : '' }}
+              <input type="hidden" name="car_id" value="{{$item->id}}">
+              <input type="hidden" name="user_id" value="{{auth()->id()}}">
+              <div class="form-group col-md-8">
+                <input type="text" name="price" class="form-control m-0" id="sub" placeholder="أدخل قيمة المزايدة لديك" required>
+              </div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-client btn-block">إشترك في المزاد </button>
 
-            <p> <i class="fa fa-eye"></i>
-                  @lang('site.views') : {{ $item->views }}
-            </p>
+              </div>
+            </form>
+            <h5 class="count-h5-2">المزايدة الحالية <span> {{$tenders->max('price')}} ريال سعودي</span></h5>
+          </div>
 
-        </div>
-        <div class="row mt-4">
-          <span class=" badge badge-line col">
-            @lang('site.validatly') : {{ $item->validatly == 1 ? __('site.yes') : __('site.no') }}
-          </span>
 
-          <span class="badge badge-line col">
-            @lang('site.periodic_inspection_validity') : {{ $item->examination == 1 ? __('site.yes') : __('site.no') }}
-          </span>
-
-          <span class="badge badge-line col"> @lang('site.kilometers') : {{ $item->kilo_no }} </span>
-
-        </div>
-        <div class="auction mt-4 row">
-          @if($item->price_type == 'fixed') <h3 class="col-md-12"> {{ $item->price }}  </h3> @endif
-
-          @if($item->auction == 1)
-          <a href="{{ route('control.getAuction',$item->id) }}" class="btn btn-save col-md-4  btn-lg">@lang('site.join_auction')</a>
-          @endif
-          <div class="col-md-8"></div>
-          <a href="#" class="btn btn-logindrop col-md-4 mt-3 btn-lg">تواصل مع الإدارة</a>
-        </div>
         <div class="row mt-5">
           <div class="col-md-4">
             <h5 class="pt-2"> @lang('site.share_via') </h5>
@@ -109,6 +101,55 @@
         </div>
         @endif
 
+      </div>
+
+      <div class="col-md-12 mt-5 tenders">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+              aria-controls="pills-home" aria-selected="true">{{ __('site.car_details') }}</a>
+          </li>
+          <li class="nav-item mr-5">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+              aria-controls="pills-profile" aria-selected="false">المناقصات</a>
+          </li>
+
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+
+            <div class="tender-info mt-5">
+              <h5> <img src="assets/images/per-gray.png" alt=""><span> {{ __('site.seller') }} : </span>{{$item->user['name']}}</h5>
+              <h5> <img src="assets/images/loc-gray.png" alt=""><span> {{__('site.brand')}} :  </span> {{$item->brand['name_'.my_lang()]}}</h5>
+              <h5> <img src="assets/images/cal-gray.png" alt=""><span>{{__('site.model')}} : </span> {{$item->model['name_'.my_lang()]}} </h5>
+              <h5> <img src="assets/images/cal-gray.png" alt=""><span>  {{__('site.kilometers')}}  : </span> {{$item->kilo_no}}
+              </h5>
+              <h5> <img src="assets/images/cart-gray.png" alt=""><span> {{__('site.manufacturing_year')}} : </span> {{$item->year}} </h5>
+
+            </div>
+
+
+
+
+
+          </div>
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+            <div class="tender-info-2  mt-5">
+              @foreach($tenders as $tender)
+              <h5><img src="{{ site('assets/images/tender.png') }}" alt="">{{  __('site.tenders') }}  {{ number_format($tender->price) }} {{ __('site.rs') }}</h5>
+
+              <h6>{{ $tender->created_at }}</h6>
+              @endforeach
+
+
+            </div>
+
+
+          </div>
+        </div>
       </div>
 
 

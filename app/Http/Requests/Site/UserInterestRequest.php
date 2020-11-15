@@ -44,7 +44,7 @@ class UserInterestRequest extends FormRequest
             'country_id.required' =>  __('site.country_required'),
             'region_id.required' =>  __('site.region_required'),
             'city_id.required' =>  __('site.city_required'),
-            
+        
 
         ];
     }

@@ -72,6 +72,9 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Control\\CarController' => $baseDir . '/app/Http/Controllers/Control/CarController.php',
     'App\\Http\\Controllers\\Control\\CarFavoritesController' => $baseDir . '/app/Http/Controllers/Control/CarFavoritesController.php',
+
+    'App\\Http\\Controllers\\Control\\CarsBiddingController' => $baseDir . '/app/Http/Controllers/Control/CarsBiddingController.php',
+
     'App\\Http\\Controllers\\Control\\MyPackageController' => $baseDir . '/app/Http/Controllers/Control/MyPackageController.php',
     'App\\Http\\Controllers\\Control\\MyRequestsController' => $baseDir . '/app/Http/Controllers/Control/MyRequestsController.php',
     'App\\Http\\Controllers\\Control\\OfferController' => $baseDir . '/app/Http/Controllers/Control/OfferController.php',
@@ -172,6 +175,7 @@ return array(
     'App\\Models\\Brand' => $baseDir . '/app/Models/Brand.php',
     'App\\Models\\Broker' => $baseDir . '/app/Models/Broker.php',
     'App\\Models\\Car' => $baseDir . '/app/Models/Car.php',
+    'App\\Models\\CarBidding' => $baseDir . '/app/Models/CarBidding.php',
     'App\\Models\\CarComment' => $baseDir . '/app/Models/CarComment.php',
     'App\\Models\\CarFavorite' => $baseDir . '/app/Models/CarFavorite.php',
     'App\\Models\\CarImage' => $baseDir . '/app/Models/CarImage.php',

@@ -42,7 +42,7 @@ Route::group(
             Route::post('my_price/{id?}', [App\Http\Controllers\Rep\MyPricesController::class, 'store'])->name('rep.my_price.store');
             Route::get('my_price/{id}', [App\Http\Controllers\Rep\MyPricesController::class, 'edit'])->name('rep.my_price');
             Route::delete('my_price/delete', [App\Http\Controllers\Rep\MyPricesController::class, 'delete'])->name('admin.my_price.delete');
-            
+
 
 
             Route::get('my_orders', [App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');
@@ -80,6 +80,9 @@ Route::group(
             Route::get('wishlist/delete/{id?}', [App\Http\Controllers\Control\CarFavoritesController::class, 'remove_wish_list'])->name('control.wishlist.remove_wish_list');
             Route::get('wishlists', [App\Http\Controllers\Control\CarFavoritesController::class, 'wish_list'])->name('control.wish_list');
 
+
+            Route::get('get_auction/{item}', [App\Http\Controllers\Control\CarsBiddingController::class, 'index'])->name('control.getAuction');
+            Route::post('car/bindding/{item?}', [App\Http\Controllers\Control\CarsBiddingController::class, 'storeBidding'])->name('control.carStoreBidding');
 
             Route::get('requests/all', [App\Http\Controllers\Control\MyRequestsController::class, 'all'])->name('my_requests');
             Route::get('request/offers/{id}', [App\Http\Controllers\Control\MyRequestsController::class, 'offers'])->name('request.offers');
@@ -395,6 +398,14 @@ Route::group(
             Route::post('car_comment/activate', [App\Http\Controllers\Admin\CarController::class, 'comment_activate'])->name('admin.car_comment.activate');
             Route::post('car/store/{id?}', [App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');
             Route::post('car/imgs_store/{id?}', [App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');
+
+            /************* Car Bidding *******************/
+
+            Route::get('bidding/all', [App\Http\Controllers\Admin\CarBiddingController::class, 'all'])->name('admin.bidding');
+            Route::get('bidding/approve/{id}/{status}', [App\Http\Controllers\Admin\CarBiddingController::class, 'updateStatusApprove'])->name('admin.bidding.updateStatusApprove');
+            Route::get('bidding/reject/{id}/{status}', [App\Http\Controllers\Admin\CarBiddingController::class, 'updateStatusReject'])->name('admin.bidding.updateStatusReject');
+            Route::get('bidding/delete', [App\Http\Controllers\Admin\CarBiddingController::class, 'delete'])->name('admin.bidding.delete');
+            Route::get('bidding/update/{id?}', [App\Http\Controllers\Admin\CarBiddingController::class, 'update'])->name('admin.bidding.store');
 
             /************ Delivery Regions  **********/
             Route::get('delivery_regions', [App\Http\Controllers\Admin\DeliveryRegionController::class, 'all'])->name('admin.delivery_regions');

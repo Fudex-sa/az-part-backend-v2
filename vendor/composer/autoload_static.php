@@ -657,6 +657,8 @@ class ComposerStaticInitf6f924e77b0a51be8e3a825deea345fe
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Control\\CarController' => __DIR__ . '/../..' . '/app/Http/Controllers/Control/CarController.php',
         'App\\Http\\Controllers\\Control\\CarFavoritesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Control/CarFavoritesController.php',
+        'App\\Http\\Controllers\\Control\\CarsBiddingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Control/CarsBiddingController.php',
+
         'App\\Http\\Controllers\\Control\\MyPackageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Control/MyPackageController.php',
         'App\\Http\\Controllers\\Control\\MyRequestsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Control/MyRequestsController.php',
         'App\\Http\\Controllers\\Control\\OfferController' => __DIR__ . '/../..' . '/app/Http/Controllers/Control/OfferController.php',
@@ -757,6 +759,7 @@ class ComposerStaticInitf6f924e77b0a51be8e3a825deea345fe
         'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
         'App\\Models\\Broker' => __DIR__ . '/../..' . '/app/Models/Broker.php',
         'App\\Models\\Car' => __DIR__ . '/../..' . '/app/Models/Car.php',
+        'App\\Models\\CarBidding' => __DIR__ . '/../..' . '/app/Models/CarBidding.php',
         'App\\Models\\CarComment' => __DIR__ . '/../..' . '/app/Models/CarComment.php',
         'App\\Models\\CarFavorite' => __DIR__ . '/../..' . '/app/Models/CarFavorite.php',
         'App\\Models\\CarImage' => __DIR__ . '/../..' . '/app/Models/CarImage.php',
