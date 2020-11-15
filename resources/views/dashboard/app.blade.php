@@ -15,7 +15,7 @@
 
 @if(cur_dir() == 'rtl')
     <link href="{{ dashboard('vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css') }}" rel="stylesheet">
-@else 
+@else
     <link href="{{ dashboard('ltr.css') }}" rel="stylesheet">
 @endif
 
@@ -65,8 +65,8 @@
 
     <!-- sidebar menu -->
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-        <div class="menu_section">     
-            
+        <div class="menu_section">
+
             @if( has_permission('users_show') || has_permission('companies_show') || has_permission('sellers_show')
             ||  has_permission('brokers_show') ||  has_permission('reps_show') || has_permission('supervisors_show')
             || has_permission('saudis_show') ||  has_permission('roles_show')
@@ -75,7 +75,7 @@
                 <li><a><i class="fa fa-users"></i> {{ __('site.users_management') }}
                         <span class="fa fa-chevron-down"></span></a>
 
-                    <ul class="nav child_menu">                       
+                    <ul class="nav child_menu">
                         @if(has_permission('users_show'))
                             <li> <a href="{{route('admin.users')}}"> {{ __('site.users') }} </a> </li>
                         @endif
@@ -97,7 +97,7 @@
                         @endif
 
                         @if(has_permission('supervisors_show'))
-                            <li> <a href="{{route('admin.supervisors')}}"> {{ __('site.supervisors') }} </a> </li>                    
+                            <li> <a href="{{route('admin.supervisors')}}"> {{ __('site.supervisors') }} </a> </li>
                         @endif
 
                         @if(has_permission('saudis_show'))
@@ -108,11 +108,11 @@
                             <li> <a href="{{route('admin.roles')}}"> {{ __('site.roles') }} </a> </li>
                         @endif
                     </ul>
-                </li>                             
+                </li>
             </ul>
             @endif
 
-            
+
             @if(has_permission('socials_show') || has_permission('settings_show') || has_permission('countries_show'))
 
             <ul class="nav side-menu">
@@ -132,27 +132,27 @@
                         @if(has_permission('settings_show'))
                             <li> <a href="{{ route('admin.settings') }}"> {{ __('site.site_settings') }} </a> </li>
                         @endif
-        
+
                         @if(has_permission('countries_show'))
                             <li> <a href="{{route('admin.countries')}}"> {{ __('site.countries') }} </a> </li>
                         @endif
-                                
+
                         @if(has_permission('db_engine'))
                             <li> <a href="{{ route('admin.db_engine') }}"> {{ __('site.db_engine') }} </a> </li>
                         @endif
 
                     </ul>
-                </li>                             
+                </li>
             </ul>
 
-            @endif 
+            @endif
 
             <ul class="nav side-menu">
-                
+
                 @if(has_permission('coupons_show'))
                     <li> <a  href="{{ route('admin.coupons')}}"> <i class="fa fa-image"></i>  {{ __('site.coupons') }} </a> </li>
                 @endif
- 
+
             </ul>
 
             @if(has_permission('car_bidding_show') || has_permission('antiques_show') || has_permission('damaged_show') )
@@ -163,7 +163,7 @@
 
                     <ul class="nav child_menu">
                         @if(has_permission('car_bidding_show'))
-                            {{-- <li> <a href="{{ route('admin.cars.bidding') }}"> {{ __('site.car_bidding') }} </a> </li> --}}
+                          <li>   <a href="{{ route('admin.bidding') }}"> {{ __('site.car_bidding') }} </a> </li>
                         @endif
 
                         @if(has_permission('antiques_show'))
@@ -174,12 +174,12 @@
                             <li> <a href="{{ route('admin.damaged') }}"> {{ __('site.damaged_cars') }} </a> </li>
                         @endif
                     </ul>
-                </li>                             
+                </li>
             </ul>
              @endif
 
 
-            @if(has_permission('order_show') || has_permission('electronic_orders_show') || 
+            @if(has_permission('order_show') || has_permission('electronic_orders_show') ||
                     has_permission('assign_to_admin_show') || has_permission('express_requests') ||
                      has_permission('deleted_requests') )
 
@@ -192,7 +192,7 @@
                         @if(has_permission('order_show'))
                             <li> <a href="{{route('admin.orders')}}"> {{ __('site.all_orders') }} </a> </li>
                         @endif
- 
+
                         @if(has_permission('order_show'))
                             <li> <a href="{{route('admin.electronic.engine')}}"> {{ __('site.electronic_engine') }} </a> </li>
                         @endif
@@ -204,9 +204,9 @@
                         @if(has_permission('reports_show'))
                             <li> <a href="{{route('admin.reports')}}"> {{ __('site.orders_reports') }} </a> </li>
                         @endif
-                    
+
                     </ul>
-                </li>                             
+                </li>
             </ul>
             @endif
 
@@ -222,15 +222,15 @@
                         @if(has_permission('delivery_region_show'))
                             <li> <a href="{{route('admin.delivery_regions')}}"> {{ __('site.tashlih_regions') }} </a> </li>
                         @endif
-                    
+
                     </ul>
-                </li>                             
+                </li>
             </ul>
             @endif
 
-            
+
             <ul class="nav side-menu">
-                
+
                 @if(has_permission('packages_show') )
                     <li><a href="{{ route('admin.packages') }}"><i class="fa fa-tag"></i> {{ __('site.packages_management') }} </a></li>
                 @endif
@@ -251,28 +251,28 @@
                     <li><a href="{{ route('admin.contact_us')}}"><i class="fa fa-phone"></i> {{ __('site.contact_us') }}   </a></li>
                 @endif
             </ul>
-                
+
             @if(has_permission('pages_show'))
             <ul class="nav side-menu">
                 <li> <a> <i class="fa fa-database"></i> {{ __('site.pages') }} <span class="fa fa-chevron-down"></span></a>
 
                     <ul class="nav child_menu">
                         <li> <a href="{{ route('admin.page',1) }}"> {{ __('site.about_us_management') }} </a> </li>
-        
+
                         <li> <a href="{{ route('admin.page',2) }}"> {{ __('site.privacy_policy') }} </a> </li>
-        
-                        <li> <a href="{{ route('admin.page',3) }}"> {{ __('site.terms_and_condition') }} </a> </li>                             
+
+                        <li> <a href="{{ route('admin.page',3) }}"> {{ __('site.terms_and_condition') }} </a> </li>
                     </ul>
-                </li>                             
+                </li>
             </ul>
             @endif
 
             <ul class="nav side-menu">
-                
+
                 @if(has_permission('sliders_show'))
                     <li> <a  href="{{ route('admin.sliders')}}"> <i class="fa fa-image"></i>  {{ __('site.slider') }} </a> </li>
                 @endif
- 
+
             </ul>
 
             @if(has_permission('ticker_show') || has_permission('stock_show'))
@@ -288,12 +288,12 @@
                             <li><a href="{{ route('admin.stocks') }}"> {{ __('site.stock') }} </a></li>
                         @endif
                     </ul>
-                </li>                             
+                </li>
             </ul>
             @endif
 
             <ul class="nav side-menu">
-                
+
                 @if(has_permission('ads_show'))
                     <li><a href="{{ route('admin.ads')}}"><i class="fa fa-bullhorn"></i> {{ __('site.ads') }} </a></li>
                 @endif
@@ -309,7 +309,7 @@
 
 
         </div>
-            
+
 
     </div>
     <!-- /sidebar menu -->
@@ -326,7 +326,7 @@
         <a data-toggle="tooltip" data-placement="top" title="@lang('site.close')" class="lock_btn">
             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="@lang('site.logout')" 
+        <a data-toggle="tooltip" data-placement="top" title="@lang('site.logout')"
         href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
@@ -356,7 +356,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="{{route('admin.profile')}}"> @lang('site.profile') </a></li>
-                        
+
                     <li><a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out pull-right"></i> @lang('site.logout') </a></li>
 
@@ -373,16 +373,16 @@
                     <i class="fa fa-globe"></i>
                 </a>
                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    
+
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <li>
-                        <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">                             
-                            <span>  {{ $properties['native'] }}  </span>                             
+                        <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            <span>  {{ $properties['native'] }}  </span>
                         </a>
                     </li>
                     @endforeach
- 
-                   
+
+
                 </ul>
             </li>
         </ul>
@@ -391,14 +391,14 @@
 </div>
 <!-- /top navigation -->
 <!-- /header content -->
-    
+
 <!-- page content -->
 <div class="right_col" role="main">
 
 @if(cur_root() != 'admin.dashboard' && cur_root() != 'admin.piece.edit' && cur_root() != 'admin.engine'
-        
-        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis' && cur_root() != 'admin.supervisors'        
-        && cur_root() != 'admin.supervisor.search'  && cur_root() != 'admin.users'  && cur_root() != 'admin.user.search'        
+
+        && cur_root() != 'admin.packages' && cur_root() != 'admin.saudis' && cur_root() != 'admin.supervisors'
+        && cur_root() != 'admin.supervisor.search'  && cur_root() != 'admin.users'  && cur_root() != 'admin.user.search'
         && cur_root() != 'admin.companies' && cur_root() != 'admin.company.search'  && cur_root() != 'admin.sellers'
         && cur_root() != 'admin.seller.search'  && cur_root() != 'admin.brokers'  && cur_root() != 'admin.broker.search'
         && cur_root() != 'admin.reps' && cur_root() != 'admin.rep.search' && cur_root() != 'admin.pieces'
@@ -410,10 +410,10 @@
 
 <div class="page-title">
     <div class="title_left">
-        <h3> 
+        <h3>
             <a href="{{ route('admin.dashboard') }}"> @lang('site.dashboard') </a> /
-            
-            @if(isset($level2)) <a href="{{ route($level2['link']) }}"> 
+
+            @if(isset($level2)) <a href="{{ route($level2['link']) }}">
                     @lang('site.'.$level2['name']) </a> / @endif
 
             @yield('title')
@@ -425,7 +425,7 @@
             <div class="input-group">
                 <form method="get" action="{{ route('admin.search') }}">
 
-                    <input type="text" class="form-control" name="search_text" 
+                    <input type="text" class="form-control" name="search_text"
                             value="{{ request()->search_text }}">
 
                     <span class="input-group-btn">
@@ -444,7 +444,7 @@
     <div class="x_title">
         <h2> @yield('title') </h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                  
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -452,7 +452,7 @@
     <div class="x_content">
 
         <div class="table-responsive">
- 
+
             @yield('content')
 
         </div>
@@ -470,7 +470,7 @@
 <!-- footer content -->
 <footer class="hidden-print">
 <div class="pull-left">
-    &copy;  @lang('site.all_copy_right_reserved') {{ config('app.name', 'AZParts') .' '. date('Y') }}  
+    &copy;  @lang('site.all_copy_right_reserved') {{ config('app.name', 'AZParts') .' '. date('Y') }}
 </div>
 <div class="clearfix"></div>
 </footer>

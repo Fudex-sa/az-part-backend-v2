@@ -399,6 +399,14 @@ Route::group(
             Route::post('car/store/{id?}', [App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');
             Route::post('car/imgs_store/{id?}', [App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');
 
+            /************* Car Bidding *******************/
+
+            Route::get('bidding/all', [App\Http\Controllers\Admin\CarBiddingController::class, 'all'])->name('admin.bidding');
+            Route::get('bidding/approve/{id}/{status}', [App\Http\Controllers\Admin\CarBiddingController::class, 'updateStatusApprove'])->name('admin.bidding.updateStatusApprove');
+            Route::get('bidding/reject/{id}/{status}', [App\Http\Controllers\Admin\CarBiddingController::class, 'updateStatusReject'])->name('admin.bidding.updateStatusReject');
+            Route::get('bidding/delete', [App\Http\Controllers\Admin\CarBiddingController::class, 'delete'])->name('admin.bidding.delete');
+            Route::get('bidding/update/{id?}', [App\Http\Controllers\Admin\CarBiddingController::class, 'update'])->name('admin.bidding.store');
+
             /************ Delivery Regions  **********/
             Route::get('delivery_regions', [App\Http\Controllers\Admin\DeliveryRegionController::class, 'all'])->name('admin.delivery_regions');
             Route::get('delivery_region/{item}', [App\Http\Controllers\Admin\DeliveryRegionController::class, 'edit'])->name('admin.delivery_region');
