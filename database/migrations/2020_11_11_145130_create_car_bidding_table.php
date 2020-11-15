@@ -15,10 +15,10 @@ class CreateCarBiddingTable extends Migration
     {
         Schema::create('car_bidding', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('car_id');
-            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('car_id');
+            //$table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
+            $table->integer('user_id');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('comment')->nullable();
             $table->string('price', 50)->nullable();
             $table->tinyInteger('status');
