@@ -146,7 +146,10 @@ class SellerController extends Controller
 
     public function available_brand_store(Request $request)
     {
+        $seller = Seller::find($request->user_id);
+
         $data = $request->except('_token');
+        $data['city_id'] = $seller->city_id;
 
         $item = AvailableModel::create($data);
 

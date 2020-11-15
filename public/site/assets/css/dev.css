@@ -258,3 +258,8 @@
     border-radius: 100%;
     border: 1px solid #DCDCDC;
 }
+
+.my-popup .modal-header{
+    border-bottom: none;
+    color: #e26941;
+}

@@ -1091,4 +1091,6 @@ return [
     'reject_reason_required' => 'سبب رفض التوصيل مطلوب',
     'rep_mobile' => 'جوال مندوب الشحن',
     'not_allowed_to_join_this_service' => 'غير مسموح لك بطلب هذه الخدمة',
+    'in_other_cities' => 'فى مدن اخرى',
+    'result_in_other_cities' => 'النتائج فى المدن الأخرى',
 ];

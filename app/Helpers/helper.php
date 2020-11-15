@@ -156,6 +156,13 @@ if (! function_exists('cities')) {
     }
 }
 
+if (! function_exists('get_city')) {
+    function get_city($city_id)
+    {
+        return City::find($city_id);
+    }
+}
+
 if (! function_exists('reps')) {
     function reps($city_id)
     {

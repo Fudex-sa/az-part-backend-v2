@@ -32,7 +32,8 @@
               <div class="add-card-head">
                 <div class="add-card-layout">
                   <ul class="lay-out-menue">
-                    <li><a href="#"><img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
+                    <li> <a href="{{ route('car',$item->id) }}">
+                      <img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
                   @if(logged_user() && user_type() == 'user')
                   @if(App\Models\CarFavorite::where('car_id',$item->id)->where('user_id',logged_user()->id)->first())
                     <li><a href="{{ route('control.wishlist.remove_wish_list',$item->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
@@ -41,7 +42,8 @@
                   @endif
                 @endif
 
-                <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
+                    <li><a href="https://wa.me/?text={{ $item->title }}" target="_blank">
+                      <img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
                   </ul>
                 </div>
 
@@ -55,7 +57,7 @@
 
               <img src="{{ brand_img($item->brand ? $item->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
-              <h6> <a href="{{ route('car',$item->id) }}">{{ $item->model ? $item->model['name_'.my_lang()] : '' }} </a> </h6>
+              <h6> {{ $item->model ? $item->model['name_'.my_lang()] : '' }}  </h6>
 
               <h6 class="mt-3"><img src="{{ asset('assets/images/location.png') }}" alt="">
                    {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -

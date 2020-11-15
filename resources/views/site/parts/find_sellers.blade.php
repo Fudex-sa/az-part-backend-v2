@@ -17,25 +17,29 @@
 
         <div class="col-md-12 my-3">
           <div class="head-section">
-            <h2>
-              @lang('site.this_is_your_search_result')
-            </h2>
+            <h2> @lang('site.this_is_your_search_result') </h2>
 
             <div class="results">
               <h6>  @lang('site.result_no_in_this_city') : 
                     <span class="text-dark"> {{ $all_items ? count($all_items) : 0 }}  @lang('site.result')  </span> 
               </h6>
   
-              {{-- <div class="advice">
-                  <p>  {{ data('for_viewing_all_subscribe_first') }}   </p>
-              </div> --}}
+              @if($found_result == 0)
+              <div class="text-center advice">
+                <br/> <br/>                
+                  <p>  {{ data('for_more_stores') }} 
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#other_cities">
+                       @lang('site.in_other_cities') </a>
+                  </p>
+              </div>
+              @endif
 
             </div>
 
           </div>
         </div>
 
-        @if($items)
+        @if(count($items) > 0)
             @foreach ($items as $item)
                  
                     <div class="col-md-12">
@@ -105,8 +109,8 @@
 
         <div class="col-md-12">
             <div class="advice text-center">
-              {{-- <p> @lang('site.search_found_no_result') </p> --}}
-              {{-- <a href="#" class="btn btn-results"> @lang('site.request_From_another_city') </a> --}}
+              {{-- <p> @lang('site.search_found_no_result') </p>
+              <a href="#" class="btn btn-results"> @lang('site.request_From_another_city') </a> --}}
             </div>
           </div>
         
@@ -128,6 +132,9 @@
     </div>
   </section>
 
+  @if($found_result == 0)
+    @include('site.parts.other_cities')
+  @endif
 
 @endsection
 

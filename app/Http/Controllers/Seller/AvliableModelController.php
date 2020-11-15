@@ -42,6 +42,7 @@ class AvliableModelController extends Controller
         $data = $request->except('_token');
         
         $data['user_id'] = logged_user()->id;
+        $data['city_id'] = logged_user()->city_id;
   
         if(! $id){
             foreach($request->years as $year){
