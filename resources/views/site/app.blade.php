@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ site('assets/css/slick.css') }}">
   <link rel="stylesheet" href="{{ site('assets/css/slick-theme.css') }}">
   <link rel="stylesheet" href="{{ site('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ site('assets/css/style-multi.css') }}">
 
   <link rel="icon" href="{{ site('assets/images/logo.png') }}" type="image/ico"/>
   <title>{{ config('app.name', 'AZParts') }} | @yield('title') </title>
@@ -291,6 +292,8 @@
   <script src="{{ site('assets/js/popper.min.js') }}"></script>
   <script src="{{ site('assets/js/bootstrap.min.js') }}"></script>
   <script src="{{ site('assets/js/slick.min.js') }}"></script>
+  <script src="{{ site('assets/js/multi-countdown.js') }}"></script>
+
   <script src="{{ site('assets/js/code.js') }}"></script>
 
 @include('layouts.message')
