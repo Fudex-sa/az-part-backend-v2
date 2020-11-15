@@ -136,13 +136,13 @@ Route::group(
 
             Route::post('contact_us', [App\Http\Controllers\Site\ContactUsController::class, 'index'])->name('contact_us');
 
-            Route::get('parts/search', [App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('userOrders');
+            Route::get('parts/search', [App\Http\Controllers\Site\PartController::class, 'search'])->name('search.parts')->middleware('isLogged');
             Route::post('contact_seller', [App\Http\Controllers\Site\PartController::class, 'addToCart'])->name('addToCart')->middleware('userOrders');
             Route::get('report/{id}', [App\Http\Controllers\Site\PartController::class, 'report'])->name('report')->middleware('userOrders');
             Route::post('report', [App\Http\Controllers\Site\PartController::class, 'send_report'])->name('send_report')->middleware('userOrders');
             Route::get('more_pieces', [App\Http\Controllers\Site\PartController::class, 'more_pieces'])->name('more_pieces')->middleware('userOrders');
             Route::post('create_request', [App\Http\Controllers\Site\ElectronicController::class, 'create_request'])->name('create_request')->middleware('userOrders');
-
+            Route::get('search/change/{city}', [App\Http\Controllers\Site\PartController::class, 'change_search'])->name('search.change')->middleware('isLogged');
 
             Route::get('cart', [App\Http\Controllers\Site\CartController::class, 'index'])->name('cart')->middleware('userOrders');
             Route::delete('cart/delete', [App\Http\Controllers\Site\CartController::class, 'delete'])->name('admin.cart.delete');

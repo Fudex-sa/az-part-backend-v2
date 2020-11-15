@@ -14,7 +14,7 @@ class AvailableModel extends Model
     // ];
 
     protected $fillable = [
-        'user_id' , 'brand_id' , 'model_id' , 'year' 
+        'user_id' , 'brand_id' , 'model_id' , 'year' , 'city_id'
     ];
 
     public function brand(){
