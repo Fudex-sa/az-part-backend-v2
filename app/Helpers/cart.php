@@ -10,6 +10,8 @@ use App\Models\Seller;
 use App\Models\Broker;
 use App\Models\RepPrice;
 use App\Models\PackageSubscribe; 
+use App\Models\AvailableModel;
+use DB;
 
 if (! function_exists('cart')) {
     function cart() {
@@ -69,20 +71,29 @@ if (! function_exists('payment_type')) {
 
 if (! function_exists('total')) {
     function total() {
+
+        $discount = 0;
                 
         if(payment_type() == 'package')
             $result = Package::packagePrice(session()->get('package_id'));
 
         else{
 
-            $result = sub_total() + taxs() + delivery_price();
+            $result = sub_total() + taxs();
  
             if(session()->get('with_oil'))
-                $result = $result + session()->get('with_oil');            
+                $result = $result + session()->get('with_oil');     
+                
+            if(coupon_discount() != 0)            
+                $discount = coupon_discount() / 100 * $result;
+
+            $result = $result - $discount;
+            $result = $result + delivery_price();
             
         }
-              
-        $total = (int)$result - coupon_discount();
+       
+        $total = number_format((float)$result, 2, '.', '');
+         
         return $total;
     }
 }
@@ -223,8 +234,28 @@ if (! function_exists('coupon_used_times')) {
     }
 }
 
+if (! function_exists('cities_sellers')) {
+    function cities_sellers()
+    {  
+        $search = search_session();
 
+        $brand = $search['brand'];
+        $model = $search['model'];
+        $year = $search['year'];
+        $country = $search['country'];
 
+        $items = AvailableModel::select('city_id', DB::raw('count(*) as stores'))
+                            ->matchOrder($brand,$model,$year)                            
+                            ->whereHas('seller',function($q) use ($country){
+                                $q->where('country_id',$country)->where('active',1)
+                                    ->orderby('saudi','desc')->orderby('vip','desc');
+                            })                           
+                            ->get();
+                         
+        return $items;
+
+    }
+}
 
 
         

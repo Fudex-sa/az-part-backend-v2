@@ -142,4 +142,26 @@ class PartController extends Controller
 
         return view($this->view . 'more_pieces',compact('piece_alts'));
     }
+
+    public function change_search($city)
+    {
+        $search = search_session();
+
+        $brand = $search['brand'];
+        $model = $search['model'];
+        $year = $search['year'];
+        $country = $search['country'];
+        $search_type = $search['search_type'];
+
+        $new_city = City::find($city);
+
+        session()->put('search',[
+            'city' => $city , 'region' => $new_city->region_id 
+        ]);
+
+        return redirect('parts/search?brand='.$brand.'&model='.$model.'&year='.$year.'&country='.$country.
+                        '&region='.$new_city->region_id.'&city='.$city.'&search_type='.$search_type);
+        
+
+    }
 }

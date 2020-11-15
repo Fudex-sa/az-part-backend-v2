@@ -163,3 +163,7 @@
 .false{
     color: red;
 }
+
+.top_search .input-group-btn{
+    float: left;
+}

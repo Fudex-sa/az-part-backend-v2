@@ -41,7 +41,7 @@
             
             <td>{{$item->code}}</td>
             
-            <td>{{$item['value']}} @lang('site.rs') </td>             
+            <td>{{$item['value']}} % </td>             
 
             <td>{{$item->uses_number}}</td>
 

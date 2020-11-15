@@ -220,7 +220,8 @@
                         <li><a href="{{ route('control.wishlist.add_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
                       @endif
                     @endif
-                    <li><a href="#"><img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
+                    <li><a href="https://wa.me/?text={{ $car->title }}" target="_blank">
+                      <img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
                     </ul>
                 </div>
 
