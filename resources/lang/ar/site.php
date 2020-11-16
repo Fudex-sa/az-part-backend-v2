@@ -126,7 +126,7 @@ return [
     'kilometers' => 'عدد الكيلومترات',
     'choose_city' => 'اختر المدينة',
     'fixed_price' => 'سعر ثابت',
-    'price_on_bidding' => 'على الرسوم',
+    'price_on_bidding' => 'على السوم',
     'validatly' => 'صلاحية الاستمارة ',
     'yes' => 'نعم' , 'no' => 'لا',
     'publish' => 'نشر',

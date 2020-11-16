@@ -11,6 +11,11 @@ use App\Models\Modell;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\InterestNotify;
+use App\Models\UserInterest;
+
+
+use App\Http\Controllers\Api\PushNotificationController;
 use App\Http\Requests\Control\CarRequest;
 
 class CarController extends Controller
@@ -59,6 +64,43 @@ class CarController extends Controller
                     $img->move(public_path('uploads'), $fileName);
 
                     $carImg = CarImage::create(['car_id' => $item->id , 'photo' => $fileName]);
+                }
+            }
+
+            if ($item->price != null) {
+                $interests = UserInterest::where('brand_id', $item->brand_id)
+                                        ->where('car_model_id', $item->model_id)
+                                        ->where('year', $item->year)
+                                        ->where('city_id', $item->city_id)
+                                          ->where('country_id', $item->country_id)
+                                          ->where('region_id', $item->region_id)
+                                          ->where('price_from', '<', $item->price)
+                                          ->where('price_to', '>', $item->price)
+                                        ->get();
+            } else {
+                $interests = UserInterest::where('brand_id', $item->brand_id)
+                                        ->where('car_model_id', $item->model_id)
+                                        ->where('year', $item->year)
+                                        ->where('city_id', $item->city_id)
+                                        ->where('country_id', $item->country_id)
+                                        ->where('region_id', $item->region_id)
+                                        ->get();
+            }
+
+            if ($interests) {
+                foreach ($interests as $interest) {
+                    InterestNotify::create([
+                        'car_id' => $item->id,
+                        'user_interest_id' => $interest->id,
+                        'seen' => 0
+                    ]);
+
+                    $user_token = $interest->user['api_token'];
+
+                    $title = __('site.new_car_you_interest_in');
+                    $body = __('site.car') . $item->title . ' ' .$title .
+                            __('site.have_been_reached_now');
+                    PushNotificationController::send((array)$user_token, $title, $body, 'car', $item->id);
                 }
             }
 

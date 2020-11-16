@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3",
         "abdullahobaid/mobilywslaraval": "dev-master",
+        "alymosul/laravel-exponent-push-notifications": "^2.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -45,7 +46,7 @@
         },
         "files": [
             "app/Helpers/helper.php",
-            "app/Helpers/cart.php"            
+            "app/Helpers/cart.php"
         ]
     },
     "autoload-dev": {
