@@ -46,6 +46,10 @@
                         <th scope="col"> @lang('site.region') </th>
                         <th scope="col"> @lang('site.city') </th>
 
+                        <th scope="col"> @lang('site.view_page') </th>
+
+
+
                         <th class="operations_th"> </th>
                       </tr>
                     </thead>
@@ -69,7 +73,38 @@
                                    <td> {{ $interest->region ? $interest->region['name_'.my_lang()] : '' }}  </td>
                               <td> {{ $interest->city ? $interest->city['name_'.my_lang()] : '' }}  </td>
 
+                              <td>
+                              @php
+                              if($interest->price_from != null & $interest->price_to != null){
+                                  $matchedItems = App\Models\Car::where('brand_id',$interest->brand_id)
+                                      ->where('model_id',$interest->car_model_id)
+                                      ->where('year',$interest->year)
+                                      ->where('city_id',$interest->city_id)
+                                      ->where('price','>=',$interest->price_from)
+                                      ->where('price','<=',$interest->price_to)
+                                      ->get();
+                                  }else{
+                                  $matchedItems = App\Models\Car::where('brand_id',$interest->brand_id)
+                                      ->where('model_id',$interest->car_model_id)
+                                      ->where('year',$interest->year)
+                                      ->where('city_id',$interest->city_id)
+                                      ->get();
+                                  }
+                                  if(count($matchedItems) > 0){
+                                      foreach($matchedItems as $matchedItem){
+                                          $url = url('car/'.$matchedItem->id);
+                                          echo "<li><a target='blank' href=\"$url\">";
+                                          if($matchedItem->title != null) echo $matchedItem->title;
+                                          else echo $interest->brand ? $interest->brand['name'] : ' - ';
+                                          echo $interest->model ? $interest->model['name'] : ' - ';
+                                          echo $interest->year;
+                                          echo "</a></li>";
+                                      }
+                                  }else
+                                      echo __('site.no_matched_found_yet');
 
+                              @endphp
+                             </td>
                               <td>
                                 <a href="{{ route('control.user_interest',$interest->id) }}" class="btn-edit"> <i class="fa fa-edit"></i> </a>
 
