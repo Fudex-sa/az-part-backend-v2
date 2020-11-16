@@ -17,9 +17,14 @@ use App\Models\OrderShipping;
 use App\Models\OrderShippingRejecte;
 use App\Models\PackageSubscribe;
 use App\Models\Report;
+use App\Helpers\ElecEngine;
 
 class DBEngineController extends Controller
 {
+    public function __construct()
+    {         
+        $this->engine = new ElecEngine();
+    }
     
     protected $view = "dashboard.db_engine.";
 
@@ -43,6 +48,15 @@ class DBEngineController extends Controller
         PackageSubscribe::query()->truncate();
         Report::query()->truncate();
         
-        return back()->with('success' , __('site.empty_save') );
+        return 1;
+ 
+    }
+
+    public function next_round()
+    {
+        $this->engine->run_next_round();
+
+        return 1;
+ 
     }
 }

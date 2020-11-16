@@ -24,15 +24,15 @@
                     <span class="text-dark"> {{ $all_items ? count($all_items) : 0 }}  @lang('site.result')  </span> 
               </h6>
   
-              @if($found_result == 0)
+             
               <div class="text-center advice">
-                <br/> <br/>                
+                           
                   <p>  {{ data('for_more_stores') }} 
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#other_cities">
                        @lang('site.in_other_cities') </a>
                   </p>
               </div>
-              @endif
+             
 
             </div>
 
@@ -106,13 +106,7 @@
              
             @endforeach
         @else
-
-        <div class="col-md-12">
-            <div class="advice text-center">
-              {{-- <p> @lang('site.search_found_no_result') </p>
-              <a href="#" class="btn btn-results"> @lang('site.request_From_another_city') </a> --}}
-            </div>
-          </div>
+ 
         
         @endif
 
@@ -132,10 +126,9 @@
     </div>
   </section>
 
-  @if($found_result == 0)
+   
     @include('site.parts.other_cities')
-  @endif
-
+ 
 @endsection
 
 @section('popup')
@@ -150,8 +143,19 @@
 @include('dashboard.ajax.load_regions') 
 @include('dashboard.ajax.load_cities')
 
-    <script>
-       
+@if($found_result == 0)
+<script>
+GrowlNotification.notify({
+    title: "{{__('site.failed')}}",
+    description: " {{ __('site.not_found_result_in_your_city') }} ",
+    zIndex: 1056,
+    'type' : 'error'
+  });
+</script>
+@endif
+
+
+<script>       
        $('#contact_seller').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var seller_id = button.data('item');

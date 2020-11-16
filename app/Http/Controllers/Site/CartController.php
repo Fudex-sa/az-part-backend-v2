@@ -13,6 +13,8 @@ class CartController extends Controller
 
     public function index()
     {
+        session()->put('payment_type','cart');
+        
         return view($this->view . 'cart');
     }
 

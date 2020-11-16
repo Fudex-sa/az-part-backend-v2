@@ -50,46 +50,37 @@ if (! function_exists('sub_total')) {
 if (! function_exists('taxs')) {
     function taxs() {
                 
-        $commission = setting('site_commission') / 100 * sub_total();
-
-        $result = setting('pieces_tax') + $commission;
-        
-        return $result;
-    }
-}
-
-
-if (! function_exists('payment_type')) {
-    function payment_type() {
-
-        $payment_type = session()->get('payment_type') ? session()->get('payment_type') : 'cart';
+        $tax = setting('pieces_tax') / 100 * sub_total();
  
-        return $payment_type;
+        return $tax;
     }
 }
 
+if (! function_exists('commission')) {
+    function commission() {
+                
+        $commission = setting('site_commission') / 100 * sub_total();
+ 
+        return $commission;
+    }
+}
+ 
 
 if (! function_exists('total')) {
     function total() {
-
-        $discount = 0;
-                
-        if(payment_type() == 'package')
+    
+        if(session()->get('payment_type') == 'package')
             $result = Package::packagePrice(session()->get('package_id'));
 
         else{
 
-            $result = sub_total() + taxs();
- 
-            if(session()->get('with_oil'))
-                $result = $result + session()->get('with_oil');     
-                
-            if(coupon_discount() != 0)            
-                $discount = coupon_discount() / 100 * $result;
+            session()->get('with_oil') ? $with_oil = session()->get('with_oil') : $with_oil = 0;
 
-            $result = $result - $discount;
-            $result = $result + delivery_price();
-            
+            $result = sub_total() + taxs() + commission();
+            $result = $result - discount();
+
+            $result = $result + delivery_price() + $with_oil;
+             
         }
        
         $total = number_format((float)$result, 2, '.', '');
@@ -115,28 +106,7 @@ if (! function_exists('my_orders')) {
         return $items; 
     }
 }
-
-// if (! function_exists('update_available_orders')) {
-//     function update_available_orders($user_id) {
-                
-//         if(user_type() == 'company')
-//             $user = Company::find($user_id);
-        
-//         else if(user_type() == 'seller')
-//             $user = Seller::find($user_id);
-        
-//         else if(user_type() == 'broker')
-//             $user = Broker::find($user_id);
-        
-//         else
-//             $user = User::find($user_id);
-
-//         $user->available_orders = $user->available_orders - 1;
-//         $user->save();
-         
-//     }
-// }
-
+ 
 if (! function_exists('valid_coupon')) {
     function valid_coupon($code)
     {         
@@ -160,10 +130,23 @@ if (! function_exists('coupon_discount')) {
     {   
         if(session()->get('coupon')) 
             $discount = Coupon::couponValue(session()->get('coupon'))->first()->value;
-
+            
         else $discount = 0;
 
         return $discount;
+    }
+}
+
+
+if (! function_exists('discount')) {
+    function discount() {
+        
+        if(coupon_discount() != 0)            
+            $result = coupon_discount() / 100 * sub_total();
+  
+        else $result = 0;
+
+        return $result;
     }
 }
 

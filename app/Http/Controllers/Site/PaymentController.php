@@ -27,8 +27,9 @@ class PaymentController extends Controller
         $this->search = new Search();
     }
 
-    public function payment_method()
+    public function payment_method($type)
     {
+        Session::put('payment_type',$type);
 
         return view($this->view . 'payment_method');
     }
@@ -58,12 +59,8 @@ class PaymentController extends Controller
  
         if($responseData['result']['code'] == env('HYPERPAY_SUCCESS')){
         
-            if(payment_type() == 'package'){
-               $response =  $this->package->subscribe();
-
-               if($response == 0)
-                    return redirect()->route('my_packages')
-                        ->with('failed' , __('site.You_already_join_in_package')); 
+            if(session()->get('payment_type') == 'package'){
+               $this->package->subscribe();
 
             }else
                 $this->order->create_order();

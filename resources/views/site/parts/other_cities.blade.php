@@ -19,11 +19,13 @@
 
                 <tbody>
                     @foreach (cities_sellers() as $sel)
-                        <tr>
-                            <td> {{ get_city($sel->city_id)['name_'.my_lang()] }} </td>
-                            <td> {{ $sel->stores }} </td>
-                            <td> <a href="{{ route('search.change',$sel->city_id) }}"> @lang('site.show') </a>  </td>
-                        </tr>
+                        @if($sel->city_id)
+                            <tr>
+                                <td> {{ get_city($sel->city_id) ? get_city($sel->city_id)['name_'.my_lang()] : '' }} </td>
+                                <td> {{ $sel->stores }} </td>
+                                <td> <a href="{{ route('search.change',$sel->city_id) }}"> @lang('site.show') </a>  </td>
+                            </tr>
+                        @endif
                     @endforeach
                     
                 </tbody>
