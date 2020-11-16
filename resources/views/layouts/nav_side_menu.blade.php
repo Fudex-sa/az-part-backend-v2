@@ -24,7 +24,7 @@
 
     @if(user_type() == 'user' || user_type() == 'company')
       <a class="nav-link {{ isset($interests) ? 'active' : '' }}" href="{{ route('control.user_interests') }}">
-        <i class="fa fa-heart"></i>@lang('site.my_interests') </a>
+        <i class="fa fa-car"></i> @lang('site.my_interests') </a>
     @endif
 
     @if(user_type() == 'user' || user_type() == 'company')

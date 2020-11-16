@@ -157,7 +157,7 @@ Route::group(
 
             Route::get('shipping', [App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
             Route::post('shipping', [App\Http\Controllers\Site\ShippingController::class, 'store_shipping'])->name('shipping.save')->middleware('isLogged');
-            Route::get('payment/method', [App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');
+            Route::get('payment/method/{type}', [App\Http\Controllers\Site\PaymentController::class, 'payment_method'])->name('payment.method')->middleware('isLogged');
             Route::get('payment/choose', [App\Http\Controllers\Site\PaymentController::class, 'choose'])->name('payment.choose')->middleware('isLogged');
             Route::get('payment', [App\Http\Controllers\Site\PaymentController::class, 'index'])->name('payment')->middleware('isLogged');
             Route::get(
@@ -417,6 +417,7 @@ Route::group(
             /************ DB Engine  **********/
             Route::get('db_engine', [App\Http\Controllers\Admin\DBEngineController::class, 'index'])->name('admin.db_engine');
             Route::get('empty_tables', [App\Http\Controllers\Admin\DBEngineController::class, 'empty_tables'])->name('admin.empty_tables');
+            Route::get('next_round', [App\Http\Controllers\Admin\DBEngineController::class, 'next_round'])->name('admin.next_round');
 
             /************ Export PDF Data  ***************************/
             Route::get('export/users/pdf', 'ExportPdfController@users')->name('export.pdf.users');

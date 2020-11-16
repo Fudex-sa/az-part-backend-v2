@@ -27,7 +27,6 @@ class PackageHelp
         
         else $response = false;
 
-        Session::forget('payment_type');
         Session::forget('package_id');
 
         return $response;

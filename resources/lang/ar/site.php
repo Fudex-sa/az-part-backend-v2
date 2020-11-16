@@ -1093,4 +1093,11 @@ return [
     'not_allowed_to_join_this_service' => 'غير مسموح لك بطلب هذه الخدمة',
     'in_other_cities' => 'فى مدن اخرى',
     'result_in_other_cities' => 'النتائج فى المدن الأخرى',
+    'empty_this_tables' => 'تفريغ الجداول التالية',
+    'go_to_next_round' => 'الذهاب للتشاليح التالية',
+    'move_engine_to_next_round' => 'تحريك المحرك للراوند التالية',
+    'confirm_empty' => 'تأكيد تفريغ الجداول؟',
+    'confirm_move_to_next_round' => 'تأكيد التحرك للرواند التالية؟',    
+    'process_success' => 'تمت العملية بنجاح',
+    'not_found_result_in_your_city' => 'لا توجد نتائج بحث فى مدينتك , يمكنك اختيار مدينه اخرى من الرابط ادناه',
 ];

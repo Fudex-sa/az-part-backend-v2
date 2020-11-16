@@ -949,4 +949,11 @@ return [
     'not_allowed_to_join_this_service' => 'You are not allowed to order this service',
     'in_other_cities' => 'In Other Cities',
     'result_in_other_cities' => 'Results In Other Cities',
+    'empty_this_tables' => 'Empty This Tables',
+    'go_to_next_round' => 'Go To Next Round',
+    'move_engine_to_next_round' => 'Move Engine To Next Round',
+    'confirm_empty' => 'Confirm Empty',
+    'confirm_move_to_next_round' => 'Confirm Moving To Next Round?',
+    'process_success' => 'Process Success',
+    'not_found_result_in_your_city' => '',
 ];
