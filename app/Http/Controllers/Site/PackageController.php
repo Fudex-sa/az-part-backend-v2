@@ -26,11 +26,9 @@ class PackageController extends Controller
         $myPackage = PackageSubscribe::myPackagesByType($package->type)->count();
 
         if($myPackage < 1){
-            Session::put('payment_type','package');
-
             Session::put('package_id',$id);
             
-            return redirect()->route('payment.method');
+            return redirect()->route('payment.method','package');
         }else
             return back()->with('failed' , __('site.You_already_join_in_package'))->withInput();
     }

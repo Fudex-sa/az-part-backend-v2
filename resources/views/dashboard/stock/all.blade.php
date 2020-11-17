@@ -49,8 +49,8 @@
 
 <br/> <br/>
 
-<table class="table table-striped jambo_table bulk_action" id="myTbl">
-    <thead class=" text-primary">
+<table class="table table-striped jambo_table bulk_action text-center" id="myTbl">
+    <thead class="text-primary">
         <tr>
             <th scope="col">#  </th>
             <th scope="col"> {{ __('site.brand') }}  </th>

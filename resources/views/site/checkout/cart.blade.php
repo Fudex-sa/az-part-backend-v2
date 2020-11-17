@@ -54,7 +54,7 @@
                             <td> @lang('site.piece_name') </td>
                             <td> @lang('site.piece_price') </td>
                             <td> @lang('site.qty') </td>
-                            <td> @lang('site.pieces_price') </td>
+                            <td> @lang('site.pieces_price') </td>                            
                             <td> @lang('site.delete') </td>
                           </tr>
                         </thead>

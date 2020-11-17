@@ -34,7 +34,7 @@
               </div>
               <div class="col-md-12">
 
-                  <table class="my-tbl">
+                  <table class="my-tbl text-center">
                     <thead>
                       <tr>
                         <th scope="col"> #  </th>
@@ -48,11 +48,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($items as $item)
+                        @foreach ($items as $k=>$item)
                           <tr>
-                              <td> {{ $item->id }} </td>
+                              <td> {{ $k+1 }} </td>
 
-                              <td> <img src="{{ img_path($item->imgs[0]->photo) }}" class="img-table"/></td>
+                              <td> <img src="{{ img_path($item->imgs[0]->photo) }}" class="img-user"/></td>
 
                               <td> <a href="{{ route('car',$item->id) }}" target="_blank"> {{ $item->title }} </a> </td>
 

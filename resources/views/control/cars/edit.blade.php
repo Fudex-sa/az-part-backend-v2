@@ -151,8 +151,8 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group col-md-4" style="{{ $item->price_type == 'fixed' ? 'block' : 'none' }}" id="price_div">
+                     
+                    <div class="form-group col-md-4" style="display:{{ $item->price_type == 'fixed' ? 'block' : 'none' }}" id="price_div">
                         <label> @lang('site.price') </label>
 
                         <div class="form-check">
@@ -244,7 +244,7 @@
                         @if($item->imgs)
                           @foreach ($item->imgs as $img)
                             <div class="custom-file col-md-4 text-center">
-                                <img src="{{ img_path($img->photo) }}" class="car-imgs"/>
+                                <img src="{{ img_path($img->photo) }}" class="img-user"/>
                                 <br/>
                                 <a onclick="deleteItem({{ $img->id }})" class="btn-delete"><i class="fa fa-trash"></i> </a>
                             </div>

@@ -58,11 +58,10 @@ class ShippingController extends Controller
     }
 
     public function choose_rep($id)
-    {
-       
+    {       
         Session::put('rep_price',$id);
         
-        return redirect()->route('payment.method');
+        return redirect()->route('payment.method','cart');
     }
 
     public function store_shipping(ShippingRequest $request)
