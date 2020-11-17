@@ -25,7 +25,8 @@ class AuthController extends Controller
         'name' => 'required',
         'mobile' => 'required|unique:sellers,mobile',
         'password' => 'required|confirmed|min:6',
-        'confirmation_password' => 'required|min:6',
+        'password_confirmation' => 'required|min:6',
+        'user_type' => 'required',
         'accepted' => 'required'
         ]);
 
