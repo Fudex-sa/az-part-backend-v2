@@ -419,33 +419,33 @@ Route::group(
             Route::get('empty_tables', [App\Http\Controllers\Admin\DBEngineController::class, 'empty_tables'])->name('admin.empty_tables');
 
             /************ Export PDF Data  ***************************/
-            Route::get('export/users/pdf', 'ExportPdfController@users')->name('export.pdf.users');
-            Route::get('export/sellers/pdf', 'ExportPdfController@sellers')->name('export.pdf.sellers');
-            Route::get('export/supervisors/pdf', 'ExportPdfController@supervisors')->name('export.pdf.supervisors');
+            Route::get('export/users/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'users'])->name('export.pdf.users');
+            Route::get('export/sellers/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'sellers'])->name('export.pdf.sellers');
+            Route::get('export/supervisors/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'supervisors'])->name('export.pdf.supervisors');
 
-            Route::get('export/requests/pdf/normal', 'ExportPdfController@requests_normal')->name('export.pdf.requests.normal');
-            Route::get('export/requests/pdf/vip', 'ExportPdfController@requests_vip')->name('export.pdf.requests.vip');
-            Route::get('export/requests/pdf/admin', 'ExportPdfController@requests_admin')->name('export.pdf.requests.admin');
+            Route::get('export/requests/pdf/normal', [App\Http\Controllers\Admin\ExportPdfController::class, 'requests_normal'])->name('export.pdf.requests.normal');
+            Route::get('export/requests/pdf/vip', [App\Http\Controllers\Admin\ExportPdfController::class, 'requests_vip'])->name('export.pdf.requests.vip');
+            Route::get('export/requests/pdf/admin', [App\Http\Controllers\Admin\ExportPdfController::class, 'requests_admin'])->name('export.pdf.requests.admin');
 
-            Route::get('export/cars/pdf/{type}', 'ExportPdfController@cars');
-            Route::get('export/bidding/pdf', 'ExportPdfController@bidding');
+            Route::get('export/cars/pdf/{type}', [App\Http\Controllers\Admin\ExportPdfController::class, 'cars']);
+            Route::get('export/bidding/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'bidding']);
 
-            Route::get('export/stock/pdf', 'ExportPdfController@stock');
-            Route::get('export/seller_brands/pdf/{item}', 'ExportPdfController@sellers_brands')->name('export.pdf.sellers_brands');
+            Route::get('export/stock/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'stock']);
+            Route::get('export/seller_brands/pdf/{item}', [App\Http\Controllers\Admin\ExportPdfController::class, 'sellers_brands'])->name('export.pdf.sellers_brands');
 
             /************ Export Excel Data  ***************************/
-            Route::get('export/users/excel', 'ExportExcelController@users')->name('export.excel.users');
-            Route::get('export/sellers/excel', 'ExportExcelController@sellers')->name('export.excel.sellers');
-            Route::get('export/supervisors/excel', 'ExportExcelController@supervisors')->name('export.excel.supervisors');
+            Route::get('export/users/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'users'])->name('export.excel.users');
+            Route::get('export/sellers/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'sellers'])->name('export.excel.sellers');
+            Route::get('export/supervisors/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'supervisors'])->name('export.excel.supervisors');
 
-            Route::get('export/excel/requests/normal', 'ExportExcelController@requests_normal')->name('export.excel.requests.normal');
-            Route::get('export/excel/requests/vip', 'ExportExcelController@requests_vip')->name('export.excel.requests.vip');
-            Route::get('export/excel/requests/admin', 'ExportExcelController@requests_admin')->name('export.excel.requests.admin');
+            Route::get('export/excel/requests/normal', [App\Http\Controllers\Admin\ExportExcelController::class, 'requests_normal'])->name('export.excel.requests.normal');
+            Route::get('export/excel/requests/vip', [App\Http\Controllers\Admin\ExportExcelController::class, 'requests_vip'])->name('export.excel.requests.vip');
+            Route::get('export/excel/requests/admin', [App\Http\Controllers\Admin\ExportExcelController::class, 'requests_admin'])->name('export.excel.requests.admin');
 
-            Route::get('export/cars/excel/{item}', 'ExportExcelController@cars');
-            Route::get('export/bidding/excel', 'ExportExcelController@bidding');
+            Route::get('export/cars/excel/{item}', [App\Http\Controllers\Admin\ExportExcelController::class, 'cars']);
+            Route::get('export/bidding/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'bidding']);
 
-            Route::get('export/stock/excel', 'ExportExcelController@stock');
+            Route::get('export/stock/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'stock']);
 
             /************ Cars  ***************************/
         });
