@@ -181,6 +181,14 @@ class RepController extends Controller
             return back()->with('success' , __('site.success-save') );
 
         return back()->with('failed' , __('site.error-happen'))->withInput();
+    }
 
+    public function price_delete(Request $request){
+        $item = $request->input('id');
+
+        if(RepPrice::find($item)->delete()) 
+            return 1;
+
+        return 0;
     }
 }

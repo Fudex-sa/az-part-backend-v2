@@ -131,6 +131,7 @@
     @include('dashboard.ajax.load_regions') 
     @include('dashboard.ajax.load_cities')
 
+
     <script>
         $("#country").change(function(){
 
@@ -163,5 +164,7 @@
             });            
         });
     </script>
+
+    @include('dashboard.ajax.delete',['target'=>'rep_price']) 
 
 @endsection

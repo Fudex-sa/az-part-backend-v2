@@ -95,10 +95,26 @@
             <div class="s-box-body">
               <h4> {{ $rep_price->rep->name }}  </h4>
               <h6><img src="assets/images/location.png" alt=""> {{ $rep_price->rep->address }}  </h6>
+                 
+              @php $delv_price = 0; @endphp
+
+              @if(tashlih_regions())
+                @foreach (tashlih_regions() as $tashReg)
+
+                  @if(in_array($tashReg,$rep_price->rep->rep_prices->pluck('_from')->toArray()) )
+                    <span> @lang('site.from')  : {{ from_region($tashReg) }} </span>                      
+                    <br/>
+
+                    <span class="hidden"> 
+                      {{ $delv_price += $rep_price->rep->rep_prices->where('_from',$tashReg)->sum('price') }} </span>
+                  @endif
+                @endforeach                
+              @endif
             </div>
             <div class="s-box-footer">
-            <a href="{{ route('choose_rep',$rep_price->id) }}" class="btn btn-client float-left">  @lang('site.choose_rep') </a>
-              <h6><span> {{ $rep_price->price }} </span> @lang('site.rs')  </h6>
+ 
+             <a href="{{ route('choose_rep',['rep_id' => $rep_price->id,'price' => $delv_price]) }}" class="btn btn-client float-left">  @lang('site.choose_rep') </a>
+              <h6><span> {{ $delv_price }} </span> @lang('site.rs')  </h6>
             </div>
           </div>
         </div>

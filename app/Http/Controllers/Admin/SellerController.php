@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\City;
 use App\Models\Brand;
 use App\Models\AvailableModel;
+use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -81,9 +82,10 @@ class SellerController extends Controller
                                 ->orderby('model_id','desc')->paginate(pagger());
 
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
+        $delivery_regions = DeliveryRegion::all();
 
         return view($this->view.'show',compact('item','cols','region_cities','regions'
-                            ,'avaliable_models','brands'));
+                            ,'avaliable_models','brands','delivery_regions'));
 
     }
 

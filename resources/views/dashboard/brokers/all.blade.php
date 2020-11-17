@@ -57,11 +57,10 @@
 
 <br/> <br/>
 
-<table class="table table-striped jambo_table bulk_action">
+<table class="table table-striped jambo_table bulk_action text-center">
     <thead>
-    <tr class="headings">
-        <th>#  </th>
-        <th> @lang('site.user_id')</th>
+    <tr class="th-center">
+        <th>#  </th>        
         <th> <i class="fa fa-camera"> </i> </th>
         <th> @lang('site.name')   </th>                
         <th> @lang('site.city')  </th>                
@@ -70,6 +69,7 @@
         <th> @lang('site.saudi') </th>
         <th> @lang('site.orders_count')  </th> 
         <th> @lang('site.available_orders') </th>
+        <th> @lang('site.tashlih_region') </th>
         <th style="width:120px;"></th>
     </tr>
     </thead>
@@ -81,11 +81,9 @@
         <tr class="even pointer">
           
             <td>{{ $k+1 }}</td>
-
-            <td>user#{{$item->id}}</td>
             
-            <td> @if($item->photo) <img src="{{ img_path($item->photo) }}" class="img-tbl" /> 
-                    @else  <img src="{{ dashboard('build/images/user.png') }}" class="img-tbl" />  @endif
+            <td> @if($item->photo) <img src="{{ img_path($item->photo) }}" class="img-user" /> 
+                    @else  <img src="{{ dashboard('build/images/user.png') }}" class="img-user" />  @endif
             </td>
 
             <td>{{$item->name}}</td>
@@ -94,10 +92,10 @@
 
             <td>
                 @if($item->vip ==1) <button class="btn btn-success btn-xs">
-                         <i class="fa fa-check"></i> @lang('site.yes') </button>
+                         <i class="fa fa-check"></i> </button>
                 @else
                     <button class="btn btn-warning btn-xs">
-                    <i class="fa fa-close"></i> @lang('site.no') </button>
+                    <i class="fa fa-close"></i> </button>
                 @endif 
             </td>
 
@@ -113,10 +111,10 @@
 
             <td>
                 @if($item->saudi ==1) <button class="btn btn-success btn-xs">
-                    <i class="fa fa-check"></i> @lang('site.yes') </button>
+                    <i class="fa fa-check"></i> </button>
                 @else
                     <button class="btn btn-warning btn-xs">
-                    <i class="fa fa-close"></i> @lang('site.no') </button>
+                    <i class="fa fa-close"></i>  </button>
                 @endif     
             </td>
 
@@ -124,6 +122,8 @@
 
             <td> {{ $item->available_orders }} @lang('site.request') </td>
             
+            <td> {{ $item->tashlih_region ? $item->tashlih['name_'.my_lang()] : '' }} </td>
+
             <td>
                 <a class="whatsapp btn btn-success btn-xs" target="_blank" href="https://wa.me/966{{$item->mobile}}?text=
                     {{ setting('whatsapp_msg') }}"> <i class="fa fa-whatsapp"></i>

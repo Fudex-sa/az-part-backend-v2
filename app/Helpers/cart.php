@@ -11,7 +11,7 @@ use App\Models\Broker;
 use App\Models\RepPrice;
 use App\Models\PackageSubscribe; 
 use App\Models\AvailableModel;
-use DB;
+use App\Models\DeliveryRegion;
 
 if (! function_exists('cart')) {
     function cart() {
@@ -19,6 +19,29 @@ if (! function_exists('cart')) {
         $items = Cart::myCart()->with('piece_alt')->with('seller')->get();
         
         return $items;
+    }
+}
+
+if (! function_exists('tashlih_regions')) {
+    function tashlih_regions() {
+         
+        $items = Cart::myCart()->with('seller')                    
+                    ->groupBy('seller_id')
+                    ->get()                    
+                    ->pluck('seller.tashlih_region')
+                    ->unique()
+                    ->toArray();
+         
+        return $items;
+    }
+}
+
+if (! function_exists('from_region')) {
+    function from_region($region) {
+
+        $item = DeliveryRegion::find($region);
+        
+        return $item['name_'.my_lang()];
     }
 }
 
@@ -34,8 +57,7 @@ if (! function_exists('order_type')) {
 if (! function_exists('sub_total')) {
     function sub_total() {
         $sub_total = 0;
-        // $result = Cart::myCart()->with('piece_alt')->with('seller')->sum('price');
-
+         
         $carts = Cart::myCart()->with('piece_alt')->with('seller')->get();
         if($carts){
             foreach($carts as $cart){
@@ -165,8 +187,10 @@ if (! function_exists('coupon_id')) {
 if (! function_exists('delivery_price')) {
     function delivery_price()
     {   
-        $rep_price = RepPrice::find(session()->get('rep_price'));
-        return $rep_price ? $rep_price->price : 0;
+        // $rep_price = RepPrice::find(session()->get('rep_price'));
+        // return $rep_price ? $rep_price->price : 0;
+
+        return session()->get('rep_price');
     }
 }
 

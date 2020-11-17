@@ -153,7 +153,7 @@ Route::group(
 
             Route::get('reps', [App\Http\Controllers\Site\ShippingController::class, 'reps'])->name('reps')->middleware('isLogged');
             Route::get('reps/filter', [App\Http\Controllers\Site\ShippingController::class, 'reps_filter'])->name('reps.filter')->middleware('isLogged');
-            Route::get('choose_rep/{id}', [App\Http\Controllers\Site\ShippingController::class, 'choose_rep'])->name('choose_rep')->middleware('isLogged');
+            Route::get('choose_rep/{rep_id}/{price}', [App\Http\Controllers\Site\ShippingController::class, 'choose_rep'])->name('choose_rep')->middleware('isLogged');
 
             Route::get('shipping', [App\Http\Controllers\Site\ShippingController::class, 'index'])->name('shipping')->middleware('isLogged');
             Route::post('shipping', [App\Http\Controllers\Site\ShippingController::class, 'store_shipping'])->name('shipping.save')->middleware('isLogged');
@@ -251,6 +251,7 @@ Route::group(
             Route::post('rep/activate', [App\Http\Controllers\Admin\RepController::class, 'activate'])->name('admin.rep.activate');
 
             Route::post('rep_price/store', [App\Http\Controllers\Admin\RepController::class, 'price_store'])->name('admin.rep_price.store');
+            Route::delete('rep_price/delete', [App\Http\Controllers\Admin\RepController::class, 'price_delete'])->name('admin.rep_price.delete');
             /******************* Supervisors ********************/
             Route::get('supervisor/search', [App\Http\Controllers\Admin\SupervisorController::class, 'search'])->name('admin.supervisor.search');
             Route::get('supervisors', [App\Http\Controllers\Admin\SupervisorController::class, 'all'])->name('admin.supervisors');

@@ -63,6 +63,15 @@
                                     {{ $item->$col == 'manufacturing' ? 'checked' : '' }} required/> @lang('site.manufacturing')
                             </label>
                     
+                        @elseif($col == 'tashlih_region')
+                        <select class="form-control" name="{{ $col }}">
+                            <option value=""> @lang('site.choose_region') </option>
+                            @foreach ($delivery_regions as $dr)
+                                <option value="{{ $dr->id }}" {{ $item->tashlih_region == $dr->id ? 'selected' : '' }}>
+                                     {{ $dr['name_'.my_lang()] }} </option>
+                            @endforeach
+                        </select>
+
                         @elseif($col == 'address')
                             <input id="pac-input" class="form-control add-bg" name="address" type="text"
                             placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">

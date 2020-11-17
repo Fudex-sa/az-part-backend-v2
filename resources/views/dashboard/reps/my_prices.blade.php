@@ -67,7 +67,8 @@
         <th> @lang('site.city') </th>
         <th> @lang('site.price') </th>  
         <th> @lang('site.car_size') </th>     
-        <th> @lang('site.active') </th>        
+        <th> @lang('site.active') </th>  
+        <th> </th>      
     </tr>
     </thead>
     <tbody>
@@ -85,6 +86,14 @@
                 <td> {{ implode(',',$myPrice->car_size) }} </td>
 
                 <td> {{ $myPrice->active == 1 ? __('site.yes') : __('site.no') }} </td>
+
+                <td> 
+                    @if(has_permission('rep_price_delete'))
+                        <a onclick="deleteItem({{ $myPrice->id }})" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i> </a>
+                    @endif
+                </td>
+
             </tr>
         @endforeach
         

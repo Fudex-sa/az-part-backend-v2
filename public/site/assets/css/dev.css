@@ -266,3 +266,66 @@
 .my-blue{
     font-size: 18px !important;
 }
+
+.input-group > .custom-file, .input-group > .custom-select, .input-group > .form-control, .input-group > .form-control-plaintext{
+    width: 15px;
+}
+
+.hidden{
+    display: none;
+}
+/************ Popup Cities ***********/
+ .advice-2 h2{
+      font-weight: bold;
+      color: #e26941;
+      font-size: 36px;
+    }
+    .advice-2 h3{
+      font-weight: bold;
+      font-size: 26px;
+      margin-top: 30px;
+    }
+    .advice-2 h3 span{
+      color: #939393; 
+    }
+    .advice-3 h3 span{
+      font-size: 20px;
+    }
+    .advice-3{
+      margin-top: 100px;
+    }
+    .advice-2 .btn-results {
+    color: #e26941;
+    border: 1px solid #e26941;
+    height: 55px;
+    padding: 15px;
+    transition: all ease 0.2s;
+}
+.advice-2 .btn-results:hover {
+    color: #fff;
+    border: 1px solid #e26941;
+    background-color: #e26941;
+}
+.another-city-info{
+  color: #e26941;
+
+}
+.m-header .close {
+  margin-top: 30px !important;
+}
+.m-header .close span{
+  font-size: 30px !important;
+}
+.m-tabel  thead {
+background-color: #F8F9FA;
+}
+.m-tabel  thead th{
+  border-bottom: 2px solid #dee2e6;
+  font-size: 20px;
+}
+.m-tabel td, .m-tabel th {
+  border-bottom: 2px solid #dee2e6;
+  font-size: 20px;
+  padding: 1rem;
+
+}

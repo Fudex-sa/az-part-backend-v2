@@ -33,6 +33,8 @@ class Rep extends Authenticatable
         return $this->belongsTo(Region::class,'region_id');
     }
   
- 
+    public function rep_prices(){
+        return $this->hasMany(RepPrice::class,'rep_id');
+    }
 
 }

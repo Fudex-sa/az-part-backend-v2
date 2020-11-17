@@ -16,8 +16,22 @@
         @include('layouts.breadcrumb')
  
         @if(valid_for_elec() == 1)
-        <div class="modal-body modal-padding">
-            <div class="head-section mb-5">
+ 
+
+        @if($response['found_result'] == 0)
+          <div class="modal-body modal-padding">
+
+            <div class="text-center advice">                           
+              <p>  {{ data('search_find_no_result') }} 
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#other_cities">
+                  @lang('site.in_other_cities') </a>
+              </p>
+            </div>
+
+          @else
+
+            
+            <div class="head-section mb-5 col-md-12">
               <h2> @lang('site.enter_required_pieces') </h2>              
 
               <div class="text-left">
@@ -79,6 +93,8 @@
               <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.order_now') </button>
             </form>
      
+            @endif
+
           </div>
         
           @else          
@@ -106,13 +122,24 @@
 
 @section('popup')
     
-     
+@include('site.parts.other_cities')
     
 @endsection
 
 
 @section('scripts')
   
+@if($response['found_result'] == 0)
+<script>
+GrowlNotification.notify({
+    title: "{{__('site.failed')}}",
+    description: " {{ __('site.not_found_result_in_your_city') }} ",
+    zIndex: 1056,
+    'type' : 'error'
+  });
+</script>
+@endif
+
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 

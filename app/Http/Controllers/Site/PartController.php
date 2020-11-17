@@ -41,7 +41,9 @@ class PartController extends Controller
         $this->search->save_search($request); //--- save search in session
 
         if($search_type == 'electronic'){
-            return view($this->view . 'electronic_search',compact('piece_alts'));
+
+            return $this->electronic_search($request);
+            
         }
        
 
@@ -58,6 +60,15 @@ class PartController extends Controller
         $all_items = $response ? $response['all_items'] : null;
          
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
+    }
+
+    public function electronic_search(Request $request)
+    {
+        $piece_alts = PieceAlt::orderby('name_'.my_lang(),'desc')->get();
+
+        $response = $this->search->electronic_search($request);
+
+        return view($this->view . 'electronic_search',compact('piece_alts','response'));
     }
 
 

@@ -55,6 +55,7 @@
                             <td> @lang('site.piece_price') </td>
                             <td> @lang('site.qty') </td>
                             <td> @lang('site.pieces_price') </td>                            
+                            <td> @lang('site.seller') </td>                            
                             <td> @lang('site.delete') </td>
                           </tr>
                         </thead>
@@ -76,6 +77,8 @@
                             <td> <input type="number" name="qty" value="{{ $item->qty }}" min="1" max="1000" step="1" readonly/> </td>
                               
                             <td>  {{ $item->price * $item->qty }} @lang('site.rs')  </td>
+
+                            <td> {{ $item->seller ? $item->seller->name : '' }} </td>
 
                             <td> <a onclick="deleteItem({{ $item->id }})" href="javascript:void(0);">
                               <img src="{{ site('assets/images/remove.png') }}" alt="" class="remove-pen mt-2">
