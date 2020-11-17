@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Broker;
 use App\Models\Region;
 use App\Models\City;
+use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 
@@ -69,7 +70,9 @@ class BrokerController extends Controller
             $regions = null;
         }
 
-        return view($this->view.'show',compact('item','cols','region_cities','regions'));
+        $delivery_regions = DeliveryRegion::all();
+
+        return view($this->view.'show',compact('item','cols','region_cities','regions','delivery_regions'));
 
     }
 

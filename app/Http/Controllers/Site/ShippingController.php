@@ -27,16 +27,20 @@ class ShippingController extends Controller
         $region = $shipping ? $shipping['region_id'] : logged_user()->region_id;
         $city = $shipping ? $shipping['city_id'] : logged_user()->city_id;
 
+        $from_resgions = tashlih_regions();
+
         $rep_prices = RepPrice::with('rep')->whereHas('rep' , function($q){
                             $q->where('active',1)->orderby('lat','asc')->orderby('lng','asc');
                         })                                
                         ->where('city_id',$city)->where('active',1)
+                        ->whereIn('_from',$from_resgions)
+                        ->groupBy('rep_id')
                         ->orderby('price','asc')
                         ->get();
         
         $regions = regions($country);
         $cities = cities($region);
-
+ 
         return view($this->view . 'reps' , compact('rep_prices','regions','cities'));
     }
 
@@ -57,10 +61,11 @@ class ShippingController extends Controller
         return view($this->view . 'reps' , compact('rep_prices','regions','cities'));
     }
 
-    public function choose_rep($id)
+    public function choose_rep($rep_id,$price)
     {       
-        Session::put('rep_price',$id);
-        
+        Session::put('delivery_rep_id',$rep_id);
+        Session::put('rep_price',$price);
+         
         return redirect()->route('payment.method','cart');
     }
 

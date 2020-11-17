@@ -171,3 +171,7 @@
 .media .date2{
     width: 100px;
 }
+
+.th-center th{
+    text-align: center;
+}

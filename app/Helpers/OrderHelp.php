@@ -61,7 +61,7 @@ class OrderHelp
         $data = [
             'country_id' => $shipping['country_id'] , 'region_id' => $shipping['region_id'] , 
             'city_id' => $shipping['city_id'] , 'street' => $shipping['street'] , 'notes' => $shipping['notes'] , 
-            'rep_id' => delivery()->rep_id , 'size' => $shipping['size'],
+            'rep_id' => session()->get('delivery_rep_id') , 'size' => $shipping['size'],
             'with_oil' => $shipping['with_oil']
         ];
 

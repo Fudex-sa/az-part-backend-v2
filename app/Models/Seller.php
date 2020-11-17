@@ -32,4 +32,9 @@ class Seller extends Authenticatable
     {
         return $this->belongsTo(Region::class, 'region_id');
     }
+
+    public function tashlih()
+    {
+        return $this->belongsTo(DeliveryRegion::class, 'tashlih_region');
+    }
 }

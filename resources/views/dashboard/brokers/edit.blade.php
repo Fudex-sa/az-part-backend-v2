@@ -6,13 +6,14 @@
     @csrf
     
         @foreach ($cols as $col)
-            @if($col != 'id' & $col != 'created_at' & $col != 'updated_at' & $col != 'verification_code' 
+        @if($col != 'id' & $col != 'created_at' & $col != 'updated_at' & $col != 'verification_code' 
                 
-                & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'
-                
-                & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
-                
-                & $col != 'created_by' & $col != 'city_id')
+        & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'
+        
+        & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
+        
+        & $col != 'created_by' & $col != 'city_id' & $col != 'region_id' & $col != 'lat' & $col != 'lng'
+        & $col != 'country_id')
     
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -27,7 +28,7 @@
 
                         @if($col == 'email')
                             <input type="email" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
-                            required>  
+                            >  
     
                         @elseif($col == 'mobile')
                             <input type="tel" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
@@ -64,7 +65,25 @@
                                 <input type="radio" class="flat" name="{{ $col }}" value="manufacturing"  
                                     {{ $item->$col == 'manufacturing' ? 'checked' : '' }} required/> @lang('site.manufacturing')
                             </label>
-                         
+                        
+                        @elseif($col == 'address')
+                            <input id="pac-input" class="form-control add-bg" name="address" type="text"
+                            placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
+        
+                            <div id="map" style="width:420px;height: 400px;"></div>
+                            <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
+                            <input type="hidden" name="lng" id="longitude" value="50.089986"/>
+                             
+
+                        @elseif($col == 'tashlih_region')
+                            <select class="form-control" name="{{ $col }}">
+                                <option value=""> @lang('site.choose_region') </option>
+                                @foreach ($delivery_regions as $dr)
+                                    <option value="{{ $dr->id }}" {{ $item->tashlih_region == $dr->id ? 'selected' : '' }}>
+                                         {{ $dr['name_'.my_lang()] }} </option>
+                                @endforeach
+                            </select>
+
                         @else
                         <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
     
