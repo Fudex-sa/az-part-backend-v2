@@ -26,7 +26,9 @@ class RequestsController extends Controller
     {
         $items = AssignSeller::with('seller')->with('request')
                     ->where('seller_id', Auth::id())->where('status_id', 11)->orderby('id', 'desc')->latest()->get();
-        return RequestsResource::collection($items);
+
+
+        return response()->json(['status'=>true, 'data' => RequestsResource::collection($items)], 200);
     }
 
     public function sendOffer(Request $request, $id=null)
