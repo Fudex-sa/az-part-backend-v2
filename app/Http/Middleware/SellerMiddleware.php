@@ -17,7 +17,7 @@ class SellerMiddleware
     public function handle(Request $request, Closure $next)
     {
        
-        if (\Auth::guard('seller')->check()) 
+        if (\Auth::guard('seller')->check() || \Auth::guard('broker')->check()) 
 
             return $next($request);
             

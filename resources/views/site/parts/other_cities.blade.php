@@ -22,6 +22,8 @@
             </thead>
 
             <tbody>
+              
+               
               @foreach (cities_sellers() as $sel)
                   @if($sel->city_id)
                       <tr>

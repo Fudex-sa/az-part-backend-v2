@@ -80,7 +80,7 @@
                       </div>
 
                         <div class="form-group col-12">
-                            <select class="form-control" name="country_id" id="country_id">
+                            <select class="form-control" name="country_id" id="country_id" required>
                                 <option value=""> @lang('site.choose_country') </option>
                                 
                                 @foreach (countries() as $country)
@@ -92,7 +92,7 @@
                         </div>
                         
                         <div class="form-group col-12">
-                            <select class="form-control" name="region_id" id="region_id">
+                            <select class="form-control" name="region_id" id="region_id" required>
                                 <option value=""> @lang('site.choose_region') </option>    
                                   
                                   @foreach (regions(old('country_id')) as $reg)
@@ -103,7 +103,7 @@
                               </select>
                         </div>
                         <div class="form-group col-12">
-                            <select class="form-control" name="city_id" id="cities">
+                            <select class="form-control" name="city_id" id="cities" required>
                                 <option value=""> @lang('site.choose_city') </option>    
                                              
                                 @foreach (cities(old('city_id')) as $cit)

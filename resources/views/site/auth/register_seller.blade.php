@@ -3,7 +3,7 @@
 @section('title') @lang('site.new_registeration') @endsection
 
 @section('styles')
-    <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet">
+    {{-- <link href="{{asset('templates/maps/style.css')}}" type="text/css" rel="stylesheet"> --}}
     
 @endsection
 
@@ -86,15 +86,50 @@
                                                 <input type="password" class="form-control" id="confirm_password" name="password_confirmation" 
                                                     placeholder="@lang('site.confirm_password')">
                                             </div>
+
+                                            <div class="form-group col-12">
+                                                <select class="form-control" name="country_id" id="country_id">
+                                                    <option value=""> @lang('site.choose_country') </option>
+                                                    
+                                                    @foreach (countries() as $country)
+                                                        <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
+                                                           {{ $country['name_'.my_lang()] }} </option>    
+                                                    @endforeach
+            
+                                                </select>
+                                            </div>
                                             
                                             <div class="form-group col-12">
+                                                <select class="form-control" name="region_id" id="region_id">
+                                                    <option value=""> @lang('site.choose_region') </option>    
+                                                      
+                                                      @foreach (regions(old('country_id')) as $reg)
+                                                        <option value="{{ $reg->id }}" {{ old('region_id') == $reg->id ? 'selected' : '' }}>
+                                                           {{ $reg['name_'.my_lang()] }} </option>
+                                                      @endforeach             
+                    
+                                                  </select>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <select class="form-control" name="city_id" id="cities">
+                                                    <option value=""> @lang('site.choose_city') </option>    
+                                                                 
+                                                    @foreach (cities(old('city_id')) as $cit)
+                                                        <option value="{{ $cit->id }}" {{ old('city_id') == $cit->id ? 'selected' : '' }}>
+                                                           {{ $cit['name_'.my_lang()] }} </option>
+                                                      @endforeach 
+                    
+                                                  </select>
+                                            </div>
+
+                                            {{-- <div class="form-group col-12">
                                                 <input id="pac-input" class="form-control add-bg" name="address" type="text"
                                                     placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
 
                                                 <div id="map" style="width:420px;height: 400px;"></div>
                                                 <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
                                                 <input type="hidden" name="lng" id="longitude" value="50.089986"/>
-                                            </div>
+                                            </div> --}}
                                              
                                             <div class="form-group form-check col-12">
                                                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
@@ -128,8 +163,11 @@
 
 @section('scripts')
   
-<script src="{{site('maps/script.js')}}"></script>
+@include('dashboard.ajax.load_regions') 
+@include('dashboard.ajax.load_cities')
+
+{{-- <script src="{{site('maps/script.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
-async defer></script>
+async defer></script> --}}
 
 @endsection

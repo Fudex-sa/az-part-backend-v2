@@ -955,5 +955,10 @@ return [
     'confirm_empty' => 'Confirm Empty',
     'confirm_move_to_next_round' => 'Confirm Moving To Next Round?',
     'process_success' => 'Process Success',
-    'not_found_result_in_your_city' => '',
+    'not_found_result_in_your_city' => 'There are any results in this city',
+    'admin_deal_with' => 'Admin Deal With',
+    'waiting_for_assign' => 'Waiting For Assign',
+    'tashlih_region_required' => 'Tashlih Region Required',
+    'city_to_required' => 'Delivery City Required',
+    'delivery_price_required' => 'Delivery Price Required',
 ];

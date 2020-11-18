@@ -32,7 +32,7 @@ class ElecEngineController extends Controller
     public function show($id)
     {
         
-        $status = OrderStatus::orderby('sort','asc')->get();
+        $status = OrderStatus::where('type','order')->orderby('sort','asc')->get();
 
         $item = ElectronicRequest::with('piece_alt')->with('brand')->with('model')->with('region')
                                 ->with('user')->with('country')
@@ -56,7 +56,7 @@ class ElecEngineController extends Controller
 
     public function edit($id)
     {
-        $status = OrderStatus::orderby('sort','asc')->get();
+        $status = OrderStatus::where('type','order')->orderby('sort','asc')->get();
 
         $item = AssignSeller::with('request')->with('seller')->with('broker')
                             ->where('id',$id)->first();
