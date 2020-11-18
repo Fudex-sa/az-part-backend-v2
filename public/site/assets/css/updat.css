@@ -1,0 +1,82 @@
+.bg-gray {
+    background-color: #F3F3F3;
+  }
+  .bg-gray tbody tr{
+    border-top: 1px solid #DCE3E3 !important;
+  }
+  .checked {
+    color: #F2A736;
+  }
+  .notchecked{
+    color: #BCC2CD;
+  
+  }
+  .add-to{
+    color: #E26941;
+    font-weight: bold;
+  
+  }
+  .add-to:hover{
+    color: #E26941;
+  
+  }
+  .add-to:focus{
+    box-shadow: none;
+  }
+  .cli-name  {
+    color: #1584BB;
+    font-weight: bold;
+  }
+  .pri{
+    color: #1A4079;
+    font-weight: bold;
+  }
+  .pri-pop h6,.model-xx  h6{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .noti{
+    color: #939393;
+  }
+  .cli-nots h6{
+    line-height: 24px;
+  }
+  .back-back h4{
+  color: #939393;
+  font-weight: bold;
+  font-size: 18px;
+  }
+  .back-back span{
+    color: #050708;
+  }
+  .padiaa{
+    color: #F2A736;
+  }
+  .padiaa:hover{
+    color: #F2A736;
+  }
+  
+  .orangee{
+  
+    background-color: #F2A736;
+    cursor: pointer;
+  }
+  #accordion .card-header{
+  background-color: transparent;
+  padding: 0;
+  
+  }
+  #accordion .card{
+    border: 0;
+    padding: 0;
+    }
+    #accordion .card-body{
+    padding: 0;
+    }
+    .table-sm td, .table-sm th{
+      padding: 1rem;
+    }
+    .table-bg{
+      background-color: #e9ecef;
+    }
+  

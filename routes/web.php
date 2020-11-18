@@ -57,6 +57,10 @@ Route::group(
         });
 
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
+            Route::get('notifications', [App\Http\Controllers\Control\NotificationController::class, 'index'])->name('notification.all');
+            Route::get('deleteNotification/{id?}', [App\Http\Controllers\Control\NotificationController::class, 'delete'])->name('notification.delete');
+
+
             Route::get('profile', [App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
             Route::post('profile/update', [App\Http\Controllers\Control\ProfileController::class, 'update'])->name('profile.update');
 
@@ -226,6 +230,8 @@ Route::group(
             Route::get('seller/search', [App\Http\Controllers\Admin\SellerController::class, 'search'])->name('admin.seller.search');
             Route::get('sellers', [App\Http\Controllers\Admin\SellerController::class, 'all'])->name('admin.sellers');
             Route::get('seller/add', [App\Http\Controllers\Admin\SellerController::class, 'add'])->name('admin.seller.add');
+            Route::post('seller/addFile', [App\Http\Controllers\Admin\SellerController::class, 'addFile'])->name('admin.seller.addFile');
+
             Route::get('seller/{item}', [App\Http\Controllers\Admin\SellerController::class, 'show'])->name('admin.seller');
             Route::post('seller/store/{item?}', [App\Http\Controllers\Admin\SellerController::class, 'store'])->name('admin.seller.store');
             Route::delete('seller/delete', [App\Http\Controllers\Admin\SellerController::class, 'delete'])->name('admin.seller.delete');

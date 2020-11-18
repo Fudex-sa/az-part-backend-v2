@@ -64,7 +64,7 @@
         @endif
 
         <li class="nav-item">
-          <a class="nav-link">
+          <a href="{{ route('notification.all') }}" class="nav-link">
            <i class="fa fa-bell"> </i>
            </a>
         </li>

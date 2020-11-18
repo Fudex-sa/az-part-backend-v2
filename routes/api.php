@@ -50,5 +50,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
           Route::post('updateCar', 'CarsController@update');
           Route::delete('car/{id}', 'CarsController@destroy');
           Route::get('logout', 'AuthController@logout');
+
+          Route::get('myRequests', 'RequestsController@myRequests');
+          Route::post('sendOffer', 'RequestsController@sendOffer');
       });
   });
