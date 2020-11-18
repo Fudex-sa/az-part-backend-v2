@@ -57,6 +57,10 @@ Route::group(
         });
 
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
+            Route::get('notifications', [App\Http\Controllers\Control\NotificationController::class, 'index']);
+            Route::get('deleteNotification/{id?}', [App\Http\Controllers\Control\NotificationController::class, 'delete'])->name('notification.delete');
+
+
             Route::get('profile', [App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
             Route::post('profile/update', [App\Http\Controllers\Control\ProfileController::class, 'update'])->name('profile.update');
 
