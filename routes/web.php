@@ -57,7 +57,7 @@ Route::group(
         });
 
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
-            Route::get('notifications', [App\Http\Controllers\Control\NotificationController::class, 'index']);
+            Route::get('notifications', [App\Http\Controllers\Control\NotificationController::class, 'index'])->name('notification.all');
             Route::get('deleteNotification/{id?}', [App\Http\Controllers\Control\NotificationController::class, 'delete'])->name('notification.delete');
 
 
