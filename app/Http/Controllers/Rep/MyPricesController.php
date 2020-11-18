@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\RepPrice;
 use App\Models\RepCarSize;
 use App\Models\DeliveryRegion;
+use App\Http\Requests\Rep\MyPricesRequest;
 
 class MyPricesController extends Controller
 {
@@ -33,7 +34,7 @@ class MyPricesController extends Controller
         return view($this->view . 'edit' , compact('item','my_prices','delivery_regions') );
     }
 
-    public function store(Request $request,$id = null)
+    public function store(MyPricesRequest $request,$id = null)
     {
          
         $data = $request->except('_token','country_id','region_id');

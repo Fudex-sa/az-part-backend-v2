@@ -17,7 +17,7 @@
           <i class="fa fa-search"></i> @lang('site.electronic_requests') </a>
     @endif
 
-    @if( user_type() == 'broker' || user_type() == 'seller')
+    @if( user_type() == 'seller' || user_type() == 'broker')
       <a class="nav-link {{ isset($seller_requests) ? 'active' : '' }}" href="{{ route('seller.requests') }}">
         <i class="fa fa-list"></i> @lang('site.seller_requests') </a>
     @endif
@@ -28,7 +28,7 @@
     @endif
 
     @if(user_type() == 'user' || user_type() == 'company')
-      <a class="nav-link {{ isset($items) ? 'active' : '' }}" href="{{ route('control.wish_list') }}">
+      <a class="nav-link {{ isset($my_favorite) ? 'active' : '' }}" href="{{ route('control.wish_list') }}">
         <i class="fa fa-heart"></i> @lang('site.my_favorite') </a>
     @endif
 

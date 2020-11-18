@@ -29,7 +29,7 @@
         <div class="row  mt-5 text-center">
           <div class="col-md-4">
             <a href="{{ route('user.register') }}">
-                <div class="sign shadow py-4 px-2 rounded">
+                <div class="shadow py-4 px-2 rounded">
                 <img src="{{ site('assets/images/n-1.png') }}" alt="">
                 <h6> @lang('site.as_user_and_company')  </h6>               
                 </div>
@@ -38,7 +38,7 @@
 
           <div class="col-md-4 ">
             <a href="{{ route('seller.register') }}">
-                <div class="sign shadow py-4 px-2 rounded">
+                <div class="shadow py-4 px-2 rounded">
                 <img src="{{ site('assets/images/n-2.png') }}" alt="">
                 <h6> @lang('site.seller_or_broker') </h6>               
                 </div>
@@ -47,7 +47,7 @@
 
           <div class="col-md-4">
             <a href="{{ route('rep.register') }}">
-                <div class="sign shadow py-4 px-2 rounded">
+                <div class="shadow py-4 px-2 rounded">
                 <img src="{{ site('assets/images/n-3.png') }}" alt="">
                 <h6> @lang('site.rep') </h6>             
                 </div>

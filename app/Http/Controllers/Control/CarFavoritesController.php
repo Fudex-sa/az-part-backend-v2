@@ -13,9 +13,11 @@ class CarFavoritesController extends Controller
 {
     public function wish_list()
     {
+        $my_favorite = true;
+
         $items = User::where('id', logged_user()->id)->with('favorites')->first()->favorites;
 
-        return view('control.wishlists.all', compact('items'));
+        return view('control.wishlists.all', compact('items','my_favorite'));
     }
 
 

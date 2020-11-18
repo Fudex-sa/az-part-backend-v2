@@ -63,7 +63,7 @@
 
                             <td> {{ count($item->cart) }} @lang('site.piec') </td>
 
-                            <td> {{ $item->shipping->rep->name }} </td>
+                            <td> {{ $item->shipping->rep ? $item->shipping->rep->name : __('site.waiting_for_assign') }} </td>
 
                             <td> {{ $item->delivery_price}} @lang('site.rs') </td>
 

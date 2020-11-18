@@ -28,7 +28,10 @@ class SellerSignup extends FormRequest
                 'name' => 'required',
                 'mobile' => 'required|numeric|min:9|unique:brokers,mobile,'.$this->id,
                 'password' => 'required|confirmed|min:6',
-                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'country_id' => 'required',
+                'region_id' => 'required',
+                'city_id' => 'required',
             ];
         
         else
@@ -36,7 +39,19 @@ class SellerSignup extends FormRequest
                 'name' => 'required',
                 'mobile' => 'required|numeric|min:9|unique:sellers,mobile,'.$this->id,
                 'password' => 'required|confirmed|min:6',
-                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'country_id' => 'required',
+                'region_id' => 'required',
+                'city_id' => 'required',
             ];
+    }
+
+    public function messages()
+    {
+        return [
+            'country_id.required' => __('site.country_required'),
+            'region_id.required' => __('site.region_required'),
+            'city_id.required' => __('site.city_required'),
+        ];
     }
 }

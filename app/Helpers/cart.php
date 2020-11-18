@@ -251,14 +251,23 @@ if (! function_exists('cities_sellers')) {
         $year = $search['year'];
         $country = $search['country'];
 
+        // $items = AvailableModel::select('city_id', DB::raw('count(*) as stores'))
+        //                     ->matchOrder($brand,$model,$year)                            
+        //                     ->whereHas('seller',function($q) use ($country){
+        //                         $q->where('country_id',$country)->where('active',1)
+        //                             ->orderby('saudi','desc')->orderby('vip','desc');
+        //                     })                           
+        //                     ->get();
+
         $items = AvailableModel::select('city_id', DB::raw('count(*) as stores'))
-                            ->matchOrder($brand,$model,$year)                            
-                            ->whereHas('seller',function($q) use ($country){
-                                $q->where('country_id',$country)->where('active',1)
-                                    ->orderby('saudi','desc')->orderby('vip','desc');
-                            })                           
-                            ->get();
-                         
+                    ->matchOrder($brand,$model,$year)     
+                    ->whereHas('seller',function($q) use ($country){
+                        $q->where('country_id',$country)->where('active',1)
+                            ->orderby('saudi','desc')->orderby('vip','desc');
+                    })                        
+                    ->groupBy('city_id')
+                    ->get();            
+                          
         return $items;
 
     }

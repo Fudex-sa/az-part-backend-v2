@@ -82,6 +82,7 @@
       </div>
       
 
+      @if(count($rep_prices))
       @foreach ($rep_prices as $rep_price)
         @if(in_array(request()->size ? request()->size : 'medium',$rep_price->car_size))
 
@@ -100,7 +101,7 @@
 
               @if(tashlih_regions())
                 @foreach (tashlih_regions() as $tashReg)
-
+ 
                   @if(in_array($tashReg,$rep_price->rep->rep_prices->pluck('_from')->toArray()) )
                     <span> @lang('site.from')  : {{ from_region($tashReg) }} </span>                      
                     <br/>
@@ -122,6 +123,20 @@
         @endif
       @endforeach
         
+      @else
+
+      <div class="col-md-12">
+        <div class="advice text-center">
+         
+          <p> {{ data('no_reps_found') }} </p> 
+
+          <a href="{{ route('choose_rep',['rep_id' => 0,'price' => 0]) }}" 
+                class="btn btn-results"> @lang('site.admin_deal_with') </a>
+
+        </div>
+      </div>
+
+      @endif
        
     </div>
 

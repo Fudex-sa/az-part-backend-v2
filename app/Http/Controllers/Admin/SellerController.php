@@ -14,6 +14,7 @@ use App\Models\AvailableModel;
 use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+use App\Http\Requests\Seller\AvailableModelRequest;
 use Excel;
 
 class SellerController extends Controller
@@ -152,7 +153,7 @@ class SellerController extends Controller
         return view($this->view.'all', compact('items'));
     }
 
-    public function available_brand_store(Request $request)
+    public function available_brand_store(AvailableModelRequest $request)
     {
         $seller = Seller::find($request->user_id);
 

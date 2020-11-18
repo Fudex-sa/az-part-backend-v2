@@ -31,17 +31,19 @@
                   enctype="multipart/form-data">
                       @csrf
                       
-                  <div class="col-md-3">
+                  <div class="col-md-3 text-center">
                     
                     <div class="up-img">
-                      <input type='file' name="photo" class="imgpo" onchange="readURLL(this);" />
-                      <span class="file-hover"> @lang('site.change') </span>
-                    
-                      @if(logged_user()->photo)
-                          <img id="blah" src="{{ img_path(logged_user()->photo) }}" alt="" class="img-fluid">
-                      @else
-                          <img id="blah" src="{{ site('assets/images/avatar.jpg') }}" alt="" class="img-fluid">
-                      @endif
+                      
+                        <input type='file' name="photo" class="imgpo" onchange="readURLL(this);" />
+                        <span class="file-hover"> @lang('site.change') </span>
+                      
+                        @if(logged_user()->photo)
+                            <img id="blah" src="{{ img_path(logged_user()->photo) }}" alt="" class="img-fluid">
+                        @else
+                            <img id="blah" src="{{ site('assets/images/avatar.jpg') }}" alt="" class="img-fluid">
+                        @endif
+                     
                     </div>
 
                     <div class="pro-image-upload mt-4">
