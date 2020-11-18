@@ -19,48 +19,34 @@ class RequestsResource extends JsonResource
         $name = 'name_'.$lang;
 
         return [
-          'id' => $this->id,
-          'user_id' => $this->user_id,
-          'request_type' => $this->request_type,
-          'group_id' => $this->group_id,
-          'total' => $this->total,
-          'extra_fees' => $this->extra_fees,
-          'extra_fees_amount' => $this->extra_fees_amount,
-          'brand_id' => $this->brand_id,
-          'model_id' => $this->model_id,
-          'year' => $this->year,
-          'piece_id' => $this->piece_id,
-          'img' => $this->img,
-          'color' => $this->color,
-          'notes' => $this->notes,
-          'city_id' => $this->city_id,
-          'status' => $this->status,
-          'paid' => $this->paid,
-          'seen' => $this->seen,
-          'accepted_offers' => $this->accepted_offers,
-          'let_admin_deal' => $this->let_admin_deal,
-          'reason_for_deletion' => $this->reason_for_deletion,
-          'deleted_at' => $this->deleted_at,
-          'brand' => [
-            'id' => $this->brand ? $this->brand->id : '',
-            'name' => $this->brand ? $this->brand->$name : '',
-            'logo' => $this->brand ? $this->brand->logo : '',
-          ],
-          'model' => [
-            'id' => $this->model ? $this->model->id : '',
-            'name' => $this->model ? $this->model->$name : '',
-          ],
-          'piece' => [
-            'id' => $this->piece ? $this->piece->id : '',
-            'img' => $this->piece ? $this->piece->img : '',
-            'name' => $this->piece ? $this->piece->$name : ''
-          ],
-          'city' => [
-            'id' => $this->city ? $this->city->id : '',
-            'name' => $this->city ? $this->city->$name : ''
-          ]
+        'id' => $this->id,
 
-      ];
-        //return parent::toArray($request);
+        'seller_id' => $this->seller_id,
+        'request_id' => $this->request_id,
+        'price' => $this->price??0,
+        'status' => $this->status_id,
+        'seller_type' => $this->seller_type,
+        'composition' => $this->composition,
+        'return_possibility' => $this->return_possibility,
+        'delivery_possibility' => $this->delivery_possibility,
+        'created_at' => $this->created_at,
+
+        'brand' => [
+          'id' => $this->request->brand ? $this->request->brand->id : '',
+          'name' => $this->request->brand ? $this->request->brand->$name : '',
+          'logo' => $this->request->brand ? $this->request->brand->logo : ''
+        ],
+        'model' => [
+          'id' => $this->request->model ? $this->request->model->id : '',
+          'name' => $this->request->model ? $this->request->model->$name : '',
+          'brand_id' => $this->request->model ? $this->request->model->brand_id : ''
+        ],
+        'city' => [
+            'id' => $this->request->city ? $this->request->city->id : '',
+            'name' => $this->request->city ? $this->request->city->$name : '',
+            'region_id' => $this->request->city ? $this->request->city->region_id : ''
+        ],
+
+    ];
     }
 }

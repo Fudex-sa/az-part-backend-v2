@@ -130,6 +130,7 @@ class CarsController extends Controller
           'car_type' => 'required|max:255',
           'brand_id' => 'required',
           'model_id' => 'required',
+          'item_id' => 'required',
         ]);
 
         if ($validator->fails()) {
