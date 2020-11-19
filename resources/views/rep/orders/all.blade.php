@@ -27,10 +27,11 @@
                     <tr>
                       <th style="width: 100px;"> @lang('site.order_no')  </th>
                       <th> @lang('site.order_user')  </th>
-                      <th> @lang('site.region')  </th>
-                      <th> @lang('site.address')  </th>
+                      <th> @lang('site.region')  </th>                    
                       <th> @lang('site.delivery_price')  </th>
                       <th > @lang('site.total')  </th>
+                      <th> @lang('site.remaining_cost') </th>                         
+                      <th> @lang('site.payment_method') </th>
                       <th > @lang('site.status')  </th>
                       <th > @lang('site.created_at')  </th>                        
                     </tr>
@@ -53,12 +54,15 @@
                                 {{ $item->shipping->region ? $item->shipping->region['name_'.my_lang()] : '' }} -
                                 {{ $item->shipping->city ? $item->shipping->city['name_'.my_lang()] : '' }} 
                             </td>
-
-                            <td> {{ $item->shipping->street }}   </td>
-
+  
                             <td> {{ $item->delivery_price }} @lang('site.rs') </td>
 
                             <td> {{ $item->total }} @lang('site.rs') </td>
+
+
+                            <td> {{ $item->remaining_cost }} @lang('site.rs') </td>
+
+                            <td> {{ __('site.'.$item->payment_method) }} </td>
 
                             <td> <span class="btn status-{{ $item->order_status->id }}"> 
                               {{ $item->order_status ? $item->order_status['name_'.my_lang()] : '-' }} </span> </td>

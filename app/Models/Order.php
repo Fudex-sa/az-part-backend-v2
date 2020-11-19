@@ -12,7 +12,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id' , 'user_type' , 'sub_total' , 'delivery_price' , 'taxs' , 'total' , 'status' , 'coupon_id' , 'coupon_value',
-        'package_sub_id' , 'shipping_id' , 'type'
+        'package_sub_id' , 'shipping_id' , 'type' , 'payment_method' , 'remaining_cost'
     ];
 
     public function scopeCouponByUser($q,$coupon_id)

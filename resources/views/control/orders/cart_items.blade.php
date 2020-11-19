@@ -13,6 +13,7 @@
             <th> @lang('site.price') </th>
             <th> @lang('site.pieces_price') </th>
             <th> @lang('site.seller') </th>
+            <th> @lang('site.tashlih_region') </th>
             <th> @lang('site.guarantee') </th>
             <th> @lang('site.notes') </th>
             <th> @lang('site.color') </th>
@@ -36,7 +37,9 @@
 
                 <td> {{ $cart_item->price * $cart_item->qty }} @lang('site.rs') </td>
 
-                <td> {{ $cart_item->seller->name }} </td>
+                <td> {{ $cart_item->seller ? $cart_item->seller->name : '' }} </td>
+
+                <td> {{ $cart_item->seller ? $cart_item->seller->tashlih['name_'.my_lang()] : '-' }} </td>
                 
                 <td> {{ $cart_item->guarantee ? $cart_item->guarantee : '-' }} </td>
 
@@ -64,7 +67,7 @@
 
                 <tr>
                     <td> {{ $item->coupon->code }} </td>
-                    <td> {{ $item->coupon->value }} @lang('site.rs') </td>
+                    <td> {{ $item->coupon->value }} % </td>
                     <td> {{ coupon_used_times($item->coupon->id) }}  </td>
                     <td> {{ $item->coupon->expiration_date }} </td>
                 </tr>

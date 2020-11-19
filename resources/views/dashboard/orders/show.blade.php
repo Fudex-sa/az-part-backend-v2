@@ -57,5 +57,7 @@
 @endsection
 
 @section('scripts')
-    
+
+    @include('dashboard.ajax.confirm_paid',['target'=>'admin']) 
+
 @endsection

@@ -106,12 +106,11 @@ class AuthController extends Controller
         if($response == 1){
             $search = Session::get('search');
  
-            if( $search && session()->get('has_request') == 1){
-
+            if( $search && session()->get('has_request') == 1)
                 return redirect($this->search->search_url()); 
-            }
-
-            return redirect()->route('profile'); 
+             
+            else 
+                return redirect()->route('profile'); 
         }
         else  if($response == -1)
             return back()->with('failed' , __('site.invalid_login') )->withInput();

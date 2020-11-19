@@ -47,6 +47,7 @@ Route::group(
 
             Route::get('my_orders', [App\Http\Controllers\Rep\MyOrderController::class, 'all'])->name('rep.my_orders');
             Route::post('order/update/{id}', [App\Http\Controllers\Rep\MyOrderController::class, 'update'])->name('rep.order.update');
+            Route::post('order/confirm_paid', [App\Http\Controllers\Rep\MyOrderController::class, 'confirm_paid'])->name('order.confirm_paid');
         });
 
 
@@ -184,8 +185,8 @@ Route::group(
             Route::get('orders/deleted', [App\Http\Controllers\Admin\OrderController::class, 'deleted'])->name('admin.orders.deleted');
             Route::get('order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');
             Route::delete('order/delete', [App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');
-            Route::post('order/update/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
-
+            Route::post('order/update/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');            
+            Route::post('order/confirm_paid', [App\Http\Controllers\Rep\MyOrderController::class, 'confirm_paid'])->name('admin.order.confirm_paid');
 
             /*************** Electronic Engine  **********************/
 

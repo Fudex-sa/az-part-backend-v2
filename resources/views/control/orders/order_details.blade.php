@@ -39,25 +39,53 @@
         </tr>
 
         <tr>
-            <th> @lang('site.delivery_price') </th>
-            <td> {{ $item->delivery_price }} @lang('site.rs') </td>
+            <th> @lang('site.site_commission') </th>
+            <td> {{ setting('site_commission') }} %  ({{ setting('site_commission') / 100 * $item->sub_total }} @lang('site.rs')) </td>
         </tr>
 
         <tr>
-            <th> @lang('site.taxs') </th>
+            <th> @lang('site.coupon_value') </th>
+            <td>
+                @if($item->coupon_id) {{ $item->coupon_value }} % ({{ $item->coupon_value / 100 * $item->sub_total }} @lang('site.rs'))
+
+                @else - @endif
+                
+            </td>
+        </tr>
+
+         <tr>
+            <th> @lang('site.pieces_tax') </th>
             <td> {{ $item->taxs }} @lang('site.rs') </td>
         </tr>
 
+        <tr>
+            <th> @lang('site.delivery_price') </th>
+            <td> {{ $item->delivery_price }} @lang('site.rs') </td>
+        </tr>
+ 
         <tr>
             <th> @lang('site.total') </th>
             <td> {{ $item->total }} @lang('site.rs') </td>
         </tr>
 
         <tr>
-            <th> @lang('site.coupon_value') </th>
-            <td> {{ $item->coupon_id ? $item->coupon_value : '-' }} </td>
-        </tr>
+            <th> @lang('site.remaining_cost') </th>
+            <td> {{ $item->remaining_cost }} @lang('site.rs') 
+            
+                @if(user_type() == 'rep' && $item->shipping->rep_id == logged_user()->id)
+                    @if($item->remaining_cost != 0)
+                        <button onclick="confirm_paid({{ $item->id }})" 
+                            class="btn btn-success"> @lang('site.confirm_paid') </button> 
+                    @else 
+                        <button onclick="confirm_paid({{ $item->id }})" 
+                            class="btn btn-danger"> @lang('site.cancel') </button> 
+                    @endif
 
+                @endif
+
+            </td>
+        </tr>
+ 
         <tr>
             <th> @lang('site.order_status') </th>
             <td> <span class="btn status-{{ $item->order_status->id }}"> {{ $item->order_status['name_'.my_lang()] }} </td>

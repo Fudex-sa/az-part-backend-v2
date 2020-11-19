@@ -274,6 +274,9 @@
 .hidden{
     display: none;
 }
+.required{
+    color: red;
+}
 /************ Popup Cities ***********/
  .advice-2 h2{
       font-weight: bold;
