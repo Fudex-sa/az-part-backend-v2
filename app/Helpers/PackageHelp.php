@@ -18,7 +18,8 @@ class PackageHelp
         $item = PackageSubscribe::create([
             'user_id' => logged_user()->id ,'user_type' => user_type() , 'package_id' => $package_id ,
             'package_type' => $package->type ,
-            'price' => total() , 'stores_no' => $package->stores_no                 
+            'price' => total() , 'stores_no' => $package->stores_no ,
+            'coupon_id' => coupon_id()          
         ]);
     
 
@@ -27,7 +28,8 @@ class PackageHelp
         
         else $response = false;
 
-        Session::forget('package_id');
+        session()->forget('package_id');
+        session()->forget('coupon');
 
         return $response;
     }
@@ -42,18 +44,19 @@ class PackageHelp
     public function update_expired($package_sub_id) {
 
         $my_subscribe = PackageSubscribe::find($package_sub_id);
- 
-        $reqs = $my_subscribe->stores_no;
-
-        if($my_subscribe->package_type == 'manual')
-            PackageSubscribe::myPackages()->update(['expired' => 1]);
-
-        else {
-
+  
+        if($my_subscribe->package_type == 'manual'){
+            $my_subscribe->expired = 1;
+            $my_subscribe->save();
+             
+        }else {
+            $reqs = $my_subscribe->stores_no;
             $my_orders = Order::where('package_sub_id',$package_sub_id)->count();
 
-            if($my_orders == $reqs)
-                PackageSubscribe::myPackages()->update(['expired' => 1]);  
+            if($my_orders == $reqs){
+                $my_subscribe->expired = 1;
+                $my_subscribe->save();   
+            }
         }
     }
 

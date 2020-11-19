@@ -7,6 +7,11 @@
     <table class="my-tbl text-center">
         
         <tr>
+            <th> @lang('site.payment_method') </th>
+            <td> {{ __('site.'.$item->payment_method) }} </td>
+        </tr>
+
+        <tr>
             <th> @lang('site.country') </th>
             <td> {{ $item->shipping->country['name_'.my_lang()] }} </td>
         </tr>

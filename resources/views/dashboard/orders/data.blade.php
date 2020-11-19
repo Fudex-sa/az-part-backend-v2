@@ -7,6 +7,8 @@
             <th> @lang('site.order_no') </th>
             <td> AZ-{{ $item->id }} </td>
 
+            <th> @lang('site.payment_method') </th>
+            <td> {{ __('site.'.$item->payment_method) }} </td>
         </tr>
 
         <tr>            
@@ -56,7 +58,23 @@
 
             <th> @lang('site.order_status') </th>
             <td> <span class="btn status-{{ $item->order_status->id }}">
-                 {{ $item->order_status['name_'.my_lang()] }} </span> </td>
+                 {{ $item->order_status['name_'.my_lang()] }} </span> </td>            
+        </tr>
+
+        <tr>
+            <th> @lang('site.remaining_cost') </th>
+            <td> {{ $item->remaining_cost }} @lang('site.rs') </td>
+
+            <th> @lang('site.done_paid') </th>
+            <td> 
+                @if($item->remaining_cost != 0)
+                    <button onclick="confirm_paid({{ $item->id }})" 
+                        class="btn btn-success"> @lang('site.confirm_paid') </button> 
+                @else 
+                    <button onclick="confirm_paid({{ $item->id }})" 
+                        class="btn btn-danger"> @lang('site.cancel') </button> 
+                @endif
+            </td>
         </tr>
  
 

@@ -70,9 +70,29 @@
                                     </label>
                                 </div>
 
+
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-next btn-block btn-lg" value="@lang('site.continue_purchase')">
+
+
+                                <div class="form-group col-12">
+                                  <label for="cash">
+                                      <input id="cash" type="radio" name="method" value="cash">
+                                      {{__('site.cash_on_delivery')}}
+
+                                      <img src="{{ site('assets/images/n-3.png') }}" class="payment_logos"/>
+                                  </label>
+                              </div>
+
+                                  <div class="col-md-12">
+                                    @if(total() > 0)
+                                      <input type="submit" class="btn btn-next btn-block btn-lg" value="@lang('site.continue_purchase')">
+                                    @else
+
+                                      <p class="required text-center"> {{ data('min_order_cost') }} </p>
+                                    @endif
                                   </div>
+
 
                               </form>
                             </div>
@@ -81,6 +101,25 @@
                           <div class="col-md-5">
 
                             @include('site.checkout.coupon')
+
+
+                            @if(! session()->get('coupon') & request()->type == 'package')
+                              <div class="cart-details row  p-4 shadow rounded">
+                                <h3 class="col-md-12"> @lang('site.coupon')  </h3>
+
+                              <form method="post" action="{{ route('coupon.use') }}" class="row">
+                                    @csrf
+                                    <div class="form-group col-md-9">
+                                      <input type="text" name="code" class="form-control" placeholder="@lang('site.enter_coupon')" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                      <input type="submit" value="@lang('site.use_now')" class="btn btn-primary" />
+                                    </div>
+                                  </form>
+                              </div>
+                            @endif
+
+                            <br/>
 
                             <div class="cart-details row  p-4 shadow rounded">
 
