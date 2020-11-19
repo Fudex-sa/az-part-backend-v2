@@ -40,7 +40,7 @@ class MyOrderController extends Controller
         }else if($request->status == 9)
 
             OrderShippingRejecte::create([
-                'order_shipping_id' => $shipping->id , 'reject_reason' => $request->reject_reason
+                'order_shipping_id' => $order->shipping->id , 'reject_reason' => $request->reject_reason
             ]);
  
         return back()->with('success' , __('site.success-save') );

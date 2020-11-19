@@ -49,7 +49,7 @@
       </ul>
       <ul class="navbar-nav contact-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="tel:{{ setting('mobile') }}">
+          <a class="nav-link" href="tel:{{ data('mobile') }}">
             <img src="{{ site('assets/images/phone.png') }}" alt="" class="pl-1 phone">
           </a>
         </li>
@@ -282,7 +282,7 @@
   @yield('popup')
 
   <!-- start floating button -->
-  <a href="#" class="float">
+  <a href="https://wa.me/{{ data('mobile') }}" target="_blank" class="float">
     <img src="{{ site('assets/images/whatsapp-green.png') }}" alt="" class="img-fluid">
   </a>
   <!-- start my script -->

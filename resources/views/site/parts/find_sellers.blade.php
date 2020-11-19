@@ -59,8 +59,8 @@
                                         <img src="{{ site('assets/images/location.png') }}" alt="">  {{ $item->seller['address'] }}
                                     </a>
 
-                                    {{ $item->seller->region['name_'.my_lang()] }} - 
-                                    {{ $item->seller->city['name_'.my_lang()] }}
+                                    {{ $item->seller->region ? $item->seller->region['name_'.my_lang()] : '' }} - 
+                                    {{ $item->seller->city ? $item->seller->city['name_'.my_lang()] : '' }}
                                 </h6>
 
                                 <h6> 

@@ -52,7 +52,10 @@
                           <tr>
                               <td> {{ $k+1 }} </td>
 
-                              <td> <img src="{{ img_path($item->imgs[0]->photo) }}" class="img-user"/></td>
+                              <td> @if(isset($item->imgs[0]))
+                                    <img src="{{ img_path($item->imgs[0]->photo) }}" class="img-user"/>
+                                    @else <img src="{{ site('assets/images/logo.png') }}" class="img-user"/> @endif 
+                              </td>
 
                               <td> <a href="{{ route('car',$item->id) }}" target="_blank"> {{ $item->title }} </a> </td>
 

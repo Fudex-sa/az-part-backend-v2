@@ -25,7 +25,7 @@ class AuthController extends Controller
     }
 
     public function signup_as()
-    {
+    {       
         return view($this->view . 'signup_as');
     }
 

@@ -24,8 +24,8 @@
                 
                 <td> 
                     @if($cart_item->photo)
-                        <img src="{{ cart_img($cart_item->photo) }}" class="img-piece" />
-                    @else <img src="{{ site('assets/images/logo.png') }}" class="img-piece" /> @endif
+                        <img src="{{ cart_img($cart_item->photo) }}" class="img-user" />
+                    @else <img src="{{ site('assets/images/logo.png') }}" class="img-user" /> @endif
                 </td>
 
                 <td> {{ $cart_item->piece_alt['name_'.my_lang()] }} </td>

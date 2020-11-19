@@ -47,11 +47,14 @@ class ShippingController extends Controller
     public function reps_filter(Request $request)
     { 
         $city = $request->city;
-
+        $from_resgions = tashlih_regions();
+        
         $rep_prices = RepPrice::with('rep')->whereHas('rep' , function($q){
                             $q->where('active',1)->orderby('lat','asc')->orderby('lng','asc');
                         })                                
                         ->where('city_id',$city)->where('active',1)
+                        ->whereIn('_from',$from_resgions)
+                        ->groupBy('rep_id')
                         ->orderby('price','asc')
                         ->get();
 

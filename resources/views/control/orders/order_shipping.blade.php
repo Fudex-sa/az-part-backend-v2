@@ -35,7 +35,7 @@
 
         <tr>
             <th> @lang('site.rep') </th>
-            <td> {{ $item->shipping->rep ? $item->shipping->rep['name'] : '-' }} </td>
+            <td> {{ $item->shipping->rep ? $item->shipping->rep['name'] : __('site.waiting_for_assign') }} </td>
         </tr>
 
         @if($item->status == 8)

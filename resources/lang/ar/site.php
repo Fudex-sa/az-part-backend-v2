@@ -1103,4 +1103,9 @@ return [
     'confirm_move_to_next_round' => 'تأكيد التحرك للرواند التالية؟',
     'process_success' => 'تمت العملية بنجاح',
     'not_found_result_in_your_city' => 'لا توجد نتائج بحث فى مدينتك , يمكنك اختيار مدينه اخرى من الرابط ادناه',
+    'admin_deal_with' => 'تكليف الإدارة',
+    'waiting_for_assign' => 'فى انتظار التكليف',
+    'tashlih_region_required' => 'منطقة التشليح مطلوبة',
+    'city_to_required' => 'منطقة التوصيل مطلوبة',
+    'delivery_price_required' => 'سعر التوصيل مطلوب',
 ];
