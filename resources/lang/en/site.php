@@ -961,4 +961,11 @@ return [
     'tashlih_region_required' => 'Tashlih Region Required',
     'city_to_required' => 'Delivery City Required',
     'delivery_price_required' => 'Delivery Price Required',
+    'cash_on_delivery' => 'Cash On Delivery',
+    'remaining_cost' => 'Remaining Cost',
+    'visa' => 'Visa',
+    'cash' => 'Cash On Delivery',
+    'mada' => 'Mada Cards',
+    'done_paid' => 'Done Paid',
+    'confirm_paid' => 'Confirm Paid',
 ];

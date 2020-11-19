@@ -66,6 +66,8 @@
             <th> @lang('site.pieces_count') </th>
             <th> @lang('site.user_type') </th>
             <th> @lang('site.total') </th>
+            <th> @lang('site.remaining_cost') </th>                         
+            <th> @lang('site.payment_method') </th>
             <th> @lang('site.status') </th>            
             <th> @lang('site.date') </th>
             <th style="width: 100px;"></th>
@@ -94,6 +96,10 @@
             <td>  {{ __('site.'.$item->user_type) }} </td>
 
             <td> {{ $item->total }} @lang('site.rs') </td>
+
+            <td> {{ $item->remaining_cost }} @lang('site.rs') </td>
+
+            <td> {{ __('site.'.$item->payment_method) }} </td>
 
             <td> <span class="btn status-{{ $item->order_status->id }}"> 
                 {{ __($item->order_status['name_'.my_lang()]) }} </span> </td>
@@ -136,5 +142,5 @@
 @section('scripts')
     
     @include('dashboard.ajax.delete',['target'=>'order']) 
- 
+     
 @endsection

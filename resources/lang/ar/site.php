@@ -1105,4 +1105,12 @@ return [
     'tashlih_region_required' => 'منطقة التشليح مطلوبة',
     'city_to_required' => 'منطقة التوصيل مطلوبة',
     'delivery_price_required' => 'سعر التوصيل مطلوب',
+    'cash_on_delivery' => 'الدفع عند الإستلام',
+    'remaining_cost' => 'المبلغ المتبقى',
+    'visa' => 'فيزا',
+    'cash' => 'دفع عند الإستلام',
+    'mada' => 'بطاقات مدى',
+    'done_paid' => 'تم تسديد المتبقى',
+    'confirm_paid' => 'تأكيد سداد باقى المبلغ',
+    
 ];

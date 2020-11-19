@@ -46,7 +46,9 @@
                           <th> @lang('site.pieces_count') </th>
                           <th> @lang('site.rep') </th>
                           <th> @lang('site.delivery_price') </th>
-                          <th> @lang('site.total')  </th>                          
+                          <th> @lang('site.total')  </th> 
+                          <th> @lang('site.remaining_cost') </th>                         
+                          <th> @lang('site.payment_method') </th>                         
                           <th> @lang('site.status')  </th>
                           <th> @lang('site.created_at')  </th>                           
                         </tr>
@@ -68,6 +70,10 @@
                             <td> {{ $item->delivery_price}} @lang('site.rs') </td>
 
                             <td> {{ $item->total }} @lang('site.rs') </td>
+
+                            <td> {{ $item->remaining_cost }} @lang('site.rs') </td>
+
+                            <td> {{ __('site.'.$item->payment_method) }} </td>
 
                             <td> <span class="btn status-{{ $item->order_status->id }}"> 
                                 {{ $item->order_status ? $item->order_status['name_'.my_lang()] 

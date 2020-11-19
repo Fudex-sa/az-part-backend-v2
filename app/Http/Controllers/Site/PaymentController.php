@@ -47,7 +47,9 @@ class PaymentController extends Controller
     {
         $payment_method = Session::get('payment_method');
 
-        $checkoutId = $this->hyperPay->getCheckout(total(),$payment_method);
+        $payment_method == 'cash' ? $total = number_format((float)total() / 2, 2, '.', '') : $total = total();
+
+        $checkoutId = $this->hyperPay->getCheckout($total,$payment_method);
 
         return view($this->view . 'payment',compact('checkoutId'));
     }

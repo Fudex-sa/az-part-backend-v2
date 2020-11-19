@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OrderShippingRejecte;
 use App\Models\Order;
+use App\Models\OrderShipping;
 use App\Http\Requests\Rep\UpdateOrderRequest;
 
 class MyOrderController extends Controller
@@ -30,12 +31,13 @@ class MyOrderController extends Controller
         Order::where('id',$id)->update(['status'=>$request->status]);
         
         $order = Order::where('id',$id)->first();
+        $shipping = OrderShipping::where('id',$order->shipping_id)->first();
 
         if($request->status == 8){
         
-            $order->shipping->delivery_time = $request->delivery_time;
+            $shipping->delivery_time = $request->delivery_time;
         
-            $order->save();   
+            $shipping->save();   
         
         }else if($request->status == 9)
 
@@ -44,6 +46,19 @@ class MyOrderController extends Controller
             ]);
  
         return back()->with('success' , __('site.success-save') );
+    }
+
+    public function confirm_paid(Request $request)
+    {
+        $item = $request->input('id');
+
+        $order = Order::find($item);
+        $order->remaining_cost != 0 ? $order->remaining_cost = 0 : $order->remaining_cost = $order->total / 2 ;
+        
+        if($order->save())        
+            return 1;
+
+        return 0;
     }
      
 }

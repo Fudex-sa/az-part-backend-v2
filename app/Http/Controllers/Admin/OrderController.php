@@ -111,4 +111,17 @@ class OrderController extends Controller
         return view($this->view.'all',compact('items','order_status'));
     }
  
+    public function confirm_paid(Request $request)
+    {
+        $item = $request->input('id');
+
+        $order = Order::find($item);
+        $order->remaining_cost != 0 ? $order->remaining_cost = 0 : $order->remaining_cost = $order->total / 2 ;
+        
+        if($order->save())        
+            return 1;
+
+        return 0;
+    }
+    
 }

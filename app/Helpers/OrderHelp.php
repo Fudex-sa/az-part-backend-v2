@@ -29,15 +29,18 @@ class OrderHelp
 
         $my_subscribe = PackageSubscribe::myPackagesByType($order_type)->first();
         $my_subscribe ? $package_sub_id = $my_subscribe->id : $package_sub_id = 0 ;
-
          
+        session()->get('payment_method') == 'cash' ? $remaining_cost = total() / 2  : $remaining_cost = 0;
+
         $item = Order::create([
             'user_id' => logged_user()->id , 'user_type' => user_type() ,
             'sub_total' => sub_total() ,
             'delivery_price' => delivery_price(),
             'taxs' => taxs() , 'total' => total() , 'coupon_value' => coupon_discount(),
             'coupon_id' => coupon_id() , 'package_sub_id' => $package_sub_id ,
-            'shipping_id' => $shipping->id , 'type' => $order_type
+            'shipping_id' => $shipping->id , 'type' => $order_type ,
+            'payment_method' => session()->get('payment_method') ,
+            'remaining_cost' => $remaining_cost
         ]);
 
         if($item){          

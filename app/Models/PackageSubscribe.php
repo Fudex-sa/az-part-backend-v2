@@ -10,7 +10,8 @@ class PackageSubscribe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id' , 'package_id' ,'package_type' , 'price' , 'stores_no' , 'user_type' , 'expired' 
+        'user_id' , 'package_id' ,'package_type' , 'price' , 'stores_no' , 'user_type' , 'expired' ,
+        'coupon_id'
     ];
 
     public function scopeMyPackages()

@@ -72,7 +72,7 @@ if (! function_exists('sub_total')) {
 if (! function_exists('taxs')) {
     function taxs() {
                 
-        $tax = setting('pieces_tax') / 100 * sub_total();
+        $tax = setting('pieces_tax') / 100 * total_without_tax();
  
         return $tax;
     }
@@ -87,9 +87,8 @@ if (! function_exists('commission')) {
     }
 }
  
-
-if (! function_exists('total')) {
-    function total() {
+if (! function_exists('total_without_tax')) {
+    function total_without_tax() {
     
         if(session()->get('payment_type') == 'package')
             $result = Package::packagePrice(session()->get('package_id'));
@@ -98,11 +97,39 @@ if (! function_exists('total')) {
 
             session()->get('with_oil') ? $with_oil = session()->get('with_oil') : $with_oil = 0;
 
-            $result = sub_total() + taxs() + commission();
+            $result = sub_total() + commission();
+            $result = $result - discount();
+ 
+        }
+       
+        $total = number_format((float)$result, 2, '.', '');
+         
+        return $total;
+    }
+}
+
+if (! function_exists('total')) {
+    function total() {
+    
+        if(session()->get('payment_type') == 'package'){
+            $result = Package::packagePrice(session()->get('package_id'));
+
+            coupon_discount() != 0 ?  $discount_val = coupon_discount() : $discount_val = 0;
+
+            $discount = $discount_val / 100 * $result; 
+            $result =  $result - $discount;    
+
+        }else{
+
+            session()->get('with_oil') ? $with_oil = session()->get('with_oil') : $with_oil = 0;
+
+            $result = sub_total() + commission();
             $result = $result - discount();
 
+            
+            
+            $result = $result + taxs();
             $result = $result + delivery_price() + $with_oil;
-             
         }
        
         $total = number_format((float)$result, 2, '.', '');
@@ -250,15 +277,7 @@ if (! function_exists('cities_sellers')) {
         $model = $search['model'];
         $year = $search['year'];
         $country = $search['country'];
-
-        // $items = AvailableModel::select('city_id', DB::raw('count(*) as stores'))
-        //                     ->matchOrder($brand,$model,$year)                            
-        //                     ->whereHas('seller',function($q) use ($country){
-        //                         $q->where('country_id',$country)->where('active',1)
-        //                             ->orderby('saudi','desc')->orderby('vip','desc');
-        //                     })                           
-        //                     ->get();
-
+ 
         $items = AvailableModel::select('city_id', DB::raw('count(*) as stores'))
                     ->matchOrder($brand,$model,$year)     
                     ->whereHas('seller',function($q) use ($country){

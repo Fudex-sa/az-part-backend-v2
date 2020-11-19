@@ -86,4 +86,6 @@
 
     </script>
 
+  @include('dashboard.ajax.confirm_paid',['target'=>'rep']) 
+
 @endsection
