@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel2"> قم برفع ملف التاجر </h4>
+                <h4 class="modal-title" id="myModalLabel2"> @lang('site.upload_sellers') </h4>
             </div>
             <div class="modal-body">
 
@@ -15,7 +15,7 @@
 
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_ar"> ملف التاجر<span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_ar">@lang('site.seller_file')<span
                                 class="required">*</span>
                         </label>
 

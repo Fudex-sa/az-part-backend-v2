@@ -118,6 +118,9 @@ return [
     'title' => 'العنوان',
     'content' => 'المحتوى',
     'enter_the_below_required_data' => 'ادخل البيانات التالية',
+    'upload_sellers' => 'قم برفع ملف التاجر',
+    'seller_file' => 'ملف التاجر',
+
     'choose_category' => 'اختر الفئة',
     'car_type' => 'نوع السيارة',
     'car_image' => 'صورة السيارة',
@@ -1097,7 +1100,7 @@ return [
     'go_to_next_round' => 'الذهاب للتشاليح التالية',
     'move_engine_to_next_round' => 'تحريك المحرك للراوند التالية',
     'confirm_empty' => 'تأكيد تفريغ الجداول؟',
-    'confirm_move_to_next_round' => 'تأكيد التحرك للرواند التالية؟',    
+    'confirm_move_to_next_round' => 'تأكيد التحرك للرواند التالية؟',
     'process_success' => 'تمت العملية بنجاح',
     'not_found_result_in_your_city' => 'لا توجد نتائج بحث فى مدينتك , يمكنك اختيار مدينه اخرى من الرابط ادناه',
 ];

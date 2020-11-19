@@ -42,9 +42,12 @@ class SellerController extends Controller
     public function addFile()
     {
         //dd(request()->file('file'));
-
+        //  try {
         Excel::import(new SellerImport, request()->file('file'));
         return back()->with('success', __('site.success-save'));
+        //  } catch (\Exception $e) {
+        return back()->with('failed', 'The File has something wrong')->withInput();
+        //}
     }
 
     public function store(UserRequest $request, $id = null)

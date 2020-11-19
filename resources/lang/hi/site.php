@@ -105,6 +105,8 @@ return [
     'brands_management' => 'ब्रांड प्रबंधन',
     'models_management' => 'मॉडल प्रबंधन',
     'users_management' => 'उपयोगकर्ता प्रबंधन',
+    'upload_sellers' => 'उपयोगकर्ता प्रबंधन',
+    'seller_file' => 'उपयोगकर्ता प्रबंधन',
     'pieces_management' => 'स्पेयर पार्ट्स प्रबंधन',
     'about_us_management' => 'हमारे बारे में प्रबंधन',
     'open_requests' => 'खुला अनुरोध',

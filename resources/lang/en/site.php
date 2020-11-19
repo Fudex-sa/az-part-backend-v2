@@ -107,6 +107,8 @@ return [
 'title' => 'Title',
 'content' => 'Content',
 'enter_the_below_required_data' => 'Enter the below required data',
+'upload_sellers' => 'Upload Seller File',
+'seller_file' => 'Seller File',
 'choose_category' => 'Choose Category',
 'car_type' => 'Car Type',
 'car_image' => 'Car Image',
