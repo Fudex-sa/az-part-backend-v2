@@ -12,6 +12,7 @@ use App\Models\RepPrice;
 use App\Models\PackageSubscribe; 
 use App\Models\AvailableModel;
 use App\Models\DeliveryRegion;
+use Carbon\Carbon;
 
 if (! function_exists('cart')) {
     function cart() {
@@ -159,7 +160,10 @@ if (! function_exists('my_orders')) {
 if (! function_exists('valid_coupon')) {
     function valid_coupon($code)
     {         
-        $coupon = Coupon::where('code',$code)->first();
+        $coupon = Coupon::where('code',$code)->where('active',1)
+                        ->whereDate('expiration_date','>',Carbon::now())
+                        ->orwhereDate('expiration_date',null)
+                        ->first();
 
         if($coupon){
             $used_times = Order::couponByUser($coupon->id)->get()->count();
@@ -190,11 +194,15 @@ if (! function_exists('coupon_discount')) {
 if (! function_exists('discount')) {
     function discount() {
         
-        if(coupon_discount() != 0)            
-            $result = coupon_discount() / 100 * sub_total();
-  
-        else $result = 0;
+        if(session()->get('payment_type') == 'package')
+            $result = coupon_discount() / 100 * total();
 
+        else{
+            if(coupon_discount() != 0)            
+                $result = coupon_discount() / 100 * sub_total();
+    
+            else $result = 0;
+        }
         return $result;
     }
 }

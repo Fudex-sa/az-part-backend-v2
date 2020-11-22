@@ -41,8 +41,7 @@
 
             </ul>
             <div class="tab-content" id="myTabContent">
-
-
+            
                        <div class="tab-pane fade show active" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
 
                         <div class="row mt-5">
@@ -69,9 +68,11 @@
     div.wpwl-group-brand { width:35%; float:left; margin-top:28px }
     div.wpwl-brand-card  { width: 65px }
     div.wpwl-brand-custom  { margin: 0px 5px; background-image: url("https://oppwa.com/v1/paymentWidgets/img/brand.png") }
+    .wpwl-wrapper > .wpwl-icon {  right: 300px; left: .5625em; top: 5px; }
                               </style>
                               <script>
                               var wpwlOptions = {
+                                locale: "{{ my_lang() }}",
                                  style: "plain",
                                  forceCardHolderEqualsBillingName: true,
                                  showCVVHint: true,
