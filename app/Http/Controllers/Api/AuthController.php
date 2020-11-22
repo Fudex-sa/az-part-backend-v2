@@ -49,6 +49,8 @@ class AuthController extends Controller
             if (Auth::guard('seller')->attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
                 //dd('aa');
                 $user = Auth::guard('seller')->user();
+                $user->update(['api_token' => request('mobile_token')]);
+
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $user->token = 'Bearer ' .$success['token'];
             }
@@ -70,7 +72,7 @@ class AuthController extends Controller
         if (Auth::guard('seller')->attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
             $user = Auth::guard('seller')->user();
             //dd($user);
-            $user->update(['token' => request('mobile_token')]);
+            $user->update(['api_token' => request('mobile_token')]);
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $user->token = 'Bearer ' .$success['token'];
 

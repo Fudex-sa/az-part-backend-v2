@@ -69,6 +69,7 @@
     div.wpwl-brand-card  { width: 65px }
     div.wpwl-brand-custom  { margin: 0px 5px; background-image: url("https://oppwa.com/v1/paymentWidgets/img/brand.png") }
     .wpwl-wrapper > .wpwl-icon {  right: 300px; left: .5625em; top: 5px; }
+ 
                               </style>
                               <script>
                               var wpwlOptions = {
@@ -81,8 +82,9 @@
                                    $(".wpwl-group-cardNumber").after($(".wpwl-group-brand").detach());
                                    $(".wpwl-group-cvv").after( $(".wpwl-group-cardHolder").detach());
                                    var visa = $(".wpwl-brand:first").clone().removeAttr("class").attr("class", "wpwl-brand-card wpwl-brand-custom wpwl-brand-VISA")
+                                   var mada = $(".wpwl-brand:first").clone().removeAttr("class").attr("class", "wpwl-brand-card wpwl-brand-custom wpwl-brand-MADA")
                                    var master = $(visa).clone().removeClass("wpwl-brand-VISA").addClass("wpwl-brand-MASTER");
-                                   $(".wpwl-brand:first").after( $(master)).after( $(visa));
+                                   $(".wpwl-brand:first").after( $(mada)).after( $(master)).after( $(visa));
                                  },
                                  onChangeBrand: function(e){
                                    $(".wpwl-brand-custom").css("opacity", "0.3");
