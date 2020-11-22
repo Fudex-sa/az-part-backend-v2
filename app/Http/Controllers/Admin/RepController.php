@@ -14,6 +14,7 @@ use App\Models\Bank;
 use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+use App\Http\Requests\Rep\RepPriceRequest;
 
 class RepController extends Controller
 {
@@ -171,7 +172,7 @@ class RepController extends Controller
         return view($this->view.'all',compact('items'));
     }
 
-    public function price_store(Request $request)
+    public function price_store(RepPriceRequest $request)
     {
         $data = $request->except('_token');
         
