@@ -262,6 +262,8 @@
                         <li> <a href="{{ route('admin.page',2) }}"> {{ __('site.privacy_policy') }} </a> </li>
 
                         <li> <a href="{{ route('admin.page',3) }}"> {{ __('site.terms_and_condition') }} </a> </li>
+
+                        <li> <a href="{{ route('admin.page',4) }}"> {{ __('site.faq') }} </a> </li>
                     </ul>
                 </li>
             </ul>

@@ -34,10 +34,12 @@
             <div class="head-section mb-5 col-md-12">
               <h2> @lang('site.enter_required_pieces') </h2>              
 
-              <div class="text-left">
-                    <a onclick="addNewPiece()" href="javascript:void(0);">
-                         @lang('site.add_piece') <i class="fa fa-plus"></i> </a>
-              </div>
+              @if(total_valid_elec() > 1)
+                <div class="text-left">
+                      <a onclick="addNewPiece()" href="javascript:void(0);">
+                          @lang('site.add_piece') <i class="fa fa-plus"></i> </a>
+                </div>
+              @endif
             </div>
             
      

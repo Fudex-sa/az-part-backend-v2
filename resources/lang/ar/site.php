@@ -1116,5 +1116,6 @@ return [
     'done_paid' => 'تم تسديد المتبقى',
     'confirm_paid' => 'تأكيد سداد باقى المبلغ',
     'package_price' => 'سعر الباقة',
-    'car_size_required' => 'ادخل حجم المركبة',    
+    'car_size_required' => 'ادخل حجم المركبة', 
+    'faq' => 'الأسئلة الشائعة',   
 ];

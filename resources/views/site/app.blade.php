@@ -241,19 +241,22 @@
 
         <div class="col">
           <div class="footer-box">
-            <h4> @lang('site.browse') </h4>
+            <h4> @lang('site.menu') </h4>            
+            
           <p><a href="{{ route('cars.damaged') }}"> @lang('site.cars_yard') </a></p>
+          <p><a href="{{ route('cars.antique') }}"> @lang('site.antique_cars') </a></p>
           <p><a href="{{ route('stock') }}"> @lang('site.old_stock') </a></p>
-          <p><a href="{{ route('privacy') }}"> @lang('site.privacy_policy') </a></p>
-
+          <p><a href="{{ route('package.show','electronic') }}"> @lang('site.packages') </a></p>
+           
           </div>
         </div>
         <div class="col">
           <div class="footer-box">
-            <h4> @lang('site.menu') </h4>
-            <p><a href="{{ route('home') }}"> @lang('site.home') </a></p>
-            <p><a href="{{ route('about_us') }}"> @lang('site.about_us') </a></p>
+            <h4> @lang('site.browse') </h4>            
+            <p><a href="{{ route('privacy') }}"> @lang('site.privacy_policy') </a></p>
             <p><a href="{{ route('terms') }}"> @lang('site.terms_and_condition') </a></p>
+            <p><a href="{{ route('about_us') }}"> @lang('site.about_us') </a></p>
+            <p><a href="{{ route('faq') }}"> @lang('site.faq') </a></p>
           </div>
         </div>
         <div class="col">
