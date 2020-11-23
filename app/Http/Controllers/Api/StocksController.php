@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Stock;
 use App\Http\Resources\StockResource;
+use DB;
 
 class StocksController extends Controller
 {
@@ -23,14 +24,40 @@ class StocksController extends Controller
         }
 
         if ($limit != 0) {
-            $items = Stock::with('brand')->with('piece')->with('model')
-                    ->orderby('updated_at', 'desc')->paginate($limit);
+            $items = Stock::select(
+                'brand_id',
+                'model_id',
+                'piece_id',
+                'year',
+                DB::raw('max(price) as max_price'),
+                DB::raw('min(price) as min_price'),
+                DB::raw('avg(price) as avg_price')
+            )
+                        ->with('piece')->with('brand')->with('model')
+                        ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
+                        ->groupBy('piece_id')
+                        ->orderby('id', 'desc')
+                        ->limit(30)
+                        ->get();
         } else {
-            $items = Stock::with('brand')->with('piece')->with('model')
-                    ->orderby('updated_at', 'desc')->get();
+            $items = Stock::select(
+                'brand_id',
+                'model_id',
+                'piece_id',
+                'year',
+                DB::raw('max(price) as max_price'),
+                DB::raw('min(price) as min_price'),
+                DB::raw('avg(price) as avg_price')
+            )
+                        ->with('piece')->with('brand')->with('model')
+                        ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
+                        ->groupBy('piece_id')
+                        ->orderby('id', 'desc')
+                        ->limit(30)
+                        ->get();
         }
 
-        return response()->json(['status'=>true, 'data' =>StockResource::collection($items)], 200);
+        return response()->json(['status'=>true, 'data' =>$items], 200);
     }
 
     public function search(Request $request)
@@ -43,18 +70,44 @@ class StocksController extends Controller
         }
 
         if ($limit != 0) {
-            $items = Stock::with('brand')->with('piece')->with('model')
-                          ->where('brand_id', $request->brand_id)
-
-                          ->orderby('id', 'desc')->paginate($limit);
+            $items = Stock::select(
+                'brand_id',
+                'model_id',
+                'piece_id',
+                'year',
+                DB::raw('max(price) as max_price'),
+                DB::raw('min(price) as min_price'),
+                DB::raw('avg(price) as avg_price')
+            )
+                        ->with('piece')->with('brand')->with('model')
+                        ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
+                        ->groupBy('piece_id')
+                        ->where('brand_id', $request->brand_id)
+                        ->where('model_id', $request->model_id)
+                        ->where('year', $request->year)
+                        ->orderby('id', 'desc')
+                        ->get();
         } else {
-            $items = Stock::with('brand')->with('piece')->with('model')
-                          ->where('brand_id', $request->brand_id)
-
-                          ->orderby('id', 'desc')->get();
+            $items = Stock::select(
+                'brand_id',
+                'model_id',
+                'piece_id',
+                'year',
+                DB::raw('max(price) as max_price'),
+                DB::raw('min(price) as min_price'),
+                DB::raw('avg(price) as avg_price')
+            )
+                        ->with('piece')->with('brand')->with('model')
+                        ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
+                        ->groupBy('piece_id')
+                        ->where('brand_id', $request->brand_id)
+                        ->where('model_id', $request->model_id)
+                        ->where('year', $request->year)
+                        ->orderby('id', 'desc')
+                        ->get();
         }
 
-        return StockResource::collection($items);
+        return response()->json(['status'=>true, 'data' =>$items], 200);
     }
 
 
@@ -72,8 +125,22 @@ class StocksController extends Controller
             $limit = 15;
         }
 
-        $items = Stock::with('brand')->with('piece')->with('model')
-                ->where('brand_id', $id)->orderby('updated_at', 'desc')->paginate($limit);
+        $items =      Stock::select(
+            'brand_id',
+            'model_id',
+            'piece_id',
+            'year',
+            DB::raw('max(price) as max_price'),
+            DB::raw('min(price) as min_price'),
+            DB::raw('avg(price) as avg_price')
+        )
+                        ->with('piece')->with('brand')->with('model')
+                        ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
+                        ->groupBy('piece_id')
+                        ->orderby('id', 'desc')
+                        ->where('brand_id', $id)
+                        ->limit(30)
+                        ->get();
         //return StockResource::collection($items);
         return response()->json(['status'=>true, 'data' =>StockResource::collection($items)], 200);
     }
