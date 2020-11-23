@@ -42,6 +42,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
       Route::post('get_checkout', 'PaymentController@getCheckout');
       Route::post('getTransaction', 'PaymentController@getTransaction');
+      Route::get('setting/{key}', 'SettingController@show');
 
 
       Route::group(['middleware'=>'auth:api'], function () {

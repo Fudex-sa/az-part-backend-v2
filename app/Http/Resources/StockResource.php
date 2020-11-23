@@ -24,7 +24,6 @@ class StockResource extends JsonResource
         'model_id' => $this->model_id,
         'year' => $this->year,
         'piece_id' => $this->piece_id,
-        'movements' => $this->movements,
         'brand' => [
           'id' => $this->brand->id,
           'name' => $this->brand->$name,

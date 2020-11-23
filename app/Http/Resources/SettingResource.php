@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SettingResource extends JsonResource
@@ -17,9 +16,9 @@ class SettingResource extends JsonResource
     {
         $lang = $request->header('Accept-Language') ? $request->header('Accept-Language') : 'ar';
         app()->setLocale($lang);
-
-      return [
-          'value' => $this->value,                    
+        $name = 'value_'.$lang;
+        return [
+          'value' => $this->$name,
       ];
     }
 }
