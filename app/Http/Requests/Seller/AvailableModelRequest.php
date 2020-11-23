@@ -33,7 +33,7 @@ class AvailableModelRequest extends FormRequest
             return [
                 'brand_id' => 'required',
                 'model_id' => 'required',
-                'years' => 'required',
+                'year' => 'required',
             ];
     }
 

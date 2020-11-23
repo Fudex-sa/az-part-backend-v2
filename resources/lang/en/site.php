@@ -970,4 +970,6 @@ return [
     'mada' => 'Mada Cards',
     'done_paid' => 'Done Paid',
     'confirm_paid' => 'Confirm Paid',
+    'package_price' => 'Package Price',
+    'car_size_required' => 'Car Size required',
 ];

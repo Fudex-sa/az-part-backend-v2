@@ -72,18 +72,20 @@
 
 
                                 <div class="col-md-12">
-                                    <input type="submit" class="btn btn-next btn-block btn-lg" value="@lang('site.continue_purchase')">
+                                   
+                                @if(request()->type != 'package')
+                                  <div class="form-group col-12">
+                                    <label for="cash">
+                                        <input id="cash" type="radio" name="method" value="cash">
+                                        {{__('site.cash_on_delivery')}}
 
+                                        <img src="{{ site('assets/images/n-3.png') }}" class="payment_logos"/>
+                                    </label>
 
-                                <div class="form-group col-12">
-                                  <label for="cash">
-                                      <input id="cash" type="radio" name="method" value="cash">
-                                      {{__('site.cash_on_delivery')}}
-
-                                      <img src="{{ site('assets/images/n-3.png') }}" class="payment_logos"/>
-                                  </label>
-                              </div>
-
+                                    <p class="required"> {{ data('cach_on_delivery') }} </p>
+                                  </div>
+                                @endif
+                                
                                   <div class="col-md-12">
                                     @if(total() > 0)
                                       <input type="submit" class="btn btn-next btn-block btn-lg" value="@lang('site.continue_purchase')">
@@ -98,7 +100,9 @@
                             </div>
 
                           </div>
-                          <div class="col-md-5">
+                        </div>
+                      
+                            <div class="col-md-5">
 
                             @include('site.checkout.coupon')
 
@@ -127,6 +131,7 @@
 
                             </div>
                           </div>
+                          
                         </div>
 
                   </div>
@@ -136,7 +141,9 @@
       </div>
 
     </div>
+ 
   </section>
+
 
 
 

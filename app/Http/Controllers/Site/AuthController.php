@@ -32,11 +32,18 @@ class AuthController extends Controller
 
     public function signin()
     {
+        if ( auth()->guard('seller')->check() || auth()->guard('broker')->check() ||
+        auth()->guard('company')->check() || auth()->guard('rep')->check()
+        || auth()->guard('admin')->check() ||  auth()->check())
+
+            return redirect()->route('profile');
+
         return view($this->view . 'signin');
     }
 
     public function login_as()
     {
+         
         return view($this->view . 'login_as');
     }
 
@@ -83,7 +90,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-    
+        
         $cred = ['mobile' => $request->mobile, 'password' => $request->password];
 
         $type = $request->user_type ? $request->user_type : 'u';

@@ -17,7 +17,8 @@ class Order extends Model
 
     public function scopeCouponByUser($q,$coupon_id)
     {
-        return $q->where('user_id',logged_user()->id)->where('coupon_id',$coupon_id);
+        return $q->where('user_id',logged_user()->id)
+                    ->where('user_type',user_type())->where('coupon_id',$coupon_id);
     }
 
     public function scopeCouponUsedCount($q,$coupon_id)

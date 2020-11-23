@@ -23,7 +23,7 @@ class OrderHelp
     {
         $shipping = $this->create_shipping();
 
-        search_session()['search_type'] ?             
+        search_session() ?             
             $order_type = search_session()['search_type'] : $order_type = order_type();
 
 
