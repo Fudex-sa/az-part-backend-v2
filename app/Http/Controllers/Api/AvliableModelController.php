@@ -51,9 +51,11 @@ class AvliableModelController extends Controller
         $data['city_id'] = Auth::user()->city_id;
 
         if (! $id) {
-            $data['year'] = request('year');
+            foreach (request('year') as $year) {
+                $data['year'] = $year;
 
-            $item = AvailableModel::create($data);
+                $item = AvailableModel::create($data);
+            }
         } else {
             $item = AvailableModel::where('id', $id)->update($data);
         }
