@@ -16,6 +16,10 @@
   <title>{{ config('app.name', 'AZParts') }} | @yield('title') </title>
   <link rel="stylesheet" href="{{ site('assets/css/dev.css') }}">
 
+  @if(my_lang() == 'en')
+    <link rel="stylesheet" href="{{ site('assets/css/style_ltr.css') }}">
+  @endif
+
     @yield('styles')
 </head>
 

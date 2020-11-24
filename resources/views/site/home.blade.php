@@ -23,7 +23,7 @@
             <h1> @lang('site.did_u_search_about_part') </h1>
             <p> @lang('site.search_spare_text') </p>
 
-          <a href="{{ data('about_az_youtube') }}" class="pt-3">
+          <a href="{{ data('about_az_youtube') }}" class="pt-3" target="_blank">
                 <img src="{{ site('assets/images/play.svg') }}" alt="">
             </a>
 
