@@ -58,6 +58,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
           Route::delete('car/{id}', 'CarsController@destroy');
           Route::get('logout', 'AuthController@logout');
 
+          Route::get('avaliable_models', 'AvliableModelController@index');
+          Route::post('avaliable_model/{id?}', 'AvliableModelController@store');
+          Route::get('avaliable_model/{id}', 'AvliableModelController@show');
+          Route::delete('avaliable_model/delete', 'AvliableModelController@delete');
+
+
           Route::get('myRequests', 'RequestsController@myRequests');
           Route::post('sendOffer', 'RequestsController@sendOffer');
       });

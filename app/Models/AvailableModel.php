@@ -17,28 +17,38 @@ class AvailableModel extends Model
         'user_id' , 'brand_id' , 'model_id' , 'year' , 'city_id'
     ];
 
-    public function brand(){
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
-    public function model(){
+    public function model()
+    {
         return $this->belongsTo(Modell::class);
     }
 
-    public function seller(){
-        return $this->belongsTo(Seller::class,'user_id');
-    }
-    
-    public function broker(){
-        return $this->belongsTo(Broker::class,'user_id');
+    public function user()
+    {
+        return $this->belongsTo(Seller::class);
     }
 
-    public function scopeUserBrands($q,$user_id) {
-        return $q->where('user_id',$user_id);
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'user_id');
     }
 
-    public function scopeMatchOrder($query,$brand_id,$model_id,$year) {         
-        return $query->where('brand_id',$brand_id)->where('model_id',$model_id)
-                    ->where('year',$year);        
+    public function broker()
+    {
+        return $this->belongsTo(Broker::class, 'user_id');
     }
 
+    public function scopeUserBrands($q, $user_id)
+    {
+        return $q->where('user_id', $user_id);
+    }
+
+    public function scopeMatchOrder($query, $brand_id, $model_id, $year)
+    {
+        return $query->where('brand_id', $brand_id)->where('model_id', $model_id)
+                    ->where('year', $year);
+    }
 }
