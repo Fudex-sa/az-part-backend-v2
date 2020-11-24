@@ -268,6 +268,20 @@ if (! function_exists('valid_for_elec')) {
     }
 }
 
+if (! function_exists('total_valid_elec')) {
+    function total_valid_elec()
+    {   
+        $total = 0;
+
+        $total +=  setting('electronic_search_result');
+        $total += logged_user()->available_orders;
+
+        $total += PackageSubscribe::myPackagesByType('electronic')->get()->sum('stores_no');
+
+        return $total;
+    }
+}
+
 if (! function_exists('coupon_used_times')) {
     function coupon_used_times($coupon_id)
     {   

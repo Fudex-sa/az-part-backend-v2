@@ -43,8 +43,8 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                     @elseif($col == 'mobile')
                         <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required>  
 
-                    @elseif($col == 'available_requests')
-                    <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
+                    @elseif($col == 'available_orders')
+                    <input type="number" min="0" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
                         required>  
 
                     @elseif($col == 'password')
@@ -98,7 +98,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
         <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.country') </label>
 
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="country_id" id="country_id" class="form-control">
+            <select name="country_id" id="country_id" class="form-control" required>
                 <option value=""> @lang('site.choose_country') </option>
                 
                 @foreach (countries() as $country)
@@ -112,7 +112,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
         <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.region') </label>
 
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="region_id" id="region_id" class="form-control">
+            <select name="region_id" id="region_id" class="form-control" required>
                 <option value=""> @lang('site.choose_region') </option>
                  
             </select>
@@ -123,7 +123,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
         <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.city') </label>
 
         <div class="col-md-6 col-sm-6 col-xs-12">            
-            <select id="cities" name="city_id" class="form-control">
+            <select id="cities" name="city_id" class="form-control" required>
                
             </select>
         </div>

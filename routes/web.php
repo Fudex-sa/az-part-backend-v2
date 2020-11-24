@@ -118,6 +118,7 @@ Route::group(
             Route::get('privacy', [App\Http\Controllers\Site\PageController::class, 'privacy'])->name('privacy');
             Route::get('terms', [App\Http\Controllers\Site\PageController::class, 'terms'])->name('terms');
             Route::get('about_us', [App\Http\Controllers\Site\PageController::class, 'about_us'])->name('about_us');
+            Route::get('faq', [App\Http\Controllers\Site\PageController::class, 'faq'])->name('faq');
 
 
             Route::get('signup_as', [App\Http\Controllers\Site\AuthController::class, 'signup_as'])->name('signup_as');

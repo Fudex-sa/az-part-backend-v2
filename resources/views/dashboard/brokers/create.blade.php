@@ -24,7 +24,8 @@
             & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'
             
             & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
-            & $col != 'created_by' & $col != 'city_id')
+            & $col != 'created_by' & $col != 'city_id' & $col != 'country_id' & $col != 'region_id'
+            & $col != 'address' & $col != 'lat' & $col != 'lng')
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
@@ -43,8 +44,8 @@
                     @elseif($col == 'mobile')
                         <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required>  
 
-                    @elseif($col == 'available_requests')
-                    <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
+                    @elseif($col == 'available_orders')
+                    <input type="number" min="0" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
                         required>  
 
                     @elseif($col == 'password')

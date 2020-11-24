@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ site('assets/css/dev.css') }}">
   <title>{{ config('app.name', 'AZParts') }} | @lang('site.signup_as') </title>
   <link rel="icon" href="{{ site('assets/images/logo.png') }}" type="image/ico"/>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 </head>
 
@@ -26,30 +27,42 @@
           <h5> @lang('site.new_registeration')   </h5>
           <h6> @lang('site.choose_signup_type') </h6>
         </div>
-        <div class="row  mt-5 text-center">
+        <div class="row  mt-5">
           <div class="col-md-4">
             <a href="{{ route('user.register') }}">
-                <div class="shadow py-4 px-2 rounded">
-                <img src="{{ site('assets/images/n-1.png') }}" alt="">
-                <h6> @lang('site.as_user_and_company')  </h6>               
+                <div class="shadow py-4 px-2 rounded text-center">
+                  <img src="{{ site('assets/images/n-1.png') }}" alt="">     
+                     
+                  <ul>
+                    <li> @lang('site.individual')  </li>
+                    <li>  @lang('site.company')   </li>
+                  </ul>                
                 </div>
             </a>
           </div>
 
-          <div class="col-md-4 ">
+          <div class="col-md-4 text-center">
             <a href="{{ route('seller.register') }}">
                 <div class="shadow py-4 px-2 rounded">
-                <img src="{{ site('assets/images/n-2.png') }}" alt="">
-                <h6> @lang('site.seller_or_broker') </h6>               
+                  <img src="{{ site('assets/images/n-2.png') }}" alt="">
+
+                  <ul>
+                    <li> @lang('site.tashalih')  </li>
+                    <li>  @lang('site.manufacturing')   </li>
+                    <li>  @lang('site.broker')   </li>
+                  </ul>
+                  
                 </div>
             </a>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-4 text-center">
             <a href="{{ route('rep.register') }}">
                 <div class="shadow py-4 px-2 rounded">
-                <img src="{{ site('assets/images/n-3.png') }}" alt="">
-                <h6> @lang('site.rep') </h6>             
+                  <img src="{{ site('assets/images/n-3.png') }}" alt="">
+                  <ul>
+                    <li> @lang('site.rep')  </li>                  
+                  </ul>                   
                 </div>
             </a>
           </div>

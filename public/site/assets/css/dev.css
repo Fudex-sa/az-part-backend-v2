@@ -22,10 +22,6 @@
 .blue{
     color: #1584BB !important;
 }
-.payment_logos{
-    width: 100px;
-}
-
 .logged_menu{
     min-width: 16rem !important;
 }
@@ -203,9 +199,9 @@
     margin-bottom: 5px;
 }
 .login_drop{
-    min-width: 35rem;
+    min-width: 24rem;
     text-align:right;
-    padding: 15px;
+    padding: 30px;
 }
  
 .success{
