@@ -973,4 +973,13 @@ return [
     'package_price' => 'Package Price',
     'car_size_required' => 'Car Size required',
     'faq' => 'FAQ',
+    'manual_step1' => 'Register your vehicle data',
+    'manaul_step2' => 'Find out which shops have your car and negotiate with them',
+    'manual_step3' => 'Request delivery of your item or pick it up yourself',
+    'elec_step1' => 'Register your application data',
+    'elec_step2' => 'Receive and negotiate quotes',
+    'elec_step3' => 'Request delivery of your item or pick it up yourself',
+    'about_azparts' => 'About AZ Parts',
+    'more' => 'More',
+    'manaul_search' => 'Manual Search',
 ];

@@ -20,7 +20,7 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9  col-12">
+          <div class="col-lg-9 col-md-9 col-12 table-responsive">
            
             
           <table class="my-tbl" id="myTbl">

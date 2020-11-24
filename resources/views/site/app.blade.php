@@ -152,28 +152,28 @@
                     <input type="password" class="form-control" name="password" placeholder="@lang('site.password')" required>
                   </div>
 
-                  <div class="form-group form-check">
-                    <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
+                  <div class="form-group form-check row">
+                    <input type="radio" class="form-check-input col-md-3" id="user" name="user_type" value="u" checked
                     {{ old('user_type') == 'u' ? 'checked' : '' }} required>
                     <label class="form-check-label" for="user"> @lang('site.user')  </label>
 
-                    <input type="radio" class="form-check-input" id="company" name="user_type" value="c"
+                    <input type="radio" class="form-check-input col-md-3" id="company" name="user_type" value="c"
                     {{ old('user_type') == 'c' ? 'checked' : '' }}>
                     <label class="form-check-label" for="company"> @lang('site.company')  </label>
 
-                    <input type="radio" class="form-check-input" id="seller_manu" name="user_type" value="sm"
+                    <input type="radio" class="form-check-input col-md-3" id="seller_manu" name="user_type" value="sm"
                     {{ old('user_type') == 'sm' ? 'checked' : '' }}>
                     <label class="form-check-label" for="seller_manu"> @lang('site.manufacturing')  </label>
 
-                    <input type="radio" class="form-check-input" id="seller_tashlih" name="user_type" value="st"
+                    <input type="radio" class="form-check-input col-md-3" id="seller_tashlih" name="user_type" value="st"
                     {{ old('user_type') == 'st' ? 'checked' : '' }}>
                     <label class="form-check-label" for="seller_tashlih"> @lang('site.tashalih')  </label>
 
-                    <input type="radio" class="form-check-input" id="broker" name="user_type" value="b"
+                    <input type="radio" class="form-check-input col-md-3" id="broker" name="user_type" value="b"
                     {{ old('user_type') == 'b' ? 'checked' : '' }}>
                     <label class="form-check-label" for="broker"> @lang('site.broker')  </label>
 
-                    <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
+                    <input type="radio" class="form-check-input col-md-3" id="rep" name="user_type" value="r"
                     {{ old('user_type') == 'r' ? 'checked' : '' }}>
                     <label class="form-check-label" for="rep"> @lang('site.rep')  </label>
 
@@ -205,6 +205,19 @@
 
         <li class="nav-item sepretor mt-2">
           |
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="menuCountries" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-globe"></i>
+          </a>
+          <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
+            
+            @foreach (countries() as $counLi)
+              <a class="dropdown-item" href=""> {{ $counLi['name_'.my_lang()] }}  </a> 
+            @endforeach
+               
+          </div>
         </li>
 
         <li class="nav-item dropdown">

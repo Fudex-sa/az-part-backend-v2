@@ -22,6 +22,11 @@
           <div class="info-box text-center">
             <h1> @lang('site.did_u_search_about_part') </h1>
             <p> @lang('site.search_spare_text') </p>
+
+          <a href="{{ data('about_az_youtube') }}" class="pt-3">
+                <img src="{{ site('assets/images/play.svg') }}" alt="">
+            </a>
+
           </div>
         </div>
 
@@ -48,7 +53,7 @@
             </div>
             <div class="ui-widget col-md-4">
 
-              <select class="form-control input-C" name="year" id="year">
+              <select class="form-control " name="year" id="year">
                 <option value=""> @lang('site.manufacturing_year') </option>
                 @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
                     <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
@@ -70,7 +75,7 @@
 
             <div class="ui-widget col-md-4">
 
-                <select class="form-control input-C" name="country" id="country_id">
+                <select class="form-control " name="country" id="country_id">
                     <option value=""> @lang('site.choose_country') </option>
                     @foreach (countries() as $country)
                         <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
@@ -79,20 +84,20 @@
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control input-C" name="region" id="region_id">
+              <select class="form-control " name="region" id="region_id">
                 <option value=""> @lang('site.choose_region') </option>
               </select>
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control input-C" name="city" id="cities">
+              <select class="form-control " name="city" id="cities">
                 <option value=""> @lang('site.choose_city') </option>
               </select>
             </div>
             <div class="col-md-4"></div>
 
             <div class="ui-widget col-md-4 col-10">
-                           <select name="search_type" class="form-control input-E  mt-44">
+                           <select name="search_type" class="form-control mt-44">
                     <option value=""> @lang('site.search_type') </option>
                     <option value="manual"> @lang('site.manual') </option>
                     <option value="electronic"> @lang('site.electronic') </option>
@@ -265,56 +270,85 @@
 
 
 <section class="order">
-    <div class="container">
-      <div class="row ">
-        <div class="col-md-12">
-          <div class="head-section text-center cust-m-mid">
-            <h2> @lang('site.how_to_order') </h2>
-          </div>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="head-section text-center cust-m-mid">
+        <img src="{{ site('assets/images/how-to-order.svg') }}" alt="" class="img-fluid pb-3">
+          <h2> @lang('site.how_to_order') </h2>
         </div>
-
-        <div class="col">
-          <div class="order-box shadow text-center">
-          <img src="{{ site('assets/images/img1.png') }}" alt="">
-          </div>
-
-          <div class="or-info">
-            <h4> @lang('site.register_piece') </h4>
-          </div>
-        </div>
-
-        <div class="col"> <span class="step-1"></span>  </div>
-
-        <div class="col">
-          <div class="order-box-2 shadow text-center">
-            <img src="{{ site('assets/images/img2.png') }}" alt="">
-          </div>
-          <div class="or-info">
-            <h4> @lang('site.recive_prices') </h4>
-          </div>
-        </div>
-
-        <div class="col"> <span class="step-2"></span> </div>
-
-        <div class="col">
-          <div class="order-box shadow text-center">
-              <img src="{{ site('assets/images/img3.png') }}" alt="">
-          </div>
-
-          <div class="or-info">
-            <h4> @lang('site.negotiate_and_receive') </h4>
-          </div>
-        </div>
-
       </div>
+
+      <div class="col-md-4 text-center">
+        <h3> @lang('site.manual_packages') </h3>
+
+        <div class="order-box shadow text-center">
+            <img src="{{ site('assets/images/img1.png') }}" alt="">
+        </div>
+
+        <div class="or-info"> <h4> @lang('site.manual_step1') </h4> </div>
+
+        <!-- start second-step -->
+        <div class="order-box-2 shadow text-center">
+            <img src="{{ site('assets/images/img2.png') }}" alt="">
+        </div>
+
+        
+        <div class="or-info"> <h4> @lang('site.manaul_step2') </h4> </div>
+         
+        <div class="order-box shadow text-center">
+          <img src="{{ site('assets/images/img3.png') }}" alt="">
+        </div>
+        
+        <div class="or-info"> <h4> @lang('site.manual_step3') </h4> </div>
+        
+      </div>
+
+      <div class="col-md-4"> <span class="step-1"></span> </div>
+
+      <div class="col-md-4">
+        <h3> @lang('site.electronic_packages') </h3>
+
+        <div class="order-box shadow text-center">
+            <img src="{{ site('assets/images/img1.png') }}" alt="">
+        </div>
+
+        <div class="or-info"> <h4> @lang('site.elec_step1') </h4> </div>
+        
+        <div class="order-box-2 shadow text-center">
+          <img src="{{ site('assets/images/img2.png') }}" alt="">
+        </div>
+        
+        <div class="or-info"> <h4> @lang('site.elec_step2') </h4> </div>
+
+        <div class="order-box shadow text-center">
+          <img src="{{ site('assets/images/img3.png') }}" alt="">
+        </div>
+        
+        <div class="or-info"> <h4> @lang('site.elec_step3') </h4> </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
 
-
-<!-- start contact -->
 <section class="contact ">
   <div class="container">
+    <div class="row">
+      <div class="col-md-4 offset-1">
+      <img src="{{ site('assets/images/about.png') }}" alt="">
+      </div>
+      <div class="col-md-7 ">
+        <div class="about-eazy">
+          <h3> @lang('site.about_azparts') </h3>
+          <h5> 
+            {!! \Illuminate\Support\Str::limit(strip_tags($about['content_'.my_lang()]), $limit = 300, $end = '...') !!}
+ 
+          <a href="{{ route('about_us') }}"  class="know-more">@lang('site.more')</a></h5>
+        </div>
+      </div>
+    </div>
     <div class="bg-white">
       <div class="row ">
         <div class="col-md-5 pr-0">
@@ -356,7 +390,6 @@
 
                 <div class="col-3"></div>
             </form>
-
           </div>
         </div>
       </div>
@@ -364,7 +397,7 @@
 
   </div>
 </section>
-
+ 
 
 @endsection
 

@@ -12,29 +12,31 @@
           </button>
         </div>
         <div class="m-tabel mt-5">
-          <table class="table">
-            <thead>
+
+          <table class="table ">
+            <thead class=" bg-dark-blue">
               <tr>
                 <th> @lang('site.city') </th>
                 <th> @lang('site.stores_no') </th>
                 <th> @lang('site.view') </th>
               </tr>
             </thead>
-
             <tbody>
-              
-               
-              @foreach (cities_sellers() as $sel)
-                  @if($sel->city_id)
-                      <tr>
-                          <td> {{ get_city($sel->city_id) ? get_city($sel->city_id)['name_'.my_lang()] : '' }} </td>
-                          <td> {{ $sel->stores }} </td>
-                          <td> <a href="{{ route('search.change',$sel->city_id) }}"> @lang('site.show') </a>  </td>
-                      </tr>
-                  @endif
-              @endforeach       
+ 
+
+                @foreach (cities_sellers() as $sel)
+                    @if($sel->city_id)
+                        <tr class="bg-blue">
+                            <td> {{ get_city($sel->city_id) ? get_city($sel->city_id)['name_'.my_lang()] : '' }} </td>
+                            <td> {{ $sel->stores }} </td>
+                            <td> <a href="{{ route('search.change',$sel->city_id) }}"> @lang('site.show') </a>  </td>
+                        </tr>
+                    @endif
+                @endforeach   
+
             </tbody>
           </table>
+ 
         </div>
   
       </div>

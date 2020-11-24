@@ -126,8 +126,11 @@
             </tbody>
           </table>
 
-          {{ $items->links() }}
+        
         </div>
+
+
+        <div class="text-center"> {{ $items->links() }} </div>
 
       </div>
     </div>
