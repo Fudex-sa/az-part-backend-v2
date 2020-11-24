@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Stock;
 use App\Models\Car;
+use App\Models\Page;
 use DB;
 
 class HomeController extends Controller
@@ -32,6 +33,8 @@ class HomeController extends Controller
         $cars = Car::with('brand')->with('model')->with('region')->with('city')
                         ->orderby('id','desc')->limit(12)->get();
 
-        return view("site.home",compact('home','brands','stocks','cars'));
+        $about = Page::find(1);
+
+        return view("site.home",compact('home','brands','stocks','cars','about'));
     }
 }

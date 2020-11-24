@@ -84,8 +84,8 @@
 
             <td>user#{{$item->id}}</td>
             
-            <td> @if($item->photo) <img src="{{ img_path($item->photo) }}" class="img-tbl" /> 
-                    @else  <img src="{{ dashboard('build/images/user.png') }}" class="img-tbl" />  @endif
+            <td> @if($item->photo) <img src="{{ img_path($item->photo) }}" class="img-user" /> 
+                    @else  <img src="{{ dashboard('build/images/user.png') }}" class="img-user" />  @endif
             </td>
 
             <td>{{$item->name}}</td>

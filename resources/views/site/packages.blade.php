@@ -40,7 +40,7 @@
           </ul>
         </div>
 
-        <div class="tab-content" id="pills-tabContent">
+        <div class="tab-content col-12" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
 
@@ -50,7 +50,7 @@
 
               @foreach ($items as $item)
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="sub-card  text-center">
                     <div class="sub-card-head">
                       <br/>

@@ -5,7 +5,7 @@
 
 @section('styles')
 
-  <link rel="stylesheet" href="{{ site('assets/Css/refineslide.css') }}">
+  <link rel="stylesheet" href="{{ site('assets/css/refineslide.css') }}">
 
   <script type='text/javascript'
   src='https://platform-api.sharethis.com/js/sharethis.js#property=5e3cb8a1cd980c0012d9bbf0&product=inline-share-buttons' async='async'></script>
@@ -21,7 +21,31 @@
 
 
       <div class="col-md-5">
-        <ul id="images" class="rs-slider">
+          <div class="pro-gallery wow zoomIn">
+                                <div class="slider-for">
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                </div>
+                                <div class="slider-nav">
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
+                                </div>
+                            </div>
+        <!--<ul id="images" class="rs-slider">
           @if($item->imgs)
             @foreach ($item->imgs as $img)
                 <li class="group"> <a href="#">
@@ -31,7 +55,7 @@
 
           @endif
 
-          </ul>
+          </ul>-->
       </div>
       <div class="col-md-7">
 
@@ -177,7 +201,28 @@
 @endsection
 
 @section('scripts')
+<script src="{{ site('assets/js/jquery.refineslide.min.js') }}"></script>
+<script>
+    // gallery slider ..
+        $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
 
+        $('.slider-nav').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            arrows: false,
+            dots: false,
+            centerMode: false,
+            focusOnSelect: true
+        });
+</script>
+<!--
 <script src="{{ site('assets/js/jquery.refineslide.min.js') }}"></script>
 <script>
   $(function () {
@@ -217,5 +262,6 @@
       });
   });
 </script>
+-->
 
 @endsection

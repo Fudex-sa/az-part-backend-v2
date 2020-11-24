@@ -59,6 +59,7 @@ class SellerController extends Controller
             $data['password'] = Seller::where('id', $id)->first()->password;
 
         $data['created_by'] = auth('admin')->user()->id;
+        $request->available_orders ? $data['available_orders'] = $request->available_orders :  0 ;
 
         if ($request->photo) {
             $fileName = time().'.'.$request->photo->extension();

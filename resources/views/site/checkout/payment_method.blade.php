@@ -74,7 +74,7 @@
                                 <div class="col-md-12">
                                    
                                 @if(request()->type != 'package')
-                                  <div class="form-group col-12">
+                                  <div class="form-group">
                                     <label for="cash">
                                         <input id="cash" type="radio" name="method" value="cash">
                                         {{__('site.cash_on_delivery')}}

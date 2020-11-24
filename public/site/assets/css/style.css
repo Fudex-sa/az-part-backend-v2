@@ -599,6 +599,8 @@ font-weight: bold;
 }
 .add-card-head {
   position: relative;
+  height: 200px;
+    overflow: hidden;
 }
 .add-card-layout {
   background-color: rgba(36, 95, 124, 0.6);
@@ -611,6 +613,22 @@ font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.slick-slider{
+    direction: ltr;
+}
+.slider-for {
+    height: 400px;
+        background-color: #f8f9fa;
+    overflow: hidden;
+}
+.slider-nav .slick-list {
+    height: 80px;
+}
+.slick-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 .lay-out-menue li {
   display: inline-block;
@@ -815,12 +833,19 @@ font-weight: bold;
   font-weight: bold;
   margin: 20px 0;
 }
+.payment_logos {
+    max-width: 64px;
+    max-height: 64px;
+    margin: 0 15px;
+}
 .btn-sub-1 {
-  background-color: #f5c53e;
-  color: #fff;
-
-  margin-bottom: 20px;
-  height: 70px;
+      background-color: #f5c53e;
+    color: #fff;
+    margin-bottom: 20px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .btn-sub-1:hover {
   color: #fff;
@@ -983,9 +1008,12 @@ font-weight: bold;
 }
 .btn-whatsapp {
   background-image: linear-gradient(to left, #1584bb, #80c2db);
-  height: 55px;
-  color: #fff;
-  margin-top: 20px;
+    height: 40px;
+    color: #fff;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .btn-lory {
   background-image: linear-gradient(to left, #E26941, #F2A736);
@@ -1108,9 +1136,20 @@ font-weight: bold;
 }
 .pop-margin .form-control {
   height: 50px;
+  overflow:hidden;
 }
 .pop-margin .form-group {
   margin-bottom: 25px;
+}
+.select2-container--default .select2-selection--single {
+    height: 40px!important;
+    border: 1px solid #ced4da!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 40px!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 7px!important;
 }
 /* start cart page */
 .cart {
@@ -1483,7 +1522,7 @@ font-weight: bold;
 }
 .table thead th{
   border: transparent;
-
+background-color: #e26941;
 }
 .pragraph-box p{
   color:#939393 ;

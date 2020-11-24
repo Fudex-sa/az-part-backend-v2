@@ -1,7 +1,7 @@
 
 @extends('site.app')
 
-@section('title') @lang('site.search_piece') @endsection
+@section('title') @lang('site.manaul_search') @endsection
 
 @section('styles')
     
