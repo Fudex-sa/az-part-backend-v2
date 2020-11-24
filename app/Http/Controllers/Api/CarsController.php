@@ -85,7 +85,7 @@ class CarsController extends Controller
         $user = Auth::guard('seller')->user();
 
         $item->title = $request->title;
-        $item->user_id = $user->id;
+        $item->user_id = Auth::id();
         $item->brand_id = $request->brand_id;
         $item->model_id = $request->model_id;
         $item->year = $request->year;

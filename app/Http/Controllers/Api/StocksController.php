@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Stock;
+use App\Models\Piece;
+
 use App\Http\Resources\StockResource;
+use App\Http\Resources\PieceResource;
+
 use DB;
 
 class StocksController extends Controller
@@ -25,6 +29,7 @@ class StocksController extends Controller
 
         if ($limit != 0) {
             $items = Stock::select(
+                'id',
                 'brand_id',
                 'model_id',
                 'piece_id',
@@ -36,11 +41,11 @@ class StocksController extends Controller
                         ->with('piece')->with('brand')->with('model')
                         ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
                         ->groupBy('piece_id')
-                        ->orderby('id', 'desc')
                         ->limit(30)
                         ->get();
         } else {
             $items = Stock::select(
+                'id',
                 'brand_id',
                 'model_id',
                 'piece_id',
@@ -52,12 +57,12 @@ class StocksController extends Controller
                         ->with('piece')->with('brand')->with('model')
                         ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
                         ->groupBy('piece_id')
-                        ->orderby('id', 'desc')
                         ->limit(30)
                         ->get();
+            //dd($items);
         }
 
-        return response()->json(['status'=>true, 'data' =>$items], 200);
+        return response()->json(['status'=>true, 'data' => StockResource::collection($items)], 200);
     }
 
     public function search(Request $request)
@@ -71,6 +76,7 @@ class StocksController extends Controller
 
         if ($limit != 0) {
             $items = Stock::select(
+                'id',
                 'brand_id',
                 'model_id',
                 'piece_id',
@@ -89,6 +95,7 @@ class StocksController extends Controller
                         ->get();
         } else {
             $items = Stock::select(
+                'id',
                 'brand_id',
                 'model_id',
                 'piece_id',
@@ -107,7 +114,7 @@ class StocksController extends Controller
                         ->get();
         }
 
-        return response()->json(['status'=>true, 'data' =>$items], 200);
+        return response()->json(['status'=>true, 'data' =>StockResource::collection($items)], 200);
     }
 
 
@@ -126,6 +133,7 @@ class StocksController extends Controller
         }
 
         $items =      Stock::select(
+            'id',
             'brand_id',
             'model_id',
             'piece_id',
@@ -143,5 +151,12 @@ class StocksController extends Controller
                         ->get();
         //return StockResource::collection($items);
         return response()->json(['status'=>true, 'data' =>StockResource::collection($items)], 200);
+    }
+
+    public function pieces()
+    {
+        $items = Piece::orderby('id', 'desc')->get();
+
+        return response()->json(['status'=>true, 'data' => PieceResource::collection($items)], 200);
     }
 }

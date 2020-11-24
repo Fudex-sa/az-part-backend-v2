@@ -32,7 +32,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
       Route::get('brands', 'BrandsController@index');
       Route::get('brand/{id}', 'BrandsController@show');
 
-      Route::get('cities', 'CitiesController@index');
+      Route::get('cities/{id?}', 'CitiesController@index');
+      Route::get('countries', 'CitiesController@countries');
+      Route::get('regions/{id?}', 'CitiesController@regions');
+
+      Route::get('pieces', 'StocksController@pieces');
+
+
 
       Route::get('stocks', 'StocksController@index');
       Route::get('stock/{id}', 'StocksController@show');

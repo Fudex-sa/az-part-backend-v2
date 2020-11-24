@@ -23,6 +23,9 @@ class StockResource extends JsonResource
         'brand_id' => $this->brand_id,
         'model_id' => $this->model_id,
         'year' => $this->year,
+        'max_price' => $this->max_price,
+        'min_price' => $this->min_price,
+        'avg_price' => $this->avg_price,
         'piece_id' => $this->piece_id,
         'brand' => [
           'id' => $this->brand->id,
