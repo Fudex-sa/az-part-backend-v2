@@ -25,7 +25,7 @@
             & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
             
             & $col != 'city_id' & $col != 'created_by' & $col != 'region_id' & $col != 'country_id'
-            & $col != 'address' & $col != 'lat' & $col != 'lng)
+            & $col != 'address' & $col != 'lat' & $col != 'lng')
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
