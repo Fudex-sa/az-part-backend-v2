@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\City;
 use App\Models\Brand;
 use App\Imports\SellerImport;
+use App\Imports\SellerCarsImport;
 
 use App\Models\AvailableModel;
 use App\Models\DeliveryRegion;
@@ -45,6 +46,17 @@ class SellerController extends Controller
         //dd(request()->file('file'));
         //  try {
         Excel::import(new SellerImport, request()->file('file'));
+        return back()->with('success', __('site.success-save'));
+        //  } catch (\Exception $e) {
+        return back()->with('failed', 'The File has something wrong')->withInput();
+        //}
+    }
+
+    public function addCarsFile()
+    {
+        //dd(request()->file('file'));
+        //  try {
+        Excel::import(new SellerCarsImport, request()->file('file'));
         return back()->with('success', __('site.success-save'));
         //  } catch (\Exception $e) {
         return back()->with('failed', 'The File has something wrong')->withInput();

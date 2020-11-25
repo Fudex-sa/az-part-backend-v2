@@ -186,7 +186,7 @@ Route::group(
             Route::get('orders/deleted', [App\Http\Controllers\Admin\OrderController::class, 'deleted'])->name('admin.orders.deleted');
             Route::get('order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order');
             Route::delete('order/delete', [App\Http\Controllers\Admin\OrderController::class, 'delete'])->name('admin.order.delete');
-            Route::post('order/update/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');            
+            Route::post('order/update/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
             Route::post('order/confirm_paid', [App\Http\Controllers\Rep\MyOrderController::class, 'confirm_paid'])->name('admin.order.confirm_paid');
 
             /*************** Electronic Engine  **********************/
@@ -233,6 +233,7 @@ Route::group(
             Route::get('sellers', [App\Http\Controllers\Admin\SellerController::class, 'all'])->name('admin.sellers');
             Route::get('seller/add', [App\Http\Controllers\Admin\SellerController::class, 'add'])->name('admin.seller.add');
             Route::post('seller/addFile', [App\Http\Controllers\Admin\SellerController::class, 'addFile'])->name('admin.seller.addFile');
+            Route::post('sellerCars/addFile', [App\Http\Controllers\Admin\SellerController::class, 'addCarsFile'])->name('admin.seller.addCarsFile');
 
             Route::get('seller/{item}', [App\Http\Controllers\Admin\SellerController::class, 'show'])->name('admin.seller');
             Route::post('seller/store/{item?}', [App\Http\Controllers\Admin\SellerController::class, 'store'])->name('admin.seller.store');
