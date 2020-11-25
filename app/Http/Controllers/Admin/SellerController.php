@@ -15,7 +15,7 @@ use App\Models\AvailableModel;
 use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
-use App\Http\Requests\Seller\AvailableModelRequest;
+use App\Http\Requests\Admin\AvailableModelRequest;
 use Excel;
 
 class SellerController extends Controller

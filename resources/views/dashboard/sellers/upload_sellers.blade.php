@@ -1,5 +1,5 @@
 <div class="modal fade add_item" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog ">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -12,29 +12,22 @@
 
                 <form class="form-horizontal form-label-left" action="{{ route('admin.seller.addFile') }}" method="post" enctype="multipart/form-data">
                     @csrf
-
-
+ 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_ar">@lang('site.seller_file')<span
                                 class="required">*</span>
                         </label>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" name="file" class="form-control col-md-7 col-xs-12" required
-                         />
+                            <input type="file" name="file" required />
                         </div>
                     </div>
-
-
-
-
-
-
+ 
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="button" class="btn btn-default" data-dismiss="modal"> @lang('site.close') </button>
-                            <button type="submit" class="btn btn-primary"> @lang('site.send')  </button>
+                            <button type="submit" class="btn btn-primary"> @lang('site.export')  </button>
                         </div>
                     </div>
 

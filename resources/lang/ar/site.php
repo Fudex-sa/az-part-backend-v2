@@ -118,7 +118,7 @@ return [
     'title' => 'العنوان',
     'content' => 'المحتوى',
     'enter_the_below_required_data' => 'ادخل البيانات التالية',
-    'upload_sellers' => 'قم برفع ملف التاجر',
+    'upload_sellers' => 'قم برفع ملف التجار',
     'seller_file' => 'ملف التاجر',
 
     'choose_category' => 'اختر الفئة',
