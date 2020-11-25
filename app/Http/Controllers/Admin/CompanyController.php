@@ -9,6 +9,8 @@ use App\Models\City;
 use App\Models\Region;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+use Excel;
+use App\Imports\CompaniesImport;
 
 class CompanyController extends Controller
 {
@@ -27,6 +29,14 @@ class CompanyController extends Controller
         $cols = Schema::getColumnListing('companies');
 
         return view($this->view.'create',compact('cols'));
+    }
+
+    public function import()
+    {
+        
+        Excel::import(new CompaniesImport, request()->file('file'));
+        return back()->with('success', __('site.success-save'));        
+         
     }
 
     public function store(UserRequest $request,$id = null)

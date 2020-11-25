@@ -33,9 +33,9 @@
           </div>
 
           <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="form-group row">
-              <label for="city" class="col-md-5"> @lang('site.choose_model') </label>
-              <select class="form-control col-md-7" name="model_id" id="model_id">
+            <div class="form-group">
+              <label for="city"> @lang('site.choose_model') </label>
+              <select class="form-control" name="model_id" id="model_id">
                 <option selected> @lang('site.choose_model') </option>
                 
               </select>
@@ -43,9 +43,9 @@
           </div>
           
           <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="form-group row">
-              <label for="city1" class="col-md-5"> @lang('site.manufacturing_year') </label>
-              <select class="form-control col-md-7" name="year" id="year">
+            <div class="form-group">
+              <label for="city1"> @lang('site.manufacturing_year') </label>
+              <select class="form-control" name="year" id="year">
                 <option selected> @lang('site.choose_brand') </option>
                 @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
                     <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
@@ -57,9 +57,9 @@
           </div>
 
           {{-- <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="form-group row">
-              <label for="city" class="col-md-5"> @lang('site.choose_piece') </label>
-              <select class="form-control col-md-7" name="piece_id" id="piece_id">
+            <div class="form-group">
+              <label for="city"> @lang('site.choose_piece') </label>
+              <select class="form-control" name="piece_id" id="piece_id">
                 <option selected> @lang('site.choose_piece') </option>
                 
                 @foreach ($pieces as $piece)
@@ -71,7 +71,10 @@
           </div> --}}
 
           <div class="col-lg-2 col-md-3 col-sm-6">
-            <button type="submit" class="btn btn-go btn-block"> @lang('site.apply') </button>
+            <div class="form-group">
+              <label> </label>
+            <button type="submit" class="btn btn-go btn-block mt-3"> @lang('site.apply') </button>
+          </div>
           </div>
         </form>
 

@@ -183,17 +183,14 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
     <div class="form-group custom-custom-2 col-md-12">
         <div class="row">
-            <div class="custom-file col-md-4 ml-2">
-            <input type="file" class="custom-file-input" id="customFile1" name="imgs[]">
-            <label class="custom-file-label" for="customFile1"></label>
-            </div>
-            <div class="custom-file col-md-3 ml-2">
-            <input type="file" class="custom-file-input" id="customFile2" name="imgs[]">
-            <label class="custom-file-label" for="customFile2"></label>
+            <div class="custom-file col-md-4">
+            <input type="file" class="" id="customFile1" name="imgs[]">
+           </div>
+            <div class="custom-file col-md-4">
+            <input type="file" class="" id="customFile2" name="imgs[]">
             </div>
             <div class="custom-file col-md-4">
-            <input type="file" class="custom-file-input" id="customFile3" name="imgs[]">
-            <label class="custom-file-label" for="customFile3"></label>
+            <input type="file" class="" id="customFile3" name="imgs[]">
             </div>
         </div>
     </div>

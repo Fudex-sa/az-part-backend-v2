@@ -51,7 +51,7 @@
           href="{{ route('package.show','electronic') }}"> @lang('site.packages') </a> </li>
 
       </ul>
-      <ul class="navbar-nav contact-nav mr-auto">
+      <ul class="navbar-nav contact-nav">
         <li class="nav-item">
           <a class="nav-link" href="tel:{{ data('mobile') }}">
             <img src="{{ site('assets/images/phone.png') }}" alt="" class="pl-1 phone">
@@ -156,36 +156,38 @@
                     <input type="password" class="form-control" name="password" placeholder="@lang('site.password')" required>
                   </div>
 
-                  <div class="form-group form-check row">
-                    <input type="radio" class="form-check-input col-md-3" id="user" name="user_type" value="u" checked
+                  <div class="form-group form-check">
+                    <label class="form-check-label" for="user">
+                    <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
                     {{ old('user_type') == 'u' ? 'checked' : '' }} required>
-                    <label class="form-check-label" for="user"> @lang('site.user')  </label>
-
-                    <input type="radio" class="form-check-input col-md-3" id="company" name="user_type" value="c"
+                     @lang('site.user')  </label>
+<label class="form-check-label" for="company"> 
+                    <input type="radio" class="form-check-input" id="company" name="user_type" value="c"
                     {{ old('user_type') == 'c' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="company"> @lang('site.company')  </label>
-
-                    <input type="radio" class="form-check-input col-md-3" id="seller_manu" name="user_type" value="sm"
+                    @lang('site.company')  </label>
+<label class="form-check-label" for="seller_manu"> 
+                    <input type="radio" class="form-check-input" id="seller_manu" name="user_type" value="sm"
                     {{ old('user_type') == 'sm' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="seller_manu"> @lang('site.manufacturing')  </label>
-
-                    <input type="radio" class="form-check-input col-md-3" id="seller_tashlih" name="user_type" value="st"
+                    @lang('site.manufacturing')  </label>
+<label class="form-check-label" for="seller_tashlih"> 
+                    <input type="radio" class="form-check-input " id="seller_tashlih" name="user_type" value="st"
                     {{ old('user_type') == 'st' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="seller_tashlih"> @lang('site.tashalih')  </label>
-
-                    <input type="radio" class="form-check-input col-md-3" id="broker" name="user_type" value="b"
+                    @lang('site.tashalih')  </label>
+<label class="form-check-label" for="broker"> 
+                    <input type="radio" class="form-check-input" id="broker" name="user_type" value="b"
                     {{ old('user_type') == 'b' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="broker"> @lang('site.broker')  </label>
-
-                    <input type="radio" class="form-check-input col-md-3" id="rep" name="user_type" value="r"
+                    @lang('site.broker')  </label>
+<label class="form-check-label" for="rep"> 
+                    <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
                     {{ old('user_type') == 'r' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="rep"> @lang('site.rep')  </label>
+                    @lang('site.rep')  </label>
 
                   </div>
 
                   <div class="form-group form-check">
+                      <label for="exampleCheck1"> 
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1"> @lang('site.remember_me')  </label>
+                    @lang('site.remember_me')  </label>
                   </div>
 
                   <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
@@ -213,7 +215,8 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="menuCountries" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-globe"></i>
+            
+            <i class="fas fa-flag"></i>
           </a>
           <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
             
@@ -226,7 +229,7 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="menu1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-globe"></i>
+            <i class="fas fa-language"></i>
           </a>
           <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)

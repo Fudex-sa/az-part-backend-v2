@@ -10,6 +10,8 @@ use App\Models\City;
 use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+use Excel;
+use App\Imports\BrokersImport;
 
 class BrokerController extends Controller
 {
@@ -23,6 +25,13 @@ class BrokerController extends Controller
         return view($this->view.'all',compact('items'));
     }
 
+    public function import()
+    {
+        
+        Excel::import(new BrokersImport, request()->file('file'));
+        return back()->with('success', __('site.success-save'));        
+         
+    }
     public function add()
     {
         $cols = Schema::getColumnListing('brokers');

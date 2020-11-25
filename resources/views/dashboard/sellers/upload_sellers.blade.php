@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="button" class="btn btn-default" data-dismiss="modal"> @lang('site.close') </button>
-                            <button type="submit" class="btn btn-primary"> @lang('site.export')  </button>
+                            <button type="submit" class="btn btn-primary"> @lang('site.import')  </button>
                         </div>
                     </div>
 

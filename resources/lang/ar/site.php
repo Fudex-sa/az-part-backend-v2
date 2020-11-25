@@ -1129,4 +1129,12 @@ return [
     'about_azparts' => 'عن ايزى بارتس',
     'more' => 'للمزيد',
     'manaul_search' => 'البحث اليدوى',
+    'import' => 'استيراد',
+    'upload_users' => 'رفع ملف المستخدمين',
+    'import_companies' => 'استيراد الشركات',
+    'import_brokers' => 'استيراد الوسائط',
+    'import_reps' => 'استيراد مندوبى الشحن',
+    'choose_file' => 'اختر الملف',
+    'import_supervisors' => 'استيراد مشرفين',
+
 ];

@@ -56,7 +56,7 @@
             @if(has_permission('sellers_show'))
                 <a class="btn btn-success" data-toggle="modal" data-target=".add_item">                     
                     <span class="glyphicon glyphicon-export" aria-hidden="true"></span>                                        
-                    @lang('site.export') 
+                    @lang('site.import') 
                 </a>
             @endif
         </div>
@@ -68,15 +68,14 @@
                 </a>
             @endif
         </div>
-
-        
+ 
     </div>
 
 <br/> <br/>
 
 <table class="table table-striped jambo_table bulk_action text-center">
     <thead class="th-center">
-    <tr >
+    <tr>
         <th>#  </th>
         {{-- <th> @lang('site.user_id')</th> --}}
         <th> <i class="fa fa-camera"> </i> </th>

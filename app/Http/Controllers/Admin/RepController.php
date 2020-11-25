@@ -15,6 +15,8 @@ use App\Models\DeliveryRegion;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
 use App\Http\Requests\Rep\RepPriceRequest;
+use Excel;
+use App\Imports\RepImport;
 
 class RepController extends Controller
 {
@@ -35,6 +37,14 @@ class RepController extends Controller
         $banks = Bank::orderby('name_'.my_lang(),'desc')->get();
 
         return view($this->view.'create',compact('cols','roles','banks'));
+    }
+
+    public function import()
+    {
+        
+        Excel::import(new RepImport, request()->file('file'));
+        return back()->with('success', __('site.success-save'));        
+         
     }
 
     public function store(UserRequest $request,$id = null)

@@ -22,11 +22,12 @@
 
           <div class="col-lg-9 col-md-9  col-12" style="margin-top: -65px;">
          
-            <div class="btn-add-container float-left">
+            <div class="btn-add-container">
             <a href="{{ route('package.show','electronic') }}" class="btn btn-save"> @lang('site.subscribe_package') </a>
               <br/><br/>
             </div>
             
+            <div class="table-responsive">
  
                   <table class="my-tbl text-center">
                     <thead>
@@ -74,6 +75,8 @@
                        
                     </tbody>
                   </table>
+                
+          </div>
                 
           </div>
         </div>

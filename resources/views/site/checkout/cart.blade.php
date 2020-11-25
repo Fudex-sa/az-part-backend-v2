@@ -45,7 +45,7 @@
             <div class="tab-content">
                
 
-                <div class="shadow row p-5 mt-5 rounded">
+                <div class="shadow mt-5 rounded table-responsive">
                      <table class="table text-center my-tbl2">
                         <thead>
                           <tr>

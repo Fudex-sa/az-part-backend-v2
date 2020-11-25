@@ -1,0 +1,41 @@
+body {
+  direction: ltr;
+  text-align: left;
+}
+.mr-custom {
+    margin-left: 100px !important;
+}
+.navbar-collapse > .navbar-nav:first-child{
+    flex: 1;
+}
+.breadcrumb {
+    padding-left: 0;
+}
+.breadcrumb-item {
+    margin-left: 0;
+    margin-right: 10px;
+}
+.about {
+    background: url(../images/about-bg.svg)100% 180px no-repeat;
+}
+.contact {
+    background: url(../images/eazy-shape.svg) no-repeat center right;
+}
+.dropdown-menu {
+    left:auto;
+    right: 0;
+}
+.login_drop {
+    text-align: left;
+}
+.after-line::after {
+    right: auto;
+    left: 180px;
+}
+.after-line-2::after {
+    right: auto;
+    left: 210px;
+}
+#back img {
+    transform: rotate(180deg);
+}

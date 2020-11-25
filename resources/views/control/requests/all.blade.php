@@ -22,7 +22,7 @@
 
           <div class="col-lg-9 col-md-9  col-9">
           
-            <div class="row">
+            <div class="row table-responsive">
               
                   <table class="my-tbl text-center">
                     <thead class="text-center">

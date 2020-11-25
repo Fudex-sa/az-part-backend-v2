@@ -10,6 +10,8 @@ use App\Models\Region;
 use App\Models\City;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+use Excel;
+use App\Imports\UsersImport;
 
 class UserController extends Controller
 {
@@ -28,6 +30,14 @@ class UserController extends Controller
         $cols = Schema::getColumnListing('users');
  
         return view($this->view.'create',compact('cols'));
+    }
+
+    public function import()
+    {
+        
+        Excel::import(new UsersImport, request()->file('file'));
+        return back()->with('success', __('site.success-save'));        
+         
     }
 
     public function store(UserRequest $request,$id = null)
