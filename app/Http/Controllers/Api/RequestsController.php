@@ -31,6 +31,15 @@ class RequestsController extends Controller
         return response()->json(['status'=>true, 'data' => RequestsResource::collection($items)], 200);
     }
 
+    public function requestDetails($id)
+    {
+        //$item = ElectronicRequest::with('user')->where('id', $id)->first();
+
+        $req_seller = AssignSeller::where('request_id', $id)->first();
+
+        return response()->json(['status'=>true, 'data' => new RequestsResource($req_seller)], 200);
+    }
+
     public function sendOffer(Request $request, $id=null)
     {
         $validator = Validator::make(request()->all(), [

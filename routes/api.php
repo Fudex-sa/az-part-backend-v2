@@ -65,6 +65,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
           Route::get('myRequests', 'RequestsController@myRequests');
+          Route::get('requestDetails/{id}', 'RequestsController@requestDetails');
           Route::post('sendOffer', 'RequestsController@sendOffer');
       });
   });
