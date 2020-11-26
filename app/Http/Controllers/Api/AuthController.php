@@ -16,6 +16,7 @@ use File;
 use Hash;
 use Mail;
 use Carbon\Carbon;
+use Mobily;
 
 class AuthController extends Controller
 {
@@ -189,32 +190,25 @@ class AuthController extends Controller
     public function sendMobileCode()
     {
         $validator = Validator::make(request()->all(), [
-        'phone' => 'required'
+        'mobile' => 'required'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Validation Error', 'errors' => $validator->errors()->first()], 400);
+            return response()->json(['status' => false, 'msg' => $validator->errors()->first()], 400);
         }
 
 
-        if (!empty(request('phone'))) {
-            $user = Seller::where('phone', request('phone'))->first();
+        if (!empty(request('mobile'))) {
+            $user = Seller::where('mobile', request('mobile'))->first();
             if ($user) {
-                $code = mt_rand(1000, 9999);
-                $number = request('phone');
-                $user->update(['reset_code' => $code]);
+                $code = mt_rand(10000, 99999);
+                $number = request('mobile');
+                $user->update(['verification_code' => $code]);
+                $message = 'Az Parts Verification Code';
+                send_sms($number, $message);
 
-                $this->sendMessages($number, 'تطبيق عيادات  كود التفعيل '.$code);
-
-
-                // Mail::send('layouts.email', ['code' => $code], function ($message) {
-                //     $message->from('extra4itapps@gmail.com', 'Tattamn APP');
-                //     $message->to(request('email'));
-                //     $message->subject('Reset Password');
-                // });
-
-                return response()->json(['message' => 'Success', 'data' => 'Code is sent to Mobile code','code'=>$code], 200);
+                return response()->json(['status' => true, 'data' => 'Code is sent to Mobile code','code'=>$code], 200);
             }
-            return response()->json(['message' => 'Failed', 'data' => 'This user is not exists in our credentials'], 400);
+            return response()->json(['status' => false, 'msg' => 'user not found'], 400);
         }
     }
 
@@ -247,7 +241,7 @@ class AuthController extends Controller
     public function checkCode()
     {
         $validator = Validator::make(request()->all(), [
-        'email' => 'nullable|email',
+        'mobile' => 'required',
         'code' => 'required'
         ]);
         if ($validator->fails()) {
@@ -255,21 +249,21 @@ class AuthController extends Controller
         }
 
 
-        $user = Seller::where('email', request('email'))->first();
+        $user = Seller::where('mobile', request('mobile'))->first();
 
         if ($user) {
-            if ($user->reset_code == request('code')) {
-                return response()->json(['status'=>  true,'msg' => 'الكود صحيح'], 200);
+            if ($user->verification_code == request('code')) {
+                return response()->json(['status'=>  true,'msg' => 'Code is correct'], 200);
             }
-            return response()->json(['status' => false, 'msg' => 'الكود غير صحيح'], 400);
+            return response()->json(['status' => false, 'msg' => 'Code is not correct'], 200);
         }
-        return response()->json(['status' => false, 'msg' => 'هذا المستخدم غير موجود'], 400);
+        return response()->json(['status' => false, 'msg' => 'user not found'], 400);
     }
 
     public function updatePassword()
     {
         $validator = Validator::make(request()->all(), [
-        'email' => 'nullable|email',
+        'mobile' => 'required',
         'password' => 'required'
         ]);
         if ($validator->fails()) {
@@ -277,16 +271,13 @@ class AuthController extends Controller
         }
 
 
-        $user = Seller::where('email', request('email'))->first();
-
-
-
+        $user = Seller::where('mobile', request('mobile'))->first();
 
         if ($user) {
             $user->update(['password' => bcrypt(request('password'))]);
-            return response()->json(['status' => true, 'msg' => 'تم تغيير كلمة المرور بنجاح'], 200);
+            return response()->json(['status' => true, 'msg' => 'password changed successfully'], 200);
         }
-        return response()->json(['status' => false, 'msg' => 'حدث خطا ما'], 400);
+        return response()->json(['status' => false, 'msg' => 'something wrong'], 400);
     }
 
     public function logout(Request $request)

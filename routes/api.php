@@ -25,6 +25,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
       Route::post('register', 'AuthController@register');
       Route::get('profile', 'AuthController@profile');
 
+      Route::post('sendCode', 'AuthController@sendMobileCode');
+      Route::post('checkCode', 'AuthController@checkCode');
+      Route::post('updatePassword', 'AuthController@updatePassword');
+
+
+
       Route::get('cars/damaged', 'CarsController@damaged');
       Route::get('cars/antique', 'CarsController@antique');
       Route::get('car/{id}', 'CarsController@show');
