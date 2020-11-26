@@ -131,6 +131,20 @@
                               @endif
                           </select>
                           </div>
+
+                          @if(user_type() == 'seller' || user_type() == 'broker')
+                            <div class="form-group col-md-6">
+                              <select id="tashlih_region" name="tashlih_region" class="form-control pro-input">
+                                <option value=""> @lang('site.choose_tashlih_region') </option>
+                               
+                                    @foreach ($delivery_regions as $delivery_region)
+                                        <option value="{{ $delivery_region->id }}" {{ $delivery_region->id == logged_user()->tashlih_region ? 'selected' : '' }}>
+                                            {{ $delivery_region['name_'.my_lang()] }} </option>
+                                    @endforeach
+                               
+                            </select>
+                            </div>
+                          @endif
     
                           <div class="form-group col-md-12">
                             <input id="pac-input" class="form-control add-bg" name="address" type="text"

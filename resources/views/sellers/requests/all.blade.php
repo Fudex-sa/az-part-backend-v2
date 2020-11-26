@@ -82,7 +82,9 @@
         <div class="text-center"> {{ $items->links() }} </div>
          
           </div>
+
         </div>
+
       </div>
     </div>
   </div>

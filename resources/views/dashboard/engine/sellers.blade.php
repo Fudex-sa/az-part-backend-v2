@@ -32,12 +32,13 @@
       </thead>
       <tbody>
        @foreach($item->assign_sellers as $k=>$row)
+        @if($row->seller) 
           <tr>
             <td> {{ $k+1 }} </td>            
 
-            <td> 
+            <td>                
                 @if($row->seller->photo) <img src="{{ img_path($row->seller->photo) }}" class="img-user" /> 
-                @else <img src="{{ site('assets/images/logo.png') }}" class="img-user" /> @endif
+                @else <img src="{{ site('assets/images/logo.png') }}" class="img-user" /> @endif                
             </td>
 
             <td> 
@@ -73,6 +74,7 @@
             <td> <a href="{{ route('admin.engine.edit',$row->id) }}" class="btn btn-info btn-xs"> 
                 <i class="fa fa-edit"></i> </a> </td>
           </tr>
+          @endif
       @endforeach
          
       </tbody>
