@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Seller;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,13 +27,13 @@ class AvailableModelRequest extends FormRequest
             return [
                 'brand_id' => 'required',
                 'model_id' => 'required',
-                'years' => 'required',
+                'year' => 'required',
             ];
         else
             return [
                 'brand_id' => 'required',
                 'model_id' => 'required',
-                'years' => 'required',
+                'year' => 'required',
             ];
     }
 
@@ -42,8 +42,7 @@ class AvailableModelRequest extends FormRequest
         return [
             'brand_id.required' =>  __('site.brand_required'),
             'model_id.required' =>  __('site.model_required'),
-            'years.required' =>  __('site.year_required'),                         
+            'year.required' =>  __('site.year_required'),                         
         ];
     }
-
 }

@@ -39,29 +39,41 @@
     
             <div class="table-responsive">
      
-                <div class="btn-group">
-        
-                    @if(has_permission('supervisors_add'))
-                        <a href="{{route('admin.supervisor.add')}}" class="btn btn-warning"> 
-                            <i class="fa fa-plus"></i>  @lang('site.add') </a> 
-                    @endif
+                <div class="row">
+                    <div class="col-md-10 btn-group">
+                        @if(has_permission('supervisors_show'))
+                            <a href="{{route('export.excel.users')}}" class="btn btn-info">
+                                <i class="fa fa-download"></i>  @lang('site.excel') </a>
+                        @endif
+    
+                        @if(has_permission('supervisors_show'))
+                            <a href="{{route('export.pdf.users')}}" class="btn btn-info">
+                                <i class="fa fa-file"></i>  @lang('site.pdf') </a>
+                        @endif
             
-                    @if(has_permission('supervisors_show'))
-                        <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
-                            <i class="fa fa-download"></i>  @lang('site.excel') </a> 
-                    @endif
+                        @if(has_permission('supervisors_show'))
+                            <a class="btn btn-success" data-toggle="modal" data-target=".add_item">                     
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>                                        
+                                @lang('site.import') 
+                            </a>
+                        @endif
+                    </div>
             
-                    @if(has_permission('supervisors_show'))
-                        <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
-                            <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
-                    @endif
+                    <div class="col-md-2 text-left">
+                        @if(has_permission('supervisors_add'))
+                            <a href="{{route('admin.supervisor.add')}}" class="btn btn-warning">
+                                <i class="fa fa-plus"></i>  @lang('site.add') </a>
+                        @endif
+                    </div>
+             
                 </div>
+ 
             
             <br/> <br/>
             
-            <table class="table table-striped jambo_table bulk_action">
-                <thead>
-                <tr class="headings">
+            <table class="table table-striped jambo_table bulk_action text-center">
+                <thead class="th-center">
+                <tr>
                     <th>#  </th>
                     <th> @lang('site.user_id')</th>
                     <th> <i class="fa fa-camera"> </i> </th>
@@ -142,26 +154,26 @@
                 </tbody>
             </table>
             
-            <div class="text-center"> {{ $items->links() }} </div>
 
 
     
             </div>
         </div>
+
+        <div class="text-center"> {{ $items->links() }} </div>
+
     </div>
 
 
 </div>
-
-
-
-    
-    
  
-
 @endsection
 
+@section('popup')
 
+    @include('dashboard.supervisors.import')
+
+@endsection
 
 @section('scripts')
     

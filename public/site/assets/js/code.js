@@ -155,6 +155,7 @@ document.getElementById('btn-slide').onclick = function() {
 	document.getElementById('slide-2').style.visibility = 'visible';
   	document.getElementById('slide').style.visibility = 'hidden';
     document.getElementById('btn-slide').style.visibility = 'hidden';
+
 }
 document.getElementById('back').onclick = function() {
 	document.getElementById('slide-2').style.visibility = 'hidden';
@@ -172,7 +173,6 @@ $('.responsive').slick({
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 4,
-    rtl:true,
     responsive: [
       {
         breakpoint: 1024,

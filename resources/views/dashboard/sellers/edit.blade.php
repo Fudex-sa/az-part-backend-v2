@@ -1,4 +1,5 @@
-<form action="{{ route('admin.seller.store',$item->id) }}" method="post" data-parsley-validate class="form-horizontal form-label-left">
+<form action="{{ route('admin.seller.store',$item->id) }}" method="post" 
+    data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
     @csrf
     

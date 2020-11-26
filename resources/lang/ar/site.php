@@ -118,7 +118,7 @@ return [
     'title' => 'العنوان',
     'content' => 'المحتوى',
     'enter_the_below_required_data' => 'ادخل البيانات التالية',
-    'upload_sellers' => 'قم برفع ملف التاجر',
+    'upload_sellers' => 'قم برفع ملف التجار',
     'seller_file' => 'ملف التاجر',
 
     'choose_category' => 'اختر الفئة',
@@ -1129,4 +1129,12 @@ return [
     'about_azparts' => 'عن ايزى بارتس',
     'more' => 'للمزيد',
     'manaul_search' => 'البحث اليدوى',
+    'import' => 'استيراد',
+    'upload_users' => 'رفع ملف المستخدمين',
+    'import_companies' => 'استيراد الشركات',
+    'import_brokers' => 'استيراد الوسائط',
+    'import_reps' => 'استيراد مندوبى الشحن',
+    'choose_file' => 'اختر الملف',
+    'import_supervisors' => 'استيراد مشرفين',
+
 ];

@@ -984,4 +984,11 @@ return [
     'about_azparts' => 'About AZ Parts',
     'more' => 'More',
     'manaul_search' => 'Manual Search',
+    'import' => 'Import',
+    'upload_users' => 'Upload Users',
+    'import_companies' => 'Import Companies',
+    'import_brokers' => 'Import Brokers',
+    'import_reps' => 'Import Reps',
+    'choose_file' => 'Choose File',
+    'import_supervisors' => 'Import Supervisors',
 ];

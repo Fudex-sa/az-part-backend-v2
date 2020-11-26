@@ -20,24 +20,24 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9  col-9" style="margin-top: -115px;">
-           <ul class="row text-right orders-info">
+          <div class="col-lg-9 col-md-9 ">
+           <ul class="row  orders-info">
               <li class="col-md-12">
-                 <span class="col-md-6 text-right"> <i class="fa fa-info"></i> @lang('site.free_manul_search') : </span>
-                 <span class="col-md-2 text-left"> {{ setting('manual_search_result') }} </span>
+                 <span class="col-md-6 "> <i class="fa fa-info"></i> @lang('site.free_manul_search') : </span>
+                 <span class="col-md-2 "> {{ setting('manual_search_result') }} </span>
               </li>
 
               <li class="col-md-12">
                 <span class="col-md-6"> <i class="fa fa-info"></i> @lang('site.free_elec_search') : </span>
-                <span class="col-md-2 text-left"> {{ setting('electronic_search_result') }} </span>
+                <span class="col-md-2 "> {{ setting('electronic_search_result') }} </span>
               </li>
 
               <li class="col-md-12">
                 <span class="col-md-6"> <i class="fa fa-info"></i> @lang('site.my_free_elec_search') : </span>
-                <span class="col-md-2 text-left"> {{ logged_user()->available_orders }}  </span>
+                <span class="col-md-2 "> {{ logged_user()->available_orders }}  </span>
               </li>
            </ul>
- 
+ <div class="table-responsive">
                     <table class="my-tbl text-center">
                       <thead class="thead-light">
                         <tr>
@@ -86,7 +86,7 @@
                        
                       </tbody>
                     </table>
-
+</div>
                     <div class="text-center"> {{ $items->links() }} </div>
                   </div>
                

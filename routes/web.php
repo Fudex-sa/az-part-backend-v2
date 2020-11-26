@@ -217,7 +217,7 @@ Route::group(
             Route::post('user/store/{id?}', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.user.store');
             Route::delete('user/delete', [App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin.user.delete');
             Route::post('user/activate', [App\Http\Controllers\Admin\UserController::class, 'activate'])->name('admin.user.activate');
-
+            Route::post('user/import', [App\Http\Controllers\Admin\UserController::class, 'import'])->name('admin.user.import');
 
             /******************* Companies ********************/
             Route::get('company/search', [App\Http\Controllers\Admin\CompanyController::class, 'search'])->name('admin.company.search');
@@ -227,6 +227,7 @@ Route::group(
             Route::post('company/store/{item?}', [App\Http\Controllers\Admin\CompanyController::class, 'store'])->name('admin.company.store');
             Route::delete('company/delete', [App\Http\Controllers\Admin\CompanyController::class, 'delete'])->name('admin.company.delete');
             Route::post('company/activate', [App\Http\Controllers\Admin\CompanyController::class, 'activate'])->name('admin.company.activate');
+            Route::post('companies/import', [App\Http\Controllers\Admin\CompanyController::class, 'import'])->name('admin.companies.import');
 
             /******************* Sellers ********************/
             Route::get('seller/search', [App\Http\Controllers\Admin\SellerController::class, 'search'])->name('admin.seller.search');
@@ -249,6 +250,7 @@ Route::group(
             Route::post('broker/store/{item?}', [App\Http\Controllers\Admin\BrokerController::class, 'store'])->name('admin.broker.store');
             Route::delete('broker/delete', [App\Http\Controllers\Admin\BrokerController::class, 'delete'])->name('admin.broker.delete');
             Route::post('broker/activate', [App\Http\Controllers\Admin\BrokerController::class, 'activate'])->name('admin.broker.activate');
+            Route::post('brokers/import', [App\Http\Controllers\Admin\BrokerController::class, 'import'])->name('admin.brokers.import');
 
             /******************* Reps ********************/
             Route::get('rep/search', [App\Http\Controllers\Admin\RepController::class, 'search'])->name('admin.rep.search');
@@ -258,6 +260,7 @@ Route::group(
             Route::post('rep/store/{item?}', [App\Http\Controllers\Admin\RepController::class, 'store'])->name('admin.rep.store');
             Route::delete('rep/delete', [App\Http\Controllers\Admin\RepController::class, 'delete'])->name('admin.rep.delete');
             Route::post('rep/activate', [App\Http\Controllers\Admin\RepController::class, 'activate'])->name('admin.rep.activate');
+            Route::post('reps/import', [App\Http\Controllers\Admin\RepController::class, 'import'])->name('admin.reps.import');
 
             Route::post('rep_price/store', [App\Http\Controllers\Admin\RepController::class, 'price_store'])->name('admin.rep_price.store');
             Route::delete('rep_price/delete', [App\Http\Controllers\Admin\RepController::class, 'price_delete'])->name('admin.rep_price.delete');
@@ -271,6 +274,7 @@ Route::group(
             Route::post('supervisor/permissions/{item}', [App\Http\Controllers\Admin\SupervisorController::class, 'permissions'])->name('admin.supervisor.permissions');
             Route::post('supervisor/activate', [App\Http\Controllers\Admin\SupervisorController::class, 'activate'])->name('admin.supervisor.activate');
             Route::post('supervisor/cities/{item}', [App\Http\Controllers\Admin\SupervisorController::class, 'cities'])->name('admin.supervisor.cities');
+            Route::post('supervisors/import', [App\Http\Controllers\Admin\SupervisorController::class, 'import'])->name('admin.supervisors.import');
 
             /******************* Saudi ********************/
             Route::get('saudis', [App\Http\Controllers\Admin\SaudiController::class, 'all'])->name('admin.saudis');

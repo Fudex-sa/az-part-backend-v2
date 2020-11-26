@@ -57,6 +57,32 @@
 
         </div>
     </div>
+
+    <div class="x_panel">
+        <div class="x_title">
+            <h2> {{ __("site.add_sellers_cars") }}  </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+
+            <article class="media event">
+                <a class="pull-left date date2" data-toggle="modal" data-target=".add_item">
+                    <p class="day"> @lang('site.upload')  </p>
+                </a>
+
+
+                <div class="media-body">
+                    <small> @lang('site.add_sellers_cars') </small>
+                </div>
+            </article>
+
+        </div>
+    </div>
+    
 </div>
 
 <div class="row">
@@ -105,33 +131,7 @@
 
 </div>
 
-
-<div class="col-md-4 col-sm-6 col-xs-12 widget_tally_box">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2> {{ __("site.add_sellers_cars") }}  </h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-
-        <div class="x_content">
-
-            <article class="media event">
-                <a class="pull-left date date2" data-toggle="modal" data-target=".add_item">
-                    <p class="day"> @lang('site.upload')  </p>
-                </a>
-
-
-                <div class="media-body">
-                    <small> @lang('site.add_sellers_cars') </small>
-                </div>
-            </article>
-
-        </div>
-    </div>
-</div>
+ 
 </div>
 
 

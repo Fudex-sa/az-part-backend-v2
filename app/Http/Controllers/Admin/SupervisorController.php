@@ -15,6 +15,8 @@ use App\Models\City;
 use App\Models\SupervisorCity;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\Admin\UserRequest;
+use Excel;
+use App\Imports\SupervisorImport;
 
 class SupervisorController extends Controller
 {
@@ -43,6 +45,14 @@ class SupervisorController extends Controller
         $roles = Role::orderby('id','desc')->get();
 
         return view($this->view.'create',compact('cols','roles','level2'));
+    }
+
+    public function import()
+    {
+        
+        Excel::import(new SupervisorImport, request()->file('file'));
+        return back()->with('success', __('site.success-save'));        
+         
     }
 
     public function store(UserRequest $request,$id = null)

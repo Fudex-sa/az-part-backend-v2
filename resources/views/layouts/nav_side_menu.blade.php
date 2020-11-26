@@ -1,6 +1,6 @@
 
 
-<div class="col-lg-3 col-md-2 col">
+<div class="col-lg-3 col-md-2 mb-5">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
     <a class="nav-link {{ isset($profile) ? 'active' : '' }}"

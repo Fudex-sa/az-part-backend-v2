@@ -22,13 +22,14 @@
 
           <div class="col-lg-9 col-md-9  col-12" style="margin-top: -66px;">
           
-            <div class="btn-add-container float-left">
+            <div class="btn-add-container ">
               <a data-toggle="modal" data-target=".add_item" class="btn btn-save">
                 <i class="fa fa-plus"></i>  @lang('site.add') </a>
                 <br/><br/>
             </div>
  
             
+            <div class="table-responsive">
           <table class="my-tbl" id="myTbl">
             <thead class=" text-primary">
                 <tr>
@@ -68,6 +69,7 @@
               </tbody>
         
             </table>
+          </div>
           
         <div class="text-center"> {{ $items->links() }} </div>
          
