@@ -14,7 +14,8 @@ class Broker extends Authenticatable
     protected $fillable = [
         'name' , 'email' , 'mobile' , 'saudi' , 'active' , 'verification_code' , 'verified' , 
         'vip' , 'lang' , 'last_login' , 'photo' , 'rating' , 'user_type' , 'api_token' , 'password',
-        'available_orders'  , 'created_by' ,'country_id' ,'region_id', 'city_id' , 'address' , 'lat' , 'lng'     
+        'available_orders'  , 'created_by' ,'country_id' ,'region_id', 'city_id' , 'address' , 'lat' , 'lng' 
+        ,'tashlih_region'    
     ];
     
 

@@ -55,20 +55,7 @@
             </div>
 
           </div>
-
-          {{-- <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="form-group">
-              <label for="city"> @lang('site.choose_piece') </label>
-              <select class="form-control" name="piece_id" id="piece_id">
-                <option selected> @lang('site.choose_piece') </option>
-                
-                @foreach ($pieces as $piece)
-              <option value="{{ $piece->id }}"> {{ $piece['name_'.my_lang()] }} </option>    
-                @endforeach
-              </select>
-            </div>
-
-          </div> --}}
+ 
 
           <div class="col-lg-2 col-md-3 col-sm-6">
             <div class="form-group">
@@ -104,7 +91,9 @@
                   <td> {{ $item->model['name_'.my_lang()] }} </td>
                   <td> {{ $item->year }} </td>
 
-                  <td> {{ $item->piece['name_'.my_lang()] }} </td>
+                <td> <a href="{{ route('stock.show',['brand'=>$item->brand->id , 'model'=>$item->model->id , 
+                      'year'=>$item->year , 'piece'=> $item->piece->id]) }}">
+                     {{ $item->piece['name_'.my_lang()] }} </a> </td>
                   <td>
                     <p class="color-dark">
                       @if($item->max_price != $item->min_price) <span class="p-green"> {{ $item->max_price }}</span> 

@@ -57,12 +57,17 @@
 
               <img src="{{ brand_img($item->brand ? $item->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
-              <h6> {{ $item->model ? $item->model['name_'.my_lang()] : '' }} </h6>
+              <h6 class="float-right"> {{ $item->model ? $item->model['name_'.my_lang()] : '' }} </h6>
 
-              <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">
-                   {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
-                   {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
-              </h6>
+              <div class="clear-fix"></div>
+
+              <div class="row">
+                <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
+                    {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
+                    {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
+                </span>
+              </div>
+               
               </div>
 
               @if($item->price_type == 'fixed')

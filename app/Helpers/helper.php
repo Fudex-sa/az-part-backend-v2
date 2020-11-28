@@ -210,16 +210,22 @@ if (! function_exists('logged_user')) {
     {
         if (auth()->guard('seller')->check()) {
             $item = auth()->guard('seller')->user();
+        
         } elseif (auth()->guard('broker')->check()) {
             $item = auth()->guard('broker')->user();
+        
         } elseif (auth()->guard('company')->check()) {
             $item = auth()->guard('company')->user();
+        
         } elseif (auth()->guard('admin')->check()) {
             $item = auth()->guard('admin')->user();
+        
         } elseif (auth()->guard('rep')->check()) {
             $item = auth()->guard('rep')->user();
+        
         } elseif (auth()->user()) {
             $item = auth()->user();
+        
         } else {
             $item = null;
         }
@@ -233,16 +239,22 @@ if (! function_exists('user_type')) {
     {
         if (auth()->guard('seller')->check()) {
             $result = 'seller';
+       
         } elseif (auth()->guard('broker')->check()) {
             $result = 'broker';
+       
         } elseif (auth()->guard('company')->check()) {
             $result = 'company';
+       
         } elseif (auth()->guard('admin')->check()) {
             $result = 'admin';
+       
         } elseif (auth()->guard('rep')->check()) {
             $result = 'rep';
+       
         } elseif (auth()->user()) {
             $result = 'user';
+       
         } else {
             $result = 'guest';
         }

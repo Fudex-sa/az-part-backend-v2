@@ -120,9 +120,7 @@
               <button type="submit" class="btn btn-next  btn-lg btn-block"> @lang('site.search')  </button>
 
             </div>
-
-
-
+ 
 
           </div>
         </div>
@@ -168,8 +166,8 @@
 
                 <h4 class="text-center pt-2"> {{ $stock->brand['name_'.my_lang()] }} </h4>
 
-                <h6 class="text-center mt-3"> {{ $stock->piece['name_'.my_lang()] }} </h6>
-
+                <h6 class="text-center mt-3 stock_p"> {{ $stock->piece['name_'.my_lang()] }} </h6>
+ 
                 <p class="float-right"> <span class="color-r"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
 
                 <p class="float-left">
@@ -240,12 +238,17 @@
 
                 <img src="{{ brand_img($car->brand ? $car->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
-                <h6> {{ $car->model ? $car->model['name_'.my_lang()] : '' }}  </h6>
+                <h6 class="float-right"> {{ $car->model ? $car->model['name_'.my_lang()] : '' }}  </h6>
 
-                <h6 class="mt-3"><img src="{{ site('assets/images/location.png') }}" alt="">
-                  {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
-                  {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
-                </h6>
+                <div class="clear-fix"></div>
+
+                <div class="row">
+                  <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
+                    {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
+                    {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
+                  </span>
+                </div>
+ 
 
               </div>
 

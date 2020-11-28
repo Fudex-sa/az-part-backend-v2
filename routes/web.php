@@ -110,6 +110,7 @@ Route::group(
 
             Route::get('stock', [App\Http\Controllers\Site\StockController::class, 'index'])->name('stock');
             Route::get('stock/filter', [App\Http\Controllers\Site\StockController::class, 'filter'])->name('stock.filter');
+            Route::get('stock/{brand}/{model}/{year}/{piece}', [App\Http\Controllers\Site\StockController::class, 'show'])->name('stock.show');
 
             Route::get('package/{type}', [App\Http\Controllers\Site\PackageController::class, 'show'])->name('package.show');
             Route::get('package/subscribe/{id}', [App\Http\Controllers\Site\PackageController::class, 'subscribe'])->name('package.subscribe')->middleware('userOrders');
