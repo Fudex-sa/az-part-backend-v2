@@ -43,6 +43,10 @@ class AuthController extends Controller
 
         $inputs['password'] = bcrypt($inputs['password']);
 
+        if (request()->hasFile('photo')) {
+            $inputs['photo'] = uploadImgFromMobile(request('photo'), 'user');
+        }
+
         $user = new Seller($inputs);
 
 
