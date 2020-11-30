@@ -121,7 +121,6 @@
           $("#price_div").show();
         else
           $("#price_div").hide();
-
     });
 
     $(document).on("click","input[name=auction]:radio",function(){
@@ -131,7 +130,29 @@
           $("#auction_div").show();
         else
           $("#auction_div").hide();
+    });
 
+    $(document).on("click","input[name=type]:radio",function(){
+        var type = $(this).val();
+
+        if(type == 'antique'){
+          $(".tender").show();
+          $("#original_or_not").show();
+        }else{ 
+          $(".tender").hide();
+          $("#auction_div").hide();
+          $("#original_or_not").hide();
+        }
+    });
+
+    $(document).on("click","input[name=original]:radio",function(){
+        var original = $(this).val();
+
+        if(original == 0){
+          $(".replica_years").show();          
+        }else{ 
+          $(".replica_years").hide();          
+        }
     });
   </script>
 

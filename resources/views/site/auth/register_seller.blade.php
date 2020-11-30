@@ -63,18 +63,19 @@
                                               
                                             <div class="form-group">
                                                 <div class="custom-file col-4">
+                                                    <label> @lang('site.logo') </label>
                                                     <input type="file" name="photo" >                                                   
                                                 </div>
                                             </div>
                                                   
                                             <div class="form-group col-12">
                                                 <input type="text" class="form-control" id="name" name="name" 
-                                                    placeholder="@lang('site.name')" value="{{ old('name') }}">
+                                                    placeholder="@lang('site.company_name')" value="{{ old('name') }}">
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="10"
-                                                    value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
+                                                <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="9"
+                                                minlength="9" value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
                                             </div>
                                             
                                             <div class="form-group col-12">
@@ -169,5 +170,7 @@
 {{-- <script src="{{site('maps/script.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
 async defer></script> --}}
+
+<script src="{{site('assets/js/my_scripts.js')}}"></script>
 
 @endsection

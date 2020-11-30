@@ -60,7 +60,8 @@ class CarController extends Controller
         if ($item) {
             if ($request->imgs) {
                 foreach ($request->imgs as $img) {
-                    $fileName = time().'.'.$img->extension();
+                    // $fileName = time().'.'.$img->extension();
+                    $fileName = $img->getClientOriginalName();
                     $img->move(public_path('uploads'), $fileName);
 
                     $carImg = CarImage::create(['car_id' => $item->id , 'photo' => $fileName]);

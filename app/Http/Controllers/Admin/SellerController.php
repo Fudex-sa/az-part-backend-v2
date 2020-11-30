@@ -71,7 +71,9 @@ class SellerController extends Controller
             $data['password'] = Seller::where('id', $id)->first()->password;
 
         $data['created_by'] = auth('admin')->user()->id;
-        $request->available_orders ? $data['available_orders'] = $request->available_orders :  0 ;
+        
+        $request->available_orders ? $data['available_orders'] = $request->available_orders 
+                    : $data['available_orders'] = 0;
 
         if ($request->photo) {
             $fileName = time().'.'.$request->photo->extension();
@@ -176,8 +178,19 @@ class SellerController extends Controller
         $data = $request->except('_token');
         $data['city_id'] = $seller->city_id;
 
-        $item = AvailableModel::create($data);
+        foreach($request->years as $year){
+            $data['year'] = $year;
 
+            $exists = AvailableModel::where('brand_id',$request->brand_id)->where('model_id',$request->model_id)
+                                    ->where('year',$year)->first();
+            if($exists)
+                return back()->with('failed', __('site.duplicated_row'))->withInput();
+
+            else
+                $item = AvailableModel::create($data);
+            
+        }
+         
         if ($item) {
             return back()->with('success', __('site.success-save'));
         }

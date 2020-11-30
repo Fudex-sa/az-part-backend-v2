@@ -11,7 +11,7 @@ class AssignSeller extends Model
 
     protected $fillable = [
         'seller_id' , 'request_id' , 'status_id' , 'seller_type' , 'price' , 'composition' ,
-        'return_possibility' , 'delivery_possibility' , 'taken'
+        'return_possibility' , 'delivery_possibility' , 'taken' , 'guarantee' , 'notes'
     ];
 
     public function seller()

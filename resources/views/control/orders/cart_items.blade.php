@@ -37,9 +37,15 @@
 
                 <td> {{ $cart_item->price * $cart_item->qty }} @lang('site.rs') </td>
 
-                <td> {{ $cart_item->seller ? $cart_item->seller->name : '' }} </td>
+                <td> @if(isset($cart_item->seller)) 
+                        {{ $cart_item->seller ? $cart_item->seller->name : '' }} 
+                    @endif
+                </td>
 
-                <td> {{ $cart_item->seller ? $cart_item->seller->tashlih['name_'.my_lang()] : '-' }} </td>
+                <td> @if(isset($cart_item->seller) && isset($cart_item->seller->tashlih)) 
+                        {{ $cart_item->seller ? $cart_item->seller->tashlih['name_'.my_lang()] : '-' }}
+                    @endif
+                </td>
                 
                 <td> {{ $cart_item->guarantee ? $cart_item->guarantee : '-' }} </td>
 

@@ -56,8 +56,9 @@
                                             
                                             <div class="col-6"></div>
                                             
-                                            <div class="form-group">
+                                            <div class="form-group" style="display: none;" id="logo">
                                                 <div class="custom-file col-4">
+                                                    <label> @lang('site.company_logo') </label>
                                                     <input type="file" name="photo" >                                                   
                                                 </div>
                                             </div>
@@ -65,11 +66,12 @@
                                             <div class="form-group col-12">
                                                 <input type="text" class="form-control" id="name" name="name" 
                                                     placeholder="@lang('site.name')" value="{{ old('name') }}">
+ 
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="10"
-                                                    value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
+                                                <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="9"
+                                                  minlength="9"  value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
                                             </div>
                                             
                                             <div class="form-group col-12">
@@ -83,13 +85,48 @@
                                             </div>
                                             
                                             <div class="form-group col-12">
+                                                <select class="form-control" name="country_id" id="country_id">
+                                                    <option value=""> @lang('site.choose_country') </option>
+                                                    
+                                                    @foreach (countries() as $country)
+                                                        <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
+                                                           {{ $country['name_'.my_lang()] }} </option>    
+                                                    @endforeach
+            
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="form-group col-12">
+                                                <select class="form-control" name="region_id" id="region_id">
+                                                    <option value=""> @lang('site.choose_region') </option>    
+                                                      
+                                                      @foreach (regions(old('country_id')) as $reg)
+                                                        <option value="{{ $reg->id }}" {{ old('region_id') == $reg->id ? 'selected' : '' }}>
+                                                           {{ $reg['name_'.my_lang()] }} </option>
+                                                      @endforeach             
+                    
+                                                  </select>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <select class="form-control" name="city_id" id="cities">
+                                                    <option value=""> @lang('site.choose_city') </option>    
+                                                                 
+                                                    @foreach (cities(old('city_id')) as $cit)
+                                                        <option value="{{ $cit->id }}" {{ old('city_id') == $cit->id ? 'selected' : '' }}>
+                                                           {{ $cit['name_'.my_lang()] }} </option>
+                                                      @endforeach 
+                    
+                                                  </select>
+                                            </div>
+
+                                            {{-- <div class="form-group col-12">
                                                 <input id="pac-input" class="form-control add-bg" name="address" type="text"
                                                     placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
 
                                                 <div id="map" style="width:420px;height: 400px;"></div>
                                                 <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
                                                 <input type="hidden" name="lng" id="longitude" value="50.089986"/>
-                                            </div>
+                                            </div> --}}
                                              
                                             <div class="form-group form-check col-12">
                                                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
@@ -126,5 +163,26 @@
 <script src="{{site('maps/script.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBr8fHyX4CFO0PMq4dxJlhPH8RrjXfyN8&libraries=places&callback=initAutocomplete"
 async defer></script>
+
+<script src="{{site('assets/js/my_scripts.js')}}"></script>
+
+@include('dashboard.ajax.load_regions') 
+@include('dashboard.ajax.load_cities')
+
+<script>
+     $(document).on("click","input[name=user_type]:radio",function(){
+        var user_type = $(this).val();
+
+        if(user_type == 'c'){
+          $("#logo").show();    
+          $("#name").attr('placeholder',"{{ __('site.company_name')}}");
+        }else{         
+          $("#logo").hide();                
+          $("#name").attr('placeholder',"{{ __('site.name')}}");
+        }
+    });
+    
+   
+</script>
 
 @endsection

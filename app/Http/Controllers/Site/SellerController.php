@@ -21,7 +21,7 @@ class SellerController extends Controller
     public function signup(SellerSignup $request)
     {
         
-        $data = $request->except('_token','api_token','country_id','region_id','user_type');
+        $data = $request->except('_token','api_token','user_type');
          
  
         $data['password'] = bcrypt($request->password);

@@ -141,7 +141,7 @@
                 @endif
             </td>
 
-            <td> {{ count(my_orders($item->id,'user')) }} @lang('site.request') </td>
+            <td> {{ count(my_orders($item->id,'seller')) }} @lang('site.request') </td>
 
             <td> {{ $item->available_orders }} @lang('site.request') </td>
 

@@ -50,7 +50,12 @@
                                   <img src="{{ cart_img($item->photo) }}" class="img-table" /> </td>
                                 @else <img src="{{ site('assets/images/logo.png') }}" class="img-table" /> </td> @endif
  
-                              <td> {{ $item->piece_alt ? $item->piece_alt['name_'.my_lang()] : '' }} </td>
+                              <td>
+                                {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} -
+                                {{ $item->model ? $item->model['name_'.my_lang()] : '' }} -
+                                {{ $item->year }} <br/>
+                                {{ $item->piece_alt ? $item->piece_alt['name_'.my_lang()] : '' }} 
+                              </td>
  
                               <td> <a href="{{ route('request.offers',$item->id) }}"> 
                                     <span class="bg-circle"> {{ count($item->assign_sellers_replied) }} </span> 

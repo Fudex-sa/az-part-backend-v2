@@ -42,7 +42,7 @@
                   
                   @for($i = date('Y')+1  ; $i >= 1970 ; $i--)                    
                     <label> 
-                    <input type="checkbox" name="years[]" value="{{ $i }}"> {{ $i }}
+                        <input type="checkbox" name="years[]" value="{{ $i }}"> {{ $i }}
                     </label>
                   @endfor
                 </div>

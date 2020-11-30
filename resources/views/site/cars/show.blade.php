@@ -18,44 +18,21 @@
   <div class="container">
     <div class="row">
       @include('layouts.breadcrumb')
-
-
+ 
       <div class="col-md-5">
           <div class="pro-gallery wow zoomIn">
-                                <div class="slider-for">
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                </div>
-                                <div class="slider-nav">
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                    <div><img src="http://dev.fudexsb.com/demo/azparts_v2/public/uploads/1604580740.jpeg" /></div>
-                                </div>
-                            </div>
-        <!--<ul id="images" class="rs-slider">
-          @if($item->imgs)
-            @foreach ($item->imgs as $img)
-                <li class="group"> <a href="#">
-                <img src="{{ img_path($img->photo) }}" alt="" /> </a>
-                </li>
-            @endforeach
-
-          @endif
-
-          </ul>-->
+            <div class="slider-for">
+              @foreach ($item->imgs as $img)
+                <div><img src="{{ img_path($img->photo) }}" /></div>
+              @endforeach  
+            </div>
+            <div class="slider-nav">
+              @foreach ($item->imgs as $img)
+                <div><img src="{{ img_path($img->photo) }}" /></div>
+              @endforeach  
+            </div>
+        </div>
+        
       </div>
       <div class="col-md-7">
 
@@ -69,11 +46,26 @@
             <p><img src="{{ site('assets/images/place-2.png') }}" alt="">
                 @lang('site.type') : {{ __('site.'.$item->type) }} </p>
 
+            @if($item->type == 'antique')
+              <p><img src="{{ site('assets/images/place-2.png') }}" alt="">
+                @lang('site.original_replica') : {{ $item->original == 1 ? __('site.original') : __('site.replica') }} </p>
+
+                @if($item->original == 0)
+                  <ul class="margin-right">
+                    <li><p> <i class="fa fa-calendar"></i> @lang('site.original_manufacture_year') : {{ $item->original_year}} </p></li>
+                    <li><p> <i class="fa fa-calendar"></i> @lang('site.replica_manufacture_year') : {{ $item->replica_year}} </p> </li>
+                  </ul>
+                @endif  
+
+            @endif
+          
             <p><img src="{{ site('assets/images/place-2.png') }}" alt="">
                   @lang('site.color') : {{ $item->color }} </p>
 
-            <p><img src="{{ site('assets/images/cart-gray.png') }}" alt="">
-                    @lang('site.notes') : {{ __('site.'.$item->notes) }} </p>
+            @if($item->notes)
+              <p><img src="{{ site('assets/images/cart-gray.png') }}" alt="">
+                      @lang('site.notes') : {{  $item->notes ? $item->notes : '-' }} </p>
+            @endif
 
             <p><img src="{{ site('assets/images/loc-gray.png') }}" alt=""> @lang('site.address') :
               {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
@@ -108,8 +100,16 @@
           @if($item->auction == 1)
           <a href="{{ route('control.getAuction',$item->id) }}" class="btn btn-save col-md-4  btn-lg">@lang('site.join_auction')</a>
           @endif
-          <div class="col-md-8"></div>
-          <a href="#" class="btn btn-logindrop col-md-4 mt-3 btn-lg">تواصل مع الإدارة</a>
+          <div class="col-md-12 text-left">
+            <a href="tel:00966{{ $item->user ? $item->user->mobile : '' }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg"> @lang('site.contact_with_administrator') </a>
+
+            <a href="https://wa.me/{{ $item->user ? $item->user->mobile : '' }}" target="_blank" class="btn btn-logindrop col-md-1 mt-3 btn-lg"> 
+                <img src="{{ site('assets/images/w-2.png') }}" /> 
+            </a>
+
+          </div>
+          
+
         </div>
         <div class="row mt-5">
           <div class="col-md-4">
@@ -128,7 +128,11 @@
           <form method="POST" action="{{ route('car.comment.store',$item->id) }}">
             @csrf
             <textarea class="form-control comment" name="comment" rows="2" placeholder="@lang('site.add_comment')" required></textarea>
-            <input type="submit" value="@lang('site.send')" class="btn btn-primary"/>
+            
+            <div class="text-left">
+              <br/>
+              <input type="submit" value="@lang('site.send')" class="btn btn-primary" />
+            </div>
           </form>
         </div>
         @endif

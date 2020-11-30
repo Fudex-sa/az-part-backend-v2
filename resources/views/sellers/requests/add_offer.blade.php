@@ -74,6 +74,22 @@
                         @lang('site.no') </label>
                     </div>
                 </div>
+
+                <div class="form-group col-md-5">
+                    <label> @lang('site.guarantee') </label>
+                    
+                    <div class="form-check">
+                    <input type="text" name="guarantee" value="{{ old('guarantee') }}" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label> @lang('site.notes') </label>
+                  
+                  <div class="form-check">
+                  <textarea name="notes" class="form-control">{{ old('notes') }}</textarea>
+                  </div>
+              </div>
                 
                 <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.send') </button>
                 </div>

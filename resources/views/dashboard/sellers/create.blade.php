@@ -28,7 +28,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
-                @if($col == 'name' || $col == 'email' || $col == 'mobile' || $col == 'password')
+                @if($col == 'name' || $col == 'mobile' || $col == 'password')
                     <span class="required">*</span>
                 @endif
                 </label>
@@ -38,14 +38,14 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                 @else <div class="col-md-6 col-sm-6 col-xs-12"> @endif
 
                     @if($col == 'email')
-                        <input type="email" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required>  
+                        <input type="email" name="{{ $col }}" class="form-control" value="{{ old($col) }}" >  
 
                     @elseif($col == 'mobile')
-                        <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required>  
+                        <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required
+                        maxlength="10">  
 
                     @elseif($col == 'available_orders')
-                    <input type="number" min="0" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
-                        required>  
+                    <input type="number" min="0" name="{{ $col }}" class="form-control" value="{{ old($col) }}">  
 
                     @elseif($col == 'password')
                         <input type="password" name="{{ $col }}" class="form-control" required autocomplete="new-password">  

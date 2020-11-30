@@ -65,7 +65,10 @@
                     <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>
 
                     <td> @if($item->status_id == 11) <a href="{{ route('seller.add_price',$item->id) }}"> 
-                          <i class="fa fa-plus"> </i> @lang('site.add') </a>
+                          <i class="fa fa-plus"> </i> @lang('site.add') </a> / 
+
+                          <a href="javascript:void(0);" onclick="not_available({{ $item->id }})" class="required_a"><i class="fa fa-times"></i> @lang('site.not_available') </a>
+
                           @else  
                           <span class="btn status-{{ $item->status_id }}"> {{ $item->status['name_'.my_lang()] }} </span>
                           @endif
@@ -100,4 +103,6 @@
 
 @section('scripts')
    
+  @include('dashboard.ajax.not_available') 
+
 @endsection

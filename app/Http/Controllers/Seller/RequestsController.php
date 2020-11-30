@@ -48,13 +48,25 @@ class RequestsController extends Controller
     {
         $item = AssignSeller::where('id',$id)->update([
             'price' => $request->price , 'composition' => $request->composition , 'status_id' => 10 ,
-            'return_possibility' => $request->return_possibility , 'delivery_possibility' => $request->delivery_possibility
+            'return_possibility' => $request->return_possibility , 'delivery_possibility' => $request->delivery_possibility,
+            'guarantee' => $request->guarantee , 'notes' => $request->notes
         ]);
 
         if($item)
             return redirect()->route('seller.requests')->with('success' , __('site.success-save') );
 
         return back()->with('failed' , __('site.error-happen'))->withInput();
+    }
+
+    public function not_available(Request $request)
+    {
+        $id = $request->input('id');
+
+        if(AssignSeller::where('id',$id)->update(['status_id' => 3]))
+            return 1;
+
+        return 0;
+
     }
  
 }

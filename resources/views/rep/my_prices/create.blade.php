@@ -19,7 +19,7 @@
                 @csrf 
                 
                 <div class="form-group col-6">         
-                  <label>  @lang('site.tashlih_region') </label>
+                  <label class="blue">  @lang('site.receiving_area') </label>
 
                   <select name="_from" id="_from" class="form-control">
                     <option value=""> @lang('site.choose_tashlih_region') </option>
@@ -32,6 +32,12 @@
                 </div>
 
                 <div class="form-group col-6">   </div>
+
+                <hr class="dashed-hr"/>
+
+                <div class="col-md-12"> <label class="blue"> @lang('site.delivery_area') </label> 
+                  <br/> 
+                </div>
 
                 <div class="form-group col-6">    
                   <label>  @lang('site.country') </label>

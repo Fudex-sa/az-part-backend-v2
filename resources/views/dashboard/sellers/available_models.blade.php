@@ -7,32 +7,35 @@
     <input type="hidden" value="{{ $item->id }}" name="user_id" />
 
             <div class="col-md-3">
+                <label> @lang('site.brand') </label>
                 <select name="brand_id" id="brand_id" class="form-control">
                     <option value=""> @lang('site.choose_brand') </option>
 
                     @foreach ($brands as $brand)
-                        <option value="{{ $brand->id }}"> {{ $brand['name_'.my_lang()] }} </option>    
+                        <option value="{{ $brand->id }}" >
+                             {{ $brand['name_'.my_lang()] }} </option>    
                     @endforeach
                 </select>
             </div>
  
             <div class="col-md-3">
+                <label> @lang('site.model') </label>
                 <select name="model_id" id="model_id" class="form-control">
                     <option value=""> @lang('site.choose_model') </option>
                 </select>
             </div>
  
-            <div class="col-md-3">
-                <select class="form-control" name="year" id="year">
-                    <option value=""> @lang('site.manufacturing_year') </option>
-                    @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
-                        <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
-                        >{{$i}}</option>
-                    @endfor
-                  </select> 
+            <div class="col-md-12">
+                <label> @lang('site.manufacturing_year') </label>
+                <br/>
+                @for($i = date('Y')+1  ; $i >= 1970 ; $i--)                    
+                    <label> 
+                    <input type="checkbox" name="years[]" value="{{ $i }}" {{ old('years') == $i ? 'checked' : '' }}> {{ $i }}
+                    </label>
+                  @endfor
             </div>
 
-            <div class="col-md-2"> 
+            <div class="col-md-12 text-left"> 
                 <input type="submit" value="@lang('site.add')" class="btn btn-default"/> 
             </div>
 

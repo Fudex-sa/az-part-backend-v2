@@ -75,7 +75,7 @@ class VerficationController extends Controller
   
     }
 
-    public function resend_code($id)
+    public function resend_code($id,$user_type)
     {
          
         if($user_type == 'u')

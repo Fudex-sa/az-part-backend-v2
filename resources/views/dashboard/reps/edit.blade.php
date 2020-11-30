@@ -17,7 +17,7 @@
     
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)
-                    @if($col == 'name' || $col == 'email' || $col == 'mobile' || $col == 'password')
+                    @if($col == 'name' || $col == 'mobile' || $col == 'password')
                         <span class="required">*</span>
                     @endif
                     </label>
@@ -31,7 +31,7 @@
     
                         @elseif($col == 'mobile')
                             <input type="tel" name="{{ $col }}" class="form-control" value="{{ $item->$col }}"
-                            required>  
+                            required maxlength="10">  
     
                         @elseif($col == 'password')
                             <input type="password" name="{{ $col }}" class="form-control" autocomplete="new-password">  

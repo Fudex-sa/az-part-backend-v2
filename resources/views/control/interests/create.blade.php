@@ -81,7 +81,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
     </div>
 
-    <div class="form-group col-md-4">
+    {{-- <div class="form-group col-md-4">
         <label> @lang('site.price') </label>
 
         <div class="form-check">
@@ -91,10 +91,10 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <label> <input type="radio" name="price_type" value="fees" {{ old('price_type') == 0 ? 'checked' : '' }} checked>
             @lang('site.price_on_bidding') </label>
         </div>
-    </div>
+    </div> --}}
 
 
-    <div class="form-group col-md-4" style="display: none;" id="price_div">
+    {{-- <div class="form-group col-md-4" style="display: none;" id="price_div">
         <label> @lang('site.from') </label>
 
         <div class="form-check">
@@ -105,7 +105,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="form-check">
             <input type="number" name="price_to" value="{{ old('price') }}" class="form-control" />
         </div>
-    </div>
+    </div> --}}
 
     <div class="clear-fix"></div>
 

@@ -21,7 +21,7 @@ class UserController extends Controller
    
     public function signup(UserSignup $request)
     {
-        $data = $request->except('_token','api_token','country_id','region_id','user_type');
+        $data = $request->except('_token','api_token','user_type');
  
         $data['password'] = bcrypt($request->password);
         $verification_code = rand(10000,99999);
