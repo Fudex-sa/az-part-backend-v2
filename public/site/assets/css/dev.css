@@ -329,3 +329,27 @@ background-color: #F8F9FA;
 .float-right{
     float: right;
 }
+.slider-nav img{
+    width: 96%;
+    height: 70px;
+    border: 4px solid #DCDCDC;
+}
+.slick-slide{
+    padding-top: 7px;
+}
+.slider-for img{
+    border: 1px solid #DCDCDC;
+}
+.margin-right{
+    margin-right: 130px;
+}
+.tab-content .form-check-label{
+    padding-right: 2px;
+}
+.required_a{
+    color: red !important;
+}
+.btn-whats{
+    padding: 5px;
+    border-radius: 40px;
+}

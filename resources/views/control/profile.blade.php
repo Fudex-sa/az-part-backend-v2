@@ -59,21 +59,7 @@
                           <div class="form-group col-md-6">
                             <h3 class=""> @lang('site.personal_info') </h3>
                           </div>
-                          
-
-                          <div class="form-group col-md-6">
-                            @if(user_type() == 'rep')
-                                <input type="radio" class="" id="individual" name="type" value="individual"
-                                {{ logged_user()->type == 'individual' ? 'checked' : '' }}> 
-                                <label class="form-check-label" for="individual"> @lang('site.delivery_individual')  </label>
-    
-                                <input type="radio" class="" id="company" name="type" value="company"
-                                {{ logged_user()->type == 'company' ? 'checked' : '' }}> 
-                                <label class="form-check-label" for="company"> @lang('site.delivery_company')  </label>
-                            @endif
-                          </div>
-    
-    
+                            
                           <div class="form-group col-md-6">
                             <input type="text" name="name" id="name" class="form-control pro-input" placeholder="@lang('site.name')"
                           value="{{ logged_user()->name }}">
@@ -99,10 +85,7 @@
                               <option value=""> @lang('site.choose_country') </option>
                               
                               @foreach (countries() as $country)
-                                  <option value="{{ $country->id }}" 
-                                    @if(isset(logged_user()->region['country_id'])) 
-                                        {{ logged_user()->region['country_id'] == $country->id ? 'selected' : '' }}
-                                   @endif>
+                                  <option value="{{ $country->id }}" {{ logged_user()->country_id == $country->id ? 'selected' : '' }}>                                    
                                      {{ $country['name_'.my_lang()] }} </option>
                               @endforeach
                           </select>

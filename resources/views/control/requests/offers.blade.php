@@ -32,12 +32,9 @@
                 <thead>
                   <th> # </th>
                   <th> <i class="fa fa-camera"></i> </th>
-                  <th> @lang('site.seller') </th>
-                  <th> @lang('site.seller_type') </th>
-                  <th> @lang('site.vip') </th>
+                  <th> @lang('site.seller') </th>                
                   <th> @lang('site.price') </th>
-                  <th> @lang('site.details') </th>
-                  {{-- <th> @lang('site.add_to_cart') </th> --}}
+                  <th> @lang('site.details') </th>                  
                   <th> @lang('site.rate') </th>
                 </thead>
 
@@ -56,15 +53,7 @@
                       <td>
                          {{ $seller->price ? $seller->seller->name : 'S'.$seller->seller->id }} </a>
                       </td>
-
-                      <td> <label class="label label-{{ $seller->seller->user_type }}"> 
-                            {{ __('site.'.$seller->seller->user_type) }} </label> </td>
-
-                      <td> @if($seller->seller->vip == 1) 
-                              <span class="success"> <i class="fa fa-check"></i> @lang('site.yes') </span>
-                          @else<span class="false"> <i class="fa fa-times"></i> @lang('site.no') </span>  @endif
-                      </td>
-
+ 
                       <td>
                         @if($seller->price)
                             {{ $seller->price }}  @lang('site.rs') 
@@ -75,7 +64,7 @@
                       </td>
  
                       <td> @if($seller->price) 
-                        <button class="btn add-to" data-toggle="modal" data-target="#view_details" 
+                      <button class="btn add-to" data-toggle="modal" data-target="#view_details{{ $seller->id }}" 
                                   data-item="{{ $seller->id }}">
                                    <i class="fa fa-eye"></i> @lang('site.view') </button>
   
@@ -123,23 +112,25 @@
 @section('popup')
    
 @if(count($item->assign_sellers_replied) > 0)
-    @include('control.requests.offer_details')
+    @foreach ($item->assign_sellers_replied as $k=>$offer)
+        @include('control.requests.offer_details',['offer'=> $offer ])
+    @endforeach
 @endif
 
 @endsection
 
 @section('scripts')
-<script>
+{{-- <script>
        
   $('#view_details').on('show.bs.modal', function (event) {
        var button = $(event.relatedTarget);
        var seller = button.data('item');
-       
+        
        var modal = $(this);
-       modal.find('.seller').val(seller);
+       modal.find('.offer_id').val(seller);
    });
   
-</script>
+</script> --}}
 
 @include('dashboard.ajax.rate') 
 

@@ -20,7 +20,7 @@ class RepController extends Controller
     public function signup(RepSignupRequest $request)
     {
         
-        $data = $request->except('_token','api_token','country_id','region_id');
+        $data = $request->except('_token','api_token');
          
  
         $data['password'] = bcrypt($request->password);

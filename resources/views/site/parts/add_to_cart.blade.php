@@ -9,6 +9,8 @@
        <div class="head-section mb-5">
          <h2> @lang('site.enter_required_pieces') </h2>
 
+         <p class="required"> {{ data('agreed_prices_with_seller') }} </p>
+
          <div class="text-left">
           <a onclick="addNewPiece()" href="javascript:void(0);">
                @lang('site.add_piece') <i class="fa fa-plus"></i> </a>

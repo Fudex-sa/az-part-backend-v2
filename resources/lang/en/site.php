@@ -415,6 +415,7 @@ return [
 'periodic_inspection_validity' => 'Periodic validity check',
 'original' => 'Original',
 'replica' => 'Duplicate',
+'original_replica' => 'Original or No?',
 'original_manufacture_year' => 'Actual car manufactured year',
 'replica_manufacture_year' => 'Recycle Year',
 'waiting_payment' => 'Pending Payment',
@@ -991,4 +992,9 @@ return [
     'import_reps' => 'Import Reps',
     'choose_file' => 'Choose File',
     'import_supervisors' => 'Import Supervisors',
+    'taken' => 'Taken?',
+    'receiving_area' => 'Receiving Area',
+    'delivery_area' => 'Delivery Area',    
+    'seller_notes' => 'Seller Notes',
+    'confirm_not_available' => 'Confirm Piece Not Available?',
 ];

@@ -27,13 +27,13 @@ class AvailableModelRequest extends FormRequest
             return [
                 'brand_id' => 'required',
                 'model_id' => 'required',
-                'year' => 'required',
+                'years' => 'required',
             ];
         else
             return [
                 'brand_id' => 'required',
                 'model_id' => 'required',
-                'year' => 'required',
+                'years' => 'required',
             ];
     }
 
@@ -42,7 +42,7 @@ class AvailableModelRequest extends FormRequest
         return [
             'brand_id.required' =>  __('site.brand_required'),
             'model_id.required' =>  __('site.model_required'),
-            'year.required' =>  __('site.year_required'),                         
+            'years.required' =>  __('site.year_required'),                         
         ];
     }
 }

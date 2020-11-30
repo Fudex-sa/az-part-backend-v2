@@ -33,8 +33,8 @@
                 <thead class=" text-primary">
                     <tr>
                         <th>#  </th>
-                        <th> @lang('site.tashlih_region') </th>
-                        <th> @lang('site.city') </th>
+                        <th> @lang('site.receiving_area') </th>
+                        <th> @lang('site.delivery_area') </th>
                         <th> @lang('site.price') </th>
                         <th> @lang('site.active') </th>
                         <th> @lang('site.car_size') </th>
@@ -61,7 +61,13 @@
                         @endif       
                         </td>
     
-                        <td> {{ implode(',',$item->car_size) }} </td>
+                        <td> 
+                           @if($item->car_size)
+                              @foreach ($item->car_size as $size)
+                                  {{ __('site.'.$size)}} &nbsp; 
+                              @endforeach
+                           @endif
+                        </td>
     
                         <td>
                             

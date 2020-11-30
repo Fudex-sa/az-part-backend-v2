@@ -17,8 +17,12 @@
         @include('layouts.breadcrumb')
 
         <div class="col-md-12">
-          @include('site.cars.filter')
-
+          @if(request()->type == 'damaged')
+            @include('site.cars.filter_damaged')
+          @else
+            @include('site.cars.filter_antique')
+          @endif
+          
           <div class="results">
             <h6>  @lang('site.result_no') :   <span class="text-dark"> {{ count($items) }}  @lang('site.result')  </span> </h6>
           </div>

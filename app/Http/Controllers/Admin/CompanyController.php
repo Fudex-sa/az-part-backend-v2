@@ -47,6 +47,9 @@ class CompanyController extends Controller
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Company::where('id',$id)->first()->password;
 
+        $request->available_orders ? $data['available_orders'] = $request->available_orders 
+                    : $data['available_orders'] = 0;
+
         if($request->photo){
             $fileName = time().'.'.$request->photo->extension();  
             $request->photo->move(public_path('uploads'), $fileName);

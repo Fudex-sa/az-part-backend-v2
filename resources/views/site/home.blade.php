@@ -164,14 +164,14 @@
 
                 <img src="{{ brand_img($stock->brand->logo) }}" alt="" class="float-right brand-logo">
 
-                <h4 class="text-center pt-2"> {{ $stock->brand['name_'.my_lang()] }} </h4>
+                <h4 class="text-center pt-2"> {{ $stock->model['name_'.my_lang()] }} </h4>
 
                 <h6 class="text-center mt-3 stock_p"> {{ $stock->piece['name_'.my_lang()] }} </h6>
  
-                <p class="float-right"> <span class="color-r"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
+                <p class="float-right"> <span class="color-g"> {{ $stock->max_price }} </span> @lang('site.rs') </p>
 
                 <p class="float-left">
-                  <span class="color-g"> {{ $stock->min_price }} </span> @lang('site.rs')
+                  <span class="color-r"> {{ $stock->min_price }} </span> @lang('site.rs')
                 </p>
                 <p class="pt-2 text-center">
                   <span class="color-d"> {{ round($stock->avg_price,2) }} </span> @lang('site.rs')

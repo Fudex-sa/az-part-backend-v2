@@ -27,12 +27,13 @@ Route::group(
             Route::get('avaliable_models', [App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
             Route::post('avaliable_model/{id?}', [App\Http\Controllers\Seller\AvliableModelController::class, 'store'])->name('seller.avaliable_model.store');
             Route::get('avaliable_model/{item}', [App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');
-            Route::delete('avaliable_model/delete', [App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');
-
+            Route::delete('avaliable_model/delete', [App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
+ 
             Route::get('requests', [App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
             Route::post('request/update/{item}', [App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update');
             Route::get('request/add_price/{id}', [App\Http\Controllers\Seller\RequestsController::class, 'add_price'])->name('seller.add_price');
             Route::post('request/send_price/{id}', [App\Http\Controllers\Seller\RequestsController::class, 'send_price'])->name('seller.send_price');
+            Route::post('request/not_available', [App\Http\Controllers\Seller\RequestsController::class, 'not_available'])->name('request.not_available');
         });
 
 

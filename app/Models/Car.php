@@ -12,7 +12,7 @@ class Car extends Model
     protected $fillable = [
         'type' , 'user_id' , 'title' , 'brand_id' , 'model_id' , 'year' , 'color' , 'kilo_no' ,
         'country_id' , 'region_id' , 'city_id' , 'price_type' , 'price' , 'validatly' , 'examination' ,'kilo_no',
-        'notes' , 'publish' , 'views' , 'user_type' , 'qty','auction','date_auction'
+        'notes' , 'publish' , 'views' , 'user_type' , 'qty','auction','date_auction' , 'original' , 'original_year' , 'replica_year'
     ];
 
 

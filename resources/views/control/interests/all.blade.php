@@ -41,7 +41,7 @@
                         <th scope="col"> @lang('site.brand') </th>
                         <th scope="col"> @lang('site.model') </th>
                         <th scope="col"> @lang('site.manufacturing_year') </th>
-                        <th scope="col"> @lang('site.price') </th>
+                        {{-- <th scope="col"> @lang('site.price') </th> --}}
                         <th scope="col"> @lang('site.country') </th>
                         <th scope="col"> @lang('site.region') </th>
                         <th scope="col"> @lang('site.city') </th>
@@ -64,32 +64,32 @@
 
                               <td> {{ $interest->year }}  </td>
 
-                              <td>{{ ($interest->price_type === 'fixed')  ?  __('site.fixed_price')  :  __('site.price_on_bidding') }}
+                              {{-- <td>{{ ($interest->price_type === 'fixed')  ?  __('site.fixed_price')  :  __('site.price_on_bidding') }}
                                     @if($interest->price_from != null & $interest->price_to != null)
                                         {{  __('site.from').":".$interest->price_from." ".__('site.to').":".$interest->price_to }}
                                     @endif
-                               </td>
+                               </td> --}}
                                  <td> {{ $interest->country ? $interest->country['name_'.my_lang()] : '' }}  </td>
                                    <td> {{ $interest->region ? $interest->region['name_'.my_lang()] : '' }}  </td>
                               <td> {{ $interest->city ? $interest->city['name_'.my_lang()] : '' }}  </td>
 
                               <td>
                               @php
-                              if($interest->price_from != null & $interest->price_to != null){
+                              // if($interest->price_from != null & $interest->price_to != null){
+                              //     $matchedItems = App\Models\Car::where('brand_id',$interest->brand_id)
+                              //         ->where('model_id',$interest->car_model_id)
+                              //         ->where('year',$interest->year)
+                              //         ->where('city_id',$interest->city_id)
+                              //         ->where('price','>=',$interest->price_from)
+                              //         ->where('price','<=',$interest->price_to)
+                              //         ->get();
+                              //     }else{
                                   $matchedItems = App\Models\Car::where('brand_id',$interest->brand_id)
                                       ->where('model_id',$interest->car_model_id)
                                       ->where('year',$interest->year)
                                       ->where('city_id',$interest->city_id)
-                                      ->where('price','>=',$interest->price_from)
-                                      ->where('price','<=',$interest->price_to)
                                       ->get();
-                                  }else{
-                                  $matchedItems = App\Models\Car::where('brand_id',$interest->brand_id)
-                                      ->where('model_id',$interest->car_model_id)
-                                      ->where('year',$interest->year)
-                                      ->where('city_id',$interest->city_id)
-                                      ->get();
-                                  }
+                                  // }
                                   if(count($matchedItems) > 0){
                                       foreach($matchedItems as $matchedItem){
                                           $url = url('car/'.$matchedItem->id);

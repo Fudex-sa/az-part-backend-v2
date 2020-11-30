@@ -47,7 +47,8 @@
 
                                             <div class="form-group col-12">
                                                 <input type="tel" class="form-control" id="mobile" name="mobile" 
-                                                    value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
+                                                    value="{{ old('mobile') }}" placeholder="@lang('site.mobile')" maxlength="9"
+                                                    minlength="9">
                                             </div>
                                              
                                                 <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.next') </button>
@@ -73,6 +74,7 @@
 @endsection
 
 @section('scripts')
-   
+
+    <script src="{{site('assets/js/my_scripts.js')}}"></script>
 
 @endsection

@@ -294,6 +294,7 @@
               <div class="footer-box mt-4">
                   <h4> @lang('site.payment') </h4>
                   <a href="#"><img src="{{ site('assets/images/visa.png') }}" alt=""> </a>
+                  <iframe src="https://maroof.sa/Business/GetStamp?bid=119512" frameborder="0" seamless='seamless' scrollable="no"></iframe>
               </div>
         </div>
 

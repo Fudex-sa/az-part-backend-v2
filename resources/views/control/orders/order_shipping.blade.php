@@ -17,11 +17,11 @@
         </tr>
         <tr>
             <th> @lang('site.region') </th>
-            <td> {{ $item->shipping->region['name_'.my_lang()] }} </td>
+            <td> {{ $item->shipping->region ? $item->shipping->region['name_'.my_lang()] : '-' }} </td>
         </tr>
         <tr>
             <th> @lang('site.city') </th>
-            <td> {{ $item->shipping->city['name_'.my_lang()] }} </td>
+            <td> {{ $item->shipping->city ? $item->shipping->city['name_'.my_lang()] : '-' }} </td>
         </tr>
         <tr>
             <th> @lang('site.street') </th>

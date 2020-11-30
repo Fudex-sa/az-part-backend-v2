@@ -27,6 +27,41 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         </div>
     </div>
 
+    <div class="form-group col-md-4" id="original_or_not" style="display: none;">
+        <label> @lang('site.original_replica') </label>
+
+        <div class="form-check">
+            <label> <input type="radio" name="original" value="1" {{ old('original') == 1 ? 'checked' : '' }} >
+            @lang('site.original') </label>
+
+            <label> <input type="radio" name="original" value="0" {{ old('original') == 0 ? 'checked' : '' }} >
+            @lang('site.replica') </label>
+        </div>
+    </div>
+
+    <div class="form-group col-md-4 replica_years" style="display: none;">
+        <label> @lang('site.original_manufacture_year') </label>
+
+        <select class="form-control" name="original_year">            
+            @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                <option value="{{$i}}" {{ old('original_year')  == $i ? 'selected' : '' }}
+                >{{$i}}</option>
+            @endfor
+        </select>
+    </div>
+
+    <div class="form-group col-md-4 replica_years" style="display: none;">
+        <label> @lang('site.replica_manufacture_year') </label>
+
+        <select class="form-control" name="replica_year">            
+            @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                <option value="{{$i}}" {{ old('replica_year')  == $i ? 'selected' : '' }}
+                >{{$i}}</option>
+            @endfor
+        </select>
+    </div>
+
+     
     <div class="form-group col-md-4">
         <label> @lang('site.brand') </label>
 
@@ -58,7 +93,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <option value="{{$i}}" {{ old('year')  == $i ? 'selected' : '' }}
                 >{{$i}}</option>
             @endfor
-            </select>
+        </select>
     </div>
 
 
@@ -126,7 +161,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
       <div class="clear-fix"></div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 tender" style="{{ old('type') == 'antique' ? 'display:block;' : 'display:none;' }}">
         <label> @lang('site.tenders') </label>
 
         <div class="form-check">

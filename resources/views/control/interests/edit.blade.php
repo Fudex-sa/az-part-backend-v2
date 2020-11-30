@@ -114,7 +114,7 @@
                             </select>
                     </div>
 
-                    <div class="form-group col-md-4">
+                    {{-- <div class="form-group col-md-4">
                         <label> @lang('site.price') </label>
 
                         <div class="form-check">
@@ -124,10 +124,10 @@
                             <label> <input type="radio" name="price_type" value="fees" {{ $item->price_type == 'fees' ? 'checked' : '' }}>
                             @lang('site.price_on_bidding') </label>
                         </div>
-                    </div>
+                    </div> --}}
 
 
-                    <div class="form-group col-md-4" style="{{ $item->price_type == 'fixed' ? 'block' : 'none' }}" id="price_div">
+                    {{-- <div class="form-group col-md-4" style="{{ $item->price_type == 'fixed' ? 'block' : 'none' }}" id="price_div">
                       <label> @lang('site.from') </label>
 
                         <div class="form-check">
@@ -138,7 +138,7 @@
                         <div class="form-check">
                             <input type="number" name="price_to" value="{{ $item->price_to }}" class="form-control" />
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="clear-fix"></div>
 
