@@ -64,7 +64,7 @@ class AuthController extends Controller
             $user = new SellerResource($user);
             return response()->json(['status'=>true,'msg' => 'sign up successfully', 'data' => $user], 200);
         }
-        return response()->json(['status'=>false,'msg' => 'Something Wrong']);
+        return response()->json(['status'=>false,'msg' => 'Something Wrong', 400]);
     }
 
     public function login()
@@ -88,7 +88,7 @@ class AuthController extends Controller
 
             return response()->json(['status'=>true, 'data' => $user], 200);
         }
-        return response()->json(['status'=>false,'msg' => 'Incorrect email or password']);
+        return response()->json(['status'=>false,'msg' => 'Incorrect email or password', 400]);
     }
 
 

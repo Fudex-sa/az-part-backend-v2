@@ -35,9 +35,12 @@ class RequestsController extends Controller
     {
         //$item = ElectronicRequest::with('user')->where('id', $id)->first();
 
-        $req_seller = AssignSeller::where('request_id', $id)->first();
+        $req_seller = AssignSeller::where('id', $id)->first();
 
-        return response()->json(['status'=>true, 'data' => new RequestsResource($req_seller)], 200);
+        if ($req_seller) {
+            return response()->json(['status'=>true, 'data' => new RequestsResource($req_seller)], 200);
+        }
+        return response()->json(['status' => false, 'msg' => 'request not found'], 400);
     }
 
     public function sendOffer(Request $request, $id=null)
