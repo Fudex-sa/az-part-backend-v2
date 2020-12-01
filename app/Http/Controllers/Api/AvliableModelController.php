@@ -57,8 +57,12 @@ class AvliableModelController extends Controller
                 $item = AvailableModel::create($data);
             }
         } else {
-            $item = AvailableModel::where('id', $id)->update($data);
+            //dd($id);
+            $item = AvailableModel::find($id);
+            $item->update($data);
+            //dd($item);
         }
+        // dd($item);
 
         return response()->json(['status'=>true, 'data' => new AvailableModelResource($item)], 200);
     }

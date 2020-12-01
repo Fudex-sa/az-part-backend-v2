@@ -70,4 +70,17 @@ class RequestsController extends Controller
         }
         return response()->json(['status'=>false, 'msg' => 'Item Not Found!'], 401);
     }
+
+    public function destroy($id)
+    {
+        $item = AssignSeller::findOrFail($id);
+
+        if ($item) {
+            if ($item->delete()) {
+                return response()->json(['status'=> true,'msg' => 'Successfully Deleted.'], 200);
+            }
+        } else {
+            return response()->json(['status'=> false,'msg' => 'Unauthorized.'], 401);
+        }
+    }
 }

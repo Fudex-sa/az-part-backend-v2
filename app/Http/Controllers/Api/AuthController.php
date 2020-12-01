@@ -111,21 +111,25 @@ class AuthController extends Controller
         }
         $data = request()->all();
         if (request()->hasFile('photo')) {
-            $user = Auth::guard('seller')->user();
+            //$user = Auth::guard('seller')->user();
 
-            if ($user->photo) {
-                File::delete(public_path('/uploads/'.$user->photo));
-            }
+
             $data['photo'] = uploadImgFromMobile(request('photo'), 'user');
         }
-        $user = Auth::guard('seller')->user();
-        $user->update($data);
-
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $user->token = 'Bearer ' .$success['token'];
-        $user = collect($user)->except(['created_at', 'updated_at']);
-        $user = new SellerResource($user);
-        return response()->json(['status' => true, 'data' => $user], 200);
+        if (request('password')) {
+            $data['password'] = bcrypt(request('password'));
+        }
+        $user = Seller::find(request('user_id'));
+        //dd($user);
+        if ($user) {
+            $user->update($data);
+            $success['token'] =  $user->createToken('MyApp')->accessToken;
+            $user->token = 'Bearer ' .$success['token'];
+            $user = collect($user)->except(['created_at', 'updated_at','password']);
+            $user = new SellerResource($user);
+            return response()->json(['status' => true, 'data' => $user], 200);
+        }
+        return response()->json(['status' => false, 'msg' => 'unauthenticated'], 400);
     }
 
     public function profile()
