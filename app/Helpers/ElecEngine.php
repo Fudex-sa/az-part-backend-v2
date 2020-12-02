@@ -75,14 +75,13 @@ class ElecEngine
     {
         $brand = $this->search->search_res('brand');
         $model = $this->search->search_res('model');
-        $year = $this->search->search_res('year');
-        $city = $this->search->search_res('city');
+        $year = $this->search->search_res('year');        
         $region = $this->search->search_res('region');
 
         $items = AvailableModel::matchOrder($brand,$model,$year)
                         ->with('seller')
-                        ->whereHas('seller',function($q) use ($city){
-                            $q->where('city_id',$city)->where('active',1)
+                        ->whereHas('seller',function($q) use ($region){
+                            $q->where('region_id',$region)->where('active',1)
                                 ->orderby('vip','desc')->orderby('saudi','desc');
                         })->get();
 

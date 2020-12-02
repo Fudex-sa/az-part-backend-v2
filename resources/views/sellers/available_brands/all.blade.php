@@ -22,10 +22,50 @@
 
           <div class="col-lg-9 col-md-9  col-12" style="margin-top: -66px;">
           
-            <div class="btn-add-container ">
+            <div class="btn-add-container row">
+
+            <form method="GET" action="{{ route('avaliable_models.search') }}" class="row">
+              <div class="col-md-9 row">
+
+                <div class="col-md-4">
+                  <select class="form-control" name="brand" id="brand"> 
+                    <option value=""> @lang('site.choose_brand') </option>
+
+                    @foreach (brands() as $b)
+                      <option value="{{ $b->id }}"> {{ $b['name_'.my_lang()] }} </option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <select class="form-control" name="model" id="model"> 
+                    <option value=""> @lang('site.choose_model') </option>
+
+                  </select>
+                </div>
+
+                <div class="col-md-3">                  
+                    <select name="year" class="form-control">
+                      <option value=""> @lang('site.manufacturing_year') </option>
+
+                      @for($i = date('Y')+1  ; $i >= 1970 ; $i--)                    
+                          <option value="{{ $i }}"> {{ $i }} </option>
+                      @endfor
+                    </select>
+                </div>
+                <div class="col-md-1">                  
+                  <button type="submit" class="btn btn-dropform"> @lang('site.search') </button>
+                </div>
+
+              </div>
+
+              <div class="col-md-3">
               <a data-toggle="modal" data-target=".add_item" class="btn btn-save">
                 <i class="fa fa-plus"></i>  @lang('site.add') </a>
                 <br/><br/>
+              </div>
+
+            </form>
             </div>
  
             
@@ -97,6 +137,7 @@
     <script src="{{ site('assets/js/select2.js') }}"></script>
 
     @include('dashboard.ajax.load_models') 
+    @include('dashboard.ajax.load_models2') 
 
     @include('dashboard.ajax.delete',['target'=>'avaliable_model']) 
 

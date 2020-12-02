@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Country;
-use App\Http\Requests\Admin\CountryRequest;
+use App\Models\PaymentMethod;
 
-class CountryController extends Controller
+class PaymentMethodController extends Controller
 {
-    
-    protected $view = "dashboard.countries.";
+    protected $view = "dashboard.payment_methods.";
 
     public function all()
     {
-        $items = Country::with('regions')->orderby('id','desc')->paginate(pagger());
+        $items = PaymentMethod::orderby('id','desc')->paginate(pagger());
       
         return view($this->view.'all',compact('items'));
     }     
 
-    public function store(CountryRequest $request,$id = null)
+    public function store(Request $request,$id = null)
     {
 
         $data = $request->except('_token');
@@ -32,18 +30,18 @@ class CountryController extends Controller
         }  
 
         if($id) 
-            $response = Country::where('id',$id)->update($data);
+            $response = PaymentMethod::where('id',$id)->update($data);
         
-        else $response = Country::create($data);
+        else $response = PaymentMethod::create($data);
 
         if($response)
-            return redirect()->route('admin.countries')->with('success' , __('site.success-save') );
+            return redirect()->route('admin.payment_methods')->with('success' , __('site.success-save') );
 
         return back()->with('failed' , __('site.error-happen'))->withInput();
 
     }
 
-    public function edit(Country $item)
+    public function edit(PaymentMethod $item)
     {
        
         return view($this->view.'edit',compact('item'));
@@ -53,7 +51,7 @@ class CountryController extends Controller
     public function delete(Request $request){
         $item = $request->input('id');
 
-        if(Country::find($item)->delete()) 
+        if(PaymentMethod::find($item)->delete()) 
             return 1;
 
         return 0;
@@ -63,13 +61,12 @@ class CountryController extends Controller
     {
         $item = $request->input('id');
 
-        $user = Country::find($item);
+        $user = PaymentMethod::find($item);
         $user->active == 1 ? $active = 0 : $active = 1;
 
-        if( Country::where('id',$item)->update(['active' => $active]) )
+        if( PaymentMethod::where('id',$item)->update(['active' => $active]) )
             return 1;
 
         return 0;        
     }
-
 }

@@ -1142,4 +1142,10 @@ return [
     'delivery_area' => 'منطقة التسليم',
     'seller_notes' => 'ملاحظات التاجر',    
     'confirm_not_available' => 'تأكيد عدم توفير الطلب؟',
+    'payment_methods' => 'طرق الدفع',
+    'add_payment_method' => 'اضف طريقة دفع',
+    'description_ar' => 'الوصف بالعربى',
+    'description_en' => 'الوصف بالإنجليزى',
+    'description_hi' => 'الوصف بالهندى',
+    'join_our_packages' => 'اشترك ف احدى الباقات',
 ];

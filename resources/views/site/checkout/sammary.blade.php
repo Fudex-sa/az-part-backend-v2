@@ -9,7 +9,8 @@
         <div class="col-md-6"> <h6 class="float-left"> {{ sub_total() }}  @lang('site.rs')  </h6> </div>
 
         <div class="col-md-6"> <h6> @lang('site.site_commission')  </h6> </div>   
-        <div class="col-md-6"> <h6 class="float-left"> <span class="my-blue"> {{ setting('site_commission') }} % </span>
+        <div class="col-md-6"> <h6 class="float-left"> <i class="fas fa-question-circle"  data-toggle="tooltip" 
+        data-placement="top" title="{{ data('commsion_info') }}"></i> <span class="my-blue"> {{ setting('site_commission') }} % </span>
                  ({{ commission() .' '. __('site.rs') }}) </h6> </div>
 
        
@@ -24,7 +25,8 @@
             <span id="delivery_price"> {{ delivery_price() }} </span>  @lang('site.rs')  </h6> </div>
 
         <div class="col-md-6"> <h6> @lang('site.with_oil_cost')  </h6> </div>   
-        <div class="col-md-6"> <h6 class="float-left">  
+        <div class="col-md-6"> <h6 class="float-left">   <i class="fas fa-question-circle"  data-toggle="tooltip" 
+        data-placement="top" title="{{ data('with_oil_info') }}"></i>
             <span id="with_oil"> {{ session()->get('with_oil') ? session()->get('with_oil') : 0 }} </span>  @lang('site.rs')  </h6> </div>
  
             @else

@@ -153,7 +153,8 @@
               <div class="add-card-head">
                 <div class="add-card-layout">
                   <ul class="lay-out-menue">
-                  <li><a href="#"><img src="{{ asset('assets/images/1.png') }}" alt=""></a></li>
+                  <li> <a href="{{ route('car',$car->id) }}"> 
+                      <img src="{{ site('assets/images/1.png') }}" alt=""></a></li>
                   @if(logged_user() && user_type() == 'user')
                   @if(App\Models\CarFavorite::where('car_id',$car->id)->where('user_id',logged_user()->id)->first())
                     <li><a href="{{ route('control.wishlist.remove_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
@@ -161,13 +162,15 @@
                     <li><a href="{{ route('control.wishlist.add_wish_list',$car->id) }}"><img src="{{ site('assets/images/2.png') }}" alt=""></a></li>
                   @endif
                 @endif
-                  <li><a href="#"><img src="{{ asset('assets/images/3.png') }}" alt=""></a></li>
+
+                  <li><a href="https://wa.me/?text={{ $car->title }}" target="_blank">
+                    <img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
                   </ul>
                 </div>
 
-              @if(count($car->imgs) > 0)
-                <img src="{{ img_path($car->imgs[0]->photo) }}" alt="" class="img-fluid">
-              @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-fluid"> @endif
+                @if(count($car->imgs) > 0)
+                  <img src="{{ img_path($car->imgs[0]->photo) }}" alt="" class="img-fluid">
+                @else <img src="{{ site('assets/images/logo.png') }}" alt="" class="img-fluid"> @endif
 
               </div>
               <div class="add-card-body">
@@ -175,12 +178,17 @@
 
               <img src="{{ brand_img($car->brand ? $car->brand['logo'] : '') }}" alt="" class="float-right brand-logo">
 
-              <h6> <a href="{{ route('car',$car->id) }}">{{ $car->model ? $car->model['name_'.my_lang()] : '' }} </a> </h6>
+              <h6 class="float-right"> {{ $car->model ? $car->model['name_'.my_lang()] : '' }} </h6>
 
-              <h6 class="mt-3"><img src="{{ asset('assets/images/location.png') }}" alt="">
-                   {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
-                   {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
-              </h6>
+              <div class="clear-fix"></div>
+
+              <div class="row">
+                <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
+                    {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
+                    {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
+                </span>
+              </div>
+               
               </div>
 
               @if($car->price_type == 'fixed')

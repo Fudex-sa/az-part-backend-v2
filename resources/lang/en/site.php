@@ -997,4 +997,10 @@ return [
     'delivery_area' => 'Delivery Area',    
     'seller_notes' => 'Seller Notes',
     'confirm_not_available' => 'Confirm Piece Not Available?',
+    'payment_methods' => 'Payment Methods',
+    'add_payment_method' => 'Add Payment Method',
+    'description_ar' => 'Description Arabic',
+    'description_en' => 'Description English',
+    'description_hi' => 'Description Hindi',
+    'join_our_packages' => 'Join Our Packages',
 ];

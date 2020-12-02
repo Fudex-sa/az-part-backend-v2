@@ -314,6 +314,16 @@ if (! function_exists('cities_sellers')) {
     }
 }
 
+if (! function_exists('if_subscribe')) {
+    function if_subscribe($package_type)
+    {
+        $items = PackageSubscribe::myPackagesByType()->get();
+        
+        if(count($items) > 0)
+            return 1;
+        else return 0;
+    }
+}
 
         
  

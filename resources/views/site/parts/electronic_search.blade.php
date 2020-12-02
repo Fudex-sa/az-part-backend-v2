@@ -107,9 +107,11 @@
 
         <div class="col-md-12">
 
-          <div class="advice text-center">            
-            <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results">
-               @lang('site.get_more_results') </a>
+          <div class="advice text-center">       
+            @if(valid_for_elec() == 0)     
+              <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results">
+                @lang('site.join_our_packages') </a>
+            @endif
           </div>
           
         </div>

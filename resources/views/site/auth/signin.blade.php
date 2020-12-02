@@ -33,7 +33,7 @@
                                         <form class="row" method="post" action="{{ route('user.login') }}" >
                                             @csrf 
 
-                                            <div class="form-group col-4">
+                                            {{-- <div class="form-group col-4">
                                                 <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
                                                 {{ old('user_type') == 'u' ? 'checked' : '' }} required> 
                                                 <label class="form-check-label" for="user"> @lang('site.user')  </label>
@@ -67,19 +67,21 @@
                                                 <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
                                                 {{ old('user_type') == 'r' ? 'checked' : '' }}> 
                                                 <label class="form-check-label" for="rep"> @lang('site.rep')  </label>
-                                            </div>
+                                            </div> --}}
  
-                                            <div class="form-group col-12">
-                                                <input type="tel" class="form-control" id="mobile" name="mobile" 
-                                                    value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
-                                            </div>
-                                            
-                                            <div class="form-group col-12">
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="@lang('site.password')">
-                                            </div>
-                                            
-                                           
-                                                <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
+                                                <div class="form-group col-12">
+                                                    <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="9" minlength="9" 
+                                                        value="{{ old('mobile') }}" placeholder="@lang('site.mobile')">
+                                                </div>
+                                                
+                                                <div class="form-group col-12">
+                                                    <input type="password" class="form-control" id="password" name="password" placeholder="@lang('site.password')">
+                                                </div>
+                                                
+                                                <div class="form-group col-12">
+                                                    <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.login') </button>
+                                                </div>
+                                                
                                             </form>
 
                                             <div class="form-group col-12">
@@ -109,5 +111,7 @@
 @endsection
 
 @section('scripts')
- 
+    
+    <script src="{{site('assets/js/my_scripts.js')}}"></script>
+
 @endsection

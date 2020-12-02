@@ -1,4 +1,7 @@
 // dropdown autocomplit
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 $( function() {
     var availableTags = [
       "ActionScript",

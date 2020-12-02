@@ -16,13 +16,11 @@ class AvliableModelController extends Controller
     public function index()
     {
         $avaliable_models = true;
-
-        $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
-
+ 
         $items = AvailableModel::userBrands(logged_user()->id)->orderby('brand_id','desc')
                                 ->orderby('model_id','desc')->paginate(pagger());
 
-        return view($this->view.'all',compact('brands','items','avaliable_models'));
+        return view($this->view.'all',compact('items','avaliable_models'));
     }
 
     public function edit(AvailableModel $item)
@@ -72,4 +70,35 @@ class AvliableModelController extends Controller
         return 0;
     }
 
+    public function search(Request $request)
+    {
+        $avaliable_models = true;
+ 
+        if($request->brand)
+            $items = AvailableModel::userBrands(logged_user()->id)
+                                ->where('brand_id',$request->brand)
+                                ->orderby('brand_id','desc')        
+                                ->orderby('model_id','desc')->paginate(pagger());
+
+        elseif($request->model)
+            $items = AvailableModel::userBrands(logged_user()->id)
+                            ->where('brand_id',$request->brand)
+                            ->orderby('model_id','desc')        
+                            ->orderby('model_id','desc')->paginate(pagger());
+
+        elseif($request->model && $request->year)
+            $items = AvailableModel::userBrands(logged_user()->id)
+                                ->where('model_id',$request->model)
+                                ->where('year',$request->year)
+                                ->orderby('brand_id','desc')        
+                                ->orderby('model_id','desc')->paginate(pagger());
+
+        else        
+            $items = AvailableModel::userBrands(logged_user()->id)
+                                ->where('year',$request->year)
+                                ->orderby('brand_id','desc')        
+                                ->orderby('model_id','desc')->paginate(pagger());
+
+        return view($this->view.'all',compact('items','avaliable_models'));
+    }
 }

@@ -27,45 +27,29 @@
           <h5> @lang('site.new_registeration')   </h5>
           <h6> @lang('site.choose_signup_type') </h6>
         </div>
-        <div class="row  mt-5">
-          <div class="col-md-4">
+        <div class="row signup_as mt-5">
             <a href="{{ route('user.register') }}">
-                <div class="shadow py-4 px-2 rounded text-center">
-                  <img src="{{ site('assets/images/n-1.png') }}" alt="">     
-                     
+                <div class="img"><img src="{{ site('assets/images/n-1.png') }}" alt=""></div>
+                    
                   <ul>
                     <li> @lang('site.individual')  </li>
                     <li>  @lang('site.company')   </li>
-                  </ul>                
-                </div>
+                  </ul> 
             </a>
-          </div>
-
-          <div class="col-md-4 text-center">
             <a href="{{ route('seller.register') }}">
-                <div class="shadow py-4 px-2 rounded">
-                  <img src="{{ site('assets/images/n-2.png') }}" alt="">
-
-                  <ul>
-                    <li> @lang('site.tashalih')  </li>
-                    <li>  @lang('site.manufacturing')   </li>
-                    <li>  @lang('site.broker')   </li>
-                  </ul>
-                  
-                </div>
+                <div class="img"><img src="{{ site('assets/images/n-2.png') }}" alt=""></div>
+              <ul>
+                <li> @lang('site.tashalih')  </li>
+                <li>  @lang('site.manufacturing')  </li>
+                <li>  @lang('site.broker')   </li>
+              </ul>
             </a>
-          </div>
-
-          <div class="col-md-4 text-center">
             <a href="{{ route('rep.register') }}">
-                <div class="shadow py-4 px-2 rounded">
-                  <img src="{{ site('assets/images/n-3.png') }}" alt="">
+                <div class="img"><img src="{{ site('assets/images/n-3.png') }}" alt=""></div>
                   <ul>
                     <li> @lang('site.rep')  </li>                  
-                  </ul>                   
-                </div>
+                  </ul>   
             </a>
-          </div>
 
         </div>
       </div>

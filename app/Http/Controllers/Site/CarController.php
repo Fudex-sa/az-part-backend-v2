@@ -20,6 +20,7 @@ class CarController extends Controller
 
         $items = Car::with('imgs')->with('brand')->with('model')->with('region')->with('city')
                     ->where('type','antique')->where('publish',1)
+                    ->where('country_id',my_country()->id)
                     ->orderby('id','desc')
                     ->paginate(pagger());
                     
@@ -35,6 +36,7 @@ class CarController extends Controller
 
         $items = Car::with('imgs')->with('brand')->with('model')->with('region')->with('city')
                     ->where('type','damaged')->where('publish',1)
+                    ->where('country_id',my_country()->id)
                     ->orderby('id','desc')
                     ->paginate(pagger());
 
@@ -70,6 +72,7 @@ class CarController extends Controller
                         ->where('type',$type)->where('publish',1)
                         ->where('brand_id',$request->brand)
                         ->where('model_id',$request->model)
+                        ->where('country_id',my_country()->id)
                         ->orderby('id','desc')
                         ->paginate(pagger());
 
@@ -77,6 +80,7 @@ class CarController extends Controller
             $items = Car::with('imgs')->with('brand')->with('model')->with('region')->with('city')
                         ->where('type',$type)->where('publish',1)
                         ->where('year',$request->year)                        
+                        ->where('country_id',my_country()->id)
                         ->orderby('id','desc')
                         ->paginate(pagger());
             
@@ -85,14 +89,16 @@ class CarController extends Controller
                         ->where('type',$type)->where('publish',1)
                         ->where('brand_id',$request->brand)                        
                         ->where('model_id',$request->model)                        
-                        ->where('year',$request->year)                        
+                        ->where('year',$request->year)        
+                        ->where('country_id',my_country()->id)                
                         ->orderby('id','desc')
                         ->paginate(pagger());
 
         else
             $items = Car::with('imgs')->with('brand')->with('model')->with('region')->with('city')
                         ->where('type',$type)->where('publish',1)
-                        ->where('brand_id',$request->brand)                                                                    
+                        ->where('brand_id',$request->brand)      
+                        ->where('country_id',my_country()->id)                                                              
                         ->orderby('id','desc')
                         ->paginate(pagger());
 
