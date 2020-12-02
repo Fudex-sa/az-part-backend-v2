@@ -9,9 +9,17 @@
 
 @section('content')
      
-    <form class="form-horizontal form-label-left" action="{{ route('admin.country.store',$item->id) }}" method="post" novalidate>
+    <form class="form-horizontal form-label-left" action="{{ route('admin.country.store',$item->id) }}" 
+        method="post" enctype="multipart/form-data">
         @csrf
      
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo"> @lang('site.logo') </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="file" name="logo" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
         <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_ar"> @lang('site.name_ar') <span
                     class="required">*</span>

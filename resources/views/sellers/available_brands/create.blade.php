@@ -19,7 +19,7 @@
 
                   <select class="form-control select2 input-A" name="brand_id" id="brand_id">
                     <option value=""> @lang('site.choose_brand') </option>
-                    @foreach ($brands as $brand)
+                    @foreach (brands() as $brand)
                         <option value="{{ $brand->id }}"
                           data-image="{{ brand_img($brand->logo) }}"  class="left"> {{ $brand['name_'.my_lang()] }} </option>    
                     @endforeach

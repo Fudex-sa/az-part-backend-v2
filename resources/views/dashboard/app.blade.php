@@ -137,6 +137,10 @@
                             <li> <a href="{{route('admin.countries')}}"> {{ __('site.countries') }} </a> </li>
                         @endif
 
+                        @if(has_permission('payment_methods_show'))
+                            <li> <a href="{{route('admin.payment_methods')}}"> {{ __('site.payment_methods') }} </a> </li>
+                        @endif
+
                         @if(has_permission('db_engine'))
                             <li> <a href="{{ route('admin.db_engine') }}"> {{ __('site.db_engine') }} </a> </li>
                         @endif

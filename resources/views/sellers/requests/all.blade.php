@@ -20,10 +20,9 @@
 
           @include('layouts.nav_side_menu')          
 
-          <div class="col-lg-9 col-md-9 col-12 table-responsive">
-           
-            
-          <table class="my-tbl" id="myTbl">
+          <div class="col-lg-9 col-md-9 col-12">
+            <div class="table-responsive">
+                <table class="my-tbl" id="myTbl">
             <thead class=" text-primary">
                 <tr>
                     <th>#  </th>
@@ -81,9 +80,8 @@
               </tbody>
         
             </table>
-          
-        <div class="text-center"> {{ $items->links() }} </div>
-         
+            </div>
+            <div class="text-center"> {{ $items->links() }} </div>
           </div>
 
         </div>

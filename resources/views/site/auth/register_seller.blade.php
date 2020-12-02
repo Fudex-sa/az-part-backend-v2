@@ -31,9 +31,8 @@
                          
                         <div class="tab-pane fade show active">
                             
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
                                     <div class="tab-card">
                                         <div class="tab-card-head text-center pb-2">
                                             <h4> @lang('site.new_registeration') </h4>
@@ -43,21 +42,25 @@
                                         <form class="row" method="post" action="{{ route('seller.signup') }}" enctype="multipart/form-data">
                                             @csrf 
                                             <div class="form-group col-4">
-                                                <input class="form-check-input" type="radio" name="user_type" id="broker" value="b" 
+                                                <input class="form-check-input" type="radio" name="user_type" id="broker" value="b"  
                                                 checked {{ old('user_type') == 'b' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="broker"> @lang('site.broker') </label>
+                                                <i class="fas fa-question-circle"  data-toggle="tooltip" data-placement="top"
+                                            title="{{ data('broker_bio') }}"></i>
                                             </div>
 
                                             <div class="form-group col-4">
                                                 <input class="form-check-input" type="radio" name="user_type" id="tashalih" value="t"
                                                 {{ old('user_type') == 't' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="tashalih"> @lang('site.tashalih') </label>
+                                                <i class="fas fa-question-circle"  data-toggle="tooltip" data-placement="top" title="{{ data('tashlih_bio') }}"></i>
                                             </div>
 
                                             <div class="form-group col-4">
                                                 <input class="form-check-input" type="radio" name="user_type" id="manufacturing" value="m"
                                                 {{ old('user_type') == 'm' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="manufacturing"> @lang('site.manufacturing') </label>
+                                            <i class="fas fa-question-circle"  data-toggle="tooltip" data-placement="top" title="{{ data('manufacturing_bio') }}"></i>
                                             </div>
                                             
                                               
@@ -145,7 +148,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"></div>
                             </div>
                     
                         </div>

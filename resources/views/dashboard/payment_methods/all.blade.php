@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title') @lang('site.countries') @endsection
+@section('title') @lang('site.payment_methods') @endsection
 
 @section('styles')
     
@@ -11,7 +11,7 @@
   
 <div class="btn-group">
      
-    @if(has_permission('countries_add'))
+    @if(has_permission('payment_methods_add'))
         <a class="btn btn-warning" data-toggle="modal" data-target=".add_item"> 
                 <i class="fa fa-plus"></i>  @lang('site.add') </a> 
     @endif
@@ -29,7 +29,7 @@
 
           <th> @lang('site.name_'.my_lang()) </th>
 
-          <th> @lang('site.regions') </th>
+          <th> @lang('site.sort') </th>
 
           <th> @lang('site.active') </th>
           
@@ -45,8 +45,7 @@
 
             <td>{{$item['name_'.my_lang()]}}</td>
             
-            <td> <a href="{{ route('admin.regions',$item->id) }}"> 
-                @lang('site.view') ({{ count($item->regions) }}) </a> </td>
+            <td> {{ $item->sort }} </td>
 
             <td>
                 @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">
@@ -58,12 +57,12 @@
             </td>
 
             <td>
-                @if(has_permission('countries_edit'))
-                    <a href="{{ route('admin.country',$item->id) }}" class="btn btn-info btn-xs">
+                @if(has_permission('payment_methods_edit'))
+                    <a href="{{ route('admin.payment_method',$item->id) }}" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> </a>
                 @endif
 
-                @if(has_permission('countries_delete'))
+                @if(has_permission('payment_methods_delete'))
                     <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
                         <i class="fa fa-trash"></i> </a>
                 @endif
@@ -82,14 +81,14 @@
 
 @section('popup')
 
-    @include('dashboard.countries.create')
+    @include('dashboard.payment_methods.create')
 
 @endsection
 
 @section('scripts')
     
-    @include('dashboard.ajax.delete',['target'=>'country']) 
+    @include('dashboard.ajax.delete',['target'=>'payment_method']) 
 
-    @include('dashboard.ajax.activate',['target'=>'country']) 
+    @include('dashboard.ajax.activate',['target'=>'payment_method']) 
   
 @endsection

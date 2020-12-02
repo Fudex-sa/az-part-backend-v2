@@ -16,7 +16,7 @@ class HomeController extends Controller
     
     public function index()
     {
-         
+      
         $home = true;
         $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
 
@@ -24,6 +24,9 @@ class HomeController extends Controller
                         DB::raw('min(price) as min_price'),
                         DB::raw('avg(price) as avg_price'))
                         ->with('piece')->with('brand')->with('model')
+                        ->whereHas('seller',function($q){
+                            $q->where('country_id',my_country()->id);
+                        })
                         ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
                         ->groupBy('piece_id')
                         ->orderby('id','desc')
@@ -31,6 +34,7 @@ class HomeController extends Controller
                         ->get();
 
         $cars = Car::with('brand')->with('model')->with('region')->with('city')
+                        ->where('country_id',my_country()->id)
                         ->orderby('id','desc')->limit(12)->get();
 
         $about = Page::find(1);

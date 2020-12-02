@@ -52,39 +52,25 @@
 
                               <form method="get" action="{{ route('payment.choose') }}" class="row">
 
-                                <div class="form-group col-12">
-                                    <label for="visa">
-                                        <input id="visa" type="radio" name="method" value="visa" checked required>
-                                        {{__('site.visa_or_master')}}
+                                @foreach (payment_methods() as $payment_method)
 
-                                        <img src="{{ site('assets/images/cc.png') }}" class="payment_logos"/>
-                                    </label>
-                                </div>
+                                  {{-- @if(request()->type != 'package' & $payment_method->keyword != 'cash') --}}
 
-                                <div class="form-group col-12">
-                                    <label for="mada">
-                                        <input id="mada" type="radio" name="method" value="mada">
-                                        {{__('site.mada')}}
+                                    <div class="form-group col-12">
+                                    <label for="{{ $payment_method->id }}">
+                                      <input id="{{ $payment_method->id }}" type="radio" name="method" value="{{ $payment_method->keyword }}" checked required>
+                                          {{ $payment_method['name_'.my_lang()] }}
 
-                                        <img src="{{ site('assets/images/mada.png') }}" class="payment_logos"/>
-                                    </label>
-                                </div>
+                                          <img src="{{ img_path($payment_method->logo) }}" class="payment_logos"/>
+                                      </label>
+                                  </div>    
+                                  {{-- @endif --}}
+                                @endforeach
+                                 
 
 
                                 <div class="col-md-12">
-                                   
-                                @if(request()->type != 'package')
-                                  <div class="form-group">
-                                    <label for="cash">
-                                        <input id="cash" type="radio" name="method" value="cash">
-                                        {{__('site.cash_on_delivery')}}
-
-                                        <img src="{{ site('assets/images/n-3.png') }}" class="payment_logos"/>
-                                    </label>
-
-                                    <p class="required"> {{ data('cach_on_delivery') }} </p>
-                                  </div>
-                                @endif
+                                    
                                 
                                   <div class="col-md-12">
                                     @if(total() > 0)

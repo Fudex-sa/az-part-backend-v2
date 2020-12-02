@@ -13,8 +13,10 @@ use App\Models\Rep;
 use App\Models\Supervisor;
 use App\Models\Notification;
 use App\Models\Order;
+use App\Models\Brand;
 use App\Models\Car;
 use App\Models\AssignSeller;
+use App\Models\PaymentMethod;
 
 if (! function_exists('my_lang')) {
     function my_lang()
@@ -23,6 +25,16 @@ if (! function_exists('my_lang')) {
     }
 }
 
+if (! function_exists('my_country')) {
+    function my_country()
+    {
+        $country_id = session()->get('cur_country') ? session()->get('cur_country') : 1;
+        $country = Country::find($country_id);
+
+        return $country;
+    }
+}
+ 
 if (! function_exists('dashboard')) {
     function dashboard($path)
     {
@@ -72,6 +84,7 @@ if (! function_exists('cur_root')) {
     }
 }
 
+
 if (! function_exists('pagger')) {
     function pagger()
     {
@@ -108,6 +121,14 @@ if (! function_exists('social_links')) {
     {
         $links = Social::activeLinks()->get();
         return $links;
+    }
+}
+
+if (! function_exists('brands')) {
+    function brands()
+    {
+        $items = Brand::where('active',1)->get();
+        return $items;
     }
 }
 
@@ -316,3 +337,13 @@ if (! function_exists('offers_count')) {
         return $count;
     }
 }
+
+if (! function_exists('payment_methods')) {
+    function payment_methods()
+    {
+        $items = PaymentMethod::where('active',1)->orderby('sort','asc')->get();
+        return $items;
+    }
+}
+
+

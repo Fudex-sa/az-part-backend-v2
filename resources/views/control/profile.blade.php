@@ -56,7 +56,7 @@
                    
                         <div class="row">
                           
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-12">
                             <h3 class=""> @lang('site.personal_info') </h3>
                           </div>
                             

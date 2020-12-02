@@ -52,21 +52,19 @@ class Search
     public function manual_search(Request $request,$limit)
     {
         $response = array();
-
-        $city = $request->city;
+ 
         $region = $request->region;
-        $country = $request->country;
-  
+        
         $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
-                                ->whereHas('seller',function($q) use ($city){
-                                    $q->where('city_id',$city)->where('active',1)
+                                ->whereHas('seller',function($q) use ($region){
+                                    $q->where('region_id',$region)->where('active',1)
                                         ->orderby('saudi','desc')->orderby('vip','desc');
                                 });                            
 
         if($items->count() > 0){
             
-            $response['found_result'] = 1; //--- Case found in city             
+            $response['found_result'] = 1; //--- Case found in region             
         } else{
             $response['found_result'] = 0;
         }
@@ -80,20 +78,18 @@ class Search
     public function electronic_search(Request $request)
     {
         $response = array();
-
-        $city = $request->city;
+ 
         $region = $request->region;
-        $country = $request->country;
-  
+   
         $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
-                                ->whereHas('seller',function($q) use ($city){
-                                    $q->where('city_id',$city)->where('active',1)
+                                ->whereHas('seller',function($q) use ($region){
+                                    $q->where('region_id',$region)->where('active',1)
                                         ->orderby('saudi','desc')->orderby('vip','desc');
                                 });                            
 
         if($items->count() > 0)            
-            $response['found_result'] = 1; //--- Case found in city             
+            $response['found_result'] = 1; //--- Case found in region             
         
         else
             $response['found_result'] = 0;

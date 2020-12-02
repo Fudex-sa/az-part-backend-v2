@@ -110,14 +110,15 @@
         
         @endif
 
-
         <div class="col-md-12">
           <div class="advice text-center">
             @if($items && count($items) > 0)
             <p> {{ notification('contact_seller_hint') }} </p> @endif
  
-            <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>
-  
+            @if(if_subscribe(request()->search_type) == 0)
+                <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>
+            @endif
+
           </div>
         </div>
 

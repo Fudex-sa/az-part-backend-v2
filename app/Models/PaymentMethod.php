@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class PaymentMethod extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name_ar' , 'name_en' , 'name_hi' , 'active' , 'logo'
+        'logo' , 'name_ar' , 'name_en' , 'name_hi' , 'active' , 'sort' , 'description_ar' , 'description_en',
+        'description_hi'
     ];
- 
-    public function regions()
-    {
-        return $this->hasMany(Region::class);
-    }
 }

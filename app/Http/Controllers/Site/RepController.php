@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Site\RepSignupRequest;
 use App\Models\Rep;
+use App\Models\Broker;
+use App\Models\Seller;
+use App\Models\User;
+use App\Models\Company;
+use App\Models\Supervisor;
 
 class RepController extends Controller
 {
@@ -22,6 +27,14 @@ class RepController extends Controller
         
         $data = $request->except('_token','api_token');
          
+        $if_exists = User::where('mobile',$request->mobile)->first();
+        $if_exists2 = Company::where('mobile',$request->mobile)->first();
+        $if_exists3 = Seller::where('mobile',$request->mobile)->first();
+        $if_exists4 = Supervisor::where('mobile',$request->mobile)->first();
+        $if_exists5 = Broker::where('mobile',$request->mobile)->first();
+
+        if($if_exists || $if_exists2 || $if_exists3 || $if_exists4 || $if_exists5)
+            return back()->with('failed' , __('site.duplicated_user'))->withInput();
  
         $data['password'] = bcrypt($request->password);
         $verification_code = rand(10000,99999);

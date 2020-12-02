@@ -22,13 +22,15 @@ Route::group(
         Route::post('rep/choose', [App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');
         Route::post('with_oil', [App\Http\Controllers\AjaxController::class, 'with_oil'])->name('with_oil');
 
+        Route::get('change_country/{country}',[App\Http\Controllers\HelpController::class, 'change_country'])->name('changeCountry');
 
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
             Route::get('avaliable_models', [App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
             Route::post('avaliable_model/{id?}', [App\Http\Controllers\Seller\AvliableModelController::class, 'store'])->name('seller.avaliable_model.store');
             Route::get('avaliable_model/{item}', [App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');
             Route::delete('avaliable_model/delete', [App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
- 
+            Route::get('avaliable_models/search', [App\Http\Controllers\Seller\AvliableModelController::class, 'search'])->name('avaliable_models.search');
+
             Route::get('requests', [App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
             Route::post('request/update/{item}', [App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update');
             Route::get('request/add_price/{id}', [App\Http\Controllers\Seller\RequestsController::class, 'add_price'])->name('seller.add_price');
@@ -315,6 +317,13 @@ Route::group(
             Route::post('country/store/{item?}', [App\Http\Controllers\Admin\CountryController::class, 'store'])->name('admin.country.store');
             Route::delete('country/delete', [App\Http\Controllers\Admin\CountryController::class, 'delete'])->name('admin.country.delete');
             Route::post('country/activate', [App\Http\Controllers\Admin\CountryController::class, 'activate'])->name('admin.country.activate');
+
+            /************ Payment Methods  **********/
+            Route::get('payment_methods', [App\Http\Controllers\Admin\PaymentMethodController::class, 'all'])->name('admin.payment_methods');
+            Route::get('payment_method/{item}', [App\Http\Controllers\Admin\PaymentMethodController::class, 'edit'])->name('admin.payment_method');
+            Route::post('payment_method/store/{item?}', [App\Http\Controllers\Admin\PaymentMethodController::class, 'store'])->name('admin.payment_method.store');
+            Route::delete('payment_method/delete', [App\Http\Controllers\Admin\PaymentMethodController::class, 'delete'])->name('admin.payment_method.delete');
+            Route::post('payment_method/activate', [App\Http\Controllers\Admin\PaymentMethodController::class, 'activate'])->name('admin.payment_method.activate');
 
             /************ Regions  **********/
             Route::get('regions/{item}', [App\Http\Controllers\Admin\RegionController::class, 'all'])->name('admin.regions');

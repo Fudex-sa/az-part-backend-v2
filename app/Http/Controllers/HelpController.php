@@ -14,4 +14,10 @@ class HelpController extends Controller
         return 'success';
         
     }
+
+    public function change_country($country)
+    {
+        session()->put('cur_country',$country);
+        return back();
+    }
 }

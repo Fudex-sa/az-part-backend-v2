@@ -39,3 +39,7 @@ body {
 #back img {
     transform: rotate(180deg);
 }
+
+.add-bg {
+  background: #fff url(../images/add.png) no-repeat 99%;
+}

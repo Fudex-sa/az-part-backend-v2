@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
-use App\Models\seller;
+use App\Models\Seller;
 use App\Models\Broker;
-use App\Models\rep;
+use App\Models\Rep;
 use Auth;
 use App\Http\Requests\Site\LoginRequest;
 use Session;
@@ -93,27 +93,36 @@ class AuthController extends Controller
         
         $cred = ['mobile' => $request->mobile, 'password' => $request->password];
 
-        $type = $request->user_type ? $request->user_type : 'u';
-
-        if($request->user_type == 'c')
-            $response = $this->company_login($request,$cred);
-
-        elseif($request->user_type == 'u')
-            $response = $this->user_login($request,$cred);
-
-        elseif($request->user_type == 'b')
-            $response = $this->broker_login($request,$cred);
- 
-        elseif($request->user_type == 'r')
-            $response = $this->rep_login($request,$cred);
-
-        else
+        if(Seller::where('mobile',$request->mobile)->first()){
             $response = $this->seller_login($request,$cred);
+            $type = 's';
+        }
 
+        elseif(Company::where('mobile',$request->mobile)->first()){
+            $response = $this->company_login($request,$cred);
+            $type = 'c';
+        }
+
+        elseif(Broker::where('mobile',$request->mobile)->first()){
+            $response = $this->broker_login($request,$cred);
+            $type = 'b';
+        }
+
+        elseif(Rep::where('mobile',$request->mobile)->first()){
+            $response = $this->rep_login($request,$cred);
+            $type = 'r';
+        }
+          
+        else{
+            $response = $this->user_login($request,$cred);
+            $type = 'u';
+        }
+             
         if($response == 1){
-            $search = Session::get('search');
+            // $search = Session::get('search');
  
-            if( $search && session()->get('has_request') == 1)
+            // if( $search && session()->get('has_request') == 1)
+            if( session()->get('has_request') == 1)
                 return redirect($this->search->search_url()); 
              
             else 

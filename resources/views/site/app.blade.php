@@ -149,14 +149,15 @@
               <form class="drop-form" method="POST" action="{{ route('user.login') }}">
                 @csrf
                   <div class="form-group">
-                  <input type="tel" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="@lang('site.mobile')" required>
+                  <input type="tel" class="form-control" name="mobile" value="{{ old('mobile') }}"
+                   placeholder="@lang('site.mobile')" required minlength="9" maxlength="9">
                   </div>
 
                   <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="@lang('site.password')" required>
                   </div>
 
-                  <div class="form-group form-check">
+                  {{-- <div class="form-group form-check">
                     <label class="form-check-label" for="user">
                     <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
                     {{ old('user_type') == 'u' ? 'checked' : '' }} required>
@@ -182,7 +183,7 @@
                     {{ old('user_type') == 'r' ? 'checked' : '' }}>
                     @lang('site.rep')  </label>
 
-                  </div>
+                  </div> --}}
 
                   <div class="form-group form-check">
                       <label for="exampleCheck1"> 
@@ -214,31 +215,30 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="menuCountries" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            
-            <i class="fas fa-flag"></i>
-          </a>
-          <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
-            
-            @foreach (countries() as $counLi)
-              <a class="dropdown-item" href=""> {{ $counLi['name_'.my_lang()] }}  </a> 
-            @endforeach
-               
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="menu1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-language"></i>
+          <a class="nav-link dropdown-toggle lang" href="#" id="menu1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ my_lang() == 'ar' ? 'ع' : strtoupper(mb_substr(my_lang(),0,1)) }}
           </a>
           <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
               <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                 {{ $properties['native'] }}  </a>
-
             @endforeach
           </div>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle country" href="javascript:void(0);" id="menuCountries" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">            
+            <img src="{{ img_path(my_country()->logo) }}" >  
+          </a>
+          <div class="dropdown-menu logged_menu" aria-labelledby="navbarDropdown">
+            
+            @foreach (countries() as $counLi)
+              <a class="dropdown-item" href="{{ route('changeCountry',$counLi) }}"><img src="{{ site('assets/images/'.strtolower($counLi->name_en).'.svg') }}" >
+                {{ $counLi['name_'.my_lang()] }}  </a> 
+            @endforeach
+               
+          </div>
+        </li>
+
       </ul>
     </div>
   </nav>
@@ -291,9 +291,14 @@
                   </ul>
               </div>
 
-              <div class="footer-box mt-4">
+              <div class="footer-box mt-4 methods">
                   <h4> @lang('site.payment') </h4>
-                  <a href="#"><img src="{{ site('assets/images/visa.png') }}" alt=""> </a>
+
+                  @foreach (payment_methods() as $payment_method)
+                    <img src="{{ img_path($payment_method->logo) }}" alt="" title="{{ $payment_method['name_'.my_lang()] }}"> 
+                  @endforeach
+                  
+                  <br/><br/>
                   <iframe src="https://maroof.sa/Business/GetStamp?bid=119512" frameborder="0" seamless='seamless' scrollable="no"></iframe>
               </div>
         </div>
@@ -319,6 +324,7 @@
   <script src="{{ site('assets/js/multi-countdown.js') }}"></script>
 
   <script src="{{ site('assets/js/code.js') }}"></script>
+  <script src="{{site('assets/js/my_scripts.js')}}"></script>
 
 @include('layouts.message')
 
