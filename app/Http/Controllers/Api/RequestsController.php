@@ -58,14 +58,19 @@ class RequestsController extends Controller
         }
 
         $item = AssignSeller::findOrFail($request->item_id);
-        if ($item) {
-            $item->price = $request->price;
-            $item->delivery_possibility = $request->delivery_possibility;
-            $item->composition = $request->composition;
-            $item->return_possibility = $request->return_possibility;
-            $item->status_id = 10;
-            $item->save();
+        $data = request()->all();
+        if (! $id) {
+            if ($item) {
+                $item = AssignSeller::create($data);
 
+                return response()->json(['status'=>true, 'data' => new RequestsResource($item)], 200);
+            }
+        } else {
+            //dd($id);
+
+            $item = AssignSeller::find($id);
+            $item->update($data);
+            //dd($item);
             return response()->json(['status'=>true, 'data' => new RequestsResource($item)], 200);
         }
         return response()->json(['status'=>false, 'msg' => 'Item Not Found!'], 401);

@@ -74,6 +74,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
           Route::delete('request/{id}', 'RequestsController@destroy');
 
           Route::get('requestDetails/{id}', 'RequestsController@requestDetails');
-          Route::post('sendOffer', 'RequestsController@sendOffer');
+          Route::post('sendOffer/{id?}', 'RequestsController@sendOffer');
+
+          Route::get('notification/requests', 'NotificationController@requests');
       });
   });

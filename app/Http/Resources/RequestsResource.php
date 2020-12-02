@@ -25,11 +25,13 @@ class RequestsResource extends JsonResource
         'request_id' => $this->request_id,
         'price' => $this->price??0,
         'status' => $this->status_id,
-        'status_type' => $this->status_id == 11 ? trans('site.processing') : 'not process',
+        'status_type' => $this->status_id == 11 ? trans('site.processing') : trans('site.pending'),
         'seller_type' => $this->seller_type == 'seller' ? trans('site.seller') : trans('site.broker'),
         'composition' => $this->composition,
         'return_possibility' => $this->return_possibility,
         'delivery_possibility' => $this->delivery_possibility,
+        'notes' => $this->notes,
+        'guarantee' => $this->guarantee,
         'created_at' => $this->created_at,
 
         'brand' => [

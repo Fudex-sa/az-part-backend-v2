@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Seller;
+use Auth;
 
 class SellerResource extends JsonResource
 {
@@ -20,8 +21,13 @@ class SellerResource extends JsonResource
         $name = 'name_'.$lang;
 
 
-        $seller = Seller::find(request('user_id'));
-        $success['token'] =  $seller->createToken('MyApp')->accessToken;
+        $seller = Auth::guard('seller')->user();
+        if ($seller) {
+            $success['token'] =  $seller->createToken('MyApp')->accessToken;
+        } else {
+            $seller = Seller::find(request('user_id'));
+            $success['token'] =  $seller->createToken('MyApp')->accessToken;
+        }
         //dd($seller);
         return [
       'id' => $seller->id,
