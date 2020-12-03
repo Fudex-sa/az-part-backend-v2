@@ -14,10 +14,9 @@
     <div class="container">
       <div class="row">
         @include('layouts.breadcrumb')
- 
+    
         @if(valid_for_elec() == 1)
- 
-
+  
         @if($response['found_result'] == 0)
           <div class="modal-body modal-padding">
 
@@ -33,7 +32,7 @@
             
             <div class="head-section mb-5 col-md-12">
               <h2> @lang('site.enter_required_pieces') </h2>              
-
+              
               @if(total_valid_elec() > 1)
                 <div class="text-left">
                       <a onclick="addNewPiece()" href="javascript:void(0);">

@@ -787,7 +787,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Http\\Controllers\\Api\\CarsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CarsController.php',
         'App\\Http\\Controllers\\Api\\CitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CitiesController.php',
         'App\\Http\\Controllers\\Api\\LanguageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/LanguageController.php',
-        'App\\Http\\Controllers\\Api\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Site/NotificationController.php',
+        'App\\Http\\Controllers\\Api\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/NotificationController.php',
         'App\\Http\\Controllers\\Api\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/PaymentController.php',
         'App\\Http\\Controllers\\Api\\PushNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/PushNotificationController.php',
         'App\\Http\\Controllers\\Api\\RequestsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RequestsController.php',

@@ -1035,7 +1035,7 @@ return [
     'complain_type' => 'نوع الشكوى',
     'send_successfully' => 'تم الإرسال بنجاح',
     'orders_count' => 'عدد طلباتى',
-    'available_orders' => 'طلباتى المتاحة',
+    'available_orders' => 'طلباتى الإستثنائية',
     'result_no_in_this_city' => 'عدد النتائج فى مدينتك',
     'result_no_in_this_region' => 'عدد النتائج فى منطقتك',
     'electronic_search' => 'البحث الإلكترونى',
@@ -1148,4 +1148,5 @@ return [
     'description_en' => 'الوصف بالإنجليزى',
     'description_hi' => 'الوصف بالهندى',
     'join_our_packages' => 'اشترك ف احدى الباقات',
+    'special_stores_no' => 'عدد المتاجر الإستثنائية',
 ];

@@ -19,7 +19,7 @@
                     @endif
                     </label>
             
-                    @if($col == 'available_orders')
+                    @if($col == 'available_orders' || $col == 'special_stores_no')
                         <div class="col-md-2 col-sm-6 col-xs-12">
                     @else <div class="col-md-6 col-sm-6 col-xs-12"> @endif
 
@@ -33,7 +33,7 @@
                         @elseif($col == 'password')
                             <input type="password" name="{{ $col }}" class="form-control">  
     
-                        @elseif($col == 'available_orders')
+                        @elseif($col == 'available_orders' || $col == 'special_stores_no')
                             <input type="number" min="0" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">  
 
                         @elseif($col == 'photo')

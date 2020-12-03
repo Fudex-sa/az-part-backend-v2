@@ -12,6 +12,7 @@ use App\Models\RepPrice;
 use App\Models\PackageSubscribe; 
 use App\Models\AvailableModel;
 use App\Models\DeliveryRegion;
+use App\Models\ElectronicRequest;
 use Carbon\Carbon;
 
 if (! function_exists('cart')) {
@@ -252,15 +253,16 @@ if (! function_exists('clear_session')) {
 if (! function_exists('valid_for_elec')) {
     function valid_for_elec()
     {   
-        $sys_elec_search =  setting('electronic_search_result');
-        $available_orders = logged_user()->available_orders;
+        // $sys_elec_search =  setting('electronic_search_result');
+        // $available_orders = logged_user()->available_orders;
+
+        $special_requests = setting('electronic_search_result') + logged_user()->available_orders;
 
         $avialable_package_orders = PackageSubscribe::myPackagesByType('electronic')->get()->sum('stores_no');
 
-        $my_elec_orders = Order::where('type','electronic')->where('package_sub_id',0)
-                    ->where('user_id',logged_user()->id)->count();
+        $my_elec_orders = ElectronicRequest::myRequests()->where('package_sub_id',0)->count();
         
-        if($my_elec_orders < $sys_elec_search || $my_elec_orders < $available_orders) return 1;
+        if($my_elec_orders < $special_requests) return 1;
         else {
             if($avialable_package_orders > 0) return 1;
             else return 0;
@@ -272,12 +274,16 @@ if (! function_exists('total_valid_elec')) {
     function total_valid_elec()
     {   
         $total = 0;
-
-        $total +=  setting('electronic_search_result');
-        $total += logged_user()->available_orders;
-
+        
         $total += PackageSubscribe::myPackagesByType('electronic')->get()->sum('stores_no');
 
+        $sys_elec_search =  setting('electronic_search_result');
+        $available_orders = logged_user()->available_orders;
+
+        $my_elec_orders = ElectronicRequest::myRequests()->where('package_sub_id',0)->count();
+
+        $total += $sys_elec_search + $available_orders - $my_elec_orders;
+         
         return $total;
     }
 }

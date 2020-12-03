@@ -74,7 +74,7 @@ return array(
     'App\\Http\\Controllers\\Api\\CarsController' => $baseDir . '/app/Http/Controllers/Api/CarsController.php',
     'App\\Http\\Controllers\\Api\\CitiesController' => $baseDir . '/app/Http/Controllers/Api/CitiesController.php',
     'App\\Http\\Controllers\\Api\\LanguageController' => $baseDir . '/app/Http/Controllers/Api/LanguageController.php',
-    'App\\Http\\Controllers\\Api\\NotificationController' => $baseDir . '/app/Http/Controllers/Site/NotificationController.php',
+    'App\\Http\\Controllers\\Api\\NotificationController' => $baseDir . '/app/Http/Controllers/Api/NotificationController.php',
     'App\\Http\\Controllers\\Api\\PaymentController' => $baseDir . '/app/Http/Controllers/Api/PaymentController.php',
     'App\\Http\\Controllers\\Api\\PushNotificationController' => $baseDir . '/app/Http/Controllers/Api/PushNotificationController.php',
     'App\\Http\\Controllers\\Api\\RequestsController' => $baseDir . '/app/Http/Controllers/Api/RequestsController.php',

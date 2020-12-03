@@ -8,8 +8,10 @@ use App\Models\AssignSeller;
 use App\Models\Broker;
 use App\Models\EngineJob;
 use App\Models\EngineJobBroker;
+use App\Models\PackageSubscribe;
 use Illuminate\Http\Request;
 use App\Helpers\Search;
+use App\Helpers\PackageHelp;
 use Log;
 
 
@@ -23,6 +25,8 @@ class ElecEngine
 
     public function __construct()
     {    
+        $this->package = new PackageHelp();
+        
         $this->search = new Search();
         $this->tashlih_no_by_cycle = setting('tashlih_no_by_cycle') ? setting('tashlih_no_by_cycle') : 3;
 
@@ -37,26 +41,43 @@ class ElecEngine
 
         $data = $request->except('_token');
         
+        search_session() ?             
+            $order_type = search_session()['search_type'] : $order_type = order_type();
+
+        $my_subscribe = PackageSubscribe::myPackagesByType($order_type)->first();
+        $my_subscribe ? $package_sub_id = $my_subscribe->id : $package_sub_id = 0 ;
+
+        
         $data['user_id'] = logged_user()->id;
         $data['user_type'] = user_type();
+        $data['package_sub_id'] = $package_sub_id;
     
-        foreach ($request->piece_alt_id as $k=>$piece_alt) {
-             
-            if (isset($request->photo)) {
-                $img = $request->photo[$k];
-                $fileName = time() . '.' . $img->getClientOriginalName();
-                $img->move(public_path('uploads/cart'), $fileName);    
-                
-                $data['photo'] = $fileName;
-            }
+        $photos = array();
+        
+        if($request->hasFile('photo')){
 
+            foreach($request->photo as $file){                
+                    $fileName = uniqid() . '_' . time(). '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('uploads/cart'), $fileName);    
+                    
+                    $photos[] = $fileName;                   
+            }
+        } 
+  
+        foreach ($request->piece_alt_id as $k=>$piece_alt) {
+               
             $data['piece_alt_id'] = $piece_alt;
             $data['qty'] = $request->qty[$k];           
             $data['notes'] = $request->notes[$k];
             $data['color'] = $request->color[$k];
+            $data['photo'] = array_key_exists($k,$photos) ? $photos[$k] : '';
 
             $item = ElectronicRequest::create($data);
             if($item) {
+                
+                if($package_sub_id != 0)
+                $this->package->update_expired($package_sub_id);
+
                 $req_id = $item->id;
 
                 $this->assign_sellers($req_id);

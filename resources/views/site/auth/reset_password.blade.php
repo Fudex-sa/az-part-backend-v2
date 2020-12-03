@@ -31,20 +31,7 @@
                                         <div class="tab-content mt-5">
                                         <form class="row" method="post" action="{{ route('reset_password') }}" enctype="multipart/form-data">
                                             @csrf 
-                                            <div class="form-check col-3 mb-3">
-                                                <input class="form-check-input" type="radio" name="user_type" id="individual" value="u" 
-                                                checked {{ old('user_type') == 'user' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="individual"> @lang('site.individual') </label>
-                                            </div>
-
-                                            <div class="form-check col-3 mb-3">
-                                                <input class="form-check-input" type="radio" name="user_type" id="company" value="c"
-                                                {{ old('user_type') == 'company' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="company"> @lang('site.company') </label>
-                                            </div>
-                                            
-                                         
-
+                                          
                                             <div class="form-group col-12">
                                                 <input type="tel" class="form-control" id="mobile" name="mobile" 
                                                     value="{{ old('mobile') }}" placeholder="@lang('site.mobile')" maxlength="9"

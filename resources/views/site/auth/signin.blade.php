@@ -32,42 +32,6 @@
                                         <div class="tab-content mt-5">
                                         <form class="row" method="post" action="{{ route('user.login') }}" >
                                             @csrf 
-
-                                            {{-- <div class="form-group col-4">
-                                                <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
-                                                {{ old('user_type') == 'u' ? 'checked' : '' }} required> 
-                                                <label class="form-check-label" for="user"> @lang('site.user')  </label>
-                                            </div>
-
-                                            <div class="form-group col-4">
-                                                <input type="radio" class="form-check-input" id="company" name="user_type" value="c"
-                                                {{ old('user_type') == 'c' ? 'checked' : '' }}> 
-                                                <label class="form-check-label" for="company"> @lang('site.company')  </label>
-                                            </div>
-
-                                            <div class="form-group col-4">
-                                                <input type="radio" class="form-check-input" id="seller_manu" name="user_type" value="sm"
-                                                {{ old('user_type') == 'sm' ? 'checked' : '' }}> 
-                                                <label class="form-check-label" for="seller_manu"> @lang('site.manufacturing')  </label>
-                                            </div>
-
-                                            <div class="form-group col-4">
-                                                <input type="radio" class="form-check-input" id="seller_tashlih" name="user_type" value="st"
-                                                {{ old('user_type') == 'st' ? 'checked' : '' }}> 
-                                                <label class="form-check-label" for="seller_tashlih"> @lang('site.tashalih')  </label>
-                                            </div>
-
-                                            <div class="form-group col-4">
-                                                <input type="radio" class="form-check-input" id="broker" name="user_type" value="b"
-                                                {{ old('user_type') == 'b' ? 'checked' : '' }}> 
-                                                <label class="form-check-label" for="broker"> @lang('site.broker')  </label>
-                                            </div>
-
-                                            <div class="form-group col-4">
-                                                <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
-                                                {{ old('user_type') == 'r' ? 'checked' : '' }}> 
-                                                <label class="form-check-label" for="rep"> @lang('site.rep')  </label>
-                                            </div> --}}
  
                                                 <div class="form-group col-12">
                                                     <input type="tel" class="form-control" id="mobile" name="mobile" maxlength="9" minlength="9" 
@@ -75,7 +39,8 @@
                                                 </div>
                                                 
                                                 <div class="form-group col-12">
-                                                    <input type="password" class="form-control" id="password" name="password" placeholder="@lang('site.password')">
+                                                    <input type="password" class="form-control" id="password" name="password" 
+                                                    placeholder="@lang('site.password')" autocomplete="new-password">
                                                 </div>
                                                 
                                                 <div class="form-group col-12">

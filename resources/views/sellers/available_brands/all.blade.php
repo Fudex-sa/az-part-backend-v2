@@ -22,7 +22,7 @@
 
           <div class="col-lg-9 col-md-9  col-12" style="margin-top: -66px;">
           
-            <div class="btn-add-container row">
+            <div class="btn-add-container row" style="margin-right: 0px;">
 
             <form method="GET" action="{{ route('avaliable_models.search') }}" class="row">
               <div class="col-md-9 row">

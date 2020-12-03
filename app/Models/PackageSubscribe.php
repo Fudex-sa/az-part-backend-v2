@@ -38,6 +38,6 @@ class PackageSubscribe extends Model
 
     public function my_orders()
     {
-        return $this->hasMany(Order::class,'package_sub_id');
+        return $this->hasMany(ElectronicRequest::class,'package_sub_id');
     }
 }
