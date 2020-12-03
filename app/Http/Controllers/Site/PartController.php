@@ -53,6 +53,8 @@ class PartController extends Controller
 
                 $limit = $this->package->stores_limit($search_type) : $limit = $sys_limit;
            
+        $limit = $limit + logged_user()->special_stores_no;
+
         $response = $this->search->manual_search($request,$limit);
  
         $items = $response ? $response['items'] : null;

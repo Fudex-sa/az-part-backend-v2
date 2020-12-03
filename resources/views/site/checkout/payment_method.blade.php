@@ -50,7 +50,26 @@
                             <div class="cart-address shadow rounded">
                               <h3> @lang('site.please_choose_payment_method')  </h3>
 
+                              <br/> 
                               <form method="get" action="{{ route('payment.choose') }}" class="row">
+                                @if(request()->type == 'package')
+
+                                    @foreach (payment_methods() as $payment_method)
+
+                                      @if($payment_method->keyword != 'cash')
+
+                                        <div class="form-group col-12">
+                                        <label for="{{ $payment_method->id }}">
+                                          <input id="{{ $payment_method->id }}" type="radio" name="method" value="{{ $payment_method->keyword }}" checked required>
+                                              {{ $payment_method['name_'.my_lang()] }}
+
+                                              <img src="{{ img_path($payment_method->logo) }}" class="payment_logos"/>
+                                          </label>
+                                      </div>    
+                                      @endif
+                                  @endforeach
+
+                                @else
 
                                 @foreach (payment_methods() as $payment_method)
 
@@ -67,7 +86,7 @@
                                   {{-- @endif --}}
                                 @endforeach
                                  
-
+                                  @endif
 
                                 <div class="col-md-12">
                                     

@@ -103,11 +103,16 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="col-md-8">
               <div class="map-info-xz">
                 <h3 class="mt-3 cli-name"> {{ $offer->seller->name }} </h3>
-                <h5 class="mt-3"> <a href="#" class="padiaa" >
+                <h5 class="mt-3"> 
+                  <a href="https://maps.google.com/?q={{$offer->seller->lat}},{{$offer->seller->lng}}" 
+                    class="padiaa" target="_blank">
                 <img src="{{ site('assets/images/location.png') }}" alt=""> 
                 {{ $item->country ? $item->country['name_'.my_lang()] : '' }} -
                 {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
-                {{ $item->city ? $item->city['name_'.my_lang()] : '' }} </a></h5>
+                {{ $item->city ? $item->city['name_'.my_lang()] : '' }} </a>
+                    <br/>
+                    &nbsp; &nbsp;@if($offer->seller->address) ({{ $offer->seller->address }}) @endif
+              </h5>
 
                 <h5 class="mt-3">
                    <img src="{{ site('assets/images/phone.png') }}" alt="">

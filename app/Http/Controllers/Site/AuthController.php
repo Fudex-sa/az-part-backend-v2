@@ -58,21 +58,28 @@ class AuthController extends Controller
 
         $verification_code = rand(10000,99999);
 
-        if($type == 'u')
-            $item = User::where('mobile',$request->mobile)->first();
-        
-        elseif($type == 'c')
-            $item = Company::where('mobile',$request->mobile)->first();
-
-        elseif($type == 'b')
-            $item = Broker::where('mobile',$request->mobile)->first();
-
-        elseif($type == 'r')
-            $item = Rep::where('mobile',$request->mobile)->first();
-
-        else
+        if(Seller::where('mobile',$request->mobile)->first()){
             $item = Seller::where('mobile',$request->mobile)->first();
+            $type = 's';
+        }
 
+        if(Company::where('mobile',$request->mobile)->first()){
+            $item = Company::where('mobile',$request->mobile)->first();
+            $type = 'c';
+        }
+
+        if(Broker::where('mobile',$request->mobile)->first()){
+            $item = Broker::where('mobile',$request->mobile)->first();
+            $type = 'b';
+        }
+        if(Rep::where('mobile',$request->mobile)->first()){
+            $item = Rep::where('mobile',$request->mobile)->first();
+            $type = 'r';
+        }
+        else{
+            $item = User::where('mobile',$request->mobile)->first();
+            $type = 'u';
+        }
 
         if($item){
             $item->verification_code = $verification_code;
@@ -81,7 +88,7 @@ class AuthController extends Controller
             $message = notification('verfication_message') . $verification_code;
             send_sms($item->mobile,$message);
 
-            return redirect()->route('verfication',['id'=>$item->id , 'type' => $request->user_type]);
+            return redirect()->route('verfication',['id'=>$item->id , 'type' => $type]);
         }
         
         return back()->with('failed' , __('site.number_not_registered'))->withInput();

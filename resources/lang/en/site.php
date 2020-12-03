@@ -895,7 +895,7 @@ return [
     'complain_type' => 'Complain Type',
     'send_successfully' => 'Send Successfully',
     'orders_count' => 'Orders Count',
-    'available_orders' => 'Available Orders',
+    'available_orders' => 'Special Requests',
     'result_no_in_this_city' => 'Result Number in Your City',
     'result_no_in_this_region' => 'Result Number in Your Region',
     'electronic_search' => 'Electronic Search',
@@ -1003,4 +1003,5 @@ return [
     'description_en' => 'Description English',
     'description_hi' => 'Description Hindi',
     'join_our_packages' => 'Join Our Packages',
+    'special_stores_no' => 'Special Stores No',
 ];

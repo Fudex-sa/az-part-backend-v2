@@ -5,6 +5,7 @@ use Session;
 use App\Models\PackageSubscribe;
 use App\Models\Package;
 use App\Models\Order;
+use App\Models\ElectronicRequest;
 
 class PackageHelp
 {
@@ -51,7 +52,7 @@ class PackageHelp
              
         }else {
             $reqs = $my_subscribe->stores_no;
-            $my_orders = Order::where('package_sub_id',$package_sub_id)->count();
+            $my_orders = ElectronicRequest::where('package_sub_id',$package_sub_id)->count();
 
             if($my_orders == $reqs){
                 $my_subscribe->expired = 1;

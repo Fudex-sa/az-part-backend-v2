@@ -150,40 +150,14 @@
                 @csrf
                   <div class="form-group">
                   <input type="tel" class="form-control" name="mobile" value="{{ old('mobile') }}"
-                   placeholder="@lang('site.mobile')" required minlength="9" maxlength="9">
+                   placeholder="@lang('site.mobile')" required minlength="9" maxlength="9" >
                   </div>
 
                   <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="@lang('site.password')" required>
+                    <input type="password" class="form-control" name="password" placeholder="@lang('site.password')" 
+                    required autocomplete="new-password">
                   </div>
-
-                  {{-- <div class="form-group form-check">
-                    <label class="form-check-label" for="user">
-                    <input type="radio" class="form-check-input" id="user" name="user_type" value="u" checked
-                    {{ old('user_type') == 'u' ? 'checked' : '' }} required>
-                     @lang('site.user')  </label>
-<label class="form-check-label" for="company"> 
-                    <input type="radio" class="form-check-input" id="company" name="user_type" value="c"
-                    {{ old('user_type') == 'c' ? 'checked' : '' }}>
-                    @lang('site.company')  </label>
-<label class="form-check-label" for="seller_manu"> 
-                    <input type="radio" class="form-check-input" id="seller_manu" name="user_type" value="sm"
-                    {{ old('user_type') == 'sm' ? 'checked' : '' }}>
-                    @lang('site.manufacturing')  </label>
-<label class="form-check-label" for="seller_tashlih"> 
-                    <input type="radio" class="form-check-input " id="seller_tashlih" name="user_type" value="st"
-                    {{ old('user_type') == 'st' ? 'checked' : '' }}>
-                    @lang('site.tashalih')  </label>
-<label class="form-check-label" for="broker"> 
-                    <input type="radio" class="form-check-input" id="broker" name="user_type" value="b"
-                    {{ old('user_type') == 'b' ? 'checked' : '' }}>
-                    @lang('site.broker')  </label>
-<label class="form-check-label" for="rep"> 
-                    <input type="radio" class="form-check-input" id="rep" name="user_type" value="r"
-                    {{ old('user_type') == 'r' ? 'checked' : '' }}>
-                    @lang('site.rep')  </label>
-
-                  </div> --}}
+ 
 
                   <div class="form-group form-check">
                       <label for="exampleCheck1"> 

@@ -13,7 +13,7 @@ class ElectronicRequest extends Model
         'user_id' , 'user_type' , 'brand_id' , 'model_id' , 'year' , 'country_id' ,
 
         'region_id' , 'city_id' , 'piece_alt_id' , 'notes' , 'color' , 'notes' , 'photo' , 'qty' ,
-        'status_id'
+        'status_id' , 'package_sub_id'
 
     ];
 

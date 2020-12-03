@@ -33,7 +33,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                 @endif
                 </label>
         
-                @if($col == 'available_requests')
+                @if($col == 'available_requests' || $col == 'special_stores_no')
                     <div class="col-md-2 col-sm-6 col-xs-12">
                 @else <div class="col-md-6 col-sm-6 col-xs-12"> @endif
 
@@ -44,7 +44,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
                         <input type="tel" name="{{ $col }}" class="form-control" value="{{ old($col) }}" required
                         maxlength="10">  
 
-                    @elseif($col == 'available_orders')
+                    @elseif($col == 'available_orders' || $col == 'special_stores_no')
                     <input type="number" min="0" name="{{ $col }}" class="form-control" value="{{ old($col) }}">  
 
                     @elseif($col == 'password')
