@@ -64,7 +64,11 @@ class AvliableModelController extends Controller
         }
         // dd($item);
 
-        return response()->json(['status'=>true, 'data' => new AvailableModelResource($item)], 200);
+        $items = AvailableModel::userBrands(Auth::id())->orderby('brand_id', 'desc')
+                                ->orderby('model_id', 'desc')->paginate(15);
+
+
+        return response()->json(['status'=>true, 'data' => AvailableModelResource::collection($items)], 200);
     }
 
     public function delete(Request $request)

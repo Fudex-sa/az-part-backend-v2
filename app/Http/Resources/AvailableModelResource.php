@@ -26,7 +26,7 @@ class AvailableModelResource extends JsonResource
             'year' => $this->year,
             'brand_name' => $this->brand ? $this->brand->$name : '',
             'model_name' => $this->model ? $this->model->$name : '',
-            'user_name' => $this->user ? $this->user->$name : '',
+            'user_name' => $this->user ? $this->user->name : '',
         ];
 
         //return parent::toArray($request);

@@ -59,6 +59,9 @@ class RequestsController extends Controller
 
         $item = AssignSeller::findOrFail($request->item_id);
         $data = request()->all();
+        $data['seller_id'] = Auth::id();
+        $data['request_id'] = $item->request_id;
+
         if (! $id) {
             if ($item) {
                 $item = AssignSeller::create($data);
