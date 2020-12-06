@@ -8,6 +8,8 @@ use App\Models\Car;
 use App\Models\CarImage;
 
 use App\Http\Resources\CarsResource;
+use App\Http\Resources\CarsCollection;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Api\CommonController;
@@ -34,8 +36,8 @@ class CarsController extends Controller
         }
 
         $items = Car::with('brand')->with('model')->with('city')
-                ->where('type', 'damaged')->orderby('id', 'desc')->paginate($limit);
-        return response()->json(['status'=>true, 'data' => CarsResource::collection($items)], 200);
+                ->where('type', 'damaged')->orderby('id', 'desc')->paginate(10);
+        return response()->json(['status'=>true, 'data' => new CarsCollection($items)], 200);
     }
 
     public function antique(Request $request)
@@ -48,8 +50,8 @@ class CarsController extends Controller
 
         $items = Car::with('brand')->with('model')->with('city')
                 ->where('type', 'antique')->with('brand')
-                ->with('model')->orderby('id', 'desc')->paginate($limit);
-        return response()->json(['status'=>true, 'data' => CarsResource::collection($items)], 200);
+                ->with('model')->orderby('id', 'desc')->paginate(10);
+        return response()->json(['status'=>true, 'data' => new CarsCollection($items)], 200);
     }
 
     /**
@@ -107,14 +109,21 @@ class CarsController extends Controller
 
         if ($request->hasFile('imgs')) {
             foreach ($request->file('imgs') as $img) {
-                $destinationPath = public_path('uploads');
-                $name=$img->getClientOriginalName();
-                $img->move($destinationPath, $name);
+                $imgName = uploadImgFromMobile($img, 'user');
                 $carImage = new CarImage;
-                $carImage->photo  = $name;
+                $carImage->photo  = $imgName;
                 $carImage->car_id = $item->id;
                 $carImage->save();
             }
+        }
+
+        if ($request->file('img')) {
+            $imgName = uploadImgFromMobile($request->file('img'), 'user');
+
+            $carImage = new CarImage;
+            $carImage->photo  = $imgName;
+            $carImage->car_id = $item->id;
+            $carImage->save();
         }
 
 
