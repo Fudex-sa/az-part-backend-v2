@@ -52,16 +52,16 @@ class CarsResource extends JsonResource
               'region_id' => $this->city ? $this->city->region_id : ''
           ],
           'user' => [
-              'id' => $this->user ? $this->user->id : '',
-              'name' => $this->user ? $this->user->name : '',
-              'email' => $this->user ? $this->user->email : '',
-              'mobile' => $this->user ? $this->user->mobile : '',
-              'user_role' => $this->user ? $this->user->user_role : '',
-              'active' => $this->user ? $this->user->active : '',
-              'vip' => $this->user ? $this->user->vip : '',
-              'total_requests' => $this->user ? $this->user->total_requests : '',
-              'logo' => $this->user ? $this->user->logo : '',
-              'request_vip' => $this->user ? $this->user->request_vip : '',
+              'id' => $this->seller ? $this->seller->id : '',
+              'name' => $this->seller ? $this->seller->name : '',
+              'email' => $this->seller ? $this->seller->email : '',
+              'mobile' => $this->seller ? $this->seller->mobile : '',
+              'user_role' => $this->seller ? $this->seller->seller_role : '',
+              'active' => $this->seller ? $this->seller->active : '',
+              'vip' => $this->seller ? $this->seller->vip : '',
+              'total_requests' => $this->seller ? $this->seller->total_requests : '',
+              'logo' => $this->seller ? $this->seller->logo : '',
+              'request_vip' => $this->seller ? $this->seller->request_vip : '',
           ]
       ];
         //return parent::toArray($request);

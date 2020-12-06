@@ -107,14 +107,21 @@ class CarsController extends Controller
 
         if ($request->hasFile('imgs')) {
             foreach ($request->file('imgs') as $img) {
-                $destinationPath = public_path('uploads');
-                $name=$img->getClientOriginalName();
-                $img->move($destinationPath, $name);
+                $imgName = uploadImgFromMobile($img, 'user');
                 $carImage = new CarImage;
-                $carImage->photo  = $name;
+                $carImage->photo  = $imgName;
                 $carImage->car_id = $item->id;
                 $carImage->save();
             }
+        }
+
+        if ($request->file('img')) {
+            $imgName = uploadImgFromMobile($request->file('img'), 'user');
+
+            $carImage = new CarImage;
+            $carImage->photo  = $imgName;
+            $carImage->car_id = $item->id;
+            $carImage->save();
         }
 
 

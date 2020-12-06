@@ -21,6 +21,11 @@ class Car extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'user_id');
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'user_id');
