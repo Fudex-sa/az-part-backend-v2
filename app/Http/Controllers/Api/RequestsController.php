@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AssignSeller;
 use App\Http\Resources\RequestsResource;
+use App\Http\Resources\RequestsCollection;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Resources\RequestOfferResource;
@@ -25,10 +27,10 @@ class RequestsController extends Controller
     public function myRequests(Request $request)
     {
         $items = AssignSeller::with('seller')->with('request')
-                    ->where('seller_id', Auth::id())->where('status_id', 11)->orderby('id', 'desc')->latest()->get();
+                    ->where('seller_id', Auth::id())->where('status_id', 11)->orderby('id', 'desc')->latest()->paginate(10);
 
 
-        return response()->json(['status'=>true, 'data' => RequestsResource::collection($items)], 200);
+        return response()->json(['status'=>true, 'data' => new RequestsCollection($items)], 200);
     }
 
     public function requestDetails($id)
