@@ -16,9 +16,13 @@ class RequestsCollection extends ResourceCollection
     {
         return [
         'data' => RequestsResource::collection($this->collection),
-        'links' => [
-            'self' => 'link-value',
-        ],
+        'meta' => [
+         'total' => $this->total(),
+         'count' => $this->count(),
+         'per_page' => $this->perPage(),
+         'current_page' => $this->currentPage(),
+         'total_pages' => $this->lastPage()
+     ],
     ];
     }
 }
