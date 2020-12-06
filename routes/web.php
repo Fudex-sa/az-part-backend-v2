@@ -30,6 +30,7 @@ Route::group(
             Route::get('avaliable_model/{item}', [App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');
             Route::delete('avaliable_model/delete', [App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
             Route::get('avaliable_models/search', [App\Http\Controllers\Seller\AvliableModelController::class, 'search'])->name('avaliable_models.search');
+            Route::get('avaliable_models/add',[App\Http\Controllers\Seller\AvliableModelController::class, 'add'])->name('seller.avaliable_models.add');
 
             Route::get('requests', [App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
             Route::post('request/update/{item}', [App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update');

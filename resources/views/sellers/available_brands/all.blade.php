@@ -1,10 +1,10 @@
-
 @extends('site.app')
 
 @section('title')  @lang('site.avaliable_models') @endsection
 
 @section('styles')
-    
+
+
 @endsection
 
 @section('content')
@@ -60,7 +60,7 @@
               </div>
 
               <div class="col-md-3">
-              <a data-toggle="modal" data-target=".add_item" class="btn btn-save">
+              <a href="{{ route('seller.avaliable_models.add') }}" class="btn btn-save">
                 <i class="fa fa-plus"></i>  @lang('site.add') </a>
                 <br/><br/>
               </div>
@@ -120,8 +120,8 @@
   </div>
 </section>
 
- 
-@endsection
+ @endsection
+
 
 @section('popup')
 
@@ -129,16 +129,14 @@
 
 @endsection
 
+@section('scripts')    
 
-@section('scripts')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="{{ site('assets/js/select2.js') }}"></script>
 
-    <script src="{{ site('assets/js/select2.js') }}"></script>
-
-    @include('dashboard.ajax.load_models') 
+@include('dashboard.ajax.load_models') 
     @include('dashboard.ajax.load_models2') 
-
     @include('dashboard.ajax.delete',['target'=>'avaliable_model']) 
-
+    
 @endsection

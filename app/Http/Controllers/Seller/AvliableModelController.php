@@ -23,6 +23,13 @@ class AvliableModelController extends Controller
         return view($this->view.'all',compact('items','avaliable_models'));
     }
 
+    public function add()
+    {
+        $avaliable_models = true;
+
+        return view($this->view.'create',compact('avaliable_models'));
+    }
+
     public function edit(AvailableModel $item)
     {
         $avaliable_models = true;
