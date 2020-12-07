@@ -12,4 +12,9 @@ class EngineJob extends Model
     protected $fillable = [
         'request_id' , 'sellers_count'
     ];
+
+    public function request()
+    {
+        return $this->belongsTo(AssignSeller::class);
+    }
 }
