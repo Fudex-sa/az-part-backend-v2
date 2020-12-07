@@ -613,6 +613,7 @@ font-weight: bold;
 }
 .add-card-body {
   padding: 10px;
+      direction: rtl;
 }
 .add-card-body h6 {
   font-size: 16px;
@@ -676,7 +677,11 @@ font-weight: bold;
     display: block;
     width: 100%;
     height: 100%;
-}.logged_menu {
+}
+.slick-slide .add-card-body  img{
+    display: initial;
+}
+.logged_menu {
     min-width: auto;
 }.form-check-input {
     position: relative;
