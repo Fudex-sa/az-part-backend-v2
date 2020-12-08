@@ -56,6 +56,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
       Route::post('getTransaction', 'PaymentController@getTransaction');
       Route::get('setting/{key}', 'SettingController@show');
 
+      Route::post('send/notifications', 'NotificationController@sendPushNotification2');
 
       Route::group(['middleware'=>'auth:api'], function () {
           Route::post('profile', 'AuthController@edit_profile');

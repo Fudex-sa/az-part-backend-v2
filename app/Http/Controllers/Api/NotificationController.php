@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AssignSeller;
 use App\Http\Resources\RequestsResource;
+use App\Http\Resources\RequestsCollection;
+
 use Mobily;
 use Auth;
 
@@ -14,10 +16,10 @@ class NotificationController extends Controller
     public function requests(Request $request)
     {
         $items = AssignSeller::with('seller')->with('request')
-                  ->where('seller_id', Auth::id())->where('status_id', 1)->orderby('id', 'desc')->latest()->get();
+                  ->where('seller_id', Auth::id())->where('status_id', 1)->orderby('id', 'desc')->latest()->paginate(10);
 
 
-        return response()->json(['status'=>true, 'data' => RequestsResource::collection($items)], 200);
+        return response()->json(['status'=>true, 'data' => new RequestsCollection($items)], 200);
     }
 
     public static function sendPushNotification(
@@ -79,27 +81,35 @@ class NotificationController extends Controller
         $actionId = $request->actionId;
 
         $data = array(
-                "to" => $id,
+                "to" => $ids,
                 "notification" => array(
                     "title" => $title,
                     "body" => $body,
                     'action'  => 'FCM_PLUGIN_ACTIVITY',
                     'vibrate'       => 500,
                     'sound'         => 'car.mp3',
-                    'subjectType' => $subjectType,
+                    'soundName' => 'car.mp3',
 //                    "icon" => "icon.png",
-                    //"click_action" => "http://az.parts"
+                    "click_action" => "http://az.parts"
+
                 ),
                 "data" =>  array(
                     'subjectType' => $subjectType,
-                    'actionId' => $actionId
+                    'actionId' => $actionId,
+                    'importance' => 'max',
+                    'playSound' => true,
+                    'priority' => 'max',
+                    'sound' => 'car.mp3',
+                    'soundName' => 'car.mp3'
                 )
             );
+
+
 
         $data_string = json_encode($data);
 
 
-        $headers = array( 'Authorization: key=' . env('FIREBASE_SERVER_KEY') , 'Content-Type: application/json' );
+        $headers = array( 'Authorization: key=' . env('FIREBASE_SERVER_KEY') , 'Content-Type: application/json');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
         curl_setopt($ch, CURLOPT_POST, true);

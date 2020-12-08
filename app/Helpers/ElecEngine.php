@@ -8,14 +8,13 @@ use App\Models\AssignSeller;
 use App\Models\Broker;
 use App\Models\EngineJob;
 use App\Models\EngineJobBroker;
-use App\Http\Controllers\Api\PushNotificationController;
-use App\Models\Seller;
-
 use App\Models\PackageSubscribe;
 use Illuminate\Http\Request;
 use App\Helpers\Search;
 use App\Helpers\PackageHelp;
 use Log;
+use App\Models\Seller;
+use App\Http\Controllers\Api\NotificationController;
 
 class ElecEngine
 {
@@ -119,6 +118,8 @@ class ElecEngine
                 AssignSeller::create([
                     'seller_id' => $seller->seller->id , 'request_id' => $req_id
                 ]);
+
+                $this->send_notification($req_id, $seller->seller->api_token);
             }
         }
 
@@ -144,6 +145,27 @@ class ElecEngine
         return $response;
     }
 
+    public function send_notification($req_id, $user_token)
+    {
+        $myUser = Seller::where('api_token', $user_token)->first();
+
+        $localLang = app()->getLocale();
+        $user_lang = $myUser->lang;
+
+        app()->setLocale($user_lang);
+
+        $title = __('site.request_spare');
+        $body = __('site.request_spare_no') . $req_id;
+
+
+
+
+        NotificationController::sendPushNotification($user_token, $title, $body, 'new_request', $req_id);
+
+
+        app()->setLocale($localLang);
+    }
+
     //--------- Engine -----------
     public function run_first_cycle($req_id)
     {
@@ -154,14 +176,15 @@ class ElecEngine
             $q->where('vip', 1);
         })
                     ->where('request_id', $req_id)->update($data);
+        $vipSellers = AssignSeller::with('seller')->whereHas('seller', function ($q) {
+            $q->where('vip', 1);
+        })
+                    ->where('request_id', $req_id)->get();
 
-        foreach ($items as $key => $item) {
+        foreach ($vipSellers as $item) {
             // code...
             $this->send_notification($req_id, $item->seller->api_token);
         }
-
-
-
 
         //---------- Tashlih ------------
         $items = AssignSeller::with('seller')->whereHas('seller', function ($q) {
@@ -171,7 +194,13 @@ class ElecEngine
                 ->limit($this->tashlih_no_by_cycle)
                 ->update($data);
 
-        foreach ($items as $key => $item) {
+        $tashlihSellers = AssignSeller::with('seller')->whereHas('seller', function ($q) {
+            $q->where('vip', 0)->where('user_type', 'tashalih')->orderby('saudi', 'desc');
+        })
+                ->where('request_id', $req_id)
+                ->limit($this->tashlih_no_by_cycle)->get();
+
+        foreach ($tashlihSellers as $item) {
             // code...
             $this->send_notification($req_id, $item->seller->api_token);
         }
@@ -185,7 +214,12 @@ class ElecEngine
                 ->limit($this->manufacturing_no_by_cycle)
                 ->update($data);
 
-        foreach ($items as $key => $item) {
+        $manuSellers = AssignSeller::with('seller')->whereHas('seller', function ($q) {
+            $q->where('vip', 0)->where('user_type', 'manufacturing')->orderby('saudi', 'desc');
+        })
+                ->where('request_id', $req_id)
+                ->limit($this->manufacturing_no_by_cycle)->get();
+        foreach ($manuSellers as  $item) {
             // code...
             $this->send_notification($req_id, $item->seller->api_token);
         }
@@ -246,25 +280,6 @@ class ElecEngine
                 'status_id' => 11
             ]);
         }
-    }
-
-    public function send_notification($req_id, $user_token)
-    {
-        $myUser = Seller::where('api_token', $user_token)->first();
-
-        $localLang = app()->getLocale();
-        $user_lang = $myUser->lang;
-
-        app()->setLocale($user_lang);
-
-        $title = __('site.request_spare');
-        $body = __('site.request_spare_no') . $req_id;
-
-
-        PushNotificationController::send($user_token, $title, $body, 'new_request', $req_id);
-
-
-        app()->setLocale($localLang);
     }
 
     public function brokers_round()
