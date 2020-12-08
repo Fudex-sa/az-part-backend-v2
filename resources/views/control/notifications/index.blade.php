@@ -95,6 +95,33 @@ font-weight: bold;
       @endforeach
   @endif
 
+  @if(isset($sellerNotifications))
+                    @foreach($sellerNotifications as $notification)
+
+
+  <div class="col-md-12">
+    <div class="notif  row ">
+      <div class="col-md-9">
+         <h6> <span> {{__('site.request_spare_no')}} . {{$notification->request_id}}</span></h6>
+
+      </div>
+      <div class="col-md-3">
+        <ul class="notif-add-del">
+          <li><a href="{{url('/control/request/'.$notification->request_id)}}"><i class="fas fa-eye"></i></a></li>
+
+          <li><a href="{{ route('notification.deleteSellerNotif',$notification->id) }}"><i class="fas fa-trash-alt"></i></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  @endforeach
+  @endif
+
 
 
 

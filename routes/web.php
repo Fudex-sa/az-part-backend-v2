@@ -22,15 +22,15 @@ Route::group(
         Route::post('rep/choose', [App\Http\Controllers\AjaxController::class, 'rep_choose'])->name('rep.choose');
         Route::post('with_oil', [App\Http\Controllers\AjaxController::class, 'with_oil'])->name('with_oil');
 
-        Route::get('change_country/{country}',[App\Http\Controllers\HelpController::class, 'change_country'])->name('changeCountry');
+        Route::get('change_country/{country}', [App\Http\Controllers\HelpController::class, 'change_country'])->name('changeCountry');
 
         Route::group(['prefix'=> 'seller','namespace' => 'Seller','middleware'=>'seller'], function () {
             Route::get('avaliable_models', [App\Http\Controllers\Seller\AvliableModelController::class, 'index'])->name('seller.avaliable_models');
             Route::post('avaliable_model/{id?}', [App\Http\Controllers\Seller\AvliableModelController::class, 'store'])->name('seller.avaliable_model.store');
             Route::get('avaliable_model/{item}', [App\Http\Controllers\Seller\AvliableModelController::class, 'edit'])->name('seller.avaliable_model');
-            Route::delete('avaliable_model/delete', [App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');            
+            Route::delete('avaliable_model/delete', [App\Http\Controllers\Seller\AvliableModelController::class, 'delete'])->name('admin.avaliable_model.delete');
             Route::get('avaliable_models/search', [App\Http\Controllers\Seller\AvliableModelController::class, 'search'])->name('avaliable_models.search');
-            Route::get('avaliable_models/add',[App\Http\Controllers\Seller\AvliableModelController::class, 'add'])->name('seller.avaliable_models.add');
+            Route::get('avaliable_models/add', [App\Http\Controllers\Seller\AvliableModelController::class, 'add'])->name('seller.avaliable_models.add');
 
             Route::get('requests', [App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
             Route::post('request/update/{item}', [App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update');
@@ -64,6 +64,7 @@ Route::group(
         Route::group(['prefix'=> 'control','namespace' => 'Control','middleware'=>'isLogged'], function () {
             Route::get('notifications', [App\Http\Controllers\Control\NotificationController::class, 'index'])->name('notification.all');
             Route::get('deleteNotification/{id?}', [App\Http\Controllers\Control\NotificationController::class, 'delete'])->name('notification.delete');
+            Route::get('deleteSellerNotification/{id?}', [App\Http\Controllers\Control\NotificationController::class, 'deleteSellerNotif'])->name('notification.deleteSellerNotif');
 
 
             Route::get('profile', [App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
