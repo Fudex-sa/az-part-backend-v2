@@ -8,7 +8,6 @@
 
 namespace App\Libraries\FirebasePushNotifications;
 
-
 class Firebase
 {
 
@@ -26,7 +25,7 @@ class Firebase
 
 
     // sending push message to multiple users by firebase registration ids
-    public function sendMultiple($registration_ids, $message,$pushData)
+    public function sendMultiple($registration_ids, $message, $pushData)
     {
         $fields = array(
             'registration_ids' => $registration_ids,
@@ -63,9 +62,9 @@ class Firebase
 
         return $this->sendPushNotification($fields);
     }
-    
-    
-        public function sendMultipleIos($registration_ids, $pushData)
+
+
+    public function sendMultipleIos($registration_ids, $pushData)
     {
         $fields = array(
             'registration_ids' => $registration_ids,
@@ -88,7 +87,7 @@ class Firebase
 
         $headers = array(
 //            'Authorization: key=' . FIREBASE_API_KEY,
-            'Authorization: key=AAAAoFlVMNg:APA91bE-wZewoZMJboPorVZIjYMzB8jY0N1op4NZDWiOIn7N8DZm2W3V2CLHBCx_8EoSpZEIsK_jWU_jxhMwBDQdIGYN1kRrJDrH_BqwgCBLWfMLZOLXJopMpaDpFPrjD8rZQ0cvNHVR',
+            'Authorization: key=AAAA9VvW7Cs:APA91bHxWg0rNO6mF3x2sanMfbrS9KLcvh6grP_QdY4-uhWtaHJt09Y8C5h4_Fgan3Uzwt-D2o8kkLLURt4xGquoBQXRReXYaOgpbskx53DCmXD9Wk8wbt0Y0B1G36P7yH73phi-goqi',
             'Content-Type: application/json'
         );
         // Open connection
@@ -108,7 +107,7 @@ class Firebase
 
         // Execute post
         $result = curl_exec($ch);
-        if ($result === FALSE) {
+        if ($result === false) {
             die('Curl failed: ' . curl_error($ch));
         }
 
@@ -117,6 +116,4 @@ class Firebase
 
         return $result;
     }
-
-
 }

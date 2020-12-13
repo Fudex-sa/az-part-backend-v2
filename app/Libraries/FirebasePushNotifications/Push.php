@@ -8,7 +8,6 @@
 
 namespace App\Libraries\FirebasePushNotifications;
 
-
 class Push
 {
     // push message title
@@ -23,9 +22,8 @@ class Push
     // in background when push is recevied
     private $is_background;
 
-    function __construct()
+    public function __construct()
     {
-
     }
 
     public function setTitle($title)
@@ -62,7 +60,6 @@ class Push
         $res['timestamp'] = date('Y-m-d G:i:s');
 
         return $res;
-
     }
 
 
@@ -73,9 +70,8 @@ class Push
         $res['body'] = $this->message;
         $res['data'] = $this->data;
         $res['timestamp'] = date('Y-m-d G:i:s');
-        $res['sound'] = 'default';
-        $res['click_action'] = $this->data['orderId'];
+        $res['sound'] = 'car.mp3';
+        $res['click_action'] = $this->data['actionId'];
         return $res;
     }
-
 }

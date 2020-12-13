@@ -15,6 +15,7 @@ use App\Helpers\PackageHelp;
 use Log;
 use App\Models\Seller;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\PushNotificationController;
 
 class ElecEngine
 {
@@ -119,7 +120,7 @@ class ElecEngine
                     'seller_id' => $seller->seller->id , 'request_id' => $req_id
                 ]);
 
-                $this->send_notification($req_id, $seller->seller->api_token);
+                //$this->send_notification($req_id, $seller->seller->api_token);
             }
         }
 
@@ -160,7 +161,7 @@ class ElecEngine
 
 
 
-        NotificationController::sendPushNotification($user_token, $title, $body, 'new_request', $req_id);
+        PushNotificationController::send((array)$user_token, $title, $body, 'new_request', $req_id);
 
 
         app()->setLocale($localLang);

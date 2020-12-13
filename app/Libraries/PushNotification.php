@@ -4,6 +4,7 @@ namespace App\Libraries;
 
 use App\Libraries\FirebasePushNotifications\Firebase;
 use App\Libraries\FirebasePushNotifications\Push;
+
 class PushNotification
 {
 
@@ -36,9 +37,17 @@ class PushNotification
 
         // optional payload
         $dataLoad = array();
-        $dataLoad['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
-        $dataLoad['type'] = isset($data['type']) ? $data['type'] : null;
-        $dataLoad['count'] = isset($data['count']) ? $data['count'] : null;
+        $dataLoad['actionId'] = isset($data['actionId']) ? $data['actionId'] : null;
+        $dataLoad['type'] = isset($data['subjectType']) ? $data['subjectType'] : null;
+        $dataLoad['importance'] = isset($data['importance']) ? $data['importance'] : null;
+        $dataLoad['playSound'] = isset($data['playSound']) ? $data['playSound'] : null;
+        $dataLoad['priority'] = isset($data['priority']) ? $data['priority'] : null;
+        $dataLoad['sound'] = isset($data['sound']) ? $data['sound'] : null;
+        $dataLoad['soundName'] = isset($data['soundName']) ? $data['soundName'] : null;
+
+
+
+
 
         // notification title
         $push->setTitle($title);
@@ -52,7 +61,7 @@ class PushNotification
 
         // whether to include to image or not
         //$include_image = isset($_GET['include_image']) ? TRUE : FALSE;
-        $include_image = isset($data['image']) ? TRUE : FALSE;
+        $include_image = isset($data['image']) ? true : false;
 
 
         $push->setMessage($body);
@@ -65,7 +74,7 @@ class PushNotification
 
 
         //$push->setImage('https://api.androidhive.info/images/minion.jpg');
-        $push->setIsBackground(TRUE);
+        $push->setIsBackground(true);
         $push->setData($dataLoad);
         $responseAndroid = "";
         if (count($regIdsAndroid) > 0) {
@@ -74,8 +83,5 @@ class PushNotification
             $responseAndroid = $firebase->sendMultiple($regIdsAndroid, $push, $json);
         }
         return $responseAndroid;
-
-
     }
-
 }

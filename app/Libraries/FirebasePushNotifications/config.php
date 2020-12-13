@@ -8,21 +8,17 @@
 
 namespace App\Libraries\FirebasePushNotifications;
 
-
 class config
 {
-
     public $key;
 
     public function __construct($key)
     {
-
-        $this->key = "AAAAoFlVMNg:APA91bE-wZewoZMJboPorVZIjYMzB8jY0N1op4NZDWiOIn7N8DZm2W3V2CLHBCx_8EoSpZEIsK_jWU_jxhMwBDQdIGYN1kRrJDrH_BqwgCBLWfMLZOLXJopMpaDpFPrjD8rZQ0cvNHVR";
+        $this->key = "AAAA9VvW7Cs:APA91bHxWg0rNO6mF3x2sanMfbrS9KLcvh6grP_QdY4-uhWtaHJt09Y8C5h4_Fgan3Uzwt-D2o8kkLLURt4xGquoBQXRReXYaOgpbskx53DCmXD9Wk8wbt0Y0B1G36P7yH73phi-goqi";
     }
 
     public function getKey()
     {
         return $this->key;
     }
-
 }
