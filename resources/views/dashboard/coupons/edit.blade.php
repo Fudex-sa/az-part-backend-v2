@@ -49,9 +49,9 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiration_date"> @lang('site.expiration_date') 
             </label>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="date" name="expiration_date" class="form-control col-md-7 col-xs-12"  
-            value="{{ $item->expiration_date }}" />
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <input type="text" name="expiration_date" class="form-control col-md-7 col-xs-12 datepicker"  
+                    value="{{ $item->expiration_date }}" />
             </div>
         </div>
 
@@ -96,6 +96,13 @@
 @endsection
 
 @section('scripts')
-     
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $( function() {
+            $( ".datepicker" ).datepicker();
+        } );
+    </script>
   
 @endsection

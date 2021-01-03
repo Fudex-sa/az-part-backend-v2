@@ -58,7 +58,7 @@
                 @endfor
               </div>
               
-                  <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.next') </button>
+                  <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.add') </button>
               </form>
           </div>
         </div>

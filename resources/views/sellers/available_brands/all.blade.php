@@ -121,13 +121,7 @@
 </section>
 
  @endsection
-
-
-@section('popup')
-
-    @include('sellers.available_brands.create')
-
-@endsection
+ 
 
 @section('scripts')    
 

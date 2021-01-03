@@ -17,13 +17,16 @@
 
         <div class="col-md-12">
           <div class="white-card  white-card-2">
+  
+              @if(session()->get('payment_type') != 'package')
             <ul class="nav nav-tabs row" id="myTab" role="tablist">
-              <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line  after-line-3">
 
+              <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line  after-line-3">
                 <a class="nav-link disabled activeted" id="home-tab" data-toggle="tab" href="#home" role="tab"
                   aria-controls="home" aria-selected="true"><span class="badge cir-active">1</span> @lang('site.items_added')
                 </a>
               </li>
+
               <li class="col">
                 <div class=""></div>
               <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line-2  after-line-3">
@@ -31,15 +34,38 @@
                   aria-controls="profile" aria-selected="false" disabled><span class="badge cir-active">2</span>  @lang('site.shipping')
                 </a>
               </li>
+
               <li class="col-lg-1 col-md-1 col-sm-1">
                 <div class=""></div>
               </li>
+              
               <li class="nav-item col-lg-2 col-md-2 col-sm-12">
                 <a class="nav-link active activeted" id="profile-tab-2" data-toggle="tab" href="#profile-2" role="tab"
                   aria-controls="profile-2" aria-selected="false"><span class="badge cir">3</span> @lang('site.payment') </a>
               </li>
 
             </ul>
+            @else
+            <ul class="nav nav-tabs row" id="myTab" role="tablist">
+
+              <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line  after-line-3">
+                <a class="nav-link disabled activeted" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                  aria-controls="home" aria-selected="true"><span class="badge cir-active">1</span> @lang('site.choose_package')
+                </a>
+              </li>
+
+              <li class="col-lg-1"> </li>
+
+                <div class=""></div>
+              <li class="nav-item col-lg-4 col-md-4 col-sm-12">
+                <a class="nav-link disabled activeted" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                  aria-controls="profile" aria-selected="false" disabled><span class="badge cir-active">2</span>  @lang('site.payment')
+                </a>
+              </li>
+ 
+            </ul>
+            @endif
+
             <div class="tab-content" id="myTabContent">
             
                        <div class="tab-pane fade show active" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
@@ -85,6 +111,9 @@
                                    var mada = $(".wpwl-brand:first").clone().removeAttr("class").attr("class", "wpwl-brand-card wpwl-brand-custom wpwl-brand-MADA")
                                    var master = $(visa).clone().removeClass("wpwl-brand-VISA").addClass("wpwl-brand-MASTER");
                                    $(".wpwl-brand:first").after( $(mada)).after( $(master)).after( $(visa));
+
+                                   $(".wpwl-control-surName").attr("placeholder","{{ __('site.first_name') }}");  
+                                   $(".wpwl-control-givenName").attr("placeholder","{{ __('site.second_name') }}");  
                                  },
                                  onChangeBrand: function(e){
                                    $(".wpwl-brand-custom").css("opacity", "0.3");
@@ -127,5 +156,5 @@
 @endsection
 
 @section('scripts')
-
+ 
 @endsection

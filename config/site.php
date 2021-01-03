@@ -2,6 +2,6 @@
 
 return [
 
-    'pagger' => 30,
+    'pagger' => 20,
 
 ];

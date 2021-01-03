@@ -174,7 +174,7 @@
                   <span class="color-r"> {{ $stock->min_price }} </span> @lang('site.rs')
                 </p>
                 <p class="pt-2 text-center">
-                  <span class="color-d"> {{ round($stock->avg_price,2) }} </span> @lang('site.rs')
+                  <span class="color-d"> {{ (int) round($stock->avg_price,2) }} </span> @lang('site.rs')
                 </p>
 
               </div>

@@ -173,6 +173,20 @@
                             </div>
 
                             <div class="form-group col-md-6">
+                              <label> @lang('site.bank_account') </label>
+
+                              <input type="text" name="bank_account" id="bank_account" class="form-control pro-input" 
+                              value="{{ logged_user()->bank_account }}">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                              <label> @lang('site.iban') </label>
+
+                              <input type="text" name="iban" id="iban" class="form-control pro-input" 
+                              value="{{ logged_user()->iban }}">
+                            </div>
+
+                            <div class="form-group col-md-6">
                               <label> @lang('site.car_license_img') </label>
 
                               <input type="file" name="car_license_img" id="car_license_img" class="form-control pro-input">

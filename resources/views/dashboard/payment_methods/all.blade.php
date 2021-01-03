@@ -31,6 +31,8 @@
 
           <th> @lang('site.sort') </th>
 
+          <th> @lang('site.deposit') </th>
+
           <th> @lang('site.active') </th>
           
           <th style="width: 100px;"></th>
@@ -46,6 +48,8 @@
             <td>{{$item['name_'.my_lang()]}}</td>
             
             <td> {{ $item->sort }} </td>
+
+            <td> {{ $item->deposit ? $item->deposit . ' % ' : '' }}  </td>
 
             <td>
                 @if($item->active ==1) <button class="btn btn-success btn-xs" onclick="activate({{ $item->id }})">

@@ -102,7 +102,8 @@
                   </td>
                   <td>
                     <p class="color-dark">
-                       {{ round($item->avg_price,2) }}  @lang('site.rs') 
+                       {{ (int) round($item->avg_price,2) }}  
+                       @lang('site.rs') 
                     </p>
                   </td>
                   <td>

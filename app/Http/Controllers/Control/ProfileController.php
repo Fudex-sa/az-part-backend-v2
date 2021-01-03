@@ -27,7 +27,7 @@ class ProfileController extends Controller
             $regions = Region::where('country_id',logged_user()->region['country_id'])->orderby('name_ar','desc')->get();
             $cities = City::where('region_id',logged_user()->region_id)->orderby('name_ar','desc')->get();
         }else{
-            $regions = null;
+            $regions = Region::where('country_id',1)->orderby('name_ar','desc')->get();
             $cities = null;
         } 
 

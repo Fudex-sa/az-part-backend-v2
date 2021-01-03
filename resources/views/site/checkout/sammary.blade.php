@@ -2,7 +2,7 @@
 
  
     <h3 class="col-md-12"> @lang('site.order_cost') </h3>
-                
+     
     @if(request()->type == 'cart' || session()->get('payment_type') == 'cart')
     
         <div class="col-md-6"> <h6> @lang('site.parts_total')  </h6> </div>   

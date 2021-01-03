@@ -1149,4 +1149,10 @@ return [
     'description_hi' => 'الوصف بالهندى',
     'join_our_packages' => 'اشترك ف احدى الباقات',
     'special_stores_no' => 'عدد المتاجر الإستثنائية',
+    'bank_account' => 'رقم الحساب',
+    'iban' => 'رقم الايبان',
+    'single_piece_price' => 'سعر القطعة الواحدة',
+    'second_name' => 'الاسم الثانى',
+    'duplicated_region_delivery' => 'منطقة توصيل مضافة بالفعل!',
+    'deposit' => 'العربون',
 ];

@@ -43,7 +43,16 @@ class MyPricesController extends Controller
          if($id) 
             $item = RepPrice::where('id',$id)->update($data);
         
-        else $item = RepPrice::create($data);
+        else{
+
+            $exists = RepPrice::where('rep_id',logged_user()->id)->where('_from',$request->_from)
+                                ->where('city_id',$request->city_id)->first();
+        
+            if($exists)
+                return back()->with('failed' , __('site.duplicated_region_delivery'))->withInput();
+
+            $item = RepPrice::create($data);
+        } 
 
         if($item)
             return redirect()->route('rep.my_prices')->with('success' , __('site.success-save') );
