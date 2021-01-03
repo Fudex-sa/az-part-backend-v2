@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Http\Requests\Admin\CouponRequest;
+use Carbon\Carbon;
 
 class CouponController extends Controller
 {
@@ -23,6 +24,7 @@ class CouponController extends Controller
     {
          
         $data = $request->except('_token');
+        $data['expiration_date'] = Carbon::parse($request->expiration_date);
 
          if($id) 
             $response = Coupon::where('id',$id)->update($data);

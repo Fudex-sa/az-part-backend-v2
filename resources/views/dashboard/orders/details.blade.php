@@ -11,7 +11,23 @@
             <td> {{ $k+1 }}  </td>
 
             <th> <i class="fa fa-camera"></i> </th>
-            <td> @if($cart->photo) <img src="{{ cart_img($cart->photo) }}" class="img-tbl"/> @endif </td>            
+            <td> @if($cart->photo) 
+                 
+                <button type="button"  data-toggle="modal" data-target="#viewImg">
+                    <img src="{{ cart_img($cart->photo) }}" class="img-tbl"/>
+                </button>
+
+                <div id="viewImg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-body">
+                            <img src="{{ cart_img($cart->photo) }}" class="img-responsive"/>                                                          
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+
+                @endif </td>            
         </tr>
 
         <tr>            
@@ -36,7 +52,8 @@
 
         <tr>            
             <th> @lang('site.seller') </th>
-            <td> {{ $cart->seller ? $cart->seller->name : '-' }} </td>
+            <td> <a href="{{ route('admin.seller',$cart->seller->id) }}" target="_blank" class="underline">
+                    <i class="fa fa-user"></i> {{ $cart->seller ? $cart->seller->name : '-' }} </a> </td>
 
             <th> @lang('site.city') </th>
             <td>

@@ -11,6 +11,6 @@ class PaymentMethod extends Model
 
     protected $fillable = [
         'logo' , 'name_ar' , 'name_en' , 'name_hi' , 'active' , 'sort' , 'description_ar' , 'description_en',
-        'description_hi'
+        'description_hi' , 'deposit'
     ];
 }

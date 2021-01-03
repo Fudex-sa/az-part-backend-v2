@@ -50,8 +50,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiration_date"> @lang('site.expiration_date') 
                         </label>
             
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="date" name="expiration_date" class="form-control col-md-7 col-xs-12"  
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <input type="text" name="expiration_date" class="form-control col-md-7 col-xs-12 datepicker"  
                         value="{{ old('expiration_date') }}" />
                         </div>
                     </div>

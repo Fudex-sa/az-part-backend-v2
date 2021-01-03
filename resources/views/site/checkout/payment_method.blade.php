@@ -17,13 +17,16 @@
 
         <div class="col-md-12">
           <div class="white-card  white-card-2">
-            <ul class="nav nav-tabs row" id="myTab" role="tablist">
-              <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line  after-line-3">
 
+            @if(request()->type != 'package')
+            <ul class="nav nav-tabs row" id="myTab" role="tablist">
+
+              <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line  after-line-3">
                 <a class="nav-link disabled activeted" id="home-tab" data-toggle="tab" href="#home" role="tab"
                   aria-controls="home" aria-selected="true"><span class="badge cir-active">1</span> @lang('site.items_added')
                 </a>
               </li>
+
               <li class="col">
                 <div class=""></div>
               <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line-2  after-line-3">
@@ -31,15 +34,38 @@
                   aria-controls="profile" aria-selected="false" disabled><span class="badge cir-active">2</span>  @lang('site.shipping')
                 </a>
               </li>
+
               <li class="col-lg-1 col-md-1 col-sm-1">
                 <div class=""></div>
               </li>
+              
               <li class="nav-item col-lg-2 col-md-2 col-sm-12">
                 <a class="nav-link active activeted" id="profile-tab-2" data-toggle="tab" href="#profile-2" role="tab"
                   aria-controls="profile-2" aria-selected="false"><span class="badge cir">3</span> @lang('site.payment') </a>
               </li>
 
             </ul>
+            @else
+            <ul class="nav nav-tabs row" id="myTab" role="tablist">
+
+              <li class="nav-item col-lg-4 col-md-4 col-sm-12 after-line  after-line-3">
+                <a class="nav-link disabled activeted" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                  aria-controls="home" aria-selected="true"><span class="badge cir-active">1</span> @lang('site.choose_package')
+                </a>
+              </li>
+
+              <li class="col-lg-1"> </li>
+
+                <div class=""></div>
+              <li class="nav-item col-lg-4 col-md-4 col-sm-12">
+                <a class="nav-link disabled activeted" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                  aria-controls="profile" aria-selected="false" disabled><span class="badge cir-active">2</span>  @lang('site.payment')
+                </a>
+              </li>
+ 
+            </ul>
+            @endif
+
             <div class="tab-content" id="myTabContent">
 
 
@@ -65,6 +91,9 @@
 
                                               <img src="{{ img_path($payment_method->logo) }}" class="payment_logos"/>
                                           </label>
+
+                                          <br/>
+                                          <p class="pay_hint"> {{ $payment_method['description_ar_'.my_lang()] }}  </p>
                                       </div>    
                                       @endif
                                   @endforeach
@@ -82,6 +111,9 @@
 
                                           <img src="{{ img_path($payment_method->logo) }}" class="payment_logos"/>
                                       </label>
+
+                                      <br/>
+                                          <p class="pay_hint"> {{ $payment_method['description_'.my_lang()] }}  </p>
                                   </div>    
                                   {{-- @endif --}}
                                 @endforeach

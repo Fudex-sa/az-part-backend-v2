@@ -33,53 +33,53 @@
                         </li>               
                       </ul>
 
-                      <div class="tab-content" id="myTabContent">
+<div class="tab-content" id="myTabContent">
 
-                        <div class="fade show active">
-                            
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-7">
-                                    <div class="tab-card">
-                                        <div class="tab-card-head text-center pb-2">
-                                            <h4> @lang('site.continue_signup') </h4>
-                                            <p> @lang('site.enter_your_verfication_code_sent_to_your_mobile') </p>
-                                        </div>
-                                        <div class="tab-content mt-5">
-                                        <form class="row" method="POST" action="{{ route('confirm',['id' => $id , 'type' => $type]) }}">
-                                          @csrf
-                                            <div class="row d-flex justify-content-center" dir="ltr">
-                                                <div class="form-group col">
-                                                    <input type="text" class="form-control ver-code" name="verification_code[]" maxlength="1" required tabindex="5">
-                                                  </div>
-                                                  <div class="form-group col">
-                                                    <input type="text" class="form-control ver-code" name="verification_code[]" maxlength="1" required tabindex="4">
-                                                  </div>
-                                                  <div class="form-group col">
-                                                    <input type="text" class="form-control ver-code" name="verification_code[]" maxlength="1" required tabindex="3">
-                                                  </div>
-                                                  <div class="form-group col">
-                                                    <input type="text" class="form-control ver-code" name="verification_code[]" maxlength="1" required tabindex="2">
-                                                  </div>
-                                                  <div class="form-group col">
-                                                    <input type="text" class="form-control ver-code" name="verification_code[]" maxlength="1" required tabindex="1">
-                                                  </div>
-                                            </div>
-                          
-                                            <div class="tab-card-head text-center pb-2">
-                                            <a href="{{ route('resend_code',['id' => $id , 'type' => $type]) }}"> @lang('site.resend_code') </a> 
-                                          </div>
-
-                                            <button type="submit" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.send') </button>
-                                        </form>
-                                        </div>
-
-                                       
-
-                                    </div>
-                                </div>
-                                <div class="col-md-2"></div>
+  <div class="fade show active">
+      
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-7">
+              <div class="tab-card">
+                  <div class="tab-card-head text-center pb-2">
+                      <h4> @lang('site.continue_signup') </h4>
+                      <p> @lang('site.enter_your_verfication_code_sent_to_your_mobile') </p>
+                  </div>
+                  <div class="tab-content mt-5">
+                  <form class="row" method="POST" action="{{ route('confirm',['id' => $id , 'type' => $type]) }}">
+                    @csrf
+                      <div class="row d-flex justify-content-center" dir="ltr">
+                          <div class="form-group col">
+                              <input type="text" class="form-control ver-code" id="f5" onkeyup="movetoNext(this, 'sendCode')" name="verification_code[]" maxlength="1" required tabindex="5">
                             </div>
+                            <div class="form-group col">
+                              <input type="text" class="form-control ver-code" id="f4" onkeyup="movetoNext(this, 'f5')" name="verification_code[]" maxlength="1" required tabindex="4">
+                            </div>
+                            <div class="form-group col">
+                              <input type="text" class="form-control ver-code" id="f3" onkeyup="movetoNext(this, 'f4')" name="verification_code[]" maxlength="1" required tabindex="3">
+                            </div>
+                            <div class="form-group col">
+                              <input type="text" class="form-control ver-code" id="f2" onkeyup="movetoNext(this, 'f3')" name="verification_code[]" maxlength="1" required tabindex="2">
+                            </div>
+                            <div class="form-group col">
+                              <input type="text" class="form-control ver-code" id="f1" onkeyup="movetoNext(this, 'f2')" name="verification_code[]" maxlength="1" required tabindex="1">
+                            </div>
+                      </div>
+    
+                      <div class="tab-card-head text-center pb-2">
+                      <a href="{{ route('resend_code',['id' => $id , 'type' => $type]) }}"> @lang('site.resend_code') </a> 
+                    </div>
+
+                      <button type="submit" id="sendCode" class="btn btn-dropform btn-block btn-lg mt-2"> @lang('site.send') </button>
+                  </form>
+                  </div>
+
+                  
+
+              </div>
+          </div>
+          <div class="col-md-2"></div>
+      </div>
                         
                         
                         
@@ -97,5 +97,12 @@
 
 @section('scripts')
  
+<script type="text/javascript">  
+  function movetoNext(current, nextFieldID) {  
+    if (current.value.length >= current.maxLength) {  
+      document.getElementById(nextFieldID).focus();  
+    }  
+  }  
+</script> 
 
 @endsection

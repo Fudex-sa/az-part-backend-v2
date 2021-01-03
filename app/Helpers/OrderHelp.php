@@ -7,6 +7,7 @@ use App\Models\OrderShipping;
 use App\Models\PackageSubscribe;
 use App\Helpers\PackageHelp;
 use App\Helpers\App\Helpers;
+use App\Models\PaymentMethod;
 
 class OrderHelp
 {
@@ -30,7 +31,15 @@ class OrderHelp
         $my_subscribe = PackageSubscribe::myPackagesByType($order_type)->first();
         $my_subscribe ? $package_sub_id = $my_subscribe->id : $package_sub_id = 0 ;
          
-        session()->get('payment_method') == 'cash' ? $remaining_cost = total() / 2  : $remaining_cost = 0;
+        // session()->get('payment_method') == 'cash' ? $remaining_cost = total() / 2  : $remaining_cost = 0;
+
+        if(session()->get('payment_method') == 'cash'){
+
+            $percentage = 100 - PaymentMethod::where('keyword','cash')->value('deposit');
+            $remaining_cost = $percentage/100 * total();
+
+        } else $remaining_cost = 0;
+
 
         $item = Order::create([
             'user_id' => logged_user()->id , 'user_type' => user_type() ,

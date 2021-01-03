@@ -114,7 +114,7 @@
             </div>
             <div class="s-box-footer">
  
-             <a href="{{ route('choose_rep',['rep_id' => $rep_price->id,'price' => $delv_price]) }}" class="btn btn-client float-left">  @lang('site.choose_rep') </a>
+             <a href="{{ route('choose_rep',['rep_id' => $rep_price->rep->id,'price' => $delv_price]) }}" class="btn btn-client float-left">  @lang('site.choose_rep') </a>
               <h6><span> {{ $delv_price }} </span> @lang('site.rs')  </h6>
             </div>
           </div>

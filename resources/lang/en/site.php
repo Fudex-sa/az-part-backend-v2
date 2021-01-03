@@ -1004,4 +1004,10 @@ return [
     'description_hi' => 'Description Hindi',
     'join_our_packages' => 'Join Our Packages',
     'special_stores_no' => 'Special Stores No',
+    'bank_account' => 'Bank Account',
+    'iban' => 'IBAN',
+    'single_piece_price' => 'Single Piece Price',
+    'second_name' => 'Second Name',
+    'duplicated_region_delivery' => 'Duplicated Delivery Region!',
+    'deposit' => 'Deposit',
 ];

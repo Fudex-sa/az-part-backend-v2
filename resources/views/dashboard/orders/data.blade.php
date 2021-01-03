@@ -22,14 +22,16 @@
         <tr>
             <th> @lang('site.order_user') </th>
             <td> 
-                @if($item->user_type == 'user')
-                    <a href="{{ route('admin.user',$item->user->id) }}" target="_blank">
-                         <i class="fa fa-user"></i> {{ $item->user->name }} </a>
-                         
-                @elseif($item->user_type == 'company')
-                    <a href="{{ route('admin.company',$item->user->id) }}" target="_blank"> 
-                        <i class="fa fa-user"></i> {{ $item->user->name }} </a>
-                @endif
+               
+                    @if($item->user_type == 'user')
+                        <a href="{{ route('admin.user',$item->user->id) }}" target="_blank" class="underline">
+                            <i class="fa fa-user"></i> {{ $item->user->name }} </a>
+                            
+                    @elseif($item->user_type == 'company')
+                        <a href="{{ route('admin.company',$item->company->id) }}" target="_blank" class="underline"> 
+                            <i class="fa fa-user"></i> {{ $item->company->name }} </a>
+                    @endif
+                 
                 </td>
 
             <th> @lang('site.user_type') </th>
