@@ -361,3 +361,16 @@ background-color: #F8F9FA;
     color: red;
     margin-right: 15px;
 }
+.verified{
+    color: green;
+    font-size: 17px;
+}
+.btn-pending{
+    background-color: yellow;
+}
+.btn-accepted{
+    background-color: yellowgreen;
+}
+.btn-rejected{
+    background-color: tomato;
+}

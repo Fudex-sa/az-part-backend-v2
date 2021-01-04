@@ -25,7 +25,7 @@
                           </div>
                       </div>
                     </div>
-                  </div>
+                </div>
 
                 @endif </td>            
         </tr>

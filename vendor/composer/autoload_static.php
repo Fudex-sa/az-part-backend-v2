@@ -214,6 +214,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         array (
             'Intervention\\Image\\' => 19,
             'Illuminate\\Support\\' => 19,
+            'Illuminate\\Notifications\\' => 25,
             'Illuminate\\Foundation\\Auth\\' => 27,
             'Illuminate\\' => 11,
         ),
@@ -562,6 +563,10 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
             1 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections',
+        ),
+        'Illuminate\\Notifications\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
         ),
         'Illuminate\\Foundation\\Auth\\' => 
         array (
@@ -2765,6 +2770,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'Illuminate\\Notifications\\Channels\\BroadcastChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/BroadcastChannel.php',
         'Illuminate\\Notifications\\Channels\\DatabaseChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/DatabaseChannel.php',
         'Illuminate\\Notifications\\Channels\\MailChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/MailChannel.php',
+        'Illuminate\\Notifications\\Channels\\SlackWebhookChannel' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Channels/SlackWebhookChannel.php',
         'Illuminate\\Notifications\\Console\\NotificationTableCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Console/NotificationTableCommand.php',
         'Illuminate\\Notifications\\DatabaseNotification' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/DatabaseNotification.php',
         'Illuminate\\Notifications\\DatabaseNotificationCollection' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/DatabaseNotificationCollection.php',
@@ -2777,12 +2783,16 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'Illuminate\\Notifications\\Messages\\DatabaseMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/DatabaseMessage.php',
         'Illuminate\\Notifications\\Messages\\MailMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/MailMessage.php',
         'Illuminate\\Notifications\\Messages\\SimpleMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/SimpleMessage.php',
+        'Illuminate\\Notifications\\Messages\\SlackAttachment' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackAttachment.php',
+        'Illuminate\\Notifications\\Messages\\SlackAttachmentField' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackAttachmentField.php',
+        'Illuminate\\Notifications\\Messages\\SlackMessage' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackMessage.php',
         'Illuminate\\Notifications\\Notifiable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Notifiable.php',
         'Illuminate\\Notifications\\Notification' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Notification.php',
         'Illuminate\\Notifications\\NotificationSender' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationSender.php',
         'Illuminate\\Notifications\\NotificationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationServiceProvider.php',
         'Illuminate\\Notifications\\RoutesNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/RoutesNotifications.php',
         'Illuminate\\Notifications\\SendQueuedNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/SendQueuedNotifications.php',
+        'Illuminate\\Notifications\\SlackChannelServiceProvider' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/SlackChannelServiceProvider.php',
         'Illuminate\\Pagination\\AbstractPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/AbstractPaginator.php',
         'Illuminate\\Pagination\\LengthAwarePaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/LengthAwarePaginator.php',
         'Illuminate\\Pagination\\PaginationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/PaginationServiceProvider.php',

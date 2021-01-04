@@ -69,7 +69,8 @@ Route::group(
 
             Route::get('profile', [App\Http\Controllers\Control\ProfileController::class, 'index'])->name('profile');
             Route::post('profile/update', [App\Http\Controllers\Control\ProfileController::class, 'update'])->name('profile.update');
-
+            Route::get('profile/vip/request',[App\Http\Controllers\Control\ProfileController::class, 'request_vip'])->name('profile.vip.request');
+             
             Route::get('my_packages', [App\Http\Controllers\Control\MyPackageController::class, 'index'])->name('my_packages')->middleware('myPackages');
 
             Route::get('order/{id}', [App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
@@ -224,6 +225,12 @@ Route::group(
             Route::delete('user/delete', [App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin.user.delete');
             Route::post('user/activate', [App\Http\Controllers\Admin\UserController::class, 'activate'])->name('admin.user.activate');
             Route::post('user/import', [App\Http\Controllers\Admin\UserController::class, 'import'])->name('admin.user.import');
+
+            /******************* VIP Requests ********************/
+            Route::get('vip_requests', [App\Http\Controllers\Admin\VipRequestController::class, 'all'])->name('admin.vip_requests');
+            Route::delete('vip_request/delete', [App\Http\Controllers\Admin\VipRequestController::class, 'delete'])->name('admin.vip_request.delete');
+            Route::post('vip_request/activate', [App\Http\Controllers\Admin\VipRequestController::class, 'activate'])->name('admin.vip_request.activate');
+            Route::post('vip_request/deActivate', [App\Http\Controllers\Admin\VipRequestController::class, 'deActivate'])->name('admin.vip_request.deActivate');
 
             /******************* Companies ********************/
             Route::get('company/search', [App\Http\Controllers\Admin\CompanyController::class, 'search'])->name('admin.company.search');

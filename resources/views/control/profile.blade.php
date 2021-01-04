@@ -48,7 +48,9 @@
 
                     <div class="pro-image-upload mt-4">
                       
-                      <h5> {{ logged_user()->name }} </h5>
+                      <h5> {{ logged_user()->name }} 
+                        @if(logged_user()->vip == 1) <i class="fa fa-check-circle verified"></i> @endif
+                      </h5>
                       <h6> {{ __('site.'.user_type()) }} </h6>
                     </div>
                   </div>
@@ -56,8 +58,15 @@
                    
                         <div class="row">
                           
-                          <div class="form-group col-12">
+                          <div class="form-group col-9">
                             <h3 class=""> @lang('site.personal_info') </h3>
+                          </div>
+
+                          <div class="form-group col-3">
+                            @if(!$vip_user)
+                              <a href="{{ route('profile.vip.request') }}" class="btn btn-success"> <i class="fa fa-check-circle"></i> @lang('site.request_vip') </a>
+                              @else <button class="btn btn-{{ $vip_user->status }}"> {{ __('site.'.$vip_user->status) }} </button>
+                            @endif
                           </div>
                             
                           <div class="form-group col-md-6">

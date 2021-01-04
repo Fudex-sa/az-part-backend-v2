@@ -53,7 +53,9 @@
                         </div>
                         <div class="col-md-7">
                             <div class="e-box">
-                                <h4> {{ $item->seller['name'] }} </h4>
+                                <h4> {{ $item->seller['name'] }} 
+                                    @if($item->seller->vip == 1) <i class="fa fa-check-circle verified"></i> @endif
+                                </h4>
                                 <h6 class="orang">                                  
                                     <a href="https://maps.google.com/?q={{$item->seller['lat']}},{{$item->seller['lng']}}" target="_blank"> 
                                         <img src="{{ site('assets/images/location.png') }}" alt="">  {{ $item->seller['address'] }}

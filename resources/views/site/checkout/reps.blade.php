@@ -65,7 +65,7 @@
               <label> <input type="radio" name="size" value="light"
                 {{ request()->size == 'light' ? 'checked' : '' }}> @lang('site.light') </label>
 
-              <label> <input type="radio" name="size" value="medium" checked
+              <label> <input type="radio" name="size" value="medium" 
                 {{ request()->size == 'medium' ? 'checked' : '' }}> @lang('site.medium') </label>
 
               <label> <input type="radio" name="size" value="heavy"

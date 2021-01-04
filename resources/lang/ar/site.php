@@ -1155,4 +1155,9 @@ return [
     'second_name' => 'الاسم الثانى',
     'duplicated_region_delivery' => 'منطقة توصيل مضافة بالفعل!',
     'deposit' => 'العربون',
+    'agree_for_all_terms' => 'أوافق على جميع الشروط والأحكام الخاصة',
+    'accept_to_complete_order' => 'موافق علي اكمال الطلب',
+    'choose_search_type' => 'اختر نوع البحث',
+    'normal_search' => 'البحث اليدوى',
+    'electronic_search' => 'البحث الإلكترونى',
 ];

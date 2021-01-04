@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Site\ContactUsRequest;
 use App\Models\ContactUs;
+use App\Notifications\TestNotification;
 
 class ContactUsController extends Controller
 {
@@ -18,9 +19,13 @@ class ContactUsController extends Controller
             'mobile' => $request->mobile , 'message' => $request->message
         ]);
 
-        if($item)
-            return back()->with('success' , __('site.success-save') );
-        else
-            return back()->with('failed' , __('site.error-happen'))->withInput();
+        
+       $item->notify(new TestNotification());
+
+
+        // if($item)
+        //     return back()->with('success' , __('site.success-save') );
+        // else
+        //     return back()->with('failed' , __('site.error-happen'))->withInput();
     }
 }

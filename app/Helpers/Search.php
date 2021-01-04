@@ -70,7 +70,9 @@ class Search
         }
 
         $response['all_items'] = $items->get();
-        $response['items'] = $items->limit($limit)->get();                    
+        $response['items'] = $items->limit($limit)->get()->sortByDesc(function($query){
+            return $query->seller->vip;
+        });;                    
             
         return $response;
     }

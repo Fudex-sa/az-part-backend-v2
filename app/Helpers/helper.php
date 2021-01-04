@@ -15,6 +15,7 @@ use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Page;
 use App\Models\AssignSeller;
 use App\Models\PaymentMethod;
 
@@ -81,6 +82,14 @@ if (! function_exists('cur_root')) {
     function cur_root()
     {
         return Route::currentRouteName();
+    }
+}
+
+if (! function_exists('page')) {
+    function page($id)
+    {
+        $item = Page::find($id);
+        return $item;
     }
 }
 

@@ -1010,4 +1010,9 @@ return [
     'second_name' => 'Second Name',
     'duplicated_region_delivery' => 'Duplicated Delivery Region!',
     'deposit' => 'Deposit',
+    'agree_for_all_terms' => 'I agree to all special terms and conditions',
+    'accept_to_complete_order' => 'I agree to complete the application',
+    'choose_search_type' => 'Choose Search Type',
+    'normal_search' => 'Normal Search',
+    'electronic_search' => 'Electronic Search',
 ];
