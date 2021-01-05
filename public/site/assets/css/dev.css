@@ -374,3 +374,6 @@ background-color: #F8F9FA;
 .btn-rejected{
     background-color: tomato;
 }
+.my_cats{
+    display: inline;
+}

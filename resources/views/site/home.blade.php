@@ -9,6 +9,10 @@
 
 @section('content')
 
+<button class="btn btn-success"> @lang('site.total_sellers_count') ({{ $total_sellers_count }}) </button>
+
+<button class="btn btn-warning"> @lang('site.total_cars_count') ({{ $total_cars_count }}) </button>
+
 <section class="header">
   <div class="container">
     <div class="row d-flex justify-content-center">

@@ -51,6 +51,9 @@ class UserController extends Controller
         else 
             $item = User::create($data);
 
+            $msg = __('site.new_registeration').': '.$item->name;
+            \Slack::send($msg);
+
         if($item){
             $message = notification('verfication_message') . $verification_code;
             send_sms($item->mobile,$message);

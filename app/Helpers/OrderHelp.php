@@ -52,7 +52,10 @@ class OrderHelp
             'remaining_cost' => $remaining_cost
         ]);
 
-        if($item){          
+        if($item){      
+            $msg = __('site.new_request_no').' : '.$item->id;
+            \Slack::send($msg);
+
             update_cart($item->id);
           
             if($package_sub_id != 0)

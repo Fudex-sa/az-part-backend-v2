@@ -13,6 +13,7 @@ use App\Exports\CarsExport;
 use App\Exports\CarBiddingExport;
 use App\Exports\RequestsExport;
 use App\Exports\StockExport;
+use App\Exports\OrderExport;
 use Excel;
 
 class ExportExcelController extends Controller
@@ -54,6 +55,11 @@ class ExportExcelController extends Controller
     public function stock()
     {
         return Excel::download(new StockExport() , 'stock.xls');
+    }
+
+    public function orders()
+    {
+        return Excel::download(new OrderExport() , 'orders.xls');
     }
 
 }

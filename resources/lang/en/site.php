@@ -1015,4 +1015,8 @@ return [
     'choose_search_type' => 'Choose Search Type',
     'normal_search' => 'Normal Search',
     'electronic_search' => 'Electronic Search',
+    'total_sellers_count' => 'The number of dealers of used spare parts',
+    'total_cars_count' => 'The number of cars included',
+    'edit_category' => 'Edit Category',
+    'my_categories' => 'My Categories',
 ];

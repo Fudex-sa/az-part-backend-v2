@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Site\ContactUsRequest;
 use App\Models\ContactUs;
-use App\Notifications\TestNotification;
-
+ 
 class ContactUsController extends Controller
 {
     
@@ -19,13 +18,13 @@ class ContactUsController extends Controller
             'mobile' => $request->mobile , 'message' => $request->message
         ]);
 
-        
-       $item->notify(new TestNotification());
+        $msg = __('site.contact_us_msg').' : '.$request->message;
+        \Slack::send($msg);
 
 
-        // if($item)
-        //     return back()->with('success' , __('site.success-save') );
-        // else
-        //     return back()->with('failed' , __('site.error-happen'))->withInput();
+        if($item)
+            return back()->with('success' , __('site.success-save') );
+        else
+            return back()->with('failed' , __('site.error-happen'))->withInput();
     }
 }

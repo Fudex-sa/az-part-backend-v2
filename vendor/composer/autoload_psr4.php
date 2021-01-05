@@ -9,6 +9,8 @@ return array(
     'voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
     'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'jeremykenedy\\Slack\\Laravel\\' => array($vendorDir . '/jeremykenedy/slack-laravel/src'),
+    'jeremykenedy\\Slack\\' => array($vendorDir . '/jeremykenedy/slack/src'),
     'abdullahobaid\\mobilywslaraval\\' => array($vendorDir . '/abdullahobaid/mobilywslaraval/src'),
     'ZipStream\\' => array($vendorDir . '/maennchen/zipstream-php/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),

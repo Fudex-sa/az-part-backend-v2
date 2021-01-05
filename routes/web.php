@@ -32,6 +32,12 @@ Route::group(
             Route::get('avaliable_models/search', [App\Http\Controllers\Seller\AvliableModelController::class, 'search'])->name('avaliable_models.search');
             Route::get('avaliable_models/add', [App\Http\Controllers\Seller\AvliableModelController::class, 'add'])->name('seller.avaliable_models.add');
 
+            Route::get('my_categories', [App\Http\Controllers\Seller\MyCategoryController::class, 'index'])->name('seller.my_categories');
+            Route::post('my_category/{id?}', [App\Http\Controllers\Seller\MyCategoryController::class, 'store'])->name('seller.my_category.store');
+            Route::get('my_category/{item}', [App\Http\Controllers\Seller\MyCategoryController::class, 'edit'])->name('seller.my_category');
+            Route::delete('my_category/delete', [App\Http\Controllers\Seller\MyCategoryController::class, 'delete'])->name('admin.my_category.delete');
+
+
             Route::get('requests', [App\Http\Controllers\Seller\RequestsController::class, 'all'])->name('seller.requests');
             Route::post('request/update/{item}', [App\Http\Controllers\Seller\RequestsController::class, 'update'])->name('seller.request.update');
             Route::get('request/add_price/{id}', [App\Http\Controllers\Seller\RequestsController::class, 'add_price'])->name('seller.add_price');
@@ -254,7 +260,7 @@ Route::group(
             Route::delete('seller/delete', [App\Http\Controllers\Admin\SellerController::class, 'delete'])->name('admin.seller.delete');
             Route::post('seller/activate', [App\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.seller.activate');
             Route::post('available_brand/store', [App\Http\Controllers\Admin\SellerController::class, 'available_brand_store'])->name('admin.available_brand.store');
-
+ 
             /******************* Brokers ********************/
             Route::get('broker/search', [App\Http\Controllers\Admin\BrokerController::class, 'search'])->name('admin.broker.search');
             Route::get('brokers', [App\Http\Controllers\Admin\BrokerController::class, 'all'])->name('admin.brokers');
@@ -416,6 +422,13 @@ Route::group(
             Route::post('coupon/store/{item?}', [App\Http\Controllers\Admin\CouponController::class, 'store'])->name('admin.coupon.store');
             Route::delete('coupon/delete', [App\Http\Controllers\Admin\CouponController::class, 'delete'])->name('admin.coupon.delete');
 
+            /************ Categories  **********/
+            Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'all'])->name('admin.categories');
+            Route::get('category/{item}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.category');
+            Route::post('category/store/{item?}', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.category.store');
+            Route::delete('category/delete', [App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('admin.category.delete');
+            Route::post('category/activate', [App\Http\Controllers\Admin\CategoryController::class, 'activate'])->name('admin.category.activate');
+
             /************ Stock  **********/
             Route::get('stock', [App\Http\Controllers\Admin\StockController::class, 'all'])->name('admin.stocks');
             Route::get('stock/{brand}/{model}/{year}/{piece}', [App\Http\Controllers\Admin\StockController::class, 'show'])->name('admin.stock');
@@ -458,6 +471,8 @@ Route::group(
             Route::get('export/sellers/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'sellers'])->name('export.pdf.sellers');
             Route::get('export/supervisors/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'supervisors'])->name('export.pdf.supervisors');
 
+            Route::get('export/orders/pdf', [App\Http\Controllers\Admin\ExportPdfController::class, 'orders'])->name('export.pdf.orders');
+
             Route::get('export/requests/pdf/normal', [App\Http\Controllers\Admin\ExportPdfController::class, 'requests_normal'])->name('export.pdf.requests.normal');
             Route::get('export/requests/pdf/vip', [App\Http\Controllers\Admin\ExportPdfController::class, 'requests_vip'])->name('export.pdf.requests.vip');
             Route::get('export/requests/pdf/admin', [App\Http\Controllers\Admin\ExportPdfController::class, 'requests_admin'])->name('export.pdf.requests.admin');
@@ -472,6 +487,7 @@ Route::group(
             Route::get('export/users/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'users'])->name('export.excel.users');
             Route::get('export/sellers/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'sellers'])->name('export.excel.sellers');
             Route::get('export/supervisors/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'supervisors'])->name('export.excel.supervisors');
+            Route::get('export/orders/excel', [App\Http\Controllers\Admin\ExportExcelController::class, 'orders'])->name('export.excel.orders');
 
             Route::get('export/excel/requests/normal', [App\Http\Controllers\Admin\ExportExcelController::class, 'requests_normal'])->name('export.excel.requests.normal');
             Route::get('export/excel/requests/vip', [App\Http\Controllers\Admin\ExportExcelController::class, 'requests_vip'])->name('export.excel.requests.vip');

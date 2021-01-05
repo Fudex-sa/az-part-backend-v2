@@ -107,7 +107,8 @@
                     <br/>
 
                     <span class="hidden"> 
-                      {{ $delv_price += $rep_price->rep->rep_prices->where('_from',$tashReg)->sum('price') }} </span>
+                      {{ $delv_price += $rep_price->rep->rep_prices->where('_from',$tashReg)
+                          ->where('city_id',shipping_session()['city_id'])->sum('price') }} </span>
                   @endif
                 @endforeach                
               @endif
