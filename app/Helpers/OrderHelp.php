@@ -8,14 +8,17 @@ use App\Models\PackageSubscribe;
 use App\Helpers\PackageHelp;
 use App\Helpers\App\Helpers;
 use App\Models\PaymentMethod;
+use App\Helpers\Search;
 
 class OrderHelp
 {
 
     protected $package;
+    protected $search;
 
     public function __construct()
     {    
+        $this->search = new Search();
         $this->package = new PackageHelp();
 
     }
@@ -57,6 +60,8 @@ class OrderHelp
             \Slack::send($msg);
 
             update_cart($item->id);
+
+            $this->search->update_remaining_stores(session()->get('remaining_stores'));
           
             if($package_sub_id != 0)
                 $this->package->update_expired($package_sub_id);

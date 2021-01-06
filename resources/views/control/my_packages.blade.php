@@ -37,7 +37,7 @@
                         <th scope="col"> @lang('site.stores_no_or_requests_no') </th>
                         <th scope="col"> @lang('site.discount') </th>
                         <th scope="col"> @lang('site.price') </th>
-                        <th scope="col"> @lang('site.expired') </th>
+                        {{-- <th scope="col"> @lang('site.expired') </th> --}}
                         <th scope="col"> @lang('site.my_rest_orders') </th>
                         <th scope="col"> @lang('site.subscribe_date') </th>
                       </tr>
@@ -62,11 +62,11 @@
 
                             <td> {{ $item->price }} @lang('site.rs') </td>
 
-                            <td> {{ $item->expired == 1 ? __('site.yes') : __('site.no') }} </td>
+                            {{-- <td> {{ $item->expired == 1 ? __('site.yes') : __('site.no') }} </td> --}}
 
                             <td> @if($item->package['type'] == 'electronic')
                                    {{ $item->stores_no - count($item->my_orders)  }} @lang('site.order')
-                                 @else - @endif      
+                                 @else {{ logged_user()->remaining_stores }} @endif      
                             </td>
 
                             <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>

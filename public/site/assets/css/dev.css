@@ -377,3 +377,11 @@ background-color: #F8F9FA;
 .my_cats{
     display: inline;
 }
+
+.terms{
+    color:#fff;
+    margin-top:17px;
+}
+.ui-widget{
+    margin-top:10px;
+}
