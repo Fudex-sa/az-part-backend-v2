@@ -9,11 +9,12 @@
 
 @section('content')
 
-<button class="btn btn-success"> @lang('site.total_sellers_count') ({{ $total_sellers_count }}) </button>
-
-<button class="btn btn-warning"> @lang('site.total_cars_count') ({{ $total_cars_count }}) </button>
 
 <section class="header">
+    <div class="summary-numbers">
+        <span> @lang('site.total_sellers_count') ({{ $total_sellers_count }}) </span>
+        <span> @lang('site.total_cars_count') ({{ $total_cars_count }}) </span>
+    </div>
   <div class="container">
     <div class="row d-flex justify-content-center">
 
@@ -68,7 +69,6 @@
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4 ">
- 
               <button type="button" class="btn btn-next btn-block btn-lg" id="btn-slide"
                 value="Show text input"> @lang('site.next') </button>
             </div>
@@ -121,12 +121,13 @@
              <a href="javascript:void(0);" class="float-left an-back" id="back"> <img src="{{ site('assets/images/back.png') }}" alt="" class="img-fluid"> </a>
 
             </div>
-            <div class="col-md-4 col-11">              
-                <input class="form-check-input" type="radio" name="terms" id="terms" value="1" required>
-                  <label class="form-check-label pr-4 terms" for="terms">
-                    <a data-toggle="modal" data-target="#search_types"> @lang('site.agree_for_all_terms') </a>
-                  </label>
-                
+            <div class="col-md-4 col-11">
+
+              <input class="form-check-input" type="radio" name="terms" id="terms" value="1" required>
+              <label class="form-check-label pr-4 terms" for="terms">
+                <a data-toggle="modal" data-target="#search_types"> @lang('site.agree_for_all_terms') </a>
+              </label>
+
               <button type="submit" class="btn btn-next  btn-lg btn-block"> @lang('site.search')  </button>
 
             </div>
@@ -477,7 +478,7 @@
           
        </div>
      </div>
-     
+
      {{-- <div class="modal-footer-2 text-center mb-5 row">
        <div class="form-check col-md-12 text-center">
          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required>
@@ -490,6 +491,7 @@
          @lang('site.accept_to_complete_order')
        </button>
      </div> --}}
+
 
    </div>
  </div>
