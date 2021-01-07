@@ -74,7 +74,22 @@
                                 <tr>
                                     <tr>
                                         <th> <i class="fa fa-camera"></i> </th>
-                                        <td colspan="3"> @if($item->photo) <img src="{{ cart_img($item->photo) }}" class="img-tbl"/> 
+                                        <td colspan="3"> @if($item->photo) 
+                                            
+                                            <button type="button"  data-toggle="modal" data-target="#viewImg">
+                                                <img src="{{ cart_img($item->photo) }}" class="img-tbl"/> 
+                                            </button>
+                            
+                                            <div id="viewImg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                      <div class="modal-body">
+                                                        <img src="{{ cart_img($item->photo) }}" class="img-responsive"/>                                                          
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+ 
                                             @else <img src="{{ site('assets/images/logo.png') }}" class="img-tbl"/> @endif
                                         </td>
                                     </tr>   

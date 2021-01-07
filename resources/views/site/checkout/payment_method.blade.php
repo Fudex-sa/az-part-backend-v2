@@ -72,7 +72,7 @@
                        <div class="tab-pane fade show active" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
 
                         <div class="row mt-5">
-                          <div class="col-md-7">
+                          <div class="col-md-7 payment">
                             <div class="cart-address shadow rounded">
                               <h3> @lang('site.please_choose_payment_method')  </h3>
 

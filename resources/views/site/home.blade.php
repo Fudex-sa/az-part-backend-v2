@@ -9,7 +9,12 @@
 
 @section('content')
 
+
 <section class="header">
+    <div class="summary-numbers">
+        <span> @lang('site.total_sellers_count') ({{ $total_sellers_count }}) </span>
+        <span> @lang('site.total_cars_count') ({{ $total_cars_count }}) </span>
+    </div>
   <div class="container">
     <div class="row d-flex justify-content-center">
 
@@ -105,9 +110,9 @@
 
             </div>
 
-                <div class="col-md-2 col-2">
+                {{-- <div class="col-md-2 col-2">
                   <button type="button" class="btn btn-info-2" data-toggle="modal" data-target="#search_types"></button>
-                </div>
+                </div> --}}
                 <div class="col-md-2"></div>
 
             <div class="col-md-3"></div>
@@ -117,6 +122,12 @@
 
             </div>
             <div class="col-md-4 col-11">
+
+              <input class="form-check-input" type="radio" name="terms" id="terms" value="1" required>
+              <label class="form-check-label pr-4 terms" for="terms">
+                <a data-toggle="modal" data-target="#search_types"> @lang('site.agree_for_all_terms') </a>
+              </label>
+
               <button type="submit" class="btn btn-next  btn-lg btn-block"> @lang('site.search')  </button>
 
             </div>
@@ -447,63 +458,41 @@
      </div>
      <div class="modal-body row px-5">
        <div class="modal-head text-center col-md-12">
-         <h2>أختر نوع البحث</h2>
+         <h2> @lang('site.choose_search_type') </h2>
        </div>
        <div class="modal-box col-md-6">
          <div class="alert-info-2">
-         <h3> <img src="{{ site('assets/images/hand.svg') }}" alt="" class="pb-3 pl-2"> البحث العادي</h3>
-           <h5 class="my-3"><span class="warning">تنبيهات </span></h5>
-           <ul class="take-care">
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-
-           </ul>
+         <h3> <img src="{{ site('assets/images/hand.svg') }}" alt="" class="pb-3 pl-2"> @lang('site.normal_search') </h3>
+          
+         {!! page(5)['content_'.my_lang()] !!}
          </div>
-         <div class="skills-11">
-           <h5 class="my-3"><span class="skill">مميزات </span></h5>
-           <ul class="take-care">
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-           </ul>
-
-         </div>
+        
        </div>
        <div class="modal-box col-md-6">
          <div class="alert-info-2">
-         <h3> <img src="{{ site('assets/images/rocket.svg') }}" alt="" class="pb-3 pl-2">البحث الإلكترونى</h3>
-           <h5 class="my-3"><span class="warning">تنبيهات </span></h5>
-           <ul class="take-care">
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-
-           </ul>
-         </div>
-         <div class="skills-11">
-           <h5 class="my-3"><span class="skill">مميزات </span></h5>
-           <ul class="take-care">
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-             <li><span class="dash">-</span> هناك حقيقة مثبتة منذ زمن طويل وهي أن </li>
-           </ul>
+         <h3> <img src="{{ site('assets/images/rocket.svg') }}" alt="" class="pb-3 pl-2"> @lang('site.electronic_search') </h3>
+            
+          {!! page(6)['content_'.my_lang()] !!}
 
          </div>
+          
        </div>
      </div>
-     <div class="modal-footer-2 text-center mb-5 row">
+
+     {{-- <div class="modal-footer-2 text-center mb-5 row">
        <div class="form-check col-md-12 text-center">
          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required>
          <label class="form-check-label pr-4" for="exampleRadios1">
-           أوافق على جميع الشروط والأحكام الخاصة
+           @lang('site.agree_for_all_terms')
          </label>
        </div>
        <div class="col-md-4"></div>
-       <button type="button" class="btn btn-next col-md-4 btn-block" data-dismiss="modal">موافق علي اكمال الطلب</button>
-     </div>
+       <button type="button" class="btn btn-next col-md-4 btn-block" data-dismiss="modal">
+         @lang('site.accept_to_complete_order')
+       </button>
+     </div> --}}
+
+
    </div>
  </div>
 </div>

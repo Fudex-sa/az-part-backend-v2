@@ -361,3 +361,27 @@ background-color: #F8F9FA;
     color: red;
     margin-right: 15px;
 }
+.verified{
+    color: green;
+    font-size: 17px;
+}
+.btn-pending{
+    background-color: yellow;
+}
+.btn-accepted{
+    background-color: yellowgreen;
+}
+.btn-rejected{
+    background-color: tomato;
+}
+.my_cats{
+    display: inline;
+}
+
+.terms{
+    color:#fff;
+    margin-top:17px;
+}
+.ui-widget{
+    margin-top:10px;
+}

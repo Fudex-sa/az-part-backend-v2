@@ -10,7 +10,12 @@ class VipRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-       'user_id' , 'status' , 'approved_by'
+       'user_id' , 'status' , 'approved_by' , 'user_type'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

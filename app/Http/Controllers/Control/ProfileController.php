@@ -14,6 +14,7 @@ use App\Models\Region;
 use App\Models\City;
 use App\Models\Bank;
 use App\Models\DeliveryRegion;
+use App\Models\VipRequest;
 
 class ProfileController extends Controller
 {
@@ -34,7 +35,9 @@ class ProfileController extends Controller
         $banks = Bank::all();
         $delivery_regions = DeliveryRegion::all();
 
-        return view($this->view . 'profile', compact('profile','regions','cities','banks','delivery_regions'));
+        $vip_user = VipRequest::where('user_id',logged_user()->id)->where('user_type',user_type())->first();
+
+        return view($this->view . 'profile', compact('profile','regions','cities','banks','delivery_regions','vip_user'));
     }
 
     public function update(AllUsersRequest $request)
@@ -80,5 +83,19 @@ class ProfileController extends Controller
 
         return back()->with('failed' , __('site.error-happen') );
 
+    }
+
+    public function request_vip()
+    {
+         
+        $exists = VipRequest::where('user_id',logged_user()->id)->where('user_type',user_type())->first();
+        if(! $exists){
+            
+            if( VipRequest::create(['user_id' => logged_user()->id , 'user_type' => user_type()]))
+                return back()->with('success' , __('site.your_vip_request_under_review') );
+
+        }
+
+        return back()->with('failed' , __('site.error-happen') );
     }
 }

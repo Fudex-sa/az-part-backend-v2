@@ -43,3 +43,11 @@ body {
 .add-bg {
   background: #fff url(../images/add.png) no-repeat 99%;
 }
+.header .summary-numbers > span {
+    margin-left: 0;
+    margin-right: 15px;
+}
+.header .summary-numbers > span:last-child{
+    margin-left:0px;
+    margin-right:0px;
+}

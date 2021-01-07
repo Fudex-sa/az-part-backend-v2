@@ -65,7 +65,7 @@
               <label> <input type="radio" name="size" value="light"
                 {{ request()->size == 'light' ? 'checked' : '' }}> @lang('site.light') </label>
 
-              <label> <input type="radio" name="size" value="medium" checked
+              <label> <input type="radio" name="size" value="medium" 
                 {{ request()->size == 'medium' ? 'checked' : '' }}> @lang('site.medium') </label>
 
               <label> <input type="radio" name="size" value="heavy"
@@ -107,7 +107,16 @@
                     <br/>
 
                     <span class="hidden"> 
-                      {{ $delv_price += $rep_price->rep->rep_prices->where('_from',$tashReg)->sum('price') }} </span>
+                      @if(request()->city)
+                        {{ $delv_price += $rep_price->rep->rep_prices->where('_from',$tashReg)                        
+                        ->where('city_id',request()->city)
+                        ->sum('price') }} 
+                      @else
+                      {{ $delv_price += $rep_price->rep->rep_prices->where('_from',$tashReg)
+                          ->where('city_id',shipping_session()['city_id'])                          
+                          ->sum('price') }} 
+                      @endif
+                      </span>
                   @endif
                 @endforeach                
               @endif

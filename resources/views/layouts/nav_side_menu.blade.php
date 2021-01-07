@@ -41,6 +41,11 @@
       <a class="nav-link {{ isset($avaliable_models) ? 'active' : '' }}"
           href="{{ route('seller.avaliable_models') }}">
           <i class="fa fa-car"></i> @lang('site.avaliable_models') </a>
+
+          <a class="nav-link {{ isset($my_categories) ? 'active' : '' }}"
+          href="{{ route('seller.my_categories') }}">
+          <i class="fa fa-cogs"></i> @lang('site.my_categories') </a>
+
     @endif
 
     @if(user_type() == 'user' || user_type() == 'company' || user_type() == 'seller' || user_type() == 'broker')

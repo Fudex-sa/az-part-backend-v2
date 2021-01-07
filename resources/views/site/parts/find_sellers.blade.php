@@ -53,7 +53,9 @@
                         </div>
                         <div class="col-md-7">
                             <div class="e-box">
-                                <h4> {{ $item->seller['name'] }} </h4>
+                                <h4> {{ $item->seller['name'] }} 
+                                    @if($item->seller->vip == 1) <i class="fa fa-check-circle verified"></i> @endif
+                                </h4>
                                 <h6 class="orang">                                  
                                     <a href="https://maps.google.com/?q={{$item->seller['lat']}},{{$item->seller['lng']}}" target="_blank"> 
                                         <img src="{{ site('assets/images/location.png') }}" alt="">  {{ $item->seller['address'] }}
@@ -61,6 +63,9 @@
 
                                     {{ $item->seller->region ? $item->seller->region['name_'.my_lang()] : '' }} - 
                                     {{ $item->seller->city ? $item->seller->city['name_'.my_lang()] : '' }}
+
+                                    |  @lang('site.tashlih_region') : 
+                                        {{ $item->seller->tashlih ? $item->seller->tashlih['name_'.my_lang()] : '-' }}
                                 </h6>
 
                                 <h6> 
@@ -72,6 +77,14 @@
                                     <span> {{ $item->brand['name_'.my_lang()] }}
                                         - {{ $item->model['name_'.my_lang()] }}
                                         - {{ request()->year }}  </span></p>
+
+                                @if($item->seller->seller_categories)
+                                    @foreach ($item->seller->seller_categories as $cat)
+                                        <li class="my_cats"> <label class="btn btn-success"> 
+                                            {{ $cat->category ? $cat->category['name_'.my_lang()] : __('site.all') }}  </label> </li>            
+                                     @endforeach                                 
+                                @endif
+
                             </div>
                         </div>
 

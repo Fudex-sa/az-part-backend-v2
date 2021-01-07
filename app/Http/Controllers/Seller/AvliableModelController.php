@@ -53,7 +53,14 @@ class AvliableModelController extends Controller
             foreach($request->years as $year){
                 $data['year'] = $year;
 
-                $item = AvailableModel::create($data);
+                $exits = AvailableModel::where('user_id',logged_user()->id)->where('brand_id',$request->brand_id)
+                                ->where('brand_id',$request->brand_id)->where('year',$year)->first();
+
+                if(! $exits)
+                    $item = AvailableModel::create($data);
+                
+                else $item = null;
+
             }
         }else{
 
@@ -64,7 +71,7 @@ class AvliableModelController extends Controller
         if($item)
             return redirect()->route('seller.avaliable_models')->with('success' , __('site.success-save') );
 
-        return back()->with('failed' , __('site.error-happen'))->withInput();
+        return back()->with('failed' , __('site.duplicated_row'))->withInput();
          
     }
 

@@ -41,26 +41,26 @@ class PartController extends Controller
         $this->search->save_search($request); //--- save search in session
 
         if($search_type == 'electronic'){
-
-            return $this->electronic_search($request);
-            
+            return $this->electronic_search($request);            
         }
-       
-
+ 
         $sys_limit = setting('manual_search_result');
          
         $this->package->stores_limit($search_type) > 0 ? 
 
                 $limit = $this->package->stores_limit($search_type) : $limit = $sys_limit;
            
-        $limit = $limit + logged_user()->special_stores_no;
+        $limit = $limit + logged_user()->special_stores_no + logged_user()->remaining_stores;
 
         $response = $this->search->manual_search($request,$limit);
  
+
         $items = $response ? $response['items'] : null;
         $found_result = $response  ? $response['found_result'] : 0;
         $all_items = $response ? $response['all_items'] : null;
          
+        session()->put('remaining_stores',$limit-count($all_items));
+ 
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }
 

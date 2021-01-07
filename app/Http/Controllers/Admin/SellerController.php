@@ -182,7 +182,9 @@ class SellerController extends Controller
             $data['year'] = $year;
 
             $exists = AvailableModel::where('brand_id',$request->brand_id)->where('model_id',$request->model_id)
-                                    ->where('year',$year)->first();
+                                    ->where('year',$year)
+                                    ->where('user_id',$seller->id)
+                                    ->first();
             if($exists)
                 return back()->with('failed', __('site.duplicated_row'))->withInput();
 

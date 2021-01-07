@@ -43,12 +43,12 @@
             @endif
     
             @if(has_permission('users_show'))
-                <a href="{{route('export.excel.users')}}" class="btn btn-success"> 
+                <a href="{{route('export.excel.orders')}}" class="btn btn-success"> 
                     <i class="fa fa-download"></i>  @lang('site.excel') </a> 
             @endif
     
             @if(has_permission('users_show'))
-                <a href="{{route('export.pdf.users')}}" class="btn btn-info"> 
+                <a href="{{route('export.pdf.orders')}}" class="btn btn-info"> 
                     <i class="fa fa-file"></i>  @lang('site.pdf') </a> 
             @endif 
         </div>

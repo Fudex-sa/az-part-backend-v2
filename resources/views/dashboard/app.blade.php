@@ -107,6 +107,10 @@
                         @if(has_permission('roles_show'))
                             <li> <a href="{{route('admin.roles')}}"> {{ __('site.roles') }} </a> </li>
                         @endif
+
+                        @if(has_permission('requests_vip'))
+                        <li> <a href="{{route('admin.vip_requests')}}"> {{ __('site.requests_vip') }} </a> </li>
+                    @endif
                     </ul>
                 </li>
             </ul>
@@ -155,6 +159,14 @@
 
                 @if(has_permission('coupons_show'))
                     <li> <a  href="{{ route('admin.coupons')}}"> <i class="fa fa-image"></i>  {{ __('site.coupons') }} </a> </li>
+                @endif
+
+            </ul>
+
+            <ul class="nav side-menu">
+
+                @if(has_permission('categories_show'))
+                    <li> <a  href="{{ route('admin.categories')}}"> <i class="fa fa-list"></i>  {{ __('site.categories') }} </a> </li>
                 @endif
 
             </ul>
@@ -268,6 +280,10 @@
                         <li> <a href="{{ route('admin.page',3) }}"> {{ __('site.terms_and_condition') }} </a> </li>
 
                         <li> <a href="{{ route('admin.page',4) }}"> {{ __('site.faq') }} </a> </li>
+
+                        <li> <a href="{{ route('admin.page',5) }}"> {{ __('site.normal_search') }} </a> </li>
+
+                        <li> <a href="{{ route('admin.page',6) }}"> {{ __('site.electronic_search') }} </a> </li>
                     </ul>
                 </li>
             </ul>

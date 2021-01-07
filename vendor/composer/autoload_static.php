@@ -18,10 +18,10 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
@@ -107,6 +107,11 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         array (
             'phpseclib\\' => 10,
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'j' => 
+        array (
+            'jeremykenedy\\Slack\\Laravel\\' => 27,
+            'jeremykenedy\\Slack\\' => 19,
         ),
         'a' => 
         array (
@@ -214,6 +219,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         array (
             'Intervention\\Image\\' => 19,
             'Illuminate\\Support\\' => 19,
+            'Illuminate\\Notifications\\' => 25,
             'Illuminate\\Foundation\\Auth\\' => 27,
             'Illuminate\\' => 11,
         ),
@@ -288,6 +294,14 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'jeremykenedy\\Slack\\Laravel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src',
+        ),
+        'jeremykenedy\\Slack\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeremykenedy/slack/src',
         ),
         'abdullahobaid\\mobilywslaraval\\' => 
         array (
@@ -563,6 +577,10 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
             1 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections',
         ),
+        'Illuminate\\Notifications\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
+        ),
         'Illuminate\\Foundation\\Auth\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/ui/auth-backend',
@@ -726,6 +744,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\CarBiddingExport' => __DIR__ . '/../..' . '/app/Exports/CarBiddingExport.php',
         'App\\Exports\\CarsExport' => __DIR__ . '/../..' . '/app/Exports/CarsExport.php',
+        'App\\Exports\\OrderExport' => __DIR__ . '/../..' . '/app/Exports/OrderExport.php',
         'App\\Exports\\RequestsExport' => __DIR__ . '/../..' . '/app/Exports/RequestsExport.php',
         'App\\Exports\\SellerExport' => __DIR__ . '/../..' . '/app/Exports/SellerExport.php',
         'App\\Exports\\StockExport' => __DIR__ . '/../..' . '/app/Exports/StockExport.php',
@@ -744,6 +763,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Http\\Controllers\\Admin\\BrokerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BrokerController.php',
         'App\\Http\\Controllers\\Admin\\CarBiddingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CarBiddingController.php',
         'App\\Http\\Controllers\\Admin\\CarController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CarController.php',
+        'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
         'App\\Http\\Controllers\\Admin\\CityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CityController.php',
         'App\\Http\\Controllers\\Admin\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CompanyController.php',
         'App\\Http\\Controllers\\Admin\\ContactUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ContactUsController.php',
@@ -816,6 +836,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Http\\Controllers\\Rep\\MyOrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Rep/MyOrderController.php',
         'App\\Http\\Controllers\\Rep\\MyPricesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Rep/MyPricesController.php',
         'App\\Http\\Controllers\\Seller\\AvliableModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Seller/AvliableModelController.php',
+        'App\\Http\\Controllers\\Seller\\MyCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Seller/MyCategoryController.php',
         'App\\Http\\Controllers\\Seller\\RequestsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Seller/RequestsController.php',
         'App\\Http\\Controllers\\Site\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Site/AuthController.php',
         'App\\Http\\Controllers\\Site\\CarController' => __DIR__ . '/../..' . '/app/Http/Controllers/Site/CarController.php',
@@ -928,6 +949,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Models\\CarFavorite' => __DIR__ . '/../..' . '/app/Models/CarFavorite.php',
         'App\\Models\\CarImage' => __DIR__ . '/../..' . '/app/Models/CarImage.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
         'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
         'App\\Models\\Complain' => __DIR__ . '/../..' . '/app/Models/Complain.php',
@@ -960,6 +982,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\RolePermission' => __DIR__ . '/../..' . '/app/Models/RolePermission.php',
         'App\\Models\\Seller' => __DIR__ . '/../..' . '/app/Models/Seller.php',
+        'App\\Models\\SellerCategory' => __DIR__ . '/../..' . '/app/Models/SellerCategory.php',
         'App\\Models\\SellerRate' => __DIR__ . '/../..' . '/app/Models/SellerRate.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
         'App\\Models\\Slider' => __DIR__ . '/../..' . '/app/Models/Slider.php',
@@ -972,6 +995,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'App\\Models\\UserPermission' => __DIR__ . '/../..' . '/app/Models/UserPermission.php',
         'App\\Models\\UserRole' => __DIR__ . '/../..' . '/app/Models/UserRole.php',
         'App\\Models\\VipRequest' => __DIR__ . '/../..' . '/app/Models/VipRequest.php',
+        'App\\Notifications\\TestNotification' => __DIR__ . '/../..' . '/app/Notifications/TestNotification.php',
         'App\\Policies\\AvaliableModelPolicy' => __DIR__ . '/../..' . '/app/Policies/AvaliableModelPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -2765,6 +2789,7 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'Illuminate\\Notifications\\Channels\\BroadcastChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/BroadcastChannel.php',
         'Illuminate\\Notifications\\Channels\\DatabaseChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/DatabaseChannel.php',
         'Illuminate\\Notifications\\Channels\\MailChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/MailChannel.php',
+        'Illuminate\\Notifications\\Channels\\SlackWebhookChannel' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Channels/SlackWebhookChannel.php',
         'Illuminate\\Notifications\\Console\\NotificationTableCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Console/NotificationTableCommand.php',
         'Illuminate\\Notifications\\DatabaseNotification' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/DatabaseNotification.php',
         'Illuminate\\Notifications\\DatabaseNotificationCollection' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/DatabaseNotificationCollection.php',
@@ -2777,12 +2802,16 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'Illuminate\\Notifications\\Messages\\DatabaseMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/DatabaseMessage.php',
         'Illuminate\\Notifications\\Messages\\MailMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/MailMessage.php',
         'Illuminate\\Notifications\\Messages\\SimpleMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/SimpleMessage.php',
+        'Illuminate\\Notifications\\Messages\\SlackAttachment' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackAttachment.php',
+        'Illuminate\\Notifications\\Messages\\SlackAttachmentField' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackAttachmentField.php',
+        'Illuminate\\Notifications\\Messages\\SlackMessage' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackMessage.php',
         'Illuminate\\Notifications\\Notifiable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Notifiable.php',
         'Illuminate\\Notifications\\Notification' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Notification.php',
         'Illuminate\\Notifications\\NotificationSender' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationSender.php',
         'Illuminate\\Notifications\\NotificationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationServiceProvider.php',
         'Illuminate\\Notifications\\RoutesNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/RoutesNotifications.php',
         'Illuminate\\Notifications\\SendQueuedNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/SendQueuedNotifications.php',
+        'Illuminate\\Notifications\\SlackChannelServiceProvider' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/SlackChannelServiceProvider.php',
         'Illuminate\\Pagination\\AbstractPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/AbstractPaginator.php',
         'Illuminate\\Pagination\\LengthAwarePaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/LengthAwarePaginator.php',
         'Illuminate\\Pagination\\PaginationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/PaginationServiceProvider.php',
@@ -6397,6 +6426,18 @@ class ComposerStaticInitba2c58aa1dff5677e1705fdcc22f954d
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
         'abdullahobaid\\mobilywslaraval\\Mobily' => __DIR__ . '/..' . '/abdullahobaid/mobilywslaraval/src/Mobily.php',
         'abdullahobaid\\mobilywslaraval\\MobilywsProvider' => __DIR__ . '/..' . '/abdullahobaid/mobilywslaraval/src/MobilywsProvider.php',
+        'jeremykenedy\\Slack\\ActionConfirmation' => __DIR__ . '/..' . '/jeremykenedy/slack/src/ActionConfirmation.php',
+        'jeremykenedy\\Slack\\Attachment' => __DIR__ . '/..' . '/jeremykenedy/slack/src/Attachment.php',
+        'jeremykenedy\\Slack\\AttachmentAction' => __DIR__ . '/..' . '/jeremykenedy/slack/src/AttachmentAction.php',
+        'jeremykenedy\\Slack\\AttachmentField' => __DIR__ . '/..' . '/jeremykenedy/slack/src/AttachmentField.php',
+        'jeremykenedy\\Slack\\Client' => __DIR__ . '/..' . '/jeremykenedy/slack/src/Client.php',
+        'jeremykenedy\\Slack\\Laravel\\Facade' => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src/Facade.php',
+        'jeremykenedy\\Slack\\Laravel\\Fakes\\MessageFake' => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src/Fakes/MessageFake.php',
+        'jeremykenedy\\Slack\\Laravel\\Fakes\\SlackFake' => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src/Fakes/SlackFake.php',
+        'jeremykenedy\\Slack\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src/ServiceProvider.php',
+        'jeremykenedy\\Slack\\Laravel\\ServiceProviderLaravel4' => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src/ServiceProviderLaravel4.php',
+        'jeremykenedy\\Slack\\Laravel\\ServiceProviderLaravel5' => __DIR__ . '/..' . '/jeremykenedy/slack-laravel/src/ServiceProviderLaravel5.php',
+        'jeremykenedy\\Slack\\Message' => __DIR__ . '/..' . '/jeremykenedy/slack/src/Message.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

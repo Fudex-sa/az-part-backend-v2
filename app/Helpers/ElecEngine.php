@@ -72,6 +72,10 @@ class ElecEngine
 
             $item = ElectronicRequest::create($data);
             if ($item) {
+
+                $msg = __('site.new_request_no').' : '.$item->id;
+                \Slack::send($msg);
+
                 if ($package_sub_id != 0) {
                     $this->package->update_expired($package_sub_id);
                 }
@@ -157,9 +161,7 @@ class ElecEngine
 
         $title = __('site.request_spare');
         $body = __('site.request_spare_no') . $req_id;
-
-
-
+ 
 
         PushNotificationController::send((array)$user_token, $title, $body, 'new_request', $req_id);
 

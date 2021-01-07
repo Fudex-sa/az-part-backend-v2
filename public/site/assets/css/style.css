@@ -19,6 +19,9 @@ body {
   direction: rtl;
   text-align: right;
 }
+img{
+    max-width:100%;
+}
 * {
   padding: 0;
   margin: 0;
@@ -201,11 +204,35 @@ a:not([href]):not([tabindex]){
 }
 /* start header section */
 .header {
+    position: relative;
   background: url(../images/header.png) top no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;
   padding: 100px 0;
+}
+.header .summary-numbers{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width:50%;
+}
+.header .summary-numbers > span {
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 15px;
+    background-image: linear-gradient(to left, #e26941, #f2a736 60%);
+    color: #fff;
+    line-height: 1;
+    text-align: center;
+    flex: 50% 0;
+}
+.header .summary-numbers > span:last-child{
+    margin-left:0px;
 }
 .info-box {
   margin-top: 30px;
@@ -874,7 +901,7 @@ font-weight: bold;
   margin-top: 100px;
 }
 .sub-card {
-  margin-top: 100px;
+  margin-top: 30px;
 }
 .sub-head-box h3 {
   font-weight: bold;
@@ -945,6 +972,13 @@ font-weight: bold;
   font-weight: bold;
   line-height: 24px;
   margin-bottom: 20px;
+}.sub-card-body ul{
+    margin-bottom:30px;
+}
+.sub-card-body ul li{
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
 }
 .sub-card-footer a {
   font-size: 18px;
@@ -1947,6 +1981,7 @@ padding: 0;
 
 /* start media for ipad */
 @media only screen and (max-device-width: 768px) {
+    
   .input-B,
   .input-A,
   .input-C,
@@ -2052,6 +2087,17 @@ padding: 0;
 .step-1 {
   background: url(../images/step-2.svg) center 80px no-repeat;
 
+}
+.header .summary-numbers{
+        top: 15px;
+    width:90%;
+}
+.header .summary-numbers > span {
+    line-height: 1.2;
+}
+.payment{
+        order: 3;
+    margin-top: 30px;
 }
 }
 

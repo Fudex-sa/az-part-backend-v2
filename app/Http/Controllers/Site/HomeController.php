@@ -8,6 +8,8 @@ use App\Models\Brand;
 use App\Models\Stock;
 use App\Models\Car;
 use App\Models\Page;
+use App\Models\Seller;
+use App\Models\Broker;
 use DB;
 
 class HomeController extends Controller
@@ -38,7 +40,10 @@ class HomeController extends Controller
                         ->orderby('id','desc')->limit(12)->get();
 
         $about = Page::find(1);
+        $total_sellers_count = Seller::count() + Broker::count();
+        $total_cars_count = Car::count();
 
-        return view("site.home",compact('home','brands','stocks','cars','about'));
+        return view("site.home",compact('home','brands','stocks','cars','about',
+                'total_sellers_count','total_cars_count'));
     }
 }
