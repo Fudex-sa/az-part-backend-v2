@@ -61,7 +61,7 @@ class OrderHelp
 
             update_cart($item->id);
 
-            $this->search->update_remaining_stores(session()->get('remaining_stores'));
+            // $this->search->update_remaining_stores(session()->get('remaining_stores'));
           
             if($package_sub_id != 0)
                 $this->package->update_expired($package_sub_id);

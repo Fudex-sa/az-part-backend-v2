@@ -50,19 +50,19 @@
                     @csrf
                       <div class="row d-flex justify-content-center" dir="ltr">
                           <div class="form-group col">
-                              <input type="text" class="form-control ver-code" id="f5" onkeyup="movetoNext(this, 'sendCode')" name="verification_code[]" maxlength="1" required tabindex="5">
+                              <input type="text" class="form-control ver-code" id="f1" onkeyup="movetoNext(this, 'f2')" name="verification_code[]" maxlength="1" required tabindex="5">
                             </div>
                             <div class="form-group col">
-                              <input type="text" class="form-control ver-code" id="f4" onkeyup="movetoNext(this, 'f5')" name="verification_code[]" maxlength="1" required tabindex="4">
+                              <input type="text" class="form-control ver-code" id="f2" onkeyup="movetoNext(this, 'f3')" name="verification_code[]" maxlength="1" required tabindex="4">
                             </div>
                             <div class="form-group col">
                               <input type="text" class="form-control ver-code" id="f3" onkeyup="movetoNext(this, 'f4')" name="verification_code[]" maxlength="1" required tabindex="3">
                             </div>
                             <div class="form-group col">
-                              <input type="text" class="form-control ver-code" id="f2" onkeyup="movetoNext(this, 'f3')" name="verification_code[]" maxlength="1" required tabindex="2">
+                              <input type="text" class="form-control ver-code" id="f4" onkeyup="movetoNext(this, 'f5')" name="verification_code[]" maxlength="1" required tabindex="2">
                             </div>
                             <div class="form-group col">
-                              <input type="text" class="form-control ver-code" id="f1" onkeyup="movetoNext(this, 'f2')" name="verification_code[]" maxlength="1" required tabindex="1">
+                              <input type="text" class="form-control ver-code" id="f5" onkeyup="movetoNext(this, 'sendCode')" name="verification_code[]" maxlength="1" required tabindex="1">
                             </div>
                       </div>
     
