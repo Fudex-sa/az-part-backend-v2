@@ -24,7 +24,7 @@ data-parsley-validate class="form-horizontal form-label-left" enctype="multipart
             & $col != 'verified' & $col != 'lang' & $col != 'last_login' & $col != 'total_requests'            
             & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'            
             & $col != 'created_by'   & $col != 'city_id' & $col != 'lat' & $col != 'lng'
-            & $col != 'country_id' & $col != 'region_id')
+            & $col != 'country_id' & $col != 'region_id' & $col != 'remaining_stores')
 
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)

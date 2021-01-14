@@ -10,7 +10,8 @@
                 
                 & $col != 'rating' & $col != 'api_token' & $col != 'email_verified_at' & $col != 'remember_token'
                 
-                & $col != 'created_by' & $col != 'city_id')
+                & $col != 'created_by' & $col != 'city_id' & $col != 'remaining_stores' & $col != 'country_id'
+                & $col != 'region_id')
     
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.'.$col)

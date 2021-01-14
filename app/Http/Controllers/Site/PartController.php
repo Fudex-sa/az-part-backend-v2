@@ -59,8 +59,11 @@ class PartController extends Controller
         $found_result = $response  ? $response['found_result'] : 0;
         $all_items = $response ? $response['all_items'] : null;
          
-        session()->put('remaining_stores',$limit-count($all_items));
- 
+        // session()->put('remaining_stores',$limit-count($all_items));
+        $remaining_stores = $limit-count($all_items);
+
+        $this->search->update_remaining_stores($remaining_stores);
+
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }
 
