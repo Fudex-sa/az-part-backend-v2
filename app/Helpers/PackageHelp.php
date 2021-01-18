@@ -20,6 +20,7 @@ class PackageHelp
             'user_id' => logged_user()->id ,'user_type' => user_type() , 'package_id' => $package_id ,
             'package_type' => $package->type ,
             'price' => total() , 'stores_no' => $package->stores_no ,
+            'remaining' =>  $package->stores_no,
             'coupon_id' => coupon_id()          
         ]);
     
@@ -37,11 +38,26 @@ class PackageHelp
 
     public function stores_limit($package_type)
     {
-        $limit = PackageSubscribe::myPackagesByType($package_type)->get()->sum('stores_no');
+        $limit = PackageSubscribe::myPackagesByType($package_type)->get()->sum('remaining');
 
         return $limit;
     }
 
+    public function update_remaining($remaining)
+    {
+        ($remaining < 0) ? $remaining = 0 : $remaining = $remaining;
+
+        $item = PackageSubscribe::myPackagesByType('manual')->first();
+        if($item){
+            $item->remaining = $remaining;
+            $item->save();
+
+            if($item->remaining == 0)
+                $this->update_expired($item->id);
+        }
+        
+
+    }
     public function update_expired($package_sub_id) {
 
         $my_subscribe = PackageSubscribe::find($package_sub_id);

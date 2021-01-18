@@ -66,7 +66,9 @@
 
                             <td> @if($item->package['type'] == 'electronic')
                                    {{ $item->stores_no - count($item->my_orders)  }} @lang('site.order')
-                                 @else {{ logged_user()->remaining_stores }} @endif      
+                                 @else {{ $item->remaining }} 
+                                 {{-- {{ logged_user()->remaining_stores }} --}}
+                                  @endif      
                             </td>
 
                             <td> {{ date('Y-m-d',strtotime($item->created_at)) }} </td>

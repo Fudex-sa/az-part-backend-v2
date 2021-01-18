@@ -104,21 +104,21 @@ class Search
     }
  
 
-    public function update_remaining_stores($remaining_stores)
-    {
-        ($remaining_stores < 0) ? $remaining_stores = 0 : $remaining_stores = $remaining_stores;
+    // public function update_remaining_stores($remaining_stores)
+    // {
+    //     ($remaining_stores < 0) ? $remaining_stores = 0 : $remaining_stores = $remaining_stores;
 
-        $data = ['remaining_stores' => $remaining_stores];
+    //     $data = ['remaining_stores' => $remaining_stores];
         
-        if(user_type() == 'company')
-            Company::where('id',logged_user()->id)->update($data);
+    //     if(user_type() == 'company')
+    //         Company::where('id',logged_user()->id)->update($data);
 
-        if(user_type() == 'seller')
-            Seller::where('id',logged_user()->id)->update($data);
+    //     if(user_type() == 'seller')
+    //         Seller::where('id',logged_user()->id)->update($data);
         
-        else 
-            User::where('id',logged_user()->id)->update($data);
+    //     else 
+    //         User::where('id',logged_user()->id)->update($data);
 
-    }
+    // }
 
 }

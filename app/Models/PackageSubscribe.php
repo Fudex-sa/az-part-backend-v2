@@ -11,7 +11,7 @@ class PackageSubscribe extends Model
 
     protected $fillable = [
         'user_id' , 'package_id' ,'package_type' , 'price' , 'stores_no' , 'user_type' , 'expired' ,
-        'coupon_id'
+        'coupon_id','remaining'
     ];
 
     public function scopeMyPackages()

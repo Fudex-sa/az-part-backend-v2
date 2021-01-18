@@ -63,8 +63,8 @@ class OrderHelp
 
             // $this->search->update_remaining_stores(session()->get('remaining_stores'));
           
-            if($package_sub_id != 0)
-                $this->package->update_expired($package_sub_id);
+            // if($package_sub_id != 0)
+            //     $this->package->update_expired($package_sub_id);
 
             clear_session();            
         }else{
