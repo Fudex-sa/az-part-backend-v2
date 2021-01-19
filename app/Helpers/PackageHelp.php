@@ -43,6 +43,25 @@ class PackageHelp
         return $limit;
     }
 
+    public function final_limit()
+    {
+        $sys_limit = setting('manual_search_result');
+          
+        $this->stores_limit('manual') > 0 ? 
+
+                $limit = $this->stores_limit('manual') + $sys_limit : $limit = $sys_limit;
+           
+        $limit = $limit + logged_user()->special_stores_no;
+
+        return $limit;
+
+    }
+
+    public function remaining()
+    {
+        # code...
+    }
+
     public function update_remaining($remaining)
     {
         ($remaining < 0) ? $remaining = 0 : $remaining = $remaining;
