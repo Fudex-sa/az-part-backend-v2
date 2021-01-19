@@ -45,15 +45,8 @@ class PartController extends Controller
             return $this->electronic_search($request);            
         }
  
-        $sys_limit = setting('manual_search_result');
-         
-        $this->package->stores_limit($search_type) > 0 ? 
-
-                $limit = $this->package->stores_limit($search_type) : $limit = $sys_limit;
-           
-        $limit = $limit + logged_user()->special_stores_no;
-        //  + logged_user()->remaining_stores;
-
+        $limit = $this->package->final_limit();
+ 
         $response = $this->search->manual_search($request,$limit);
  
 
@@ -61,13 +54,11 @@ class PartController extends Controller
         $found_result = $response  ? $response['found_result'] : 0;
         $all_items = $response ? $response['all_items'] : null;
          
-        // session()->put('remaining_stores',$limit-count($all_items));
+
         $remaining_stores = $limit-count($all_items);
-  
+          
         $this->package->update_remaining($remaining_stores);
-
-        // $this->search->update_remaining_stores($remaining_stores);
-
+ 
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }
 
