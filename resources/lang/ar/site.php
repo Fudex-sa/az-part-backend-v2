@@ -563,6 +563,7 @@ return [
     'password_required_in_deactivate' => 'كلمة السر مطلوبة لتغير كلمة مرور المستخدم',
     'duplicated_mobile_used' => 'هذا الرقم مسجل بالفعل من قبل مستخدم اخر',
     'contact_with_administrator' => 'تواصل مع المالك',
+    'contact_with_admin' => 'تواصل مع الإدارة',
     'add_comment' => 'أضف تعليق',
     'invalid_image_type' => 'مسموح فقط برفع صور بإمتداد png,jpg,jpeg,svg وأن لا تتعدى حجم الصورة عن 10 ميقا',
     'sort_by_price' => 'الفرز بالسعر',

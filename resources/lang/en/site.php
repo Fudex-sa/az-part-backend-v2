@@ -548,6 +548,7 @@ return [
 'password_required_in_deactivate' => 'Password Required When Deactivate Account',
 'duplicated_mobile_used' => 'This Number Already Used',
 'contact_with_administrator' => 'Contact With Admin',
+'contact_with_admin' => 'Contact With Adminstrator',
 'add_comment' => 'Add Comment',
 'invalid_image_type' => 'Invalid Image Type',
 'sort_by_price' => 'Sort By Price',

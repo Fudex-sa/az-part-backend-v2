@@ -43,8 +43,10 @@
                 @endif
 
                   <li><a href="https://wa.me/?text={{ $item->title }}" target="_blank">
-                    <img src="{{ site('assets/images/3.png') }}" alt=""></a></li>
-                  </ul>
+                    <img src="{{ site('assets/images/3.png') }}" alt=""></a>
+                  </li>
+                  
+                </ul>
                 </div>
 
                 @if(count($item->imgs) > 0)
@@ -62,10 +64,11 @@
               <div class="clear-fix"></div>
 
               <div class="row">
-                <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
+                <a href="{{ route('car',$item->id) }}"> {{ $item->title }} </a>
+                {{-- <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
                     {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
                     {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
-                </span>
+                </span> --}}
               </div>
                
               </div>

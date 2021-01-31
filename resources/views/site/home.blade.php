@@ -378,21 +378,22 @@
               @csrf
                 <div class="form-group col-12">
                 <input type="text" class="form-control h-50" id="name" name="name" value="{{ old('name') }}"
-                    placeholder="@lang('site.name')" required>
+                    placeholder="@lang('site.name')" maxlength="20" required>
                 </div>
 
                 <div class="form-group col-12">
                   <input type="email" class="form-control h-50" id="email" name="email" value="{{ old('email') }}"
-                     placeholder="@lang('site.email')">
+                     placeholder="@lang('site.email')" maxlength="20">
                 </div>
 
                 <div class="form-group col-12">
                   <input type="tel" class="form-control h-50" id="mobile" name="mobile" value="{{ old('mobile') }}"
-                    placeholder="@lang('site.mobile')" required>
+                    placeholder="@lang('site.mobile')" required maxlength="12">
                 </div>
 
                 <div class="form-group col-12">
-                  <textarea class="form-control h-50" id="message" name="message" rows="1" placeholder="@lang('site.your_message')" required>
+                  <textarea class="form-control h-50" id="message" name="message" rows="1" maxlength="400"
+                   placeholder="@lang('site.your_message')" required>
                   {{ old('message') }} </textarea>
                 </div>
 

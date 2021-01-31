@@ -29,7 +29,7 @@
                 method="post" enctype="multipart/form-data" novalidate>
                @csrf
              
-               <div class="item form-group">
+               {{-- <div class="item form-group">
                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="img"> @lang('site.car_image') <span
                            class="required">*</span>
                    </label>
@@ -37,7 +37,7 @@
                    <div class="col-md-6 col-sm-6 col-xs-12">
                        <input type="file" name="img" class="col-md-7 col-xs-12" required/>
                    </div>
-               </div>
+               </div> --}}
             
                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title"> @lang('site.title') <span
@@ -318,10 +318,11 @@
                         <div class="upload-file car-imgs">
                             <label>
                                 <div class="upload-icon">
-                                    <img class="img-tbl" src="{{asset('uploads/'.$img)}}">
+                                    <img class="img-tbl" src="{{asset('uploads/'.$img->photo)}}">
                                 </div>
                                 <input type="file" name="imgs[]" class="inputfile" />
-                                <a href="javascript:void(0);" itemid="{{$img}}" class="delImg"><i class="fa fa-trash"></i> </a>
+                                <a href="javascript:void(0);"onclick="deleteItem({{ $img->id }})" class="delImg">
+                                    <i class="fa fa-trash"></i> </a>
                             </label>
                         </div>
                          @endforeach
@@ -329,12 +330,12 @@
         
                             @for($i=0 ; $i<=$countImgs-1; $i++)
                             <div class="upload-file">
-                                <label for="file-input{{$i}}">
+                                {{-- <label for="file-input{{$i}}">
                                     <div class="upload-icon">
                                        <img class="prev" src="{{asset('templates/images/upload-to-cloud.png')}}">
                                     </div>
-                                </label>
-                                <input type="file" name="imgs[]" id="file-input{{$i}}" class="inputfile" />
+                                </label> --}}
+                                <input type="file" name="imgs[]"  class="inputfile" />
                             </div>
                             @endfor
                    </div>
@@ -378,5 +379,7 @@
 @section('scripts')
 
     <script src="{{ dashboard('vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
+   
+    @include('dashboard.ajax.delete',['target'=>'car_img'])
    
 @endsection

@@ -77,6 +77,8 @@
 
                           <label> <input type="radio" name="with_oil" value="0" checked
                             {{ old('with_oil') == 0 ? 'checked' : '' }}> @lang('site.without_oil') </label>
+
+                            <i class="fas fa-question-circle"  data-toggle="tooltip" data-placement="top" title="{{ data('with_oil_info') }}"></i>
                       </div>
 
                         <div class="form-group col-12">
@@ -116,13 +118,13 @@
                        
                         <div class="form-group col-md-12">
                           <input type="text" class="form-control" name="street" value="{{ old('street') }}" 
-                          placeholder="@lang('site.building_number')">
+                          placeholder="@lang('site.building_number')" maxlength="200">
                         </div>
                 
                 
                         <div class="form-group col-12">
                           <input type="text" class="form-control" name="notes" value="{{ old('notes') }}" 
-                            placeholder="@lang('site.add_note')">
+                            placeholder="@lang('site.add_note')" maxlength="400">
                         </div>
                      
                     </div>

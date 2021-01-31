@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Supervisor;
 use App\Models\Rep;
+use App\Models\DeliveryRegion;
 use App\Http\Requests\Site\SellerSignup;
 
 class SellerController extends Controller
@@ -18,7 +19,9 @@ class SellerController extends Controller
     
     public function register()
     {
-        return view($this->view . 'register_seller');
+        $delvry_regions = DeliveryRegion::all();
+
+        return view($this->view . 'register_seller' , compact('delvry_regions'));
     }
 
    

@@ -101,11 +101,21 @@
           <a href="{{ route('control.getAuction',$item->id) }}" class="btn btn-save col-md-4  btn-lg">@lang('site.join_auction')</a>
           @endif
           <div class="col-md-12 text-left">
-            <a href="tel:00966{{ $item->user ? $item->user->mobile : '' }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg"> @lang('site.contact_with_administrator') </a>
+            @if($item->type == 'damaged')
+              <a href="tel:00966{{ $item->user ? $item->user->mobile : '' }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg"> @lang('site.contact_with_administrator') </a>
 
-            <a href="https://wa.me/{{ $item->user ? $item->user->mobile : '' }}" target="_blank" class="btn btn-logindrop col-md-1 mt-3 btn-lg"> 
-                <img src="{{ site('assets/images/w-2.png') }}" /> 
-            </a>
+              <a href="https://wa.me/{{ $item->user ? $item->user->mobile : '' }}" target="_blank" class="btn btn-logindrop col-md-1 mt-3 btn-lg"> 
+                  <img src="{{ site('assets/images/w-2.png') }}" /> 
+              </a>
+
+              @else
+              <a href="tel:00966{{ data('mobile') }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg">
+                  @lang('site.contact_with_admin') </a>
+
+              <a href="{{ route('control.getAuction',$item->id) }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg">
+                  @lang('site.join_auction') </a>
+
+            @endif
 
           </div>
           
@@ -127,7 +137,8 @@
         <div class="form-group row mt-5">
           <form method="POST" action="{{ route('car.comment.store',$item->id) }}">
             @csrf
-            <textarea class="form-control comment" name="comment" rows="2" placeholder="@lang('site.add_comment')" required></textarea>
+            <textarea class="form-control comment" name="comment" rows="2" placeholder="@lang('site.add_comment')"
+              maxlength="400" required></textarea>
             
             <div class="text-left">
               <br/>
@@ -183,10 +194,12 @@
               <div class="clear-fix"></div>
 
               <div class="row">
-                <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
+                <a href="{{ route('car',$car->id) }}"> {{ $car->title }} </a>
+
+                {{-- <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
                     {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
                     {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
-                </span>
+                </span> --}}
               </div>
                
               </div>
@@ -234,46 +247,6 @@
             focusOnSelect: true
         });
 </script>
-<!--
-<script src="{{ site('assets/js/jquery.refineslide.min.js') }}"></script>
-<script>
-  $(function () {
-      var $upper = $('#upper');
-
-      $('#images').refineSlide({
-          transition : 'fade',
-          onInit : function () {
-              var slider = this.slider,
-                 $triggers = $('.translist').find('> li > a');
-
-              $triggers.parent().find('a[href="#_'+ this.slider.settings['transition'] +'"]').addClass('active');
-
-              $triggers.on('click', function (e) {
-                 e.preventDefault();
-
-                  if (!$(this).find('.unsupported').length) {
-                      $triggers.removeClass('active');
-                      $(this).addClass('active');
-                      slider.settings['transition'] = $(this).attr('href').replace('#_', '');
-                  }
-              });
-
-              function support(result, bobble) {
-                  var phrase = '';
-
-                  if (!result) {
-                      phrase = ' not';
-                      $upper.find('div.bobble-'+ bobble).addClass('unsupported');
-                      $upper.find('div.bobble-js.bobble-css.unsupported').removeClass('bobble-css unsupported').text('JS');
-                  }
-              }
-
-              support(this.slider.cssTransforms3d, '3d');
-              support(this.slider.cssTransitions, 'css');
-          }
-      });
-  });
-</script>
--->
+ 
 
 @endsection
