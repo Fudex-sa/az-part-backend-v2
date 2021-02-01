@@ -102,7 +102,8 @@
                     <form method="post" action="{{ route('coupon.use') }}" class="row">
                           @csrf
                           <div class="form-group col-md-8">
-                            <input type="text" name="code" class="form-control" placeholder="@lang('site.enter_coupon')" required>
+                            <input type="text" name="code" class="form-control" maxlength="10"
+                                placeholder="@lang('site.enter_coupon')" required>
                           </div>
                           <div class="form-group col-md-4">
                             <input type="submit" value="@lang('site.use_now')" class="btn btn-primary" />                        

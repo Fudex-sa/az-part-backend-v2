@@ -93,7 +93,9 @@
                                           </label>
 
                                           <br/>
-                                          <p class="pay_hint"> {{ $payment_method['description_ar_'.my_lang()] }}  </p>
+                                          <p class="pay_hint"> {{ $payment_method['description_ar_'.my_lang()] }} 
+                                          {{ $payment_method->keyword == 'cash' ? total() / 2 . ' '. __('site.rs') : '' }}
+                                          </p>
                                       </div>    
                                       @endif
                                   @endforeach
@@ -113,7 +115,9 @@
                                       </label>
 
                                       <br/>
-                                          <p class="pay_hint"> {{ $payment_method['description_'.my_lang()] }}  </p>
+                                          <p class="pay_hint"> {{ $payment_method['description_'.my_lang()] }} 
+                                            {{ $payment_method->keyword == 'cash' ? '('.total() / 2 . ') '. __('site.rs') : '' }}
+                                          </p>
                                   </div>    
                                   {{-- @endif --}}
                                 @endforeach

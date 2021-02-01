@@ -9,9 +9,9 @@ class RepPrice extends Model
 {
     use HasFactory;
     
-    protected $casts = [
-        'car_size' => 'array'
-    ];
+    // protected $casts = [
+    //     'car_size' => 'array'
+    // ];
 
     protected $fillable = [
         'rep_id' , '_from' , 'city_id' , 'price' , 'active' , 'car_size'

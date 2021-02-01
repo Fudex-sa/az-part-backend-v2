@@ -138,7 +138,19 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
             </select>
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
+        <label> @lang('site.tenders') </label>
+
+        <div class="form-check">
+            <label> <input type="radio" name="auction" value="1" {{ old('auction') == 1 ? 'checked' : '' }}>
+             @lang('site.yes') </label>
+
+            <label> <input type="radio" name="auction" value="0" checked>
+             @lang('site.no') </label>
+        </div>
+    </div>
+
+    <div class="form-group col-md-4  price-options" style="display: {{ old('auction') == 1 ? 'none' : 'block' }}">
         <label> @lang('site.price') </label>
 
         <div class="form-check">
@@ -215,21 +227,50 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         </div>
     </div>
 
-
     <div class="form-group custom-custom-2 col-md-12">
+        <label> @lang('site.car_images') </label> <br/>
+        
         <div class="row">
-            <div class="custom-file col-md-4">
-            <input type="file" class="" id="customFile1" name="imgs[]">
-           </div>
-            <div class="custom-file col-md-4">
-            <input type="file" class="" id="customFile2" name="imgs[]">
+            <div class="custom-file col-md-4 ml-2 car-imgs">
+              <input type="file" class="custom-file-input" id="customFile1" name="imgs[]">
+              <label class="custom-file-label" for="customFile1"></label>
             </div>
-            <div class="custom-file col-md-4">
-            <input type="file" class="" id="customFile3" name="imgs[]">
+
+            <div class="custom-file col-md-3 ml-2 car-imgs">
+              <input type="file" class="custom-file-input" id="customFile2" name="imgs[]">
+              <label class="custom-file-label" for="customFile2"></label>
+            </div>
+            
+            <div class="custom-file col-md-4 car-imgs">
+              <input type="file" class="custom-file-input" id="customFile3" name="imgs[]">
+              <label class="custom-file-label" for="customFile3"></label>
             </div>
         </div>
     </div>
 
+
+    {{-- <div class="form-group custom-custom-2 col-md-12">
+        <label> @lang('site.car_images') </label> <br/>
+        <div class="row">
+             
+            <div class="custom-file col-md-4">
+            <input type="file" name="imgs[]">
+           </div>
+            <div class="custom-file col-md-4">
+            <input type="file"  name="imgs[]">
+            </div>
+            <div class="custom-file col-md-4">
+            <input type="file"  name="imgs[]">
+            </div>
+        </div>
+    </div> --}}
+
+    <div class="form-group col-md-12">
+        <div class="form-check">
+            <label> <input type="radio" required> {{ data('cars_agrement') }} </label>
+
+        </div>
+    </div>
 
         <button type="submit" class="btn btn-next btn-block btn-lg"> @lang('site.send') </button>
 

@@ -135,6 +135,19 @@
                                                 <input type="hidden" name="lng" id="longitude" value="50.089986"/>
                                             </div> --}}
                                              
+                                            <div class="form-group col-12">
+                                                <select class="form-control" name="tashlih_region" id="tashlih_region">
+                                                    <option value=""> @lang('site.choose_tashlih_region') </option>
+                                                    
+                                                    @foreach ($delvry_regions as $delvry_region)
+                                                        <option value="{{ $delvry_region->id }}" {{ old('delvry_region') == $delvry_region->id ? 'selected' : '' }}>
+                                                           {{ $delvry_region['name_'.my_lang()] }} </option>    
+                                                    @endforeach
+            
+                                                </select>
+                                            </div>
+
+
                                             <div class="form-group form-check col-12">
                                                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                                                 <label class="form-check-label" for="exampleCheck1"> @lang('site.agree_to_all') 

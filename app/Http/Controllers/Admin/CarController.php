@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\CarImage;
 use App\Models\CarComment;
 use App\Models\Brand;
 use App\Models\Modell;
@@ -94,14 +95,25 @@ class CarController extends Controller
     {
         if($request->imgs){
             foreach($request->imgs as $img){
-                $fileName = time().'.'.$img->extension();  
+                $fileName = time() . '.' . $img->getClientOriginalName();
+
                 $img->move(public_path('uploads'), $fileName);
         
-                $carImg = CarImage::create(['car_id' => $item->id , 'photo' => $fileName]);
+                $carImg = CarImage::create(['car_id' => $id , 'photo' => $fileName]);
             }            
         } 
 
-        return redirect()->route('control.cars')->with('success' , __('site.success-save') );
+        return back()->with('success' , __('site.success-save') );
 
+    }
+
+    public function car_img_destroy(Request $request)
+    {        
+        $item = $request->input('id');
+
+        if(CarImage::find($item)->delete()) 
+            return 1;
+
+        return 0;
     }
 }

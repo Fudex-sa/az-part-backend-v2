@@ -139,7 +139,7 @@
                             </select>
                     </div>
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 price-options" style="display: {{ $item->auction == 1 ? 'none' : 'block' }}">
                         <label> @lang('site.price') </label>
 
                         <div class="form-check">
@@ -174,8 +174,8 @@
                            @lang('site.no') </label>
                       </div>
                   </div>
-
-                  <div class="form-group col-md-4" style="{{ $item->date_auction != 'null' ? 'block' : 'none' }}" id="auction_div">
+ 
+                  <div class="form-group col-md-4" style="display:{{ $item->date_auction == NULL ? 'none' : 'block' }};" id="auction_div">
                       <label> @lang('site.Auction_time') </label>
 
                       <div class="form-check">
@@ -184,11 +184,7 @@
                   </div>
 
                     <div class="clear-fix"></div>
-
-
-
-
-
+ 
                     <div class="form-group col-md-6">
                         <label> @lang('site.validatly') </label>
 
@@ -224,17 +220,19 @@
 
                     <div class="form-group custom-custom-2 col-md-12">
                         <div class="row">
-                            <div class="custom-file col-md-4 ml-2">
-                            <input type="file" class="custom-file-input" id="customFile1" name="imgs[]">
-                            <label class="custom-file-label" for="customFile1"></label>
+                            <div class="custom-file col-md-4 ml-2 car-imgs">
+                              <input type="file" class="custom-file-input" id="customFile1" name="imgs[]">
+                              <label class="custom-file-label" for="customFile1"></label>
                             </div>
-                            <div class="custom-file col-md-3 ml-2">
-                            <input type="file" class="custom-file-input" id="customFile2" name="imgs[]">
-                            <label class="custom-file-label" for="customFile2"></label>
+
+                            <div class="custom-file col-md-3 ml-2 car-imgs">
+                              <input type="file" class="custom-file-input" id="customFile2" name="imgs[]">
+                              <label class="custom-file-label" for="customFile2"></label>
                             </div>
-                            <div class="custom-file col-md-4">
-                            <input type="file" class="custom-file-input" id="customFile3" name="imgs[]">
-                            <label class="custom-file-label" for="customFile3"></label>
+                            
+                            <div class="custom-file col-md-4 car-imgs">
+                              <input type="file" class="custom-file-input" id="customFile3" name="imgs[]">
+                              <label class="custom-file-label" for="customFile3"></label>
                             </div>
                         </div>
                     </div>
@@ -301,8 +299,20 @@
           $("#price_div").show();
         else
           $("#price_div").hide();
-
     });
+
+    $(document).on("click","input[name=auction]:radio",function(){
+        var auction = $(this).val();
+
+        if(auction == 1){ 
+          $("#auction_div").show();
+          $(".price-options").hide();
+        }else{
+          $("#auction_div").hide();
+          $(".price-options").show();
+        }
+    });
+
   </script>
 
 @endsection

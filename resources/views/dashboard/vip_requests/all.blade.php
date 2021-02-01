@@ -29,7 +29,10 @@
 
             <td>{{ $k+1 }}</td>
 
-            <td>{{$item->user->name}}</td>
+            <td> @if($item->user_type == 'broker') {{ $item->broker->name}}
+                @elseif($item->user_type == 'seller') {{ $item->seller->name }}
+                @else {{ $item->user->name }} 
+            </td>
 
             <td> {{ __('site.'.$item->user_type) }} </td>
 

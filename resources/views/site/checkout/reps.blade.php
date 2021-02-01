@@ -84,8 +84,10 @@
 
       @if(count($rep_prices))
       @foreach ($rep_prices as $rep_price)
-        @if(in_array(request()->size ? request()->size : 'medium',$rep_price->car_size))
+        {{-- @if(in_array(request()->size ? request()->size : 'medium',$rep_price->car_size)) --}}
 
+        @if(request()->size == $rep_price->car_size )
+        
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="search-box shadow">
             <div class="s-box-head">

@@ -77,7 +77,7 @@
                       {{ $item->year }}  
                     </h6>
 
-                    <h6>  {{ $item->piece_alt['name_'.my_lang()] }}  </h6>
+                    <h6>  {{ $item->piece_alt->piece['name_'.my_lang()] }}  </h6>
                   </div>
                 </div>
 

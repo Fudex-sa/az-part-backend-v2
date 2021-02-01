@@ -5,7 +5,7 @@
 
 @section('styles')
 
-  <link rel="stylesheet" href="{{ site('assets/Css/refineslide.css') }}">
+<link rel="stylesheet" href="{{ site('assets/css/refineslide.css') }}">
 
   <script type='text/javascript'
   src='https://platform-api.sharethis.com/js/sharethis.js#property=5e3cb8a1cd980c0012d9bbf0&product=inline-share-buttons' async='async'></script>
@@ -19,20 +19,22 @@
     <div class="row">
       @include('layouts.breadcrumb')
 
-
       <div class="col-md-5">
-        <ul id="images" class="rs-slider">
-          @if($item->imgs)
+        <div class="pro-gallery wow zoomIn">
+          <div class="slider-for">
             @foreach ($item->imgs as $img)
-                <li class="group"> <a href="#">
-                <img src="{{ img_path($img->photo) }}" alt="" /> </a>
-                </li>
-            @endforeach
-
-          @endif
-
-          </ul>
+              <div><img src="{{ img_path($img->photo) }}" /></div>
+            @endforeach  
+          </div>
+          <div class="slider-nav">
+            @foreach ($item->imgs as $img)
+              <div><img src="{{ img_path($img->photo) }}" /></div>
+            @endforeach  
+          </div>
       </div>
+      
+    </div>
+
       <div class="col-md-7">
 
 
@@ -190,9 +192,12 @@
 
               <h6> <a href="{{ route('car',$car->id) }}">{{ $car->model ? $car->model['name_'.my_lang()] : '' }} </a> </h6>
 
-              <h6 class="mt-3"><img src="{{ asset('assets/images/location.png') }}" alt="">
+              <h6 class="mt-3">
+                <a href="{{ route('car',$car->id) }}"> {{ $car->title }} </a>
+
+                {{-- <img src="{{ asset('assets/images/location.png') }}" alt="">
                    {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
-                   {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
+                   {{ $car->city ? $car->city['name_'.my_lang()] : '' }} --}}
               </h6>
               </div>
 
@@ -221,42 +226,24 @@
 
 <script src="{{ site('assets/js/jquery.refineslide.min.js') }}"></script>
 <script>
-  $(function () {
-      var $upper = $('#upper');
+    // gallery slider ..
+        $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
 
-      $('#images').refineSlide({
-          transition : 'fade',
-          onInit : function () {
-              var slider = this.slider,
-                 $triggers = $('.translist').find('> li > a');
-
-              $triggers.parent().find('a[href="#_'+ this.slider.settings['transition'] +'"]').addClass('active');
-
-              $triggers.on('click', function (e) {
-                 e.preventDefault();
-
-                  if (!$(this).find('.unsupported').length) {
-                      $triggers.removeClass('active');
-                      $(this).addClass('active');
-                      slider.settings['transition'] = $(this).attr('href').replace('#_', '');
-                  }
-              });
-
-              function support(result, bobble) {
-                  var phrase = '';
-
-                  if (!result) {
-                      phrase = ' not';
-                      $upper.find('div.bobble-'+ bobble).addClass('unsupported');
-                      $upper.find('div.bobble-js.bobble-css.unsupported').removeClass('bobble-css unsupported').text('JS');
-                  }
-              }
-
-              support(this.slider.cssTransforms3d, '3d');
-              support(this.slider.cssTransitions, 'css');
-          }
-      });
-  });
+        $('.slider-nav').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            arrows: false,
+            dots: false,
+            centerMode: false,
+            focusOnSelect: true
+        });
 </script>
 
 @endsection

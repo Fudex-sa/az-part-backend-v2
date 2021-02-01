@@ -63,9 +63,11 @@
 
               <h6> {{ $item->model ? $item->model['name_'.my_lang()] : '' }}  </h6>
 
-              <h6 class="mt-3"><img src="{{ asset('assets/images/location.png') }}" alt="">
+              <h6 class="mt-3">
+                <a href="{{ route('car',$item->id) }}"> {{ $item->title }} </a>
+                {{-- <img src="{{ asset('assets/images/location.png') }}" alt="">
                    {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
-                   {{ $item->city ? $item->city['name_'.my_lang()] : '' }}
+                   {{ $item->city ? $item->city['name_'.my_lang()] : '' }} --}}
               </h6>
               </div>
 

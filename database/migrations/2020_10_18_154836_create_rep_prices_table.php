@@ -19,7 +19,7 @@ class CreateRepPricesTable extends Migration
             $table->integer('_from');
             $table->integer('city_id');
             $table->float('price')->default(0);
-            $table->json('car_price');
+            $table->enum('car_price',['light','medium','heavy'])->default('medium');
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

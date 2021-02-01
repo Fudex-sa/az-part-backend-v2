@@ -32,7 +32,7 @@
         <label for="city1"> @lang('site.manufacturing_year') </label>
 
         <select class="form-control" name="year" id="year">
-        <option value=""> @lang('site.choose_brand') </option>
+        <option value=""> @lang('site.manufacturing_year') </option>
         @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
             <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
             >{{$i}}</option>

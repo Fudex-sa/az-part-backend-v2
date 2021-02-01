@@ -126,10 +126,13 @@
     $(document).on("click","input[name=auction]:radio",function(){
         var auction = $(this).val();
 
-        if(auction == 1)
+        if(auction == 1){ 
           $("#auction_div").show();
-        else
+          $(".price-options").hide();
+        }else{ 
           $("#auction_div").hide();
+          $(".price-options").show();
+        }
     });
 
     $(document).on("click","input[name=type]:radio",function(){

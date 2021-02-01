@@ -61,13 +61,15 @@
          <div class="form-group col-md-4">
           <label> @lang('site.guarantee') </label>
 
-           <input type="text" class="form-control" name="guarantee[]"  placeholder="@lang('site.guarantee')">
+           <input type="text" class="form-control" name="guarantee[]"  placeholder="@lang('site.guarantee')"
+           maxlength="20">
          </div>
         
          <div class="form-group col-md-4">
           <label> @lang('site.color') </label>
 
-          <input type="text" class="form-control" name="color[]"  placeholder="@lang('site.color')">
+          <input type="text" class="form-control" name="color[]"  placeholder="@lang('site.color')"
+              maxlength="20">
         </div>
 
         <div class="form-group col-md-4">
@@ -79,7 +81,8 @@
         <div class="form-group col-md-12">
           <label> @lang('site.notes') </label>
 
-          <input type="text" class="form-control" name="notes[]"  placeholder="@lang('site.notes')">
+          <input type="text" class="form-control" name="notes[]"  placeholder="@lang('site.notes')"
+            maxlength="400">
         </div>
  
         <div id="more_pieces" class="row"> </div>

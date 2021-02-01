@@ -445,6 +445,7 @@ Route::group(
             Route::post('car_comment/activate', [App\Http\Controllers\Admin\CarController::class, 'comment_activate'])->name('admin.car_comment.activate');
             Route::post('car/store/{id?}', [App\Http\Controllers\Admin\CarController::class, 'store'])->name('admin.car.store');
             Route::post('car/imgs_store/{id?}', [App\Http\Controllers\Admin\CarController::class, 'imgs_store'])->name('admin.car.imgs_store');
+            Route::delete('car_img/delete', [App\Http\Controllers\Admin\CarController::class, 'car_img_destroy'])->name('admin.car_img.delete');
 
             /************* Car Bidding *******************/
 
