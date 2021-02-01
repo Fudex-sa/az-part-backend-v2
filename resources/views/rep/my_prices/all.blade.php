@@ -62,11 +62,12 @@
                         </td>
     
                         <td> 
-                           @if($item->car_size)
+                          {{ __('site.'.$item->car_size)}} 
+                           {{-- @if($item->car_size)
                               @foreach ($item->car_size as $size)
                                   {{ __('site.'.$size)}} &nbsp; 
                               @endforeach
-                           @endif
+                           @endif --}}
                         </td>
     
                         <td>

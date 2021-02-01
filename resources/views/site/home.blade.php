@@ -254,10 +254,11 @@
                 <div class="clear-fix"></div>
 
                 <div class="row">
-                  <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
+                  {{ $car->title }}
+                  {{-- <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
                     {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
                     {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
-                  </span>
+                  </span> --}}
                 </div>
  
 

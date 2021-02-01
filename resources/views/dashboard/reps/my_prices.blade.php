@@ -45,9 +45,9 @@
     <div class="col-md-5">        
         <label> @lang('site.car_size') </label>
 
-        <label> <input type="checkbox" value="light" name="car_size[]" /> @lang('site.light') </label>
-        <label> <input type="checkbox" value="medium" name="car_size[]" checked /> @lang('site.medium') </label>
-        <label> <input type="checkbox" value="heavy" name="car_size[]" /> @lang('site.heavy') </label>
+        <label> <input type="radio" value="light" name="car_size" /> @lang('site.light') </label>
+        <label> <input type="radio" value="medium" name="car_size" checked /> @lang('site.medium') </label>
+        <label> <input type="radio" value="heavy" name="car_size" /> @lang('site.heavy') </label>
 
     </div>
 
@@ -83,7 +83,7 @@
 
                 <td> {{ $myPrice->price }} @lang('site.rs') </td>
 
-                <td> {{ implode(',',$myPrice->car_size) }} </td>
+                <td> {{ __('site.'.$myPrice->car_size) }} </td>
 
                 <td> {{ $myPrice->active == 1 ? __('site.yes') : __('site.no') }} </td>
 

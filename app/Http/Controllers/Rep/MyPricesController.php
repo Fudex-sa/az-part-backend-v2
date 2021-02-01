@@ -46,7 +46,9 @@ class MyPricesController extends Controller
         else{
 
             $exists = RepPrice::where('rep_id',logged_user()->id)->where('_from',$request->_from)
-                                ->where('city_id',$request->city_id)->first();
+                                ->where('city_id',$request->city_id)
+                                ->where('car_size',$request->car_size)
+                                ->first();
         
             if($exists)
                 return back()->with('failed' , __('site.duplicated_region_delivery'))->withInput();

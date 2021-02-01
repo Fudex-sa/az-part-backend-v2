@@ -83,14 +83,14 @@
                   <label> @lang('site.car_size') </label>
  
                   <div class="col-md-6">                     
-                    <label> <input type="checkbox" value="light" name="car_size[]" 
-                      @if(in_array('light',$item->car_size)) checked @endif /> @lang('site.light') </label>
+                    <label> <input type="radio" value="light" name="car_size" 
+                      {{ $item->car_size == 'light' ? 'checked' : '' }} /> @lang('site.light') </label>
 
-                    <label> <input type="checkbox" value="medium" name="car_size[]" 
-                      @if(in_array('medium',$item->car_size)) checked @endif /> @lang('site.medium') </label>
+                    <label> <input type="radio" value="medium" name="car_size" 
+                      {{ $item->car_size == 'medium' ? 'checked' : '' }} /> @lang('site.medium') </label>
                     
-                      <label> <input type="checkbox" value="heavy" name="car_size[]" 
-                        @if(in_array('heavy',$item->car_size)) checked @endif /> @lang('site.heavy') </label>
+                      <label> <input type="radio" value="heavy" name="car_size" 
+                        {{ $item->car_size == 'heavy' ? 'checked' : '' }} /> @lang('site.heavy') </label>
                   </div>
                 </div>
                 

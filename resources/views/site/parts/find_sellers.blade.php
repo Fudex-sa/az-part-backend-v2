@@ -129,7 +129,11 @@
             <p> {{ notification('contact_seller_hint') }} </p> @endif
  
             @if(if_subscribe(request()->search_type) == 0)
-                <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results"> @lang('site.get_more_results') </a>
+
+            <br/> <span> {{ data('buy_package_for_more_results') }} </span> <br/>
+
+                <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results">
+                             @lang('site.get_more_results') </a>
             @endif
 
           </div>
@@ -195,5 +199,6 @@ GrowlNotification.notify({
             $("#more_pieces").append(data);
         });
     };
+
 </script>
 @endsection

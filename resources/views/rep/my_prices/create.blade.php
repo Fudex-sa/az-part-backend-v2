@@ -77,9 +77,14 @@
                   <label> @lang('site.car_size') </label>
 
                   <div class="col-md-6">
-                    <label> <input type="checkbox" value="light" name="car_size[]" /> @lang('site.light') </label>
-                    <label> <input type="checkbox" value="medium" name="car_size[]" /> @lang('site.medium') </label>
-                    <label> <input type="checkbox" value="heavy" name="car_size[]" /> @lang('site.heavy') </label>
+                    <label> <input type="radio" value="light" name="car_size"
+                        {{ old('car_size') == 'light' ? 'checked' : '' }} /> @lang('site.light') </label>
+                    
+                    <label> <input type="radio" value="medium" name="car_size" 
+                        {{ old('car_size') == 'medium' ? 'checked' : '' }} /> @lang('site.medium') </label>
+                    
+                    <label> <input type="radio" value="heavy" name="car_size" 
+                        {{ old('car_size') == 'heavy' ? 'checked' : '' }} /> @lang('site.heavy') </label>
                   </div>
                 </div>
                 
