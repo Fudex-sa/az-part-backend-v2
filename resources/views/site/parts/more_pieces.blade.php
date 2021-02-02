@@ -1,5 +1,11 @@
+<div class="row col-md-12 piecePart">
 
 <hr class="dashed-hr"/>
+
+ <div class="col-md-12">
+    <a href="javascript:void(0);" class="remove-piece" onclick="removePiece(this)">
+         <i class="fa fa-trash"></i> @lang('site.remove_piece') </a>
+ </div>
 
 <div class="col-md-4">
     <label> @lang('site.piece_name') </label>
@@ -44,11 +50,13 @@
 
       <input type="file" class="form-control" name="photo[]">
     </div>
-
  
 
-<div class="form-group col-md-12">
-  <label> @lang('site.notes') </label>
+    <div class="form-group col-md-12">
+      <label> @lang('site.notes') </label>
 
-  <input type="text" class="form-control" name="notes[]"  placeholder="@lang('site.notes')">
+      <input type="text" class="form-control" name="notes[]"  placeholder="@lang('site.notes')">
+    </div>
+
+
 </div>

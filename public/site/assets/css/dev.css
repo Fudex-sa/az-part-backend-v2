@@ -388,3 +388,7 @@ background-color: #F8F9FA;
 .car-imgs{
     height: 100px;
 }
+.remove-piece{
+    float: left;
+    color:red;
+}

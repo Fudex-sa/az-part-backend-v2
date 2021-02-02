@@ -61,7 +61,7 @@
 
                 <td> {{ $avaliable_model->brand['name_'.my_lang()] }} </td>
 
-                <td> {{ $avaliable_model->model['name_'.my_lang()] }} </td>
+                <td> {{ $avaliable_model->model ? $avaliable_model->model['name_'.my_lang()] : '' }} </td>
 
                 <td> {{ $avaliable_model->year }} </td>
             </tr>

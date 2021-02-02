@@ -52,7 +52,7 @@
 
         <tr>            
             <th> @lang('site.seller') </th>
-            <td> <a href="{{ route('admin.seller',$cart->seller->id) }}" target="_blank" class="underline">
+            <td> <a href="{{ route('admin.seller',$cart->seller ? $cart->seller->id : '') }}" target="_blank" class="underline">
                     <i class="fa fa-user"></i> {{ $cart->seller ? $cart->seller->name : '-' }} </a> </td>
 
             <th> @lang('site.city') </th>

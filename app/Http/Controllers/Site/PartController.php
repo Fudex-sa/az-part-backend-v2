@@ -150,7 +150,7 @@ class PartController extends Controller
     public function more_pieces()
     {
         $piece_alts = PieceAlt::orderby('name_'.my_lang(),'desc')->get();
-
+        
         return view($this->view . 'more_pieces',compact('piece_alts'));
     }
 

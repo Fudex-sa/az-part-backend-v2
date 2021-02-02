@@ -1165,4 +1165,5 @@ return [
     'total_cars_count' => 'عدد السيارات المدرجة',
     'edit_category' => 'تعديل تخصص',
     'my_categories' => 'تخصصاتى',
+    'remove_piece' => 'حذف قطعة',
 ];

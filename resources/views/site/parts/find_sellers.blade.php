@@ -194,11 +194,20 @@ GrowlNotification.notify({
 <script>
   $("input[type='number']").inputSpinner();
   
+  var pieceCount =1;
+
   function addNewPiece(){
+    pieceCount ++;
+        
         $.get("{{ route('more_pieces') }}", function(data){
+             
             $("#more_pieces").append(data);
         });
     };
+ 
+    function removePiece(elem){
+        $(elem).parent().parent('.piecePart').remove();
+    }
 
 </script>
 @endsection
