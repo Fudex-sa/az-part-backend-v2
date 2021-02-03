@@ -110,9 +110,9 @@
 
             </div>
 
-                {{-- <div class="col-md-2 col-2">
+                <div class="col-md-2 col-2 ui-widget">
                   <button type="button" class="btn btn-info-2" data-toggle="modal" data-target="#search_types"></button>
-                </div> --}}
+                </div>
                 <div class="col-md-2"></div>
 
             <div class="col-md-3"></div>
@@ -125,7 +125,7 @@
 
               <input class="form-check-input" type="radio" name="terms" id="terms" value="1" required>
               <label class="form-check-label pr-4 terms" for="terms">
-                <a data-toggle="modal" data-target="#search_types"> @lang('site.agree_for_all_terms') </a>
+                <a href="{{ route('terms') }}" target="_blank"> @lang('site.agree_for_all_terms') </a>
               </label>
 
               <button type="submit" class="btn btn-next  btn-lg btn-block"> @lang('site.search')  </button>
@@ -254,7 +254,7 @@
                 <div class="clear-fix"></div>
 
                 <div class="row">
-                  {{ $car->title }}
+                  <a href="{{ route('car',$car->id) }}"> {{ $car->title }} </a>
                   {{-- <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
                     {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
                     {{ $car->city ? $car->city['name_'.my_lang()] : '' }}
@@ -366,25 +366,25 @@
     </div>
     <div class="bg-white">
       <div class="row ">
-        <div class="col-md-5 pr-0">
+        <div class="col-md-5">
           <div class="map-box">
           <img src="{{ site('assets/images/map2.png') }}" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-md-7 ">
           <div class="map-card">
-            <h4> @lang('site.reach_us') </h4>
+            <h4 class="col-md-12 "> @lang('site.reach_us') </h4>
 
-            <form class="row" id="frm_contact" method="POST" action="{{ route('contact_us') }}">
+            <form id="frm_contact" method="POST" action="{{ route('contact_us') }}">
               @csrf
                 <div class="form-group col-12">
                 <input type="text" class="form-control h-50" id="name" name="name" value="{{ old('name') }}"
-                    placeholder="@lang('site.name')" maxlength="20" required>
+                    placeholder="@lang('site.name')" maxlength="100" required>
                 </div>
 
                 <div class="form-group col-12">
                   <input type="email" class="form-control h-50" id="email" name="email" value="{{ old('email') }}"
-                     placeholder="@lang('site.email')" maxlength="20">
+                     placeholder="@lang('site.email')" maxlength="100">
                 </div>
 
                 <div class="form-group col-12">
@@ -459,7 +459,9 @@
        </button>
      </div>
      <div class="modal-body row px-5">
-       <div class="modal-head text-center col-md-12">
+        <img src="{{ asset('site/assets/images/search-chart.png') }}" />
+
+       {{-- <div class="modal-head text-center col-md-12">
          <h2> @lang('site.choose_search_type') </h2>
        </div>
        <div class="modal-box col-md-6">
@@ -478,7 +480,7 @@
 
          </div>
           
-       </div>
+       </div> --}}
      </div>
 
      {{-- <div class="modal-footer-2 text-center mb-5 row">

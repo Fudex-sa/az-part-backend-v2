@@ -51,19 +51,28 @@ class CarController extends Controller
 
     public function store($id = null, CarRequest $request)
     {
-        $data = $request->except('_token');
+        $data = $request->except('_token','imgs');
+        
         $data['user_id'] = logged_user()->id;
         $data['user_type'] = user_type();
 
-        $id ? $item = Car::where('id', $id)->update($data) :  $item = Car::create($data);
+       if($id){
+            $update = Car::where('id', $id)->update($data);
+            $item = Car::find($id);
+
+       } else $item = Car::create($data);
 
         if ($item) {
             if ($request->imgs) {
                 foreach ($request->imgs as $img) {
-                    // $fileName = time().'.'.$img->extension();
+                    
+                    if($img->getSize() > 900000)
+                        return back()->with('failed', __('site.car_image_shoud_not_excced_10m'))->withInput();
+
+                         
                     $fileName = $img->getClientOriginalName();
                     $img->move(public_path('uploads'), $fileName);
-
+ 
                     $carImg = CarImage::create(['car_id' => $item->id , 'photo' => $fileName]);
                 }
             }

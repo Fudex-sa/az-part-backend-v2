@@ -85,7 +85,7 @@ Route::group(
             Route::get('car/{item}', [App\Http\Controllers\Control\CarController::class, 'edit'])->name('control.car');
             Route::post('car/store/{id?}', [App\Http\Controllers\Control\CarController::class, 'store'])->name('control.car.store');
             Route::delete('car/delete', [App\Http\Controllers\Control\CarController::class, 'delete'])->name('admin.car.delete');
-            Route::delete('car/img/delete', [App\Http\Controllers\Control\CarController::class, 'car_img_delete'])->name('admin.car_img.delete');
+            Route::delete('car/img/delete', [App\Http\Controllers\Control\CarController::class, 'car_img_delete'])->name('admin.image_car.delete');
 
             Route::get('user_interests', [App\Http\Controllers\Control\UserInterestsController::class, 'index'])->name('control.user_interests');
             Route::post('user_interests/store/{id?}', [App\Http\Controllers\Control\UserInterestsController::class, 'store'])->name('control.user_interests.store');

@@ -27,10 +27,11 @@ class CarRequest extends FormRequest
             'title' => 'required',
             'brand_id' => 'required',
             'model_id' => 'required',
-            'year' => 'required',
+            // 'year' => 'required',
             'country_id' => 'required',
             'region_id' => 'required',
             'city_id' => 'required',
+            // 'imgs.*' => 'image|mimes:jpg,jpeg,png|max:1024'
         ];
     }
 

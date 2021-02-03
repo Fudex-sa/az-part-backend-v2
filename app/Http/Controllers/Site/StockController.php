@@ -20,9 +20,9 @@ class StockController extends Controller
                         DB::raw('min(price) as min_price'),
                         DB::raw('avg(price) as avg_price'))
                         ->with('piece')->with('brand')->with('model')
-                        ->whereHas('seller',function($q){
-                            $q->where('country_id',my_country()->id);
-                        })
+                        // ->whereHas('seller',function($q){
+                        //     $q->where('country_id',my_country()->id);
+                        // })
                         ->groupBy('brand_id')->groupBy('model_id')->groupBy('year')
                         ->groupBy('piece_id')
                         ->orderby('id','desc')

@@ -65,4 +65,5 @@ class Car extends Model
     {
         return $this->hasMany(CarComment::class, 'car_id');
     }
+ 
 }

@@ -31,10 +31,10 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <label> @lang('site.original_replica') </label>
 
         <div class="form-check">
-            <label> <input type="radio" name="original" value="1" {{ old('original') == 1 ? 'checked' : '' }} >
+            <label> <input type="radio" name="original" value="1" checked >
             @lang('site.original') </label>
 
-            <label> <input type="radio" name="original" value="0" {{ old('original') == 0 ? 'checked' : '' }} >
+            <label> <input type="radio" name="original" value="0"   >
             @lang('site.replica') </label>
         </div>
     </div>
@@ -43,7 +43,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <label> @lang('site.original_manufacture_year') </label>
 
         <select class="form-control" name="original_year">            
-            @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+            @for($i = date('Y')+1  ; $i >= 1900 ; $i--)
                 <option value="{{$i}}" {{ old('original_year')  == $i ? 'selected' : '' }}
                 >{{$i}}</option>
             @endfor
@@ -54,7 +54,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <label> @lang('site.replica_manufacture_year') </label>
 
         <select class="form-control" name="replica_year">            
-            @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+            @for($i = date('Y')+1  ; $i >= 1900 ; $i--)
                 <option value="{{$i}}" {{ old('replica_year')  == $i ? 'selected' : '' }}
                 >{{$i}}</option>
             @endfor
@@ -84,12 +84,12 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
     </div>
 
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-4 car-year">
         <label> @lang('site.year') </label>
 
         <select class="form-control" name="year" id="year">
             <option value=""> @lang('site.manufacturing_year') </option>
-            @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+            @for($i = date('Y')+1  ; $i >= 1900 ; $i--)
                 <option value="{{$i}}" {{ old('year')  == $i ? 'selected' : '' }}
                 >{{$i}}</option>
             @endfor
@@ -138,7 +138,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
             </select>
     </div>
 
-    <div class="form-group col-md-6">
+    {{-- <div class="form-group col-md-6">
         <label> @lang('site.tenders') </label>
 
         <div class="form-check">
@@ -148,7 +148,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <label> <input type="radio" name="auction" value="0" checked>
              @lang('site.no') </label>
         </div>
-    </div>
+    </div> --}}
 
     <div class="form-group col-md-4  price-options" style="display: {{ old('auction') == 1 ? 'none' : 'block' }}">
         <label> @lang('site.price') </label>

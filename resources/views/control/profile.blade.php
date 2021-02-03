@@ -71,22 +71,22 @@
                             
                           <div class="form-group col-md-6">
                             <input type="text" name="name" id="name" class="form-control pro-input" placeholder="@lang('site.name')"
-                          value="{{ logged_user()->name }}">
+                          value="{{ logged_user()->name }}" maxlength="20">
                           </div>
                           
                           <div class="form-group col-md-6">
                             <input type="email" name="email" id="email" class="form-control pro-input" placeholder="@lang('site.email')"
-                            value="{{ logged_user()->email }}">
+                            value="{{ logged_user()->email }}" maxlength="100">
                           </div>
     
                           <div class="form-group col-md-6">
                             <input type="tel" name="mobile" id="mobile" class="form-control pro-input" placeholder="@lang('site.mobile')"
-                            value="{{ logged_user()->mobile }}">
+                            value="{{ logged_user()->mobile }}" maxlength="12">
                           </div>
     
                           <div class="form-group col-md-6">
                             <input type="tel" name="phone" id="phone" class="form-control pro-input" placeholder="@lang('site.phone')"
-                            value="{{ logged_user()->phone }}">
+                            value="{{ logged_user()->phone }}" maxlength="12">
                           </div>
     
                           <div class="form-group col-md-6">
@@ -185,14 +185,14 @@
                               <label> @lang('site.bank_account') </label>
 
                               <input type="text" name="bank_account" id="bank_account" class="form-control pro-input" 
-                              value="{{ logged_user()->bank_account }}">
+                              value="{{ logged_user()->bank_account }}" maxlength="100">
                             </div>
 
                             <div class="form-group col-md-6">
                               <label> @lang('site.iban') </label>
 
                               <input type="text" name="iban" id="iban" class="form-control pro-input" 
-                              value="{{ logged_user()->iban }}">
+                              value="{{ logged_user()->iban }}" maxlength="200">
                             </div>
 
                             <div class="form-group col-md-6">
@@ -225,11 +225,11 @@
                           
                           <div class="form-group col-md-6">
                             <input type="password" name="password" class="form-control pro-input" 
-                              placeholder="@lang('site.password')" autocomplete="new-password">
+                              placeholder="@lang('site.password')" autocomplete="new-password" maxlength="100">
                           </div>
                           <div class="form-group col-md-6">
                             <input type="password" name="confirm_password" class="form-control pro-input" 
-                              placeholder="@lang('site.confirm_password')">
+                              placeholder="@lang('site.confirm_password')" maxlength="100">
                           </div>
  
                          

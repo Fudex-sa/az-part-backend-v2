@@ -392,3 +392,13 @@ background-color: #F8F9FA;
     float: left;
     color:red;
 }
+.terms a{
+    color: #fff;
+}
+.p-container-image-box{
+    height: 164px;
+}
+.comment{
+    height: 100px !important;
+    background: none !important;
+}
