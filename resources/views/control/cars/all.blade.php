@@ -145,6 +145,8 @@
           $(".tender").hide();
           $("#auction_div").hide();
           $("#original_or_not").hide();
+          $(".replica_years").hide();  
+          $(".car-year").show();
         }
     });
 
@@ -152,9 +154,11 @@
         var original = $(this).val();
 
         if(original == 0){
-          $(".replica_years").show();          
+          $(".replica_years").show();  
+          $(".car-year").hide();        
         }else{ 
           $(".replica_years").hide();          
+          $(".car-year").show();
         }
     });
   </script>

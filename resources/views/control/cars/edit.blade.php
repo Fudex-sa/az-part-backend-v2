@@ -83,7 +83,7 @@
 
                         <select class="form-control" name="year" id="year">
                             <option value=""> @lang('site.manufacturing_year') </option>
-                            @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
+                            @for($i = date('Y')+1  ; $i >= 1900 ; $i--)
                                 <option value="{{$i}}" {{ $item->year  == $i ? 'selected' : '' }}
                                 >{{$i}}</option>
                             @endfor
@@ -241,7 +241,7 @@
                       <div class="row">
                         @if($item->imgs)
                           @foreach ($item->imgs as $img)
-                            <div class="custom-file col-md-4 text-center">
+                            <div class="custom-file col-md-4 text-center" style="height: 110px;">
                                 <img src="{{ img_path($img->photo) }}" class="img-user"/>
                                 <br/>
                                 <a onclick="deleteItem({{ $img->id }})" class="btn-delete"><i class="fa fa-trash"></i> </a>
@@ -289,7 +289,7 @@
   @include('dashboard.ajax.load_regions')
   @include('dashboard.ajax.load_cities')
 
-  @include('dashboard.ajax.delete',['target'=>'car_img'])
+  @include('dashboard.ajax.delete',['target'=>'image_car'])
 
   <script>
     $(document).on("click","input[name=price_type]:radio",function(){
@@ -310,6 +310,31 @@
         }else{
           $("#auction_div").hide();
           $(".price-options").show();
+        }
+    });
+
+    $(document).on("click","input[name=type]:radio",function(){
+        var type = $(this).val();
+
+        if(type == 'antique'){
+          $(".tender").show();
+          $("#original_or_not").show();
+        }else{ 
+          $(".tender").hide();
+          $("#auction_div").hide();
+          $("#original_or_not").hide();
+        }
+    });
+
+    $(document).on("click","input[name=original]:radio",function(){
+        var original = $(this).val();
+
+        if(original == 0){
+          $(".replica_years").show();  
+          $(".car-year").hide();        
+        }else{ 
+          $(".replica_years").hide();          
+          $(".car-year").show();
         }
     });
 

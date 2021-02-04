@@ -1,4 +1,4 @@
-
+@if($item)
 <p class="lead"> @lang('site.order_data')  </p>
 
 <table class="table table-striped">
@@ -24,8 +24,8 @@
             <td> 
                
                     @if($item->user_type == 'user')
-                        <a href="{{ route('admin.user',$item->user->id) }}" target="_blank" class="underline">
-                            <i class="fa fa-user"></i> {{ $item->user->name }} </a>
+                        <a href="{{ route('admin.user',$item->user ? $item->user->id : '') }}" target="_blank" class="underline">
+                            <i class="fa fa-user"></i> {{ $item->user ? $item->user->name : '' }} </a>
                             
                     @elseif($item->user_type == 'company')
                         <a href="{{ route('admin.company',$item->company->id) }}" target="_blank" class="underline"> 
@@ -141,3 +141,4 @@
 
 
                         
+@endif

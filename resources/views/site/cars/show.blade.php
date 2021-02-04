@@ -32,6 +32,33 @@
               @endforeach  
             </div>
         </div>
+
+
+       
+          <div class="price-info">
+            <br/> <br/>
+            <h3> @lang('site.comments')  </h3>
+          </div>
+
+          @foreach ($item->comments as $comment)
+            @if($comment->approved == 1)
+              <div class="row">
+                
+                <div class="offer  col-md-4">                
+                  <p><img src="{{ asset('site/assets/images/per-gray.png') }}" alt="" class="ml-2"> 
+                      {{ $comment->user ? $comment->user->name : '' }} </p>
+                </div>
+
+                <div class="offer  col-md-8">              
+                  <p> {{ $comment->comment }} </p>
+                </div>
+              </div>
+              @endif
+          @endforeach
+        
+
+            
+
         
       </div>
       <div class="col-md-7">

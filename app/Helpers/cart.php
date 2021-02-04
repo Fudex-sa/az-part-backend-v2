@@ -85,7 +85,7 @@ if (! function_exists('commission')) {
                 
         $commission = setting('site_commission') / 100 * sub_total();
  
-        return $commission;
+        return $commission < 20 ? 20 : $commission;
     }
 }
  
@@ -128,8 +128,7 @@ if (! function_exists('total')) {
             $result = sub_total() + commission();
             $result = $result - discount();
 
-            
-            
+             
             $result = $result + taxs();
             $result = $result + delivery_price() + $with_oil;
         }
@@ -200,7 +199,8 @@ if (! function_exists('discount')) {
 
         else{
             if(coupon_discount() != 0)            
-                $result = coupon_discount() / 100 * sub_total();
+                // $result = coupon_discount() / 100 * sub_total();
+                $result = coupon_discount() / 100 * commission();
     
             else $result = 0;
         }

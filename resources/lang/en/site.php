@@ -1020,4 +1020,5 @@ return [
     'total_cars_count' => 'The number of cars included',
     'edit_category' => 'Edit Category',
     'my_categories' => 'My Categories',
+    'remove_piece' => 'Remove Piece',
 ];

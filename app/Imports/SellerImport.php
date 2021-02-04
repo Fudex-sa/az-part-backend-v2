@@ -24,24 +24,19 @@ class SellerImport implements ToCollection
     {
          
         foreach ($rows as $row) {
-            if ($row[0] != 'name') {
+            if ($row[0] != 'رقم المحل') {
+               
                 $data = [];
-                $data['name'] = $row[0];
-                $data['mobile'] = $row[1];
-                $data['password'] = \Hash::make($row[2]);
-                $data['user_type'] = $row[3];
-                $data['email'] = $row[4];
-                $data['saudi'] = $row[5];
-                $data['active'] = $row[6];
-                $data['vip'] = $row[7];
-                $data['country_id'] = Country::where('name_ar',$row[8])->first()->id;
-                $data['region_id'] = Region::where('name_ar',$row[9])->first()->id;
-                $data['city_id'] = City::where('name_ar',$row[10])->first()->id;
-                $data['phone'] = $row[11];
-                $data['available_orders'] = $row[12];
-                $data['rating'] = $row[13];
-                $data['created_by'] = $row[14];
-                $data['tashlih_region'] = DeliveryRegion::where('name_ar',$row[15])->first()->id;
+                                
+                $data['country_id'] = Country::where('name_ar',$row[1])->first()->id;
+                $data['region_id'] = Region::where('name_ar',$row[2])->first()->id;
+                $data['city_id'] = City::where('name_ar',$row[3])->first()->id;
+                $data['tashlih_region'] = DeliveryRegion::where('name_ar',$row[4])->first()->id;
+                $data['name'] = $row[5];
+                $data['mobile'] = $row[6];
+                $data['address'] = $row[7];
+                $data['password'] = \Hash::make('123456');               
+                $data['active'] = 1;
 
                 $seller = Seller::create($data);
             }

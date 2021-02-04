@@ -61,7 +61,7 @@
 
                 <td> {{ $avaliable_model->brand['name_'.my_lang()] }} </td>
 
-                <td> {{ $avaliable_model->model['name_'.my_lang()] }} </td>
+                <td> {{ $avaliable_model->model ? $avaliable_model->model['name_'.my_lang()] : '' }} </td>
 
                 <td> {{ $avaliable_model->year }} </td>
             </tr>
@@ -70,3 +70,5 @@
         
     </tbody>
 </table>
+
+<div class="text-center">  {{ $avaliable_models->links('vendor.pagination.bootstrap-4') }}  </div>

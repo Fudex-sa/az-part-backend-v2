@@ -58,7 +58,8 @@
 
             <td>{{date('d-m-Y',strtotime($item->created_at))}}</td>
 
-            <td><a href="{{ route('admin.car.comments',$item->id) }}">{{ $item->comments->count() }}</a></td>
+            <td><a href="{{ route('admin.car.comments',$item->id) }}">
+                <i class="fa fa-comment"></i> {{ $item->comments->count() }}</a></td>
 
             <td>
                 <a href="{{ route('admin.car',$item->id) }}" class="btn btn-info btn-xs"> <i class="fa fa-edit"></i> </a>
@@ -72,7 +73,7 @@
     </tbody>
 </table>
 
-<div class="text-center"> {{ $items->links() }} </div>
+<div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
 
 
 @endsection

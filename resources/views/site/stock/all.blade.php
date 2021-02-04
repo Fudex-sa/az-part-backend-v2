@@ -36,7 +36,7 @@
             <div class="form-group">
               <label for="city"> @lang('site.choose_model') </label>
               <select class="form-control" name="model_id" id="model_id">
-                <option selected> @lang('site.choose_model') </option>
+                <option value="" selected> @lang('site.choose_model') </option>
                 
               </select>
             </div>
@@ -46,7 +46,7 @@
             <div class="form-group">
               <label for="city1"> @lang('site.manufacturing_year') </label>
               <select class="form-control" name="year" id="year">
-                <option selected> @lang('site.choose_brand') </option>
+                <option value="" selected> @lang('site.choose_brand') </option>
                 @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
                     <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
                     >{{$i}}</option>
@@ -86,14 +86,14 @@
 
               @foreach ($items as $item)
                 <tr class="bg-blue">
-                <th scope="row"><img src="{{ brand_img($item->brand->logo) }}" alt="" class="brand-logo"></th>
+                <th scope="row"><img src="{{ brand_img($item->brand ? $item->brand->logo : '') }}" alt="" class="brand-logo"></th>
                 
-                  <td> {{ $item->model['name_'.my_lang()] }} </td>
+                  <td> {{ $item->model ? $item->model['name_'.my_lang()] : '' }} </td>
                   <td> {{ $item->year }} </td>
 
-                <td> <a href="{{ route('stock.show',['brand'=>$item->brand->id , 'model'=>$item->model->id , 
-                      'year'=>$item->year , 'piece'=> $item->piece->id]) }}">
-                     {{ $item->piece['name_'.my_lang()] }} </a> </td>
+                <td> <a href="{{ route('stock.show',['brand'=>$item->brand ? $item->brand->id : 0 , 'model'=>$item->model ? $item->model->id : 0, 
+                      'year'=>$item->year , 'piece'=> $item->piece ? $item->piece->id : 0]) }}">
+                     {{ $item->piece ? $item->piece['name_'.my_lang()] : '' }} </a> </td>
                   <td>
                     <p class="color-dark">
                       @if($item->max_price != $item->min_price) <span class="p-green"> {{ $item->max_price }}</span> 
@@ -123,7 +123,9 @@
         </div>
 
 
-        <div class="text-center"> {{ $items->links() }} </div>
+        <div class="text-center">           
+          {{ $items->links('vendor.pagination.bootstrap-4') }}          
+        </div>
 
       </div>
     </div>

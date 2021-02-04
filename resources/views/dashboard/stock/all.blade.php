@@ -67,13 +67,13 @@
             <tr>
                 <td>{{$k+1}}</td>
 
-                <td> {{ $item->brand['name_'.my_lang()] }} </td>
+                <td> {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} </td>
 
-                <td> {{ $item->model['name_'.my_lang()] }} </td>
+                <td> {{ $item->model ? $item->model['name_'.my_lang()] : '' }} </td>
 
                 <td> {{ $item->year}} </td>
 
-                <td>{{$item->piece['name_'.my_lang()]}}</td>
+                <td>{{ $item->piece ? $item->piece['name_'.my_lang()] : ''}}</td>
 
                 <td> {{ $item->count_price }} </td>
 
@@ -89,7 +89,7 @@
 
     </table>
 
-<div class="text-center"> {{ $items->links() }} </div>
+    <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
 
         </div>
     </div>

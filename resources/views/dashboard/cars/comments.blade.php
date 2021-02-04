@@ -9,7 +9,7 @@
 
 @section('content')
    
-<table class="table table-striped jambo_table bulk_action" id="myTbl">
+<table class="table table-striped jambo_table bulk_action text-center" id="myTbl">
     <thead>
         <tr>
             <th scope="col">#  </th>            
@@ -52,7 +52,7 @@
     </tbody>
 </table>
 
-<div class="text-center"> {{ $items->links() }} </div>
+<div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
  
 
 @endsection

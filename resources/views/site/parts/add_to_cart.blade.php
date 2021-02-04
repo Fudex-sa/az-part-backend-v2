@@ -13,7 +13,7 @@
 
          <div class="text-left">
           <a onclick="addNewPiece()" href="javascript:void(0);">
-               @lang('site.add_piece') <i class="fa fa-plus"></i> </a>
+            <i class="fa fa-plus"></i> @lang('site.add_piece')  </a>
           </div>
        </div>
        

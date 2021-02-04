@@ -39,7 +39,11 @@ body {
 #back img {
     transform: rotate(180deg);
 }
-
+.relative svg{
+        width: 24px;
+    height: 24px;
+        transform: rotateY(0deg);
+}
 .add-bg {
   background: #fff url(../images/add.png) no-repeat 99%;
 }

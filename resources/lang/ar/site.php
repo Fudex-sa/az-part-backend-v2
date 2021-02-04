@@ -1165,4 +1165,6 @@ return [
     'total_cars_count' => 'عدد السيارات المدرجة',
     'edit_category' => 'تعديل تخصص',
     'my_categories' => 'تخصصاتى',
+    'remove_piece' => 'حذف قطعة',
+    'car_image_shoud_not_excced_10m' => 'حجم صورة السيارة يجب ألا يتجاوز 10M ',
 ];

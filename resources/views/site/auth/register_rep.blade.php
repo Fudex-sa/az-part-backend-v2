@@ -64,7 +64,7 @@
                                                   
                                             <div class="form-group col-12">
                                                 <input type="text" class="form-control" id="name" name="name" 
-                                                    placeholder="@lang('site.name')" value="{{ old('name') }}">
+                                                    placeholder="@lang('site.name')" value="{{ old('name') }}" maxlength="100">
                                             </div>
 
                                             <div class="form-group col-12">
@@ -74,12 +74,12 @@
                                             
                                             <div class="form-group col-12">
                                                 <input type="password" class="form-control" id="password" name="password" 
-                                                placeholder="@lang('site.password')" autocomplete="new-password">
+                                                placeholder="@lang('site.password')" autocomplete="new-password" maxlength="100">
                                             </div>
                                             
                                             <div class="form-group col-12">
                                                 <input type="password" class="form-control" id="confirm_password" name="password_confirmation" 
-                                                    placeholder="@lang('site.confirm_password')">
+                                                    placeholder="@lang('site.confirm_password')" maxlength="100">
                                             </div>
                                             
                                             {{-- <div class="form-group col-12">

@@ -46,6 +46,7 @@ class CarController extends Controller
     public function show($id)
     {
         $item = Car::with('imgs')->with('brand')->with('model')->with('region')->with('city')
+                    ->with('comments')
                     ->where('id',$id)->first();
 
         $cars = Car::with('imgs')->with('brand')->with('model')->with('region')->with('city')

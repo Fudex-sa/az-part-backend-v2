@@ -259,9 +259,7 @@
     width: 15px;
 }
 
-.hidden{
-    display: none;
-}
+
 .required{
     color: red;
 }
@@ -387,4 +385,21 @@ background-color: #F8F9FA;
 }
 .car-imgs{
     height: 100px;
+}
+.remove-piece{
+    float: left;
+    color:red;
+}
+.terms a{
+    color: #fff;
+}
+.p-container-image-box{
+    height: 164px;
+}
+.comment{
+    height: 100px !important;
+    background: none !important;
+}
+.pagination{
+    margin-right: 25%;
 }

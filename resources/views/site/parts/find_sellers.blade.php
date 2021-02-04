@@ -21,7 +21,7 @@
 
             <div class="results">
               <h6>  @lang('site.result_no_in_this_city') : 
-                    <span class="text-dark"> {{ $all_items ? count($all_items) : 0 }}  @lang('site.result')  </span> 
+                    <span style="color:red !important;"> {{ $all_items ? count($all_items) : 0 }}  @lang('site.result')  </span> 
               </h6>
   
              
@@ -57,12 +57,14 @@
                                     @if($item->seller->vip == 1) <i class="fa fa-check-circle verified"></i> @endif
                                 </h4>
                                 <h6 class="orang">                                  
-                                    <a href="https://maps.google.com/?q={{$item->seller['lat']}},{{$item->seller['lng']}}" target="_blank"> 
+                                    {{-- <a href="https://maps.google.com/?q={{$item->seller['lat']}},{{$item->seller['lng']}}" target="_blank"> 
                                         <img src="{{ site('assets/images/location.png') }}" alt="">  {{ $item->seller['address'] }}
-                                    </a>
+                                    </a> --}}
 
-                                    {{ $item->seller->region ? $item->seller->region['name_'.my_lang()] : '' }} - 
-                                    {{ $item->seller->city ? $item->seller->city['name_'.my_lang()] : '' }}
+                                    <a href="{{ $item->seller['address'] }}" target="_blank">
+                                        {{ $item->seller->region ? $item->seller->region['name_'.my_lang()] : '' }} - 
+                                        {{ $item->seller->city ? $item->seller->city['name_'.my_lang()] : '' }}
+                                    </a>
 
                                     |  @lang('site.tashlih_region') : 
                                         {{ $item->seller->tashlih ? $item->seller->tashlih['name_'.my_lang()] : '-' }}
@@ -194,11 +196,20 @@ GrowlNotification.notify({
 <script>
   $("input[type='number']").inputSpinner();
   
+  var pieceCount =1;
+
   function addNewPiece(){
+    pieceCount ++;
+        
         $.get("{{ route('more_pieces') }}", function(data){
+             
             $("#more_pieces").append(data);
         });
     };
+ 
+    function removePiece(elem){
+        $(elem).parent().parent('.piecePart').remove();
+    }
 
 </script>
 @endsection

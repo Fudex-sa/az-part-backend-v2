@@ -48,8 +48,8 @@
                 @endif
 
                 @if(has_permission('data_site_delete'))
-                    <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
-                        <i class="fa fa-trash"></i> </a>
+                    {{-- <a onclick="deleteItem({{ $item->id }})" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> </a> --}}
                 @endif
             </td>
           </tr>
@@ -59,7 +59,7 @@
 
     </table>
   
-<div class="text-center"> {{ $items->links() }} </div>
+    <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
  
 
 @endsection
