@@ -259,9 +259,7 @@
     width: 15px;
 }
 
-.hidden{
-    display: none;
-}
+
 .required{
     color: red;
 }
@@ -401,4 +399,7 @@ background-color: #F8F9FA;
 .comment{
     height: 100px !important;
     background: none !important;
+}
+.pagination{
+    margin-right: 25%;
 }

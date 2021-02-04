@@ -264,11 +264,11 @@
 
               </div>
 
-              @if($car->price_type == 'fixed')
+              @if($car->price_type == 'fixed' && $car->price != null)
                 <div class="add-card-footer">
                   <h6><strong> {{ $car->price }} </strong> @lang('site.rs')  </h6>
                 </div>
-              @endif
+              @else   @endif
 
             </div>
           @endforeach
@@ -293,10 +293,30 @@
           <h2> @lang('site.how_to_order') </h2>
         </div>
       </div>
+      <div class="col-lg-4">
+        <div class="how-order">
+<h5>الماركة</h5>
+        <h5>مثال (تيوتا)</h5>
+</div>
+      </div>
+      <div class="col-lg-4">
+        <div class="how-order">
+        <h5>الموديل</h5>
+        <h5>مثال (كورولا)</h5>
+      </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="how-order">
+        <h5>سنة الصنع</h5>
+        <h5>مثال (2015)</h5>
+      </div>
+      </div>
 
       <div class="col-md-4 text-center">
-        <h3> @lang('site.manual_packages') </h3>
-
+ <div class="order-box shadow text-center">
+            <img src="{{ site('assets/images/img1.png') }}" alt="">
+        </div>
+        <div class="or-info"> <h4> @lang('site.manual_packages') </h4> </div>
         <div class="order-box shadow text-center">
             <img src="{{ site('assets/images/img1.png') }}" alt="">
         </div>
@@ -322,8 +342,11 @@
       <div class="col-md-4"> <span class="step-1"></span> </div>
 
       <div class="col-md-4">
-        <h3> @lang('site.electronic_packages') </h3>
 
+        <div class="order-box shadow text-center">
+            <img src="{{ site('assets/images/img1.png') }}" alt="">
+        </div>
+        <div class="or-info"> <h4> @lang('site.electronic_packages') </h4> </div>
         <div class="order-box shadow text-center">
             <img src="{{ site('assets/images/img1.png') }}" alt="">
         </div>

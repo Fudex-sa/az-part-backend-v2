@@ -99,7 +99,7 @@
 
         <tr class="even pointer">
 
-            <td>{{ $k+1 }}</td>
+            <td>{{ $item->id }}</td>
 
             {{-- <td>user#{{$item->id}}</td> --}}
 
@@ -167,7 +167,7 @@
     </tbody>
 </table>
 
-<div class="text-center"> {{ $items->links() }} </div>
+<div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
 
 
         </div>

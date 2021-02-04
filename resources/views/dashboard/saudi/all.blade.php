@@ -85,7 +85,7 @@
                     </tbody>
                 </table>
                 
-                <div class="text-center"> {{ $users->links() }} </div>
+                <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
                   
             </div>
         </div>
@@ -134,7 +134,7 @@
                     </tbody>
                 </table>
                 
-                <div class="text-center"> {{ $companies->links() }} </div>
+                <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
                   
             </div>
         </div>
@@ -182,7 +182,7 @@
                     </tbody>
                 </table>
                 
-                <div class="text-center"> {{ $sellers->links() }} </div>
+                <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
                   
             </div>
         </div>
@@ -231,7 +231,7 @@
                     </tbody>
                 </table>
                 
-                <div class="text-center"> {{ $brokers->links() }} </div>
+                <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
                   
             </div>
         </div>

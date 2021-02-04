@@ -89,7 +89,7 @@
 
     </table>
 
-<div class="text-center"> {{ $items->links() }} </div>
+    <div class="text-center">  {{ $items->links('vendor.pagination.bootstrap-4') }}  </div>
 
         </div>
     </div>

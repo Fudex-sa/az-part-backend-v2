@@ -234,6 +234,33 @@ a:not([href]):not([tabindex]){
 .header .summary-numbers > span:last-child{
     margin-left:0px;
 }
+.relative svg{
+        width: 24px;
+    height: 24px;
+        transform: rotateY(180deg);
+}
+.how-order{
+     height: 100px;
+    border-radius: 15px;
+    background-image: linear-gradient(to top, #e26941, #f2a736);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    border: 2px solid #fff;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 65px;   
+}
+.how-order h5{
+    margin: 0;
+}
+.how-order h5:first-child{
+    font-size:32px;
+}
+.how-order h5:last-child{
+    font-size:14px;
+}
 .info-box {
   margin-top: 30px;
   margin-bottom: 50px;

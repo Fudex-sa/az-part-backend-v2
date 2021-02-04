@@ -70,3 +70,5 @@
         
     </tbody>
 </table>
+
+<div class="text-center">  {{ $avaliable_models->links('vendor.pagination.bootstrap-4') }}  </div>
