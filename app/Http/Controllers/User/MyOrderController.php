@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\PackageSubscribe;
 
 class MyOrderController extends Controller
 {
@@ -20,6 +21,15 @@ class MyOrderController extends Controller
                         ->where('user_id',logged_user()->id)
                         ->orderby('id','desc')->paginate(pagger());
 
-        return view($this->view . 'all',compact('my_orders','items'));
+        $manual_package = PackageSubscribe::with('my_orders')
+                    ->myPackagesByType()                                        
+                    ->sum('remaining');
+ 
+
+        $elec_package = PackageSubscribe::with('my_orders')
+                        ->myPackagesByType('electronic')                                        
+                        ->sum('stores_no');
+
+        return view($this->view . 'all',compact('my_orders','items','manual_package','elec_package'));
     }
 }

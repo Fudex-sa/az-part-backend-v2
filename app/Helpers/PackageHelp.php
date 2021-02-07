@@ -6,9 +6,18 @@ use App\Models\PackageSubscribe;
 use App\Models\Package;
 use App\Models\Order;
 use App\Models\ElectronicRequest;
+use App\Helpers\Search;
 
 class PackageHelp
 {
+
+    protected $search;
+
+    public function __construct()
+    {     
+        
+        $this->search = new Search();
+    }
 
     public function subscribe()
     {
@@ -25,10 +34,24 @@ class PackageHelp
         ]);
     
 
-        if($item)
+        if($item){
             $response = true;
-        
-        else $response = false;
+            
+            $brand = $this->search->search_res('brand');
+            $model = $this->search->search_res('model');
+            $year = $this->search->search_res('year');
+            $country = $this->search->search_res('country');
+            $region = $this->search->search_res('region');
+            $city = $this->search->search_res('city');
+
+            $this->search->update_limit_history($this->final_limit());
+
+            // $this->search->save_search_history($brand,$model,$year,$country,$region,$city,
+            //                 $this->final_limit());
+
+            // $this->update_remaining(session()->get('remaining_stores'));
+
+        }else $response = false;
 
         session()->forget('package_id');
         session()->forget('coupon');
@@ -56,25 +79,24 @@ class PackageHelp
         return $limit;
 
     }
-
-    public function remaining()
-    {
-        # code...
-    }
+ 
 
     public function update_remaining($remaining)
     {
-        ($remaining < 0) ? $remaining = 0 : $remaining = $remaining;
+        // $cookies = $this->search->delete_cookies();
+        // if($cookies == 0){
 
-        $item = PackageSubscribe::myPackagesByType('manual')->first();
-        if($item){
-            $item->remaining = $remaining;
-            $item->save();
+            ($remaining < 0) ? $remaining = 0 : $remaining = $remaining;
 
-            if($item->remaining == 0)
-                $this->update_expired($item->id);
-        }
-        
+            $item = PackageSubscribe::myPackagesByType('manual')->first();
+            if($item){
+                $item->remaining = $remaining;
+                $item->save();
+
+                if($item->remaining == 0)
+                    $this->update_expired($item->id);
+            }
+        // }
 
     }
     public function update_expired($package_sub_id) {

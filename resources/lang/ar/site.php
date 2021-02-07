@@ -562,8 +562,9 @@ return [
     'let_admin_deal_requests' => 'طلبات التوصيل اكسبرس',
     'password_required_in_deactivate' => 'كلمة السر مطلوبة لتغير كلمة مرور المستخدم',
     'duplicated_mobile_used' => 'هذا الرقم مسجل بالفعل من قبل مستخدم اخر',
-    'contact_with_administrator' => 'تواصل مع المالك',
+    'contact_with_administrator' => 'تواصل مع الإدارة',
     'contact_with_admin' => 'تواصل مع الإدارة',
+    'contact_with_owner' => 'تواصل مع المالك',
     'add_comment' => 'أضف تعليق',
     'invalid_image_type' => 'مسموح فقط برفع صور بإمتداد png,jpg,jpeg,svg وأن لا تتعدى حجم الصورة عن 10 ميقا',
     'sort_by_price' => 'الفرز بالسعر',
@@ -1167,4 +1168,6 @@ return [
     'my_categories' => 'تخصصاتى',
     'remove_piece' => 'حذف قطعة',
     'car_image_shoud_not_excced_10m' => 'حجم صورة السيارة يجب ألا يتجاوز 10M ',
+    'my_avaiable_elec_orders' => 'طلباتى الإلكترونية المتبقية',
+    'my_avaiable_manual_orders' => 'المتاجر المعروضة المتبقية',
 ];
