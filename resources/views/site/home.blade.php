@@ -91,6 +91,9 @@
             <div class="ui-widget col-md-4">
               <select class="form-control " name="region" id="region_id" required>
                 <option value=""> @lang('site.choose_region') </option>
+                @foreach (regions(1) as $re)                
+                    <option value="{{ $re->id }}"> {{ $re['name_'.my_lang()] }} </option>
+                @endforeach
               </select>
             </div>
 

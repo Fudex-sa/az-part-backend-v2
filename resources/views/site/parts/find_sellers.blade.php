@@ -62,7 +62,7 @@
                                     </a> --}}
 
                                     <a href="{{ $item->seller['address'] }}" target="_blank">
-                                        {{ $item->seller->region ? $item->seller->region['name_'.my_lang()] : '' }} - 
+                                       <i class="fa fa-map-marker"></i> {{ $item->seller->region ? $item->seller->region['name_'.my_lang()] : '' }} - 
                                         {{ $item->seller->city ? $item->seller->city['name_'.my_lang()] : '' }}
                                     </a>
 
@@ -93,14 +93,14 @@
                         <div class="col-md-3">
                             <div class="e-end row">
                                 <div class="col-md-8">
-                                    <a href="tel:{{ $item->seller['mobile'] }}" class="btn btn-whatsapp  btn-block">
+                                    <a href="tel:00966{{ $item->seller['mobile'] }}" class="btn btn-whatsapp  btn-block">
                                         <img src="{{ site('assets/images/phone.png') }}" alt="" class="ml-3"> 
                                         @lang('site.call_seller')
                                     </a>
                                 </div>
 
                                <div class="col-md-4">
-                                    <a href="https://wa.me/{{ $item->seller['mobile'] }}" target="_blank" class="btn btn-whatsapp  btn-block"> 
+                                    <a href="https://wa.me/00966{{ $item->seller['mobile'] }}" target="_blank" class="btn btn-whatsapp  btn-block"> 
                                         <img src="{{ site('assets/images/w-2.png') }}" /> 
                                     </a>
                                 </div>
