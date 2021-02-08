@@ -549,6 +549,7 @@ return [
 'duplicated_mobile_used' => 'This Number Already Used',
 'contact_with_administrator' => 'Contact With Admin',
 'contact_with_admin' => 'Contact With Adminstrator',
+'contact_with_owner' => 'Contact With Owner',
 'add_comment' => 'Add Comment',
 'invalid_image_type' => 'Invalid Image Type',
 'sort_by_price' => 'Sort By Price',
@@ -1021,4 +1022,6 @@ return [
     'edit_category' => 'Edit Category',
     'my_categories' => 'My Categories',
     'remove_piece' => 'Remove Piece',
+    'my_avaiable_elec_orders' => 'My Available Electronic Search',
+    'my_avaiable_manual_orders' => 'My Avialable Manaual Search'
 ];

@@ -19,6 +19,7 @@ use Session;
 use App\Helpers\PackageHelp;
 use App\Helpers\Search;
 use App\Models\PackageSubscribe;
+use App\Models\SearchHistory;
 
 class PartController extends Controller
 {
@@ -47,6 +48,12 @@ class PartController extends Controller
  
         $limit = $this->package->final_limit();
  
+        $exists = SearchHistory::match($request->brand,$request->model,$request->year)
+                                ->first();
+
+        if($exists) $limit = $exists->limit;
+
+
         $response = $this->search->manual_search($request,$limit);
  
 
@@ -55,10 +62,20 @@ class PartController extends Controller
         $all_items = $response ? $response['all_items'] : null;
          
 
-        $remaining_stores = $limit-count($all_items);
-          
-        $this->package->update_remaining($remaining_stores);
- 
+        $this->search->save_search_history($request->brand,$request->model,$request->year
+                        ,$request->country,$request->region,$request->city,
+                        $this->package->final_limit());
+
+
+        if(!$exists){ 
+            $remaining_stores = $limit-count($all_items);
+            session()->put('remaining_stores',$remaining_stores);
+
+            $this->package->update_remaining($remaining_stores);
+        }    
+
+       
+
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }
 

@@ -39,7 +39,7 @@
           <div class="row ">
             <div class="ui-widget col-md-4">
 
-                <select class="form-control select2 input-A" name="brand" id="brand_id">
+                <select class="form-control select2 input-A" name="brand" id="brand_id" required>
                   <option value=""> @lang('site.choose_brand') </option>
                   @foreach ($brands as $brand)
                       <option value="{{ $brand->id }}"
@@ -50,7 +50,7 @@
             </div>
             <div class="ui-widget col-md-4">
 
-              <select class="form-control select2 input-B" name="model" id="model_id">
+              <select class="form-control select2 input-B" name="model" id="model_id" required>
                   <option value=""> @lang('site.choose_model') </option>
 
               </select>
@@ -58,7 +58,7 @@
             </div>
             <div class="ui-widget col-md-4">
 
-              <select class="form-control " name="year" id="year">
+              <select class="form-control " name="year" id="year" required>
                 <option value=""> @lang('site.manufacturing_year') </option>
                 @for($i = date('Y')+1  ; $i >= 1970 ; $i--)
                     <option value="{{$i}}" {{ app('request')->input('year')  == $i ? 'selected' : '' }}
@@ -80,7 +80,7 @@
 
             <div class="ui-widget col-md-4">
 
-                <select class="form-control " name="country" id="country_id">
+                <select class="form-control " name="country" id="country_id" required>
                     <option value=""> @lang('site.choose_country') </option>
                     @foreach (countries() as $country)
                         <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
@@ -89,20 +89,23 @@
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control " name="region" id="region_id">
+              <select class="form-control " name="region" id="region_id" required>
                 <option value=""> @lang('site.choose_region') </option>
+                @foreach (regions(1) as $re)                
+                    <option value="{{ $re->id }}"> {{ $re['name_'.my_lang()] }} </option>
+                @endforeach
               </select>
             </div>
 
             <div class="ui-widget col-md-4">
-              <select class="form-control " name="city" id="cities">
+              <select class="form-control " name="city" id="cities" required>
                 <option value=""> @lang('site.choose_city') </option>
               </select>
             </div>
             <div class="col-md-4"></div>
 
             <div class="ui-widget col-md-4 col-10">
-                           <select name="search_type" class="form-control mt-44">
+                           <select name="search_type" class="form-control mt-44" required>
                     <option value=""> @lang('site.search_type') </option>
                     <option value="manual"> @lang('site.manual') </option>
                     <option value="electronic"> @lang('site.electronic') </option>

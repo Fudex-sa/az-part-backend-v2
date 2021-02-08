@@ -7,6 +7,8 @@ use App\Models\AvailableModel;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Seller;
+use App\Models\SearchHistory;
+// use Cookie;
 
 class Search
 {
@@ -23,6 +25,40 @@ class Search
         ]);
     }
 
+    // public function save_cookies()
+    // {        
+    //     $min = 1;
+
+    //     $search = session()->get('search');
+    //     if($search){ 
+    //         foreach($search as $k=>$s){            
+    //             Cookie::queue($k, $s, $min);
+    //     }}
+ 
+    // }
+
+    // public function delete_cookies()
+    // {
+    //     $search = Session::get('search');
+
+    //     if(Cookie::get('brand')){
+    //         if(Cookie::get('brand') == $search['brand']  &
+    //             Cookie::get('model') == $search['model'] &
+    //             Cookie::get('year') == $search['year'] &
+    //             Cookie::get('country') == $search['country'] &
+    //             Cookie::get('region') == $search['region'] &
+    //             Cookie::get('city') == $search['city'] &
+    //             Cookie::get('search_type') == $search['search_type'] 
+    //         ) 
+
+    //         return 1;
+
+    //         else return 0;
+    //     }
+
+    //     return 0;
+    // }
+    
     public function search_url()
     {
         $search = Session::get('search');
@@ -52,12 +88,27 @@ class Search
         return $search[$session_name];
     }
 
+    public function save_search_history($brand,$model,$year,$country,$region,$city,$limit)
+    {        
+        $exists = SearchHistory::match($brand,$model,$year)
+                                ->count();
+ 
+        if($exists < 1)
+            SearchHistory::create([
+                'brand_id' => $brand, 'model_id' => $model,
+                'year' => $year , 'country_id' => $country,
+                'region_id' => $region , 'city_id' => $city,
+                'search_type' => 'manual' , 'limit' => $limit , 'user_id' => logged_user()->id,
+                'user_type' => user_type()
+            ]);
+
+    }
     public function manual_search(Request $request,$limit)
     {
         $response = array();
  
         $region = $request->region;
-        
+         
         $items = AvailableModel::matchOrder($request->brand,$request->model,$request->year)
                                 ->with('seller')
                                 ->whereHas('seller',function($q) use ($region){
@@ -76,7 +127,7 @@ class Search
         $response['items'] = $items->limit($limit)->get()->sortByDesc(function($query){
             return $query->seller->vip;
         });;                    
-            
+         
         return $response;
     }
 
@@ -121,4 +172,19 @@ class Search
 
     // }
 
+
+    public function update_expired_history()
+    {
+        $items = SearchHistory::where('expired',0)->update(['expired'=>1]);
+    }
+
+    public function update_limit_history($limit)
+    {
+        $brand = $this->search_res('brand');
+        $model = $this->search_res('model');
+        $year = $this->search_res('year');
+
+        $items = SearchHistory::match($brand,$model,$year)
+                            ->update(['limit'=>$limit]);
+    }
 }

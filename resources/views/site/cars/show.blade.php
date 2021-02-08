@@ -64,11 +64,14 @@
       <div class="col-md-7">
 
         <div class="pragraph-box mt-3">
+          @if($item->price_type == 'fixed')
+             <h3 class="col-md-12 text-left" style="color: #e26941;"> {{ $item->price }} @lang('site.rs') </h3> @endif
+
             <p><img src="{{ site('assets/images/place-1.png') }}" alt="">
               @lang('site.model') : {{ $item->brand ? $item->brand['name_'.my_lang()] : '' }} -
                                     {{ $item->model ? $item->model['name_'.my_lang()] : '' }}
                                     {{ $item->year }}
-            </p>
+            </p>            
 
             <p><img src="{{ site('assets/images/place-2.png') }}" alt="">
                 @lang('site.type') : {{ __('site.'.$item->type) }} </p>
@@ -122,14 +125,18 @@
 
         </div>
         <div class="auction mt-4 row">
-          @if($item->price_type == 'fixed') <h3 class="col-md-12"> {{ $item->price }}  </h3> @endif
+          
 
           @if($item->auction == 1)
           <a href="{{ route('control.getAuction',$item->id) }}" class="btn btn-save col-md-4  btn-lg">@lang('site.join_auction')</a>
           @endif
           <div class="col-md-12 text-left">
             @if($item->type == 'damaged')
-              <a href="tel:00966{{ $item->user ? $item->user->mobile : '' }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg"> @lang('site.contact_with_administrator') </a>
+              <a href="tel:00966{{ $item->user ? $item->user->mobile : '' }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg"> 
+               <i class="fa fa-phone"></i> @lang('site.contact_with_owner') </a>
+
+              <a href="tel:00966{{ data('mobile') }}" class="btn btn-logindrop col-md-4 mt-3 btn-lg"> 
+                <i class="fa fa-phone"></i> @lang('site.contact_with_administrator') </a>
 
               <a href="https://wa.me/{{ $item->user ? $item->user->mobile : '' }}" target="_blank" class="btn btn-logindrop col-md-1 mt-3 btn-lg"> 
                   <img src="{{ site('assets/images/w-2.png') }}" /> 

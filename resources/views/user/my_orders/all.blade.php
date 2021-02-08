@@ -22,7 +22,18 @@
 
           <div class="col-lg-9 col-md-9 ">
            <ul class="row  orders-info">
-              <li class="col-md-12">
+             
+            <li class="col-md-12">
+              <span class="col-md-4"> <i class="fa fa-info"></i> @lang('site.my_avaiable_manual_orders') : </span>
+              <span class="col-md-1 required">  {{ $manual_package }} @lang('site.store') </span>
+              ||
+              <span class="col-md-4"> <i class="fa fa-info"></i> @lang('site.my_avaiable_elec_orders') : </span>
+              <span class="col-md-1 required">  {{ $elec_package }} @lang('site.request') </span>
+            </li>
+ 
+
+
+              {{-- <li class="col-md-12">
                  <span class="col-md-6 "> <i class="fa fa-info"></i> @lang('site.free_manul_search') : </span>
                  <span class="col-md-2 "> {{ setting('manual_search_result') }} </span>
               </li>
@@ -35,7 +46,7 @@
               <li class="col-md-12">
                 <span class="col-md-6"> <i class="fa fa-info"></i> @lang('site.my_free_elec_search') : </span>
                 <span class="col-md-2 "> {{ logged_user()->available_orders }}  </span>
-              </li>
+              </li> --}}
            </ul>
  <div class="table-responsive">
                     <table class="my-tbl text-center">

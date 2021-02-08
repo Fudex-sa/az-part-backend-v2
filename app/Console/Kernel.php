@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\NextRound::class,
         Commands\AssignBrokers::class,
         Commands\AssignAdmin::class,
+        Commands\SearchHistory::class,
     ];
 
     /**
@@ -26,6 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('search_history:cron')->weekly();
+
         $day = date('D');
 
         if ($day != 'Fri') {        
@@ -42,6 +45,7 @@ class Kernel extends ConsoleKernel
                         // ->between('9:00', '18:00');
         }
 
+        
     }
 
     /**
