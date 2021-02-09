@@ -65,12 +65,14 @@
                             </label>
                         
                         @elseif($col == 'address')
-                            <input id="pac-input" class="form-control add-bg" name="address" type="text"
+                        <input type="link" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
+
+                            {{-- <input id="pac-input" class="form-control add-bg" name="address" type="text"
                             placeholder="{{ __('site.find_address') }}" value="{{ old('address') }}">
         
                             <div id="map" style="width:420px;height: 400px;"></div>
                             <input type="hidden" name="lat"  id="latitude" value="26.420031"/>
-                            <input type="hidden" name="lng" id="longitude" value="50.089986"/>
+                            <input type="hidden" name="lng" id="longitude" value="50.089986"/> --}}
                              
 
                         @elseif($col == 'tashlih_region')
@@ -83,7 +85,7 @@
                             </select>
 
                         @else
-                        <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
+                            <input type="text" name="{{ $col }}" class="form-control" value="{{ $item->$col }}">                                
     
                         @endif
                     </div>
@@ -101,7 +103,8 @@
                     <option value=""> @lang('site.choose_country') </option>
                     
                     @foreach (countries() as $country)
-                        <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
+                        <option value="{{ $country->id }}" {{ $country->id == $item->country_id ? 'selected' : '' }}>
+                             {{ $country['name_'.my_lang()] }} </option>
                     @endforeach
                 </select>
             </div>
@@ -114,9 +117,9 @@
                 <select name="region_id" id="region_id" class="form-control">
                     <option value=""> @lang('site.choose_region') </option>
                     @if($regions)
-                        @foreach ($regions as $region)
-                            <option value="{{ $region->id }}">
-                                {{ $region['name_'.my_lang()] }} </option>
+                        @foreach ($regions as $rr)
+                            <option value="{{ $rr->id }}" {{ $rr->id == $item->region_id ? 'selected' : '' }}>
+                                {{ $rr['name_'.my_lang()] }} </option>
                         @endforeach
                     @endif
                 </select>

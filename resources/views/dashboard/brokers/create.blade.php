@@ -51,6 +51,18 @@
                     @elseif($col == 'password')
                         <input type="password" name="{{ $col }}" class="form-control" required autocomplete="new-password">  
 
+                    @elseif($col == 'address')
+                        <input type="link" name="{{ $col }}" class="form-control" value="{{ old($col) }}">                                
+
+                    @elseif($col == 'tashlih_region')
+                        <select class="form-control" name="{{ $col }}">
+                            <option value=""> @lang('site.choose_region') </option>
+                            @foreach ($delivery_regions as $dr)
+                                <option value="{{ $dr->id }}" {{ old('tashlih_region') == $dr->id ? 'selected' : '' }}>
+                                        {{ $dr['name_'.my_lang()] }} </option>
+                            @endforeach
+                        </select>
+
                     @elseif($col == 'photo')
                         <input type="file" name="{{ $col }}" >  
 
