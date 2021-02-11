@@ -42,10 +42,10 @@
               </li>
 
             </ul>
-            <div class="tab-content">
+            <div class="row">
                
 
-                <div class="shadow mt-5 rounded table-responsive">
+                <div class="col-12 shadow mt-5 rounded table-responsive ord-2">
                      <table class="table text-center my-tbl2">
                         <thead>
                           <tr>
@@ -93,7 +93,11 @@
                 </div>
 
 
-                
+ 
+
+
+
+                <div class="col-12  ord-1">
                 <div class="row mt-5">
                   <div class="col-lg-7 col-md-5">
                     <div class="dis  shadow  p-4 rounded">
@@ -131,10 +135,8 @@
                   </div>
 
                 </div>
-
-
- 
-
+                </div>
+                
             </div>
           </div>
         </div>

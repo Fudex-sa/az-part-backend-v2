@@ -2,7 +2,7 @@
  
   
     <h3> @lang('site.order_content') </h3>
-
+<div class="table-responsive">
     <table class="text-center my-tbl">
         
          <tr>
@@ -56,12 +56,13 @@
              </tr>
          @endforeach
     </table>
- 
+ </div>
     @if($item->coupon)
 
     <hr/>
         <h3> @lang('site.coupon_used')  </h3>
     
+<div class="table-responsive">
         <table class="my-tbl text-center">
             <tbody>
                 <tr>
@@ -80,6 +81,7 @@
 
             </tbody>
         </table>
+        </div>
     @endif
 
 
@@ -88,6 +90,7 @@
 <hr/>
     <h3> @lang('site.order_package')  </h3>
 
+<div class="table-responsive">
     <table class="my-tbl text-center">
         <tbody>
             <tr>
@@ -106,4 +109,5 @@
  
         </tbody>
     </table>
+    </div>
 @endif

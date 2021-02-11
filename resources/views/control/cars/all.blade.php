@@ -25,10 +25,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="btn-add-container float-left" style="margin-bottom: 10px;">
-                  <button type="button" class="btn btn-save" data-toggle="modal"
-                    data-target=".bd-example-modal-lg">
+                  <a class="btn btn-save" href="{{ route('control.car.add') }}">
                     <i class="fa fa-plus"></i> @lang('site.add_car')
-                  </button>
+                  </a>
 
                 </div>
               </div>
@@ -162,5 +161,22 @@
         }
     });
   </script>
+   <script>
+        // upload image
+        function readURL(input) {
+            var id = $(input).attr("id");
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+
+                    $('label[for="' + id + '"] .prev').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".inputfile").change(function () {
+            readURL(this);
+        });
+    </script>
 
 @endsection

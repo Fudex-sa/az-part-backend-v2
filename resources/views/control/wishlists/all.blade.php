@@ -76,7 +76,9 @@
 
                   @endforeach
                 @else
-                  <div class="text-center"> @lang('site.no_items_found') </div>
+                  <div class="col-md-12 text-center">
+                    <h3> @lang('site.no_items_found') </h3>
+                  </div>
                 @endif
 
 

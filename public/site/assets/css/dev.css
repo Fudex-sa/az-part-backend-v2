@@ -79,10 +79,16 @@
 
 .advice{
     margin-top:35px;
+        display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
+.advice p {
+    flex: 1;
+} 
 .advice a{
-    margin-top: 25px;
+    height:auto;
+    margin-top: 0;
 }
 
 .status-1{
@@ -162,7 +168,7 @@
 }
 
 .advice a:hover{
-    margin-top: 25px;
+    margin-top: 0;
 }
 .cart-head{
     background: #e26941;

@@ -509,23 +509,25 @@ a:not([href]):not([tabindex]){
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s;
-  right: 15px;
-}
-
-.custom-custom-2 .custom-file-label::after {
-  border-radius: 15px;
-  content: "أضف صورة";
-  background: url(../images/upload.svg) 28px 20px no-repeat;
-  color: #bcc2cd;
-  padding-top: 60px;
-  right: 30%;
-  
-  background-color: transparent;
-  border-color: transparent;
-  font-size: 12px;
-  top: 0px;
   cursor: pointer;
-
+}
+.upload-file .upload-file-label
+{
+        display: flex;
+    height: 90px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.upload-file .upload-file-label img{
+    max-width:100%;
+    max-height:100%;
+}
+.upload-file .custom-file-input{
+    display:none;
 }
 .custom-custom-2 .custom-file-input:focus ~ .custom-file-label {
   box-shadow: none;
@@ -669,6 +671,7 @@ font-weight: bold;
   border: 3px solid #fff;
   border-radius: 5px;
   margin: 0 10px;
+  height:385px;
 }
 .add-card-body {
   padding: 10px;
@@ -681,6 +684,7 @@ font-weight: bold;
 }
 .add-card-footer {
   padding: 10px;
+  padding-right:20px;
 }
 .add-card-footer h6 {
   color: #939393;
@@ -720,6 +724,12 @@ font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.img-center {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom:30px;
 }
 .slick-slider{
     direction: ltr;
@@ -900,7 +910,7 @@ font-weight: bold;
   border: 3px solid #fff;
   border-radius: 5px;
   margin: 0px;
-  margin-top: 40px;
+  margin-bottom: 30px;
 }
 .cars-yard .add-card-body h5 {
   font-size: 25px;
@@ -2128,8 +2138,16 @@ padding: 0;
     line-height: 1.2;
 }
 .payment{
-        order: 3;
     margin-top: 30px;
+}
+.ord-1{
+        order: 1!important;
+}
+.ord-2{
+        order: 2!important;
+}
+.ord-3{
+        order: 3!important;
 }
 }
 
