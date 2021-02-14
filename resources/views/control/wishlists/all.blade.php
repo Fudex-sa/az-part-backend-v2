@@ -21,7 +21,7 @@
           @include('layouts.nav_side_menu')
 
 
-                <div class="cars-yard col-lg-9 col-md-9  col-12" style="margin-top: -120px;">
+                <div class="cars-yard col-lg-9 col-md-9  col-12">
                     <div class="container">
                       <div class="row">
 

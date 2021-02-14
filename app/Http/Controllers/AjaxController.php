@@ -20,7 +20,7 @@ class AjaxController extends Controller
 
         $region_id = $request->input('region_id');
         
-        $cities = City::whereRegion_id($region_id)->orderby('name_ar','desc')->get();
+        $cities = City::whereRegion_id($region_id)->orderby('name_ar','asc')->get();
         
         $result .= "<option value=''> ".__('site.choose_city')." </option>";
 
@@ -37,7 +37,7 @@ class AjaxController extends Controller
         
         $brand_id = $request->input('brand_id');
         
-        $brands = Modell::whereBrand_id($brand_id)->orderby('name_ar','desc')->get();
+        $brands = Modell::whereBrand_id($brand_id)->orderby('name_ar','asc')->get();
         
         $result .= "<option value=''> ".__('site.choose_model')." </option>";
 
@@ -54,7 +54,7 @@ class AjaxController extends Controller
         
         $country_id = $request->input('country_id');
         
-        $regions = Region::whereCountry_id($country_id)->orderby('name_ar','desc')->get();
+        $regions = Region::whereCountry_id($country_id)->orderby('name_ar','asc')->get();
         
         $result .= "<option value=''> ".__('site.choose_region')." </option>";
 

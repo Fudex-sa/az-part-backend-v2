@@ -6,6 +6,9 @@ use App\Models\ElectronicRequest;
 use App\Models\AvailableModel;
 use App\Models\AssignSeller;
 use App\Models\Broker;
+use App\Models\Seller;
+use App\Models\Company;
+use App\Models\User;
 use App\Models\EngineJob;
 use App\Models\EngineJobBroker;
 use App\Models\PackageSubscribe;
@@ -13,7 +16,6 @@ use Illuminate\Http\Request;
 use App\Helpers\Search;
 use App\Helpers\PackageHelp;
 use Log;
-use App\Models\Seller;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PushNotificationController;
 
@@ -84,6 +86,10 @@ class ElecEngine
 
                 $this->assign_sellers($req_id);
                 $this->run_first_cycle($req_id);
+
+                //---- Update remaining electronic orders
+                $this->update_remaining_electronic();
+
                 $response = 1;
             }
         }
@@ -95,6 +101,26 @@ class ElecEngine
         }
     }
 
+    public function update_remaining_electronic(){
+
+        // $my_elec_orders = ElectronicRequest::myRequests()->where('package_sub_id',0)->count();
+
+        $remaining = logged_user()->available_orders - 1;
+        $remaining < 0 ? $remaining = 0 : $remaining = $remaining;
+
+        if(user_type() == 'seller')
+            Seller::where('id',logged_user()->id)->update(['available_orders' => $remaining]);
+
+        elseif(user_type() == 'broker')
+            Broker::where('id',logged_user()->id)->update(['available_orders' => $remaining]);
+
+        elseif(user_type() == 'company')
+            Company::where('id',logged_user()->id)->update(['available_orders' => $remaining]);
+
+        else
+            User::where('id',logged_user()->id)->update(['available_orders' => $remaining]);
+
+    }
 
     public function matched_sellers()
     {

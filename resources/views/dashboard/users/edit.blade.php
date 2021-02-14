@@ -73,7 +73,8 @@
                     <option value=""> @lang('site.choose_country') </option>
                     
                     @foreach (countries() as $country)
-                        <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
+                        <option value="{{ $country->id }}" {{ $country->id == $item->country_id ? 'selected' : '' }}>
+                             {{ $country['name_'.my_lang()] }} </option>
                     @endforeach
                 </select>
             </div>
@@ -87,7 +88,7 @@
                     <option value=""> @lang('site.choose_region') </option>
                     @if($regions)
                         @foreach ($regions as $region)
-                            <option value="{{ $region->id }}">
+                            <option value="{{ $region->id }}" {{ $region->id == $item->region_id ? 'selected' : '' }}>
                                 {{ $region['name_'.my_lang()] }} </option>
                         @endforeach
                     @endif

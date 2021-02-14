@@ -7,6 +7,10 @@ use App\Models\Package;
 use App\Models\Order;
 use App\Models\ElectronicRequest;
 use App\Helpers\Search;
+use App\Models\Seller;
+use App\Models\Company;
+use App\Models\broker;
+use App\Models\User;
 
 class PackageHelp
 {
@@ -75,7 +79,7 @@ class PackageHelp
                 $limit = $this->stores_limit('manual') + $sys_limit : $limit = $sys_limit;
            
         $limit = $limit + logged_user()->special_stores_no;
-
+ 
         return $limit;
 
     }
@@ -116,6 +120,26 @@ class PackageHelp
                 $my_subscribe->save();   
             }
         }
+    }
+
+    public function update_remaining_special($limit)
+    {
+        $remaining =  $limit - logged_user()->special_stores_no -  setting('manual_search_result');
+        
+        $remaining < 0 ? $remaining = 0 : $remaining = $remaining;
+ 
+        if(user_type() == 'seller')
+            Seller::where('id',logged_user()->id)->update(['special_stores_no' => $remaining]);
+
+        elseif(user_type() == 'broker')
+            Broker::where('id',logged_user()->id)->update(['special_stores_no' => $remaining]);
+
+        elseif(user_type() == 'company')
+            Company::where('id',logged_user()->id)->update(['special_stores_no' => $remaining]);
+
+        else
+            User::where('id',logged_user()->id)->update(['special_stores_no' => $remaining]);
+
     }
 
 }

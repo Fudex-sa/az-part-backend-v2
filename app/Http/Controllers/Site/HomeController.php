@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
       
         $home = true;
-        $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
+        $brands = Brand::orderby('name_'.my_lang(),'asc')->get();
 
         $stocks = Stock::select('brand_id','model_id','piece_id','year',DB::raw('max(price) as max_price'),
                         DB::raw('min(price) as min_price'),

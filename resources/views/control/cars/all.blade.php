@@ -20,7 +20,7 @@
 
           @include('layouts.nav_side_menu')
 
-          <div class="col-lg-9 col-md-9  col-12" style="margin-top: -120px;">
+          <div class="col-lg-9 col-md-9  col-12">
 
             <div class="row">
               <div class="col-md-12">
@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-
+                <div class="table-responsive">
                   <table class="my-tbl text-center">
                     <thead>
                       <tr>
@@ -78,7 +78,7 @@
 
                     </tbody>
                   </table>
-
+</div>
 
               </div>
             </div>

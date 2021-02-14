@@ -125,10 +125,13 @@
         @endif
 
         <div class="col-md-12">
-          <div class="advice">
+          <div class="advice row">
             @if($items && count($items) > 0)
-            <p> {{ notification('contact_seller_hint') }} </p> @endif
- 
+            <div class="col-md-12 text-center">
+                <p> {{ notification('contact_seller_hint') }} </p> @endif
+                <br/> 
+            </div>
+                 
             @if(if_subscribe(request()->search_type) == 0)
 
             <p> {{ data('buy_package_for_more_results') }} </p> 

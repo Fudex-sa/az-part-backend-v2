@@ -168,21 +168,21 @@ if (! function_exists('has_permission')) {
 if (! function_exists('countries')) {
     function countries()
     {
-        return Country::orderby('name_ar', 'desc')->get();
+        return Country::orderby('name_ar', 'asc')->get();
     }
 }
 
 if (! function_exists('regions')) {
     function regions($country_id)
     {
-        return Region::where('country_id', $country_id)->orderby('name_ar', 'desc')->get();
+        return Region::where('country_id', $country_id)->orderby('name_ar', 'asc')->get();
     }
 }
 
 if (! function_exists('cities')) {
     function cities($region_id)
     {
-        return City::where('region_id', $region_id)->orderby('name_ar', 'desc')->get();
+        return City::where('region_id', $region_id)->orderby('name_ar', 'asc')->get();
     }
 }
 

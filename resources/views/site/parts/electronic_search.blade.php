@@ -14,8 +14,9 @@
     <div class="container">
       <div class="row">
         @include('layouts.breadcrumb')
-    
-        @if(valid_for_elec() == 1)
+     
+        @if(total_valid_elec() > 0)
+        {{-- @if(valid_for_elec() == 1) --}}
   
         @if($response['found_result'] == 0)
           <div class="modal-body modal-padding">
@@ -107,7 +108,8 @@
         <div class="col-md-12">
 
           <div class="advice text-center">       
-            @if(valid_for_elec() == 0)     
+            @if(total_valid_elec() < 1)
+            {{-- @if(valid_for_elec() == 0)      --}}
               <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results">
                 @lang('site.join_our_packages') </a>
             @endif
@@ -153,11 +155,20 @@ GrowlNotification.notify({
 <script>
   $("input[type='number']").inputSpinner()
 
+  var pieceCount =1;
+  
   function addNewPiece(){
+      pieceCount ++;
+
         $.get("{{ route('more_pieces') }}", function(data){
             $("#more_pieces").append(data);
         });
     };
+
+
+    function removePiece(elem){
+        $(elem).parent().parent('.piecePart').remove();
+    }
 
 </script>
 @endsection

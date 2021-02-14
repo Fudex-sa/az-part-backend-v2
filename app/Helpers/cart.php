@@ -261,7 +261,8 @@ if (! function_exists('valid_for_elec')) {
         $avialable_package_orders = PackageSubscribe::myPackagesByType('electronic')->get()->sum('stores_no');
 
         $my_elec_orders = ElectronicRequest::myRequests()->where('package_sub_id',0)->count();
-        
+      
+
         if($my_elec_orders < $special_requests) return 1;
         else {
             if($avialable_package_orders > 0) return 1;
@@ -269,6 +270,7 @@ if (! function_exists('valid_for_elec')) {
         }
     }
 }
+ 
 
 if (! function_exists('total_valid_elec')) {
     function total_valid_elec()
@@ -282,8 +284,10 @@ if (! function_exists('total_valid_elec')) {
 
         $my_elec_orders = ElectronicRequest::myRequests()->where('package_sub_id',0)->count();
 
-        $total += $sys_elec_search + $available_orders - $my_elec_orders;
+        // $total += $sys_elec_search + $available_orders - $my_elec_orders;
          
+        $total += $sys_elec_search + $available_orders;
+
         return $total;
     }
 }
