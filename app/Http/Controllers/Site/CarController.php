@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Brand;
 use App\Models\CarComment;
+use App\Models\Ad;
 
 class CarController extends Controller
 {
@@ -24,7 +25,10 @@ class CarController extends Controller
                     ->orderby('id','desc')
                     ->paginate(pagger());
                     
-        return view($this->view . 'antique' , compact('antique','brands','items'));
+        $ad_top = Ad::find(2);
+        $ad_right = Ad::find(3);
+
+        return view($this->view . 'antique' , compact('antique','brands','items','ad_top','ad_right'));
     }
 
     public function damaged()
@@ -40,7 +44,10 @@ class CarController extends Controller
                     ->orderby('id','desc')
                     ->paginate(pagger());
 
-        return view($this->view . 'damaged' , compact('damaged','brands','items'));
+        $ad_top = Ad::find(2);
+        $ad_right = Ad::find(3);
+
+        return view($this->view . 'damaged' , compact('damaged','brands','items','ad_top','ad_right'));
     }
 
     public function show($id)
@@ -103,7 +110,10 @@ class CarController extends Controller
                         ->orderby('id','desc')
                         ->paginate(pagger());
 
-        return view($this->view . 'search' , compact('damaged','brands','items'));
+        $ad_top = Ad::find(2);
+        $ad_right = Ad::find(3);
+
+        return view($this->view . 'search' , compact('damaged','brands','items','ad_top','ad_right'));
 
     }
 

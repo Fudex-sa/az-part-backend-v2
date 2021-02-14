@@ -256,7 +256,8 @@
 
                 <div class="clear-fix"></div>
 
-                <div class="row">
+                <div class="col-md-12">
+                  <hr/>
                   <a href="{{ route('car',$car->id) }}"> {{ $car->title }} </a>
                   {{-- <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
                     {{ $car->region ? $car->region['name_'.my_lang()] : '' }} -
@@ -269,7 +270,7 @@
 
               @if($car->price_type == 'fixed' && $car->price != null)
                 <div class="add-card-footer">
-                  <h6><strong> {{ $car->price }} </strong> @lang('site.rs')  </h6>
+                  @if($car->price) <h6><strong> {{ $car->price }} </strong> @lang('site.rs')  </h6> @endif
                 </div>
               @else   @endif
 
@@ -485,7 +486,7 @@
        </button>
      </div>
      <div class="modal-body row px-5">
-        <img src="{{ asset('site/assets/images/search-chart.png') }}" />
+        <img src="{{ asset('site/assets/images/search-chart.jpg') }}" />
 
        {{-- <div class="modal-head text-center col-md-12">
          <h2> @lang('site.choose_search_type') </h2>

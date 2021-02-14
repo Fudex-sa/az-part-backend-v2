@@ -35,8 +35,9 @@ class BrokerController extends Controller
     public function add()
     {
         $cols = Schema::getColumnListing('brokers');
+        $delivery_regions = DeliveryRegion::all();
 
-        return view($this->view.'create',compact('cols'));
+        return view($this->view.'create',compact('cols','delivery_regions'));
     }
 
     public function store(UserRequest $request,$id = null)
@@ -46,6 +47,9 @@ class BrokerController extends Controller
 
         $request->password ? $data['password'] = bcrypt($request->password) : 
             $data['password'] = Broker::where('id',$id)->first()->password;
+
+        $request->available_orders ? $data['available_orders'] = $request->available_orders 
+                    : $data['available_orders'] = 0;
 
         if($request->photo){
             $fileName = time().'.'.$request->photo->extension();  
@@ -70,7 +74,7 @@ class BrokerController extends Controller
     {
         $cols = Schema::getColumnListing('brokers');
 
-        if($item->city){
+        if($item->city_id){
             $region_cities = City::regions($item->city['region_id'])->get();
             $regions = Region::where('country_id',$item->city->region['country_id'])->orderby('name_ar','desc')->get();
         }            

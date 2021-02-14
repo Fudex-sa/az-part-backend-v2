@@ -26,12 +26,11 @@
          
               <div class="tab-pane fade show active" id="profile" role="tabpanel"
                 aria-labelledby="profile">
-                <div class="row">
-                  <form class="profile-form row" method="POST" action="{{ route('profile.update') }}"
+                  <form class="profile-form" method="POST" action="{{ route('profile.update') }}"
                   enctype="multipart/form-data">
                       @csrf
                       
-                  <div class="col-md-3 text-center">
+                  <div class="col-12">
                     
                     <div class="up-img">
                       
@@ -54,7 +53,7 @@
                       <h6> {{ __('site.'.user_type()) }} </h6>
                     </div>
                   </div>
-                  <div class="col-md-9">
+                  <div class="col-12">
                    
                         <div class="row">
                           
@@ -238,7 +237,6 @@
                         </div>
 
                     </form>
-                  </div>
 
                 </div>
 

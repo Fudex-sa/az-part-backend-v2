@@ -24,6 +24,18 @@
           </div>
         </div>
 
+        <div class="col-md-2"> </div>
+        <div class="col-md-8">
+          @if($ad_top) <a href="{{ $ad_top->link }}" target="_blank">
+             <img src="{{ asset('uploads/'.$ad_top->img) }}" /> </a> @endif
+        </div>
+        <div class="col-md-2"> </div>
+        
+        <div class="col-lg-3 col-md-6 col-sm-6">        
+          @if($ad_right) <a href="{{ $ad_right->link }}" target="_blank">
+            <img src="{{ asset('uploads/'.$ad_right->img) }}" /> </a> @endif
+        </div>
+        
         @if(count($items) > 0)
           @foreach ($items as $item)
 
@@ -63,7 +75,8 @@
 
               <div class="clear-fix"></div>
 
-              <div class="row">
+              <div class="col-md-12">
+                <hr/>
                 <a href="{{ route('car',$item->id) }}"> {{ $item->title }} </a>
                 {{-- <span class="col-md-12"> <img src="{{ site('assets/images/location.png') }}" alt="">
                     {{ $item->region ? $item->region['name_'.my_lang()] : '' }} -
@@ -75,7 +88,7 @@
 
               @if($item->price_type == 'fixed')
               <div class="add-card-footer">
-                <h6><strong> {{ $item->price }} </strong> @lang('site.rs')  </h6>
+                @if($item->price) <h6><strong> {{ $item->price }} </strong> @lang('site.rs')  </h6> @endif
               </div>
               @endif
 

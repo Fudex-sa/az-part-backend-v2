@@ -51,6 +51,9 @@ class PartController extends Controller
         $exists = SearchHistory::match($request->brand,$request->model,$request->year)
                                 ->first();
 
+                    
+        $this->package->update_remaining_special($limit);
+
         if($exists) $limit = $exists->limit;
 
 
@@ -73,8 +76,6 @@ class PartController extends Controller
 
             $this->package->update_remaining($remaining_stores);
         }    
-
-       
 
         return view($this->view.'find_sellers',compact('items','piece_alts','found_result','all_items'));
     }

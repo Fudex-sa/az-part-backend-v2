@@ -108,6 +108,31 @@ a:not([href]):not([tabindex]){
 .navbar-light .navbar-nav .nav-link:focus {
   color: #1584bb;
 }
+.sam-list{
+    width: 100%;
+}
+.sam-list li{
+        display: flex;
+    flex: 1;
+    font-size: 18px;
+    padding: 10px 0;
+    color: #5a5a5a;
+    border-bottom: 1px solid #efefef;
+}
+.sam-list li > span:first-of-type{
+    flex: 1;
+}
+.sam-list li > span:last-of-type{
+        font-weight: bold;
+}
+
+.sam-list li .total{
+    font-size: 30px;
+    color: #1584bb;
+}
+.sam-list li .my-blue{
+    color: #1584bb;
+}
 .contact-nav{
  align-items: center;   
 }
@@ -509,23 +534,25 @@ a:not([href]):not([tabindex]){
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s;
-  right: 15px;
-}
-
-.custom-custom-2 .custom-file-label::after {
-  border-radius: 15px;
-  content: "أضف صورة";
-  background: url(../images/upload.svg) 28px 20px no-repeat;
-  color: #bcc2cd;
-  padding-top: 60px;
-  right: 30%;
-  
-  background-color: transparent;
-  border-color: transparent;
-  font-size: 12px;
-  top: 0px;
   cursor: pointer;
-
+}
+.upload-file .upload-file-label
+{
+        display: flex;
+    height: 90px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.upload-file .upload-file-label img{
+    max-width:100%;
+    max-height:100%;
+}
+.upload-file .custom-file-input{
+    display:none;
 }
 .custom-custom-2 .custom-file-input:focus ~ .custom-file-label {
   box-shadow: none;
@@ -576,6 +603,17 @@ footer p {
 }
 .table-responsive{
     margin-bottom:30px;
+}
+.table-responsive::-webkit-scrollbar {
+  height: 16px!important;
+  
+}
+.table-responsive::-webkit-scrollbar-track{
+    background: #fdece6!important;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #e26941; 
+  border-radius:20px;
 }
 .map-card {
   padding-top: 30px;
@@ -669,6 +707,7 @@ font-weight: bold;
   border: 3px solid #fff;
   border-radius: 5px;
   margin: 0 10px;
+  height:385px;
 }
 .add-card-body {
   padding: 10px;
@@ -681,6 +720,7 @@ font-weight: bold;
 }
 .add-card-footer {
   padding: 10px;
+  padding-right:20px;
 }
 .add-card-footer h6 {
   color: #939393;
@@ -720,6 +760,12 @@ font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.img-center {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom:30px;
 }
 .slick-slider{
     direction: ltr;
@@ -900,7 +946,7 @@ font-weight: bold;
   border: 3px solid #fff;
   border-radius: 5px;
   margin: 0px;
-  margin-top: 40px;
+  margin-bottom: 30px;
 }
 .cars-yard .add-card-body h5 {
   font-size: 25px;
@@ -2082,10 +2128,6 @@ padding: 0;
     border: none;
     padding-top: 46px;
   }
-  .remove-pen {
-    margin-right: 35px;
-    margin-top: 20px;
-  }
   .footer-box h4 {
     font-size: 14px;
   }
@@ -2128,8 +2170,16 @@ padding: 0;
     line-height: 1.2;
 }
 .payment{
-        order: 3;
     margin-top: 30px;
+}
+.ord-1{
+        order: 1!important;
+}
+.ord-2{
+        order: 2!important;
+}
+.ord-3{
+        order: 3!important;
 }
 }
 
@@ -2235,10 +2285,6 @@ padding: 0;
     border: none;
     padding-top: 0;
   }
-  .remove-pen {
-    margin-right: 135px;
-    margin-top: 20px !important;
-  }
   .cart-box {
     text-align: center;
   }
@@ -2300,10 +2346,7 @@ padding: 0;
   margin-top: 10px !important;
 
 }
-.btn-add-container{
-  margin-top: 50px;
 
-}
 .interested {
   float: right !important;
 }

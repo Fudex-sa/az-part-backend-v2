@@ -11,6 +11,7 @@ use App\Models\Page;
 use App\Models\Seller;
 use App\Models\Broker;
 use App\Models\AvailableModel;
+use App\Models\Ad;
 use DB;
 
 class HomeController extends Controller
@@ -21,7 +22,7 @@ class HomeController extends Controller
     {
       
         $home = true;
-        $brands = Brand::orderby('name_'.my_lang(),'desc')->get();
+        $brands = Brand::orderby('name_'.my_lang(),'asc')->get();
 
         $stocks = Stock::select('brand_id','model_id','piece_id','year',DB::raw('max(price) as max_price'),
                         DB::raw('min(price) as min_price'),
@@ -43,7 +44,7 @@ class HomeController extends Controller
         $about = Page::find(1);
         $total_sellers_count = Seller::count() + Broker::count();
         $total_cars_count = AvailableModel::count();
-
+ 
         return view("site.home",compact('home','brands','stocks','cars','about',
                 'total_sellers_count','total_cars_count'));
     }

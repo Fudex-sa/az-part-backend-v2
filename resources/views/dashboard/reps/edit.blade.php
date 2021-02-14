@@ -117,7 +117,7 @@
             @endif
         @endforeach
         
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"> @lang('site.user_role') </label>
 
             <div class="col-md-9 col-sm-6 col-xs-12">
@@ -137,7 +137,7 @@
                     @endforeach
                  
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="form-group">
@@ -148,7 +148,8 @@
                     <option value=""> @lang('site.choose_country') </option>
                     
                     @foreach (countries() as $country)
-                        <option value="{{ $country->id }}"> {{ $country['name_'.my_lang()] }} </option>
+                        <option value="{{ $country->id }}" {{ $item->country_id == $country->id ? 'selected' : '' }}>
+                                 {{ $country['name_'.my_lang()] }} </option>
                     @endforeach
                 </select>
             </div>

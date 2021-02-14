@@ -46,6 +46,18 @@
                     @elseif($col == 'mobile')
                         <input type="tel" name="{{ $col }}" class="form-control" maxlength="10" value="{{ old($col) }}" required>  
 
+                    @elseif($col == 'phone')
+                        <input type="tel" name="{{ $col }}" class="form-control" maxlength="10" value="{{ old($col) }}">  
+
+                    @elseif($col == 'national_id')
+                        <input type="text" name="{{ $col }}" class="form-control" maxlength="20" value="{{ old($col) }}">  
+
+                    @elseif($col == 'bank_account')
+                        <input type="text" name="{{ $col }}" class="form-control" maxlength="30" value="{{ old($col) }}">  
+
+                    @elseif($col == 'iban')
+                        <input type="text" name="{{ $col }}" class="form-control" maxlength="30" value="{{ old($col) }}">  
+
                     @elseif($col == 'available_requests')
                     <input type="number" min="1" name="{{ $col }}" class="form-control" value="{{ old($col) }}"
                         required>  

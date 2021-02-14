@@ -82,6 +82,7 @@ Route::group(
             Route::get('order/{id}', [App\Http\Controllers\Control\OrderController::class, 'show'])->name('order');
 
             Route::get('cars', [App\Http\Controllers\Control\CarController::class, 'all'])->name('control.cars');
+            Route::get('car/add', [App\Http\Controllers\Control\CarController::class, 'add'])->name('control.car.add');
             Route::get('car/{item}', [App\Http\Controllers\Control\CarController::class, 'edit'])->name('control.car');
             Route::post('car/store/{id?}', [App\Http\Controllers\Control\CarController::class, 'store'])->name('control.car.store');
             Route::delete('car/delete', [App\Http\Controllers\Control\CarController::class, 'delete'])->name('admin.car.delete');

@@ -69,7 +69,7 @@
       <!-- start new row -->
       <div class="col-md-12 mt-5">
         <div class="table-responsive">
-          <table class="table ">
+          <table class="table text-center">
             <thead class=" bg-dark-blue">
               <tr>
                 <th scope="col"> @lang('site.brand') </th>

@@ -25,12 +25,11 @@
               </h6>
   
              
-              <div class="text-center advice">
+              <div class="advice">
                            
-                  <p>  {{ data('for_more_stores') }} 
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#other_cities">
+                  <p>  {{ data('for_more_stores') }}                   </p>
+                  <a href="javascript:void(0);" data-toggle="modal" data-target="#other_cities">
                        @lang('site.in_other_cities') </a>
-                  </p>
               </div>
              
 
@@ -126,13 +125,16 @@
         @endif
 
         <div class="col-md-12">
-          <div class="advice text-center">
+          <div class="advice row">
             @if($items && count($items) > 0)
-            <p> {{ notification('contact_seller_hint') }} </p> @endif
- 
+            <div class="col-md-12 text-center">
+                <p> {{ notification('contact_seller_hint') }} </p> @endif
+                <br/> 
+            </div>
+                 
             @if(if_subscribe(request()->search_type) == 0)
 
-            <br/> <span> {{ data('buy_package_for_more_results') }} </span> <br/>
+            <p> {{ data('buy_package_for_more_results') }} </p> 
 
                 <a href="{{ route('package.show',request()->search_type) }}" class="btn btn-results">
                              @lang('site.get_more_results') </a>

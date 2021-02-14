@@ -21,7 +21,7 @@
           @include('layouts.nav_side_menu')
 
 
-                <div class="cars-yard col-lg-9 col-md-9  col-12" style="margin-top: -120px;">
+                <div class="cars-yard col-lg-9 col-md-9  col-12">
                     <div class="container">
                       <div class="row">
 
@@ -76,7 +76,9 @@
 
                   @endforeach
                 @else
-                  <div class="text-center"> @lang('site.no_items_found') </div>
+                  <div class="col-md-12 text-center">
+                    <h3> @lang('site.no_items_found') </h3>
+                  </div>
                 @endif
 
 

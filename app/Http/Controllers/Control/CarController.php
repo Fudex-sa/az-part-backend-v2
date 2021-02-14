@@ -32,7 +32,16 @@ class CarController extends Controller
         $brands = Brand::orderby('name_'.my_lang(), 'desc')->get();
         $countries = Country::orderby('name_'.my_lang(), 'desc')->get();
 
-        return view($this->view . 'all', compact('items', 'brands', 'countries', 'my_cars'));
+        return view($this->view . 'all', compact('items', 'my_cars','brands','countries'));
+    }
+
+    public function add()
+    {
+        $my_cars = true;
+        $brands = Brand::orderby('name_'.my_lang(), 'desc')->get();
+        $countries = Country::orderby('name_'.my_lang(), 'desc')->get();
+
+        return view($this->view.'create',compact('brands', 'countries','my_cars'));
     }
 
     public function edit(Car $item)
